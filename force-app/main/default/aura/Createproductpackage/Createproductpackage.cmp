@@ -1,0 +1,43 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride,flexipage:availableForAllPageTypes,force:lightningQuickAction"
+                access="global"
+                controller="CompMultiSelect">
+    <aura:attribute name="pid" type="String" />
+    <aura:attribute name="records" type="Object[]" description="the collection of records received from query"/>
+    <aura:handler name="change"  value="{!v.step1}" action="{!c.step2}"/>
+    <aura:attribute name="step1" type="boolean" default="true" />
+    <aura:attribute name="step2" type="boolean" default="false" />
+    <aura:attribute name="wherestmt" type="string" default="where name != null"/>
+	<aura:attribute name="parentid" type="string" default=" "/>
+    <aura:attribute name="childrensaved" type="boolean"
+                    description="this is to allow the parent component to create a specific apex code to update records"/>
+    <aura:handler name="change" value="{!v.childrensaved}" action="{!c.childSaved}"/>
+    <aura:if isTrue="{!v.step1}">
+        <c:productpackage pid="{!v.pid}" step1="{!v.step1}"/>
+    </aura:if>  
+    <aura:if isTrue="{!v.step2}">
+        <c:MultiSelectItems title="Select Products for Package" 
+                            objToQuery="Product2" 
+                            wherestmt="where isactive = true"
+                            limitstmt="limit 50"
+                            orderstmnt="Order by Accessory__c, Name asc"
+                            Columnfields="Name,Description"
+                            Columnheaders="Name,Description"
+                            btnName="Add Selected Products"
+                            records="{!v.records}"
+                            searchplaceholder="Search by product name - Partial ok. Press Enter to search"
+                            searchlabel="Product Name"
+                            searchfield="ProductSearch__c"
+                            recordId="{!v.pid}"
+                            objToCreate="Package__c"
+                            objToCreateFields="Product_Package__c,Product__c"
+                            parentid="{!v.parentid}"
+                            childrensaved="{!v.childrensaved}">
+            
+        </c:MultiSelectItems>
+    </aura:if> 
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    
+</aura:component>

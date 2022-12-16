@@ -1,0 +1,104 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="contactList" >
+    <!--<aura:handler event="wave:selectionChanged" action="{!c.handleChangeWave}"/>-->
+    <!--<aura:handler name="cmpEvent" event="c:ContactIFPAccountEvent" action="{!c.gettingCons}"/>-->
+    <aura:attribute name="cons" type="Contact[]"/>
+    <aura:attribute name="vsaorder" type="VSA_Open_Order__c"/>
+    <aura:attribute name="shipping" type="String"/>
+    <aura:attribute name="packing" type="String"/>
+    <aura:attribute name="address" type="String"/>
+    <aura:attribute name="shippingExists" type="boolean" default="false"/>
+    <aura:registerEvent name="cmpEvent" type="c:ContactIFPAccountEvent"/>
+    <br/>
+    <lightning:card  >
+        <aura:set attribute="title">
+            <aura:if isTrue="{!v.shippingExists}">
+                
+               <b> Here is the shipping Information</b><br/><br/>
+                <br/>
+                <!--<b>Spa Number:</b> <ui:outputTextArea aura:id="oTextarea" value="{!v.vsaorder.Spa_Number__c}"/><br/><br/>-->
+                <b>Shipping Instruction:</b> <ui:outputTextArea aura:id="oTextarea" value="{!v.vsaorder.Ship_to_Instructions__c}"/><br/><br/>
+                <b>Packing Instruction: </b> <ui:outputTextArea aura:id="oTextarea" value="{!v.vsaorder.Packing_Instructions__c}"/><br/><br/>
+                <b>Address :</b> <ui:outputTextArea aura:id="oTextarea" value="{!v.v.vsaorder.Ship_to_Address_2__c}"/>  
+                
+                <aura:set attribute="else">
+                    The PO selected does not have SPA that the system can find. You can see
+                    Shipping Instuctions on the 2nd dashboard on the left.
+                </aura:set>
+            </aura:if>
+        </aura:set>
+        
+    </lightning:card>
+    <br/>
+    <!--
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerspa" class="slds-hide" variant="brand" size="large"/>
+    </div>-->
+    <aura:if isTrue="{!empty(v.cons)}">
+        No Contacts Found. Select a Row and Ensure there are Contacts for Selected Account
+        <aura:set attribute="else">
+            <lightning:card  >
+                <aura:set attribute="title">
+                    Contacts for {!v.cons[0].Account.Name}
+                </aura:set>
+                
+                
+                
+                
+                <div class="flexipageComponent" data-aura-class="flexipageComponent">
+                    <div class="slds-card__header slds-grid">
+                        <table>
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Spa Name">Name</div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Resellers">Email</div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Spa Expiration Date">Title</div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Bid Registration">State</div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Resubmission Notes">ViewBoard/Marketing Post Sale Con</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <aura:iteration items="{!v.cons}" var="c">
+                                    <tr>
+                                        <td class="slds-cell-wrap">
+                                            <ui:inputText value="{!c.FirstName+' '+c.LastName }"/>
+                                        </td>
+                                        <td class="slds-cell-wrap">
+                                            <ui:inputText value="{!c.Email}"/>
+                                        </td>
+                                        <td class="slds-cell-wrap">
+                                            <ui:inputText value="{!c.Title}"/>
+                                        </td >
+                                        <td class="slds-cell-wrap">
+                                            <ui:inputText value="{!c.MailingState}"/>                                            
+                                        </td>
+                                        <td class="slds-cell-wrap">
+                                            <ui:inputCheckbox value="{!c.Marketing_Post_Sales__c}"/>
+                                        </td>    
+                                    </tr>
+                                </aura:iteration>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    
+                    <aura:if isTrue="{!not(empty(v.cons))}" >
+                    </aura:if>
+                    <lightning:button name="save" label="Save" variant="brand" onclick="{!c.handleSubmit}"/>
+                    <lightning:button name="create" label="Create New and Link" variant="brand" onclick="{!c.handleCreate}"/>
+                    
+                </footer>
+            </lightning:card>
+        </aura:set>
+    </aura:if>
+</aura:component>

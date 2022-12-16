@@ -1,0 +1,5 @@
+<design:component>
+	<design:attribute name="isLocked" description="true or false if record locked"/>
+    <design:attribute name="recordId" description="the record to check"/>
+    <design:attribute name="externalReps" description="if true, show the message for external reps"/>
+</design:component>

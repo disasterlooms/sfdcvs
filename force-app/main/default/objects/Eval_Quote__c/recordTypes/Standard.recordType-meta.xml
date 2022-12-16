@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standard</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>EvalQuote</compactLayoutAssignment>
+    <label>Standard</label>
+    <picklistValues>
+        <picklist>Eval_Quote_Status__c</picklist>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>PO Received</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

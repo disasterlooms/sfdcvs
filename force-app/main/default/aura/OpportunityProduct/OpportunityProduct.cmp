@@ -1,0 +1,135 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:availableForFlowScreens" access="global" controller="OppProducts">
+  <aura:registerEvent name="flowScreen" type="c:cardOpportunityProductEvent"/>
+  <aura:attribute name="recordId" type="String" access="public"/>
+  <aura:attribute name="products" type="OpportunityLineItem[]" access="public"/>    
+  <aura:attribute name="isAdmin" type="boolean" access="public"/>
+  <aura:attribute name="hideLikelyProduct" type="boolean" access="public"/>
+  <aura:attribute name="hideScheduleButton" type="boolean" access="public"/>
+  <aura:attribute name="orderProducts" type="String" default="" description="if this is used in an email to Reseller to notify them on what to quote"/>
+    <aura:attribute name="orderProductsBtn" type="String" default="display:none;" description="if this is used in an email to Reseller to notify them on what to quote"/>
+    <aura:attribute name="orderProductsString" type="String" default="Likely or Purchasing" description="if this is used in an email to Reseller to notify them on what to quote"/>
+    <aura:attribute name="likelyProduct" type="boolean" />
+  
+  <aura:attribute name="delproducts" type="OpportunityLineItem[]" access="public"/>
+  <aura:handler event="force:refreshView" action="{!c.getProducts}" />
+  <aura:attribute name="status" type="String[]" />
+  <aura:handler name="init" value="{!this}" action="{!c.getProducts}"/>
+  <lightning:overlayLibrary aura:id="overlayLib1"/>
+  <div class="exampleHolder">
+      <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+  </div>
+<div class="slds-border_top slds-border_bottom slds-border_right slds-border_left">
+  
+    <div style="{!v.orderProducts}"></div>
+    
+  <!--<lightning:spinner variant="brand" size="large" aura:id="mySpinner"/>-->
+  <div class="slds-border_top  slds-border_right slds-border_left slds-border_bottom flexipageComponent OpportunityProductflexipageComponent" data-aura-class="flexipageComponent">
+    <article class="slds-card" >
+          
+          <div style="{!v.orderProductsBtn}">
+          
+        
+          <lightning:card >
+              <aura:set attribute="actions">
+              <lightning:button label="Next" variant="brand" onclick="{!c.update}" value="{!recordid}" />
+              </aura:set>
+          </lightning:card>
+                  </div>
+        <div class="slds-card__header slds-grid" style="{!v.orderProducts}">
+              
+            <header class="slds-media slds-media_center slds-has-flexi-truncate"><div class="slds-media__body">
+              <h2>
+                  <span class="slds-text-heading_small">Update or Remove Products</span>
+              </h2>
+            </div>
+          </header>
+              
+          <div class="slds-no-flex">
+            <lightning:button label="Delete&nbsp;Selected" variant="neutral" onclick="{!c.deleteprods}" value="{!recordid}"  /> 
+            <lightning:button label="Update&nbsp;Products" variant="neutral" onclick="{!c.update}" value="{!recordid}"  />
+          </div>
+        </div>
+          
+      <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+              <tr class="slds-text-title_caps">
+                <th scope="col" style="{!v.orderProducts}">
+                    <ui:inputCheckbox change="{!c.checkAllCheckboxes}" aura:id="checkbox"/>
+                </th>
+                <th scope="col">
+                  <div class="slds-truncate" title="Product">Product</div>
+                </th>
+                  
+                <th scope="col" style="{!v.orderProducts}">
+                  <div class="slds-truncate" title="Quantity">Quantity</div>
+                </th>
+                <th scope="col" style="{!v.orderProducts}">
+                  <div class="slds-truncate" title="Requested Price">Req Price</div>
+                </th>
+                <th scope="col" style="{!v.orderProducts}">
+                  <div class="slds-truncate" title="Comp">Competitor</div>
+                </th>
+                  
+                  <th scope="col" style="{!v.orderProducts}">
+                  <div class="slds-truncate" title="Notes">Notes</div>
+                </th>
+                
+                <aura:if isTrue="{!not(v.hideLikelyProduct)}" > 
+                <th scope="col">
+                      <div class="slds-truncate" title="Likely Product">{!v.orderProductsString}</div>
+                </th>
+              </aura:if>
+              <aura:if isTrue="{!not(v.hideScheduleButton)}" > 
+                <th scope="col" style="{!v.orderProducts}">
+                    
+                </th>
+                </aura:if>
+              </tr>
+            </thead>
+            <tbody>
+              <aura:iteration items="{!v.products}" var="p">
+                <tr>           
+                  <td style="{!v.orderProducts}">
+                      <ui:inputCheckbox aura:id="DependentCheckbox" name="{!p.Id}"/>
+                  </td>
+                  <td>
+                      <ui:outputText value="{!p.ProductCode}"/>
+                  </td>
+                  <td style="{!v.orderProducts}">
+                    <ui:inputNumber value="{!p.Quantity}" />
+                  </td>
+                  <td style="{!v.orderProducts}">
+             <ui:inputCurrency value="{!p.TotalPrice}"/>
+                      
+                  </td>
+                  <td style="{!v.orderProducts}">
+                      <ui:inputText value="{!p.Competitor_Name_del__c}"/>
+                  </td>
+                    <td style="{!v.orderProducts}">
+                      <lightning:textarea value="{!p.Notes__c}"/>
+                  </td>                
+                  <aura:if isTrue="{!not(v.hideLikelyProduct)}" >   
+                  <td>
+                        <div style="{!v.orderProducts}">
+                      <ui:inputCheckbox value="{!p.Likely_Purchase__c}" label="" />
+                            </div>
+                          <div style="{!v.orderProductsBtn}">
+                        <lightning:input type="checkbox-button" label=""                                             
+                                          value="{!p.Likely_Purchase__c}"
+                                          checked="{!p.Likely_Purchase__c}" aura:id="likleyCheck"/>
+                        </div>
+                  </td>
+                    </aura:if>
+                    <aura:if isTrue="{!not(v.hideScheduleButton)}" > 
+                      <td style="{!v.orderProducts}">
+                              <lightning:button label="Prod&nbsp;Schedule" variant="neutral" onclick="{!c.viewschedule}" value="{!p.id}" name="{!p.Id}"/>
+                    </td>
+                    </aura:if>
+              </tr>
+              </aura:iteration>
+            </tbody>
+          </table>
+      </article>
+    </div>
+      </div>
+</aura:component>

@@ -1,0 +1,16 @@
+<design:component>
+    <design:attribute name="imageURL" description="URL for the image"/>
+    <design:attribute name="Header" description="Header of page"/>
+    <design:attribute name="Subttitle" description="subtitle of page"/>
+    <design:attribute name="showCallToAction" description="Show Call To Action"/>    
+    
+    <design:attribute name="ActionHeader" description="The Header of the Call to Action"/>
+    <design:attribute name="ButtonLabel" description="The Label for the Button"/>
+    <design:attribute name="onClicktype" description="Spiff, Deal, or other Action"/>
+    <design:attribute name="flow" description="API name of flow in Modal"/>
+	<design:attribute name="flowVariables" description="input variables for the flow"/>   
+    <design:attribute name="reseller" description="if is reseller, then true"/>    
+    <design:attribute name="actionType" description="Options: DealCreation "/>
+    <design:attribute name="SalesTracker" description="If for Sales Tracker, then True"/>
+    
+</design:component>

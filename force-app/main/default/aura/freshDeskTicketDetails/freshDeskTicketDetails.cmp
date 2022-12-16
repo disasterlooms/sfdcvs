@@ -1,0 +1,52 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome"
+    controller="freshDeskTicket">
+    <lightning:messageChannel type="freshdeskMessage__c"
+    onMessage="{!c.handleTicketchange}"/>
+
+    <aura:handler event="wave:selectionChanged" action="{!c.fdTicketSelection}" />
+    <aura:attribute name="fdTicketId" type="String" />
+    <aura:attribute name="conversations" type="Object[]" />
+    
+    <aura:iteration items="{!v.conversations}" var="cr">
+        <div>
+            <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="extra-large"/>
+        </div>
+        {!v.body}
+        <lightning:card title="Hello">
+            <aura:set attribute="title">
+                
+            <b>Date:</b>
+                <lightning:formattedDateTime label="Date" value="{!cr.updated_at}" />
+
+                <br />From: <aura:iteration items="{!cr.from_email}" var="fe">
+
+                    <lightning:formattedText value="{!fe}" />
+                </aura:iteration>
+
+                <br />To: <aura:iteration items="{!cr.to_emails}" var="te">
+
+                    <lightning:formattedText value="{!te}" title="{!te}" />
+                </aura:iteration>
+
+                <br />CC: <aura:iteration items="{!cr.cc_emails}" var="cce">
+
+                    <lightning:formattedText value="{!cce}" />
+                </aura:iteration>
+            </aura:set>
+            <p class="slds-p-horizontal_small">
+                <lightning:formattedRichText value="{!cr.body}" />
+            </p>
+            <!-- 
+            <aura:set attribute="footer">
+                <br />Attachments <aura:iteration items="{!cr.attachments}" var="att">
+                    <img src="{!att.thumb_url}" alt="Forest"/>
+
+
+                </aura:iteration>
+                </aura:set>
+                -->
+        </lightning:card>
+
+    </aura:iteration>
+
+</aura:component>

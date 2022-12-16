@@ -1,0 +1,24 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens" access="global" >
+    <aura:attribute name="recordId" type="String" />
+    
+     <lightning:recordViewForm recordId="0011H00002BdC3s" objectApiName="Account">
+        <lightning:messages />
+        <lightning:outputField fieldName="Name"/>
+        <lightning:outputField fieldName="Website" />
+        <lightning:outputField fieldName="BillingCity" />
+        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
+    </lightning:recordViewForm>
+    
+    
+    <lightning:recordEditForm recordId="0TU1H0000008OMN" objectApiName="AccountBrand">
+        <lightning:messages />
+        <lightning:outputField fieldName="CompanyName"/>
+        <lightning:outputField fieldName="First_Name__c" />
+        <lightning:outputField fieldName="Last_Name__c" />
+        <lightning:outputField fieldName="Email" />
+        <lightning:outputField fieldName="Phone" />
+        <lightning:outputField fieldName="LogoURL" />
+        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
+    </lightning:recordEditForm>
+	
+</aura:component>

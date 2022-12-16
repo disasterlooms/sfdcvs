@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Not_Complete</fullName>
+    <columns>NAME</columns>
+    <columns>VS_SubRegion__c</columns>
+    <columns>Status__c</columns>
+    <columns>External_Customer_Id__c</columns>
+    <columns>Distributor__c</columns>
+    <columns>Customer_Name__c</columns>
+    <columns>Country__c</columns>
+    <columns>City_Name__c</columns>
+    <columns>City_Code__c</columns>
+    <columns>Street__c</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>After_Dedup_Process__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Pending</value>
+    </filters>
+    <label>Pending</label>
+    <sharedTo>
+        <group>VSE_Germany_CMS_Admin</group>
+    </sharedTo>
+</ListView>

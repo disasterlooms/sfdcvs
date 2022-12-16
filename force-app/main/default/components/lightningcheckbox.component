@@ -1,0 +1,26 @@
+<apex:component >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<script>
+    var $j = jQuery.noConflict();
+    setTimeout(setid, 30);
+    function setid(){
+    var input = $j("[id$=chckbox]").attr('id');
+    document.getElementById(input).id="{!id}";
+
+    }
+    </script>
+    <apex:attribute name="field" type="String" description="the field name from the controller" required="true"/>
+    <apex:attribute name="label" type="String" description="label for field" required="true"/>
+    <apex:attribute name="id" type="string" description="id for the inputfield"/>
+    <apex:attribute name="object" type="sObject" description="Object Name" required="false"/>
+    <apex:attribute name="check" type="boolean" description="is checkbox checked, true or false" required="false"/>
+    <apex:attribute name="onchange" type="string" description="event on change" required="false"/>
+    <apex:attribute name="onclick" type="string" description="event on click" required="false"/>
+    
+      <div class="slds-form-element">
+          <label class="slds-form-element__label" for="{!id}">{!label}</label>
+          <div class="slds-form-element__control">
+            <apex:inputcheckbox value="{!object[field]}"  selected="{!check}" onchange="{!onchange}" onclick="{!onclick}" id="chckbox"/>
+           </div>
+      </div>
+</apex:component>

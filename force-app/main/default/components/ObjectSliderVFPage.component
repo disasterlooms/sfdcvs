@@ -1,0 +1,70 @@
+<apex:component >
+<script>
+function slidertoggle(){
+    var el = document.getElementById('devSlide');
+    if(el.className == ''){
+        document.getElementById('devSlide').className = 'expanded';
+        document.getElementById('devSlide').style.right = "-2px";        
+        console.log('expand this please');
+     }else{
+        document.getElementById('devSlide').className = '';
+        document.getElementById('devSlide').style.right = "-230px"; 
+         console.log('contract this please');
+    }
+  }
+</script>
+
+<style>
+.expanded{
+    display: block;
+    block; right: -2px;
+    }
+</style>
+
+<apex:attribute name="object" type="String" description="Name of the Object" required="true"/>
+<apex:attribute name="recordid" type="String" description="recordid" required="true"/>
+<apex:attribute name="recordtype" type="String" description="record type" required="true"/>
+<apex:attribute name="layout" type="String" description="record type" required="true"/>
+
+    <div id="devSlide" class="" style="display: block; right: -230px;">
+        <div class="handle" data-uidsfdc="44"><img class="menuArrow" title="Collapse Force.com Quick Access Menu" src="/img/s.gif" alt="Collapse Force.com Quick Access Menu" onclick="slidertoggle();"/></div>
+            <div class="slideContainer">
+                <div class="header"><a id="forceLogoLink" title="Setup" href="/setup/forcecomHomepage.apexp?setupid=ForceCom&amp;retURL=%2F{!recordid}"><img class="forceLogo" title="Go to Setup" src="/img/s.gif" alt="Go to Setup" /></a><a class="helpLink" title="Help"><img class="helpIcon" title="Help" src="img/s.gif" alt="Help" /></a></div>
+                <div class="slideBody" data-uidsfdc="45">
+                    <ul class="slideList">
+                    <li class=""><a class="toolLink" title="View and manage the fields for this object" href="/p/setup/layout/LayoutFieldList?type={!object}&amp;setupid={!object}Fields" target="_blank">View Fields</a><a class="toolNewLink" title="Add a field to this object" href="p/setup/field/NewCustomFieldStageManager?entity={!object}&amp;retURL=%2F{!recordid}&amp;setupid={!object}Fields" target="_blank"><img src="img/dcm/add_icon.png" alt="New" width="16" height="16" />New</a>
+                    <div class="clearingBox">&nbsp;</div>
+                    </li>
+                    <li class=""><a class="toolLink" title="View and manage details for this object" href="/ui/setup/Setup?setupid={!object}" target="_blank">View Object</a><a class="toolNewLink" title="Create an Object" href="01I/e?retURL=%2F{!recordid}&amp;setupid={!object}"><img src="img/dcm/add_icon.png" alt="New" width="16" height="16" />New</a>
+                        <div class="clearingBox">&nbsp;</div>
+                    </li>
+                    <li class=""><a class="toolLink" title="View and manage validation rules for this object" href="/_ui/common/config/entity/ValidationFormulaListUI/d?retURL=%2F{!recordid}&amp;tableEnumOrId={!object}&amp;setupid={!object}Validations" target="_blank">View Validation Rules</a><a class="toolNewLink" title="Add a validation rule for this object" href="03d/e?retURL=%2F{!recordid}&amp;TableEnumOrId={!object}&amp;Active=1&amp;setupid={!object}Validations"><img src="img/dcm/add_icon.png" alt="New" width="16" height="16" />New</a>
+                        <div class="clearingBox">&nbsp;</div>
+                    </li>
+                    <li><a class="toolLink" title="View and manage approval processes for this object" href="/p/process/ProcessDefinitionSetup?TableEnumOrId={!object}&amp;setupid=ApprovalProcesses" target="_blank">View Approvals</a><a class="toolNewLink" title="Using the jump start wizard, add an approval process for this object" href="04a/e?TableEnumOrId={!object}&amp;et=QUICK_CREATE&amp;retURL=%2F{!recordid}&amp;setupid=ApprovalProcesses"><img src="img/dcm/add_icon.png" alt="New" width="16" height="16" />New</a>
+                    <div class="clearingBox">&nbsp;</div>
+                    </li>
+                    </ul>
+                        <hr class="divider" />
+                    <ul class="slideList">
+                        <li><a class="toolLink" title="Customize the tab list, profile assignments, and other details for this app" href="/02u12000000K5wh/e?retURL=%2F{!recordid}&amp;setupid=TabSet">Edit App</a>
+                            <div class="clearingBox">&nbsp;</div>
+                        </li>
+                        <li><a class="toolLink" title="Customize this page layout" href="/layouteditor/layoutEditor.apexp?type={!object}&lid={!layout}&amp;retURL=%2F{!recordid}&amp;setupid={!object}Layouts">Edit Layout</a>
+                    <div class="clearingBox">&nbsp;</div>
+                        </li>
+                        <li><a class="toolLink" title="View and manage this record type, including editing picklist values" href="/setup/ui/recordtypefields.jsp?id={!recordtype}&amp;type={!object}&amp;setupid={!object}Records" target="_blank">View Record Type</a>
+                            <div class="clearingBox">&nbsp;</div>
+                        </li>
+                        </ul>
+                        <hr class="divider" />
+                        <ul class="slideList">
+                    <li class=""><a class="toolLink" title="Import data into this object" href="/ui/setup/dataimporter/DataImporterAdminLandingPage" target="_blank">Import Data</a>
+                        <div class="clearingBox">&nbsp;</div>
+                </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer"><a href="#" data-uidsfdc="46">Turn off menu</a></div>
+        </div>
+</apex:component>

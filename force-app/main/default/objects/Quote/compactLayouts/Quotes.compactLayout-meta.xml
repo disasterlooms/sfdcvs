@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quotes</fullName>
+    <fields>Name</fields>
+    <fields>Status</fields>
+    <fields>OpportunityId</fields>
+    <fields>Re_Submission_Date__c</fields>
+    <fields>ExpirationDate</fields>
+    <fields>Resubmission_Date__c</fields>
+    <fields>AccountId</fields>
+    <fields>Specialty_Spa__c</fields>
+    <fields>Active__c</fields>
+    <label>Quotes</label>
+</CompactLayout>

@@ -1,0 +1,64 @@
+.THIS .forceCommunityFlowCommunity {
+    background-color: #FFFFFF;
+    border-width: 0;
+    border-style: solid;
+    border-radius: 0;
+    padding: 10px;
+}
+.THIS .forceCommunityFlowCommunity p {    
+    text-align: left;
+}
+.THIS .forceCommunityFlowCommunity a {
+    text-align: left;
+}
+.THIS.pp-task-cont{
+    display: flex;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    margin-bottom: 1rem;
+}
+.THIS.pp-task-cont .pp-task-left{
+    display: flex;
+    width: 40%;
+}
+.THIS.pp-task-cont .pp-task-left .pp-task-title {
+    width: 20%;
+    font-size: 1.12rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+.THIS.pp-task-cont .pp-task-left .pp-task-desc {
+    background: #fff;
+    width: 80%;
+    padding: 1.3rem;
+    margin-right: 10px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+.THIS.pp-task-cont .pp-task-right{
+    width: 60%;
+    font-size: 0.9rem;
+}
+
+/* Media */
+@media (max-width: 992px) {
+    .THIS.pp-task-cont{
+       flex-direction: column;        
+    }
+    .THIS.pp-task-cont .pp-task-left{
+    	flex-direction: column; 
+    	width: 100%;
+	}
+	.THIS.pp-task-cont .pp-task-left .pp-task-title {
+    	width: 100%;
+        margin-bottom: 1rem;
+    }
+    .THIS.pp-task-cont .pp-task-left .pp-task-desc {
+        width: 100%;
+    }
+    .THIS.pp-task-cont .pp-task-right{
+         width: 100%;
+    }
+}

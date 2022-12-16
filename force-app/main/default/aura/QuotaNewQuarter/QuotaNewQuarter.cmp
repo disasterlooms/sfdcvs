@@ -1,0 +1,53 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickAction" access="global"
+                controller="myNewQuota">
+    <aura:attribute name="myusers" type="SObject[]" access="public"/>
+    <aura:attribute name="title" type="String" />
+    <aura:attribute name="quarter" type="String" />
+    <aura:attribute name="columnvalues" type="String[]" access="public"/>
+    <aura:attribute name="tablebody" type="String[]" access="public"/>
+    <aura:attribute name="quotas" type="SObject[]" access="public" />
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"/>
+    <aura:attribute name="labels" type="String[]"/>
+    <aura:attribute name="fields" type="String[]"/>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <lightning:card title="{!v.title}" iconName="standard:quota__c">
+        <aura:set attribute="actions">
+            <lightning:button label="{!'Create Q'+v.quarter+' Quotas'}" variant="brand" onclick="{!c.cquotas}"/>
+        </aura:set>
+        
+        
+        <aura:set attribute="body">
+            
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Sales Rep">Sales Rep</div>
+                        </th>
+                        <aura:iteration items="{!v.labels}" var="l">
+                            <th scope="col">
+                                <div class="slds-truncate" title="{!l}">{!l}</div>
+                            </th>
+                        </aura:iteration>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.myusers}" var="u" indexVar="idx">
+                        <tr>
+                            <td>
+                                <lightning:input type="text" value="{!u.Name}" readonly="true"/>
+                            </td>
+                            <aura:iteration items="{!v.fields}" var="f" indexVar="li">
+                                <td>
+                                    <lightning:input type="number"  onblur="{!c.valuecheck}" title="{!u.Id}" class="{!idx}" name="{!f}" />
+                                </td>
+                            </aura:iteration>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </aura:set>
+    </lightning:card>
+</aura:component>

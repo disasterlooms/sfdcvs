@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Domain__c</fullName>
+    <description>This formula tries to strip a website of any data that distracts from its&apos; domain name. It does not account for sub domains but does for folders that exist within the domain. It is then triggered by a workflow rule that updates a text field to better find duplicate records     
+--Do Not Delete ---</description>
+    <externalId>false</externalId>
+    <formula>left(SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+  SUBSTITUTE(
+   SUBSTITUTE(Website, &quot;https:&quot;, &quot;&quot;),
+    &quot;http:&quot;,&quot;&quot;)
+       ,&quot;//&quot;,&quot;&quot;),&quot;www.&quot;,&quot;&quot;)
+        ,&quot;www1.&quot;,&quot;&quot;) , if(
+     
+        FIND(&quot;/&quot;, SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+  SUBSTITUTE(
+   SUBSTITUTE(Website, &quot;https:&quot;, &quot;&quot;),
+    &quot;http:&quot;,&quot;&quot;)
+       ,&quot;//&quot;,&quot;&quot;),&quot;www.&quot;,&quot;&quot;)
+        ,&quot;www1.&quot;,&quot;&quot;)
+        ) &gt;0 ,
+        FIND(&quot;/&quot;, SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+  SUBSTITUTE(
+   SUBSTITUTE(Website, &quot;https:&quot;, &quot;&quot;),
+    &quot;http:&quot;,&quot;&quot;)
+       ,&quot;//&quot;,&quot;&quot;),&quot;www.&quot;,&quot;&quot;)
+        ,&quot;www1.&quot;,&quot;&quot;)
+        ) -1,
+ len(SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+  SUBSTITUTE(
+   SUBSTITUTE(Website, &quot;https:&quot;, &quot;&quot;),
+    &quot;http:&quot;,&quot;&quot;)
+       ,&quot;//&quot;,&quot;&quot;),&quot;www.&quot;,&quot;&quot;)
+        ,&quot;www1.&quot;,&quot;&quot;))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Domain</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

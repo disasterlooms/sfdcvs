@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Resellers_must_be_added_through_resubmis</fullName>
+    <active>true</active>
+    <description>Resellers must be added through resubmission notes by non admin /bid desk users when there is a spa</description>
+    <errorConditionFormula>Count_of_Quotes__c &gt; 0 &amp;&amp;
+ischanged(SPA_Resellers__c) &amp;&amp;
+$User.Alias != &apos;admin&apos; &amp;&amp;
+ not($Permission.VSA_Bid_Desk)</errorConditionFormula>
+    <errorMessage>There is a Spa. Resellers must be added through resubmission notes of the correct spa.</errorMessage>
+</ValidationRule>

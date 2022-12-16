@@ -1,0 +1,7 @@
+<apex:page standardController="Opportunity" showHeader="false" >
+{!if(isblank(Opportunity.Product_Name_Main__c) && isblank(Opportunity.Product_Main_Id__c) , "There is no Main Product on the Opportunity page. If you wish to see related accessories, add main product to Product Name Main Product Field", "")}
+<apex:iframe rendered="{!not(isblank(Opportunity.Product_Name_Main__c)) || not(isblank(Opportunity.Product_Main_Id__c))}"          src="/apex/ProductRelatedListAcc?id={!if(not(isblank(Opportunity.Product_Name_Main__c)),Opportunity.Product_Name_Main__c, Opportunity.Product_Main_Id__c) }&oppid={!Opportunity.id}">
+
+<apex:param name="oppid" value="{!Opportunity.id}"/>
+</apex:iframe>
+</apex:page>

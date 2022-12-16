@@ -1,0 +1,75 @@
+<template>
+    <lightning-card icon-name="utility:upload" title="CSV Data Uploader">
+        <lightning-spinner if:true={isLoading} variant="brand" alternative-text="Loading" size="small"></lightning-spinner>
+        <lightning-spinner if:true={isUploading} variant="brand" alternative-text="Loading" size="small"></lightning-spinner>
+
+        <div class="slds-p-horizontal_small">
+            <hr style="margin-top:10px;margin-bottom:0px;" />
+            <lightning-layout horizontal-align="spread">
+                <lightning-layout-item padding="around-small">
+                    <lightning-button-group>
+                        <lightning-combobox name="distributorList" label="Choose A Distributor" value={selectedMappingLabel} options={mappingLabelOptions} onchange={chooseMappingLabel}></lightning-combobox>
+                        <span style="padding-left:5px;">
+                            <lightning-combobox name="objectList" label="Choose Import Object" value={selectedMappingObject} options={mappingObjectOptions} onchange={chooseMappingObject}></lightning-combobox>
+                        </span>
+                        <span style="padding-left:5px;">
+                            <lightning-combobox name="currencList" label="Choose Currency" value={selectedCurrency} options={currencyOptions} onchange={chooseCurrency}></lightning-combobox>
+                        </span>
+                        <span style="padding-left:5px;width:130px;">
+                            <lightning-input field-level-help="Set a date to override all dates in your csv file." date-style="short" type="date" name="dateOverride" label="Date Override" onchange={chooseOverrideDate}></lightning-input>
+                        </span>
+                    </lightning-button-group>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                    <ul style="font-size:10px;" class="slds-list_dotted">
+                        <li>Only csv file is supported.</li>
+                        <li>The csv file size must be less than 2M.</li>
+                    </ul>
+                </lightning-layout-item>
+            </lightning-layout>
+            <div class="slds-text-align_center" style="margin-top:20px;">
+                <lightning-input onchange={handleFilesChange} type="file" accept=".csv"></lightning-input>
+                <span if:true={csvFile.name} class="fileInfo">{csvFile.name}&nbsp;&nbsp;&nbsp;&nbsp; <span class="file-close" onclick={resetUploader}>X</span></span>
+            </div>
+            <template if:false={isLoading}>
+                <template if:true={csvPreviewColumns.length}>
+                    <hr style="margin-bottom:10px;" />
+                    <lightning-card>
+                        <h3 slot="title">
+                            CSV Preview
+                            <div style="font-size:10px;">
+                                Your csv header must be exactly matched with following pre-defined columns. The preview only show first 5 rows from your csv file.
+                            </div>
+                        </h3>
+                        <div class="slds-p-horizontal_small">
+                            <lightning-datatable hide-checkbox-column key-field="Name" data={csvPreviewRows} columns={csvPreviewColumns}></lightning-datatable>
+                            <div if:false={csvRows.length} style="text-align:center;padding:20px">
+                                Please choose a csv
+                                file!
+                            </div>
+                        </div>
+                    </lightning-card>
+                </template>
+                <template if:false={csvPreviewColumns.length}>
+                    <div style="text-align:center;color:red;padding:20px 10px;">
+                        Oops! No pre-defined csv header found! Please contact system administrator.
+                    </div>
+                </template>
+            </template>
+        </div>
+        <div if:true={csvRows.length} slot="footer" style="text-align:right">
+            <div style="float:left;">Total Rows: {csvRows.length}</div>
+            <template if:true={isUploaded} slot="actions">
+                <lightning-button if:false={hasUploadError} variant="success" label="Your csv file has been uploaded successfully!"></lightning-button>
+                <lightning-button if:true={hasUploadError} variant="destructive" label="Failed! Click to download errors as CSV file!" onclick={downloadErrors}></lightning-button>
+            </template>
+            <template if:false={isUploaded} slot="actions">
+                <lightning-button if:true={isUploading} variant="brand" label="Uploading"></lightning-button>
+                <lightning-button if:false={isUploading} variant="brand" label="Start Upload" onclick={startLoad}></lightning-button>
+            </template>
+        </div>
+        <div if:false={csvRows.length} slot="footer">
+            <lightning-button disabled variant="brand" label="Start Upload" slot="actions"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

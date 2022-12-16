@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Viewsonic_Account_Type</fullName>
+    <active>true</active>
+    <description>Ensures Account type cannot be changed</description>
+    <errorConditionFormula>ischanged(Type ) &amp;&amp; Name=&quot;ViewSonic Corporation&quot;</errorConditionFormula>
+    <errorMessage>You cannot change Viewsonic Account Type</errorMessage>
+</ValidationRule>

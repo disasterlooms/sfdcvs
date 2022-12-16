@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>List_of_Work_Activity__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>List pertinent calls, emails, trade shows, and any other activity which shows why you should have this deal bid protected. This can  be your activity as well as the Resellers.</inlineHelpText>
+    <label>List of Work &amp; Activity</label>
+    <length>1000</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

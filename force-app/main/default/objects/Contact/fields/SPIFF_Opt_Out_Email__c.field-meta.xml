@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SPIFF_Opt_Out_Email__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>If this contact DOES NOT receive emails regarding Spiffs, this box needs to be checked.</description>
+    <externalId>false</externalId>
+    <label>SPIFF Opt Out Email</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,15 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:availableForFlowScreens" access="global">
+    <aura:handler name="flowScreen" action="{!c.navFlow}" event="c:cardOpportunityProductEvent" />
+    <aura:attribute name="recordId" type="String" access="global"/>
+    <lightning:card>
+    <c:OpportunityProduct
+                          orderProducts="display:none"
+                          recordId="{!v.recordId}"
+                          orderProductsBtn=""
+                          orderProductsString="Reseller to Quote Selected Product"
+                          likelyProduct="true"
+                          />
+         
+        
+    </lightning:card>
+</aura:component>

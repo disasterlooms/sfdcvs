@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Community_SPA__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( Opportunity__r.Distributor_Account__c  = true,false,true)</formula>
+    <label>Non Community SPA</label>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>VSA CAN US Onboarded</audienceName>
+    <container>VS Partner Programs Portal</container>
+    <criteria>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <profile>partner community login unverified</profile>
+            </criterionValue>
+            <operator>NotEqual</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>2</criteriaNumber>
+            <criterionValue>
+                <entityField>Contact.$Contact.Portal_Status__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>Onboarded and Verified</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>3</criteriaNumber>
+            <criterionValue>
+                <profile>sfdc admin</profile>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>3</criteriaNumber>
+            <criterionValue>
+                <profile>channel marketing</profile>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>3</criteriaNumber>
+            <criterionValue>
+                <profile>marketing channel</profile>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>3</criteriaNumber>
+            <criterionValue>
+                <profile>salesforce platform custom</profile>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>4</criteriaNumber>
+            <criterionValue>
+                <profile>vsa us sales</profile>
+            </criterionValue>
+            <operator>NotEqual</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>4</criteriaNumber>
+            <criterionValue>
+                <profile>sales - pen display</profile>
+            </criterionValue>
+            <operator>NotEqual</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>4</criteriaNumber>
+            <criterionValue>
+                <profile>vsa inside sales</profile>
+            </criterionValue>
+            <operator>NotEqual</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>4</criteriaNumber>
+            <criterionValue>
+                <profile>vsa can sales</profile>
+            </criterionValue>
+            <operator>NotEqual</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>4</criteriaNumber>
+            <criterionValue>
+                <profile>vsa sales executives</profile>
+            </criterionValue>
+            <operator>NotEqual</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>4</criteriaNumber>
+            <criterionValue>
+                <profile>vsa la sales</profile>
+            </criterionValue>
+            <operator>NotEqual</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>5</criteriaNumber>
+            <criterionValue>
+                <entityField>$User.VS_Sub_Region__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>VSA CAN</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>5</criteriaNumber>
+            <criterionValue>
+                <entityField>$User.VS_Sub_Region__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>VSA US</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+    </criteria>
+    <formula>(1 AND 2 AND 4 AND 5) OR 3</formula>
+    <formulaFilterType>CustomLogicMatches</formulaFilterType>
+    <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>427d833a-35af-419b-9ab7-f0f1863e2322</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Report_Detail_Report_Detail_Page</targetValue>
+        </target>
+        <target>
+            <groupName>b2bbeb96-6d72-4eec-a0b5-f3da8a928291</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>deals_deals_Page</targetValue>
+        </target>
+        <target>
+            <groupName>db867440-a58d-4df2-983c-40811041c7d9</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Report_Builder_Report_Builder_Page</targetValue>
+        </target>
+        <target>
+            <groupName>17eba014-f881-46d5-bdb1-b0ab25ad9d3e</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Opportunity_List_Opportunity_List_Page</targetValue>
+        </target>
+    </targets>
+</Audience>

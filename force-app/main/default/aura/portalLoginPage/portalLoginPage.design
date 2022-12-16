@@ -1,0 +1,8 @@
+<design:component label="Login Page Layout Default" >
+    <design:attribute name="smallLogo" label="Small Logo"/>
+    <design:attribute name="title" description="Title above login"/>
+    <design:attribute name="isLogin"/>
+        <design:attribute name="isPasswordReset"/>
+
+    <design:attribute name="sideImageURL" label="Use Sign Up Image? True if using sign up image"/>
+</design:component>

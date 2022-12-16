@@ -1,0 +1,11 @@
+<apex:page standardController="Opportunity_Partner__c" recordSetVar="opp">
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:repeat value="{!opp}" var="row" rendered="false">
+     {!row.Id}
+    </apex:repeat>
+    <!-- Runs your Flow -->   
+    <flow:interview name="Opportunity_Partners_Delete_Selected"
+          finishLocation="/{!Id}">
+          <apex:param name="ColPartners" value="{!Selected}"/>
+    </flow:interview>
+</apex:page>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Specialty_Spa__c</fullName>
+    <description>Special type of spas that run concurrently with a normal spa. This is used so that a 2nd opportunity does not have to be created.</description>
+    <externalId>false</externalId>
+    <label>Specialty Spa</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FTB</fullName>
+                <default>false</default>
+                <label>FTB</label>
+            </value>
+            <value>
+                <fullName>Demo</fullName>
+                <default>false</default>
+                <label>Demo</label>
+            </value>
+            <value>
+                <fullName>ACC</fullName>
+                <default>false</default>
+                <label>ACC</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

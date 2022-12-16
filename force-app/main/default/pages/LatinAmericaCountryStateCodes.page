@@ -1,0 +1,92 @@
+<apex:page standardStylesheets="false" showHeader="false"  sidebar="true">
+<br><br> <table border="1">
+<tr>
+<td>Country</td>
+<td>State Code</td>
+</tr>
+<tr>
+<td>Argentina</td>
+<td>AG</td>
+</tr>
+    <tr>
+<td>Belize</td>
+<td>BZ</td>
+</tr>
+   <tr>
+<td>Bolivia</td>
+<td>BO</td>
+</tr>
+    <tr>
+<td>Chile</td>
+<td>CH</td>
+</tr>
+    <tr>
+<td>Colombia</td>
+<td>RC</td>
+</tr>
+    <tr>
+<td>Costa Rica</td>
+<td>CR</td>
+</tr>
+    <tr>
+<td>Domincan Republic</td>
+<td>DR</td>
+</tr>
+    <tr>
+<td>Ecuador</td>
+<td>RE</td>
+</tr>
+    <tr>
+<td>El Salvador</td>
+<td>ES</td>
+</tr>
+    <tr>
+<td>French Guiana</td>
+<td>FG</td>
+</tr>
+        <tr>
+<td>Guatemala</td>
+<td>GT</td>
+</tr>
+        <tr>
+<td>Guyana</td>
+<td>GU</td>
+</tr>
+        <tr>
+<td>Honduras</td>
+<td>HD</td>
+</tr>
+        <tr>
+<td>Mexico</td>
+<td>MX</td>
+</tr>
+        <tr>
+<td>Nicaragua</td>
+<td>NI</td>
+</tr>
+        <tr>
+<td>Panama</td>
+<td>PN</td>
+</tr>
+        <tr>
+<td>Paraguay</td>
+<td>PG</td>
+</tr>
+        <tr>
+<td>Peru</td>
+<td>PU</td>
+</tr>
+        <tr>
+<td>Suriname</td>
+<td>RS</td>
+</tr>
+    <tr>
+<td>Uruguay</td>
+<td>UR</td>
+</tr>
+    <tr>
+<td>Venezuela</td>
+<td>VZ</td>
+</tr>
+    </table> </br></br> 
+</apex:page>

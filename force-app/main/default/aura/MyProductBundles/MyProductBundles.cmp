@@ -1,0 +1,26 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global" >
+    <aura:attribute name="pid" type="String" />
+    <aura:attribute name="mycolumns" type="SObject" default="{label: 'Name', fieldName: 'Name', type : 'text'}"/>
+    <aura:attribute name="records" type="Object[]" description="the collection of records received from query"/>
+    <c:ListofRecords title="Select Products for Package" 
+                            objToQuery="Product_Package__c" 
+                            wherestmt="where OwnerId != null "
+                            limitstmt="limit 25"
+                            orderstmnt="Order by Name asc"
+                            Columnfields="Name,Products__c,Description__c"
+                            Columnheaders="Name,Products,Description"
+                            btnName=""
+                            records="{!v.records}"
+                            searchplaceholder="Search by bundle name - Partial ok. Press Enter to search"
+                            searchlabel="Bundle Name"
+                            searchfield="ProductSearch__c"
+                            recordId="{!v.pid}"
+                            objToCreate="Package__c"
+                            objToCreateFields="Product_Package__c,Product__c"
+                            allowCheckbox="false"
+                            showButton="false" >
+            
+        </c:ListofRecords>
+    
+</aura:component>

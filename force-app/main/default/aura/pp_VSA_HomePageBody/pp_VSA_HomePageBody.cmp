@@ -1,0 +1,119 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+    access="global">
+    <aura:attribute name="IconHeaderText" type="String" default="Sign up now for access to the following partner benefits:" />
+    <aura:attribute name="showProductDemos" type="Boolean" default="true" />
+    <aura:attribute name="showSpecialPricing" type="Boolean" default="true" />
+    <aura:attribute name="showResourceLibrary" type="Boolean" default="true" />
+    <aura:attribute name="showPromotions" type="Boolean" default="true" />
+    <aura:attribute name="showCustomizableMarketing" type="Boolean" default="true" />
+    <aura:attribute name="showSpiFFS" type="Boolean" default="true" />
+
+    <aura:attribute name="onlineDemos" type="String" default="Online Product Demos" />
+    <aura:attribute name="onlineDemosDescription" type="String"
+        default="A ViewSonic representative will showcase a product of your choice." />
+    <aura:attribute name="specialPricing" type="String" default="Special Pricing" />
+    <aura:attribute name="specialPricingDescription" type="String"
+        default="Discounted pricing for select opportunities." />
+    <aura:attribute name="resourceLibrary" type="String" default="Resources Library" />
+    <aura:attribute name="resourceLibraryDescription" type="String"
+        default="Access sell sheets, brochures, case studies, videos and more. " />
+    <aura:attribute name="promotions" type="String" default="Promotions" />
+    <aura:attribute name="promotionsDescription" type="String"
+        default="Find our latest sales incentives and end user promotions to help you sell. " />
+    <aura:attribute name="customizableMarketing" type="String" default="Customizable Marketing" />
+    <aura:attribute name="customizableMarketingDescription" type="String"
+        default="Customize marketing collateral with your logo and contact info." />
+    <aura:attribute name="spiffs" type="String" default="SPIFFs" />
+    <aura:attribute name="spiffsDescription" type="String"
+        default="Submit claims to make more money selling ViewSonic products." />
+    <div class="pp-home">
+        <div class="pp-header">
+            <div class="pp-section">
+                <h1>{!v.IconHeaderText}</h1>
+                <lightning:layout multipleRows="true" class="pp-icons-box">
+                    <aura:if isTrue="{!v.showProductDemos}">
+                        <lightning:layoutItem size="4" padding="around-small">
+                            <div class="pp-icon">
+                                <img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-demo.svg"
+                                    alt="Partner Program Demos"></img>
+                                <div class="pp-icon-text">
+
+                                    <h2>{!v.onlineDemos}</h2>
+                                    <p>{!v.onlineDemosDescription}</p>
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                    </aura:if>
+                    <aura:if isTrue="{!v.showSpecialPricing}">
+                        <lightning:layoutItem size="4" padding="around-small">
+                            <div class="pp-icon">
+                                <img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-deal.svg"
+                                    alt="Partner Program deals"></img>
+                                <div class="pp-icon-text">
+                                    <h2>{!v.specialPricing}</h2>
+                                    <p>{!v.specialPricingDescription}</p>
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                    </aura:if>
+                    <aura:if isTrue="{!v.showResourceLibrary}">
+                        <lightning:layoutItem size="4" padding="around-small">
+                            <div class="pp-icon">
+                                <img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-libarary.svg"
+                                    alt="Partner Program library"></img>
+                                <div class="pp-icon-text">
+                                    <h2>{!v.resourceLibrary}</h2>
+                                    <p>{!v.resourceLibraryDescription}</p>
+                                </div>
+                            </div>
+                        </lightning:layoutItem>
+                    </aura:if>
+
+                    <aura:if isTrue="{!v.showPromotions}">
+                        <lightning:layoutItem size="4" padding="around-small">
+
+                            <div class="pp-icon">
+                                <img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-promotion.svg"
+                                    alt="Partner Program promotions"></img>
+                                <div class="pp-icon-text">
+                                    <h2>{!v.promotions}</h2>
+                                    <p>{!v.promotionsDescription}</p>
+                                </div>
+                            </div>
+
+                        </lightning:layoutItem>
+                    </aura:if>
+                    <aura:if isTrue="{!v.showCustomizableMarketing}">
+                        <lightning:layoutItem size="4" padding="around-small">
+
+                            <div class="pp-icon">
+                                <img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-customizemarketing.svg"
+                                    alt="Partner Program marketing"></img>
+                                <div class="pp-icon-text">
+                                    <h2>{!v.customizableMarketing}</h2>
+                                    <p>{!v.customizableMarketingDescription}</p>
+                                </div>
+                            </div>
+
+                        </lightning:layoutItem>
+                    </aura:if>
+                    <aura:if isTrue="{!v.showSpiFFS}">
+                        <lightning:layoutItem size="4" padding="around-small">
+
+                            <div class="pp-icon">
+                                <img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-spiff.svg"
+                                    alt="Partner Program Spiffs"></img>
+                                <div class="pp-icon-text">
+                                    <h2>{!v.spiffs}</h2>
+                                    <p>{!v.spiffsDescription}</p>
+                                </div>
+                            </div>
+
+                        </lightning:layoutItem>
+                    </aura:if>
+
+                </lightning:layout>
+            </div>
+        </div>
+    </div>
+</aura:component>

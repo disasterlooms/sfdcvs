@@ -1,0 +1,15 @@
+<design:component>
+	<design:attribute name="customLabel" description="Label for button" /> 
+    <design:attribute name="showPrev" description="Show Cancel or Previous Button"/>  
+    <design:attribute name="disableBtn" label="Disable Button"/>
+    <design:attribute name="finish" label="Is Finish Button"/>
+    <design:attribute name="addressValidation" label="if running address Verification"/>
+    
+    <design:attribute name="street"  label="Validate Street" />
+    <design:attribute name="city"  label="Validate City"/>
+    <design:attribute name="state"  label="Validate State"/>
+    <design:attribute name="country"  label="Validate Country"/>
+    <design:attribute name="zip" label="Validate Postal Code"/>
+    <design:attribute name="county"  label="Validate County"/>
+
+</design:component>

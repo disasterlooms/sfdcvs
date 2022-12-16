@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales__c</fullName>
+    <externalId>false</externalId>
+    <formula>Profile.Name = &apos;Sales - Canada&apos; ||
+Profile.Name = &apos;Sales - Distributor&apos; ||
+Profile.Name = &apos;Sales - Latin America&apos; ||
+Profile.Name = &apos;Sales - National Reseller&apos; ||
+Profile.Name = &apos;Sales - RBM&apos; ||
+Profile.Name = &apos;Sales - TM&apos; ||
+Profile.Name = &apos;Sales Directors&apos; ||
+Profile.Name = &apos;Sales Executives&apos; ||
+Profile.Name = &apos;Ops Sales Admin&apos; ||
+Profile.Name = &apos;SPA Portal Admin&apos; ||
+Profile.Name = &apos;SFDC Admin&apos; ||
+Profile.Name = &apos;System Administrator&apos; ||
+Profile.Name = &apos;System Administrator IT&apos;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sales</label>
+    <type>Checkbox</type>
+</CustomField>

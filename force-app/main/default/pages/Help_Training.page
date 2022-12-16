@@ -1,0 +1,347 @@
+<apex:page sidebar="false" showHeader="false">
+<apex:stylesheet value="{!URLFOR($Resource.helptraincss)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+ <!-- bootstrap css in case we need to go to it -- <apex:stylesheet value="{!$Resource.bootstrapcss}"  /> -->
+ <apex:stylesheet value="{!$Resource.bootstrapcss}"  />
+
+<ul class="nav nav-tabs">
+  
+  <li role="presentation"><a href="/home/home.jsp">Home</a></li>
+  <li role="presentation"><a href="/006/o">Opportunities</a></li>
+  <li role="presentation"><a href="/001/o">Accounts</a></li>
+  <li role="presentation"><a href="/003/o">Contacts</a></li>
+  <li role="presentation"><a href="/a0y/o">Eval Requests</a></li>
+</ul>
+
+
+<div class="cards-component">
+        <div class="container">
+            <!-- ngRepeat: cards in cardsScope.cards -->
+            <div class="cards-row hidden-sm hidden-xs ng-scope">
+                <!-- ngRepeat: card in cards -->
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-getstarted.png&quot;); background-color: rgb(0, 161, 224); height: 160px;">
+                    <div class="cover">
+                            <img height="50px" src=
+                            "/resource/1468540655000/documentation"
+                            width="58px"/>
+                            <h4 class="ng-binding">Leads &amp; Tradeshows</h4>
+                            <p class="ng-binding">Get your most important trade show leads and export to MS Excel</p>
+                        </div><!-- ngIf: card.contentLink -->
+                        <div class="content ng-scope" style=
+                        "background-color: rgb(0, 161, 224); height: 160px;">
+                            <h4 class="ng-binding">Getting Started</h4>
+                            <p class="ng-binding">Search via a trade show or by territory</p>
+                            <!-- ngIf: card.contentLink --><a class=
+                            "ng-binding ng-scope" href=
+                            "https://success.salesforce.com/featuredGroupDetail?id=a1z30000006IDYiAAO"
+                            target="_blank">See How</a>
+                            <!-- end ngIf: card.contentLink -->
+                        </div><!-- end ngIf: card.contentLink -->
+                    </div>
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "https://help.salesforce.com/HTViewGettingStarted?id=000176053&amp;language=en_US"
+                        target="_self">Go</a>
+                    </div>
+                </div><!-- end ngRepeat: card in cards -->
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-community.png&quot;); background-color: rgb(254, 183, 17); height: 160px;">
+                    <div class="cover">
+                            <img height="50px" src=
+                            "/resource/1468540655000/community"
+                            width="58px"/>
+                            <h4 class="ng-binding">Creating Opportunities</h4>
+                            <p class="ng-binding">Learn How to Create Opportunities and manage pipeline.</p>
+                        </div><!-- ngIf: card.contentLink -->
+                    </div>
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "https://success.salesforce.com" target="_blank">Go</a>
+                    </div>
+                </div><!-- end ngRepeat: card in cards -->
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-documentation.png&quot;); background-color: rgb(0, 24, 113); height: 160px;">
+                    <div class="cover">
+                            <img height="50px" src=
+                            "/resource/1468540655000/horn"
+                            width="58px"/>
+                            <h4 class="ng-binding">SPA &amp; Bid Registration</h4>
+                            <p class="ng-binding">Submit pricing requests and bid protection. Add products and edit SPA information.</p>
+                        </div><!-- ngIf: card.contentLink -->
+                    </div>
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "https://help.salesforce.com/apex/HTViewHelpDoc?id=salesforce_help_map.htm"
+                        target="_self">Go</a>
+                    </div>
+                </div><!-- end ngRepeat: card in cards -->
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-trainingcert.png&quot;); background-color: rgb(23, 156, 215); height: 160px;">
+                    <div class="cover">
+                            <img height="50px" src=
+                            "{!$Resource.monitoricon}"
+                            width="58px"/>
+                            <h4 class="ng-binding">Eval Requests</h4>
+                            <p class="ng-binding">Learn types of evals and how the process works. Get your eval requests quickly and manage your outstanding evals.</p>
+                        </div><!-- ngIf: card.contentLink -->
+                    </div>
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "https://help.salesforce.com/htsctrainingcatalog#sort=relevancy&amp;f:@sflanguage=[en_US]"
+                        target="_self">Go</a>
+                    </div>
+                </div><!-- end ngRepeat: card in cards -->
+            </div><!-- end ngRepeat: cards in cardsScope.cards -->
+            <div class="cards-row hidden-sm hidden-xs ng-scope">
+                <!-- ngRepeat: card in cards -->
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-default.png&quot;); background-color: rgb(92, 50, 113); height: 160px;">
+                    <div class="cover">
+                            <img height="50px" src=
+                            "/resource/1468540655000/success"
+                            width="58px"/>
+                            <h4 class="ng-binding">Accounts and Contacts</h4>
+                            <p class="ng-binding">Work accounts like a boss. Includes how to keep clean data and tracking Sales</p>
+                        </div><!-- ngIf: card.contentLink -->
+                    </div>
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href="/support" target="">Go</a>
+                    </div>
+                </div><!-- end ngRepeat: card in cards -->
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-default.png&quot;); background-color: rgb(0, 24, 113); height: 160px;">
+                    <div class="cover">
+                            <img height="50px" src=
+                            "/resource/1468540655000/contact"
+                            width="58px"/>
+                            <h4 class="ng-binding">Library, Documents, Marketing Materials</h4>
+                            <p class="ng-binding">How to find documents quickly and accurately</p>
+                        </div><!-- ngIf: card.contentLink -->
+                    </div>
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "https://help.salesforce.com/apex/HTViewHelpDoc?id=lex_help_resources.htm"
+                        target="_self">Go</a>
+                    </div>
+                </div><!-- end ngRepeat: card in cards -->
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-color: #990000 !important;background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-documentation.png&quot;); background-color: rgb(0, 24, 113); height: 160px;">
+                    <div class="cover">
+                            <img height="50px" src=
+                            "/resource/1468540655000/dollar"
+                            width="58px"/>
+                            <h4 class="ng-binding">Track Important Deals</h4>
+                            <p class="ng-binding">Get SPA claim info on deals and track account POS on Salesforce</p>
+                        </div><!-- ngIf: card.contentLink -->
+                        <div class="content ng-scope" style=
+                        "background-color: #990000 !important;background-color: rgb(0, 24, 113); height: 160px;">
+                            <h4 class="ng-binding">Spa Claims, POS, and Opportunity Pipeline</h4>
+                            <p class="ng-binding">Get vital data and know what you need to follow up on.</p>
+                            <!-- ngIf: card.contentLink --><a class=
+                            "ng-binding ng-scope" href=
+                            "https://success.salesforce.com/featuredGroupDetail?id=a1z30000006IDYhAAO"
+                            target="_blank">Start Now</a>
+                            <!-- end ngIf: card.contentLink -->
+                        </div><!-- end ngIf: card.contentLink -->
+                    </div>
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "http://releasenotes.docs.salesforce.com/" target=
+                        "_blank">Release Notes</a>
+                    </div>
+                </div><!-- end ngRepeat: card in cards -->
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-default.png&quot;); background-color: rgb(92, 50, 113); height: 160px;">
+                    <div class="cover">
+                            <img height="50px" src=
+                            "/resource/1468540655000/develper"
+                            width="58px"/>
+                            <h4 class="ng-binding">Reports and Dashboards</h4>
+                            <p class="ng-binding">Create a report or dashboard to catipulte your productivity</p>
+                        </div><!-- ngIf: card.contentLink -->
+                    </div>
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href="/mysuccesshub" target=
+                        "">Go</a>
+                    </div>
+                </div><!-- end ngRepeat: card in cards -->
+            </div><!-- end ngRepeat: cards in cardsScope.cards -->
+            <div class="cards-row hidden-sm hidden-xs ng-scope">
+               
+               <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-default.png&quot;); background-color: rgb(0, 24, 113); height: 160px;">
+                    <div class="cover">
+                            <img height="50px" src=
+                            "/resource/1468540655000/gettingstarted"
+                            width="58px"/>
+                            <h4 class="ng-binding">Lists. A Workable View</h4>
+                            <p class="ng-binding">Create list views so you can work different set of customers based on verticals, POS, Spa claims, and more!</p>
+                        </div><!-- ngIf: card.contentLink -->
+                    </div>
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "https://developer.salesforce.com/trailhead" target=
+                        "_blank">Go</a>
+                    </div>
+                </div><!-- end ngRepeat: card in cards -->
+               
+               
+               <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-documentation.png&quot;); background-color: rgb(0, 24, 113); height: 160px;">
+                    <div class="cover">
+                            <img height="50px" src=
+                            "/resource/1468540655000/lightning"
+                            width="58px"/>
+                            <h4 class="ng-binding">Salesforce1 Mobile Application</h4>
+                            <p class="ng-binding">Add attachments, Find accounts near you right now, find stalled evals, create spas, and more!!! </p>
+                        </div><!-- ngIf: card.contentLink -->
+                        <div class="content ng-scope" style=
+                        "background-color: rgb(0, 24, 113); height: 160px;">
+                            <h4 class="ng-binding">Sitting on the Tarmack Has Never Been So Prodcutive</h4>
+                            <p class="ng-binding">Access important data quickly and improve time management.</p>
+                            <!-- ngIf: card.contentLink --><a class="ng-binding ng-scope"
+                            href=
+                            "https://developer.salesforce.com/page/Developer_Library"
+                            target="_blank">Be a Boss</a>
+                            <!-- end ngIf: card.contentLink -->
+                        </div><!-- end ngIf: card.contentLink -->
+                    </div>
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "https://developer.salesforce.com/forums/#!/feedtype=RECENT&amp;criteria=ALLQUESTIONS"
+                        target="_blank">Go</a>
+                    </div>
+                </div><!-- end ngRepeat: card in cards -->
+                
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-default.png&quot;); background-color: rgb(92, 50, 113); height: 160px;">
+                    <div class="cover">
+                            <img height="50px" src=
+                            "/resource/1468540655000/techsupport"
+                            width="58px"/>
+                            <h4 class="ng-binding">Contact Sales Support</h4>
+                            <p class="ng-binding">You can open a case and ask for help.</p>
+                        </div><!-- ngIf: card.contentLink -->
+                    </div>
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "/500/e?retURL=%2F500%2Fo" target="">Create a
+                        Case</a>
+                    </div>
+                </div><!-- end ngRepeat: card in cards -->
+                
+               
+               
+                <!-- ngRepeat: card in cards -->
+                <div class="info-card ng-scope">
+                    
+                
+                
+                </div><!-- end ngRepeat: card in cards -->
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+               
+                
+            </div><!-- end ngRepeat: cards in cardsScope.cards -->
+            <!-- ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href=
+                "https://help.salesforce.com/HTViewGettingStarted?id=000176053&amp;language=en_US"
+                target="_self">
+                <h4 class="ng-binding">Getting Started</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href="https://success.salesforce.com" target="_blank">
+                <h4 class="ng-binding">Success Community</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href=
+                "https://help.salesforce.com/apex/HTViewHelpDoc?id=salesforce_help_map.htm"
+                target="_self">
+                <h4 class="ng-binding">Documentation</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href=
+                "https://help.salesforce.com/htsctrainingcatalog#sort=relevancy&amp;f:@sflanguage=[en_US]"
+                target="_self">
+                <h4 class="ng-binding">Training &amp;
+                Certification</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href="/support" target="">
+                <h4 class="ng-binding">Technical Support</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href=
+                "https://help.salesforce.com/apex/HTViewHelpDoc?id=lex_help_resources.htm"
+                target="_self">
+                <h4 class="ng-binding">Lightning Experience</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href=
+                "https://success.salesforce.com/featuredGroupDetail?id=a1z30000006IDYhAAO"
+                target="_blank">
+                <h4 class="ng-binding">Release Readiness</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href="/mysuccesshub" target="">
+                <h4 class="ng-binding">My Success Hub</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href="/mysuccesshub?id=solutionFinder&amp;sub=billingHelp"
+                target="">
+                <h4 class="ng-binding">Billing &amp; Invoicing</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href="https://developer.salesforce.com/trailhead" target=
+                "_blank">
+                <h4 class="ng-binding">Trailhead</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href=
+                "https://developer.salesforce.com/page/Developer_Library"
+                target="_blank">
+                <h4 class="ng-binding">Salesforce Developers</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+            <div class="info-card-mobile hidden-lg hidden-md ng-scope">
+                <a href="/mysuccesshub?id=solutionFinder" target="">
+                <h4 class="ng-binding">Contact Support</h4><i class=
+                "glyphicon glyphicon-menu-right"></i></a>
+            </div><!-- end ngRepeat: card in cardsScope.model.cards -->
+        </div>
+    </div>
+
+</apex:page>

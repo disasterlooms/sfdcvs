@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Adjusted_Spa_Price__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(Approved_Price__c &gt; PricebookEntry.UnitPrice ,true,false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Adjusted Spa Price</label>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Eval_Approval_Process__c</fullName>
+    <description>Lets admin know which approval process the eval is under. This is for diagnose issues with the approval process.</description>
+    <externalId>false</externalId>
+    <label>Eval Approval Process</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>VP Special Approval Agreeement</fullName>
+                <default>false</default>
+                <label>VP Special Approval Agreeement</label>
+            </value>
+            <value>
+                <fullName>VP Special Approval Waive Agreeement</fullName>
+                <default>false</default>
+                <label>VP Special Approval Waive Agreeement</label>
+            </value>
+            <value>
+                <fullName>VP Write Off</fullName>
+                <default>false</default>
+                <label>VP Write Off</label>
+            </value>
+            <value>
+                <fullName>VP Special Approval Agreeement Canada</fullName>
+                <default>false</default>
+                <label>VP Special Approval Agreeement Canada</label>
+            </value>
+            <value>
+                <fullName>Default Process</fullName>
+                <default>false</default>
+                <label>Default Process</label>
+            </value>
+            <value>
+                <fullName>Goved Waiver</fullName>
+                <default>false</default>
+                <label>Goved Waiver</label>
+            </value>
+            <value>
+                <fullName>Post Write Off Approval</fullName>
+                <default>false</default>
+                <label>Post Write Off Approval</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

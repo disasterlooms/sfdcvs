@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>I_m_Interested_In__c</fullName>
+    <externalId>false</externalId>
+    <label>I&apos;m Interested In</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Monitors</fullName>
+                <default>false</default>
+                <label>Monitors</label>
+            </value>
+            <value>
+                <fullName>Projectors</fullName>
+                <default>false</default>
+                <label>Projectors</label>
+            </value>
+            <value>
+                <fullName>myViewboard Software</fullName>
+                <default>false</default>
+                <label>myViewBoard Software</label>
+            </value>
+            <value>
+                <fullName>Viewboard Interactive Displays</fullName>
+                <default>false</default>
+                <label>ViewBoard Interactive Displays</label>
+            </value>
+            <value>
+                <fullName>Large Format / Commercial Displays</fullName>
+                <default>false</default>
+                <label>Large Format / Commercial Displays</label>
+            </value>
+            <value>
+                <fullName>Pen Displays / eSignature</fullName>
+                <default>false</default>
+                <label>Pen Displays / eSignature</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

@@ -1,0 +1,27 @@
+<template>
+    <div class="exampleHolder">
+        <template if:true={loaded}>
+            <template if:true={records}>
+                <div class="slds-p-around_medium lgc-bg-inverse">
+                    <p>&nbsp;
+                        <lightning-button icon-name="utility:download" 
+                                          label={buttonlabel} 
+                                          title={buttontitle}
+                                          onclick={downloadCSVFile} variant="brand"></lightning-button>
+                    </p>
+                </div>
+            </template>
+        </template>
+        <template if:false={loaded}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+    </div>
+        
+        <!-- the following is only for troubleshooting
+        <lightning-datatable columns={columns} 
+        data={records} 
+        hide-checkbox-column="true"
+        key-field="id"></lightning-datatable>
+         -->
+
+</template>

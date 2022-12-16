@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Revenue_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR(ISPICKVAL(VS_Region__c, &apos;VSI&apos;),ISPICKVAL(VS_Region__c, &apos;VSE&apos;)), Total_Total_Revenue__c,null)
+/*
+			CASE(distributor__r.Name,
+					&apos;ALSO Deutschland GmbH&apos;, 	repQtyXValue_Total_Revenue__c, 
+					&apos;Ingram Micro Distribution GmbH&apos;, Gesamt_Preis_Total_Revenue__c, 
+					&apos;Computation Systemhaus GmbH&apos;, Total_Total_Revenue__c, 
+					&apos;Delo Computer GmbH&apos;, Umsatz_Total_Revenue__c,
+					&apos;Herweck AG&apos;, Gesamtpreis_Total_Revenue__c,
+					&apos;Schuss AV-Projektionssysteme GmbH&apos;, Selling_Sum_Total_Revenue__c, 
+					&apos;Tarox AG&apos;, HEK_SUMME_Formula__c, 
+		   &apos;prodyTel Distribution GmbH&apos;, Total_Revenue_Total_Revenue__c, 
+					null)
+*/</formula>
+    <label>Total Revenue</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

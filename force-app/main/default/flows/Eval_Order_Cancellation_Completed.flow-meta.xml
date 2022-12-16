@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Order_Cancellation_Req_Task</name>
+        <label>Order Cancellation Req Task</label>
+        <locationX>309</locationX>
+        <locationY>156</locationY>
+        <actionName>NewTask</actionName>
+        <actionType>quickAction</actionType>
+        <connector>
+            <targetReference>Confirmation</targetReference>
+        </connector>
+        <inputParameters>
+            <name>OwnerId</name>
+            <value>
+                <elementReference>userid</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>contextId</name>
+            <value>
+                <elementReference>evalid</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Subject</name>
+            <value>
+                <elementReference>Sub</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <formulas>
+        <name>Sub</name>
+        <dataType>String</dataType>
+        <expression>&quot;Cancel Eval Order Request Completed&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>userid</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <interviewLabel>Eval Order Cancellation Completed {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Eval Order Cancellation Completed</label>
+    <processType>Flow</processType>
+    <recordUpdates>
+        <name>Eval_Request_Cancelation</name>
+        <label>Eval Request Cancelation</label>
+        <locationX>66</locationX>
+        <locationY>62</locationY>
+        <connector>
+            <targetReference>Order_Cancellation_Req_Task</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>evalid</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Product_Status__c</field>
+            <value>
+                <stringValue>Cancelled</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Eval_Request__c</object>
+    </recordUpdates>
+    <screens>
+        <name>Confirmation</name>
+        <label>Confirmation</label>
+        <locationX>124</locationX>
+        <locationY>272</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Confirmationfield</name>
+            <fieldText>The eval order has been updated to show it has been cancelled in Salesforce and in Oracle. 
+
+Thank You
+
+You can click on finish to go back to the evaluation page.</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Eval_Request_Cancelation</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>evalid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

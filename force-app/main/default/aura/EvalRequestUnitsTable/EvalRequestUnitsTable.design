@@ -1,0 +1,15 @@
+<design:component>
+    <design:attribute name="recordId" description="record id"/>
+    <design:attribute name="showbtn" description="bollean to show btn on bottom"/>
+    <design:attribute name="header" description="Header"/>
+    <design:attribute name="actname" description="Name of Action"/>
+    <design:attribute name="flowRun" description="ran from flow"/>
+    <design:attribute name="quoteid" description="Quote id"/>
+    <design:attribute name="confirmationPage" Label="evalUnits Quote Read Only" description="Quoted Units"/>
+    <design:attribute name="totalEvalPrice" Label="Total Eval Cost"/>
+    <design:attribute name="shippingconfirmationPage" Label="Shipping evalUnits Read Only" description="Shipping Return Units"/>
+    <design:attribute name="transferEval" Label="Eval Transfer" /> 
+    <design:attribute name="returnEval" Label="Eval Return" />
+
+    
+</design:component>

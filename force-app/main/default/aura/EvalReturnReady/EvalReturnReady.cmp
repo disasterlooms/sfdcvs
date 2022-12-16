@@ -1,0 +1,32 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:availableForFlowScreens" access="global" controller="EvalUnitstoQuote" >
+	<aura:attribute type="string" name="billingstate" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="units" type="Eval_Unit_Details__c[]" access="public"/>
+    <aura:attribute name="selectedunits" type="Eval_Unit_Details__c[]" access="public"/>
+    <aura:attribute name="quoteid" type="String"/>
+    <aura:attribute name="completed" type="boolean"/>
+    <aura:attribute name="pselected" type="boolean" default="false"/>
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:handler name="change" action="{!c.completed}" value="{!v.completed}" />
+	<aura:registerEvent name="evalreturn" type="c:EvalReturn"/>    
+    <!-- comments -->
+       
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    
+    
+        <c:EvalRequestUnitsTable records="{!v.units}"
+                                 selected="{!v.selelectedunits}"
+                                 flowname="Eval_Return_Tracking_Information_Lightning"
+                                 recordId="{!v.recordId}"
+                                 completed="{!v.completed}"
+                                 btnnext="{!v.pselected}"
+                                 showbtn="true"
+                                 header="Select Products to be Returned"
+                                 actname="updateSelected"/>
+    <br/> 
+   <!-- <lightning:button aura:id="btnret" label="Return Product(s) Selected" variant="brand" onclick="{!c.EvalReturn}" class="slds-float_right" />-->
+   
+        
+</aura:component>

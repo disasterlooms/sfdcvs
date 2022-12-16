@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assigned_to_Sales_Rep__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( Owner:User.Profile.Name =&quot;Sales - Canada&quot;,true,
+if( Owner:User.Profile.Name =&quot;Sales - Distributor&quot;,true,
+if( Owner:User.Profile.Name =&quot;Sales - Latin America&quot;,true,
+if( Owner:User.Profile.Name =&quot;Sales - RBM&quot;,true,
+if( Owner:User.Profile.Name =&quot;Sales - Reseller&quot;,true,
+if( Owner:User.Profile.Name =&quot;Sales - TM&quot;,true,
+if( Owner:User.Profile.Name =&quot;Sales ISR&quot;,true,
+false)))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Assigned to Sales Rep</label>
+    <type>Checkbox</type>
+</CustomField>

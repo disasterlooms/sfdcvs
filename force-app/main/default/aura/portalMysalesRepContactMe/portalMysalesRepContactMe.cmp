@@ -1,0 +1,14 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens" access="global" >
+    <aura:attribute type="String" name="FullPhotoUrl"/>
+    <aura:attribute type="String" name="Name"/>
+    <aura:attribute type="String" name="conId"/>
+    <aura:attribute type="String" name="acctId"/>
+    <aura:attribute type="String" name="repId"/>
+    <aura:attribute type="String" name="buttonLabel" default="Request Contact"/>
+    {!v.body}
+    <center>
+    <img src="{!v.FullPhotoUrl}" alt="{!v.Name}"/>
+    <br/> <br/>
+    <lightning:button variant="brand" label="{!$Label.c.pp_SupportRequestContactLabel}" onclick="{!c.callToAction}"/>
+        </center>
+</aura:component>

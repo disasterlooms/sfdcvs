@@ -1,0 +1,191 @@
+<apex:page >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:stylesheet value="{!URLFOR($Resource.button)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.vssitegridlex)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.vssitesytle)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:remoteObjects >
+<apex:remoteObjectModel name="Product2" fields="Id,Name,Family,LastModifiedDate,CreatedDate,IsActive">
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+ <apex:remoteObjects >
+<apex:remoteObjectModel name="PricebookEntry" fields="Name,Id,IsActive,ProductCode,Pricebook2Id,Product2Id">
+<apex:remoteObjectField name="Family__c" jsShorthand="pbfamily"/>
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+<script>
+// on load start the following processes 
+$(document).ready(function() {
+
+});
+
+// Search products based on the family selected by the user query family
+function productsearch(family, id) {
+    if(   '{!$UserRole.Name}'=='LA Sales TM'){
+    var prbk = '01sA00000008gzNIAQ';
+    }else{
+    var prbk = '01sA00000008gzSIAQ'
+    }
+    
+    console.log(prbk);
+    
+    
+    //hide the panel containing the family buttons
+    $("[id$=family]").hide();
+    // set object variable and query the product object based on family and active. Some products will not have substitute products
+    var prod = new SObjectModel.PricebookEntry(family, id);
+    prod.retrieve({
+        where: {
+            pbfamily: {
+                eq: family
+            },
+            IsActive: {
+                eq: true
+            },
+            Pricebook2Id: {
+                eq: prbk
+            }    
+        },
+        orderby: [{
+            Name: 'ASC'
+        }] , limit: 100 
+    }, function(err, records, event) {
+        if (err) {
+            alert(err.message);
+        } else {
+            //if no errors then go through each record and set name and id variables. Then run the ht function to create the product buttons
+            records.forEach(function(record) {
+                var name = record.get("Name");
+                var id = record.get("Product2Id");
+                ht(name, id);
+            });
+        }
+    });
+};
+
+
+
+
+//build the buttons for each product results of query from product search function
+function ht(name, id) {
+    //add html and use the varaibles to dynamically create each button
+    var line = document.createElement("li");
+    line.innerHTML =
+        '                                                           \
+                                                          \
+        <a  class="btn2 btn-red-text2" href="/apex/OpportunityNewSolution?resellerdirect={!URLENCODE($CurrentPage.parameters.resellerdirect)}&endusername={!URLENCODE($CurrentPage.parameters.endusername)}&enduserid={!URLENCODE($CurrentPage.parameters.enduserid)}&resellername={!URLENCODE($CurrentPage.parameters.resellername)}&resellerid={!URLENCODE($CurrentPage.parameters.resellerid)}&prodid=' + id + '&prodname=' + name +'" id=“mergefiedl” >' + name + '</a>                        \
+                            <br></br> \
+        '
+        //append the li container that is inside the flex box with the queried records
+    document.getElementById('container').appendChild(line);
+}
+// Create a back button for users to reselect a different famlily in case they do not find their products, which is really a refresh. 
+function back() {
+    $("[id$=h2a]").hide();
+    $("[id$=h2b]").show();
+    //create variable for the link to be instered and the html to insert. 
+    var link = document.createElement("div");
+    link.innerHTML =
+        '                                                           \
+                                                         \
+        <br><a  href="#" id="backlink" style="float:right;margin-right:500px;text-decoration: underline;">Back</a> </br>                        \
+        '
+    document.getElementById('j_id0').appendChild(link);
+    document.getElementById('backlink').onclick = function() {
+        location.reload();
+    };
+
+}
+</script>
+<br><center><H2 style="font-size: 200%;">Full Spa Solutions Creation Page</H2></center></br>
+<br><center><H2 id="h2a" style="font-size: 125%;">Please Select The Product Family</H2></center>
+<br><center><H2 id="h2b" style="font-size: 125%;display:none;">Select Product - The Accessories, Warranties, and substitute products will be added In the background Automatically</H2></center>
+
+<div class="tile-container">    
+           
+            <ul class="tile-list grid-3_md-2_sm-1" id="family">
+                
+                <li>
+                    <a  class="btn2 btn-red-text2"  onclick="var family = 'DS';productsearch(family);back();">Digital Signage</a>                      
+                    <br>                
+                    </br>
+                </li>
+                <li>
+                    <a  class="btn2 btn-red-text2"  onclick="var family = 'IFP';productsearch(family);back();">IFP</a>                    
+                    <br>                
+                    </br>
+                </li>
+                <li>
+                    <a  class="btn2 btn-red-text2"  onclick="var family = 'Cloud';productsearch(family);back();">Cloud</a>                   
+                    <br>                
+                    </br>
+                </li>
+                <li>
+                    <a  class="btn2 btn-red-text2"  onclick="var family = 'PJ';productsearch(family);back();">Projectors</a>                       
+                    <br>                
+                    </br>
+                </li>
+                <li>
+                    <a  class="btn2 btn-red-text2"  onclick="var family = 'LCD';productsearch(family);back();">Awesome Monitors</a>                       
+                    <br>                
+                    </br>
+                </li>
+
+        </ul>
+        <ul class="tile-list grid-3_md-2_sm-1" id="container">
+                
+
+        </ul>
+        </div>
+        </br>
+        </br>
+    <style>
+    .btn2 {
+    display: inline-block;
+    margin-bottom: 0 ;
+    font-weight: bolder ;
+    text-align: center ;
+    vertical-align: middle ;
+    touch-action: manipulation ;
+    cursor: pointer ;
+    background-image: none ;
+    border: 1px solid transparent;
+    white-space: nowrap ;
+    background-color: white ;
+    padding: 6px 12px ;
+    font-size: 12px !important;
+    line-height: 1.42857143 ;
+    border-radius: 4px ;
+    letter-spacing: .5px ;
+    -webkit-user-select: none ;
+    -moz-user-select: none ;
+    -ms-user-select: none ;
+    user-select: none ;
+    background: none !important;
+    margin: 10px 10px;
+    width: 250px;
+    
+}
+.btn-red-text2 {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text2:hover, .btn-red-text:focus {
+    background: #990000 !important;
+    color: #ffffff !important;
+}
+</style>
+</apex:page>

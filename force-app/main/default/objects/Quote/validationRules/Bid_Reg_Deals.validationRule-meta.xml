@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bid_Reg_Deals</fullName>
+    <active>true</active>
+    <errorConditionFormula>text(Spa_Request_Type__c) = &apos;Bid Register Request&apos; &amp;&amp; ( len(Business_Reason_for_Bid_Registration__c ) &lt; 6 ||
+len(Scope_of_Bid_Registration__c ) &lt; 6 ||
+len(List_of_Work_Activity_c__c ) &lt; 6 )</errorConditionFormula>
+    <errorMessage>Bid Registration deals must have sufficient information for Business Reason, List of Work, and, Scope. 
+
+Please enter information on each field.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Pending_Spas</fullName>
+    <columns>QUOTE.NAME</columns>
+    <columns>QUOTE.STATUS</columns>
+    <columns>QUOTE.EXPIRATIONDATE</columns>
+    <columns>Specialty_Spa__c</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Re_Submission_Date__c</columns>
+    <columns>CreatedBy</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>QUOTE.STATUS</field>
+        <operation>equals</operation>
+        <value>Needs Review,Delayed Info Missing</value>
+    </filters>
+    <filters>
+        <field>My_Spas__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>My Pending Spas</label>
+</ListView>

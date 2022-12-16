@@ -1,0 +1,50 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" controller="evalBillAcct">
+    <aura:attribute name="recordId" type="String" access="public"/>
+    <aura:handler name="change" value="{!v.items}" action="{!c.itemsChange}"/>
+    <aura:attribute name="errormsg" type="String" access="public"/>
+    <aura:attribute name="account" type="Account" access="public" default="{ 'sobjectType': 'Account' }"/>
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:attribute name="record" type="Account" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Account" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="error" type="String" 
+                    description="An error message bound to force:recordData"/>
+    
+    <lightning:spinner aura:id="mySpinner" class="slds-hide" size="medium"/>
+    
+    <force:recordData aura:id="evalbill"
+                      layoutType="FULL"
+                      recordId="{!v.account.Id}"
+                      targetError="{!v.error}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      mode="EDIT"
+                      recordUpdated="{!c.recordUpdated}" />
+    
+    <aura:if isTrue="{!not(empty(v.errormsg))}">
+        <div class="recordSaveError">
+            <ui:outputtext value="{!'* '+v.errormsg}" class="slds-text-color_error"/>
+        </div>
+    </aura:if>
+    <!--<ui:outputtext value="{!v.error}" />-->
+    <lightning:card iconName="standard:account" title="{!v.simpleRecord.Name}" >
+        <div class="slds-p-horizontal--small">
+            <lightning:input label="Phone" value="{!v.simpleRecord.Phone}" name="phone" required="true"/>
+            <lightning:input label="Street" value="{!v.simpleRecord.BillingStreet}" name="street" required="true"/>
+            <lightning:input label="City" value="{!v.simpleRecord.BillingCity}" name="city" required="true"/>
+            <lightning:input label="State" value="{!v.simpleRecord.BillingState}" name="state" required="true"/>
+            <lightning:input label="Zip" value="{!v.simpleRecord.BillingPostalCode}" name="zip" required="true"/>
+            <lightning:input label="Country" value="{!v.simpleRecord.BillingCountry}" name="country" required="true"/>
+            
+        </div>
+    </lightning:card>
+    <footer style="float:right;">       
+        <lightning:button variant="neutral" label="Cancel" onclick="{!c.cancel }" />      
+        <lightning:button variant="brand" label="Save" onclick="{!c.save}" />
+    </footer>
+    
+    
+    
+    
+</aura:component>

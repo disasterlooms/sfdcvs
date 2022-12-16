@@ -1,0 +1,8 @@
+<design:component>
+    <design:attribute name="language" label="Deprecated Do not use Language"/>
+    <design:attribute name="languageToSet" label="Language to make default" description="This is the default language for a specific
+     audience that is assigned to this specific component. Can have multiple redirects
+     for mulitple audiences to ensure the defaul language is set. Only one language for each
+     audience can be used"/>
+    <design:attribute name="communitySite" label="put {!Network_Community_Url}"/>
+</design:component>

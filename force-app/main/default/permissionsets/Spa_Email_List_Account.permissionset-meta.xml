@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Gives visibility to distributor director</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Spa_Email_List__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Spa Email List Account</label>
+    <license>Salesforce</license>
+</PermissionSet>

@@ -1,0 +1,73 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId"  controller="EvalRequest" access="global" >
+	<aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="eval" type="Object" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+     <lightning:card >
+        <aura:set attribute="title">
+            Evaluation Details (Read Only) for Record # {!v.eval.Name}
+        </aura:set>
+        <aura:set attribute="footer">
+        </aura:set>
+        <p class="slds-p-horizontal--small">
+          <label class="slds-form-element__label" for="input-unique-id">Opportunity Name</label>  
+          <ui:outputText value="{!v.eval.Opportunity_Name__r.Name}" class="slds-input" />
+          <label class="slds-form-element__label" for="input-unique-id">Reason for Request</label>  
+          <ui:outputText value="{!v.eval.Reason_for_Request__c}" class="slds-input" />
+           
+          <label class="slds-form-element__label" for="input-unique-id">Shipping Contact</label>  
+          <ui:outputText value="{!v.eval.Opportunity_Name__r.Name}" class="slds-input"/> 
+         
+          <label class="slds-form-element__label" for="input-unique-id">Billing Contact</label>  
+          <ui:outputText value="{!v.eval.Shipping_Contact_Name__r.Name}" class="slds-input"/>          
+          
+          <label class="slds-form-element__label" for="input-unique-id">Expected Receive Date</label>  
+          <ui:outputText value="{!v.eval.Expected_Receive_Date__c}" class="slds-input"/>
+          
+          <label class="slds-form-element__label" for="input-unique-id">Ship Method</label>  
+          <ui:outputText value="{!v.eval.Ship_Method__c}" class="slds-input"/>
+          
+          <label class="slds-form-element__label" for="input-unique-id">Special Instructions</label>  
+          <ui:outputText value="{!v.eval.Special_Instructions__c}" class="slds-input"/>
+       
+          <label class="slds-form-element__label" for="input-unique-id">Gov/Ed/Enterprise Agreement Waiver</label>
+          <ui:outputCheckbox value="{!v.eval.GovEd_Account_Waive_Agreement__c}"/>
+          
+          <label class="slds-form-element__label" for="input-unique-id">Waive Credit Card</label> 
+          <ui:outputCheckbox value="{!v.eval.No_Credit_Card_Eval_Agreement__c}"/>
+      
+         <br/>
+         <label class="slds-form-element__label" for="input-unique-id">Reason for no CC or Agreement Waiver</label>  
+          <ui:outputText value="{!v.eval.Reason_for_No_Credit_Card__c}" class="slds-input"/>
+         
+          <label class="slds-form-element__label" for="input-unique-id">Product 1</label>  
+          <ui:outputText value="{!v.eval.Product_Name__r.Name}" class="slds-input"/>
+            
+          <label class="slds-form-element__label" for="input-unique-id">Quantity</label>  
+          <ui:outputNumber value="{!v.eval.Quantity__c}" class="slds-input"/>
+          
+          <label class="slds-form-element__label" for="input-unique-id">Product 2</label>  
+          <ui:outputText value="{!v.eval.Product_Name_2__r.Name}" class="slds-input"/>
+          
+          <label class="slds-form-element__label" for="input-unique-id">Quantity</label>  
+          <ui:outputNumber value="{!v.eval.Quantity_2__c}" class="slds-input"/>          
+            
+          <label class="slds-form-element__label" for="input-unique-id">Product 3</label>  
+          <ui:outputText value="{!v.eval.Product_Name_3__r.Name}" class="slds-input"/>
+          
+          <label class="slds-form-element__label" for="input-unique-id">Quantity</label>  
+          <ui:outputNumber value="{!v.eval.Quantity_3__c}" class="slds-input"/>
+            
+          <label class="slds-form-element__label" for="input-unique-id">Product 4</label>  
+          <ui:outputText value="{!v.eval.Product_Name_4__r.Name}" class="slds-input"/>
+          <label class="slds-form-element__label" for="input-unique-id">Quantity</label>  
+          <ui:outputNumber value="{!v.eval.Quantity_4__c}" class="slds-input"/>
+            
+          <label class="slds-form-element__label" for="input-unique-id">Product 5</label>  
+          <ui:outputText value="{!v.eval.Product_Name_5__r.Name}" class="slds-input"/>
+            
+          <label class="slds-form-element__label" for="input-unique-id">Quantity</label>  
+         <ui:outputNumber value="{!v.eval.Quantity_5__c}" class="slds-input"/>
+        </p>
+    </lightning:card>
+    
+</aura:component>

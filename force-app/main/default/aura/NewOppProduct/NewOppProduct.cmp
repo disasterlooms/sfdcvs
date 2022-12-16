@@ -1,0 +1,110 @@
+<aura:component controller="MyOpportunityPipeline"  implements="flexipage:availableForAllPageTypes" >
+    <aura:handler event="c:newproduct" action="{!c.showOppmodal}" />
+    <aura:registerEvent name="oppsearch" type="c:oppsearch"/>
+    <aura:attribute name="id" type="String" default="" access="GLOBAL"/>
+    <aura:attribute name="newoppid" type="String" />
+    <aura:attribute name="newquan" type="Integer" />
+    <aura:attribute name="newship" type="Date"/>
+    <aura:attribute name="newstatus" type="String" />
+    <aura:attribute name="newcompete" type="String" />
+    <aura:attribute name="status" type="String[]" />
+    <aura:attribute name="products" type="String[]" />
+    <aura:attribute name="user" type="User" />
+    <aura:attribute name="selectedId" type="String"/>
+    <aura:attribute name="pricebook" type="String"/>
+   
+                                               
+    <aura:attribute name="contact" type="Contact" 
+                    default="{ 'sobjectType': 'Contact' }"/>
+    
+	  <div aria-hidden="true" role="dialog" class="slds-modal slds-modal--large slds-fade-in-hide" aura:id="modaldialog">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-button--icon-inverse slds-modal__close" onclick="{!c.hideModal}">
+                        <span>
+                            <lightning:icon iconName="action:close" size="small" alternativeText="Close"/>
+                        </span>                 
+                    </button>
+                    <h2 id="header43" class="slds-text-heading--medium">New Opportunity Product</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around--medium">
+                    <div>
+                        <div class="well"> 
+                            <div class="panel panel-primary">
+                                <div class="panel-heading"></div>
+                                <div class="panel-body">
+                                    <div class="form-horizontal" >
+                                        <div class="form-group">
+                                            <!--<label class="col-sm-2 control-label">
+                                            	 <abbr class="slds-required" title="required">*</abbr>Product</label>-->
+                                            <div class="col-sm-8">
+                                               <!-- <c:LookupInput fieldname="Product Name" placeholder=" Search for Product"/>
+                                                 <force:inputField value="{!v.contact.Name}"/>
+                                                 <lightning:combobox aura:id="selectItem" name="status" label="Status"
+                                                                     placeholder="Choose Status"
+                                                                     value="new"
+                                                                     onchange="{!c.handleOptionSelected}"
+                                                                     options="{!v.products}"/>-->
+                                                <!--<c:inputLookup type="Product2"
+                                                               value="{!v.objNew.Id}"  
+                                                               className="slds-input"/>  -->
+                                                <c:Lookup objectType="PricebookEntry" 
+                                                                 label="Product Name"
+                                                                 selectedRecordId="{!v.selectedId}"
+                                                                 readOnly="false"
+                                                                 showFiveRecent="true"
+                                                           		 pricebook="{!v.pricebook}"
+                                                          		 placeholder="Search Products by typing product"
+                                                                 widthPX=""
+                                                          />                                                
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-feedback">
+                                            <!--<div class="col-sm-8 " style="display:none;">
+                                                <ui:inputText value="{!v.objNew.Id}" 
+                                                              class="form-control"
+                                                              placeholder="Change id value"/>
+                                                <ui:inputText label="OpportunityId"
+                                                              placeholder="Search by Product - Partial Name is Ok"
+                                                              value="{!v.newoppid}"/>
+                                                
+                                            </div>-->
+                                            <label class="col-sm-2 control-label">
+                                                	 <abbr class="slds-required" title="required">*</abbr>Quantity</label>
+                                            <div class="col-sm-8">
+                                                <ui:inputnumber value="{!v.newquan}" class="slds-required"/>
+                                            </div>
+                                            <label class="col-sm-2 control-label">
+                                            	 <abbr class="slds-required" title="required">*</abbr>Ship Out Date</label>
+                                            <div class="col-sm-8">
+                                                
+                                                <ui:inputDate value="{!v.newship}" class="slds-input" displayDatePicker="true" required="true"/>
+                                            </div>
+                                            <label class="col-sm-2 control-label">
+                                            	 <abbr class="slds-required" title="required">*</abbr>Status</label>
+                                            <div class="col-sm-8">
+                                                <lightning:select name="select" variant="label-hidden" value="{!v.newstatus}" label="">
+                                                            <aura:iteration items="{!v.status}" var="s">
+                                                                <option value="{!s}" text="{!s}"></option>
+                                                            </aura:iteration>
+                                                </lightning:select>
+                                            </div>
+                                            <label class="col-sm-2 control-label">Competitive Info</label>
+                                            <div class="col-sm-8">
+                                                <ui:inputTextArea value="{!v.newcompete}" class="slds-input"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" onclick="{!c.hideModal}">Cancel</button>
+                    <lightning:button label="Save" onclick="{!c.createprod}" class="slds-button slds-button--neutral slds-button--brand"/>                </div>
+            </div>
+        </div>
+         <div class="slds-backdrop slds-backdrop--hide" aura:id="backdrop">
+    </div>
+</aura:component>

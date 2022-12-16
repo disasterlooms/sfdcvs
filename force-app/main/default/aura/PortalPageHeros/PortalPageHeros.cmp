@@ -1,0 +1,55 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:availableForFlowScreens,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:isUrlAddressable" access="global" >
+    <aura:attribute name="imageURL" type="String" default="https://fullsand-viewsonic.cs159.force.com/partner/file-asset/ViewSonic_PP_GreyBar2?v=1"/>   
+   <aura:attribute name="showCallToAction" type="Boolean" default="false"/>
+    <aura:attribute name="flow" type="String"/>
+    <aura:attribute name="flowVariables" type="String"/>    
+    <aura:attribute name="Header" type="String"/>
+    <aura:attribute name="Subttitle" type="String"/>
+    <aura:attribute name="ActionHeader" type="String" default=""/>
+    <aura:attribute name="ButtonLabel" type="String" default=""/>
+    <aura:attribute name="reseller" type="Boolean"/>    
+    <aura:attribute name="actionType" type="String"/>
+    <aura:attribute name="SalesTracker" type="String"/>
+
+    
+   <!-- <aura:handler name="init" value="{!this}" action="{!c.myAction}" /> -->
+   
+    <!--
+    <aura:attribute name="isOpen" type="Boolean" default="false"/>  
+    <aura:method name="parentMethod" action="{!c.closeModel}" />
+    <aura:method name="parentFlowNext" action="{!c.parentFlowNextPage}" />
+     -->
+    
+   <!-- <img source="{!v.imageURL}"/> -->
+    <aura:attribute name="onClicktype" type="String"/>
+    <div class="pp-hero-contanier">
+        <div class="pp-hero">
+            <div class="pp-hero-left">
+                <div>             
+                    <div>
+                        <h1>{!v.Header}</h1>
+                        <p>{!v.Subttitle}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pp-hero-right">
+                <div>
+                    <img class="pp-hero-img" src="{!v.imageURL}" alt="Partner Program"></img>
+                </div>
+            </div>  
+        </div>        
+    </div> 
+    <aura:if isTrue="{!v.showCallToAction}">
+        
+        <div class="pp-hero-contanier">
+            <div class="pp-section-1">
+                <h1></h1>                 
+                <div class="pp-btn">
+                    <!--<a onclick="{!c.callToAction}" >{!v.ButtonLabel}</a>-->
+                    <a onclick="{!c.callToAction}" >{!v.ButtonLabel}</a>
+                </div>
+            </div> 
+        </div>
+        {!v.body}        
+    </aura:if>
+</aura:component>

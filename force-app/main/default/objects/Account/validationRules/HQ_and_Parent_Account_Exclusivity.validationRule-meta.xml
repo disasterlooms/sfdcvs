@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HQ_and_Parent_Account_Exclusivity</fullName>
+    <active>false</active>
+    <description>Enforce relationship between HQ flag and Parent Account, HQ should not have parent account and non-HQ must have parent account</description>
+    <errorConditionFormula>(ISCHANGED(HQ_Account_Check_if_HQ__c) || ISCHANGED(ParentId))
+&amp;&amp;
+(
+(HQ_Account_Check_if_HQ__c = FALSE) &amp;&amp; ISBLANK(ParentId) ||
+(HQ_Account_Check_if_HQ__c = TRUE) &amp;&amp; NOT(ISBLANK(ParentId))
+)</errorConditionFormula>
+    <errorDisplayField>HQ_Account_Check_if_HQ__c</errorDisplayField>
+    <errorMessage>HQ account cannot have parent account, non-HQ account must have a parent HQ account</errorMessage>
+</ValidationRule>

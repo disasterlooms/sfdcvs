@@ -1,0 +1,77 @@
+<aura:component controller="OppPipelineSpas" implements="flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId" access="global">
+    <!--<aura:registerEvent name="showspas" type="c:displayspas" />
+   <aura:registerEvent name="updatespas" type="c:updatespas" />-->
+    <aura:handler event="wave:selectionChanged" action="{!c.handleChangeWave}"/>
+    <aura:handler event="force:refreshView" action="{!c.myAction}" />
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:handler event="c:spinner" action="{!c.toggle}" />
+    <aura:handler event="c:loading" action="{!c.loading}" />
+    <aura:registerEvent name="createspas" type="c:createspas" />
+    <aura:attribute name="recordId" type="String" access="public"/>
+    <aura:attribute name="opportunity" type="Opportunity" access="public"/>
+    <aura:attribute name="spacreate" type="boolean" description="checks if an opp record. If not, the spa create button will be hidden"/>
+    <aura:attribute name="loading" type="String" access="public" default="....Loading Please Wait"/> 
+    <!--<aura:attribute name="opportunity" type="Opportunity" access="public"/>
+   <aura:attribute name="oppid" type="String" access="public" />-->
+    
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+
+    <force:recordData aura:id="recordLoader"
+      recordId="{!v.recordId}"
+      layoutType="FULL"
+      targetRecord="{!v.record}"
+      targetFields="{!v.simpleRecord}"
+      targetError="{!v.recordError}"
+      />
+
+
+    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerspa" class="slds-hide" variant="brand" size="large"/>
+    </div> 
+    <div class="flexipageComponent" data-aura-class="flexipageComponent">
+        <article class="slds-card">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate"><div class="slds-media__body">
+                    <h2>{!v.simpleRecord.name}
+                        <span class="slds-text-heading_small">
+                            <!--<ui:outputtext value="{!v.loading}" />-->
+                        </span>
+                    </h2>
+                    </div>
+                    <center>
+                        <div class="slds-x-small-buttons--horizontal">
+                            
+                            <lightning:button label="Update&nbsp;Spa(s)" variant="neutral" onclick="{!c.spaupdate}"  />
+                            
+                            
+                        </div>
+                    </center>
+                </header>
+                <!--<div class="slds-no-flex">
+              <lightning:button label="Delete&nbsp;Selected" variant="neutral" onclick="{!c.deleteparts}" value="{!recordid}"/>
+              <lightning:button label="Update&nbsp;Reseller&nbsp;Contact" variant="neutral" onclick="{!c.update}" value="{!recordid}"  />
+            </div>-->
+            </div>
+           <c:SpaLink recordId="{!v.recordId}" />
+            <footer class="slds-card__footer">
+                <div class="slds-x-small-buttons--horizontal">
+                    <lightning:button label="Update&nbsp;Spa(s)" variant="neutral" onclick="{!c.spaupdate}"  />
+                    <aura:if isTrue="{!v.spacreate}">
+                    <!--
+                        <lightning:button label="Spa&nbsp;Does&nbsp;Not&nbsp;Exist&nbsp;Create&nbsp;New" variant="neutral" onclick="{!c.createSpa}" />
+                        -->
+                        <lightning:buttonMenu alternativeText="Show menu" class="slds-button_last" onselect="{!c.handleSelect }" label="Spa Does not Exist Create New">
+                            <lightning:menuItem label="Spa Request" value="spa"/>
+                            <lightning:menuItem label="Bid Registration Request" value="br" />
+                        </lightning:buttonMenu>
+						
+                    </aura:if>
+                </div>
+            </footer>
+            
+        </article>
+    </div>
+</aura:component>

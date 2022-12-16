@@ -1,0 +1,46 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,forceCommunity:themeLayout" access="global"  description="Landing Page Layout">
+    <aura:attribute name="search" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="notifications" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="profileMenu" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="navBar" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="newHeader" type="Aura.Component[]" required="false"/>
+    <aura:handler event="aura:doneRendering" action="{!c.onLoad}"/>
+    <aura:attribute name="smallLogo" type="Boolean" default="true" />
+    <aura:attribute name="column1" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="LoginScreen" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="column3" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="title" type="String" required="false" default="Enter Your Email to get a Password Reset Sent"/>
+    <aura:attribute name="themeHeader" type="Aura.Component[]" required="false" /> 
+    
+    <div class="pp-landing-hero">
+        <div class="pp-full-hero-cont">
+            <div class="pp-full-hero-text">
+                <h1 class="pp-logo">
+                    <img src="https://www.viewsonic.com/skin/frontend/smartwave/viewsonic/images/business-solution/partner-program-lowercase.svg" alt="Partner Program Logo"></img>
+                </h1>
+            </div>                
+        </div>        
+    </div>
+    <div class="pp-landing-body">
+        <div class="pp-body-cont">
+            <div class="pp-body-cont-text">
+                <h1>Reset Your Password for the New ViewSonic Partner Program</h1>
+                <p>We’re transitioning our Finch Club program to the new ViewSonic<sup>®</sup> Partner Program. You’ll still have access to all the great partner benefits of Finch Club, but in a new and improved portal.</p>
+            </div>
+            <div class="pp-body-cont-form">
+                <h2>{!v.title}</h2>
+                <div>
+                    <!-- The dynamic field below can have the css edited in this component but the class names cannot change, must add to the stlye sheet
+                                 in this component the classes you want to edit  -->
+                    {!v.LoginScreen}                            
+                </div> 
+            </div>
+        </div>
+    </div>
+  
+    <div class="container">
+        <div >
+            {!v.column3}
+        </div>
+    </div>
+</aura:component>

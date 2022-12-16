@@ -1,0 +1,7 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens" access="global" >
+    <aura:attribute name="currentStage" type="Object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.runFlow}"/>
+    <aura:attribute name="email" type="String" />
+    <lightning:flow aura:id="flowData" onstatuschange="{!c.statusChange}" />
+	{!v.body}
+</aura:component>

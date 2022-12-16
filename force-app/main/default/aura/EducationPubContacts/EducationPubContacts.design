@@ -1,0 +1,8 @@
+<design:component>
+	<design:attribute name="accid" description="Account Id for Contacts"/>
+    <design:attribute name="nextScreen" description="the word next when used in flow"/>
+    <design:attribute name="titlecard" description="Title"/>
+    <design:attribute name="fromFlow" description="if from flow, true"/>
+    
+    
+</design:component>

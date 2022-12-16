@@ -1,0 +1,31 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute type="string" name="url"/>
+    <aura:attribute name="recordId" type="string" /> 
+    
+<aura:attribute name="record" type="Object" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    
+    <force:recordData aura:id="eval"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      mode="EDIT"/>
+                            <div class="slds-page-header">
+                                <center>
+                                    <h1 class="slds-page-header__title slds-truncate slds-align-middle">Video Help Click YouTube for Full Screen</h1>
+                                </center>
+                                <aura:if isTrue="v.simpleRecord.YouTube_URL__c != null" >
+                                <!--<cloudx_cms:SS_uiVideoBanner videoUrl="{!v.simpleRecord.YouTube_URL__c}"  
+                                                             showVideoControls="true" title=""/>-->
+                                    </aura:if>
+                             <pal_youtube_cmp:paladin_youtube link="{!v.simpleRecord.YouTube_URL__c}"/>
+                                 
+                            </div>
+	
+</aura:component>

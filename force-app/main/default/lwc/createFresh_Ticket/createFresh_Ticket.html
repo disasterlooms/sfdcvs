@@ -1,0 +1,51 @@
+<template>
+   
+    <div class="slds-m-around_large">
+        <p if:true={isLoaded}></p>
+         <div if:false={isLoaded} class="slds-is-relative">
+            <lightning-spinner
+                size="medium"
+                alternative-text="Loading..." variant="brand">
+            </lightning-spinner>
+        </div>
+    </div>
+    <lightning-card>
+        <lightning-combobox
+            name="progress"
+            label="Service Group"
+            value={value}
+            placeholder="Select Progress"
+            options={options}
+            onchange={handleChangeGroup} 
+            required="true"></lightning-combobox>
+            <br/>
+            <lightning-input type="checkbox" label="Please cc me on all email" checked={ccuser} onchange={handleCCMeChange}> </lightning-input>
+        <br/>
+        <lightning-input type="text" label="Subject of Ticket" onchange={handleChangeSubject}
+        required="true" class="validate" value={subject}>
+        </lightning-input>
+
+        <lightning-input type="text" label="Name"  onchange={handleChangeName}
+        required="true" class="validate" value={name}>
+            </lightning-input>
+        <lightning-input type="email" label="Email address" onchange={handleChangeEmail}
+        required="true" class="validate" value={email}>
+            </lightning-input>
+
+            <br/>
+        {richTxtLabel}
+        <lightning-input-rich-text value={description} blur={handleChangeDescription} onchange={handleChangeDescription}>
+        </lightning-input-rich-text>
+        <br/>
+       <div> <b>Attachment to be added </b><input type='file' class='myFile' multiple onchange={attachmentsValidate}/></div><div if:false={sendAttachment} class="slds-text-color_error">Attachments are greater than 20 MB and will not be sent with your ticket. Please ensure your attachments total less than 20 MB.</div>
+
+       <!--  <c-file-upload-improved label={fileUploadLabel}>
+        </c-file-upload-improved> -->
+        <div slot="footer" class="slds-clearfix">
+            <lightning-button variant="brand" label="Submit" title="Submit"
+             class="slds-var-m-left_x-small slds-float_right"
+              onclick={handleSubmission}></lightning-button>
+        </div>
+    </lightning-card>
+
+</template>

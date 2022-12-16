@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>claimerName__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(not(isblank(Contact__r.Legal_First_Name__c)),Contact__r.Legal_First_Name__c,Contact__r.FirstName )
++ &apos; &apos;+
+if(not(isblank(Contact__r.Legal_Last_Name__c)),Contact__r.Legal_Last_Name__c,Contact__r.LastName )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>claimerName</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

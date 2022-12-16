@@ -1,0 +1,20 @@
+<design:component>
+	<design:attribute name="showBtns" description="Show Call To Action buttons"/>
+    <design:attribute name="showBody" description="Show Body"/>
+    <design:attribute name="showPromotion" label="Show promotion if true" />
+    <design:attribute name="showImage" label="Show Image if true" />
+    <design:attribute name="document" label="document"/>
+    <design:attribute name="promotionDate" label="promotion Text"/>
+    <design:attribute name="promtionLinkText" label="URL Text"/>
+    <design:attribute name="showVideo" label="Show video if true"/>
+    <design:attribute name="videoURL" label="Video URL"/>
+    <design:attribute name="videotitle" label="Video Title"/>
+    <design:attribute name="videomessage" label="Video Message"/>
+
+    <design:attribute name="englishUS" label="English US Version" />
+
+
+    <design:attribute name="login" />
+    <design:attribute name="signup"/>
+    <design:attribute name="paragraphIntro" />
+</design:component>

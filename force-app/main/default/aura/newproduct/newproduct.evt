@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION">
+   <aura:attribute name="oppId" type="String"/>
+   <aura:attribute name="status" type="String[]" /> 
+</aura:event>

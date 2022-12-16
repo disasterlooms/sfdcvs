@@ -1,0 +1,4 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens" access="global" >
+	        <lightning:input type="email" name="email2" value="" label="Email field with an invalid value" 
+                             required="true"/>
+</aura:component>

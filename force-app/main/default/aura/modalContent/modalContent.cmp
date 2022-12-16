@@ -1,0 +1,35 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    okay
+    <div role="dialog" class="slds-modal slds-backdrop slds-modal_large slds-fade-in-hide" aura:id="modaldialog" style="max-width:65%">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h2 class="slds-text-heading--medium">heading</h2>
+                 <p class="slds-m-top_x-small"> tagline</p>
+            </div> 
+            <div class="slds-modal__content">
+                        <br/>
+                <!-- the custom compnent below can by dynamically created if there is a
+					component name in the design template and cmp is set for true. this way
+                we can modal any component without having to create content only on the  		
+	            modal content__c field on modal page. -->
+                
+                <center> content
+                </center>
+            </div>
+            
+            <div class="slds-modal__footer">
+                <div class="slds-x-small-buttons--horizontal">
+                    <lightning:button variant="brand" label="{!v.dismiss}" title="dismiss" onclick="{!c.later}" value="false" disabled="{!v.disabled}"/>
+                    <!--<button class="slds-button slds-button_brand " onclick="{!c.later}" value="false" disabled="{!v.disabled}">{!v.dismiss}</button>-->
+                    <aura:if isTrue="{!v.modalSet.Modal__r.AllowPermanentDismissal__c}">
+                    <button class="slds-button slds-button_brand " onclick="{!c.dismiss}" value="true" disabled="{!v.disabled}">{!v.remove}</button>
+                    </aura:if>
+                    <aura:if isTrue="{!v.modalSet.Modal__r.showActionButton__c}">
+                    <button class="slds-button slds-button_brand " onclick="{!c.callToAction}" value="true" disabled="{!v.disabled}">{!v.modalSet.Modal__r.Action_Button_Name__c}</button>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</aura:component>

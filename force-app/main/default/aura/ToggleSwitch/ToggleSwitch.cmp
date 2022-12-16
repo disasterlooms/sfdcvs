@@ -1,0 +1,18 @@
+<aura:component >
+    <aura:attribute name="label" type="string" required="true"/>
+    <aura:attribute name="on" type="string" required="true"/>
+    <aura:attribute name="off" type="string" required="true"/>
+    <div class="demo-only slds-size_1-of-2">
+        <div class="slds-form-element">
+            <label class="slds-checkbox_toggle slds-grid">
+                <span class="slds-form-element__label slds-m-bottom_none">{!v.label}</span>
+                <input type="checkbox" name="checkbox" aria-describedby="toggle-desc" value="on" />
+                <span id="toggle-desc" class="slds-checkbox_faux_container" aria-live="assertive">
+                    <span class="slds-checkbox_faux"></span>
+                    <span class="slds-checkbox_on">{!v.on}</span>
+                    <span class="slds-checkbox_off">{!v.off}</span>
+                </span>
+            </label>
+        </div>
+    </div>
+</aura:component>

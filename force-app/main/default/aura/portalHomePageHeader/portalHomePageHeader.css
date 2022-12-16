@@ -1,0 +1,46 @@
+.THIS {
+}
+
+.THIS .portalHeader {
+	/*background-image: url("https://viewsonic--c.documentforce.com/servlet/servlet.ImageServer?id=0151H0000088wRi&oid=00DA0000000IDKn&lastMod=1611858451000") !important;
+
+*/}
+
+.THIS .pbtButtonlft {
+    float:right;
+    background-color: #e0ad37;
+    border-radius: 0;
+    color: black;
+    font-weight: 500;
+    font-family: 'Open Sans';
+    width: 60%;
+    max-width: 150px;
+    border-color:  #e0ad37;
+    
+}
+
+.THIS .pbtButtonrgt {
+    float:left;
+    background-color: #e0ad37;
+    border-radius: 0;
+    color: black;
+    font-weight: 500;
+    font-family: 'Open Sans';
+    width: 60%;
+    max-width: 150px;
+    border-color:  #e0ad37;
+}
+
+.THIS.pbtButtonrgt:hover {
+    opacity: .70;
+}
+.THIS.pbtButtonlft:hover {
+    opacity: .70;
+}
+
+.THIS .pbtGroup {
+    
+    padding-bottom: 38px;
+    padding-top: 38px;
+    text-align: center;
+}

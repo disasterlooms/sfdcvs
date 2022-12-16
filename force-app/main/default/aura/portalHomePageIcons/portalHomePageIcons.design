@@ -1,0 +1,20 @@
+<design:component>
+    <design:attribute name="demoURL" description="String null will mean it will be hidden" label="URL for Online Demo"/>
+    <design:attribute name="dealURL" description="String null will mean it will be hidden" label="URL for Volume Pricing"/>
+    <design:attribute name="libraryURL" description="String null will mean it will be hidden" label="URL for Resources"/>
+    <design:attribute name="promotionURL" description="String null will mean it will be hidden" label="URL for Promotions"/>
+    <design:attribute name="customizeURL"  description="String null will mean it will be hidden" label="URL for Customizable Marketing"/>
+    <design:attribute name="spiffoURL" description="String null will mean it will be hidden" label="URL for SPIFF Requests"/>
+    <design:attribute name="storeURL" description="String null will mean it will be hidden" label="URL for Demo Store"/>
+    <design:attribute name="onBoarded" description="if user is onboared , then true" label="User Onboarded"/>
+
+
+    <design:attribute name="onlineDemoText" label="Online Demos"/>
+    <design:attribute name="specialPricingText" label="Price Request"/>
+    <design:attribute name="resourceLibraryText" label="Resource Library"/>
+    <design:attribute name="promotionsText" label="Promotions"/>
+    <design:attribute name="customizedMarketingText" label="Customizable Marketing"/>
+    <design:attribute name="spiffText"  label="Reseller Rewards"/>
+    <design:attribute name="demoStoreText"  label="Demo Product Store"/>
+    
+</design:component>

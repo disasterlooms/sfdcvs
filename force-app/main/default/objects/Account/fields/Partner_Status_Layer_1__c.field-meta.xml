@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Status_Layer_1__c</fullName>
+    <externalId>false</externalId>
+    <label>Partner Status Layer 1</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Finch Partner</fullName>
+                <default>false</default>
+                <label>Finch Partner</label>
+            </value>
+            <value>
+                <fullName>Online Partner</fullName>
+                <default>false</default>
+                <label>Online Partner</label>
+            </value>
+            <value>
+                <fullName>Business Partner</fullName>
+                <default>false</default>
+                <label>Business Partner</label>
+            </value>
+            <value>
+                <fullName>LFD Partner</fullName>
+                <default>false</default>
+                <label>LFD Partner</label>
+            </value>
+            <value>
+                <fullName>Unmanaged</fullName>
+                <default>false</default>
+                <label>Unmanaged</label>
+            </value>
+            <value>
+                <fullName>Distribution Partner</fullName>
+                <default>false</default>
+                <label>Distribution Partner</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

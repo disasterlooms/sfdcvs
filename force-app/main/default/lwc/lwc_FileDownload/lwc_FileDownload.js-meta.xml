@@ -1,0 +1,9 @@
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <description>File Download Link</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Link for File Download</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+    </targets>
+ </LightningComponentBundle>

@@ -1,0 +1,44 @@
+<apex:page standardcontroller="Opportunity">
+<apex:messages />
+    <apex:sectionheader title="Remove Distributors for {!Opportunity.Name}" subtitle="{!IF(ISNULL(Opportunity.Name), '',"")}"/>
+    <apex:form >
+    <style type="text/css">
+
+            .requiredExample {
+    diplay: none;
+    }
+ .requiredLegend {
+    display: none;
+    background-color: #fff;
+    font-weight: normal;
+    color: #000;
+}
+
+        </style>
+    
+    
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+        <apex:pageblock mode="edit" >
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!Save}"/>
+                <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+            </apex:pageblockbuttons>
+
+            <!-- **********   [Record Type : Viewsonic Spa Create ]   **********  -->
+            <apex:outputpanel rendered="true">
+               <apex:pageblocksection title="Distributors to Remove ! Check only to remove from SPA. " showheader="true" columns="2">
+        
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                </apex:outputpanel>
+        </apex:pageblock>
+    </apex:form>
+    <apex:outputpanel rendered="{!CASESAFEID(Opportunity.RecordTypeId)<>''}">
+        <apex:relatedList list="Opportunity_Partners__r">
+  <apex:facet name="header">Current Distributors and Resellers   [Use checkboxes above to remove any distributors]</apex:facet>
+</apex:relatedList>
+</apex:outputpanel>
+    <center><br/>
+        
+    </center><br/>
+</apex:page>

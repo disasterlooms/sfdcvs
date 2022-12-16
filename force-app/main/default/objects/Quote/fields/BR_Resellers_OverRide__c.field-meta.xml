@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BR_Resellers_OverRide__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Allows multiple resellers to be on BR</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Allows multiple resellers to be on BR</inlineHelpText>
+    <label>BR Resellers OverRide</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

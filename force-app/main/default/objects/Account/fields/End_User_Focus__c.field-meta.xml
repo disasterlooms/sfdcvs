@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_User_Focus__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(Focus_Account__c == true, true,
+   if((text(Industry) = &apos;Education&apos; || text(Industry) = &apos;Education - Higher Education&apos;) 
+      &amp;&amp; Education_National_Rank__c &lt; 1001 
+&amp;&amp; not(isblank(Education_National_Rank__c)) &amp;&amp;  Education_National_Rank__c != 0, true, false))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>End User Focus</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Report</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Open Spa Report</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/00O12000006arTe?pv1={!
+if(CONTAINS( Account.Name,&apos;,&apos;)=true, 
+left(Account.Name,find(&apos;,&apos;,Account.Name)-1),
+Account.Name)}</url>
+</WebLink>

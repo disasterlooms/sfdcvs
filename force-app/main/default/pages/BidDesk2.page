@@ -1,0 +1,13 @@
+<apex:page standardController="Opportunity" tabStyle="Opportunity" recordSetVar="opportunities" >
+<apex:form >       
+            <apex:pageMessages />
+            <apex:pageBlock >
+                      <apex:outputLabel value="List Views:" />
+                    <apex:selectList value="{!filterId}" size="1">
+                        <apex:actionSupport event="onchange" rerender="opp_table"/>
+                        <apex:selectOptions value="{!listviewoptions}"/>
+                    </apex:selectList>
+            </apex:pageBlock>
+    </apex:form>
+<apex:enhancedList type="Opportunity" height="600" rowsPerPage="25" listId="00BA0000001LLL4" customizable="true"/>
+</apex:page>

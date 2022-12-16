@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="dashboardid" type="string" default="0FK1H000000Gnj7WAC"/> 
+    <wave:waveDashboard dashboardId="{!v.dashboardid}"  />	
+</aura:component>

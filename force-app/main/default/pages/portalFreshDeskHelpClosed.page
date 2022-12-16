@@ -1,0 +1,66 @@
+<apex:page showHeader="false" sidebar="false" docType="html-5.0">
+
+    <body style="background: transparent;">
+        <script>    
+            console.log('on load...'); 
+            window.fwSettings={
+            'widget_id':43000001855
+            };
+             ! function() {
+                if ("function" != typeof window.FreshworksWidget) {
+                    var n = function() {
+                        n.q.push(arguments)
+                    };
+                    n.q = [], window.FreshworksWidget = n
+                }
+            }();
+           
+            //FreshworksWidget('hide', 'launcher');
+        </script>
+        <script type='text/javascript' src='https://widget.freshworks.com/widgets/43000001855.js'  async="async"></script>
+        <script>
+            //FreshworksWidget('open');
+            FreshworksWidget('identify', 'ticketForm', {
+              name: '{!$User.FirstName&' '&$User.LastName}',
+              email: '{!$User.Email}',
+              Phone_No: '909-444-8796',
+            });
+            
+            
+            /*
+            function openWidget() {
+            console.log('open widget');
+            FreshworksWidget('open');
+            event.preventDefault();
+            
+            }
+            
+            FreshworksWidget('identify', 'ticketForm', {
+              name: '{!$User.FirstName&' '&$User.LastName}',
+              email: '{!$User.Email}',
+              Phone_No: '909-444-8796',
+            });
+            
+            FreshworksWidget('prefill', 'ticketForm', {
+              Phone_No: '909-444-8796',
+            });
+                var lexOrigin = "https://partner.viewsonic.com";
+                window.addEventListener("message", function(event) {
+                    if (event.origin !== lexOrigin) {
+                        console.log(lexOrigin);
+                        console.log(event.origin);
+                       console.log('Not the expected origin: reject message!');
+                       openWidget();
+                       console.log(event.data);
+                      1 return;
+                    }
+                    openWidget();
+                    console.log('message recived, big brother lwc');
+                    console.log(event.data);
+                    
+                }, false);
+                
+                */
+        </script>
+        </body>
+</apex:page>

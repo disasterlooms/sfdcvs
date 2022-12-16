@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Team_Manual_Override__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When checked, the spa team will not be automatically updated. This allows for manual ovver rides to stay on.</description>
+    <externalId>false</externalId>
+    <label>Team Manual Override</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

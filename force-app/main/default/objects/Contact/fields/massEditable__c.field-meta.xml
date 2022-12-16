@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>massEditable__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This is to tag a large amount of data to be exported, cleaned, and updated. on update, must make false or will come out in next export</description>
+    <externalId>false</externalId>
+    <label>massEditable</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

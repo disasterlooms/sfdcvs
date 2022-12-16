@@ -1,0 +1,40 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens" access="global" >
+    <aura:attribute name="recordId" type="string"/>
+    <aura:attribute name="userConId" type="string"/>
+    <aura:attribute name="cName" type="string"/>
+    <aura:attribute name="myContactRecord" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"/>
+    
+    <lightning:card variant="Basic" title="Contact Page Details are Limited" iconName="standard:contact">
+        <aura:set attribute="actions">            
+        </aura:set>
+    </lightning:card>
+    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Contact">
+        <aura:if isTrue="{!v.myContactRecord}">
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning:outputField fieldName="Name" value="{!v.cName}"/>
+                    <lightning:outputField fieldName="AccountId" />
+                    <lightning:outputField fieldName="MailingAddress" />
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning:outputField fieldName="Email" />
+                    <lightning:outputField fieldName="Phone" />
+                    <lightning:outputField fieldName="OwnerId" />
+                </div>
+            </div>
+            
+            <aura:set attribute="else">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning:outputField fieldName="Name" />
+                        <lightning:outputField fieldName="AccountId" />
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning:outputField fieldName="OwnerId" />
+                    </div>
+                </div>
+            </aura:set>
+        </aura:if>
+    </lightning:recordViewForm>
+</aura:component>

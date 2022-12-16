@@ -1,0 +1,42 @@
+<apex:page standardcontroller="Contact" recordSetVar="con"  action="{!if($User.UITheme != 'Theme4d', 
+    null, 
+    urlFor('/one/one.app#/sObject/Contact/list?filterName=Recent') )}">
+<script>
+
+param();
+function param(){
+
+var fcf = '{!$CurrentPage.parameters.fcf}';
+if(fcf ==''){
+console.log(fcf);
+location.href = '/003?fcf=00BA0000003gblA'
+}
+
+}
+
+    
+    
+
+</script>
+<apex:enhancedList id="conlist" customizable="true" height="600" type="Contact"/>
+
+<script>
+links();
+
+function links(){
+        setTimeout(function(){ 
+        var filterlinks = document.getElementById("j_id0:acctlist_filterLinks");
+        //console.log(filterlinks);
+        var link = document.createElement('a');
+        filterlinks.innerHTML=
+        '<a href="/ui/list/FilterEditPage?id=00BA0000001LLKm&amp;retURL=%2Fapex%2FAccountTab">Edit</a>\
+        | <a onclick="return confirm("Delete this view?")" href="/setup/own/deleteredirect.jsp?id=00BA0000001LLKm&amp;delID=00BA0000001LLKm&amp;retURL=/apex/AccountTab&amp;_CONFIRMATIONTOKEN=VmpFPSxNakF4Tnkwd01pMHhPRlF3TURveU1qb3dOQzQzTlRGYSxCdzVHWkk5dVZwY0xYa3ZtYUsxVnNVLFpEaGpNMkl6">Delete</a>\
+        | <a id="create-new-view" href="/ui/list/FilterEditPage?ftype=a&amp;retURL=%2Fapex%2FAccountTab">Create New View</a>\
+        | <a id="create-new-view" href="/merge/accmergewizard.jsp?retURL=%2F001%2Fo&amp;retURL=%2Fapex%2FAccountTab">Merge Accounts</a>\
+        ';       
+        
+        }
+        ,200);     
+    }
+</script>
+</apex:page>

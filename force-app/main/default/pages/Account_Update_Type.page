@@ -1,0 +1,11 @@
+<apex:page standardController="Account" recordSetVar="opp">
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:repeat value="{!opp}" var="row" rendered="false">
+     {!row.Id}
+    </apex:repeat>
+    <!-- Runs your Flow -->   
+    <flow:interview name="Account_Type_Update"
+          finishLocation="{!"https://viewsonic.my.salesforce.com/001/o"}">
+          <apex:param name="ColAccts" value="{!Selected}"/>
+    </flow:interview>
+</apex:page>

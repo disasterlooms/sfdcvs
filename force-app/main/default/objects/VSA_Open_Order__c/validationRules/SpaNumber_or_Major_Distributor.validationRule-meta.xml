@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SpaNumber_or_Major_Distributor</fullName>
+    <active>true</active>
+    <description>Ensures that there is a spa number or order from major US distribution</description>
+    <errorConditionFormula>isblank( Spa_Number__c ) &amp;&amp; 
+case( Customer__c ,&apos;ASI-1460&apos;,&quot;false&quot;,&apos;D &amp; H Distributing-1473&apos;,&quot;false&quot;,&apos;Ingram Micro Inc-1461&apos;,&quot;false&quot;,&apos;Synnex Corporation-1496&apos;,&quot;false&quot;,&apos;Tech Data Management-1470&apos;,&quot;false&quot;,
+&quot;CDW Corporation-1237&quot;,&quot;false&quot;,&quot;true&quot;) == &quot;true&quot;</errorConditionFormula>
+    <errorMessage>Non Major Distribution must have a spa number</errorMessage>
+</ValidationRule>

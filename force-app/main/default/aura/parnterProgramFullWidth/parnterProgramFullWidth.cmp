@@ -1,0 +1,25 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,forceCommunity:themeLayout" access="global"  description="Landing Page Layout">
+    <aura:attribute name="search" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="notifications" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="profileMenu" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="navBar" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="newHeader" type="Aura.Component[]" required="false"/>
+    <aura:handler event="aura:doneRendering" action="{!c.onLoad}"/>
+    <aura:attribute name="smallLogo" type="Boolean" default="true" />
+    <aura:attribute name="column1" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="title" type="String" required="false" default="Enter Your Email to get a Password Reset Sent"/>
+    <aura:attribute name="themeHeader" type="Aura.Component[]" required="false" /> 
+    <div class="profileMenuRegion">
+       
+       <!-- {!v.profileMenu} -->
+    </div>
+    <div class="navigation">
+        {!v.navBar}
+    </div>
+  
+    <div class="mainContentArea">
+        <div >
+            {!v.column1}
+        </div>
+    </div>
+</aura:component>

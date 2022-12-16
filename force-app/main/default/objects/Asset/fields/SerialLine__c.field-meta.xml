@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SerialLine__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>Concatenation of Serial Number and  Line Id. This will be the unique id for upsert calls when we add new resellers or updating other columns of data.</description>
+    <externalId>true</externalId>
+    <label>SerialLine</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

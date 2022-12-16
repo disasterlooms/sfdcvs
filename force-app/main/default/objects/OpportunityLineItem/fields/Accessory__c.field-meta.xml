@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accessory__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( text( PricebookEntry.Product2.Family )= &apos;IFP&apos;  
+|| text( PricebookEntry.Product2.Family )= &apos;LCD&apos; 
+|| text( PricebookEntry.Product2.Family )= &apos;Monitor&apos; 
+|| text( PricebookEntry.Product2.Family )= &apos;Cloud&apos; 
+|| text( PricebookEntry.Product2.Family )= &apos;PJ&apos; 
+|| text( PricebookEntry.Product2.Family )= &apos;DS&apos; ,false, true)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Accessory</label>
+    <type>Checkbox</type>
+</CustomField>

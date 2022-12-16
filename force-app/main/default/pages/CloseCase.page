@@ -1,0 +1,5 @@
+<apex:page standardController="Case" action="{!URLFOR($Action.Case.CloseCase, Id)}">
+
+
+
+</apex:page>

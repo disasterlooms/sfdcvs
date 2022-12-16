@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Industry_Restricted_Values</fullName>
+    <active>false</active>
+    <errorConditionFormula>CASE(Industry,&quot;Government&quot;,0,
+&quot;Healthcare&quot;,0,
+&quot;Retail&quot;,0,
+&quot;Hospitality&quot;,0,
+&quot;Business&quot;,0,
+&quot;AV Solution&quot;,0,
+&quot;Education&quot;,0,
+&quot;Education - Higher Education&quot;,0,
+1) == 1 &amp;&amp; isnew()</errorConditionFormula>
+    <errorDisplayField>Industry</errorDisplayField>
+    <errorMessage>Create account with an industry.</errorMessage>
+</ValidationRule>

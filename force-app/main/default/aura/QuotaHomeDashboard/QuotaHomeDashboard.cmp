@@ -1,0 +1,11 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="getUser">
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="user" type="sObject"/>
+    <aura:attribute name="quota" type="string"/>
+    <!--<wave:waveDashboard dashboardId="{!v.user.Quota_Dashboard__c}" height="1000" showTitle="true" showHeader="false" />
+    <forceCommunity:waveDashboard dashboardId="{!v.user.Quota_Dashboard__c}" height="1000"/>-->
+    
+    {!v.body}
+
+    
+</aura:component>

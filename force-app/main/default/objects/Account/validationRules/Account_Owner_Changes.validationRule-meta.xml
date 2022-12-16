@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Owner_Changes</fullName>
+    <active>false</active>
+    <description>RBM&apos;s can change owner. It does not affect ownership transfer if the owner and user are the same.</description>
+    <errorConditionFormula>AND($UserRole.Name &lt;&gt; &quot;RBM&quot;,ischanged( OwnerId ), $User.ProfileId = &quot;00eA0000000bL0Q&quot;,    $User.Id   &lt;&gt;    PRIORVALUE( OwnerId   ) )</errorConditionFormula>
+    <errorMessage>You must be owner or RBM in order to change Owner Name. Contact Admin for assistance.</errorMessage>
+</ValidationRule>

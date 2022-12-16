@@ -1,0 +1,13 @@
+<aura:component >
+    <aura:attribute name="recordId" type="string" />
+    <aura:attribute name="oppid" type="string" />
+    <lightning:recordEditForm aura:id="recordEditForm" 
+                           objectApiName="Opportunity_Partner__c">
+        <lightning:messages />
+         <lightning:inputField fieldName="Partner_Account_Name__c" />
+         <lightning:inputField fieldName="Opportunity__c" arua:id="opp"/>
+         <lightning:inputField fieldName="Quote__c" arua:id="quote" value="{!v.recordId}"/>
+        <lightning:button class="slds-m-top_small slds-float_right" type="submit" label="Create Partner" />
+    </lightning:recordEditForm>
+	
+</aura:component>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Change_Viewsonic_Account_Name</fullName>
+    <active>false</active>
+    <errorConditionFormula>ischanged(Name)
+&amp;&amp; PRIORVALUE(Name) =&apos;ViewSonic Corporation&apos;&amp;&amp;$User.Alias&lt;&gt;&apos;admin&apos;</errorConditionFormula>
+    <errorMessage>Only Admin can change Viewsonic Name</errorMessage>
+</ValidationRule>

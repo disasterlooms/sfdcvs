@@ -1,0 +1,62 @@
+<aura:component controller="ProductSchduleComponents"
+                implements="force:appHostable,lightning:isUrlAddressable,flexipage:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="lineitems" type="OpportunityLineItemSchedule[]" />
+    <aura:handler name="myComponentEvent" event="c:ModalFooterSubmit" action="{!c.handleMyComponentEvent}"/>
+    <aura:handler event="wave:selectionChanged" action="{!c.handleChangeWave}"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <aura:method name="updateLine" action="{!c.myAction}" access="PUBLIC"/> 
+    
+    <!--<aura:handler name="change" value="{!v.lineid}" action="{!c.myAction}"/>-->
+    <aura:attribute name="pageReference" type="Object"/>
+    <aura:attribute name="months" type="Date[]" />
+    <aura:attribute name="lineid" type="String" />
+    <aura:attribute name="showModal" type="boolean" default="false"/>
+    
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:handler name="change " action="{!c.myAction}" value="{!v.lineid}" />
+    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerspa" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <aura:if isTrue="{!empty(v.lineitems)}">
+        No Schedule Establilshed. Need to Establish Schedule
+        <aura:set attribute="else">
+            <lightning:card  >
+                <aura:set attribute="title">
+                   Currently Selected Product Schedule Quantity and Month for Product {!v.lineitems[0].OpportunityLineItem.Product2.Name} For
+                    <ui:outputDate value="{!v.months[0]}" format="MM-YY" /> to <ui:outputDate value="{!v.months[11]}" format="MM-YY" />
+                </aura:set>
+                <table>
+                    <thead>
+                        <tr>
+                            <aura:iteration items="{!v.months}" var="m">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="End Users">
+                                        <ui:outputDate value="{!m}" format="MMM" /></div>
+                                </th>
+                            </aura:iteration>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        
+                        
+                        <tr>
+                            <aura:iteration items="{!v.lineitems}" var="sch">
+                                <td>
+                                    <lightning:input value="{!sch.Quantity}" type="number" label=""/>
+                                </td>
+                            </aura:iteration>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </lightning:card>
+        </aura:set>
+    </aura:if>
+    <footer class="slds-modal__footer">
+        <aura:if isTrue="{!not(empty(v.lineitems))}" >
+            <lightning:button name="cancel" label="Cancel" onclick="{!c.handleCancel}"/>
+            <lightning:button name="submit" label="Save and Mark Product as Likely" variant="brand" onclick="{!c.handleSubmit}"/>
+        </aura:if>
+    </footer>
+</aura:component>

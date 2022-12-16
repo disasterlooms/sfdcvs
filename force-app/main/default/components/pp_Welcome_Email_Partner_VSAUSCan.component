@@ -1,0 +1,397 @@
+<apex:component access="global">
+    
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!--[if !mso]><!-->
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!--<![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <apex:attribute name="Receiving_User" description="Receiving User" type="String" />
+        <apex:attribute name="pp_Welcome_New_Reg_SubTitle" description="Welcome SubTitle" type="String" />
+        <apex:attribute name="Community_Url" description="Community URl" type="String" />
+        <apex:attribute name="yourusernameis" description="Your Username is" type="String" default="Your username is"/>
+        <apex:attribute name="header" description="Email Header" type="String"/>    
+        <apex:attribute name="footer" description="Footer" type="String" default="Corporate names and trademarks stated herein are the property of their respective companies. Copyright © 2021, ViewSonic Corporation. All rights reserved. [21ALL_CHN1352]"/>    
+        <apex:attribute name="social" description="Title for Social Icons" type="String" default="STAY CONNECTED"/>        
+        <apex:attribute name="calltoaction" description="label for button" type="String"/>        
+
+       
+        <title>{!header}</title>
+        <style type="text/css">
+            
+            .ExternalClass{width:100%;}
+            
+            .ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div{line-height:100%;} 
+            
+            * {
+            -webkit-font-smoothing: antialiased;
+            }
+            html,
+            body {
+            Margin: 0 auto !important;
+            padding: 0 !important;
+            min-width: 100%;
+            font-family: Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            mso-line-height-rule: exactly;
+            }
+            table {
+            border-spacing: 0;
+            color:#ffffff;
+            font-family: Helvetica, Arial, sans-serif;
+            }
+            img {
+            border: 0;
+            }
+            .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            }
+            .webkit {
+            max-width: 600px;
+            }
+            .outer {
+            Margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            }
+            .full-width-image img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            }
+            .inner {
+            padding: 10px;
+            }
+            .h1 {
+            font-size: 21px;
+            font-weight: bold;
+            Margin-top: 15px;
+            Margin-bottom: 5px;
+            font-family: Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            }
+            .h2 {
+            font-size: 18px;
+            font-weight: bold;
+            Margin-top: 10px;
+            Margin-bottom: 5px;
+            font-family: Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            }
+            
+            .one-column .contents {
+            text-align: left;
+            font-family: Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            }
+            .one-column p {
+            font-size: 14px;
+            Margin-bottom: 10px;
+            font-family: Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            }
+            
+            .two-column {
+            text-align: center;
+            font-size: 0;
+            }
+            .two-column .column {
+            width: 100%;
+            max-width: 300px;
+            display: inline-block;
+            vertical-align: top;
+            }
+            .contents {
+            width: 100%;
+            }
+            .two-column .contents {
+            font-size: 14px;
+            text-align: left;
+            }
+            .two-column img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            }
+            .two-column .text {
+            padding-top: 10px;
+            }
+            
+            .three-column {
+            text-align: center;
+            font-size: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            }
+            .three-column .column {
+            width: 100%;
+            max-width: 200px;
+            display: inline-block;
+            vertical-align: top;
+            }
+            .three-column .contents {
+            font-size: 14px;
+            text-align: center;
+            }
+            .three-column img {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            }
+            .three-column .text {
+            padding-top: 10px;
+            }
+            
+            .img-align-vertical img { 
+            display: inline-block; 
+            vertical-align: middle; 
+            }
+            
+            .btn img,.social img{display:inline;margin:0;}
+            
+            .social .btn a,.social .btn a img{background:none;}
+            
+            
+            a[href^=tel]
+            {
+            color: #990000;
+            }
+            
+            img
+            {
+            /* Allow smoother rendering of resized image in Internet Explorer */
+            -ms-interpolation-mode: bicubic;
+            }
+            
+            @media only screen and (max-width: 400px) {
+            
+            img[class=col2img] {width: 100%!important;}
+            
+            img[class=buttonimg] {width: 100%!important;}       
+            
+            span[class=size16] {font-size: 16px !important;}
+            
+            span[class=size18] {font-size: 18px !important;}
+            
+            span[class=bigprice] {font-size: 2.4em !important;}             
+            
+            p[class=size16] {font-size: 16px !important;}
+            
+            td[class=textcenter] {text-align: center!important;}                
+            
+            #hiddenbullet {display:none !important;}
+            
+            #hiddenpreheader {display:none !important;}     
+            
+            #hiddenmenu {display:none !important;}              
+            
+            #hiddenh1 {display:none !important;}
+            
+            td[class=line] {border-bottom:1px solid #d1d1d1/*Separator*/;}
+            
+            td[class=padding15] {padding: 10px 10px!important;}
+            
+            td[class=padding20] {padding: 20px!important;}      
+            
+            td[class=padding15bullet] {padding: 5px 5px 5px 35px!important;}        
+            
+            p[class=size16justify] {text-align:justify !important;font-size: 16px !important;}
+            
+            td[class=picpadding] {padding: 10px 10px 10px 10px !important;} 
+            
+            td[class=termpad] {padding:10px 20px 10px !important;}  
+            
+            td[class=featurepad] {padding:10px 10px 0px 10px !important;}
+            
+            table[class=noshow] {display:none !important;}          
+            
+            .small img{width:32px; height:32px;}        
+            
+            img[class=nolarge] {width:1px; height:32px;}
+            
+            .maxwidthimg {max-width: 360px !important;}     
+            
+            .ExternalClass * {line-height: 100%} 
+            
+            }
+            
+        </style>
+        <!--[if gt mso 15]>
+         <style type="text/css" media="all">
+         /* Outlook 2016 Height Fix */
+         table, tr, td {border-collapse: collapse;}
+         tr { font-size:0px; line-height:0px; border-collapse: collapse; }
+         </style>
+         <![endif]-->
+        
+        
+        
+        </head>
+        <body style="Margin:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;min-width:100%;">
+            <center class="wrapper" style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+                <div style="background-color: #f2f2f2;">
+                    <!--[if gte mso 9]>
+      <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
+        <v:fill type="tile" src="https://info.viewsonic.com/l/32762/2017-11-07/96vgqv/32762/223479/general_gray_f2f2f2_background.jpg" color="#f2f2f2"/>
+      </v:background>
+      <![endif]-->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">     
+                        <tr>
+                            <td width="100%" background="https://info.viewsonic.com/l/32762/2017-11-07/96vgqv/32762/223479/general_gray_f2f2f2_background.jpg">
+                                <div class="webkit" style="max-width:600px;Margin:0 auto;"><!--[if (gte mso 9)|(IE)]>
+    
+                            <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0;font-family: Calibri, sans-serif;color:#ffffff;" >
+                                <tr>
+                                    <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                    <![endif]--><!-- ======= start main body ======= -->
+                                    <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="outer" style="border-spacing:0;font-family: Helvetica, Arial, sans-serif;color:#ffffff;Margin:0 auto;width:100%;max-width:600;background-color:#ffffff;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;"><!-- ======= start header ======= -->
+                                                    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td bgcolor="#ffffff" style="background-color: #ffffff;">
+                                                                    <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center">
+                                                                                    <center>
+                                                                                        <table cellpadding="0" cellspacing="0"  width="100%" id="hiddenpreheader" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;color:#212121;font-family: Helvetica, Arial, sans-serif;font-size:13px">
+                                                                                            <tbody>
+                                                                                                <tr height="20" style="padding:0">
+                                                                                                    <td align="right" pardot-data="" pardot-region="body_content002" style="background-color:#f2f2f2;border-collapse:collapse;color:#212121;line-height:20px;padding:0" valign="bottom">
+                                                                                                        <div style="font-size:10px;color:#f2f2f2;line-height:15px;margin-bottom:4px;margin-top:6px"><span>Broader Vision, Wider View: The Latest News and Promotions <a href="%%view_online%%" style="color: #212121; text-decoration: none; "><span style="letter-spacing: 0px;">View This Message Online</span></a></span></div>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </center>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- ======= end header ======= --><!-- ======= start hero article ======= -->
+                                                    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="one-column" style="border-spacing:0;font-family: Helvetica, Arial, sans-serif;color:#ffffff;max-width: 600px;background-color:#ffffff;" width="100%">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="center" bgcolor="#fff" pardot-data="" pardot-region="body_content002" rowspan="1" style="border-collapse:collapse;color:#353535;font-family:Times New Roman;font-size:32px;font-weight:bold;line-height:40px !important;padding:0px ;border-top: 6px solid #990000;" valign="bottom">
+                                                                    <table align="center" border="0" cellpadding="0" cellspacing="0" style="Margin:0 auto;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="left" pardot-data="" pardot-region="body_content002"><a href="https://www.viewsonic.com/library/education/">
+                                                                                    <img alt="Webinar" src="https://info.viewsonic.com/l/32762/2021-06-16/9q1qpr/32762/1623860707nrS40wky/VS_Partner_Program_logo_lower_case_.png" style="max-width:600px; width:100%;display: block;" width="600"/>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" pardot-data="" pardot-region="body_content002"><a href="https://partner.viewsonic.com/s/">
+                                                                    <img alt="Webinar" src="https://info.viewsonic.com/l/32762/2021-06-16/9q1qtp/32762/1623865753RwlZihtp/21ALL_CON1349_header_02.jpg" style="max-width:600px; width:100%;display: block;" width="600"/>
+                                                                    </a>
+                                                                </td>
+                                                                                                 </tr>
+                                                            <tr>
+                                                                <td class="padding20" pardot-data="" pardot-region="body_content002" bgcolor="#000000" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;text-align:center;line-height:20px;padding:15px 35px 2px;font-size: 14px;background-color: #fff;color: #212121;font-family: Helvetica, Arial, sans-serif;"><span class="size16"><strong>{!header}
+                                                                </strong><br> {!yourusernameis} {!Receiving_User}<br/>
+                                                                {!pp_Welcome_New_Reg_SubTitle}
+                                                                    </br>
+                                                                    </span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="padding20" pardot-data="" pardot-region="body_content002" bgcolor="#bebfba" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;text-align:left;line-height:20px;padding:1px 30px 8px;font-size: 13px;background-color: #fff;"><!-- START BUTTON -->
+                                                                    <br/>
+                                                                    <table align="center" border="0" cellpadding="0" cellspacing="0" style="Margin:0 auto;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center">
+                                                                                <table border="0" cellpadding="0" cellspacing="0" style="Margin:0 auto;">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td align="center" style="padding:8px;-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 1px;border: solid 1px #990000;background-color: #990000; " width="270"><a class="button_link" href="{!Community_Url}" style="width:160;display: block;text-decoration: none;border:0;text-align: center;font-size: 14px;font-family: Helvetica, Arial, sans-serif;color: #fff;text-transform:uppercase;letter-spacing: 2px;"><span class="size16"><strong>{!calltoaction}</strong></span></a></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <!-- END BUTTON --></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- ======= end hero article ======= --><!-- ======= start article1 ======= --><!-- ======= end article1 ======= --><!-- ======= start two column (two text boxes) ======= --><!-- ======= end two column (two text boxes) ======= --><!-- ======= start two column (text left/image right) ======= --><!-- ======= end two column (text left/image right) ======= --><!-- ======= start two column (image left/text right) ======= --><!-- ======= end two column (image left/text right) ======= --><!-- ======= start two column ======= --><!-- ======= end two column ======= --><!-- ======= start footer ======= -->
+                                                    
+                                                    <table bgcolor="#c7c8ca" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td bgcolor="#c7c8ca" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;background-color: #c7c8ca;">
+                                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center" pardot-data="" pardot-region="body_content002" style="text-align:center;color: #777;font-size:11px;line-height:15px;font-family: Helvetica, Arial, sans-serif; padding: 20px 30px 0px;background-color: #c7c8ca;mso-line-height-rule:exactly;">
+                                                                                    <table cellpadding="0" cellspacing="0" style="Margin:0 auto;" width="240">
+                                                                                        <tbody>
+                                                                                            <tr style="padding:0">
+                                                                                                <td class="small social" style="text-align:center;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;color:#212121;padding-bottom:15px;Margin-top:5px;display:block;font-size: 12px;" text-align="center" valign="middle"><span style="line-height: 24px;letter-spacing: 1px;"><strong>{!social}</strong></span><br>
+                                                                                                    <div>
+                                                                                                        <a href="https://www.youtube.com/user/ViewSonicVideo" style="text-decoration:none" target="_blank" title="Forward This">
+                                                                                                            <img alt="Forward This" border="0" height="35" src="https://www.viewsonic.com/static/email/images/social-icon-youtube.png" style="max-width:100%;max-height:40px;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;image-rendering:optimizeQuality;display:inline;border:none;margin:0" width="35"/>
+                                                                                                        </a>&nbsp;&nbsp;&nbsp;<a href="https://twitter.com/viewsonic" style="text-decoration:none" target="_blank" title="Tweet This">
+                                                                                                        <img alt="Tweet This" border="0" height="35" src="https://www.viewsonic.com/static/email/images/social-icon-twitter.png" style="max-width:100%;max-height:40px;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;image-rendering:optimizeQuality;display:inline;border:none;margin:0" width="35"/>
+                                                                                                        </a>&nbsp;&nbsp;&nbsp;<a href="https://www.linkedin.com/company/viewsonic" style="text-decoration:none" target="_blank" title="Send to Linkedin">
+                                                                                                        <img alt="Send to Linkedin" border="0" height="35" src="https://www.viewsonic.com/static/email/images/social-icon-linkedin.png" style="max-width:100%;max-height:40px;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;image-rendering:optimizeQuality;display:inline;border:none;margin:0" width="35"/>
+                                                                                                        </a>&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/ViewSonicCorp/" style="text-decoration:none" target="_blank" title="Send to Facebook">
+                                                                                                        <img alt="Send to Facebook" border="0" height="35" src="https://www.viewsonic.com/static/email/images/social-icon-fb.png" style="max-width:100%;max-height:40px;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;image-rendering:optimizeQuality;display:inline;border:none;margin:0" width="35"/>
+                                                                                                        </a>&nbsp;&nbsp;&nbsp;<a href="https://www.instagram.com/viewsonic/" style="text-decoration:none" target="_blank" title="Send to Instagram">
+                                                                                                        <img alt="Send to Instagram" border="0" height="35" src="https://www.viewsonic.com/static/email/images/social-icon-instagram.png" style="max-width:100%;max-height:40px;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;image-rendering:optimizeQuality;display:inline;border:none;margin:0" width="35"/>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    </br>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td pardot-data="" pardot-region="body_content002" style="text-align:left;color: #212121;font-family: Helvetica, Arial, sans-serif;background-color: #eeeeef;mso-line-height-rule:exactly;">
+                                                                                    <img alt="Promo" src="https://info.viewsonic.com/l/32762/2021-02-09/9nzvqg/32762/16129103669S85IncB/eeeeef_spot.png" style="outline: none; text-decoration: none; display: block; width: 10px; border-width: 0px; border-style: solid;" width="10px" height="10px"/></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="termpad" pardot-data="" pardot-region="body_content002" style="text-align:left;color: #212121;font-size:10px;line-height:15px;font-family: Helvetica, Arial, sans-serif; padding: 20px 30px 5px;background-color: #c7c8ca;mso-line-height-rule:exactly;">{!footer}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="termpad" pardot-data="" pardot-region="body_content002" style="text-align:left;color: #212121;font-size:10px;line-height:15px;font-family: Helvetica, Arial, sans-serif; padding: 10px 30px 20px;text-align:center;background-color: #c7c8ca;" text-align="center">ViewSonic Corporation, 10 Pointe Drive, Brea, CA 92821</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- ======= end footer ======= --></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>  
+            </center>
+        </body>
+        </html>
+</apex:component>

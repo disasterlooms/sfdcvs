@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Permission Set generated for access to custom object Spa Opp Create for the app Spa Opp Create</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Spa Opp Create Developer</label>
+    <license>Salesforce</license>
+</PermissionSet>

@@ -1,0 +1,9 @@
+<apex:page standardController="Opportunity" sidebar="false" showHeader="false">
+<apex:form >
+<apex:pageBlock >.
+<apex:pageblockSection >
+<apex:inputfield value="{!Opportunity.Accountid}" />
+</apex:pageblockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

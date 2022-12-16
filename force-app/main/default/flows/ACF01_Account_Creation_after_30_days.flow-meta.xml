@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Create_FD_Company</name>
+        <label>Create FD Company</label>
+        <locationX>446</locationX>
+        <locationY>1344</locationY>
+        <actionName>MakeHTTPCall</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Check_Status_code</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Send_Flow_Error_Email_Subflow</targetReference>
+        </faultConnector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>Body</name>
+            <value>
+                <elementReference>JSON_Body_Test</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Endpoint</name>
+            <value>
+                <elementReference>Call_out_url_based_on_org</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Headers</name>
+            <value>
+                <stringValue>[{&quot;key&quot;:&quot;Authorization&quot;,&quot;value&quot;:&quot;{!Header_value}&quot;,&quot;order&quot;:0},{&quot;key&quot;:&quot;Content-Type&quot;,&quot;value&quot;:&quot;application/json&quot;,&quot;order&quot;:1}]</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Method</name>
+            <value>
+                <stringValue>POST</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Params</name>
+            <value>
+                <stringValue>[{&quot;key&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;,&quot;order&quot;:0}]</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Extract_Company_Id</name>
+        <label>Extract Company Id</label>
+        <locationX>842</locationX>
+        <locationY>1584</locationY>
+        <actionName>FlowMultipleJSONParser</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Assign_Company_Id</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>fieldName1</name>
+            <value>
+                <stringValue>id</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>ignore_error</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>jsonStringToParse</name>
+            <value>
+                <elementReference>Create_FD_Company.Body</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Get_Base64_String</name>
+        <label>Get Base64 String</label>
+        <locationX>578</locationX>
+        <locationY>888</locationY>
+        <actionName>FlowInvokeEncodingUtil</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Assign_Header_value</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>apiKeys</name>
+            <value>
+                <elementReference>Get_ApiKey.API_Key__c</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>Base64String</assignToReference>
+            <name>output</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Get_Base64_String_0</name>
+        <label>Get Base64 String</label>
+        <locationX>314</locationX>
+        <locationY>888</locationY>
+        <actionName>FlowInvokeEncodingUtil</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Assign_Header_value</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>apiKeys</name>
+            <value>
+                <elementReference>Get_ApiKey_0.API_Key__c</elementReference>
+            </value>
+        </inputParameters>
+        <outputParameters>
+            <assignToReference>Base64String</assignToReference>
+            <name>output</name>
+        </outputParameters>
+    </actionCalls>
+    <apiVersion>54.0</apiVersion>
+    <assignments>
+        <name>Assign_Call_out_url_based_on_org</name>
+        <label>Assign_Call_out_url_based_on_org</label>
+        <locationX>578</locationX>
+        <locationY>648</locationY>
+        <assignmentItems>
+            <assignToReference>Call_out_url_based_on_org</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>https://viewsonicvsasandbox.freshdesk.com/api/v2/companies</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_ApiKey</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Call_out_url_based_on_org_Prod</name>
+        <label>Assign_Call_out_url_based_on_org_Prod</label>
+        <locationX>314</locationX>
+        <locationY>648</locationY>
+        <assignmentItems>
+            <assignToReference>Call_out_url_based_on_org</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>https://viewsonicvsa.freshdesk.com/api/v2/companies</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_ApiKey_0</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Company_Id</name>
+        <label>Assign Company Id</label>
+        <locationX>842</locationX>
+        <locationY>1704</locationY>
+        <assignmentItems>
+            <assignToReference>Company_Id_Callout_Response</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Extract_Company_Id.Value01</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_FDACCOUNTID</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Header_value</name>
+        <label>Assign_Header_value</label>
+        <locationX>446</locationX>
+        <locationY>1104</locationY>
+        <assignmentItems>
+            <assignToReference>Header_value</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Basic {!Base64String}</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Account_Owner_Name</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>note</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>This company added from SFDC </stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <name>Check_FDACCOUNTID</name>
+        <label>Check FDACCOUNTID</label>
+        <locationX>1040</locationX>
+        <locationY>288</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.FDACCOUNTID__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Org</targetReference>
+            </connector>
+            <label>Is null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Org</name>
+        <label>Check Org</label>
+        <locationX>446</locationX>
+        <locationY>528</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Call_out_url_based_on_org</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Sandbox</defaultConnectorLabel>
+        <rules>
+            <name>Prod</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Org.IsSandbox</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Call_out_url_based_on_org_Prod</targetReference>
+            </connector>
+            <label>Prod</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Status_code</name>
+        <label>Check Status code</label>
+        <locationX>446</locationX>
+        <locationY>1464</locationY>
+        <defaultConnector>
+            <targetReference>Extract_Company_Id</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Success</name>
+            <conditionLogic>1</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_FD_Company.Status</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>created</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Apex_Error_Messages</targetReference>
+            </connector>
+            <label>Not Success</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>ACF01_Account_Creation_after_30_days {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ACF01_Account_Creation_after_30_days</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Apex_Error_Messages</name>
+        <label>Create Apex Error Messages</label>
+        <locationX>50</locationX>
+        <locationY>1584</locationY>
+        <connector>
+            <targetReference>Update_FD_Companies_Creation_Failed_Flag</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Send_Flow_Error_Email_Subflow</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Apex_Class__c</field>
+            <value>
+                <stringValue>Flow : ACF01_Account_Creation_after_30_days</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Error_Message__c</field>
+            <value>
+                <elementReference>Flow_Error_Body</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <stringValue>Flow : ACF01_Account_Creation_after_30_days-{!$Flow.CurrentDateTime}</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Apex_Error_Message__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Account_Owner_Name</name>
+        <label>Get Account Owner Name</label>
+        <locationX>446</locationX>
+        <locationY>1224</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_FD_Company</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_ApiKey</name>
+        <label>Get ApiKey</label>
+        <locationX>578</locationX>
+        <locationY>768</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Base64_String</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Sandbox</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CalloutKey__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_ApiKey_0</name>
+        <label>Get ApiKey</label>
+        <locationX>314</locationX>
+        <locationY>768</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Base64_String_0</targetReference>
+        </connector>
+        <filterLogic>NOT(1)</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Sandbox</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CalloutKey__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Org</name>
+        <label>Get Org</label>
+        <locationX>446</locationX>
+        <locationY>408</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Org</targetReference>
+        </connector>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Organization</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_FD_Companies_Creation_Failed_Flag</name>
+        <label>Update FD Companies Creation Failed Flag</label>
+        <locationX>50</locationX>
+        <locationY>1704</locationY>
+        <connector>
+            <targetReference>Send_Flow_Error_Email</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Send_Flow_Error_Email_Subflow</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>Create_FD_Companies_Fail__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_FDACCOUNTID</name>
+        <label>Update FDACCOUNTID</label>
+        <locationX>842</locationX>
+        <locationY>1824</locationY>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Send_Flow_Error_Email_Subflow</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>FDACCOUNTID__c</field>
+            <value>
+                <elementReference>Company_Id_Callout_Response</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>287</locationX>
+        <locationY>0</locationY>
+        <filterLogic>1 AND 4 AND (2 OR 3) AND 5 AND 6</filterLogic>
+        <filters>
+            <field>VSRegion__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>VSA</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>VSSubRegion__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>VSA US</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>VSSubRegion__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>VSA CAN</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>End User</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>FDACCOUNTID__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Create_FD_Companies_Fail__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Account</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <name>x30_Days_after_Creation</name>
+            <connector>
+                <targetReference>Check_FDACCOUNTID</targetReference>
+            </connector>
+            <label>30 Days after Creation</label>
+            <offsetNumber>30</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <timeSource>RecordTriggerEvent</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Send_Flow_Error_Email</name>
+        <label>Send Flow Error Email</label>
+        <locationX>50</locationX>
+        <locationY>1824</locationY>
+        <flowName>Send_Flow_Error_Email</flowName>
+        <inputAssignments>
+            <name>Var_EamilBody</name>
+            <value>
+                <elementReference>Flow_Error_Body</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Var_EmailSubject</name>
+            <value>
+                <stringValue>Flow Failed: ACF01_Account_Creation_after_30_days</stringValue>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
+        <name>Send_Flow_Error_Email_Subflow</name>
+        <label>Send Flow Error Email Subflow</label>
+        <locationX>1370</locationX>
+        <locationY>1464</locationY>
+        <flowName>Send_Flow_Error_Email</flowName>
+        <inputAssignments>
+            <name>Var_EamilBody</name>
+            <value>
+                <elementReference>Flow_Error_Body</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Var_EmailSubject</name>
+            <value>
+                <stringValue>Flow Failed: ACF01_Account_Creation_after_30_days</stringValue>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <textTemplates>
+        <name>Flow_Error_Body</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Create Company Status:
+{!Create_FD_Company.Status}
+
+Create Company Status Code:
+{!Create_FD_Company.Status_code}
+
+Create Company Error Message:
+{!Create_FD_Company.Error_message}
+
+Create Company Body:
+{!Create_FD_Company.Body}
+
+Flow : ACF01_Account_Creation_after_30_days
+Flow Step : {!$Flow.CurrentStage}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>JSON_BODY</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{ &quot;name&quot;:&quot;{!$Record.Name}&quot;,
+&quot;custom_fields&quot; : { &quot;Street&quot;:&quot;{!$Record.BillingStreet}&quot;,
+&quot;City&quot;:&quot;{!$Record.BillingCity}&quot;,
+&quot;StateCode&quot;:&quot;{!$Record.BillingStateCode}&quot;,
+&quot;PostalCode&quot;:&quot;{!$Record.BillingPostalCode}&quot;,
+&quot;CountryCode&quot;:&quot;{!$Record.BillingCountryCode}&quot;,
+&quot;Phone&quot;:&quot;{!$Record.Phone}&quot;,
+&quot;Website&quot;:&quot;{!$Record.Website}&quot;,
+&quot;SalesPerson&quot;:&quot;{!$Record.Owner.Name}&quot;,
+&quot;Type&quot;:&quot;{!$Record.Type}&quot;,
+&quot;VSRegion&quot;:&quot;{!$Record.VSRegion__c}&quot;,
+&quot;VSSubRegion&quot;:&quot;{!$Record.VSSubRegion__c}&quot;,
+&quot;SFACCOINTID&quot;:&quot;{!$Record.Id}&quot;
+ },
+&quot;domains&quot;:[&quot;{!$Record.Domain__c}&quot;],
+&quot;industry&quot;:&quot;{!$Record.Industry}&quot;,
+&quot;note&quot;:&quot;{!note}&quot; }</text>
+    </textTemplates>
+    <textTemplates>
+        <name>JSON_Body_Test</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{ &quot;name&quot;:&quot;{!$Record.Name}&quot;,
+&quot;custom_fields&quot;:{&quot;street&quot;:&quot;{!$Record.BillingStreet}&quot;,
+&quot;city&quot;:&quot;{!$Record.BillingCity}&quot;,
+&quot;state&quot;:&quot;{!$Record.BillingState}&quot;,
+&quot;postalcode&quot;:&quot;{!$Record.BillingPostalCode}&quot;,
+&quot;country&quot;:&quot;{!$Record.BillingCountry}&quot;,
+&quot;region&quot;:&quot;{!$Record.VSRegion__c}&quot;,
+&quot;subregion&quot;:&quot;{!$Record.VSSubRegion__c}&quot;,
+&quot;sfaccountid&quot;:&quot;{!$Record.Id}&quot;
+},
+&quot;domains&quot;:[&quot;{!$Record.Domain__c}&quot;],
+&quot;note&quot;:&quot;{!note}&quot; }</text>
+    </textTemplates>
+    <textTemplates>
+        <name>JSON_BODY_Test2</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>[
+  {
+    &quot;name&quot;: &quot;wayne test 4&quot;,
+	&quot;custom_fields&quot;:{
+	&quot;sfaccountid&quot;: &quot;0015c00001sLIF2AAO&quot;,   
+    &quot;street&quot;: null,
+    &quot;city&quot;: null,
+    &quot;statecode&quot;: null,
+    &quot;postalcode&quot;: null,
+    &quot;countrycode&quot;: null,
+    &quot;phone&quot;: null,
+    &quot;website&quot;: null,
+    &quot;account_salesperson&quot;:&quot;Ben Pearson&quot;,
+    &quot;type&quot;: &quot;End User&quot;,
+    &quot;vsregion&quot;: null,
+    &quot;vssubregion&quot;: null
+	},
+	&quot;domains&quot;: null,
+    &quot;industry&quot;: null
+  },
+  {
+    &quot;name&quot;: &quot;wayne test 1&quot;,
+	&quot;custom_fields&quot;:{
+    &quot;sfaccountid&quot;: &quot;0015c00001sLIF3AAO&quot;,
+    &quot;street&quot;: null,
+    &quot;city&quot;: null,
+    &quot;statecode&quot;: null,
+    &quot;postalcode&quot;: null,
+    &quot;countrycode&quot;: null,
+    &quot;phone&quot;: null,
+    &quot;website&quot;: null,
+    &quot;account_salesperson&quot;:&quot;Ben Pearson&quot;,
+    &quot;type&quot;: &quot;End User&quot;,
+    &quot;vsregion&quot;: null,
+    &quot;vssubregion&quot;: null
+	},
+	&quot;domains&quot;: null,
+    &quot;industry&quot;: null
+  },
+  {
+    &quot;Name&quot;: &quot;wayne test 2&quot;,
+	&quot;custom_fields&quot;:{
+    &quot;sfaccountid&quot;: &quot;0015c00001sLIF4AAO&quot;,    
+    &quot;street&quot;: null,
+    &quot;city&quot;: null,
+    &quot;statecode&quot;: null,
+    &quot;postalcode&quot;: null,
+    &quot;countrycode&quot;: null,
+    &quot;phone&quot;: null,
+    &quot;website&quot;: null,
+    &quot;account_salesperson&quot;:&quot;Ben Pearson&quot;,
+    &quot;type&quot;: &quot;End User&quot;,   
+    &quot;vsregion&quot;: null,
+    &quot;vssubregion&quot;: null
+	},
+	&quot;domains&quot;: null,
+    &quot;industry&quot;: null
+  },
+  {
+    &quot;Name&quot;: &quot;wayne test 3&quot;,
+	&quot;custom_fields&quot;:{
+    &quot;sfaccountid&quot;: &quot;0015c00001sLIF5AAO&quot;,    
+    &quot;street&quot;: null,
+    &quot;city&quot;: null,
+    &quot;statecode&quot;: null,
+    &quot;postalcode&quot;: null,
+    &quot;countrycode&quot;: null,
+    &quot;phone&quot;: null,
+    &quot;website&quot;: null,
+    &quot;account_salesperson&quot;:&quot;Ben Pearson&quot;,
+    &quot;type&quot;: &quot;End User&quot;,    
+    &quot;vsregion&quot;: null,
+    &quot;vssubregion&quot;: null
+	},
+	&quot;domains&quot;: null,
+    &quot;industry&quot;: null
+  },
+  {
+    &quot;Name&quot;: &quot;wayne test 5&quot;,
+	&quot;custom_fields&quot;:{
+    &quot;sfaccountid&quot;: &quot;0015c00001sLIF6AAO&quot;,   
+    &quot;street&quot;: null,
+    &quot;city&quot;: null,
+    &quot;statecode&quot;: null,
+    &quot;postalcode&quot;: null,
+    &quot;countrycode&quot;: null,
+    &quot;phone&quot;: null,
+    &quot;website&quot;: null,
+    &quot;account_salesperson&quot;:&quot;Ben Pearson&quot;,
+    &quot;type&quot;: &quot;End User&quot;,   
+    &quot;vsregion&quot;: null,
+    &quot;vssubregion&quot;: null
+	},
+	&quot;domains&quot;: null,
+    &quot;industry&quot;: null
+  }
+]</text>
+    </textTemplates>
+    <triggerOrder>10</triggerOrder>
+    <variables>
+        <name>AccountBillingStreet</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <elementReference>$Record.BillingStreet</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <name>AccountOwnerName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <elementReference>$Record.Owner.Name</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <name>Base64String</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>Base64Strings</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Call_out_url_based_on_org</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>Company_Id_Callout_Response</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Header_value</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>Basic Vk9NTjZoTHptTDAwN3dpQXZ2VUM=</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>name</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <elementReference>$Record.Name</elementReference>
+        </value>
+    </variables>
+</Flow>

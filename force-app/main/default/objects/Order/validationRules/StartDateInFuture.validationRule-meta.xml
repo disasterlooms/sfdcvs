@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StartDateInFuture</fullName>
+    <active>false</active>
+    <description>Ensures a start date is in future when it is updated</description>
+    <errorConditionFormula>isblank(EffectiveDate) ||
+
+ (EffectiveDate &lt; today() +10 &amp;&amp;
+ not(isnew()) &amp;&amp; 
+  PRIORVALUE(EffectiveDate) != EffectiveDate
+)</errorConditionFormula>
+    <errorDisplayField>EffectiveDate</errorDisplayField>
+    <errorMessage>Start date should be filled out and be at least 10 days in future</errorMessage>
+</ValidationRule>

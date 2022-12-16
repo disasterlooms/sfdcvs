@@ -1,0 +1,30 @@
+.THIS .centerbuttons{
+    text-align: center;
+}
+.THIS.hideme{
+    display:none;
+}
+.THIS.minwidth {
+    min-width:140px;
+}
+.THIS.slds-context-bar{
+    border-bottom-color: #900;
+}
+.THIS .slds-page-header{
+    display: none;
+}
+
+.THIS.ccard {
+   background: rgb(224, 229, 238);
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: padding-box;
+    background-color: rgb(224, 229, 238);
+   box-shadow: 0 2px 0 0 rgb(194, 57, 52);
+}

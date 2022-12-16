@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VSA_DistributorReps</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>CORE.USERS.ADDRESS_COUNTRY</columns>
+    <columns>CORE.USERS.TITLE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CORE.USERS.USERNAME</columns>
+    <columns>CORE.USERS.LAST_LOGIN</columns>
+    <columns>CORE.USER_ROLE.NAME</columns>
+    <columns>CORE.USERS.ACTIVE</columns>
+    <columns>CORE.PROFILE.NAME</columns>
+    <columns>MANAGER</columns>
+    <columns>Sales_Category__c</columns>
+    <columns>Cost_Center__c</columns>
+    <columns>Accounting_Category__c</columns>
+    <columns>Quota_Dashboard__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.USER_ROLE.NAME</field>
+        <operation>startsWith</operation>
+        <value>Distributor</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ACTIVE</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>VSA Sales Distributor</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>SystemAdministrator</role>
+        <role>SystemITAdmin</role>
+    </sharedTo>
+</ListView>

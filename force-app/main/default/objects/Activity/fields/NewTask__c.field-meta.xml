@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NewTask__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field is set to be updated on outlook email sync and then batched to check if it relates to any campaigns to tie to any campaigns</description>
+    <externalId>false</externalId>
+    <label>NewTask</label>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_fields_only_edited_by_admin</fullName>
+    <active>false</active>
+    <description>Only admin or Bid desk can edit quote line items.</description>
+    <errorConditionFormula>$User.Alias  != &apos;BidDesk&apos;
+&amp;&amp; $User.Alias != &apos;admin&apos;
+&amp;&amp; $User.Alias != &apos;VITadmin&apos;
+&amp;&amp;
+(ischanged(UnitPrice) || ischanged(Quantity))</errorConditionFormula>
+    <errorMessage>Quantity or Price Request changes must be done through resubmission notes</errorMessage>
+</ValidationRule>

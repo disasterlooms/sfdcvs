@@ -1,0 +1,1499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>AccountLayout</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AccountLayout</shortDescription>
+        <value>00h1200000XhURI</value>
+    </labels>
+    <labels>
+        <fullName>Add_Header</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add Header</shortDescription>
+        <value>Add Header</value>
+    </labels>
+    <labels>
+        <fullName>Add_Param</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add Param</shortDescription>
+        <value>Add Param</value>
+    </labels>
+    <labels>
+        <fullName>Add_Target_Key</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add Target Key</shortDescription>
+        <value>Add Target Key</value>
+    </labels>
+    <labels>
+        <fullName>AdminEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AdminEmail</shortDescription>
+        <value>jason.orbison@viewsonic.com</value>
+    </labels>
+    <labels>
+        <fullName>AdminID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AdminID</shortDescription>
+        <value>005A0000000T6JGIA0</value>
+    </labels>
+    <labels>
+        <fullName>All_Fields_Required_Aster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>All Fields Required Aster</shortDescription>
+        <value>All fields with red asterisks are required.</value>
+    </labels>
+    <labels>
+        <fullName>BidDeskUserId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BidDeskUserId</shortDescription>
+        <value>005A0000002m2BLIAY</value>
+    </labels>
+    <labels>
+        <fullName>Body_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Body Label</shortDescription>
+        <value>Body</value>
+    </labels>
+    <labels>
+        <fullName>City</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>Company</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company</shortDescription>
+        <value>Company</value>
+    </labels>
+    <labels>
+        <fullName>Compress_Request_body_to_gzip</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Compress Request body to gzip?</shortDescription>
+        <value>Compress Request body to gzip?</value>
+    </labels>
+    <labels>
+        <fullName>Confirm_Object_Type</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirm Object Type</shortDescription>
+        <value>Confirm Object Type</value>
+    </labels>
+    <labels>
+        <fullName>ContactLayout</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ContactLayout</shortDescription>
+        <value>00hA000000HtgU6</value>
+    </labels>
+    <labels>
+        <fullName>Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>County</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>County</shortDescription>
+        <value>County</value>
+    </labels>
+    <labels>
+        <fullName>Days_In_Current_Quarter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Days In Current Quarter</shortDescription>
+        <value>65</value>
+    </labels>
+    <labels>
+        <fullName>Error_Message</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Message :</shortDescription>
+        <value>Error Message :</value>
+    </labels>
+    <labels>
+        <fullName>Extract_JSON_Values</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Extract JSON Values</shortDescription>
+        <value>Extract JSON Values</value>
+    </labels>
+    <labels>
+        <fullName>GMI_BackTo</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back To used in Google Maps</shortDescription>
+        <value>Back to</value>
+    </labels>
+    <labels>
+        <fullName>GMI_GenerateKey</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please generate a Google maps API key used in Google Maps</shortDescription>
+        <value>Please generate a Google maps API key</value>
+    </labels>
+    <labels>
+        <fullName>GMI_GoogleLanguageCode</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Google Maps Language Code</shortDescription>
+        <value>en</value>
+    </labels>
+    <labels>
+        <fullName>GMI_LocalAddressFound</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Location displayed using address used in Google Maps</shortDescription>
+        <value>Location displayed using address</value>
+    </labels>
+    <labels>
+        <fullName>GMI_LocalAddressNotFound</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Address not found by Google used in Google Maps</shortDescription>
+        <value>Address not found by Google</value>
+    </labels>
+    <labels>
+        <fullName>GMI_LocalShowMap</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show in Google used in Google Maps</shortDescription>
+        <value>Show in Google</value>
+    </labels>
+    <labels>
+        <fullName>GMI_UpdateComponent</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please update the GoogleMapsInternational component used in Google Maps</shortDescription>
+        <value>Please update the GoogleMapsInternational component with a new key which can be generated from</value>
+    </labels>
+    <labels>
+        <fullName>GMI_WebsiteNeeded</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The website URL needed is used in Google Maps</shortDescription>
+        <value>The website URL needed is</value>
+    </labels>
+    <labels>
+        <fullName>GMI_googleMapURL</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Google Maps URL</shortDescription>
+        <value>http://maps.google.com</value>
+    </labels>
+    <labels>
+        <fullName>GovSpend_Campaign_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GovSpend Campaign Name</shortDescription>
+        <value>GovSpend</value>
+    </labels>
+    <labels>
+        <fullName>HTTP_Method</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>HTTP Method</shortDescription>
+        <value>HTTP Method</value>
+    </labels>
+    <labels>
+        <fullName>Industry</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Industry</shortDescription>
+        <value>Industry</value>
+    </labels>
+    <labels>
+        <fullName>Input_JSON_String</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Input JSON String</shortDescription>
+        <value>Input JSON String</value>
+    </labels>
+    <labels>
+        <fullName>JSON_ARRAY_EXCEPTION</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>JSON_ARRAY_EXCEPTION</shortDescription>
+        <value>Map JSON Array didn’t recognize the input string as a properly formed JSON array. Check to make sure that it starts with ’[‘ and ends with ’]‘ and that it contains one or more objects enclosed by { and }</value>
+    </labels>
+    <labels>
+        <fullName>Key_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Key Label</shortDescription>
+        <value>Key</value>
+    </labels>
+    <labels>
+        <fullName>LeadLayout</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LeadLayout</shortDescription>
+        <value>00hA000000HtgUB</value>
+    </labels>
+    <labels>
+        <fullName>Login_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Login_Title</shortDescription>
+        <value>Log In</value>
+    </labels>
+    <labels>
+        <fullName>Make_HTTP_Call</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Make HTTP Call</shortDescription>
+        <value>Make HTTP Call</value>
+    </labels>
+    <labels>
+        <fullName>Map_JSON_Array</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Map JSON Array</shortDescription>
+        <value>Map JSON Array</value>
+    </labels>
+    <labels>
+        <fullName>Method_is_invalid</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Method is invalid</shortDescription>
+        <value>Method is invalid (Available methods : GET, POST, PATCH, PUT, DELETE, TRACE, CONNECT, HEAD, OPTIONS).</value>
+    </labels>
+    <labels>
+        <fullName>OpportunityLayout</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OpportunityLayout</shortDescription>
+        <value>00h1200000XifgZ</value>
+    </labels>
+    <labels>
+        <fullName>PMUserId</fullName>
+        <categories>005A0000000T6JGIA0  005A0000003vRIiIAM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PMUserId</shortDescription>
+        <value>005A0000003vRIiIAM</value>
+    </labels>
+    <labels>
+        <fullName>POSResellerReporter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>POSResellerReporter</shortDescription>
+        <value>PC MALL,CDW,Comark,COMARK CORP.,	
+SARCOM,CDW CANADA INC,LONDON DRUGS LIMITED,	TIGERDIRECT.CA,	TIGERDIRECT.CA,TIGERDIRECT.CA INC.,AMAZON.COM CA INC.</value>
+    </labels>
+    <labels>
+        <fullName>Password_Reset_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Password_Reset_Title</shortDescription>
+        <value>Password Reset</value>
+    </labels>
+    <labels>
+        <fullName>Postal_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Postal Code</shortDescription>
+        <value>Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>Request_Body_as_Blob</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Request Body as Blob?</shortDescription>
+        <value>Request Body as Blob?</value>
+    </labels>
+    <labels>
+        <fullName>Response_Result</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Response Result</shortDescription>
+        <value>Response Result</value>
+    </labels>
+    <labels>
+        <fullName>SaleOpsEmails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SaleOpsEmails</shortDescription>
+        <value>vsa-ops-salesadmin@viewsonic.com</value>
+    </labels>
+    <labels>
+        <fullName>Set_this_Output</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Set this Output</shortDescription>
+        <value>Set this Output</value>
+    </labels>
+    <labels>
+        <fullName>Set_this_output_field</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Set this output field:</shortDescription>
+        <value>Set this output field:</value>
+    </labels>
+    <labels>
+        <fullName>Sign_Up</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sign Up</shortDescription>
+        <value>Sign Up</value>
+    </labels>
+    <labels>
+        <fullName>Specify_Headers</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Specify Headers</shortDescription>
+        <value>Specify Headers:</value>
+    </labels>
+    <labels>
+        <fullName>Specify_Params</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Specify Params</shortDescription>
+        <value>Specify Params:</value>
+    </labels>
+    <labels>
+        <fullName>Specify_the_keys_that_you_want_to_extract</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Specify the keys that you want to extract:</shortDescription>
+        <value>Specify the keys that you want to extract:</value>
+    </labels>
+    <labels>
+        <fullName>Specify_the_keys_that_you_want_to_extract_from_the_objects_in_the_array</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Specify the keys that you want to extract from the objects in the array:</shortDescription>
+        <value>Specify the keys that you want to extract from the objects in the array:</value>
+    </labels>
+    <labels>
+        <fullName>State_Province</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>State/Province</shortDescription>
+        <value>State/Province</value>
+    </labels>
+    <labels>
+        <fullName>Status</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status :</shortDescription>
+        <value>Status :</value>
+    </labels>
+    <labels>
+        <fullName>Status_code</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Status code :</shortDescription>
+        <value>Status code :</value>
+    </labels>
+    <labels>
+        <fullName>Street</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Street</shortDescription>
+        <value>Street</value>
+    </labels>
+    <labels>
+        <fullName>Target_Object_Type</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Target Object Type</shortDescription>
+        <value>Target Object Type</value>
+    </labels>
+    <labels>
+        <fullName>Test_Callout</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Test Callout</shortDescription>
+        <value>Test Callout</value>
+    </labels>
+    <labels>
+        <fullName>Timeout_in_ms</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Timeout in ms</shortDescription>
+        <value>Timeout in ms</value>
+    </labels>
+    <labels>
+        <fullName>To_the_value_of_this_key</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>To the value of this key</shortDescription>
+        <value>To the value of this key</value>
+    </labels>
+    <labels>
+        <fullName>U2G_2Table_PaginationFirstLinkLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UP2GO 2Table Pagination First Link Label</shortDescription>
+        <value>First</value>
+    </labels>
+    <labels>
+        <fullName>U2G_2Table_PaginationLastLinkLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UP2GO 2Table Pagination Last Link Label</shortDescription>
+        <value>Last</value>
+    </labels>
+    <labels>
+        <fullName>U2G_2Table_PaginationNextLinkLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UP2GO 2Table Pagination Next Link Label</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>U2G_2Table_PaginationPageSizeLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UP2GO 2Table Pagination Page Size Label</shortDescription>
+        <value>Page Size:</value>
+    </labels>
+    <labels>
+        <fullName>U2G_2Table_PaginationPreviousLinkLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UP2GO 2Table Pagination Previous Link Label</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>U2G_2Table_PaginationStatusline</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UP2GO 2Table Pagination Statusline</shortDescription>
+        <value>Page {0} of {1} - {2} total results</value>
+    </labels>
+    <labels>
+        <fullName>U2G_2Table_SettingsDisplayedFieldsLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UP2GO 2Table Settings Displayed Fields Label</shortDescription>
+        <value>Displayed Fields</value>
+    </labels>
+    <labels>
+        <fullName>URL_is_invalid</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>URL is invalid</shortDescription>
+        <value>URL is invalid</value>
+    </labels>
+    <labels>
+        <fullName>Use_these_values_for</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Use these values for:</shortDescription>
+        <value>Use these values for:</value>
+    </labels>
+    <labels>
+        <fullName>Value_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Value Label</shortDescription>
+        <value>Value</value>
+    </labels>
+    <labels>
+        <fullName>Website</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Website</shortDescription>
+        <value>Website</value>
+    </labels>
+    <labels>
+        <fullName>completeAllFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>completeAllFields</shortDescription>
+        <value>Please Complete All Fields</value>
+    </labels>
+    <labels>
+        <fullName>confirm_button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>confirm_button</shortDescription>
+        <value>Confirm</value>
+    </labels>
+    <labels>
+        <fullName>emailGreetgin</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>emailGreeting</shortDescription>
+        <value>Hello</value>
+    </labels>
+    <labels>
+        <fullName>emailLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>emailLabel</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>errorMessageJS</fullName>
+        <categories>pp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>errorMessageJS</shortDescription>
+        <value>There was an error. Please send support ticket with message.</value>
+    </labels>
+    <labels>
+        <fullName>ers_CancelButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>ers_ClearFilterAction</fullName>
+        <categories>actions</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear Filter</shortDescription>
+        <value>Clear Filter</value>
+    </labels>
+    <labels>
+        <fullName>ers_ClearSelectionButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear Selection</shortDescription>
+        <value>Clear Selection</value>
+    </labels>
+    <labels>
+        <fullName>ers_ColumnHeader</fullName>
+        <categories>headers</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Column</shortDescription>
+        <value>Column</value>
+    </labels>
+    <labels>
+        <fullName>ers_EmptyTableMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Empty</shortDescription>
+        <value>This table currently has no data to display</value>
+    </labels>
+    <labels>
+        <fullName>ers_ErrorRequiredEntry</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required</shortDescription>
+        <value>This is a required entry.  At least 1 row must be selected.</value>
+    </labels>
+    <labels>
+        <fullName>ers_FilterHeader</fullName>
+        <categories>headers</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter</shortDescription>
+        <value>Filter</value>
+    </labels>
+    <labels>
+        <fullName>ers_LabelHeader</fullName>
+        <categories>headers</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Label</shortDescription>
+        <value>Label</value>
+    </labels>
+    <labels>
+        <fullName>ers_SaveButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>ers_SetFilterAction</fullName>
+        <categories>actions</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Set Filter</shortDescription>
+        <value>Set Filter</value>
+    </labels>
+    <labels>
+        <fullName>flow_SubmitButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>flow_SubmitButton</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>flows_Thanks</fullName>
+        <categories>pp,partner program</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>flows_Thanks</shortDescription>
+        <value>We appreciate your submission and it will be reviewed in the next 1 to 2 business days.</value>
+    </labels>
+    <labels>
+        <fullName>fsc_AccessLevel</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AccessLevel</shortDescription>
+        <value>Access Level</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Back</fullName>
+        <categories>Buttons,Filters,Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ButtonIsNotSupportedMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ButtonIsNotSupportedMessage</shortDescription>
+        <value>Following buttons are note supported:</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ConditionLogicHelpText</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ConditionLogicHelpText</shortDescription>
+        <value>Use parentheses, AND, OR, and NOT to customize the logic. For example, if you enter “(1 AND 2 AND 3) OR 4”, the flow evaluates whether the first three conditions are true or only the fourth condition is true.</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Delete</fullName>
+        <categories>labels, buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>fsc_FieldIsNotSupportedMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FieldIsNotSupportedMessage</shortDescription>
+        <value>Following fields are not supported:</value>
+    </labels>
+    <labels>
+        <fullName>fsc_FieldTypeNotSuportedMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>fsc_FieldTypeNotSuportedMessage</shortDescription>
+        <value>You provided an unsupported value for the DataTypeFilter input on Object and Field Picker. Currently the only supported value is ’picklist’</value>
+    </labels>
+    <labels>
+        <fullName>fsc_For</fullName>
+        <categories>Buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>For</shortDescription>
+        <value>For</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Key_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Key Label</shortDescription>
+        <value>Key</value>
+    </labels>
+    <labels>
+        <fullName>fsc_LackingPermissions</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LackingPermissions</shortDescription>
+        <value>You don\&apos;t have the proper permissions for ths action</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ManagerEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ManagerEmptyMessage</shortDescription>
+        <value>&quot;Manager APEX Class&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_MultipleGroupsForRole</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MultipleGroupsForRole</shortDescription>
+        <value>There are multiple groups for that role</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Name</fullName>
+        <categories>quicklinks, Labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>fsc_NonePicklistValueLabel</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NonePicklistValueLabel</shortDescription>
+        <value>-- None --</value>
+    </labels>
+    <labels>
+        <fullName>fsc_OWDReadWrite</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OWDReadWrite</shortDescription>
+        <value>Sharing Settings must be private or public read/write to enable manual sharing</value>
+    </labels>
+    <labels>
+        <fullName>fsc_OwnerAdminModify</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OwnerAdminModify</shortDescription>
+        <value>Only the record owner or administrators can modify permissions</value>
+    </labels>
+    <labels>
+        <fullName>fsc_PublicGroups</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PublicGroups</shortDescription>
+        <value>Public Groups</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Queues</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Queues</shortDescription>
+        <value>Queues</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Read</fullName>
+        <categories>labels, buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Read</shortDescription>
+        <value>Read</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ReadWrite</fullName>
+        <categories>labels, buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReadWrite</shortDescription>
+        <value>Read / Write</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Reason</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reason</shortDescription>
+        <value>Reason</value>
+    </labels>
+    <labels>
+        <fullName>fsc_RelatedUsers</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelatedUsers</shortDescription>
+        <value>Related Users</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Roles</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Roles</shortDescription>
+        <value>Roles</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Search</fullName>
+        <categories>Actions,Buttons,quicklinks</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search in</shortDescription>
+        <value>Search in</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SearchFor</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SearchFor</shortDescription>
+        <value>For</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SetAccessLevel</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SetAccessLevel</shortDescription>
+        <value>Set Access Level</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SupportedAddCapabilitiesEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SupportedAddCapabilitiesEmptyMessage</shortDescription>
+        <value>&quot;Add Capabilities&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SupportedButtonsEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SupportedButtonsEmptyMessage</shortDescription>
+        <value>&quot;Supported Buttons&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SupportedEditCapabilitiesEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SupportedEditCapabilitiesEmptyMessage</shortDescription>
+        <value>&quot;Edit Capabilities&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_TooManyResultsMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TooManyResultsMessage</shortDescription>
+        <value>Your search found more than 200 results.  Keep typing to make it more specific</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Type</fullName>
+        <categories>Buttons,Filters,Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>fsc_UserOrGroup</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UserOrGroup</shortDescription>
+        <value>User Or Group</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Users</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Users</shortDescription>
+        <value>Users</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Value_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Value Label</shortDescription>
+        <value>Value</value>
+    </labels>
+    <labels>
+        <fullName>googlemapapikey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>googlemapapikey</shortDescription>
+        <value>AIzaSyATm_ll7gW7aIifO6KD6QBFU5f348r7rK4</value>
+    </labels>
+    <labels>
+        <fullName>nameLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>nameLabel</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>passwordReset</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_passwordResetCopy</shortDescription>
+        <value>Thank you for confirming your email.</value>
+    </labels>
+    <labels>
+        <fullName>passwordReset_Confirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>passwordReset_Confirmation</shortDescription>
+        <value>A password reset has been sent to your email with instructions. Please check your junk mail and spam folders.
+
+If you do not receive the email within 10 minutes, please open a support ticket on our support page.</value>
+    </labels>
+    <labels>
+        <fullName>passwordReset_NoUserfound</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>passwordReset_NoUserfound</shortDescription>
+        <value>We could not find a user with that email address. If the email address is correct, please click next and register. 
+
+
+
+We will search our database and will try to prefill your registration if possible.</value>
+    </labels>
+    <labels>
+        <fullName>phoneLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>phoneLabel</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>pp_ApplicationRejected</fullName>
+        <categories>pp,partner portal</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_ApplicationRejected</shortDescription>
+        <value>Thank you for your interest in the ViewSonic Partner Program. Unfortunately, after reviewing your application we’ve found that you do not qualify for the program at this time.
+If you’d like more information, please contact us at partners@viewsonic.com.</value>
+    </labels>
+    <labels>
+        <fullName>pp_ApplicationRejected_Email_Subject</fullName>
+        <categories>Partner Program, pp, Partner Portal</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_ApplicationRejected_Email_Subject</shortDescription>
+        <value>Your ViewSonic Partner Portal Application</value>
+    </labels>
+    <labels>
+        <fullName>pp_Application_AddressRequired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Application_AddressRequired</shortDescription>
+        <value>Please make sure to fill in all address fields.</value>
+    </labels>
+    <labels>
+        <fullName>pp_Application_AddressSection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Application_AddressSection</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
+        <fullName>pp_Application_EmailError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Application_EmailError</shortDescription>
+        <value>Non Business email addresses are not allowed. This is listed as a generic or restricted email domain; please enter a business email and try again. If you believe this is an error, please call our Customer Support found on the Support page and below.
+
+   Phone: 1 (800) 688-6688
+   Email:  Service.AP@viewsonic.com</value>
+    </labels>
+    <labels>
+        <fullName>pp_Application_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Application_Header</shortDescription>
+        <value>ViewSonic Partner Program Registration Form</value>
+    </labels>
+    <labels>
+        <fullName>pp_Application_ResetConfirmation</fullName>
+        <categories>pp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Application_ResetConfirmation</shortDescription>
+        <value>Password Reset has been sent to the email you gave. Please check you junk and spam boxes. 
+If you do not receive the email in 10 minutes, please contact support.</value>
+    </labels>
+    <labels>
+        <fullName>pp_Application_UserExists</fullName>
+        <categories>pp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Application_UserExists</shortDescription>
+        <value>It looks like you already have an account. You can have a password reset sent by clicking &apos;Send Reset&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>pp_Application_checkReqFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Application_checkReqFields</shortDescription>
+        <value>Note: please check Address fields. City, Country, and State/Province (where applicable)</value>
+    </labels>
+    <labels>
+        <fullName>pp_EmailClosing</fullName>
+        <categories>Email closing statement</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_EmailClosing</shortDescription>
+        <value>Best Regards</value>
+    </labels>
+    <labels>
+        <fullName>pp_Facebook</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Facebook</shortDescription>
+        <value>https://www.facebook.com/ViewSonicCorp/</value>
+    </labels>
+    <labels>
+        <fullName>pp_FooterContact</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_FooterContact</shortDescription>
+        <value>Contact Us</value>
+    </labels>
+    <labels>
+        <fullName>pp_FooterPages</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_FooterPages</shortDescription>
+        <value>Program, pricing, specifications and availability are subject to change without notice. All prices, unless otherwise stated, are in U.S. Dollars. Selection, offers and programs may vary by country. Corporate names and trademarks stated herein are the property of their respective companies.</value>
+    </labels>
+    <labels>
+        <fullName>pp_FooterPrivacy</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_FooterPrivacy</shortDescription>
+        <value>Privacy Policy</value>
+    </labels>
+    <labels>
+        <fullName>pp_FooterTerms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_FooterTerms</shortDescription>
+        <value>Terms of Use</value>
+    </labels>
+    <labels>
+        <fullName>pp_HomePage_Login</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_HomePage_Login</shortDescription>
+        <value>Login</value>
+    </labels>
+    <labels>
+        <fullName>pp_HomePage_SignUp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_HomePage_SignUp</shortDescription>
+        <value>Sign Up</value>
+    </labels>
+    <labels>
+        <fullName>pp_HomePage_intro</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_HomePage_intro</shortDescription>
+        <value>ViewSonic is a channel-first company with over 30 years of success rooted in the relationships we have cultivated with our partners. Today, we are more      committed than ever to delivering performance, value and world class support with one of the widest array of visual engagement solutions, best-in-class      service and programs to ensure that our partners thrive. As a partner, you have access to the products, promotions and support needed to grow your business.</value>
+    </labels>
+    <labels>
+        <fullName>pp_Instagram</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Instagram</shortDescription>
+        <value>https://www.instagram.com/viewsonic/</value>
+    </labels>
+    <labels>
+        <fullName>pp_OnboardedHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_OnboardedHeader</shortDescription>
+        <value>Congratulations!</value>
+    </labels>
+    <labels>
+        <fullName>pp_OnboardingTaskTskLabel</fullName>
+        <categories>pp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_OnboardingTaskTskLabel</shortDescription>
+        <value>Task</value>
+    </labels>
+    <labels>
+        <fullName>pp_Onboarding_EmailSubject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_intialOnboarding_EmailSubject</shortDescription>
+        <value>ViewSonic Partner Program New Onboarding Tasks</value>
+    </labels>
+    <labels>
+        <fullName>pp_Onboarding_Task</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_intialOnboarding_Task</shortDescription>
+        <value>new onboarding task(s) were recently assigned in the ViewSonic Partner Portal. Please click the link below to view and complete your tasks.</value>
+    </labels>
+    <labels>
+        <fullName>pp_SignUP_Intro</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_SignUP_Intro</shortDescription>
+        <value>Become a member by completing the form. We will review your application within 1-2 business days. ViewSonic Partner Program is eligible to U.S. or 
+Canada resellers only.</value>
+    </labels>
+    <labels>
+        <fullName>pp_SupportRequestContactLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_SupportRequestContactLabel</shortDescription>
+        <value>Request Contact</value>
+    </labels>
+    <labels>
+        <fullName>pp_Support_Sales_Rep_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Support_Sales Rep Header</shortDescription>
+        <value>My Sales Representative</value>
+    </labels>
+    <labels>
+        <fullName>pp_TermsURL</fullName>
+        <categories>pp,partner program</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_TermsURL</shortDescription>
+        <value>https://www.viewsonic.com/company/terms-of-use</value>
+    </labels>
+    <labels>
+        <fullName>pp_Welcome_New_Reg</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Welcome_New_Reg_Title</shortDescription>
+        <value>Thank you for signing up for the ViewSonic Partner Program.</value>
+    </labels>
+    <labels>
+        <fullName>pp_Welcome_New_Reg_CallToAction</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Welcome_New_Reg_CallToAction</shortDescription>
+        <value>NEW PASSWORD</value>
+    </labels>
+    <labels>
+        <fullName>pp_Welcome_New_Reg_SubTitle</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_Welcome_New_Reg_SubTitle</shortDescription>
+        <value>Please create a new password via the link below.</value>
+    </labels>
+    <labels>
+        <fullName>pp_acceptedFileFormats</fullName>
+        <categories>pp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_acceptedFileFormats</shortDescription>
+        <value>Accepted File Formats: pdf,jpeg,png</value>
+    </labels>
+    <labels>
+        <fullName>pp_application_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_application_Code</shortDescription>
+        <value>A code has been emailed to the address given. Please check your junk mail folder if not in your inbox.</value>
+    </labels>
+    <labels>
+        <fullName>pp_application_Confirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_application_Confirmation</shortDescription>
+        <value>You will receive an email from ViewSonic Partner Portal to set up your password so you can get started.</value>
+    </labels>
+    <labels>
+        <fullName>pp_application_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_application_Error</shortDescription>
+        <value>Sorry, the code you gave does not match the code that was sent, please verify the code is correct or contact support if you are unable to proceed. We have your application and are happy to complete it after identity verification.</value>
+    </labels>
+    <labels>
+        <fullName>pp_application_wrongAcct</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_application_wrongAcct</shortDescription>
+        <value>Incorrect Account</value>
+    </labels>
+    <labels>
+        <fullName>pp_approvedApplicationCallToAction</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_approvedApplicationCallToAction</shortDescription>
+        <value>LOG IN</value>
+    </labels>
+    <labels>
+        <fullName>pp_approvedApplicationSubTitle</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_approvedApplicationSubTitle</shortDescription>
+        <value>You are now an official member of the ViewSonic Partner Program. You have full access to all of the benefits the ViewSonic Partner Program has to offer. Navigate through the various tabs to uncover the tools and resources that will help you grow your business with ViewSonic.</value>
+    </labels>
+    <labels>
+        <fullName>pp_approvedApplicationTitle</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_approvedApplicationTitle</shortDescription>
+        <value>Congratulations!
+Your application has been approved and you’ve successfully
+uploaded your onboarding documents.</value>
+    </labels>
+    <labels>
+        <fullName>pp_approved_email_subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_approved_email_subject</shortDescription>
+        <value>Welcome to Full Access of the New ViewSonic Partner Program</value>
+    </labels>
+    <labels>
+        <fullName>pp_approved_spiffLegal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_approved_spiffLegal</shortDescription>
+        <value>*Access to the demo program is granted to those members that submitted their reseller certificate during the registration process. You will not be able to order demo product through the site unless we have your reseller certificate on record.
+**Access to SPIFF incentives is predicated on your company’s policy.</value>
+    </labels>
+    <labels>
+        <fullName>pp_docUploadConfirmationSubTitle</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_docUploadConfirmationSubTitle</shortDescription>
+        <value>Thank you for uploading your document. We will review your document and respond shortly. In the meantime, you can schedule a demo or contact your sales rep for any product-related questions.</value>
+    </labels>
+    <labels>
+        <fullName>pp_docUploadConfirmationTitle</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_docUploadConfirmationTitle</shortDescription>
+        <value>We’ve Received Your Partner Program Document</value>
+    </labels>
+    <labels>
+        <fullName>pp_docUpload_email_subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_docUpload_email_subject</shortDescription>
+        <value>We’ve Received Your Partner Program Documents</value>
+    </labels>
+    <labels>
+        <fullName>pp_footerLegalese</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_footerLegalese</shortDescription>
+        <value>Program, pricing, specifications and availability are subject to change without notice. All prices, unless otherwise stated, are in U.S. Dollars. Selection, offers and programs may vary by country. Corporate names and trademarks stated herein are the property of their respective companies. Copyright© 2000-2021 ViewSonic Corporation. All rights reserved.</value>
+    </labels>
+    <labels>
+        <fullName>pp_footer_ContactUs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_footer_ContactUs</shortDescription>
+        <value>Contact Us</value>
+    </labels>
+    <labels>
+        <fullName>pp_footer_Privacy</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_footer_Privacy</shortDescription>
+        <value>Privacy Policy</value>
+    </labels>
+    <labels>
+        <fullName>pp_footer_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_footer_Terms</shortDescription>
+        <value>Terms of Use</value>
+    </labels>
+    <labels>
+        <fullName>pp_intialOnboardingCallToAction</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_intialOnboardingCallToAction</shortDescription>
+        <value>PROCEED</value>
+    </labels>
+    <labels>
+        <fullName>pp_intialOnboardingSubTitle</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_intialOnboardingSubTitle</shortDescription>
+        <value>Please click below to start your initial onboarding tasks. We will reach out to you in a few business days if there are additional onboarding tasks, or if we have questions regarding your application. If you encounter any problems, please navigate to the Support Page or send an email to partners@viewsonic.com. Thanks!</value>
+    </labels>
+    <labels>
+        <fullName>pp_intialOnboardingTitle</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_intialOnboardingTitle</shortDescription>
+        <value>Welcome to the ViewSonic Partner Program.</value>
+    </labels>
+    <labels>
+        <fullName>pp_legacyWelcomeLoginSubTitle</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_legacyWelcomeLoginSubTitle</shortDescription>
+        <value>As a member, you now have easy access to the products, programs,&lt;br&gt; service integration and support needed to grow your business and&lt;br&gt; meet your customer needs.</value>
+    </labels>
+    <labels>
+        <fullName>pp_legacyWelcomeLoginTitle</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_legacyWelcomeLoginTitle</shortDescription>
+        <value>Welcome to the ViewSonic Partner Program.</value>
+    </labels>
+    <labels>
+        <fullName>pp_onboardedDescription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_onboardedDescription</shortDescription>
+        <value>You are now a member of the ViewSonic Partner Program and have access to these benefits:</value>
+    </labels>
+    <labels>
+        <fullName>pp_onboardingAccountMatch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_onboardingAccountMatch</shortDescription>
+        <value>was found as a possible Headquarters for your company. 
+         If this account is incorrect, please check the box &apos;Incorrect Account&apos; below.
+          Otherwise, please select the location that best describes you. 
+          If your location is not in list, 
+          please select the closest and we will get it updated later.</value>
+    </labels>
+    <labels>
+        <fullName>pp_onboardingTasks_header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_onboardingTasks_header</shortDescription>
+        <value>Onboarding</value>
+    </labels>
+    <labels>
+        <fullName>pp_passwordResetCallToAction</fullName>
+        <categories>PartnerProgram</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_passwordResetCallToAction</shortDescription>
+        <value>Set Password</value>
+    </labels>
+    <labels>
+        <fullName>pp_privacyURL</fullName>
+        <categories>pp,partner program</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_privacyURL</shortDescription>
+        <value>https://www.viewsonic.com/us/company/privacy-policy</value>
+    </labels>
+    <labels>
+        <fullName>pp_registrationEmailVerificationCod</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_registrationEmailVerificationCode</shortDescription>
+        <value>ViewSonic Partner Portal has sent the following code.  Please enter in form to complete registration.</value>
+    </labels>
+    <labels>
+        <fullName>pp_signUP_callToAction</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_signUP_callToAction</shortDescription>
+        <value>Start Application</value>
+    </labels>
+    <labels>
+        <fullName>pp_twitter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_twitter</shortDescription>
+        <value>https://twitter.com/viewsonic</value>
+    </labels>
+    <labels>
+        <fullName>pp_upload_docName</fullName>
+        <categories>pp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_upload_docName</shortDescription>
+        <value>Doc Successfully Added</value>
+    </labels>
+    <labels>
+        <fullName>pp_welcomeEmailFooter</fullName>
+        <categories>portal,partner</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_welcomeEmailFooter</shortDescription>
+        <value>Corporate names and trademarks stated herein are the property of their respective companies. Copyright © 2021, ViewSonic Corporation. All rights reserved. [21ALL_CHN1352]</value>
+    </labels>
+    <labels>
+        <fullName>pp_welcomeEmailSocial</fullName>
+        <categories>portal,partner</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_welcomeEmailSocial</shortDescription>
+        <value>STAY CONNECTED</value>
+    </labels>
+    <labels>
+        <fullName>pp_welcomeEmailSubject</fullName>
+        <categories>partner,portal</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_welcomeEmailSubject</shortDescription>
+        <value>Welcome to the ViewSonic Partner Program</value>
+    </labels>
+    <labels>
+        <fullName>pp_welcomeEmailusername</fullName>
+        <categories>partner,portal</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_welcomeEmailusername</shortDescription>
+        <value>Your username is</value>
+    </labels>
+    <labels>
+        <fullName>pp_welcome_paragraph</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_welcome_paragraph</shortDescription>
+        <value>You can now access the new ViewSonic Partner Portal.</value>
+    </labels>
+    <labels>
+        <fullName>pp_youtube</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pp_youtube</shortDescription>
+        <value>https://www.youtube.com/user/ViewSonicVideo</value>
+    </labels>
+    <labels>
+        <fullName>submitButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>submitButton</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>url</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>url</shortDescription>
+        <value>URL</value>
+    </labels>
+</CustomLabels>

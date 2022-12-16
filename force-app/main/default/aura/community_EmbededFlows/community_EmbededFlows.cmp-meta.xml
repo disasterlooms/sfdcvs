@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <description>allow modularized flows in any community and remove the Borders and styling around the flows so that we can control css from the component level</description>
+</AuraDefinitionBundle>

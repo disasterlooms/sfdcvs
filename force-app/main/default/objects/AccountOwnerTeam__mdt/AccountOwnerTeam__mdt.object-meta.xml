@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Allows for account owners and teams to be set up and easily changed without going into apex and changing the code. it also simplifies the code, reducing the if statements</description>
+    <label>AccountOwnerTeam</label>
+    <pluralLabel>AccountOwnerTeams</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

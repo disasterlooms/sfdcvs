@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Type__c</fullName>
+    <description>This field is used when the customer is a dealer, distributor or supplier and we want to know what they sell.</description>
+    <externalId>false</externalId>
+    <label>Account Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Distributor</fullName>
+                <default>false</default>
+                <label>Distributor</label>
+            </value>
+            <value>
+                <fullName>End User</fullName>
+                <default>false</default>
+                <label>End User</label>
+            </value>
+            <value>
+                <fullName>Retail/Etail</fullName>
+                <default>false</default>
+                <label>Retail/Etail</label>
+            </value>
+            <value>
+                <fullName>Marketing Partners</fullName>
+                <default>false</default>
+                <label>Marketing Partners</label>
+            </value>
+            <value>
+                <fullName>Software Partners</fullName>
+                <default>false</default>
+                <label>Software Partners</label>
+            </value>
+            <value>
+                <fullName>Technology Partners</fullName>
+                <default>false</default>
+                <label>Technology Partners</label>
+            </value>
+            <value>
+                <fullName>VAR</fullName>
+                <default>false</default>
+                <label>VAR</label>
+            </value>
+            <value>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+                <label>Consumer</label>
+            </value>
+            <value>
+                <fullName>NSP</fullName>
+                <default>false</default>
+                <label>NSP</label>
+            </value>
+            <value>
+                <fullName>VAR - Latin America</fullName>
+                <default>false</default>
+                <label>VAR - Latin America</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

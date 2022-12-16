@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BidDesk_Focus_Account__c</fullName>
+    <description>Notifies bid desk of focus account.</description>
+    <externalId>false</externalId>
+    <formula>(Opportunity.Account.Focus_Account__c = true ||
+Opportunity.Account.End_User_Focus__c )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>BidDesk Focus Account</label>
+    <type>Checkbox</type>
+</CustomField>

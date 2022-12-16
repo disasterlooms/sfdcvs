@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PartnerOpenTaskDate__c</fullName>
+    <externalId>false</externalId>
+    <label>PartnerOpenTaskDate</label>
+    <summarizedField>PortalOnboardingProgress__c.CreatedDate</summarizedField>
+    <summaryFilterItems>
+        <field>PortalOnboardingProgress__c.Status__c</field>
+        <operation>equals</operation>
+        <value>Not Started, Started</value>
+    </summaryFilterItems>
+    <summaryForeignKey>PortalOnboardingProgress__c.Portal_Contact__c</summaryForeignKey>
+    <summaryOperation>min</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

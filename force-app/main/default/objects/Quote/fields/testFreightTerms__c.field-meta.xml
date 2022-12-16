@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>testFreightTerms__c</fullName>
+    <defaultValue>&quot;Minimum $10K Free Freight Program. $10K per shipment location per purchase order based on standard price. Multiple PO/Location process handling Fee of $45 applied to orders NOT on a single order to a single address within the 48 contiguous U.S. states and Canada metropolitan areas only. &quot;&amp;
+BR()+&quot; ONE OF THE FOLLOWING 4 FREIGHT OPTIONS MUST BE SELECTED FOR DROPSHIP ORDERS: &quot;&amp;
+BR()+&quot; Freight Option 1 – Dock to Dock Only Shipping to Warehouse Dock - Only Base Shipping Charge - Must have a full access working dock and equipment to unload.  Due to carrier&apos;s liability issue, the driver (1 person) will not assist with unloading. Customer must self-unload and have equipment to move pallets off the truck. The dock must be able to accept a 53’ trailer and back up right to the dock to unload.&quot;&amp;
+BR()+&quot; Freight Option 2 Shipping to Warehouse without Dock Lift Gate Base – Base Shipping Charge + $130 per truck - Freight truck includes a lift gate for driver (1 person) to unload to the ground. Customer must have the equipment to move the pallets once the shipment is unloaded.&quot;&amp;
+BR()+&quot; Freight Option 3 Shipping to Non-Warehouse Facilities (ALL Education Orders unless they are shipping to a Warehouse) - Lift Gate, Inside Delivery, and Limited Access - Base Shipping Charge + 300.00 per truck. Freight truck includes a lift gate for driver to unload the shipment and deliver the pallet intact to the first landing, drop and go.&quot;&amp;
+BR()+&quot; Freight Option 4 Shipping to Non-Warehouse &amp; Room of Choice / Depalletization Needed - White Glove Service - Base Shipping Charge + $375.00 starting charge (Please contact your Sales Admin for quote) - Freight option includes a lift gate and equipment for driver to unload the shipment and deliver the pallet intact to the first landing, drop and go, delivery to room of choice, depalletize, and debris removal.&quot;&amp;
+BR()+BR()+&quot;Pre-paid Freight Exclusions: &quot;&amp;
+
+BR()+&quot; -Residential and or limited access deliveries &quot;&amp;
+
+BR()+&quot; -Rural Zip code delivery &quot;&amp;
+BR()+&quot; -Oversize or Heavyweight handling &quot;&amp;
+
+BR()+&quot; -Return/ Refusal fees &quot;&amp;
+BR()+&quot; -Duty and tax fees &quot;</defaultValue>
+    <externalId>false</externalId>
+    <label>testFreightTerms</label>
+    <length>32768</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

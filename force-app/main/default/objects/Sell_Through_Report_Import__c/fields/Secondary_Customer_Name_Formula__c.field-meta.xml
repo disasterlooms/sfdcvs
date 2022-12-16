@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_Customer_Name_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(VS_Region__c, &apos;VSE&apos;), CustName2_Secondary_Customer_Name__c,null)
+/*
+CASE( distributor__r.Name,
+					&apos;ALSO Deutschland GmbH&apos;, 	CustName2_Secondary_Customer_Name__c, 
+					&apos;Ingram Micro Distribution GmbH&apos;, Name_1_Secondary_Customer_Name__c, 
+     &apos;Schuss AV-Projektionssysteme GmbH&apos;,  Custumer_Name_Secondary_Customer_Name__c, 
+					&apos;prodyTel Distribution GmbH&apos;,  gerPOS_FirmaName2_Secondary_Customer_Nam__c, 
+					null)
+					*/</formula>
+    <label>Secondary Customer Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

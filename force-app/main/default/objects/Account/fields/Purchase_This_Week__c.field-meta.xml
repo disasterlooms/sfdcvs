@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Purchase_This_Week__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>if a purchase is made in the POS week. Need to run a workflow rule to uncheck after 1 week and this can be used for sales rep alerts, workplace, and customer service</description>
+    <externalId>false</externalId>
+    <label>SerialPurchase This Week</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

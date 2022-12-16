@@ -1,0 +1,28 @@
+<apex:component controller="opppartners" access="global">
+<apex:attribute name="OppId" type="Id" description="Id of the account" assignTo="{!opportunityId}"/>
+    
+
+
+
+<table border="0" >
+                 <tr > 
+                     <th>Company Name</th><th>Category</th><th>City</th><th>State</th><th>Contact Name</th><th>Contact Phone</th><th>Contact Email</th>
+                  </tr>
+<apex:repeat var="part" value="{!opptys}" >
+       <tr>          
+            <td>{!part.Partner_Account__r.Name}</td>
+            <td>{!part.Partner_Type__c}</td>
+            <td>{!part.Partner_Account__r.BillingCity}</td>
+            <td>{!part.Partner_Account__r.BillingState}</td>
+            <td>{!part.Contact_Name__c}</td>
+            <td>{!part.Contact_Phone__c}</td>
+            <td>{!part.Contact_Email__c}</td>
+            
+            
+
+            
+        </tr>
+ </apex:repeat>  
+ </table>
+ 
+ </apex:component>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accessories_Update__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Update Accessory text field based on related products. If related products are incorrect, this field will not correct that. This must be done manually.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Update Accessory text field based on related products. If related products are incorrect, this field will not correct that. This must be done manually.</inlineHelpText>
+    <label>Accessories Update</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

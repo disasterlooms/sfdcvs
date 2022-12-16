@@ -1,0 +1,20 @@
+<apex:page sidebar="false" showHeader="false" standardStylesheets="false">
+
+
+<apex:form >
+<br>Instructions:</br>
+The Evaluation Types are as follows
+<div style="margin-left:50px">
+<br><table cellpadding="3" >
+                    <tr ><td><b>VS Sales Rep Evaluation </b>- This is your unit. It will never be given to an End User or Reseller. It is a fixed assest and must be returned, no exceptions.</td></tr>
+                    <tr><td><b>End User/Reseller/Disty Eval </b>- This is for an End User, Distributor, or Reseller. It must be tied to an Opportunity and an Account. If Reseller Eval, the End User Account is the Reseller, otherwise, it is the End User. Once we know the end user, please update Opportunity.</td> </tr>
+                    <tr><td><b>Write off Request </b>- Same as End User or Reseller, but you will be requesting a write-off of the product/s when it is approved. This must have detailed business reasons for write-off. If the unit is turned back in, the write-off will be reversed.</td>  </tr>
+                     <tr><td><b>Reseller Demo</b>- Long Term Eval to Reseller that we expect to get back in 180 days or less. This should not have an opportunity because the Resller should show to multiple End Users.</td> </tr>
+                   
+                    <tr><td><b>Trade Show Loaner </b>- The first 2 Eval Types on this list can be for a trade show. First pick the type. Sales rep eval - if you are going to be responsible for unit. Reseller Eval - if the reseller or Distributor will be responsible for it. If you select 'Yes. Trade Show' You will be required to give trade show information</td> </tr>
+                   </table></br>
+</div>
+</apex:form>
+
+                
+</apex:page>

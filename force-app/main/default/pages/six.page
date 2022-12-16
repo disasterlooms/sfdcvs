@@ -1,0 +1,12 @@
+<apex:page >
+<form action="https://abm.6sense.com/sales/sfdc/" class="slds-hide" id="form_v2" method="post" target="indicator_iframe_v2">
+                    <input name="apikey" type="text" value="e861524f2ae471f596f5969f6f2891ea"/>
+                    <input name="userid" type="text" value="005A0000000T6JGIA0"/>
+                    <input name="email" type="text" value="jason.orbison@viewsonic.com"/>
+                    <input name="username" type="text" value="SFDC Admin"/>
+                    <input name="record" type="text" value=""/>
+                    <input name="isSandbox" type="text" value="false"/>
+                    <input id="origin" name="origin" type="text" value="https://viewsonic--sixsense.visualforce.com"/>
+                    <input type="submit"/>
+                </form>
+</apex:page>

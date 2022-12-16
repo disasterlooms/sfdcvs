@@ -1,0 +1,119 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,lightning:availableForFlowScreens"
+    controller="EvalUnitstoQuote" access="global">
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:attribute name="recordsReturned" type="Eval_Unit_Details__c[]" access="public" />
+    <aura:attribute name="RMA" type="String" access="public" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="updateCount" type="Integer" default="0" />
+    <aura:attribute name="spinnerClass" type="String" default="slds-hide" />
+    <aura:attribute name="quoteId" type="string" />
+    <aura:attribute name="transferEval" type="Boolean" default="false" />
+    <aura:attribute name="transferConfirmation" type="Boolean" default="false" 
+    description="Makes the table read only"/>
+    <aura:attribute name="writeOff" type="Boolean" default="false" />
+    <aura:attribute name="header" type="String" default="" />
+    <!--
+    <aura:handler name="init" action="{!c.init}" value="{!this}" />
+	<aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+	-->
+
+    <aura:attribute name="accessCheck" type="Boolean" default="false" />
+
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="{!v.spinnerClass}" variant="brand" size="large" />
+    </div>
+    <div aura:id="evalunitsv2" class="">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2>
+                        <span class="slds-text-heading_small">{!v.header}</span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Account Name">SKU</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Quantity">Serial Number</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Quantity">Price</div>
+                    </th>
+
+                    <aura:if isTrue="{!v.accessCheck}">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Quantity">Special Eval Price</div>
+                        </th>
+                        <!--
+                        <th scope="col">
+                            <div class="slds-truncate" title="Quantity">UseSplPrice</div>
+                        </th>     
+-->
+                    </aura:if>
+
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.recordsReturned}" var="u">
+                    <aura:if isTrue="{!u.Write_off_Approved__c}">
+                        <tr>
+                            <td>
+                                <aura:if isTrue="{!v.transferEval}">
+                                    
+                                    <lightning:input type="checkbox-button" label="" name="{!u.Id}"
+                                        aura:id="DependentCheckboxpart" value="{!u.Transfer_Requested__c}"
+                                        checked="{!u.Transfer_Requested__c}" onchange="{!c.checkedUp}" />
+
+
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{!v.writeOff}">
+
+                                            <lightning:input type="checkbox-button" label="" name="{!u.Id}"
+                                                aura:id="DependentCheckboxpart" value="{!u.writeoffRequest__c}"
+                                                checked="{!u.writeoffRequest__c}" onchange="{!c.checkedUp}" />
+
+                                            <aura:set attribute="else">
+                                                <lightning:input type="checkbox-button" label="" name="{!u.Id}"
+                                                    aura:id="DependentCheckboxpart"
+                                                    value="{!u.Return_Shipping_Request__c}"
+                                                    checked="{!u.Return_Shipping_Request__c}" onchange="{!c.checkedUp}" />
+                                            </aura:set>
+                                        </aura:if>
+                                    </aura:set>
+
+                                </aura:if>
+                            </td>
+                            <td>
+                                <ui:outputText value="{!u.SKU__r.Name }" />
+
+                            </td>
+                            <td>
+                                <ui:outputText value="{!u.Name}" />
+                            </td>
+                            <td>
+                                <ui:outputCurrency value="{!u.Evaluation_Price__c}" />
+                            </td>
+                            <aura:if isTrue="{!v.accessCheck}">
+                                <td>
+                                    <ui:inputCurrency aura:id="amount" class="field"
+                                        value="{!u.Special_Eval_Price__c}" />
+                                </td>
+                            </aura:if>
+
+                        </tr>
+                    </aura:if>
+                </aura:iteration>
+            </tbody>
+        </table>
+        <br />
+    </div>
+
+
+</aura:component>

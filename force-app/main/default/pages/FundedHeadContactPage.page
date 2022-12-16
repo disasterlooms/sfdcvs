@@ -1,0 +1,308 @@
+<apex:page standardController="Contact" recordSetVar="records" id="thePage" sidebar="true"> 
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.UtilJS}" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<script type="text/javascript">
+$( document ).ready(function() {
+    
+   $("[id$=hide]").hide();
+    $("[id$=actions]").hide();
+    $("[id$=publisherAttach09D12000000Mmo3]").hide();
+    $("[id$=publisherAttach09D120000006zAa]").hide();
+    $('select[id*="tsk6__09D120000006zAa"]').val('Mr.');
+    $('select[id*="con19__09D120000006zAVcountry"]').val('Mr.');
+    
+    $("[id$=panelBody09D12000000Mmo3]").hide();
+    $("[id$=panelBody09D12000000FTLp]").hide();
+    $("[id$=publisherAttach09D12000000FTLp]").hide();
+    refreshMyPanel();
+    refreshMyPanel2();
+    });
+</script>
+
+    <script type="text/javascript">
+    function checkValue4(){
+      $("[id$=actions]").show();
+      $("[id$=hide]").show();
+      $("[id$=open]").hide();
+    }
+    </script>
+    <script type="text/javascript">
+    function checkValue7(){
+      refreshMyPanel();
+    refreshMyPanel2();
+    }
+    </script>    <script type="text/javascript">
+    function checkValue5(){
+      $("[id$=actions]").hide();
+      $("[id$=hide]").hide();
+      $("[id$=open]").show();
+      refreshMyPanel2();
+    }
+    </script>
+ <script type="text/javascript">
+$( document ).ready(function() {
+    $("[id$=open]").hide();
+    });
+</script>
+<script type="text/javascript">
+$( document ).ready(function() {
+    $('select[id*="con19__09D120000006zAVcountry"]').val('Mr.'); 
+    });
+</script>
+
+    
+    
+<style type="text/css">
+.chatterShowHideFeed .linkText:before {
+  content: "Create Contacts or Accounts Click Here:    ";
+}
+.myButton {
+    -moz-box-shadow: 3px 4px 0px 0px #899599;
+    -webkit-box-shadow: 3px 4px 0px 0px #899599;
+    box-shadow: 3px 4px 0px 0px #899599;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+    background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+    background-color:#ededed;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:12px;
+    border:1px solid #d6bcd6;
+    display:inline-block;
+    cursor:pointer;
+    color:#3a8a9e;
+    font-family:Arial;
+    font-size:12px;
+    padding:7px 25px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #e1e2ed;
+}
+.myButton:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+    background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+    background-color:#bab1ba;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
+    
+    span.truncateLabel {
+    max-width: 500px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+}
+.feedcontainer {
+    padding-bottom: 5px;
+    line-height: 16px;
+    max-width: 560px;
+    overflow: visible;
+    display: none;
+}
+
+
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0 ;
+    font-weight: bolder ;
+    text-align: center ;
+    vertical-align: middle ;
+    touch-action: manipulation ;
+    cursor: pointer ;
+    background-image: none ;
+    border: 1px solid transparent;
+    white-space: nowrap ;
+    background-color: white ;
+    padding: 6px 12px ;
+    font-size: 12px !important;
+    line-height: 1.42857143 ;
+    border-radius: 4px ;
+    letter-spacing: .5px ;
+    -webkit-user-select: none ;
+    -moz-user-select: none ;
+    -ms-user-select: none ;
+    user-select: none ;
+    background: none !important;
+    
+}
+.btn-red-text {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text:hover, .btn-red-text:focus {
+    background: #990000 !important;
+    color: #ffffff !important;
+}
+.btn1 {
+    display: inline-block;
+    margin-bottom: 0 ;
+    font-weight: bolder ;
+    text-align: center ;
+    vertical-align: middle ;
+    touch-action: manipulation ;
+    cursor: pointer ;
+    background-image: none ;
+    border: 1px solid transparent;
+    white-space: nowrap ;
+    background-color: white ;
+    padding: 6px 12px ;
+    font-size: 10px !important;
+    line-height: 1.42857143 ;
+    border-radius: 2px ;
+    letter-spacing: .5px ;
+    -webkit-user-select: none ;
+    -moz-user-select: none ;
+    -ms-user-select: none ;
+    user-select: none ;
+    background: none !important;
+    
+}
+.btn-red-text1 {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 8px;
+    letter-spacing: .5px;
+    line-height: 25px;
+    margin-top: 0px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text1:hover, .btn-red-text:focus {
+    background: #990000 !important;
+    color: #ffffff !important;
+}
+    
+  </style>  
+    <br><a  class="btn btn-red-text" id="open" onclick="checkValue4();" >Create Contact or Account</a> 
+    
+   <a  class="btn btn-red-text" id="hide" onclick="checkValue5();" > Hide Create Contact or Account</a></br> 
+    <br><br><apex:outputPanel id="actions" >
+    <apex:pageBlock >
+    <br><br>  <chatter:feed entityId="{!$User.ContactId}" id="feedeval"/> </br> </br> 
+    </apex:pageBlock>
+   </apex:outputPanel> </br></br>
+    <apex:form id="theForm">
+    
+       <apex:selectList id="list3" value="{!filterid}" size="1">
+        <apex:actionFunction name="refreshMyPanel2" reRender="theForm" />
+        <apex:actionSupport event="onchange" rerender="theForm"/>
+           <apex:selectOptions value="{!listviewoptions}"/>
+       <br></br>
+       </apex:selectList>
+    
+       
+        <apex:actionSupport event="onclick"
+                                rerender="error,theForm,buttons"/>
+        <apex:panelGrid columns="8" id="buttons">
+                <apex:commandButton reRender="error,theForm,buttons" action="{!Save}" value="Save"/>
+                <apex:commandButton reRender="error,theForm,buttons" action="{!Cancel}" value="Cancel"/>
+                <apex:inputHidden />
+                <apex:commandButton reRender="error,theForm,buttons" disabled="{!!hasprevious}" action="{!First}" value="First"/>
+                <apex:commandButton reRender="error,theForm,buttons" disabled="{!!hasprevious}" action="{!Previous}" value="Previous"/>
+                <apex:commandButton reRender="error,theForm,buttons" disabled="{!!hasnext}" action="{!Next}" value="Next"/>
+                <apex:commandButton reRender="error,theForm,buttons" disabled="{!!hasnext}" action="{!Last}" value="Last"/>
+                <!-- Pagination -->
+<table style="width: 100%" id="table1"><tr id="row">
+
+    <td>
+        Page: <apex:outputText value=" {!PageNumber} of {! CEILING(ResultSize / PageSize) }"/>
+    </td>            
+
+    <td align="center">
+        <!-- Previous page -->
+        <!-- Next page -->
+    </td>
+    
+    <td align="right">
+        <!-- Records per page -->
+    </td>
+    
+    
+     
+     
+
+</tr></table>
+
+            </apex:panelGrid>
+            
+        <apex:pageBlock id="thePageBlock" mode="edit"> 
+            <apex:pageBlockTable value="{!records}" var="record" id="acct"> 
+               <apex:column width="100x">
+                    <apex:outputField value="{!record.Account.Name}" id="acctname" /> 
+                    <apex:facet name="header">Account Name</apex:facet>
+                </apex:column>
+               <apex:column width="100px">
+                    <apex:outputField value="{!record.Name}" id="AccountTypeDOM" /> 
+                    <apex:facet name="header">Contact Name</apex:facet>
+                </apex:column>
+                <apex:column width="100px">
+                    <apex:outputField value="{!record.Phone}" 
+                        id="phone" />  
+                        <apex:facet name="header">Phone</apex:facet>
+                </apex:column>
+                <apex:column width="60px">
+                    <apex:outputField value="{!record.Email}" 
+                        id="email" />  
+                        <apex:facet name="header">Email</apex:facet>
+                </apex:column>
+                <apex:column width="100px">
+                    <apex:outputField value="{!record.Accounts_Handled_by_Rep__c}" 
+                        id="handled" />  
+                        <apex:facet name="header">Accounts Handled</apex:facet>
+                </apex:column>
+                <apex:column width="25px" id="col">
+                    <apex:outputField value="{!record.Log_Call__c}" 
+                        id="call" />  
+                        <apex:facet name="header">Log Call</apex:facet>
+                </apex:column>
+                <apex:column >
+                    <apex:outputField value="{!record.Comments_Feedback__c}" 
+                        id="comments" />  
+                        <apex:facet name="header">Comments</apex:facet>
+                </apex:column>
+                <apex:column style="display:none;">
+                    <apex:outputField value="{!record.Id}" 
+                        id="id" />  
+                        <apex:facet name="header">Id</apex:facet>
+                </apex:column>
+                <apex:inlineEditSupport showOnEdit="saveButton,cancelButton" event="onclick" hideOnEdit="editButton" /> 
+            </apex:pageBlockTable> 
+            
+        </apex:pageBlock>
+     
+    </apex:form>
+</apex:page>

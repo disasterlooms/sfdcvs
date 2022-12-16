@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Task_Reminder__c</fullName>
+    <description>Simple picklist to fire Work Flow Rules to create automated task reminders</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Auto-creates a task when changed from one value to another</inlineHelpText>
+    <label>Task Reminder</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Send Eval Unit</fullName>
+                <default>false</default>
+                <label>Send Eval Unit</label>
+            </value>
+            <value>
+                <fullName>Schedule Meeting</fullName>
+                <default>false</default>
+                <label>Schedule Meeting</label>
+            </value>
+            <value>
+                <fullName>Submit SPA</fullName>
+                <default>false</default>
+                <label>Submit SPA</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

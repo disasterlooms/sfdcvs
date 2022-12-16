@@ -1,0 +1,3 @@
+<design:component>
+	<design:attribute name="resellersOnly" label="Resellers Only" description="Only Show Resellers"/>
+</design:component>

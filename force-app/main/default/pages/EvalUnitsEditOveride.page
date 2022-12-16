@@ -1,0 +1,77 @@
+<apex:page standardcontroller="Eval_Unit_Details__c">
+<apex:messages />
+    <apex:include pageName="EvalUnitsviewOveride" rendered="{!$User.Alias != 'chino' && $User.Alias != 'admin' &&  $User.Alias != 'credit' &&  $User.Alias != 'BidDesk' }" />
+    
+    
+    <apex:form rendered="{!$User.Alias = 'chino' ||  $User.Alias = 'admin' || $User.Alias = 'credit'  || $User.Alias = 'BidDesk'}" >
+        <apex:sectionheader title="{!$ObjectType.Eval_Unit_Details__c.label} Edit" subtitle="{!IF(ISNULL(Eval_Unit_Details__c.Name), 'New Eval Unit Details',Eval_Unit_Details__c.Name)}"/>
+        <apex:pageblock mode="edit" title="{!$ObjectType.Eval_Unit_Details__c.label} Edit">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!Save}"/>
+                <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+            </apex:pageblockbuttons>
+
+            <!-- **********   [Record Type : Standard ]   **********  -->
+            <apex:outputpanel rendered="{!OR(ISNULL(Eval_Unit_Details__c.RecordTypeId),CASESAFEID(Eval_Unit_Details__c.RecordTypeId)='01212000000zsqiAAA')}">
+                <apex:pageblocksection title="Information" showheader="true" columns="2">
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Eval_Request__c}" required="true"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.RMA__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Name}" required="true"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Status__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.SKU__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Write_off_Reason__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Sku_Text__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Status_Date_Change__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Shipping_Contact_Email__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Approval_Status__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Eval_Submitter_Email__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Write_Off_Date__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Evaluation_Price_Text__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Product_TypeText__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Product_Type_Text__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Past_Due__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Force_Agreeement__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Product_Return_Date__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Product_Purchase_Invoiced_Date__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Return_Tracking_Number__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Return_Tracking_Carrier__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Return_Shipping_Date__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Transfer_Requested__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Unit_Transfered_From_Request__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Product_Class__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Recycle_Fee__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Quote_Product__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Eval_Price_Low__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Tracking Information" showheader="true" columns="2">
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Courier_Info__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Tracking_Number__c}" required="false"/>
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Ship_Date__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Sales Only" showheader="true" columns="1">
+                    <apex:inputfield value="{!Eval_Unit_Details__c.Reason_for_write_off__c}" required="false"/>
+                </apex:pageblocksection>
+            </apex:outputpanel>
+        </apex:pageblock>
+    </apex:form>
+    <center><br/>
+        <i style="font-size:10px;color:#aaa;">Generated By LAYOUT PAGE <a href="http://www.clerisoft.com" target="_blank">[http://www.clerisoft.com]</a> (2008-2014) : Fri Nov 04 2016 12:06:37 GMT-0700 (Pacific Standard Time)</i>
+    </center><br/>
+</apex:page>

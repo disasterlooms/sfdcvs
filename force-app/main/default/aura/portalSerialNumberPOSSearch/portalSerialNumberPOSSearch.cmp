@@ -1,0 +1,161 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+                controller="getAssetSearch"
+                access="global" >
+    <aura:attribute name="serialNumber" type="Asset[]"/>
+    <aura:attribute name="recordsToDownload" type="Asset[]"/>
+    <aura:attribute name="claimSerials" type="Asset[]" access="public"/>
+    <aura:handler name="init" value="{!this}" action="{!c.getSales}"/>    
+    <aura:attribute name="addfields" type="String" default=",Product2.Name,product2.family,Account.Name,Account.owner.Name,Spiff_Request__r.Name "/>
+    <aura:attribute name="wherestmnt" type="String" default=" WHERE Reseller_Account__c = : resellerParent "/>
+    
+    <aura:attribute name="orderstmnt" type="String" default=" order by PurchaseDate desc "/>
+    <aura:attribute name="limitstatement" type="Integer" default="100"/>
+    <aura:attribute name="spiffSearch" type="Boolean" default="false" description="Spiff Page Search using the spiff"/>
+    <aura:attribute name="serialsFound" type="Boolean" default="false" description="displays of serial numbers were found"/> 
+    <aura:attribute name="recordId" type="String" description="Spiff Id for record"/>
+    <aura:attribute name="SaleMonth" type="Integer"/>
+    <aura:attribute name="SaleYear" type="Integer"/>
+    <aura:attribute name="reseller" type="String" default=""/>
+    <!--reseller not showing need to fix-->
+    <aura:attribute name="enduser" type="String"  default=""/>
+    <aura:attribute name="distributor" type="String" default=""/>
+    <aura:attribute name="product" type="String" default=""/>
+    <aura:attribute name="name" type="String" default=""/>
+    <aura:attribute name="spanumber" type="String" default=""/>
+     <aura:attribute name="order" type="String" default=""/>
+    <aura:attribute name="SaleDate" type="Date"/>
+    <aura:attribute name="resellerId" type="String"/>
+   
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    
+    <lightning:card>
+        <lightning:layout>            
+            <lightning:layoutItem size="6" padding="around-small">
+                    <lightning:input name="End User" label="End User" value="{!v.enduser}"/>
+                    <lightning:input name="Reseller" label="Reseller" value="{!v.reseller}"/>
+                    <lightning:input name="Distributor" label="Distributor" value="{!v.distributor}"/>
+                    <lightning:input name="SpaNumber" label="Spa Number" value="{!v.spanumber}"/>
+                    <lightning:input name="OrderNumber" label="Oracle Order #" value="{!v.order}"/>
+                   <!-- <lightning:input name="SpiffReseller" label="Use Reseller on Spiff" value="{!v.spiffSearch}"
+ type="checkbox" checked="{!v.spiffSearch}"/> -->
+
+            </lightning:layoutItem>            
+            <lightning:layoutItem size="6" padding="around-small">
+                    <lightning:input name="Product" label="Product" value="{!v.product}"/>
+                    <lightning:input name="Serial Number" label="Serial Number" value="{!v.name}"/>
+                    <lightning:input name="Month" label="Sale Month" value="{!v.SaleMonth}" type="integer"/>
+                    <lightning:input name="Year" label="Sale Year" value="{!v.SaleYear}" type="integer"/>
+                    <lightning:slider label="# of records. Default 100. Only go higher when the claim is more than 50." size="x-small" value="{!v.limitstatement}" max="1000"/>
+
+            </lightning:layoutItem>
+        </lightning:layout>
+        <aura:set attribute="actions">
+         
+        </aura:set>
+        <aura:set attribute="footer">
+         <lightning:button variant="brand" label="Search" title="Search" onclick="{!c.searchSerialNumbers}"/>
+        </aura:set>
+    </lightning:card>
+    
+     <br/> <br/> <br/>
+    <aura:if isTrue="{!not(v.serialsFound)}">
+    Sorry, no results found, please use partial names for end users and resellers to expand the search. You can also change the month to get more results. 
+    </aura:if>
+    <!--<c:downloadTableCSV records="{!v.serialNumber}"/>-->
+    
+    <br/> <br/><lightning:button variant="brand" label="Claim Selected Serials" title="Claim" onclick="{!c.addSelected}"/>
+        <div style="float:right">
+            <c:downloadTableCSV records="{!v.recordsToDownload}" 
+            buttonlabel="Download Serials as CSV"
+            buttontitle="Download Serials as CSV"
+            fileName="SerialsSpiffs"/>
+         </div>
+    <br/><br/>
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+                <th scope="col">
+                    
+                    <ui:inputCheckbox change="{!c.checkAllCheckboxes}" aura:id="checkbox"/>
+                </th>
+                <th scope="col">
+                    Serial Number
+                </th>
+                <th scope="col">
+                    Product
+                </th>
+                <th scope="col">
+                    Sale Date
+                </th>
+                <th scope="col">
+                    Distributor
+                </th>
+                <th scope="col">
+                    Reseller
+                </th>
+                <th scope="col">
+                    End User
+                </th>
+                <th scope="col">
+                    Spa Number
+                </th> 
+                <th scope="col">
+                    Oracle Order#
+                </th> 
+                <th scope="col">
+                    Spiff Claim Number
+                </th>                            
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.serialNumber}" var="p" indexVar="idx">
+                <tr>
+                    <td>
+                        <aura:if isTrue="{!not(p.isSpiffClaimed__c )}">
+                            <aura:if isTrue="{!not(p.spiffIneligible__c )}">
+                                <!--  <lightning:button variant="brand" label="Claim" title="Claim" onclick="{!c.addSelected}"/>-->
+                                <ui:inputCheckbox aura:id="DependentCheckbox" name="{!p.Id}"/>
+                            </aura:if>
+                        </aura:if>
+                        
+                    </td>
+                    <td>
+                        <lightning:input name="input1"  readonly="true" value="{!p.SerialNumber}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1" readonly="true"  value="{!p.Product__c}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1" readonly="true" value="{!p.PurchaseDate}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1"  readonly="true" value="{!p.Distributor__c}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1" readonly="true" value="{!p.Reseller__c}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1" readonly="true" value="{!p.End_User__c}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1"  readonly="true" value="{!p.SpaId__c}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1"  readonly="true" value="{!p.Order__c}"/>
+                    </td>
+                    <td> 
+                        <aura:if isTrue="{!p.spiffIneligible__c }">
+                            This Sale is not Spiff Eligbile Due to SPA
+                            <aura:set attribute="else">
+                                <lightning:input name="input1"  readonly="true" value="{!p.Spiff_Request__r.Name}"/>
+                            </aura:set>   
+                        </aura:if>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+    
+</aura:component>

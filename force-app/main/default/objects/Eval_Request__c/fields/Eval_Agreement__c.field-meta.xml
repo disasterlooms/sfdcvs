@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Eval_Agreement__c</fullName>
+    <description>##Conga created btn:00b12000000YPdL</description>
+    <externalId>false</externalId>
+    <formula>&quot;&amp;id=&quot; + Id + 
+&quot;&amp;emailtemplateid=00X12000001mrOb&quot; + 
+&quot;&amp;qmode=SendEmail&quot; + 
+&quot;&amp;EmailReplyToID=&quot;+OwnerId +
+&quot;&amp;templateid=&quot; + Template_ID__c + 
+&quot;&amp;defaultpdf=1&quot; + 
+&quot;&amp;emailtoid=&quot; + Billing_Contact_Name__c +
+&quot;&amp;emailadditionalto=&quot; + Eval_Submitter_Email__c</formula>
+    <label>Eval Agreement</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

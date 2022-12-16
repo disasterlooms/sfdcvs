@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GFK_Channel_Layer1__c</fullName>
+    <externalId>false</externalId>
+    <label>GFK Channel Layer 1</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Reseller Channels (IT-Mailorder, VAR, Dealer)</fullName>
+                <default>false</default>
+                <label>Reseller Channels (IT-Mailorder, VAR, Dealer)</label>
+            </value>
+            <value>
+                <fullName>Retail Channels</fullName>
+                <default>false</default>
+                <label>Retail Channels</label>
+            </value>
+            <value>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+                <label>Miscellaneous</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

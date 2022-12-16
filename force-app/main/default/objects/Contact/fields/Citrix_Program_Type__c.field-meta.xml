@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Citrix_Program_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Citrix Program Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Citrix Solution Advisor</fullName>
+                <default>false</default>
+                <label>Citrix Solution Advisor</label>
+            </value>
+            <value>
+                <fullName>Citrix System Integrator</fullName>
+                <default>false</default>
+                <label>Citrix System Integrator</label>
+            </value>
+            <value>
+                <fullName>Not Designated</fullName>
+                <default>false</default>
+                <label>Not Designated</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

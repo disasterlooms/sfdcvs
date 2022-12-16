@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CanadaFrieghtTerms__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;Canada Distribution Pre-paid Freight Program: (Subject to ViewSonics then-current Pre-paid Freight Program Terms and Conditions): &quot;&amp;
+&quot;Drop shipments for Canadian Distributors shall qualify for free freight, provided that a minimum of USD$5K shipment revenue per location per shipment is met. Shipments must be delivered within Canada metropolitan areas only. ViewSonic shall determine the best shipping method for the designated locations.&quot;&amp;
+
+
+&quot;Effective May 15, 2019, any ViewSonic® Commercial Displays and ViewBoard® Displays (Qualifying Products) planned to be stocked at Canadian distribution will qualify under the Pre-paid Freight Program when the PO value is USD$25k or higher. Any orders under USD$25k shall fall under direct drop ship terms at USD$5K minimum order, and the Qualifying Products will ship direct to customer out of ViewSonic’s Chicago warehouse. Inventory shall be kept under five (5) units per sku and no stock rotations on the Qualifying Products will be allowed under the current terms.  No Concealed damage/shortage claims may be filed against ViewSonic after 72 hours of receipt of shipment at the distributor’s warehouse without notation of damages nor when the shipment is transported again by Distributor’s carrier to their customer.&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>CanadaFrieghtTerms</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

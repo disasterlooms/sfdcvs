@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_User_Account__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Field used with a trigger to give a related list of spas (quotes) on the account page</description>
+    <externalId>false</externalId>
+    <label>End User</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Quotes</relationshipLabel>
+    <relationshipName>Quotes</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Lookup</type>
+</CustomField>

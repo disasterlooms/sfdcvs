@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opps_Purchasing__c</fullName>
+    <externalId>false</externalId>
+    <label>Opps Purchasing</label>
+    <summaryFilterItems>
+        <field>Opportunity.StageName</field>
+        <operation>equals</operation>
+        <value>Purchasing, Development, Negotiation, Pending PO, Closed Won, Purchasing, Distributor SPA Request, Development, Negotiation, Pending PO, Purchasing, Distributor SPA Request</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

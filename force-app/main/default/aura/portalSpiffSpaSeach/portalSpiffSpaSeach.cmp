@@ -1,0 +1,91 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens" access="global" 
+                controller="portalSpaSpiffSearch">
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="acctFound" type="boolean"/>
+    <aura:attribute name="spa" type="String" default=""/>
+    <aura:attribute name="userAcctId" type="String"/>
+    
+    <aura:attribute name="spaId" type="string" />
+    <aura:attribute name="spas" type="Quote[]"  />
+    <aura:attribute name="selected" type="String[]"/>
+    <aura:attribute name="DependentCheckboxpart" type="string" />
+    
+     <aura:attribute name="accountName" type="String"/>
+     <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="" variant="brand" size="large"/>
+    </div>  
+    <aura:if isTrue="{!v.acctFound}">
+        
+        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+           
+            <!-- asking for the spa instead of the account because the spa gives us more information that makes it easier to process spiff claim and find serials -->
+           
+            <ui:inputText aura:id="search" label="" placeholder="Enter Spa or partial here to reduce results and press enter" value="{!v.spa}"
+                          keyup="{!c.searchk}" updateOn="keyup">
+            </ui:inputText>            
+            <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                <lightning:buttonIcon iconName="utility:search" size="medium" onfocus="{!c.search}" variant="bare"/>
+            </span>
+        </div>
+       <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-1">
+                            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                <thead>
+                                    <tr class="slds-text-title_caps">                                   
+                                        <!--
+                                <th scope="col">
+                                    <ui:inputCheckbox change="{!c.checkAllCheckboxes}" aura:id="checkboxpart"/>
+                                </th>
+                     -->
+                                        <th scope="col" style="width: 3.75rem;">
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Subject">Spa Number</div>
+                                        </th>
+                                        
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Name">Account Name</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <aura:iteration items="{!v.spas}" var="d">
+                                        <tr>
+                                            <td class="slds-text-align_right" role="gridcell" style="width: 3.75rem;" tabindex="0">
+                                                <div class="slds-checkbox_add-button">
+                                                    <!--<ui:inputCheckbox aura:id="DependentCheckboxpart" name="{!d.Id}" class="slds-assistive-text" labelclass="slds-checkbox_faux" label=""/>-->
+                                                    <lightning:input type="checkbox-button" onchange="{!c.select}"
+                                                                     label="" name="{!d.Id}" aura:id="DependentCheckboxpart" value="false" checked="false"/>
+                                                    
+                                                    <!--<input  type="checkbox" class="slds-assistive-text uiInput uiInputCheckbox uiInput-*default uiInput-*checkbox" id="{!d.Id}" tabindex="-1" value="on" onclick="{!c.account}"/>
+                                                    <label class="slds-checkbox_faux" for="{!d.Id}">
+                                                    </label>
+                                                    -->
+                                                </div>
+                                            </td>
+                                            
+                                            <!--<td>
+                                            <input class="slds-assistive-text" id="add-checkbox-9" tabindex="-1" type="checkbox" value="on">
+                                                <label class="slds-checkbox_faux" for="add-checkbox-9">
+                                                    <span class="slds-assistive-text">Select item 1</span></label>
+                                            </input>                                        
+                                            <ui:inputCheckbox aura:id="DependentCheckboxpart" name="{!d.Id}"/>
+                                        </td>
+                                        -->
+                                            <td role="gridcell">
+                                                <div class="slds-truncate" title="ANTLY">{!d.Name}</div>
+                                            </td>
+                                            <td role="gridcell">
+                                                <div class="slds-truncate" title="ANTLY">{!d.Account.Name}</div>
+                                            </td>
+                                        </tr>
+                                    </aura:iteration>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+        
+    </aura:if>
+    
+</aura:component>

@@ -1,0 +1,102 @@
+<apex:page standardcontroller="Opportunity" action="{!if($User.External_Partner__c = true , null, urlFor($Action.Opportunity.View, Opportunity.id,null, true))}" >
+
+<style>
+.btn {
+    display: inline-block;
+    margin-bottom: 0 ;
+    font-weight: bolder ;
+    text-align: center ;
+    vertical-align: middle ;
+    touch-action: manipulation ;
+    cursor: pointer ;
+    background-image: none ;
+    border: 1px solid transparent;
+    white-space: nowrap ;
+    background-color: white ;
+    padding: 6px 12px ;
+    font-size: 12px !important;
+    line-height: 1.42857143 ;
+    border-radius: 4px ;
+    letter-spacing: .5px ;
+    -webkit-user-select: none ;
+    -moz-user-select: none ;
+    -ms-user-select: none ;
+    user-select: none ;
+    background: none !important;
+    
+}
+.btn-red-text {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text:hover, .btn-red-text:focus {
+    background: #990000 !important;
+    color: #ffffff !important;
+}
+    
+    .btn2 {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    letter-spacing: .5px;
+    font-size: 10px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn-red-text2 {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 10px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text2:hover, .btn-red-text:focus {
+    background: #990000;
+    color: #ffffff !important;
+}
+</style>
+
+<apex:detail subject="{!Opportunity.Id}"  relatedList="true" title="false" rendered="{!Opportunity.SPA_Products__c > 0}" inlineEdit="true"/> 
+<apex:outputpanel rendered="{!Opportunity.SPA_Products__c = 0}" >
+
+
+<br><a style="font-size:20px"><b>Step: 2</b> Please Add Products. Keep in mind 'Sales Price' is the price you are requesting</a></br>
+<br> <br><a  class="btn btn-red-text" onclick="window.location.href = '/p/opp/SelectSearch?addTo={!Opportunity.Id}&retURL=%{!Opportunity.Id}'" id="prod">Add Products</a></br></br>
+   
+</apex:outputpanel>
+</apex:page>

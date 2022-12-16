@@ -1,0 +1,4 @@
+<apex:page >
+<br><br><b><center>Your tracking information/request has been sent to the eval team. </center></b></br></br>
+<center>Once the product with matching serial number has been received, they will be removed from your report. You will receive an email with confirmation. <br>If some products are not returned, you will also be notified by email and those products will not be removed from your report.</br></center>
+</apex:page>

@@ -1,0 +1,65 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    
+    <lightning:card >
+        <aura:set attribute="title">
+            <div class="c-container">
+                <lightning:layout>
+                    <lightning:layoutItem  >
+                        <div class="custom-box">
+                            <b>Welcome to the  ViewSonic MyViewboard Portals</b>
+                        </div>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem >
+                        <div class="custom-box">
+                            <b>&nbsp;{" "+!v.account.Name}</b>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </div>
+            
+        </aura:set>
+        <aura:set attribute="actions">
+            <!-- <lightning:button variant="brand" label="Add New Contact" title="Add New Contact" onclick="{!c.contactCreate }" /> -->
+            
+        </aura:set>
+        <!--<aura:if isTrue="{!v.account.LRP_ViewBoard_Exists__c}">-->
+        <lightning:tabset>
+            <lightning:tab label="Account Information">
+                <c:EducationRegHome acct="{!v.account}"/>
+            </lightning:tab>
+            <lightning:tab label="Users and Contacts" title="Training">
+                
+                <c:EducationPubContacts accid="{!v.account.Id}"/>
+                
+            </lightning:tab>
+            <lightning:tab label="New Training Request">
+                <c:siteEducationProffesionalDevelopment acct="{!v.account}"/>
+            </lightning:tab>
+            <lightning:tab label="Training Requested Information">
+                
+                <c:siteEducationTrainingRequested  acct="{!v.account.Id}"/>
+            </lightning:tab>
+        </lightning:tabset>  
+        <!--
+                <lightning:tab >
+                    <aura:set attribute="label">
+                        Product and Shipping Details
+                        
+                    </aura:set>
+                </lightning:tab>
+                <lightning:tab label="">
+                    <aura:set attribute="label">
+                        Help and FAQ
+                    </aura:set>
+                </lightning:tab>
+ 
+           
+
+            <aura:set attribute="else">
+                
+                <c:educationPortalConCreate acct="{!v.account.Id}" ready="{!v.account.LRP_ViewBoard_Exists__c}"/>
+            </aura:set>
+        </aura:if>
+        -->
+    </lightning:card>
+</aura:component>

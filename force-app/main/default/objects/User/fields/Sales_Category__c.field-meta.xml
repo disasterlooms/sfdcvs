@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Category__c</fullName>
+    <externalId>false</externalId>
+    <label>Sales Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>RBM</fullName>
+                <default>false</default>
+                <label>RBM</label>
+            </value>
+            <value>
+                <fullName>TM</fullName>
+                <default>false</default>
+                <label>TM</label>
+            </value>
+            <value>
+                <fullName>Managment</fullName>
+                <default>false</default>
+                <label>Managment</label>
+            </value>
+            <value>
+                <fullName>Distributor Partner</fullName>
+                <default>false</default>
+                <label>Distributor Partner</label>
+            </value>
+            <value>
+                <fullName>Manager/Director</fullName>
+                <default>false</default>
+                <label>Manager/Director</label>
+            </value>
+            <value>
+                <fullName>AV Solutions</fullName>
+                <default>false</default>
+                <label>AV Solutions</label>
+            </value>
+            <value>
+                <fullName>National</fullName>
+                <default>false</default>
+                <label>National</label>
+            </value>
+            <value>
+                <fullName>Disti</fullName>
+                <default>false</default>
+                <label>Disti</label>
+            </value>
+            <value>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+                <label>Consumer</label>
+            </value>
+            <value>
+                <fullName>Canada</fullName>
+                <default>false</default>
+                <label>Canada</label>
+            </value>
+            <value>
+                <fullName>Latin America</fullName>
+                <default>false</default>
+                <label>Latin America</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

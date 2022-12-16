@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Source_Name__c</fullName>
+    <description>Name of the event which the lead was derived from.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Name of the event which the lead was derived from.</inlineHelpText>
+    <label>Lead Source Name</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Canada Top 100</fullName>
+                <default>false</default>
+                <label>Canada Top 100</label>
+            </value>
+            <value>
+                <fullName>DSE - 2012</fullName>
+                <default>false</default>
+                <label>DSE - 2012</label>
+            </value>
+            <value>
+                <fullName>FETC</fullName>
+                <default>false</default>
+                <label>FETC</label>
+            </value>
+            <value>
+                <fullName>Finch Club</fullName>
+                <default>false</default>
+                <label>Finch Club</label>
+            </value>
+            <value>
+                <fullName>InfoComm 2012</fullName>
+                <default>false</default>
+                <label>InfoComm 2012</label>
+            </value>
+            <value>
+                <fullName>NRA 2012</fullName>
+                <default>false</default>
+                <label>NRA 2012</label>
+            </value>
+            <value>
+                <fullName>TAA Campaign</fullName>
+                <default>false</default>
+                <label>TAA Campaign</label>
+            </value>
+            <value>
+                <fullName>ViewPad 10pi - IDG Email A - Form</fullName>
+                <default>false</default>
+                <label>ViewPad 10pi - IDG Email A - Form</label>
+            </value>
+            <value>
+                <fullName>Viewpad 10pi - IDG Email B - Button</fullName>
+                <default>false</default>
+                <label>Viewpad 10pi - IDG Email B - Button</label>
+            </value>
+            <value>
+                <fullName>ViewPad 10pi - VS Email A - Form</fullName>
+                <default>false</default>
+                <label>ViewPad 10pi - VS Email A - Form</label>
+            </value>
+            <value>
+                <fullName>ViewPad 10pi - VS Email B - Button</fullName>
+                <default>false</default>
+                <label>ViewPad 10pi - VS Email B - Button</label>
+            </value>
+            <value>
+                <fullName>FETC 2016</fullName>
+                <default>false</default>
+                <label>FETC 2016</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

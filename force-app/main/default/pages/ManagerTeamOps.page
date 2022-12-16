@@ -1,0 +1,193 @@
+<apex:page controller="ManagerOppSearch" id="pos">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"/>
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<apex:includeScript value="{!$Resource.accountingjs}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+<apex:remoteObjects >
+<apex:remoteObjectModel name="User" fields="Id,ManagerId,Name,IsActive">
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+ <script>function setFocusOnLoad() {}</script>   
+<script>
+
+var usr = new SObjectModel.User();
+usr.retrieve({
+  where: { 
+    ManagerId: { eq: '{!$User.Id}' }
+  }
+ 
+}, function(err, records) {
+  if (err){
+    alert(err.message);
+
+  }else{
+    records.forEach(function(record) {
+        console.log(record.get("IsActive"))
+        if(record.get("IsActive") == true && record.get("Id") != '005A0000000T6JGIA0'){
+        var user = record.get("Id");
+        var name = record.get("Name");
+        //console.log(user);
+
+
+var component =  document.createElement("li");
+component.setAttribute('class', 'slds-tabs--default__item');
+component.innerHTML =
+    '                                                           \
+        \
+                        <a class="slds-tabs--default__link" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">'+name+'</a> \
+                    \
+                    '
+                     document.getElementById('tabs').appendChild(component);
+                     component.onclick = function() { document.getElementById('pos:posform:owner').value = name;
+                                                     var $j = jQuery.noConflict();
+                                                     $j('[id$=loadingmessage]').toggle();
+                                                     searchuser(name);
+                                                     //clearmssg();
+                                                      };
+                     }
+
+        });
+        
+  }
+
+   
+});
+function dates(){
+    if(document.getElementById('pos:posform:createfrom').value != ''){
+        var create = new Date(document.getElementById('pos:posform:createfrom').value);
+        document.getElementById('pos:posform:createfrom').value = (create.getMonth() + 1) + '/' + create.getDate() + '/' +  create.getFullYear();
+        }
+    if(document.getElementById('pos:posform:closeto').value != ''){
+     var close = new Date(document.getElementById('pos:posform:closeto').value);
+        document.getElementById('pos:posform:closeto').value = (close.getMonth() + 1) + '/' + close.getDate() + '/' +  close.getFullYear();
+        }
+    }
+</script>
+       
+    <apex:sectionHeader title="My Teams Open Opportunities" />
+        <div class="viewsonic">
+            <div class="slds-tabs--default" >
+              <ul class="slds-tabs--default__nav" role="tablist" id="tabs">        
+                
+              </ul>
+              
+              
+            </div>
+        </div>
+    <apex:sectionHeader subtitle="Opportunity Search" />
+  <apex:form id="posform" >
+      <center>
+          <div id='loadingmessage'  class="modal" style="display:none;">
+          </div>
+      </center>
+      <div class="viewsonic">
+           
+      
+      <apex:pageMessages escape="false"/>
+        <apex:outputLabel for="owner" style="float:left;margin-left:150px;font-weight:bold;">Owner:&nbsp; &nbsp;
+          <apex:inputText id="owner" value="{!oppowner}"/></apex:outputLabel>
+          <apex:outputLabel for="createfrom" style="float:right;margin-right:150px;font-weight:bold;">From Create Date:&nbsp; &nbsp;
+          <apex:inputText id="createfrom" value="{!oppcreatedatefrom}" onfocus="DatePicker.pickDate(false, this, false);"/></apex:outputLabel>
+          <apex:outputLabel for="closeto" style="float:right;margin-right:150px;font-weight:bold;">To Close Date:&nbsp; &nbsp; 
+          <apex:inputText id="closeto" value="{!oppclosedateto}" onfocus="DatePicker.pickDate(false, this, false);"/></apex:outputLabel>
+       <apex:pageBlock mode="edit" id="block">
+        <apex:pageBlockButtons location="both">
+            <!--  <apex:commandButton value="Refresh List" action="{!getopps}" rerender="block" status="Search"/> --> 
+           
+           <apex:commandButton value="Search" action="{!getopps}" status="status"
+                               onclick="dates();var $j = jQuery.noConflict();$j('[id$=loadingmessage]').toggle();clearmssg();"/>
+           <apex:commandButton action="{!updateopps}" value="Save Records" rendered="{!NOT(ISNULL(opps))}" onclick="var $j = jQuery.noConflict();$j('[id$=loadingmessage]').toggle();"/>
+            <apex:actionFunction name="searchuser" action="{!getopps}" rerender="block" status="status" oncomplete="var $j = jQuery.noConflict();$j('[id$=loadingmessage]').toggle();clearmssg();">
+                <apex:param id="anode" name="oppowner" value="" />
+            </apex:actionFunction>
+            <input type="button" value="Clear Filters & Messages" class="btn" onclick="var $j = jQuery.noConflict();$j('[id$=createfrom]').val('');$j('[id$=closeto]').val('');clearmssg();"/>
+            <apex:actionfunction action="{!clearmessages}" name="clearmssg"/>
+        </apex:pageBlockButtons>
+        
+        <apex:pageBlockSection id="sect2" >
+         
+        </apex:pageBlockSection><br/>
+
+      <apex:actionStatus id="status" startText="Searching... please wait..."/>
+    <apex:pageBlockSection title="Results" id="resultsBlock" columns="1" showHeader="false">
+        <apex:pageBlockTable value="{!opps}" var="item" rendered="{!NOT(ISNULL(opps))}">
+        
+          <apex:column headerValue="Name" width="100">
+              <apex:outputLink value="/{!item.ID}">{!item.Name}&nbsp;{!item.Spa_Id__c}</apex:outputLink>
+          </apex:column>
+          <apex:column headerValue="Resellers" width="200">
+            <apex:OutputField value="{!item.Resellers_and_Type__c}"/>
+          </apex:column>  
+          <apex:column headerValue="Amount" width="200">
+            <apex:OutputField value="{!item.Amount}"/>
+          </apex:column>
+          <apex:column headerValue="Close Date" width="200">
+            <apex:OutputField value="{!item.CloseDate}"/>
+          </apex:column>
+          <apex:column headerValue="Spa Claims" width="200">
+            
+          </apex:column>
+          <apex:column headerValue="Opportunity Notes" width="200">
+              <apex:InputField value="{!item.Opportunity_Notes__c}" style="width:200px;"/>
+          </apex:column>
+          <apex:column headerValue="Manager Notes" width="200">
+              <apex:InputField value="{!item.Manager_Note__c}"/>
+          </apex:column>
+        </apex:pageBlockTable>
+        <!-- Hidden page block. This is a date field to have salesforce load the javascript for the date picker. This is needed
+        as to avoid having to develop own date picker. Just no developement bandwith for this. Any dev after me is more than welcome to create
+        add to static and replace where we use this workaround -->
+    
+     <apex:pageBlockTable value="{!datepicker}" var="item2" style="display:none;">
+            <apex:column headerValue="Date" width="200">
+            <apex:inputfield value="{!item2.CloseDate}"/>
+          </apex:column>
+     </apex:pageBlockTable>
+       
+    
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </div>
+  </apex:form>
+    <script>
+    //$('[id$=createfrom]').val('{!Today()-365}');
+    //$('[id$=closeto]').val('{!Today()+730}');
+    //$('[id$=expir]').val('');
+   </script>
+   <style>
+    .homeTab .listViewport .subNav .linkBar, .homeTab .mComponent .cHeader, .homeTab .genericTable, .homeTab .bSubBlock, .homeTab .bPageBlock {
+    border-top: 3px solid #900;
+    .homeTab .brdPalette {
+    border-top-color: transparent;
+   body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
+    background-color: transparent;
+}
+</style>
+    <style>
+    .modal {    
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+</style>
+</apex:page>

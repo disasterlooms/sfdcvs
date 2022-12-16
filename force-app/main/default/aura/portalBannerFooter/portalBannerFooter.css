@@ -1,0 +1,53 @@
+.THIS {
+}
+.THIS .pBanner {
+    background-color: #900;
+}
+
+.THIS .pbtGroup {
+    
+    padding-bottom: 38px;
+    padding-top: 38px;
+    text-align: center;
+}
+
+.cPortalBannerFooter .pBanner {
+    background-color: #900;
+}
+
+    /*margin-left: 30px;
+     margin-right: 30px; 
+
+    width: 10%;    */
+
+.cPortalBannerFooter .pbtButton {
+    background-color: #fffffe;
+    border-radius: 0;
+    color: black;
+    font-weight: 500;
+    font-family: 'Open Sans';
+    width: 60%;
+    max-width: 150px;
+}
+
+.THIS .pbtButtonlft {
+    float:right;
+    background-color: #fffffe;
+    border-radius: 0;
+    color: black;
+    font-weight: 500;
+    font-family: 'Open Sans';
+    width: 60%;
+    max-width: 150px;
+}
+
+.THIS .pbtButtonrgt {
+    float:left;
+    background-color: #fffffe;
+    border-radius: 0;
+    color: black;
+    font-weight: 500;
+    font-family: 'Open Sans';
+    width: 60%;
+    max-width: 150px;
+}

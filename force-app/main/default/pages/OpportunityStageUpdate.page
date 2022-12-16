@@ -1,0 +1,12 @@
+<apex:page standardController="Opportunity" tabStyle="opportunity" recordSetVar="opp">
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:repeat value="{!opp}" var="row" rendered="false">
+     {!row.Id}
+     {!row.StageName}         
+    </apex:repeat>
+    <!-- Runs your Flow -->   
+    <flow:interview name="OpportunityStage_Update"
+          finishLocation="{!'https://na18.salesforce.com/006?fcf=00BA0000005XRCN'}">
+        <apex:param name="ColOpps" value="{!Selected}"/>
+    </flow:interview>
+</apex:page>

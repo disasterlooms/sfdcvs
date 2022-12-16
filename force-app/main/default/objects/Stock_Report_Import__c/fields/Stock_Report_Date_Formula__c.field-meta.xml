@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stock_Report_Date_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>/*Old Version
+CASE(  Account__r.Name, 
+					&apos;ALSO Deutschland GmbH&apos;, Date__c, 
+					&apos;Ingram Micro Distribution GmbH&apos;, Datenstand_Date__c, 	
+					Date__c)
+*/
+IF(ISPICKVAL(VS_Region__c, &apos;VSE&apos;),
+Date__c
+		,null)</formula>
+    <inlineHelpText>Locked. Please use the &quot;Date&quot; field to edit the record date.</inlineHelpText>
+    <label>Stock Report Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Purchases__c</fullName>
+    <externalId>false</externalId>
+    <label>Sales / Purchases</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Under $100,000</fullName>
+                <default>false</default>
+                <label>Under $100,000</label>
+            </value>
+            <value>
+                <fullName>$100,000 to $499,999</fullName>
+                <default>false</default>
+                <label>$100,000 to $499,999</label>
+            </value>
+            <value>
+                <fullName>$500,000 to $1,499,999</fullName>
+                <default>false</default>
+                <label>$500,000 to $1,499,999</label>
+            </value>
+            <value>
+                <fullName>1,500,000 to 4,999,999</fullName>
+                <default>false</default>
+                <label>1,500,000 to 4,999,999</label>
+            </value>
+            <value>
+                <fullName>5,000,000 to 24,999,999</fullName>
+                <default>false</default>
+                <label>5,000,000 to 24,999,999</label>
+            </value>
+            <value>
+                <fullName>Over $25,000,000</fullName>
+                <default>false</default>
+                <label>Over $25,000,000</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

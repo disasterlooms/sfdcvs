@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Citrix_Partner_Level__c</fullName>
+    <externalId>false</externalId>
+    <label>Citrix Partner Level</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Citrix Platinum</fullName>
+                <default>false</default>
+                <label>Citrix Platinum</label>
+            </value>
+            <value>
+                <fullName>Citrix Gold</fullName>
+                <default>false</default>
+                <label>Citrix Gold</label>
+            </value>
+            <value>
+                <fullName>Citrix Silver</fullName>
+                <default>false</default>
+                <label>Citrix Silver</label>
+            </value>
+            <value>
+                <fullName>Citrix Authorized</fullName>
+                <default>false</default>
+                <label>Citrix Authorized</label>
+            </value>
+            <value>
+                <fullName>Citrix</fullName>
+                <default>false</default>
+                <label>Citrix</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>chart_5grouping__c</fullName>
+    <defaultValue>&quot;ProductMaster.INVENTORY_PRODUCT_TYPE&quot;</defaultValue>
+    <externalId>false</externalId>
+    <label>chart_5grouping</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <constants>
+        <name>salesopid</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>00512000006Odf6</stringValue>
+        </value>
+    </constants>
+    <interviewLabel>Add Sales Opps to Opportunity Team {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Add Sales Opps to Opportunity Team</label>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Add_Sales_Admin_to_Opp_Team</name>
+        <label>Add Sales Admin to Opp Team</label>
+        <locationX>198</locationX>
+        <locationY>69</locationY>
+        <inputAssignments>
+            <field>OpportunityAccessLevel</field>
+            <value>
+                <stringValue>Edit</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>oppid</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TeamMemberRole</field>
+            <value>
+                <stringValue>Administrative Support</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>UserId</field>
+            <value>
+                <elementReference>salesopid</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityTeamMember</object>
+    </recordCreates>
+    <startElementReference>Add_Sales_Admin_to_Opp_Team</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>oppid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

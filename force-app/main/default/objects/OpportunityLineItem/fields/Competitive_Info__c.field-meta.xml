@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Competitive_Info__c</fullName>
+    <externalId>false</externalId>
+    <formula>text(Competitor_Name_del__c)  &amp;&quot; &quot; &amp; Competitor_SKU__c &amp;&quot; &quot; &amp; text(Competitor_Price_del__c)</formula>
+    <label>Competitive Info</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

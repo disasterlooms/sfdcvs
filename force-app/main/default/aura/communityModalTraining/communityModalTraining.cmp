@@ -1,0 +1,32 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="Tutorial">
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}"/>
+    <aura:attribute name="settings" type="LightningTutorial__c"/>
+    <aura:attribute name="classHide" type="String" default=""/>
+    <aura:attribute name="videoURL" type="String"/>      
+    
+    
+    <div role="dialog" class="slds-modal slds-backdrop slds-modal_large slds-fade-in-hide" aura:id="modaldialog" style="max-width:65%">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h2 class="slds-text-heading--medium">Learn How to Search Pending Orders</h2>
+            </div> 
+            <div class="slds-modal__content">
+                        <br/>
+                        <!--<iframe src="{!v.videoURL}" frameborder="0" allow="autoplay; encrypted-media" style="width:90%;margin-left:5%;"></iframe>  slds-fade-in-hide  slds-fade-in-open -->
+                <center><iframe width="560" height="315" src="{!v.videoURL}" frameborder="0" 
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen="true"></iframe></center>
+                        <br/>
+                        <br/>
+            </div>
+            
+            <div class="slds-modal__footer">
+                <div class="slds-x-small-buttons--horizontal">
+                    <button class="slds-button slds-button_brand " onclick="{!c.later}" value="false">Show me Later</button>
+                    <button class="slds-button slds-button_brand " onclick="{!c.dismiss}" value="true">I have Order Searching Down, Dismiss Forever</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</aura:component>

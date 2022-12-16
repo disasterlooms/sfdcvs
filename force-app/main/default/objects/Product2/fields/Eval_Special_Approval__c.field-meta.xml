@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Eval_Special_Approval__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Determines if evaluation needs two layer special aprovals</description>
+    <externalId>false</externalId>
+    <label>Eval Special Approval</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

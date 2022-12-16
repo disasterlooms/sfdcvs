@@ -1,0 +1,13 @@
+<design:component>
+   <design:attribute name="iName" />
+   <design:attribute name="onClicktype" description="get the action"/>
+   <design:attribute name="onClick" description="get the action"/>
+   <design:attribute name="btnLabel" description="Button Label"/>
+    <design:attribute name="reseller" description="if Reseller is Audience then true"/>
+     <design:attribute name="showIcon" description="set false if no icon to show. Shows just button"/>
+    <design:attribute name="center" description="By default it is centered. Make blank if removing center style of button"/>
+    
+    
+   
+    
+</design:component>

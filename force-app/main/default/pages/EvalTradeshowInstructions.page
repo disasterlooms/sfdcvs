@@ -1,0 +1,17 @@
+<apex:page sidebar="false" showHeader="false" standardStylesheets="false">
+
+
+<apex:form >
+<br>Instructions:</br>
+<b>Since Product will be shipped to trade show, will need following info</b>
+<div style="margin-left:50px">
+<br><table cellpadding="3" >
+                    <tr><td>1. Name and Address of Trade Show.</td></tr>
+                    <tr><td>2. If unit is shipped to the venue's shipping and receiving, a phone number is recommended.</td> </tr>
+                    <tr><td>3. Expected return date is required.</td>  </tr>
+                     </table></br>
+</div>
+</apex:form>
+
+                
+</apex:page>

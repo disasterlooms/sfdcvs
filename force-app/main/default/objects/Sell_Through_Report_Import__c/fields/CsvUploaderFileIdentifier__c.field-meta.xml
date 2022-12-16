@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CsvUploaderFileIdentifier__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>An unique file identifier for records loaded from CSV Uploader.
+            The identifier is composed of CSV File Name + Today + Timestamp.</inlineHelpText>
+    <label>CSV Uploader File Identifier</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

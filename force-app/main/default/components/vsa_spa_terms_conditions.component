@@ -1,0 +1,26 @@
+<apex:component access="global">
+
+
+  
+<b>Freight:</b> (Subject to ViewSonic’s then-current Pre-paid Freight Program Terms and Conditions; See monthly price list for more complete details):
+Minimum $10K Free Freight Program. $10K per shipment location per purchase order based on standard price. Multiple PO/Location process handling Fee of $45 applis to orders that are NOT on a single order to a single address within the 48 contiguous U.S. states and Canada metropolitan areas only.
+<BR/><BR/> <b>ONE OF THE FOLLOWING 4 FREIGHT OPTIONS MUST BE SELECTED FOR DROPSHIP ORDERS (CHARGES APPLY ON A PER DELIVERY, PER TRUCK BASIS): </b>
+<BR/> <BR/> <b>Freight Option 1 </b>– <b><span style="color:rgb(17, 161, 58);">(Shipping to Warehouse Dock)</span></b> Dock to Dock only. Base Shipping Charge. Dock to Dock Freight. Must have a full access working dock and equipment to unload.  Due to carrier's liability issue, the driver (1 person) will not assist with unloading. Customer must self-unload and have equipment to move pallets off the truck. The dock must be able to accept a 53’ trailer and back up right to the dock to unload. *If any of the conditions listed above cannot be met, please refer to either Shipping Option 2, 3 or 4.
+<BR/><BR/>  <b>Freight Option 2 </b>- <b><span style="color:rgb(17, 161, 58);">(Shipping to facilities without a Dock)</span></b>  Life Gate. Base Shipping Charge + $130 per truck. Freight truck includes a lift gate for driver (1 person) to unload to the ground. Customer must have the equipment to move the pallets once the shipment is unloaded. Only authorized carrier's personnel is permitted to unload the truck - NO EXCEPTIONS. *If any of the conditions listed above cannot be met, please refer to either Shipping Option  3 or 4.
+<BR/><BR/>  <b>Freight Option 3 </b>- <b><span style="color:rgb(17, 161, 58);">(Shipping to Non-Warehouse facilities including schools)</span></b>  Lift Gate and Limited Access. Base Shipping Charge + $204.00 per truck. Freight truck includes a lift gate for driver (1 person) to unload to the ground. Customer must have the equipment to move the pallets once the shipment is unloaded. Only authorized carrier's personnel is permitted to unload the truck - NO EXCEPTIONS. *If any of the conditions listed above cannot be met, please refer to either Shipping Option 4.
+<BR/><BR/>  <b>Freight Option 4 </b>- <b><span style="color:rgb(17, 161, 58);">(Shipping to Non-Warehouse facilities including schools)</span></b>  Inside Delivery. Base Shipping Charge + $300.00 <b><span style="color:red;">(starting at)</span></b> per truck. Freight option includes a lift gate and equipment for driver to unload the shipment and deliver the pallet intact to the first landing, drop and go.  Only authorized carrier's personnel is permitted to unload the truck - NO EXCEPTIONS
+<BR/>
+<br/>
+<br/>&emsp;* For shipping option 2~4 - Only authorized carrier's personnel is allowed to unload the truck - NO EXCEPTIONS
+<br/>&emsp;* Please contact your Sales Admin for any additional required services not listed above prior to placing the PO.
+<br/>&emsp;* All needed services must be ordered prior to shipping.   
+<br/>&emsp;* ViewSonic reserves the right to charge USD$250.00 freight rearrangement and handling fee for all additional services requested after shipment is tendered to the carrier.
+<BR/><BR/><a><b>Pre-paid Freight Exclusions: </b></a>
+
+<BR/>    &emsp;&emsp;&emsp; -Residential and or limited access deliveries
+<BR/>    &emsp;&emsp;&emsp; -Rural Zip code delivery
+<BR/>    &emsp;&emsp;&emsp; -Oversize or Heavyweight handling
+<BR/>    &emsp;&emsp;&emsp; -Return/ Refusal fees
+<BR/>    &emsp;&emsp;&emsp; -Duty and tax fees
+
+</apex:component>

@@ -1,0 +1,12 @@
+.fileInfo {
+    border: 1px solid silver;
+    margin-top: 10px;
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+}
+
+.file-close:hover {
+    color: red;
+    cursor: pointer;
+}

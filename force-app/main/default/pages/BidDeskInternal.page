@@ -1,0 +1,53 @@
+<apex:page standardController="Opportunity" tabStyle="Opportunity" standardStylesheets="false" sidebar="false"  >
+<style type="text/css">
+#sidebarCell, #sidebarDiv .sidebarModule, #sidebarDiv .nestedModule {
+    display: none !important;
+    border: 0px none;
+    background-color: transparent;
+    
+}
+.opportunityTab .pageTitleIcon, .individualPalette .opportunityBlock .pageTitleIcon {
+    background-image: url("/servlet/servlet.FileDownload?file=01512000004f55d");
+    background-size: contain;
+    background-position: center;  
+}
+
+.pbBottomButtons > table > tbody > tr > td, .bPageBlock .pbBottomButtons > table > tbody > tr > td, .bLayoutBlock .pbBottomButtons > table > tbody > tr > td {
+    display: none;
+}
+body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
+    background-color: #F8F8F8;
+    border-bottom: none;
+    border-left: 1px solid #EAEAEA;
+    border-right: 1px solid #EAEAEA;
+    border-radius: 4px;
+    max-height: 40px;
+ } 
+ 
+.listViewportWrapper .listViewport .topNav, .listViewportWrapper.individualPalette .listViewport .topNav {
+    background-color: white;
+    margin: 5px 0px 0px;
+}
+
+body .bRelatedList .pbTitle h3, body .bPageBlock .pbTitle h2, body .bPageBlock .pbTitle h3, body .bSubBlock h3.lbHeader {
+    color: white;
+    font-size: 1.3em;
+}
+body .bPageBlock .pbHeader {
+    background-color: #900;
+    padding: 0px;
+    margin: 0px;
+}
+input.btn[name="rkexporttoexcel__export_to_excel"] {
+            display: none;
+        }
+input.btn[name="new_spa_request"] {     
+        } 
+        </style>
+<apex:form >
+</apex:form>
+<apex:enhancedList type="Opportunity" height="400" rowsPerPage="100" customizable="true"  >             
+</apex:enhancedList>
+
+        
+</apex:page>

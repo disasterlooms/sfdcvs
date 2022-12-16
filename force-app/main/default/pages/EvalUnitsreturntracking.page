@@ -1,0 +1,17 @@
+<apex:page standardController="Eval_Unit_Details__c" recordSetVar="opp">
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:repeat value="{!opp}" var="row" rendered="false">
+     {!row.Id}
+     {!row.SKU__c}
+     {!row.Name}
+     {!row.Eval_Request__c}
+     
+          
+    </apex:repeat>
+    <!-- Runs your Flow -->   
+    <flow:interview name="Eval_Return_Tracking_Information"
+          finishLocation="/apex/EvaltrackingConfirm?id={!id}">
+          <apex:param name="RMA" value="{!Eval_Unit_Details__c.RMA__c}"/>
+        <apex:param name="ColEvalUnits" value="{!Selected}"/>
+    </flow:interview>
+</apex:page>

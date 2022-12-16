@@ -1,0 +1,8 @@
+<apex:page StandardController="Opportunity" extensions="OppTeams" action="{!updateteam}">
+  {!opportunity.Id}
+  {!opportunity.OwnerId}
+  {!opportunity.AccountId}
+  {!opportunity.Spa_Request_Submitter__c}
+   {!opportunity.Name}
+
+</apex:page>

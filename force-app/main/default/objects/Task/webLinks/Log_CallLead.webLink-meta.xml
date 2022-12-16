@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Log_CallLead</fullName>
+    <availability>online</availability>
+    <description>Lead Log Call</description>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Log Call</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>/00T/e?title=Call&amp;tsk2_mlktp=00Q&amp;00N1200000AcW8q=1&amp;who_id={!Lead.Id}&amp;followup=1&amp;tsk5=Call&amp;retURL=%2F{!Lead.Id}</url>
+</WebLink>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>42.0</apiVersion>
+    <description>A table compent for eval units for all eval unit selection process. This will be eventually replaced with a table that is dynamic enough to be for any object and any rows/columns</description>
+</AuraDefinitionBundle>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>President</submitter>
+        <type>roleSubordinatesInternal</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>VIP_Request_Type__c</field>
+        <field>VIP_Products__c</field>
+        <field>VIP_Service_Reason_for_Request__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>viewsonic_bid_desk@viewsonic.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>Bid Desk QA</label>
+        <name>Bid_Desk_QA</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>ApprovalManagerId__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>Director Review</label>
+        <name>Director_Review</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>brian.igoe@viewsonic.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>($User.ManagerId == &apos;005A0000000TGUf&apos; || 
+$User.Id == &apos;005A0000002lzcsIAA&apos; || 
+$User.ManagerId == &apos;005A0000000TGUfIAO&apos; || 
+$User.Id == &apos;005A0000002lzcs&apos; 
+|| $User.Alias = &apos;admin&apos; || $User.Alias == &apos;bcoll&apos;) &amp;&amp; $UserRole.Name != &apos;LA Sales TM&apos;</formula>
+        </entryCriteria>
+        <label>VP of Sales</label>
+        <name>VP_of_Sales</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>When sales wants an account to have VIP Express Exchange or Hotline, this process will allow for that request.</description>
+    <emailTemplate>unfiled$public/VIP_Service_Request</emailTemplate>
+    <enableMobileDeviceAccess>true</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>not(isblank(VIP_Service_Reason_for_Request__c)) &amp;&amp;
+ VIP_Service_Account__c == false &amp;&amp;
+ VIP_in_Approval_Process__c == false &amp;&amp;
+ text( VIP_Request_Type__c) == &apos;VIP Express Exchange&apos;</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>ApprovalProcessComplete</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>customerservice</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>Vip_Expiration_Date</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Vip_Start</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VIPApproved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>ApprovalProcessComplete</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>ClearFields</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Products_Blank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Vip_Expiration_Blank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VIP_Rejected</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>VIP_Start_Date_Blank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VIP_Type_Blank</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>VIPinapproval</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Account VIP Service</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
+        <userHierarchyField>Manager</userHierarchyField>
+    </nextAutomatedApprover>
+    <processOrder>2</processOrder>
+    <recallActions>
+        <action>
+            <name>ApprovalProcessComplete</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>ClearFields</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Products_Blank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Vip_Expiration_Blank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VIP_Start_Date_Blank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VIP_Type_Blank</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

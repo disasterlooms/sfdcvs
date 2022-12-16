@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Test_Opportunity__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>For flows to not run when running Test Coverage on Apex Classes</description>
+    <externalId>false</externalId>
+    <label>Test Opportunity</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

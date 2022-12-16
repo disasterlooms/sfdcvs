@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Dates for POS running applications to allow changes to be made from setup instead of changing the code.</description>
+    <label>PosDate</label>
+    <pluralLabel>PosDates</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

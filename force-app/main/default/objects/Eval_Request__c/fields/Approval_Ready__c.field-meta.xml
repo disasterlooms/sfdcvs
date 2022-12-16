@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approval_Ready__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(Trade_Show__c =false &amp;&amp;
+
+not(isblank(Shipping_Contact_Name__c))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.Email))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.Phone))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingStreet))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingCity))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingState))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingPostalCode))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingCountry))&amp;&amp;(
+not(isblank( Opportunity_Name__c ))||text(Eval_Type__c )=&apos;Reseller Demo&apos; || text(Eval_Type__c )=&apos;ViewSonic Sales Rep Eval&apos;)&amp;&amp;
+not(isblank(Billing_Contact_Name__r.AccountId))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Email))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.Phone))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingStreet))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingCity))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingState))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingPostalCode))&amp;&amp;
+
+(text(Eval_Type__c )=&apos;End-User/Reseller/Disty Eval&apos;  || text(Eval_Type__c )=&apos;ViewSonic Sales Rep Eval&apos; ||text(Eval_Type__c )=&apos;Reseller Demo&apos;),true,
+
+if(  Trade_Show__c =true &amp;&amp; not(isblank(Shipping_Contact_Name__c))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.Email))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.Phone))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingStreet))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingCity))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingState))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingPostalCode))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingCountry))&amp;&amp;
+(not(isblank( Opportunity_Name__c ))|| text(Eval_Type__c )=&apos;ViewSonic Sales Rep Eval&apos;)&amp;&amp; 
+not(isblank(Billing_Contact_Name__r.AccountId))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Email))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.Phone))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingStreet))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingCity))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingState))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingPostalCode))&amp;&amp;
+not(isblank( Trade_Show_Shipping_Address__c ))&amp;&amp;
+not(isblank( Name_of_Trade_Show__c ))&amp;&amp;
+not(isblank(Trade_Show_Expected_Return_Date__c ))&amp;&amp;(text(Eval_Type__c )=&apos;End-User/Reseller/Disty Eval&apos;  || text(Eval_Type__c )=&apos;ViewSonic Sales Rep Eval&apos; )
+,true,
+if( not(isblank(Shipping_Contact_Name__c))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.Email))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.Phone))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingStreet))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingCity))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingState))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingPostalCode))&amp;&amp;
+not(isblank(Shipping_Contact_Name__r.MailingCountry))&amp;&amp;
+not(isblank( Opportunity_Name__c ))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.AccountId))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Email))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.Phone))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingStreet))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingCity))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingState))&amp;&amp;
+not(isblank(Billing_Contact_Name__r.Account.BillingPostalCode))&amp;&amp;
+text(Eval_Type__c )=&apos;Write Off Request&apos; &amp;&amp;
+Write_off_Reason_Complete__c=true,true,
+false)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Approval Ready</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

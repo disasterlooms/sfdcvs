@@ -1,0 +1,49 @@
+<apex:page standardcontroller="Quote" id="newspa">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:messages />
+<script>
+$( document ).ready(function() {
+var spaid = '{!$CurrentPage.parameters.spaid}';
+var oppname = '{!$CurrentPage.parameters.oppname}';
+var oppid = '{!$CurrentPage.parameters.oppid}';
+console.log(' spaid '+ spaid);
+document.getElementById("newspa:spaform:pbquote:pbsquote:spaid").value = spaid;
+document.getElementById("newspa:spaform:pbquote:pbsquote:oppname_lkid").value = oppid;
+document.getElementById("newspa:spaform:pbquote:pbsquote:oppname").value = oppname;
+document.getElementById("newspa:spaform:pbquote:pbsquote:oppname_lkold").value = oppname;
+}); 
+
+function opp(){
+console.log('opp fun');
+window.location.href = 'https://viewsonic--test--c.cs95.visual.force.com/apex/OpportunityViewOverride?id=0061H00000YPWvZ&sfdc.override=1';
+}
+</script>
+    <apex:sectionheader title="New Spa"/>
+    <apex:form id="spaform">
+        <apex:pageblock mode="edit" title="Create Spa" id="pbquote">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Create Spa" action="{!Save}"/>
+                <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+            </apex:pageblockbuttons>
+
+            <!-- **********   [Record Type : New Quote ]   **********  -->
+            <apex:outputpanel id="panelquote">
+                <apex:pageblocksection title="SPA Information" showheader="true" columns="2" id="pbsquote">
+                    <apex:inputfield value="{!Quote.Name}" required="true" label="SPA Id" id="spaid"/>
+                    <apex:inputfield value="{!Quote.Spa_Request_Type__c}" required="true"/>
+                    <apex:inputfield value="{!Quote.OpportunityId}" required="true" label="Opportunity Name" id="oppname"/>
+                    <apex:inputfield value="{!Quote.First_Time_Buyer__c}" required="false" label="First Time Buyer" id="first"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Bid Registered Only Required if a Bid Reg Request" showheader="true" columns="2">
+                    <apex:inputfield value="{!Quote.Business_Reason_for_Bid_Registration__c}" required="false"/>
+                   
+                    <apex:inputfield value="{!Quote.Scope_of_Bid_Registration__c}" required="false"/>
+                   
+                    <apex:inputfield value="{!Quote.List_of_Work_Activity_c__c}" required="false"/>
+                    
+                </apex:pageblocksection>
+            </apex:outputpanel>
+        </apex:pageblock>
+        
+    </apex:form>
+ </apex:page>

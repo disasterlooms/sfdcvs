@@ -1,0 +1,215 @@
+<apex:page showHeader="True" sidebar="True" standardcontroller="Eval_Request__c" docType="html-5.0"> 
+ <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<script>
+        window.onload=function()
+        {
+
+         document.getElementById(jsName).value = "{!$CurrentPage.parameters.Name}";
+        };
+</script>
+             
+
+  <apex:stylesheet value="{!URLFOR($Resource.VSInternalSpa)}"/>
+ <style>
+ body #AppBodyHeader .phHeaderCustomLogo {
+    background: transparent;
+    display:none;
+}
+ </style> 
+
+  
+  
+  
+
+
+    
+    <p align="center">
+    <img width="138" height="101" src="{!$Resource.finchbirds}" alt="vs_logo_h"/>
+</p>
+<apex:form STYLE="margin-left: 200px; margin-right: 200px;" >
+Evaluation Agreement for Order Number &nbsp;  <apex:inputtext id="jsName" disabled="true" style="border: none; background: none;"/>
+        <script>
+            var jsName = "{!$Component.jsName}";
+        </script>
+<apex:input label="test"  id="theTextInput"/>
+<apex:outputText value="{!Eval_Request__c.Name}"></apex:outputText>
+
+<p>
+    Thank you for your interest in evaluating ViewSonic products. Included are the steps and terms and conditions of your Evaluation unit request. If you have
+any questions or would like to purchase the evaluation unit that you currently have, please contact your sales representative or email    <a href="mailto:eval@viewsonic.com">eval@viewsonic.com</a>
+</p>
+<p>
+    <strong><u>Steps to requesting an Evaluation Unit request:</u></strong>
+</p>
+<p>
+    1. Contact your ViewSonic Sales Rep
+</p>
+<p>
+    <strong><u>Steps to return the Evaluation Unit:</u></strong>
+</p>
+<p>
+    1. Pack your return units including all accessories with ViewSonic’s original box and foam
+</p>
+<p>
+    2. Mark the return RMA# on the box or shipping documents
+</p>
+<p>
+    3. Please email your return tracking information to <a href="mailto:viewsonic.rma@viewsonic.com">viewsonic.rma@viewsonic.com</a>
+</p>
+<p>
+    <strong><u>Terms and Conditions of an Evaluation Unit Loan:</u></strong>
+</p>
+<p>
+    ViewSonic grants to Customer a license to use and possess the listed ViewSonic product (“Equipment”) for evaluation purposes only, subject to the terms and
+    conditions herein.
+</p>
+<p>
+    <strong><u>Eval</u></strong>
+    <strong><u>uation Time Periods (Resellers and Channel Partners):</u></strong>
+</p>
+<p>
+    <strong>Monitors:</strong>
+    the maximum evaluation period is <strong>TEN DAYS</strong> <strong>(10).</strong>
+</p>
+<p>
+    <strong>Projectors:</strong>
+    the maximum evaluation period is <strong>TEN DAYS (10).</strong>
+</p>
+<p>
+    <strong>Commercial Displays:</strong>
+    the maximum evaluation period is <strong>TEN DAYS (10).</strong>
+</p>
+<p>
+    <strong>Desktop Virtualization:</strong>
+    the maximum evaluation period is <strong>TEN DAYS (10).</strong>
+</p>
+<p>
+    <strong><u>Eval</u></strong>
+    <strong><u>uation Time Periods (End Users):</u></strong>
+</p>
+<p>
+    <strong>Monitors:</strong>
+    the maximum evaluation period is <strong>THIRTY DAYS</strong> <strong>(30).</strong>
+</p>
+<p>
+    <strong>Projectors:</strong>
+    the maximum evaluation period is <strong>THIRTY DAYS</strong> <strong>(30).</strong>
+</p>
+<p>
+    <strong>Commercial Displays:</strong>
+    the maximum evaluation period is <strong>THIRTY DAYS</strong> <strong>(30).</strong>
+</p>
+<p>
+    <strong>Desktop Virtualization:</strong>
+    the maximum evaluation period is <strong>THIRTY DAYS (30).</strong>
+</p>
+<p>
+    <strong></strong>
+</p>
+<p>
+    <strong>Ownership</strong>
+    <strong>. </strong>
+    Title to the Equipment loaned to Customer for evaluation shall remain with ViewSonic. Customer shall not sell, sublet, assign, pledge or otherwise encumber
+    or suffer a lien upon or against the Equipment. Customer will not remove equipment from the stated location, without the prior written consent of
+    ViewSonic. Customer shall provide proper electrical power and facilities, maintain the Equipment in good operating condition and exercise normal care of
+    the use thereof.
+</p>
+<p>
+    <strong>Shipping Charges.</strong>
+    Customer agrees to pay all shipping charges associated with the return of the Equipment to ViewSonic in addition to all drayage, handling and/or incidental
+    charges.
+</p>
+<p>
+    <strong></strong>
+</p>
+<p>
+    <strong>Confidentiality. </strong>
+    Each Party agrees to exercise reasonable efforts, consistent with the efforts each Party exercises to protect information of its own that it regards as
+    confidential, to keep in confidence and not disclose to unauthorized persons the information the disclosing Party represents is confidential or trade
+    secret in a document or other media clearly indicated to be proprietary and confidential by label, legend, or other notice included in or place upon the
+    document or media.
+</p>
+<p>
+    <strong>Risk of Loss and Insurance.</strong>
+    ViewSonic shall ship the Equipment FOB ViewSonic's facility. Customer assumes the entire risk of loss, theft or damage to the Equipment or any part thereof
+    due to any cause whatsoever while it is in the possession or custody of Customer or while in transit from ViewSonic to Customer or from Customer to
+    ViewSonic. Customer, at its own expense, shall keep the Equipment fully insured for the benefit of and in the name of ViewSonic.
+</p>
+<p>
+    <strong>Warranties.</strong>
+    VIEWSONIC MAKES NO WARRANTIES OR REPRESENTATION, EXPRESS, IMPLIED OR STATUTORY, AS TO THE EQUIPMENT, ITS CONDITION, DURABILITY, MERCHANTABILITY, OR FITNESS
+    FOR ANY PARTICULAR PURPOSE, AND LOANS THE EQUIPMENT “AS IS”.
+</p>
+<p>
+    <strong>Indemnification and limitation of Liability. </strong>
+    Customer shall indemnify and hold ViewSonic harmless from all claims, actions, judgments, liabilities, damages, costs and expenses, including reasonable
+    attorney's fees, arising out of, in connection with or resulting from the Equipment, including, but not limited to, the manufacture, selection, delivery,
+    possession, use, operation or return thereof.
+</p>
+<p>
+    IN NO EVENT SHALL VIEWSONIC BE LIABLE TO CUSTOMER, OR ANYONE CLAIMING THROUGH OR AGAINST CUSTOMER FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES
+    (INCLUDING LOST PROFITS, REVENUES, BUSINESS OPPORTUNITIES OR INTERRUPTION OF BUSINESS) RESULTING FROM OR ARISING OUT OF THE DELIVERY, INSTALLATION,
+    OPERATION, PERFORMANCE OR USE OF EQUIPMENT (OR NON-PERFORMANCE, DELAY IN OR FAILURE OF THE SAME), EVEN IF VIEWSONIC HAS BEEN ADVISED OF THE POSSIBILITY OF
+    SUCH DAMAGES.
+</p>
+<p>
+    <strong>Surrender.</strong>
+    Customer, at its own expense, shall return the Equipment to ViewSonic in good operating condition. If ViewSonic determines that the unit(s) were damaged by
+    the Customer during evaluation, other than normal wear, the Customer agrees to pay for repair or replacement as determined by ViewSonic. When returning
+    Products, Customer agrees to contact ViewSonic for a Return Merchandise Authorization Number (RMA) and follow ViewSonic's instructions for return.
+</p>
+<p>
+    <strong>Remedies.</strong>
+    Should legal proceedings be instituted by ViewSonic to recover possession of the Equipment and/or damages occasioned by Customer's wrongful holding,
+    Customer shall pay all collection expenses, court costs and attorney's fees and hereby waives trial by jury. ViewSonic's rights shall be cumulative and
+    action on one shall not be deemed to constitute an election or waiver of the other rights to which ViewSonic may be entitled. Waiver by ViewSonic of any
+    breach or defaults shall not constitute waiver of any other breach or default by Customer or waiver of any of ViewSonic's rights.
+</p>
+<p>
+    <strong></strong>
+</p>
+<p>
+    <strong>Choice of Law.</strong>
+    This agreement shall be deemed to have been made in Brea, California, regardless of the order in which the acceptance of the parties shall be affixed, and
+    the validity, performance and construction of any of the terms and conditions herein shall be governed by the laws of California.
+</p>
+<p>
+    I have read the above and agree to abide by all ViewSonic terms and conditions.
+</p>
+<table border="1" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+            <td width="334" valign="top">
+                <p align="center">
+                    <strong>Model Number(s)</strong>
+                </p>
+            </td>
+            <td width="334" valign="top">
+                <p align="center">
+                    <strong>Quantity(s)</strong>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td width="334" valign="top">
+                
+            </td>
+            <td width="334" valign="top">
+                
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    <strong> </strong>
+</p>
+<p>
+    <strong> </strong>
+</p>
+
+
+  </apex:form>
+</apex:page>

@@ -1,0 +1,1563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Admin_error_in_finding_sku</name>
+        <label>Admin error in finding sku</label>
+        <locationX>1140</locationX>
+        <locationY>168</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>errorbody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>Errorsub</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>admin</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>EvalUnitsApex</name>
+        <label>EvalUnitsApex</label>
+        <locationX>747</locationX>
+        <locationY>826</locationY>
+        <actionName>EvalQuoteFlow</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>QuoteBililngInfo</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>quoteids</name>
+            <value>
+                <elementReference>quoteid</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <assignments>
+        <name>AddFeesRatesPrice</name>
+        <label>AddFeesRatesPrice</label>
+        <locationX>1583</locationX>
+        <locationY>362</locationY>
+        <assignmentItems>
+            <assignToReference>Productsunits</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>updatedunit.Product_Code__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>serialnumbers</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>updatedunit.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>EvalPrice</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>updatedunit.Low_Eval_Price__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recyclecol</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>updatedunit.recycle_fee_num__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>total</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>updatedunit.TotalPrice__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loopthroughupdatedunits</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Evaluation_Id</name>
+        <label>Evaluation Id</label>
+        <locationX>911</locationX>
+        <locationY>311</locationY>
+        <assignmentItems>
+            <assignToReference>eval</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>SobjEvalUnits.Eval_Request__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Collection_item</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>admin</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>jason.orbison@viewsonic.com</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>para1</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Please send invoice to the following customer based on information below</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>pricebookidnew</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>01s12000000ee7X</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>ReqInvoice</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Requested Invoice by email to eval team</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>sfdc</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>jason.orbison@viewsonic.com</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>taxrategood</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>&apos;tax rate good&apos;</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <name>check_if_city_and_state_fields_are_not_null</name>
+        <label>check if city and state fields are not null</label>
+        <locationX>653</locationX>
+        <locationY>387</locationY>
+        <defaultConnector>
+            <targetReference>EvalQuoteShippingInfo</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Oracle Shpping Exists</defaultConnectorLabel>
+        <rules>
+            <name>City_State_is_Null</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>city</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>state</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Shipping_Address_Needed</targetReference>
+            </connector>
+            <label>City || State is Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Make_Sure_there_is_a_sku</name>
+        <label>Make Sure there is a sku</label>
+        <locationX>730</locationX>
+        <locationY>50</locationY>
+        <defaultConnector>
+            <targetReference>There_is_not_sku</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>Sku_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SobjEvalUnits.SKU__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Evaluation_Id</targetReference>
+            </connector>
+            <label>Sku Exists</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>cityup</name>
+        <dataType>String</dataType>
+        <expression>Upper({!city})</expression>
+    </formulas>
+    <formulas>
+        <name>comma</name>
+        <dataType>String</dataType>
+        <expression>&apos;,&apos;</expression>
+    </formulas>
+    <formulas>
+        <name>Emailsendaddresses</name>
+        <dataType>String</dataType>
+        <expression>&apos;jason.orbison@viewsonic.com,eval@viewsonic.com,emailtosalesforce@n-2om4gtmggl4yy9kuqcehg4pmb4bfokvucygd4f9rfx9djapklf.a-idknmao.a.le.salesforce.com,&apos;&amp;{!ownerid}</expression>
+    </formulas>
+    <formulas>
+        <name>serialtext</name>
+        <dataType>String</dataType>
+        <expression>&quot; Serial Number &quot;</expression>
+    </formulas>
+    <formulas>
+        <name>skutext</name>
+        <dataType>String</dataType>
+        <expression>&quot;SKU &quot;</expression>
+    </formulas>
+    <formulas>
+        <name>StateEuFee</name>
+        <dataType>String</dataType>
+        <expression>if(isblank({!state}), {!Shipping_State}, {!state})</expression>
+    </formulas>
+    <formulas>
+        <name>Stateup</name>
+        <dataType>String</dataType>
+        <expression>Upper({!state})</expression>
+    </formulas>
+    <formulas>
+        <name>TotalCostUnits</name>
+        <dataType>Currency</dataType>
+        <expression>{!addrecyfees} + ( {!addevalprice} *( {!taxrate}/100)) +  {!addevalprice}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>Userflowemail</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Email}</expression>
+    </formulas>
+    <interviewLabel>EvalQuoteRequestUnitUpdate {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>EvalQuoteRequestUnitUpdate</label>
+    <loops>
+        <name>Loop_Through_Collection_item</name>
+        <label>Loop Through Collection item</label>
+        <locationX>323</locationX>
+        <locationY>345</locationY>
+        <assignNextValueToReference>SobjEvalUnits</assignNextValueToReference>
+        <collectionReference>ColEvalUnits</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Make_Sure_there_is_a_sku</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Eval_Request_Information</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loopthroughupdatedunits</name>
+        <label>Loopthroughupdatedunits</label>
+        <locationX>1421</locationX>
+        <locationY>232</locationY>
+        <assignNextValueToReference>updatedunit</assignNextValueToReference>
+        <collectionReference>updatedunits</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>AddFeesRatesPrice</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Confirmation_Page</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Eval_Request_Information</name>
+        <label>Eval Request Information</label>
+        <locationX>342</locationX>
+        <locationY>546</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>check_if_city_and_state_fields_are_not_null</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>id</elementReference>
+            </value>
+        </filters>
+        <object>Eval_Request__c</object>
+        <outputAssignments>
+            <assignToReference>billcity</assignToReference>
+            <field>Billing_City_Quote__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billcompany</assignToReference>
+            <field>Billing_Company_Name__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billconemail</assignToReference>
+            <field>Billing_Contact_Email_Invoice__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billconphone</assignToReference>
+            <field>Billing_Contact_Phone__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billcountry</assignToReference>
+            <field>Billing_Country_Quote__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billstate</assignToReference>
+            <field>Billing_State_Quote__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billstreet</assignToReference>
+            <field>Billing_Street_Quote__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billzip</assignToReference>
+            <field>Billing_Zip_Quote__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billconname</assignToReference>
+            <field>Billling_Contact_Name__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>evalnameorg</assignToReference>
+            <field>Name</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>city</assignToReference>
+            <field>Oracle_Ship_City__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>country</assignToReference>
+            <field>Oracle_Ship_Country__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>state</assignToReference>
+            <field>Oracle_Ship_State__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>street</assignToReference>
+            <field>Oracle_Ship_Street__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>zip</assignToReference>
+            <field>Oracle_Ship_Zip__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>ShippingAdd</assignToReference>
+            <field>Shipping_Address__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>SpecialInst</assignToReference>
+            <field>Special_Instructions__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>QuoteBililngInfo</name>
+        <label>QuoteBililngInfo</label>
+        <locationX>1169</locationX>
+        <locationY>635</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Units_0</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>quoteid</elementReference>
+            </value>
+        </filters>
+        <object>Eval_Quote__c</object>
+        <outputAssignments>
+            <assignToReference>billcity</assignToReference>
+            <field>Billing_City__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billcompany</assignToReference>
+            <field>Billing_Company_Name__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billconemail</assignToReference>
+            <field>Billing_Contact_Email__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billconname</assignToReference>
+            <field>Billing_Contact_Name__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billconphone</assignToReference>
+            <field>Billing_Contact_Phone__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billcountry</assignToReference>
+            <field>Billing_Country__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billstate</assignToReference>
+            <field>Billing_State__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billstreet</assignToReference>
+            <field>Billing_Street__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>billzip</assignToReference>
+            <field>Billing_Zip_Postal__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>taxrate</assignToReference>
+            <field>Tax_Rate__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Units</name>
+        <label>Units</label>
+        <locationX>390</locationX>
+        <locationY>135</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Through_Collection_item</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Eval_Quote__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>quoteid</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Eval_Request__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>id</elementReference>
+            </value>
+        </filters>
+        <object>Eval_Unit_Details__c</object>
+        <outputReference>ColEvalUnits</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>SKU__c</queriedFields>
+        <queriedFields>Sku_Text__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Eval_Request__c</queriedFields>
+        <queriedFields>Evaluation_Price__c</queriedFields>
+        <queriedFields>RMA__c</queriedFields>
+        <queriedFields>Product_Pillar__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Units_0</name>
+        <label>Units</label>
+        <locationX>1234</locationX>
+        <locationY>351</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loopthroughupdatedunits</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Eval_Quote__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>quoteid</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Eval_Request__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>id</elementReference>
+            </value>
+        </filters>
+        <object>Eval_Unit_Details__c</object>
+        <outputReference>updatedunits</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>SKU__c</queriedFields>
+        <queriedFields>Sku_Text__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Eval_Request__c</queriedFields>
+        <queriedFields>Evaluation_Price__c</queriedFields>
+        <queriedFields>RMA__c</queriedFields>
+        <queriedFields>Recycle_Fee__c</queriedFields>
+        <queriedFields>Tax_Rate__c</queriedFields>
+        <queriedFields>Product_Code__c</queriedFields>
+        <queriedFields>Eval_Price_Low__c</queriedFields>
+        <queriedFields>Low_Eval_Price__c</queriedFields>
+        <queriedFields>recycle_fee_num__c</queriedFields>
+        <queriedFields>TotalPrice__c</queriedFields>
+    </recordLookups>
+    <recordUpdates>
+        <name>EvalQuoteShippingInfo</name>
+        <label>EvalQuoteShippingInfo</label>
+        <locationX>569</locationX>
+        <locationY>631</locationY>
+        <connector>
+            <targetReference>EvalUnitsApex</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>quoteid</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Shipping_City__c</field>
+            <value>
+                <elementReference>city</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Shipping_Country__c</field>
+            <value>
+                <elementReference>country</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Shipping_Postal_Code__c</field>
+            <value>
+                <elementReference>zip</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Shipping_State__c</field>
+            <value>
+                <elementReference>state</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Shipping_Street__c</field>
+            <value>
+                <elementReference>street</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Eval_Quote__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>EvalQuoteShippingInfo_0</name>
+        <label>EvalQuoteShippingInfo</label>
+        <locationX>931</locationX>
+        <locationY>566</locationY>
+        <connector>
+            <targetReference>EvalREqoracleaddress</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Shipping_City__c</field>
+            <value>
+                <elementReference>Shipping_City</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Shipping_Country__c</field>
+            <value>
+                <elementReference>Shipping_Country</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Shipping_Postal_Code__c</field>
+            <value>
+                <elementReference>Shipping_Zip</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Shipping_State__c</field>
+            <value>
+                <elementReference>Shipping_State</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Shipping_Street__c</field>
+            <value>
+                <elementReference>Shipping_Street</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Eval_Quote__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>EvalREqoracleaddress</name>
+        <label>EvalREqoracleaddress</label>
+        <locationX>815</locationX>
+        <locationY>678</locationY>
+        <connector>
+            <targetReference>EvalUnitsApex</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Oracle_Ship_City__c</field>
+            <value>
+                <elementReference>Shipping_City</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Oracle_Ship_Country__c</field>
+            <value>
+                <elementReference>Shipping_Country</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Oracle_Ship_State__c</field>
+            <value>
+                <elementReference>Shipping_State</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Oracle_Ship_Street__c</field>
+            <value>
+                <elementReference>Shipping_Street</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Oracle_Ship_Zip__c</field>
+            <value>
+                <elementReference>Shipping_Zip</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Eval_Request__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>QuoteSent</name>
+        <label>QuoteSent</label>
+        <locationX>1333</locationX>
+        <locationY>746</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>quoteid</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Quote_Sent__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Eval_Quote__c</object>
+    </recordUpdates>
+    <screens>
+        <name>Confirmation_Page</name>
+        <label>Confirmation Page</label>
+        <locationX>1377</locationX>
+        <locationY>524</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>QuoteSent</targetReference>
+        </connector>
+        <fields>
+            <name>Confirm1</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 16px;&quot;&gt;&lt;u&gt;Confirmation Page&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;Please Confirm All information is correct. After clicking the next button on this screen, the email quote PDF will be sent to your billing contact listed. If Something needs to be changed, please close this and restart the quote process. &lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Confirmation_Page_Section1</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Confirmation_Page_Section1_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>ContactDetail</name>
+                    <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 14px; font-family: sans-serif; color: rgb(0, 0, 0);&quot;&gt;Billing Company: &lt;/b&gt;&lt;span style=&quot;font-size: 14px; font-family: sans-serif; color: rgb(0, 0, 0);&quot;&gt;{!billcompany}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 14px; font-family: sans-serif; color: rgb(0, 0, 0);&quot;&gt;Billing Contact Name: &lt;/b&gt;&lt;span style=&quot;font-size: 14px; font-family: sans-serif; color: rgb(0, 0, 0);&quot;&gt;{!billconname}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 14px; font-family: sans-serif; color: rgb(0, 0, 0);&quot;&gt;Billing Contact Phone: &lt;/b&gt;&lt;span style=&quot;font-size: 14px; font-family: sans-serif; color: rgb(0, 0, 0);&quot;&gt;{!billconphone}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 14px; font-family: sans-serif; color: rgb(0, 0, 0);&quot;&gt;Billing Contact: Email &lt;/b&gt;&lt;span style=&quot;font-size: 14px; font-family: sans-serif; color: rgb(0, 0, 0);&quot;&gt;{!billconemail}&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Confirmation_Page_Section1_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>AddressInfo</name>
+                    <fieldText>&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;Billing Street: &lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;{!billstreet}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;Billling City: &lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;{!billcity}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;Billing State:  &lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;{!billstate}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Billing State:  &lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;{!billcountry}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;Billing Zip:  &lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;{!billzip}&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>ConfirmationPage</name>
+            <fieldText>&lt;p style=&quot;text-align: left;&quot;&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;Products: &lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;{!Productsunits}&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: left;&quot;&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;Serial Numbers:  &lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 12px;&quot;&gt;{!serialnumbers}&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: left;&quot;&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;Eval Prices: &lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;{!EvalPrice}&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: left;&quot;&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;Tax Rate: &lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;{!taxrate}&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: left;&quot;&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;Recycle Fees: &lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;{!recyclecol}&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: left;&quot;&gt;&lt;b style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt;Total Cost:&lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: sans-serif; font-size: 14px;&quot;&gt; {!total}&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>$Flow.CurrentDate</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <elementReference>$Flow.CurrentDate</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>unitsEvalList</name>
+            <extensionName>c:EvalRequestUnitsTable</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>id</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>confirmationPage</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>quoteid</name>
+                <value>
+                    <elementReference>quoteid</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>totalEvalPrice</name>
+                <value>
+                    <elementReference>total</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>header</name>
+                <value>
+                    <stringValue>Products in Quote with Final Pricing</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Shipping_Address_Needed</name>
+        <label>Shipping Address Needed</label>
+        <locationX>891</locationX>
+        <locationY>438</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>EvalQuoteShippingInfo_0</targetReference>
+        </connector>
+        <fields>
+            <name>Instructions</name>
+            <fieldText>The Shipping information from Oracle did not come through. Please enter the shipping information below. 
+
+Thanks</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Shipping_Street</name>
+            <dataType>String</dataType>
+            <fieldText>Shipping Street</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Shipping_City</name>
+            <dataType>String</dataType>
+            <fieldText>Shipping City</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Shipping_State</name>
+            <dataType>String</dataType>
+            <fieldText>Shipping State</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>Please use 2 digit code for state</errorMessage>
+                <formulaExpression>len({!Shipping_State}) = 2</formulaExpression>
+            </validationRule>
+        </fields>
+        <fields>
+            <name>Shipping_Zip</name>
+            <dataType>String</dataType>
+            <fieldText>Shipping Zip</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Shipping_Country</name>
+            <dataType>String</dataType>
+            <fieldText>Shipping Country</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>ShippingSpecialIn</name>
+            <fieldText>&lt;SPAN ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;Below is the shipping contact information and the special instructions. Please use the address that the unit was actually shipped to. &lt;/FONT&gt;&lt;/SPAN&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;{!ShippingAdd}&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;{!SpecialInst}&lt;/FONT&gt;&lt;/DIV&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>There_is_not_sku</name>
+        <label>There is not sku</label>
+        <locationX>946</locationX>
+        <locationY>159</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Admin_error_in_finding_sku</targetReference>
+        </connector>
+        <fields>
+            <name>SampleSku</name>
+            <fieldText>We cannot create a quote because there is a product that does not exists in salesforce. 
+
+It may be because it is a sample product. SFDC admin has been notfied and will contact you and let you know the next course of action. 
+
+Thanks</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>179</locationY>
+        <connector>
+            <targetReference>Units</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Confirmation</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;SPAN ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;Please Confirm that all information below is correct before clicking next. This is the final step.&lt;/B&gt;&lt;/FONT&gt;&lt;/SPAN&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;DIV ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:14px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;&lt;I&gt;You can go back in the browser to update any information. &lt;/I&gt;&lt;/B&gt;&lt;/FONT&gt;&lt;/DIV&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>EmailBody1</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;SPAN ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Arial&quot; STYLE=&quot;font-size:12px&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;Please send an invoice for RMA # {!RMA} and Eval Request Number &lt;FONT KERNING=&quot;1&quot;&gt;text({!evalname})&lt;/FONT&gt;&lt;/FONT&gt;&lt;/SPAN&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>errorbody</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>there is a missing sku and it caused an error on the quote
+
+http://viewsonic.my.salesforce.com/{!eval}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Errorsub</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>Error on Quote Request. There is a product without a sku.</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Subject</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>Please send an invoice for RMA # {!RMA} and Eval Request Number {!evalname}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>test</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;table border=0 cellpadding=0 cellspacing=0 width=704 style=&apos;border-collapse:
+ collapse;table-layout:fixed;width:528pt&apos;&gt;
+ &lt;col width=132 style=&apos;mso-width-source:userset;mso-width-alt:4224;width:99pt&apos;&gt;
+ &lt;col width=203 style=&apos;mso-width-source:userset;mso-width-alt:6485;width:152pt&apos;&gt;
+ &lt;col width=52 style=&apos;mso-width-source:userset;mso-width-alt:1664;width:39pt&apos;&gt;
+ &lt;col width=140 style=&apos;mso-width-source:userset;mso-width-alt:4480;width:105pt&apos;&gt;
+ &lt;col width=177 style=&apos;mso-width-source:userset;mso-width-alt:5674;width:133pt&apos;&gt;
+ &lt;col width=73 style=&apos;mso-width-source:userset;mso-width-alt:2346;width:55pt&apos;&gt;
+ &lt;tr height=20 style=&apos;height:15.0pt&apos;&gt;
+  &lt;td colspan=5 height=20 class=xl90 width=704 style=&apos;height:15.0pt;width:528pt&apos;&gt;Billing
+  Information for Evaluation Product(s) Quote&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=20 style=&apos;height:15.0pt&apos;&gt;
+  &lt;td height=20 colspan=3 style=&apos;height:15.0pt;mso-ignore:colspan&apos;&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;span style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/td&gt;
+  
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl80 style=&apos;height:16.0pt&apos;&gt;Company Name :&lt;/td&gt;
+  &lt;td class=xl65&gt;&amp;amp;=Master.EVAL_REQUE&lt;span style=&apos;display:none&apos;&gt;ST_BILLING_COMPANY_NAME&lt;/span&gt;&lt;/td&gt;
+  
+  &lt;td class=xl80&gt;Account Number :&lt;/td&gt;
+  &lt;td class=xl83&gt;&amp;nbsp;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl80 style=&apos;height:16.0pt&apos;&gt;Bill to Address :&lt;/td&gt;
+  &lt;td class=xl65&gt;&amp;amp;=Master.EVAL_REQUE&lt;span style=&apos;display:none&apos;&gt;ST_BILLING_STREET_QUOTE&lt;/span&gt;&lt;/td&gt;
+  
+  &lt;td class=xl80&gt;Sales Order/RMA :&lt;/td&gt;
+  &lt;td class=xl83&gt;&amp;amp;=Master.EVAL_REQUEST_RMA&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl80 style=&apos;height:16.0pt&apos;&gt;&lt;/td&gt;
+  &lt;td class=xl65&gt;&amp;amp;=Master.EVAL_REQUE&lt;span style=&apos;display:none&apos;&gt;ST_BILLING_CITY_QUOTE,
+  &amp;amp;=Master.EVAL_REQUEST_BILLING_STATE_QUOTE&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+  
+  &lt;td class=xl80&gt;Purchase Order :&lt;/td&gt;
+  &lt;td class=xl83&gt;&amp;nbsp;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl80 style=&apos;height:16.0pt&apos;&gt;Contact Name :&lt;/td&gt;
+  &lt;td class=xl65&gt;&amp;amp;=Master.EVAL_REQUE&lt;span style=&apos;display:none&apos;&gt;ST_BILLING_CONTACT_NAME_NAME&lt;/span&gt;&lt;/td&gt;
+  
+  &lt;td class=xl80&gt;Quote Date :&lt;/td&gt;
+  &lt;td class=xl84&gt;10/30/16&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl80 style=&apos;height:16.0pt&apos;&gt;Name on Card :&lt;/td&gt;
+  &lt;td class=xl65&gt;&amp;nbsp;&lt;/td&gt;
+  
+  &lt;td class=xl80&gt;Payment Term :&lt;/td&gt;
+  &lt;td class=xl83&gt;&amp;nbsp;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl80 style=&apos;height:16.0pt&apos;&gt;Credit Card No:&lt;/td&gt;
+  &lt;td class=xl65&gt;&amp;nbsp;&lt;/td&gt;
+  
+  &lt;td class=xl80&gt;Phone Number :&lt;/td&gt;
+  &lt;td class=xl83&gt;&amp;amp;=Master.EVAL_REQUEST_BILLING_CONTACT_PHONE&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl80 style=&apos;height:16.0pt&apos;&gt;Credit Card Type:&lt;/td&gt;
+  &lt;td class=xl65&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td colspan=3 style=&apos;mso-ignore:colspan&apos;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl80 style=&apos;height:16.0pt&apos;&gt;Exp. Date :&lt;/td&gt;
+  &lt;td class=xl65&gt;&amp;nbsp;&lt;/td&gt;
+  
+  
+  
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl80 style=&apos;height:16.0pt&apos;&gt;Contact Email :&lt;/td&gt;
+  &lt;td class=xl83&gt;&amp;amp;=Master.EVAL_REQUEST_BILLING_CONTACT_EMAIL_INVOICE&lt;/td&gt;
+  &lt;td colspan=3 style=&apos;mso-ignore:colspan&apos;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 colspan=5 style=&apos;height:16.0pt;mso-ignore:colspan&apos;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=20 style=&apos;height:15.0pt&apos;&gt;
+  &lt;td height=20 class=xl66 width=132 style=&apos;height:15.0pt;width:99pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl68 width=203 style=&apos;width:152pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl68 width=52 style=&apos;width:39pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl68 width=140 style=&apos;width:105pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl66 width=177 style=&apos;border-left:none;width:133pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl67 width=132 style=&apos;height:16.0pt;width:99pt&apos;&gt;PART
+  NUMBER/ITEM&lt;/td&gt;
+  &lt;td class=xl69 width=203 style=&apos;width:152pt&apos;&gt;Serial Number&lt;/td&gt;
+  &lt;td class=xl69 width=52 style=&apos;width:39pt&apos;&gt;QTY&lt;/td&gt;
+  &lt;td class=xl69 width=140 style=&apos;width:105pt&apos;&gt;UNIT PRICE&lt;/td&gt;
+  &lt;td class=xl67 width=177 style=&apos;border-left:none;width:133pt&apos;&gt;TOTAL&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl86 style=&apos;height:16.0pt&apos;&gt;&amp;amp;=QueryData.S&lt;span
+  style=&apos;display:none&apos;&gt;KU_NAME&lt;/span&gt;&lt;/td&gt;
+  &lt;td class=xl86 style=&apos;border-left:none&apos;&gt;&amp;amp;=QueryData.EVAL_UNI&lt;span
+  style=&apos;display:none&apos;&gt;T_DETAILS_NAME&lt;/span&gt;&lt;/td&gt;
+  &lt;td class=xl85 style=&apos;border-left:none&apos;&gt;&amp;amp;=&amp;amp;=1&lt;/td&gt;
+  &lt;td class=xl87 style=&apos;border-left:none&apos;&gt;&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&lt;/span&gt;&amp;amp;=QueryData.EVAL_UNIT_DETAILS_EVALUATION_PRICE&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/td&gt;
+  &lt;td class=xl87 style=&apos;border-left:none&apos;&gt;&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&lt;/span&gt;&amp;amp;=QueryData.EVAL_UNIT_DETAILS_EVALUATION_PRICE&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=49 style=&apos;height:37.0pt&apos;&gt;
+  &lt;td height=49 class=xl70 width=132 style=&apos;height:37.0pt;border-top:none;
+  width:99pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl71 width=203 style=&apos;border-top:none;width:152pt&apos;&gt;Tax exemption
+  letter or resale certificate is required to the exempt tax&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/td&gt;
+  &lt;td class=xl71 width=52 style=&apos;border-top:none;width:39pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl72 width=140 style=&apos;width:105pt&apos;&gt;Tax &amp;amp; Recycle Fees&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;/span&gt;(if applicable):&lt;/td&gt;
+  &lt;td class=xl88 width=177 style=&apos;border-left:none;width:133pt&apos;&gt;#VALUE!&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=0 style=&apos;display:none&apos;&gt;
+  &lt;td class=xl73 width=132 style=&apos;width:99pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl74 width=203 style=&apos;width:152pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl74 width=52 style=&apos;width:39pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl72 width=140 style=&apos;width:105pt&apos;&gt;Tax Rate&lt;/td&gt;
+  &lt;td class=xl89 style=&apos;border-top:none;border-left:none&apos;&gt;&amp;amp;=Master.EVAL_REQUEST_SALES_TAX_RATE&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl73 width=132 style=&apos;height:16.0pt;width:99pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl74 width=203 style=&apos;width:152pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl74 width=52 style=&apos;width:39pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl72 width=140 style=&apos;width:105pt&apos;&gt;Shipping:&lt;/td&gt;
+  &lt;td class=xl81 width=177 style=&apos;border-left:none;width:133pt&apos;&gt;&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&lt;/span&gt;$-&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&amp;nbsp; &lt;/span&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl75 width=132 style=&apos;height:16.0pt;width:99pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl74 width=203 style=&apos;width:152pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl76 width=52 style=&apos;width:39pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl72 width=140 style=&apos;width:105pt&apos;&gt;TOTAL:&lt;/td&gt;
+  &lt;td class=xl82 width=177 style=&apos;border-left:none;width:133pt&apos;&gt;#VALUE!&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=20 style=&apos;mso-height-source:userset;height:15.0pt&apos;&gt;
+  &lt;td colspan=5 height=20 class=xl91 width=704 style=&apos;border-right:1.0pt solid black;
+  height:15.0pt;width:528pt&apos;&gt;Payment Method:&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp; &lt;/span&gt;&lt;font class=&quot;font6&quot;&gt;Credit Card&lt;/font&gt;&lt;font
+  class=&quot;font5&quot;&gt; or &lt;/font&gt;&lt;font class=&quot;font7&quot;&gt;Check&lt;/font&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=29 style=&apos;mso-height-source:userset;height:22.5pt&apos;&gt;
+  &lt;td colspan=5 height=29 class=xl94 width=704 style=&apos;border-right:1.0pt solid black;
+  height:22.5pt;width:528pt&apos;&gt;**If paying by credit card please fill out all
+  highlighted in yellow required fields&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=20 style=&apos;mso-height-source:userset;height:15.0pt&apos;&gt;
+  &lt;td colspan=5 height=20 class=xl94 width=704 style=&apos;border-right:1.0pt solid black;
+  height:15.0pt;width:528pt&apos;&gt;Fax the completed form to &lt;font class=&quot;font8&quot;&gt;909-444-5623&lt;span
+  style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=29 style=&apos;mso-height-source:userset;height:22.5pt&apos;&gt;
+  &lt;td colspan=5 height=29 class=xl94 width=704 style=&apos;border-right:1.0pt solid black;
+  height:22.5pt;width:528pt&apos;&gt;Note:&lt;span style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;
+  &lt;/span&gt;This is a secured fax number which only authorized personnel is
+  allowed access&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=33 style=&apos;mso-height-source:userset;height:25.5pt&apos;&gt;
+  &lt;td colspan=5 height=33 class=xl97 width=704 style=&apos;border-right:1.0pt solid black;
+  height:25.5pt;width:528pt&apos;&gt;If paying by check please attach this document&lt;font
+  class=&quot;font10&quot;&gt; &lt;/font&gt;&lt;font class=&quot;font9&quot;&gt;with the check&lt;/font&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td colspan=5 height=21 class=xl100 width=704 style=&apos;border-right:1.0pt solid black;
+  height:16.0pt;width:528pt&apos;&gt;&amp;nbsp;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=20 style=&apos;height:15.0pt&apos;&gt;
+  &lt;td height=20 colspan=5 style=&apos;height:15.0pt;mso-ignore:colspan&apos;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=20 style=&apos;height:15.0pt&apos;&gt;
+  &lt;td height=20 class=xl77 colspan=5 style=&apos;height:15.0pt;mso-ignore:colspan&apos;&gt;**
+  This invoice is only good for 10 days from the date the invoice is
+  issued.&amp;nbsp;&lt;span style=&apos;mso-spacerun:yes&apos;&gt;&amp;nbsp;&lt;/span&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=20 style=&apos;height:15.0pt&apos;&gt;
+  &lt;td height=20 class=xl77 colspan=4 style=&apos;height:15.0pt;mso-ignore:colspan&apos;&gt;**
+  The payment can be either by check or credit card.&lt;/td&gt;
+  
+ &lt;/tr&gt;
+ &lt;tr height=20 style=&apos;height:15.0pt&apos;&gt;
+  &lt;td height=20 class=xl77 style=&apos;height:15.0pt&apos;&gt;&lt;/td&gt;
+  &lt;td colspan=4 style=&apos;mso-ignore:colspan&apos;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=20 style=&apos;height:15.0pt&apos;&gt;
+  &lt;td height=20 colspan=5 style=&apos;height:15.0pt;mso-ignore:colspan&apos;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl79 style=&apos;height:16.0pt&apos;&gt;Customer Signature&lt;/td&gt;
+  &lt;td class=xl65&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl65&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl79&gt;Date:&lt;/td&gt;
+  &lt;td class=xl65&gt;&amp;nbsp;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=21 style=&apos;height:16.0pt&apos;&gt;
+  &lt;td height=21 class=xl79 style=&apos;height:16.0pt&apos;&gt;Print Name:&lt;/td&gt;
+  &lt;td class=xl78 style=&apos;border-top:none&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td class=xl78 style=&apos;border-top:none&apos;&gt;&amp;nbsp;&lt;/td&gt;
+  &lt;td colspan=2 style=&apos;mso-ignore:colspan&apos;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr height=20 style=&apos;height:15.0pt&apos;&gt;
+  &lt;td height=20 colspan=5 style=&apos;height:15.0pt;mso-ignore:colspan&apos;&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>addevalprice</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>addrecyfees</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>atid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>00P1200000pAr5S</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>billcity</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>billcompany</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>billconemail</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>billconname</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>billconphone</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>billcountry</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>billstate</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>billstreet</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>billzip</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>body</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>city</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>ColEUUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Eval_Unit_Details__c</objectType>
+    </variables>
+    <variables>
+        <name>ColEvalUnits</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Eval_Unit_Details__c</objectType>
+    </variables>
+    <variables>
+        <name>ColUnitSkus</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Eval_Unit_Details__c</objectType>
+    </variables>
+    <variables>
+        <name>company</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>contact</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>country</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>email</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>eval</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>EvalLowPrice</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>evalname</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>evalnameorg</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>evalownerid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>EvalPrice</name>
+        <dataType>Number</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>evalQuote</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Eval_Quote__c</objectType>
+    </variables>
+    <variables>
+        <name>evalquoteid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>evalUnits</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Eval_Unit_Details__c</objectType>
+    </variables>
+    <variables>
+        <name>fee</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>ownerid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>phone</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>productname</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Products</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Productsunits</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>quoteid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>recyclecol</name>
+        <dataType>Number</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>RMA</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Serial</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>serialnumbers</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>ShippingAdd</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>sku1</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>skunametext</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>SobjEvalUnits</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Eval_Unit_Details__c</objectType>
+    </variables>
+    <variables>
+        <name>SpecialInst</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>state</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>street</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>taxrate</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>3</scale>
+    </variables>
+    <variables>
+        <name>TaxRatecol</name>
+        <dataType>Number</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>total</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>totalcost</name>
+        <dataType>Currency</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>UnitCosts</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>unitids</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>updatedunit</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Eval_Unit_Details__c</objectType>
+    </variables>
+    <variables>
+        <name>updatedunits</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Eval_Unit_Details__c</objectType>
+    </variables>
+    <variables>
+        <name>zip</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

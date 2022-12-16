@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enable_Partner_User</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Enable Partner User</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>https://viewsonic.my.salesforce.com/005/e?ut=P&amp;retURL=%2F{!Contact.Id}
+&amp;cntc={!Contact.Id}&amp;name_firstName={!Contact.FirstName}
+&amp;name_lastName={!Contact.LastName}
+&amp;Alias={!left(Contact.FirstName,1)&amp;left(Contact.LastName,3)}
+&amp;Profile=External Partner Distributor
+&amp;CompanyName={!Account.Name}
+&amp;Email={!Contact.Email}
+&amp;Username={!Contact.Email}
+&amp;CommunityNickname={!left(Contact.FirstName,1)&amp;left(Contact.LastName,10)}
+&amp;00N1200000B1KoR=1</url>
+</WebLink>

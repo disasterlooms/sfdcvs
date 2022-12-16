@@ -1,0 +1,25 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="content" type="Aura.Component[]" />
+    <aura:attribute name="header" type="String" />
+    <aura:attribute name="headerClass" type="String" default="slds-modal__header"/>
+    <aura:attribute name="modalSize" type="String" />
+    <aura:attribute name="tagline" type="String" />
+    <aura:attribute name="hideModal" type="String"/>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="{!'slds-modal slds-fade-in-open '+ v.modalSize}">
+        <div class="slds-modal__container">
+            <header class="{!v.headerClass}">
+                <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{!v.header}</h2>
+                <p class="slds-m-top_x-small"> {!v.tagline}</p>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                {!v.content}
+                
+            </div>
+            
+        </div>
+       
+    </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    
+</aura:component>

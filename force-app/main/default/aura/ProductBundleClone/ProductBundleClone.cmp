@@ -1,0 +1,8 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" >
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="newpackid" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.flow}"/>
+	<div aura:id="flow"  >
+            <lightning:flow aura:id="flowquote" onstatuschange="{!c.flowComplete}"/>
+        </div>
+</aura:component>

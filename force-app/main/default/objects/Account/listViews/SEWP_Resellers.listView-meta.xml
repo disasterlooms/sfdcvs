@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SEWP_Resellers</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>Rank__c</columns>
+    <columns>ACCOUNT.RATING</columns>
+    <columns>ACCOUNT.LAST_ACTIVITY</columns>
+    <columns>AV_Lead_Source__c</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AV_Lead_Source__c</field>
+        <operation>equals</operation>
+        <value>SEWP</value>
+    </filters>
+    <label>SEWP Resellers</label>
+    <sharedTo>
+        <role>VSA_US_VAR_ISR</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bid_Reg_Request_Resellers</fullName>
+    <active>true</active>
+    <description>Bid Reg Requests cannot have multiple resellers</description>
+    <errorConditionFormula>text( Spa_Request_Type__c ) == &apos;Bid Register Request&apos; &amp;&amp;   Opportunity.SPA_Resellers__c &gt; 1 &amp;&amp;  BR_Resellers_OverRide__c == false</errorConditionFormula>
+    <errorMessage>Bid Reg Requests cannot have multiple resellers. You may send a resubmission request to remove a reseller and then make a BR. Bid Desk must review first.</errorMessage>
+</ValidationRule>

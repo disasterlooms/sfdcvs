@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>jason.orbison@viewsonic.com</contactEmail>
+    <contactPhone>909-444-8796</contactPhone>
+    <label>Pardot Integration</label>
+    <oauthConfig>
+        <callbackUrl>http://localhost:8000/callback</callbackUrl>
+        <consumerKey>3MVG9qEXqmIutu_QNttBhrw05Q22Tom1v_BtFoyCPM8o9uwes5GzTkSxejFaHkimtbKYiYKFeRDHVTO8HRwt3</consumerKey>
+        <isAdminApproved>false</isAdminApproved>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isSecretRequiredForRefreshToken>false</isSecretRequiredForRefreshToken>
+        <scopes>RefreshToken</scopes>
+        <scopes>Pardot</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+</ConnectedApp>

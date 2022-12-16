@@ -1,0 +1,7 @@
+<apex:page standardcontroller="Lead" recordSetVar="lead" contentType="text/csv" cache="true" showHeader="false" sidebar="false" standardStylesheets="false">
+
+<apex:repeat value="{!lead}" var="a" id="theFieldsLoop">
+"{!a.Name}","{!a.Company}","{!a.Phone}","{!a.email}","{!a.Name}","{!a.Name}","{!a.Name}",
+</apex:repeat>
+
+</apex:page>

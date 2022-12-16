@@ -1,0 +1,6 @@
+<design:component>
+    <design:attribute name="spa" description="The Spa Number"/>
+    <design:attribute name="userAcctId" description="This is the users account id"/>
+    <design:attribute name="accountName" description="the name of account found"/>
+    <design:attribute name="spaId" description="Selected Spa" />
+</design:component>

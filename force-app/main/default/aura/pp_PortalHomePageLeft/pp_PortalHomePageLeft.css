@@ -1,0 +1,157 @@
+/* Media */
+@media (max-width: 992px) {
+    .THIS.pp-home .pp-header {
+        flex-direction: column-reverse;
+    }
+    .THIS.pp-home .pp-header .pp-header-left {
+        width:100%;
+    }
+    .THIS.pp-home .pp-header .pp-header-left .pp-logo { 
+        margin-bottom: 1.6rem;
+        width: 76%;
+    }
+    .THIS.pp-home .pp-header .pp-header-right {
+        width:100%;
+    }
+    .THIS.pp-home .pp-header .pp-header-right {
+        padding-left: 0;
+    }
+    .THIS.pp-home .pp-header .pp-header-right .pp-header-img {
+      display: block;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      background: url(https://www.viewsonic.com/media/wysiwyg/Library/pp-Home_960x400.jpg) no-repeat;
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      height: 300px;        
+        padding-left: 100%;
+    }
+    .THIS.pp-home .pp-header .pp-header-right .pp-yt {
+        margin: 1rem auto;
+        width: 80%;
+    }
+    .THIS.pp-home .pp-header .pp-header-right .pp-yt iframe {
+        padding-left: 0%;
+        height: 300px;
+    }
+    .THIS.pp-home .pp-header .pp-header-right .pp-yt .pp-yt-title {
+        padding-left: 1%;
+        margin-top: 1rem;
+        font-size: 1rem;
+    }
+
+    .THIS.pp-home .pp-header .pp-header-left p { 
+        margin-bottom: 2rem;
+    }
+    .THIS.pp-home .pp-header .pp-header-left .pp-btn a {
+        font-size: 0.9rem;    
+        padding: 0.7rem 2.4rem;
+    }
+    .THIS.pp-home .pp-section h1 {
+        font-size: 1rem;
+    }
+    .THIS.pp-home .pp-section {
+        margin-top: 1.6rem;
+        margin-bottom: 3rem;
+        padding:0 1rem;
+    }
+    .THIS.pp-home .pp-section .pp-icons-box .pp-icon {
+        margin-right: 0;
+    }
+    .THIS.pp-home .pp-section .pp-icons-box .pp-icon img {
+          width: 86px;
+    }
+    .THIS.pp-home .pp-section .pp-icons-box .pp-icon .pp-icon-text {
+        padding: 3rem 1rem 1rem;
+        min-height: 12rem;
+        font-size: 1rem;
+    }
+    .THIS.pp-home .pp-footer {
+        padding: 2rem;
+    }
+    .THIS.pp-home .pp-footer .pp-footer-row1 {
+        flex-direction: column;
+    }
+    .THIS.pp-home .pp-footer .pp-footer-row1 .pp-lists ul {
+        display: block;
+    }
+    .THIS.pp-home .pp-footer .pp-footer-row1 .pp-lists ul li {
+        padding-right: 0;
+        padding-bottom: 1rem;
+    }
+    .THIS.pp-home .pp-footer .pp-footer-row1 .pp-socials {
+        margin: 0 auto;
+    }
+    .THIS.pp-home .pp-header .pp-header-right .pp-promo .pp-promo-cont div { 
+       font-size: 1rem;
+        line-height: 1.4;
+    }
+    .THIS.pp-home .pp-header .pp-header-right .pp-promo {
+      height: 365px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .THIS.pp-home .pp-header .pp-header-right .pp-header-img {
+      background: url(https://www.viewsonic.com/media/wysiwyg/Library/pp-Home_480x320.jpg) no-repeat;        
+      height: 300px;
+      background-size: cover;
+    }
+    .THIS.pp-home .pp-header .pp-header-left .pp-logo {
+          margin-bottom: 1.4rem;
+        width: 100%;
+    }   
+    .THIS.pp-home .pp-header .pp-header-left p { 
+        font-size: 1rem;
+    }
+    .THIS.pp-home .pp-header .pp-header-right .pp-yt {
+        margin-top: 1rem;
+        margin-bottom: 0rem;
+        width: 100%;
+    }
+    .THIS.pp-home .pp-header .pp-header-right .pp-yt iframe {
+        padding-left: 0%;
+        height: 230px;
+    }
+    .THIS.pp-home .pp-header .pp-header-right .pp-yt .pp-yt-title {
+        padding-left: 1%;
+        margin-top: 1rem;
+        font-size: 1rem;
+    }    
+    .THIS.pp-home .pp-section .pp-icons-box {
+        flex-direction: column;
+        font-size: 1rem;
+    }
+
+    .THIS.pp-home .pp-section .pp-icons-box .pp-icon .pp-icon-text {
+        padding: 3rem 1.4rem 1rem;
+        min-height: 7rem;
+    }
+}
+@media (min-width: 993px) and (max-width: 1500px) {
+    .THIS.pp-home {
+        max-width: 1420px;
+    }
+    .THIS.pp-home .pp-header {
+        padding-left: 2rem;
+    }
+    .THIS.pp-home .pp-header .pp-header-left {
+        width:55%;
+    }
+    .THIS.pp-home .pp-header .pp-header-left .pp-logo {
+        margin-bottom: 2.4rem;
+    }
+    .THIS.pp-home .pp-header .pp-header-left .pp-logo img { 
+        width: 84%;
+    }
+    .THIS.pp-home .pp-header .pp-header-right {
+        width: 45%;
+    }
+    .THIS.pp-home .pp-section .pp-icons-box .pp-icon .pp-icon-text {
+        padding: 3.6rem 2.4rem 1rem;
+        min-height: 10rem;
+    }
+    .THIS.pp-home .pp-section {
+        padding:0 2rem;
+    }
+}

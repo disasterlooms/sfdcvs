@@ -1,0 +1,17 @@
+<apex:page standardController="Contact_Role__c" recordSetVar="opp">
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:repeat value="{!opp}" var="row" rendered="false">
+     {!row.Id}
+     {!row.Contact__c}
+     {!row.Opportunity__c}
+     {!row.Role__c}
+   
+     
+          
+    </apex:repeat>
+    <!-- Runs your Flow -->   
+    <flow:interview name="ContactRoleFollowUpEmail"
+          finishLocation="{!'https://viewsonic.lightning.force.com/lightning/o/Contact_Role__c/list?filterName=00B1H000009mjmTUAQ'}">
+          <apex:param name="Contacts" value="{!Selected}"/>
+    </flow:interview>
+</apex:page>

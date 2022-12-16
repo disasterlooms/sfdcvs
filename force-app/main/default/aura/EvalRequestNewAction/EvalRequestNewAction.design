@@ -1,0 +1,16 @@
+<design:component>
+	<design:attribute name="transferEval" label="Transfer Eval" />
+	<design:attribute  name="evalId" label="Id of Eval to transfer from"/>
+
+	<design:attribute name="product1" />
+	<design:attribute name="product2"  />
+	<design:attribute name="product3"  />
+	<design:attribute name="product4"  />
+	<design:attribute name="product5"  />
+
+	<design:attribute name="quantity1"  />
+	<design:attribute name="quantity2"  />
+	<design:attribute name="quantity3"  />
+	<design:attribute name="quantity4"  />
+	<design:attribute name="quantity5"  />
+</design:component>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>isRegional__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>if country based, then false, if many countries in a region, then true</description>
+    <externalId>false</externalId>
+    <label>isRegional</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

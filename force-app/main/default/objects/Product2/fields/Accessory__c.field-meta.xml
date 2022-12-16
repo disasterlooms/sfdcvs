@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accessory__c</fullName>
+    <description>field to order the query on products so that accessories are on the bottom of the search results</description>
+    <externalId>false</externalId>
+    <formula>Case(left(lower(Name),3) , &apos;wmk&apos; , 1 , &apos;vb-&apos;, 1, &apos;vpc&apos;, 1, &apos;sw-&apos;, 1 , &apos;lb-&apos;, 1, &apos;pj-&apos;,1, &apos;hb1&apos;,1,&apos;pgd&apos;,1, &apos;cb-&apos;,1, &apos;lcd&apos;,1,&apos;cs-&apos;,1, &apos;dvp&apos;,1, 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Accessory</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CloseDate3Mo__c</fullName>
+    <businessStatus>DeprecateCandidate</businessStatus>
+    <externalId>false</externalId>
+    <formula>Quotes_Active__c &gt; 0 ||
+(text(StageName) != &apos;Closed Won&apos; &amp;&amp; text(StageName) != &apos;Closed Lost&apos; &amp;&amp; CloseDate &gt; Today()-90 )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>CloseDate3Mo</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

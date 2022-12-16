@@ -1,0 +1,19 @@
+({
+	myAction : function(component, event, helper) {
+		
+	},
+    toggle : function(cmp, event, helper) {
+        var spinner = cmp.find("helpsection");
+        $A.util.toggleClass(spinner, "slds-is-open");
+    },
+    showOppmodal: function(component, event, helper) {
+        //Toggle CSS styles for opening Modal
+        helper.toggleClass(component,'backdrop','slds-backdrop--');
+        helper.toggleClass(component,'modaldialog','slds-fade-in-');
+	},
+	hideModal : function(component, event, helper) {
+		 //Toggle CSS styles for hiding Modal
+		helper.toggleClassInverse(component,'backdrop','slds-backdrop--');
+		helper.toggleClassInverse(component,'modaldialog','slds-fade-in-');
+	}
+})

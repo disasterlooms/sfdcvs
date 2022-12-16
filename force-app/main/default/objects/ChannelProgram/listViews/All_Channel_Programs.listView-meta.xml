@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Channel_Programs</fullName>
+    <columns>Name</columns>
+    <columns>Category</columns>
+    <columns>Program_Type__c</columns>
+    <columns>Description</columns>
+    <columns>IsActive</columns>
+    <columns>VS_SubRegion__c</columns>
+    <columns>Country__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Channel Programs</label>
+    <language>en_US</language>
+</ListView>

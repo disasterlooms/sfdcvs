@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approved_Spas_Products</fullName>
+    <active>false</active>
+    <description>must be added by bid desk</description>
+    <errorConditionFormula>isnew() &amp;&amp; $User.Alias != &apos;BidDesk&apos; 
+&amp;&amp;  text(Quote.Status) = &apos;Approved&apos;</errorConditionFormula>
+    <errorMessage>Only bid desk can add products to approved spas</errorMessage>
+</ValidationRule>

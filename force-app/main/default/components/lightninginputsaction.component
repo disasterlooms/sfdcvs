@@ -1,0 +1,37 @@
+<apex:component >
+    <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"/> 
+    <script>
+    var $j = jQuery.noConflict();
+    setTimeout(setid, 30);
+    //setid();
+    function setid(){
+    var input = $j("[id$=input]").attr('id');
+    
+    var upinput = document.getElementById(input).id="{!id}";
+    //document.getElementById("{!id}").onchange = function(){'{!onchange}'};
+       
+    }
+    
+    
+    
+    </script>   
+    
+    <apex:attribute name="label" type="String" description="label for field" required="true"/>
+    <apex:attribute name="id" type="string" description="id for the inputfield"/>
+    <apex:attribute name="object" type="sObject" description="Object Name" required="false"/>
+    <apex:attribute name="inputtype" type="string" description="slds class type for the input" required="false"/>
+    <apex:attribute name="required" type="string" description="Is field Required" required="false"/>
+    <apex:attribute name="onclick" type="string" description="javascript onclick event" required="false"/>
+    <apex:attribute name="onchange" type="string" description="javascript onchange event" required="false"/>
+   
+    
+
+      <div class="slds-form-element">
+          <label class="slds-form-element__label" for="{!id}" style="font-weight: bold;">{!label}</label>
+          <div class="slds-form-element__control">
+            <input class="slds-{!inputtype}" id="input" name="{!id}" type="text" onchange="{!onchange}" required="{!required}"/>
+           </div>
+      </div>
+      
+                     
+</apex:component>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <externalId>false</externalId>
+    <label>Category</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>SalesForce</fullName>
+                <default>false</default>
+                <label>SalesForce</label>
+            </value>
+            <value>
+                <fullName>Einstein Analytics (Wave)</fullName>
+                <default>false</default>
+                <label>Einstein Analytics (Wave)</label>
+            </value>
+            <value>
+                <fullName>Tricks and Tips</fullName>
+                <default>false</default>
+                <label>Tricks and Tips</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

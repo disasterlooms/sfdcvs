@@ -1,0 +1,67 @@
+<apex:page standardController="Idea" recordSetVar="records" id="thePage" sidebar="false"> 
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.UtilJS}" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<apex:form id="theForm">
+<style>
+
+#sidebarCell, #sidebarDiv .sidebarModule, #sidebarDiv .nestedModule {
+    border: 0 none;
+    background-color: transparent;
+    display: none;
+}
+</Style>    
+       <apex:selectList id="list3" value="{!filterid}" size="1">
+        <apex:actionFunction name="refreshMyPanel2" reRender="theForm" />
+        <apex:actionSupport event="onchange" rerender="theForm"/>
+           <apex:selectOptions value="{!listviewoptions}"/>
+       </apex:selectList>
+        <apex:panelGrid columns="8" id="buttons">
+                <apex:commandButton reRender="error,theForm,buttons" action="{!Save}" value="Save" rerender="false"/>
+                <apex:commandButton reRender="error,theForm,buttons" action="{!Cancel}" value="Cancel"/>
+                <apex:inputHidden />
+                <apex:commandButton reRender="error,theForm,buttons" disabled="{!!hasprevious}" action="{!First}" value="First"/>
+                <apex:commandButton reRender="error,theForm,buttons" disabled="{!!hasprevious}" action="{!Previous}" value="Previous"/>
+                <apex:commandButton reRender="error,theForm,buttons" disabled="{!!hasnext}" action="{!Next}" value="Next"/>
+                <apex:commandButton reRender="error,theForm,buttons" disabled="{!!hasnext}" action="{!Last}" value="Last"/>
+                <!-- Pagination -->
+<table style="width: 100%"><tr>
+
+    <td>
+        Page: <apex:outputText value=" {!PageNumber} of {! CEILING(ResultSize / PageSize) }"/>
+    </td>            
+
+    <td align="center">
+        <!-- Previous page -->
+        <!-- Next page -->
+    </td>
+    
+    <td align="right">
+        <!-- Records per page -->
+    </td>
+
+</tr></table>
+            </apex:panelGrid>
+        <apex:pageBlock id="thePageBlock" mode="edit"> 
+            <apex:pageBlockTable value="{!records}" var="record" id="thePageBlockTable"> 
+                <apex:column width="30px">
+                    <apex:outputField value="{!record.Title}" id="AccountTypeDOM" /> 
+                    <apex:facet name="header">Title</apex:facet>
+                </apex:column>
+                <apex:column width="60px">
+                    <apex:outputField value="{!record.Status}" 
+                        id="phone" />  
+                        <apex:facet name="header">Status</apex:facet>
+                </apex:column>
+                <apex:column width="60px">
+                    <apex:outputField value="{!record.Categories}" 
+                        id="email" />  
+                        <apex:facet name="header">Category</apex:facet>
+                </apex:column>
+                <apex:inlineEditSupport showOnEdit="saveButton,cancelButton" event="onclick" hideOnEdit="editButton" /> 
+            </apex:pageBlockTable> 
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

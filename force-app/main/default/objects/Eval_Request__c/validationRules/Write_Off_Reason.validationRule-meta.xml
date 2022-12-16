@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Write_Off_Reason</fullName>
+    <active>true</active>
+    <description>If Product Type is Write off, must have a reason</description>
+    <errorConditionFormula>len(Business_Case_Write_Off__c )&lt;5&amp;&amp; text(Eval_Type__c )=&apos;Write Off Request&apos; &amp;&amp; text(  Approval_Status__c  ) != &apos;Approved&apos;</errorConditionFormula>
+    <errorMessage>You must have a business reason for write off given.</errorMessage>
+</ValidationRule>

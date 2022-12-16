@@ -1,0 +1,125 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global"
+                controller="EducationRegLight">
+    <aura:handler name="change" action="{!c.orderCreated}" value="{!v.orderChange}"/>
+    <aura:handler name="orderCreated" event="c:siteTrainingOrderCreated"
+                  action="{!c.trainUpdated}" />
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute type="String" name="acct"/>
+    <aura:attribute type="Aura.Component[]" name="orderUp"/>
+    <aura:attribute type="Aura.Component[]" name="cancelBtn"/>    
+    <aura:attribute type="String" name="errMessage"/>
+    <aura:attribute type="Boolean" name="disabled" default="false"/>
+    <aura:attribute type="Boolean" name="orderChange" default="true"/>
+    <aura:attribute type="Order[]" name="orders"/>
+    <c:MessageContainer aura:id="messageContainer"/>
+    {!v.body}{!v.errMessage}
+    <aura:if isTrue="{!empty(v.orders)}">
+        <lightning:card  >
+                <aura:set attribute="actions">
+                    <lightning:button label="New Training Request" onclick="{!c.editTraining}" disabled="{!v.disabled}" name="{!v.acct}"/>
+                </aura:set>
+        </lightning:card>
+        No Training Requests Found. You can create a new request by clicking button 'New Training Request'
+        <aura:set attribute="else">
+            <lightning:card  >
+                <aura:set attribute="actions">
+                    <lightning:button label="New Training Request" onclick="{!c.editTraining}" disabled="{!v.disabled}" name="{!v.orders[0].AccountId}"/>
+                </aura:set>
+                <aura:set attribute="title">
+                    Trainings for {!v.orders[0].Account.Name}
+                </aura:set>
+                <div class="flexipageComponent" data-aura-class="flexipageComponent">
+                    <div class="slds-card__header slds-grid">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Resellers">Location</div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Spa Name">Requested Date</div>
+                                    </th>
+                                    
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Spa Expiration Date">Time</div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Bid Registration">Trainer </div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Resubmission Notes">Trainer Email</div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Resubmission Notes">Trainer Phone</div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Resubmission Notes">Requested by</div>
+                                    </th>
+                                    
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="btn"></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <aura:iteration items="{!v.orders}" var="t">                                    
+                                    <tr>
+                                        
+                                        <td class="slds-cell-wrap ">
+                                            <ui:outputText class="slds-output" value="{!t.Named_Location_of_Training__c  }"/>
+                                        </td>
+                                        <td class="slds-cell-wrap ">
+                                            <ui:outputDate class="slds-output" value="{!t.EffectiveDate}" format="MM-dd-yyyy"/>
+                                        </td>
+                                        <td class="slds-cell-wrap ">
+                                            <ui:outputText class="slds-output" value="{!t.Start_Time_of_Training__c }"/>
+                                        </td>
+                                        <td class="slds-cell-wrap ">
+                                            <ui:outputText class="slds-output" value="{!t.Authorized_Trainer__c  }"/>
+                                        </td >
+                                        <td class="slds-cell-wrap ">
+                                            <ui:outputEmail class="slds-output" value="{!t.Trainer_Email__c  }"/>
+                                        </td>
+                                        <td class="slds-cell-wrap ">
+                                            <ui:outputPhone class="slds-output" value="{!t.Trainer_Email__c  }"/>
+                                        </td>
+                                        <td class="slds-cell-wrap tdspace">
+                                            <ui:outputText class="slds-output" value="{!t.Contact_Name__c  }"/>
+                                        </td> 
+                                        <td> 
+                                            <div class="slds-x-small-buttons--horizontal"> 
+                                                <lightning:button label="Edit This Training" onclick="{!c.editTraining}" aura:id="ebtn" value="{!t.Id}" disabled="{!v.disabled}"
+                                                                  name="{!t.AccountId}"/>  
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </aura:iteration>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    
+                    <aura:if isTrue="{!not(empty(v.cons))}" >
+                    </aura:if>
+                    <!--  <lightning:button name="create" label="Create New and Link" variant="brand" onclick="{!c.handleCreate}"/> -->
+                </footer>
+            </lightning:card>            
+            
+        </aura:set>
+    </aura:if>
+    <div aura:id="cncBtn">
+        <lightning:card  >
+            <aura:set attribute="actions">
+                {!v.cancelBtn}
+            </aura:set>
+        </lightning:card>
+        
+        
+    </div>
+    <div aura:id="newtag">
+        
+        {!v.orderUp}
+    </div>
+</aura:component>

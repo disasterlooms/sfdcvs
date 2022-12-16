@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>EmailAdmin</name>
+        <label>EmailAdmin</label>
+        <locationX>530</locationX>
+        <locationY>119</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Merge Requested</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Description</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <stringValue>jason.orbison@viewsonic.com,katherine.chen@viewsonic.com</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <interviewLabel>Merge Account Action Request {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Merge Account Action Request</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>Account_to_Merge</name>
+        <label>Account(s) to Merge</label>
+        <locationX>277</locationX>
+        <locationY>64</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>EmailAdmin</targetReference>
+        </connector>
+        <fields>
+            <name>Correct_Account</name>
+            <dataType>String</dataType>
+            <fieldText>Correct Account URL</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Account_to_Merge_1</name>
+            <dataType>String</dataType>
+            <fieldText>Account to Merge 1</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Account_to_Merge_2</name>
+            <dataType>String</dataType>
+            <fieldText>Account to Merge 2</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Account_to_Merge_3</name>
+            <dataType>String</dataType>
+            <fieldText>Account to Merge 3</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Account_to_Merge</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+    <textTemplates>
+        <name>Description</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>Please Merge the following Accounts :
+
+{!Account_to_Merge_1}
+{!Account_to_Merge_2}
+{!Account_to_Merge_3}
+
+To the main account
+{!Correct_Account}</text>
+    </textTemplates>
+</Flow>

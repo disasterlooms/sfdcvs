@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Name</fullName>
+    <active>true</active>
+    <description>Evaluations must use only 1 of 2 opportunities when it relates to Viewsonic</description>
+    <errorConditionFormula>isnew() &amp;&amp;  contains(lower(Opportunity_Name__r.Name), &quot;viewsonic&quot;) &amp;&amp; Opportunity_Name__c != &apos;0061200000SusRH&apos; &amp;&amp;  Opportunity_Name__c != &apos;0061200000TqH9a&apos;</errorConditionFormula>
+    <errorMessage>There are only 2 valid Viewsonic Opportunities that can be used. 
+Viewsonic Trade Show Loaner Eval Requests
+ViewSonic Corporation Sales Rep Eval Units
+
+Please do not create any others
+
+These can only be used for sales rep evaluations</errorMessage>
+</ValidationRule>

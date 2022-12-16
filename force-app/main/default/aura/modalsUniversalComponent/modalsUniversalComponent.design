@@ -1,0 +1,20 @@
+<design:component>
+    <design:attribute name="whereStatement" description="Update Where statement and add any specifics other than modal name" />
+    <design:attribute name="orderStatement" description="order of the query as the first value will be used"/>
+    <design:attribute name="modalName" description="Which Modal Used" required="true"/>
+    <design:attribute name="account" description="Default is user based but if needed can use all parter community users under a specific account"/>
+    <design:attribute name="profile" description="Default is user based but if needed can use all users under a specific profile"/>
+    <design:attribute name="role" description="Default is user based but if needed can use all users under a specific role"/>	
+	<design:attribute name="dismiss" description="Show Later button label"/>
+    <design:attribute name="remove" description="Dismiss Forever and Remove button label"/>	
+    <!--
+    <design:attribute name="custComponent" description="Any custom component we want" />
+    <design:attribute name="useComponent" 
+                      description="Use the custom component, 
+                                  this must be true and component name must be correct
+                                   in the cust component attribute" />
+    -->
+    
+    
+    
+</design:component>

@@ -1,0 +1,90 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,forceCommunity:themeLayout" access="global"
+    description="Login Page Layout Default">
+
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="sideImageURL" type="Boolean" default="false" />
+    <!--<aura:attribute name="search" type="Aura.Component[]" required="false"/>-->
+    <!--<aura:attribute name="notifications" type="Aura.Component[]" required="false"/>-->
+    <!--<aura:attribute name="profileMenu" type="Aura.Component[]" required="false"/>-->
+    <!--<aura:attribute name="navBar" type="Aura.Component[]" required="false"/>-->
+    <aura:attribute name="newHeader" type="Aura.Component[]" required="false" />
+    <aura:handler event="aura:doneRendering" action="{!c.onLoad}" />
+    <aura:attribute name="smallLogo" type="Boolean" default="true" />
+    <aura:attribute name="column1" type="Aura.Component[]" required="false" />
+    <aura:attribute name="LoginScreen" type="Aura.Component[]" required="false" />
+    <aura:attribute name="column3" type="Aura.Component[]" required="false" />
+    <aura:attribute name="title" type="String" required="false" default="Log In" />
+    <aura:attribute name="isLogin" type="Boolean" />
+    <aura:attribute name="isPasswordReset" type="Boolean" />
+    <aura:attribute name="themeHeader" type="Aura.Component[]" required="false" />
+
+    <div class="themeHeader">
+        {!v.themeHeader}
+    </div>
+    <!--  
+<div class="navigation">
+    {!v.navBar}
+</div>
+-->
+
+    <div class="pp-login">
+        <div class="pp-col-left" aura:id="imageStyle">
+        </div>
+        <div class="pp-col-right">
+            <div class="pp-col-right-cont">
+                <div class="pp-logo">
+                    <img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/partner-program-lowercase.svg"
+                        alt="Partner Program Logo"></img>
+                </div>
+
+
+                <div class="pp-login-cont">
+                    <div class="pp-form">
+                        <aura:if isTrue="{!v.isLogin}">
+                            <h1>{!$Label.c.Login_Title}</h1>
+                            <aura:set attribute="else">
+                                <aura:if isTrue="{!v.isPasswordReset}">
+                                    <h1>{!$Label.c.Password_Reset_Title}</h1>
+                                    <aura:set attribute="else">
+                                        <h1> {!$Label.c.Sign_Up}</h1>
+                                    </aura:set>
+
+                                </aura:if>
+                            </aura:set>
+
+                        </aura:if>
+                        <div>
+                            <!-- The dynamic field below can have the css edited in this component but the class names cannot change, must add to the stlye sheet
+                        in this component the classes you want to edit  -->
+                            {!v.LoginScreen}
+                            <!-- Commented out
+                <form action="">
+                    <div class="pp-field">
+                        <div><label for="username">Username</label></div>
+                        <div><input type="text" id="" name="" value=""></input></div>
+                    </div>
+                    <div class="pp-field">
+                        <div><label for="password">Password</label></div>
+                        <div><input type="text" id="" name="" value=""></input></div>
+                    </div>
+                    <div class="pp-btn">
+                        <input type="submit" value="Log In"></input>
+                    </div>
+                    <div class="pp-sm-text">
+                        <a href="#">Forgot your password?</a>
+                    </div>                            
+                </form>  -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div>
+            {!v.column3}
+        </div>
+    </div>
+
+</aura:component>

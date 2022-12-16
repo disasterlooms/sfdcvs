@@ -1,0 +1,99 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+                controller="SpaProducts"
+                access="global" >
+    <aura:handler name="init" value="this" action="{!c.getProducts}"/>
+    <aura:attribute name="recordId" type="string"/>
+    <aura:attribute name="wherestmnt" type="string"/>
+    <aura:attribute name="addfields" type="string" />
+    <aura:attribute name="orderstmnt" type="string"/>
+    <aura:attribute name="title" type="string" />
+    <aura:attribute name="products" type="QuotelineItem[]"/>
+    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+                
+                <th scope="col">
+                    <div class="slds-truncate" title="SKU">SKU</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="QTY">QTY</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Approved Price">Req Price</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="List Price">List Price</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Approved Price">Appr Price</div>
+                </th>
+                <!-- Start Adding Hotswap Filed 07182019 Prasad-->
+                <th scope="col">
+                    <div class="slds-truncate" title="Hot Swap">Hot Swap</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Expiration Date">Expiration Date</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Active SKU">Active SKU</div>
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.products}" var="p" indexVar="idx">
+                <tr>
+                    
+                    <td>
+                        <ui:outputURL value="{!'/lightning/r/Report/00O1H000005YQ63/view/?fv1='+p.Product2.Name}" label="{!p.Product2.Name}" target="_blank"/>
+                        
+                    </td>
+                    <td>
+                        <lightning:input type="number" value="{!p.Quantity}" readonly="true"/>
+                    </td>
+                    <td>
+                        <lightning:input type="number" value="{!p.UnitPrice}"  readonly="true" formatter="currency"/>
+                    </td>
+                    <td>
+                        <lightning:input type="number" value="{!p.PricebookEntry.UnitPrice}"  readonly="true" formatter="currency"/>
+                        
+                        
+                    </td> 
+                    <td>
+                        <lightning:input type="number" value="{!p.Approved_Price__c}"  readonly="true" formatter="currency"/>
+                    </td> 
+                    
+                    <!-- Start Adding Hotswap Field 07182019 Prasad-->
+                    <td>
+                        <ui:inputCheckbox value="{!p.Hot_Swap_Flag__c}" aura:id="Hot Swap" />
+                    </td>
+                    <!-- End Adding Hotswap Filed 07182019 Prasad-->
+                    
+                    <td>
+                        <lightning:input value="{!p.SPA_Expiration_Date__c}" dateStyle="short" type="date" readonly="true"/>
+                    </td>
+                    <td>
+                        <aura:if isTrue="{!p.PricebookEntry.IsActive}">
+                            <lightning:input type="checkbox" value="{!p.PricebookEntry.IsActive}" checked="{!p.PricebookEntry.IsActive}" disabled="true"/>
+                            <aura:set attribute="else">
+                                <lightning:input type="checkbox" value="{!p.PricebookEntry.IsActive}"  class="slds-has-error" checked="{!p.PricebookEntry.IsActive}" disabled="true"/>
+                            </aura:set>
+                        </aura:if>
+                    </td>
+                    
+                    <!--<td>
+                                      <lightning:formattedRichText value="{!m.HtmlBody}" />
+                                </td> -->
+                    
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+    
+    
+</aura:component>

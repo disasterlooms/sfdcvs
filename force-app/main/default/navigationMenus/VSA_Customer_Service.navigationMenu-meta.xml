@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NavigationMenu xmlns="http://soap.sforce.com/2006/04/metadata">
+    <container>ViewSonic Employee Salesforce Portal</container>
+    <containerType>Network</containerType>
+    <label>VSA Customer Service</label>
+    <navigationMenuItem>
+        <label>Create Account</label>
+        <position>1</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>New_Account</target>
+        <type>GlobalAction</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Spas</label>
+        <position>2</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Quote</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <defaultListViewId>All</defaultListViewId>
+        <label>Hot Swap</label>
+        <position>3</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Hot_Swap__c</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Account</label>
+        <position>4</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Account</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Contact</label>
+        <position>5</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Contact</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Leads</label>
+        <position>6</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Lead</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Service Contracts (VIP)</label>
+        <position>7</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/servicecontract/ServiceContract/Default</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Reports</label>
+        <position>8</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/report/Report/Recent</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Help Videos</label>
+        <position>9</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/helpvideos</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+</NavigationMenu>

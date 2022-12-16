@@ -1,0 +1,10 @@
+<apex:page standardController="Account">
+
+ <wave:dashboard dashboardId="0FK1H000000MZ6uWAG" 
+        showTitle="false" 
+        showHeader="false"
+        height="425" 
+        openLinksInNewWindow="true" 
+        filter="{'datasets' : {'SalesData': [ {'fields':['EndUser.SFDC_Account__c'], 'selection': ['{!Account.Id}']}],'SalesTeams':[{'fields':['Sales_Team'], 'filter':{'operator': 'matches', 'values':['X Education EU']}}]}}"/>
+
+</apex:page>

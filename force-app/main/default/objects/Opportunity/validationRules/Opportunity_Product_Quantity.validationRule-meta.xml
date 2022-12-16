@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Product_Quantity</fullName>
+    <active>true</active>
+    <description>On new opportunities, if product is selected, there must be a quanity also, otherwise a flow errror will occur.</description>
+    <errorConditionFormula>isnew() &amp;&amp; 
+(Product_Name_Main__c != null ||
+My_Custom_Bundle__c != null
+)&amp;&amp;
+ isnull(Product_Quantity__c) = true &amp;&amp;
+$Organization.Id = &apos;00D780000004d2r&apos;</errorConditionFormula>
+    <errorMessage>Products Must have a quantity also. Please put a quantity if using Custom Bundles or Products.</errorMessage>
+</ValidationRule>

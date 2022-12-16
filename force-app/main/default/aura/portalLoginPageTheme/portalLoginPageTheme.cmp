@@ -1,0 +1,50 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,forceCommunity:themeLayout" access="global" >
+    <aura:attribute name="search" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="notifications" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="profileMenu" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="navBar" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="newHeader" type="Aura.Component[]" required="false"/>
+    <aura:handler event="aura:doneRendering" action="{!c.onLoad}"/>
+    <aura:attribute name="smallLogo" type="Boolean" default="true" />
+    <aura:attribute name="sideImageURL" type="String"/>
+    <aura:attribute name="column1" type="Aura.Component[]" required="false"></aura:attribute>
+    <aura:attribute name="column2" type="Aura.Component[]" required="false"></aura:attribute>
+    <aura:attribute name="column3" type="Aura.Component[]" required="false"></aura:attribute>
+    test
+    'https://www.viewsonic.com/media/wysiwyg/Library/pp-SignUp_1150x1200.jpg' 
+    <div>        
+             <!--<div class="logoContainer">-->
+           
+        <!--
+        <div class="searchRegion">
+            {!v.search}
+        </div>
+        <div class="profileMenuRegion">
+            {!v.profileMenu}
+        </div>        
+        -->
+        
+        
+    </div>
+        <div class="navigation">
+             {!v.navBar}
+        </div>
+    
+    <div class="container">
+        <div class="contentPanel">
+            <div class="left">
+                {!v.column1}
+            </div>
+            <div class="right">
+                <div class="pp-login-cont">
+                {!v.column2}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+                 <div >
+                {!v.column3}
+            </div>
+            </div>
+</aura:component>

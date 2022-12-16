@@ -1,0 +1,5 @@
+<apex:page standardController="Eval_Request__c">
+
+    
+    <apex:relatedlist list="Eval_Unit_Details__r" title="Eval Unit Details"/>
+</apex:page>

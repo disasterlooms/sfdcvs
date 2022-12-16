@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>creator</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Opportunity_Name__c</field>
+        <field>Eval_Type__c</field>
+        <field>Reason_for_Request__c</field>
+        <field>Special_Instructions__c</field>
+        <field>Opportunity_Amount__c</field>
+        <field>Product_Name__c</field>
+        <field>Quantity__c</field>
+        <field>Billing_Contact_Name__c</field>
+        <field>Shipping_Contact_Name__c</field>
+        <field>Expected_Receive_Date__c</field>
+        <field>Name</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>adhoc</type>
+            </approver>
+        </assignedApprover>
+        <description>Sends a request to director for approval</description>
+        <label>Director Approval</label>
+        <name>Director_Approval</name>
+        <rejectionActions>
+            <action>
+                <name>Notifies_Sales_Rep</name>
+                <type>Alert</type>
+            </action>
+        </rejectionActions>
+    </approvalStep>
+    <description>End User/Disty/Reseller Eval request approval from director and then notifies operations sales. Not for canada due to eval agreement. This sends Eval Agreement both with or without credit card depending on user input</description>
+    <emailTemplate>Product_Request/End_User_Evaluation_Request</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>Product_Name_2__r.Name != &apos;CDE7051-TL&apos; &amp;&amp; 
+Product_Name_2__r.Name != &apos;CDE7561T&apos; &amp;&amp; 
+Product_Name_2__r.Name != &apos;CDE7061T&apos; &amp;&amp; 
+Product_Name_2__r.Name != &apos;CDE7060T&apos; &amp;&amp; 
+Product_Name_2__r.Name != &apos;CDE8451-TL&apos; &amp;&amp; 
+Product_Name_2__r.Name != &apos;CDE8452T&apos; &amp;&amp; 
+Product_Name_2__r.Name != &apos;CDP9800&apos; &amp;&amp; 
+
+Product_Name__r.Name != &apos;CDE7051-TL&apos; &amp;&amp; 
+Product_Name__r.Name != &apos;CDE7561T&apos; &amp;&amp; 
+Product_Name__r.Name != &apos;CDE7061T&apos;&amp;&amp; 
+Product_Name__r.Name != &apos;CDE7060T&apos; &amp;&amp; 
+Product_Name__r.Name != &apos;CDE8451-TL&apos; &amp;&amp; 
+Product_Name__r.Name != &apos;CDE8452T&apos; &amp;&amp; 
+Product_Name__r.Name != &apos;CDP9800&apos; &amp;&amp; 
+$UserRole.Name != &apos;ViewSonic Corporation Partner User&apos;&amp;&amp;
+text(Approval_Status__c) != &apos;Approved&apos; &amp;&amp;
+(text( Eval_Type__c )=&apos;End-User/Reseller/Disty Eval&apos; || text( Eval_Type__c )=&apos;Reseller Demo&apos; )&amp;&amp;
+$User.Country != &apos;Canada&apos; &amp;&amp;
+Created_Mobile__c = false &amp;&amp;  
+GovEd_Account_Waive_Agreement__c = false</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>Change_to_Approved_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Eval_Agreement</name>
+            <type>OutboundMessage</type>
+        </action>
+        <action>
+            <name>Eval_Approved_to_Sales_Rep</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>EvalProcessW_Agreement</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Change_to_Rejected_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>Change_to_Pending_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Eval_End_UserRequest_Recieved</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>EvalProcessStage</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>End User/ Eval Request U.S. &amp; Latin Amer</label>
+    <processOrder>6</processOrder>
+    <recallActions>
+        <action>
+            <name>Change_to_Cancelled_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

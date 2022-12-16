@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Field_Changes_After_Creation</fullName>
+    <active>true</active>
+    <errorConditionFormula>not($Permission.VSA_Bid_Desk)
+&amp;&amp; 
+(ischanged(Name) ||
+ischanged(Notes__c) ||
+ischanged(OpportunityId))</errorConditionFormula>
+    <errorMessage>Only Bid Desk or Admin Can Make changes to this quote. Please submit requests through resubmission notes</errorMessage>
+</ValidationRule>

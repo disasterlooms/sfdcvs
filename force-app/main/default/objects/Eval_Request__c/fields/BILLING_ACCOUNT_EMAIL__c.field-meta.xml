@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BILLING_ACCOUNT_EMAIL__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( text(Eval_Type__c ) == &apos;ViewSonic Sales Rep Eval&apos;, 
+Owner:User.Email,   Billing_Contact_Name__r.Email)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>BILLING_ACCOUNT_EMAIL</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

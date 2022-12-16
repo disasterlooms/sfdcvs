@@ -1,0 +1,6 @@
+<design:component>
+    <design:attribute name="showFooter" description="if in flow, should be false" />
+    <design:attribute name="showSubTitle" description="if for portal partners, should be false"/>
+    <design:attribute name="distiNamesSelected" description="The Distribors Selected"/>
+    <design:attribute name="distiIdsSelected" description="The Distribor Ids Selected"/>
+</design:component>

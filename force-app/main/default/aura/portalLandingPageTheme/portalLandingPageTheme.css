@@ -1,0 +1,198 @@
+.THIS .salesforceIdentityLoginForm2 button.uiButton:hover {  
+    background: #c50d0d ;
+    color: #fff;
+}
+.THIS .salesforceIdentityForgotPassword2 button.uiButton:hover {
+    background: #c50d0d ;
+    color: #fff;
+}
+.THIS .uiButton .label { 
+    padding: 6px;
+}
+.THIS .salesforceIdentityForgotPassword2 .uiButton .label {
+    color: #fff;
+    font-weight: 400;
+}
+.THIS .inputContainer {
+    padding: 6px;
+    border: none;
+    background-color: rgb(232, 240, 254);
+}
+.THIS .salesforceIdentityLoginForm2 .inverseTextColor {
+    color: #0A72DB !important;
+}
+.THIS .salesforceIdentityLoginForm2 .error {
+    text-align: left;
+}
+.THIS.pp-landing-hero {
+    color: #1F1F1F;
+    font-family: "Open Sans", sans-serif;
+    background-color: #f5f5f5;
+    width:100%;
+    background-image:url('https://www.viewsonic.com/media/wysiwyg/Library/21MLT_CHN1236e_Hdr_1920x600.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: center;
+}
+.THIS.pp-landing-hero .pp-full-hero-cont { 
+    max-width: 1620px;    
+    height: 50vh;
+    margin: 0 auto;
+    display: flex;
+}
+.THIS.pp-landing-hero .pp-full-hero-cont .pp-full-hero-text {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.THIS.pp-landing-hero .pp-full-hero-cont .pp-full-hero-text h1.pp-logo {
+    width: 45%;
+    background: rgba(255,255,255,0.6);
+    padding: 1.4rem 1.8rem 1.2rem;
+}
+.THIS.pp-landing-hero .pp-full-hero-cont .pp-full-hero-text h1.pp-logo img {
+    width: 100%;
+}
+.THIS.pp-landing-body { 
+    background-color: #fff;
+    width:100%;
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    min-height: 33vh;
+}
+.THIS.pp-landing-body .pp-body-cont {
+    max-width: 1420px;
+    margin: 0 auto; 
+    padding: 0 5rem;
+}
+.THIS.pp-landing-body .pp-body-cont .pp-body-cont-text {
+    text-align: center;
+}
+.THIS.pp-landing-body .pp-body-cont-text h1 {
+    font-size: 1.68rem;
+    line-height: 1.4;
+    font-weight: 600;
+    color: #E0AD34;
+    margin-bottom: 0.6rem;
+}
+.THIS.pp-landing-body .pp-body-cont-text p {
+    font-size: 1.12rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: #1b1b1b;
+}
+.THIS.pp-landing-body .pp-body-cont-form {
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 2rem;
+}
+.THIS.pp-landing-body h2 {
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin-bottom: 1.4rem;
+    color: #1b1b1b;
+    text-align: center;
+}
+.THIS.pp-landing-body .slds-media_center {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.THIS.pp-landing-body .slds-media__body {
+    display: none;
+}
+.THIS.pp-landing-body .slds-button_brand {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.34rem;
+    padding-bottom: 0.4rem;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 0;
+    transition: border 0.15s linear 0s;
+    background-color: #990000;
+    border: none;
+    color: #fff;
+    transition: all 0.4s ease;
+}
+.THIS.pp-landing-body .slds-button_brand:hover {
+    background: #c50d0d ;
+    color: #fff;
+    border: none;
+}
+.THIS.pp-landing-body .forceCommunityFlowCommunity {
+    border: none;
+}
+.THIS.pp-landing-body .slds-form-element__label {
+    display: none;
+}
+.THIS.pp-landing-body .slds-input {
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
+}
+.THIS.pp-landing-body .slds-has-error .slds-input {
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
+}
+
+
+/* Media */
+@media (max-width: 992px) {
+    .THIS.pp-landing-hero .pp-full-hero-cont { 
+        max-width: 100%;    
+        height: 35vh;
+	}  
+    .THIS.pp-landing-hero .pp-full-hero-cont .pp-full-hero-text {
+       justify-content: center;
+    }
+    .THIS.pp-landing-hero .pp-full-hero-cont .pp-full-hero-text h1.pp-logo {
+        width: 70%;
+        background: rgba(255,255,255,0.8);
+    	padding: 1rem 1rem 1rem;
+    }
+    .THIS.pp-landing-body .pp-body-cont {
+        max-width: 100%;
+        padding: 0 2rem;
+	}
+    .THIS.pp-landing-body .pp-body-cont-text h1 {
+    	font-size: 1.34rem;
+    }
+    .THIS.pp-landing-body .pp-body-cont-text p {
+    	font-size: 1rem;
+    }
+    .THIS.pp-landing-body .pp-body-cont-form {
+    	width: 360px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .THIS.pp-landing .pp-col-right h1 {
+    	font-size: 1.4rem;
+        margin-top: 1rem;
+    }
+    .THIS.pp-landing-body .pp-body-cont-form {
+    	width: 100%;
+    }
+    .THIS.pp-landing-hero .pp-full-hero-cont .pp-full-hero-text h1.pp-logo {
+        width: 94%;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1500px) {
+    .THIS.pp-landing-hero .pp-full-hero-cont { 
+    	max-width: 1420px; 
+    }
+    .THIS.pp-landing-body .pp-body-cont {
+        padding: 0 5rem;
+    	margin-top: 2rem;
+    	margin-bottom: 2rem;
+	}
+    .THIS.pp-landing-hero .pp-full-hero-cont .pp-full-hero-text {
+       padding-left: 5rem;
+    }
+}

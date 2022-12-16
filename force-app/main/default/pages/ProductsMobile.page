@@ -1,0 +1,15 @@
+<apex:page docType="html-5.0" standardController="Opportunity">
+    <style>
+        .mypage .delta {
+            font-size: 24px;
+            text-align: center;
+            color: green;
+        }
+    </style>
+    
+    <div class="mypage">
+        <div class="delta">
+        </div>
+    </div>
+    
+</apex:page>

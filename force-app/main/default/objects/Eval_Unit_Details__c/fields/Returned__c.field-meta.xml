@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Returned__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(text( Status__c )= &apos;Product Returned&apos;,&apos;Returned/Purchased&apos;,
+if(text( Status__c )= &apos;Product Returned in Oracle&apos;,&apos;Returned/Purchased&apos;,
+if(text( Status__c )= &apos;Purchased&apos;,&apos;Returned/Purchased&apos;,
+if(text( Status__c )= null,&apos;Outstanding&apos;,
+if(text( Status__c )= &apos;Canadian Eval - Shipped&apos;,&apos;Canadian&apos;,
+if(text( Status__c )= &apos;Canadian Eval Returned&apos;,&apos;Canadian&apos;,
+if(text( Status__c )= &apos;Canadian Product Returned&apos; ,&apos;Canadian&apos;,
+if(text( Status__c )= &apos;Canadian Eval – Shipped&apos; ,&apos;Canadian&apos;,
+if(text( Status__c )= &apos;Product Invoiced&apos;,&apos;Outstanding&apos;,
+if(text( Status__c )= &apos;Write-off&apos;,&apos;Write Off&apos;,
+&apos;Unknown&apos;))))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

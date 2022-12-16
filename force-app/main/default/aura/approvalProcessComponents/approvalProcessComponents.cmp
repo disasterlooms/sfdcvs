@@ -1,0 +1,38 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global" 
+                controller="approvalRecId">
+    <aura:attribute name="cmpName" Type="String"/>
+    <aura:attribute name="dashboardId" type="String"/>
+    <aura:attribute name="dashboardFilter" type="String"/>  
+    <aura:attribute name="dashboardUseParent" type="Boolean"/>
+    <aura:attribute name="dashboardHeight" type="String"/>
+    <aura:attribute name="dashboarddatsetName" type="String"/>
+    <aura:attribute name="dashboardFieldtoCompare" type="String"/>
+    <aura:attribute name="fieldtoMatch" type="Boolean"/>
+    <aura:attribute name="fieldMatching" type="String"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"/>
+    <aura:handler name="change" value="{!v.pRecord.Id}" action="{!c.parentRecord}"/>
+    <aura:attribute name="recData" type="Aura.Component[]"/>
+    
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="objExpected" type="String" default="0Q0"/>
+    <aura:attribute name="getParentID" type="Boolean" default="false"/>
+    
+    <aura:attribute name="parentfieldname" type="String"/>
+    <aura:attribute name="ObjName" type="String"/> 
+    <aura:attribute name="recordValues" type="Sobject"/>
+    
+    <aura:attribute name="relatedRecId" type="String"/>
+    <aura:attribute name="parentId" type="String"/>
+    <aura:attribute name="parentFieldNames" type="String"/>
+    <aura:attribute name="objType" type="String"/>
+    <br/>    
+   
+    
+    <aura:if isTrue="{!v.objType == v.objExpected}">
+      {!v.body}  
+    </aura:if>
+    
+ 
+	
+</aura:component>

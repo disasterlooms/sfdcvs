@@ -1,0 +1,385 @@
+<apex:component ><div class="calBody">
+<style>
+.datePicker .calDays .highlight {
+    background-color: #e3f3ff;
+    color: #000
+    font-weight: bold;
+}
+element.style {
+    display: none;
+    left: 1095px;
+    top: 316px;
+}
+.datePicker {
+    background-image: url(/img/alohaSkin/cal_sprite.png);
+    background-position: left -109px;
+    background-repeat: repeat-x;
+    background-color: #ededed;
+    border-left: 1px solid #d6d6d6;
+    border-right: 1px solid #d6d6d6;
+}
+.datePicker {
+    width: auto;
+    border: 0;
+    padding: 7px 5px 6px;
+    -moz-box-shadow: 0 2px 6px #111;
+    -webkit-box-shadow: 0 2px 6px #111;
+    box-shadow: 0 2px 6px #111;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.datePicker {
+    z-index: 100;
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 17em;
+    background-color: #b7c6b2;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    margin: 0;
+    padding: 1px 1px 2px 2px;
+}
+.datePicker .dateBar {
+    padding: 0 0 4px;
+}
+.datePicker .dateBar {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 1px 2px;
+}
+
+.datePicker .dateBar .calLeft, .datePicker .dateBar .calLeftOn, .datePicker .dateBar .calRight, .datePicker .dateBar .calRightOn {
+    margin-top: 4px;
+}
+.datePicker .dateBar .calLeft, .datePicker .dateBar .calLeftOn {
+    margin: 2px 4px 0 0;
+}
+.datePicker .dateBar .calLeft, .datePicker .dateBar .calLeftOn {
+    background-image: url(/img/alohaSkin/cal_sprite.png);
+    background-position: 0 -61px;
+    width: 18px;
+    height: 16px;
+}
+.datePicker .dateBar .calLeft, .datePicker .dateBar .calLeftOn, .datePicker .dateBar .calRight, .datePicker .dateBar .calRightOn {
+    margin-top: 4px;
+}
+.datePicker .dateBar .calRight, .datePicker .dateBar .calRightOn {
+    margin: 2px 9px 0 4px;
+}
+.datePicker .dateBar .calRight, .datePicker .dateBar .calRightOn {
+    background-image: url(/img/alohaSkin/cal_sprite.png);
+    background-position: 0 -84px;
+    width: 18px;
+    height: 16px;
+}
+
+</style>
+ 
+    <div class="datePicker" id="datePicker" style=
+  "display: none; left: 1095px; top: 316px;">
+    <div class="dateBar">
+      <img src="/s.gif" alt="Previous Month" class="calLeft" onblur=
+      "this.className = 'calLeft';" onclick="DatePicker.datePicker.prevMonth();" onfocus=
+      "this.className = 'calLeftOn';" onmouseout="this.className = 'calLeft';"
+      onmouseover="this.className = 'calLeftOn';" title="Previous Month" /><select id=
+      "calMonthPicker" name="calMonthPicker" title="Month">
+        <option value="0">
+          January
+        </option>
+
+        <option value="1">
+          February
+        </option>
+
+        <option value="2">
+          March
+        </option>
+
+        <option value="3">
+          April
+        </option>
+
+        <option value="4">
+          May
+        </option>
+
+        <option value="5">
+          June
+        </option>
+
+        <option value="6">
+          July
+        </option>
+
+        <option value="7">
+          August
+        </option>
+
+        <option value="8">
+          September
+        </option>
+
+        <option value="9">
+          October
+        </option>
+
+        <option value="10">
+          November
+        </option>
+
+        <option value="11">
+          December
+        </option>
+      </select><img src="/s.gif" alt="Next Month" class="calRight" onblur=
+      "this.className = 'calRight';" onclick="DatePicker.datePicker.nextMonth();"
+      onfocus="this.className = 'calRightOn';" onmouseout="this.className = 'calRight';"
+      onmouseover="this.className = 'calRightOn';" title="Next Month" /><select id=
+      "calYearPicker" name="calYearPicker" title="Year">
+        <option value="2015">
+          2015
+        </option>
+
+        <option value="2016">
+          2016
+        </option>
+
+        <option value="2017">
+          2017
+        </option>
+
+        <option value="2018">
+          2018
+        </option>
+
+        <option value="2019">
+          2019
+        </option>
+
+        <option value="2020">
+          2020
+        </option>
+
+        <option value="2021">
+          2021
+        </option>
+      </select>
+    </div>
+
+    <div class="calBody">
+      <table class="calDays" border="0" cellpadding="0" cellspacing="0" id=
+      "datePickerCalendar">
+        <tbody>
+          <tr>
+            <th class="dayOfWeek" scope="col">Sun</th>
+
+            <th class="dayOfWeek" scope="col">Mon</th>
+
+            <th class="dayOfWeek" scope="col">Tue</th>
+
+            <th class="dayOfWeek" scope="col">Wed</th>
+
+            <th class="dayOfWeek" scope="col">Thu</th>
+
+            <th class="dayOfWeek" scope="col">Fri</th>
+
+            <th class="dayOfWeek" scope="col">Sat</th>
+          </tr>
+
+          <tr class="calRow" id="calRow1">
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekend prevMonth">27</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday prevMonth">28</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday prevMonth">29</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday prevMonth">30</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">1</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">2</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekend">3</td>
+          </tr>
+
+          <tr class="calRow" id="calRow2">
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekend">4</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">5</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">6</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">7</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">8</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">9</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekend">10</td>
+          </tr>
+
+          <tr class="calRow" id="calRow3">
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekend">11</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">12</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">13</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">14</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">15</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">16</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekend">17</td>
+          </tr>
+
+          <tr class="calRow" id="calRow4">
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekend">18</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">19</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">20</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">21</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday todayDate">22</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">23</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekend">24</td>
+          </tr>
+
+          <tr class="calRow" id="calRow5">
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekend">25</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">26</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">27</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">28</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">29</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekday">30</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);"
+            class="weekend">31</td>
+          </tr>
+
+          <tr class="calRow" id="calRow6" style="display: none;">
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);">
+            &nbsp;</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);">
+            &nbsp;</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);">
+            &nbsp;</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);">
+            &nbsp;</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);">
+            &nbsp;</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);">
+            &nbsp;</td>
+
+            <td onblur="hiOff(this);" onclick="DatePicker.datePicker.selectDate(this);"
+            onfocus="hiOn(this);" onmouseout="hiOff(this);" onmouseover="hiOn(this);">
+            &nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="buttonBar">
+        <a href="javascript:%20void%280%29%3B" class="calToday" onclick=
+        "DatePicker.datePicker.selectDate('today');return false;">Today</a>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script type="text/javascript">function bodyOnLoad(){new ForeignKeyInputElement("CF00N1200000B1Lde","/_ui/common/data/LookupValidationServlet","/_ui/common/data/MRUAutoCompleteServlet",true,{"lkfm":"editPage","acEntity":"Contact","acent":"003","lknm":"CF00N1200000B1Lde"});new ForeignKeyInputElement("CF00N1200000B1Ldo","/_ui/common/data/LookupValidationServlet","/_ui/common/data/MRUAutoCompleteServlet",true,{"lkfm":"editPage","acEntity":"Contact","acent":"003","lknm":"CF00N1200000B1Ldo"});new ForeignKeyInputElement("CF00N1200000B1KtR","/_ui/common/data/LookupValidationServlet",null,true,{"acent":"a0Q"});new ForeignKeyInputElement("CF00N1200000B1KiE","/_ui/common/data/LookupValidationServlet",null,true,{"acent":"a0Q"});new ForeignKeyInputElement("CF00N1200000B1Jqv","/_ui/common/data/LookupValidationServlet","/_ui/common/data/MRUAutoCompleteServlet",true,{"lkfm":"editPage","acEntity":"Account","acent":"001","lknm":"CF00N1200000B1Jqv"});new ForeignKeyInputElement("CF00N1200000B1KHm","/_ui/common/data/LookupValidationServlet","/_ui/common/data/MRUAutoCompleteServlet",true,{"lkfm":"editPage","acEntity":"Account","acent":"001","lknm":"CF00N1200000B1KHm"});new ForeignKeyInputElement("CF00N1200000BDQ84","/_ui/common/data/LookupValidationServlet",null,true,{"acent":"701"});new ForeignKeyInputElement("opp17","/_ui/common/data/LookupValidationServlet",null,true,{"acent":"701"});new ForeignKeyInputElement("CF00N1200000BL0kl","/_ui/common/data/LookupValidationServlet","/_ui/common/data/MRUAutoCompleteServlet",true,{"lkfm":"editPage","acEntity":"Opportunity","acent":"006","lknm":"CF00N1200000BL0kl"});new ForeignKeyInputElement("CF00N1200000B1P2c","/_ui/common/data/LookupValidationServlet","/_ui/common/data/MRUAutoCompleteServlet",true,{"lkfm":"editPage","acEntity":"User","acent":"005","lknm":"CF00N1200000B1P2c"});new ForeignKeyInputElement("CF00N1200000B1P2N","/_ui/common/data/LookupValidationServlet","/_ui/common/data/MRUAutoCompleteServlet",true,{"lkfm":"editPage","acEntity":"User","acent":"005","lknm":"CF00N1200000B1P2N"});new ForeignKeyInputElement("opp4","/_ui/common/data/LookupValidationServlet","/_ui/common/data/MRUAutoCompleteServlet",true,{"lkfm":"editPage","acEntity":"Account","acent":"001","lknm":"opp4"});new ForeignKeyInputElement("CF00N1200000B1KBF","/_ui/common/data/LookupValidationServlet",null,true,{"aclkfield":"00N1200000B1KBF","aclkent":"006","acent":"01t"});new ForeignKeyInputElement("Pricebook2","/_ui/common/data/LookupValidationServlet",null,true,{"acent":"01s"});handleTextAreaElementChangeWithByteCheck('00N1200000B1slU', 255, 765, 'remaining', 'over limit', false);handleTextAreaElementChangeWithByteCheck('00N1200000B1Ory', 32768, 0, 'remaining', 'over limit', false);LookupAutoCompleteInputElement.registerSupportedEntities("CF00N1200000B1P2N",{"005":["User","005"],"PartnerUserLookup":["User","005"]});LookupAutoCompleteInputElement.registerSupportedEntities("CF00N1200000B1P2c",{"005":["User","005"],"PartnerUserLookup":["User","005"]});handleTextAreaElementChangeWithByteCheck('00N1200000BDPMy', 500, 0, 'remaining', 'over limit', false);handleTextAreaElementChangeWithByteCheck('00N1200000BDPN3', 500, 0, 'remaining', 'over limit', false);handleTextAreaElementChangeWithByteCheck('00N1200000BDPN8', 500, 0, 'remaining', 'over limit', false);setFocusOnLoad();if (typeof(startSessionTimer)!='undefined') {startSessionTimer(); };if (typeof(ActivityReminder)!='undefined') {ActivityReminder.initialize([], false, false);};if ((window.sfdcPage) && (sfdcPage.executeOnloadQueue)){sfdcPage.executeOnloadQueue();};Sfdc.Cookie.deleteCookie('setupopen');; if (this.loadChatFrameJs) loadChatFrameJs();SearchClickLoggingUtil.setClickLoggingServletPath("/_ui/search/logging/SearchClickLoggingServlet");new UnifiedSearchAutoCompleteElement("phSearchInput","/_ui/common/search/client/ui/UnifiedSearchAutoCompleteServlet",1,{},true,null,"phSearchForm",["div","searchOwner","asPhrase","sen"],{},true,3,100);new UnifiedSearchButton("searchButtonContainer", "phSearchButton", "headerSearchRightRoundedCornerMouseOver", "phSearchForm");SfdcApp.MruHovers.global_data.url='retURL=%2F0061200000VEPVm%2Fe%3FretURL%3Dhttps%253A%252F%252Fviewsonic--c.na18.visual.force.com%252Fapex%252FOpportunityViewOverride%253Fid%253D0061200000VEPVmAAP%2526sfdc.override%253D1%26_CONFIRMATIONTOKEN%3DVmpFPSxNakF4TmkweE1pMHlORlF4T1RvMU1Ub3pOUzR4TkRCYSxuU0tuaWVmMkJoOC1mc1I4eXJJX1UxLE5ESmtOalpt%26common.udd.actions.ActionsUtilORIG_URI%3D%252F0061200000VEPVm%252Fe&isAjaxRequest=1&renderMode=RETRO&nocache=1482431208026';if (document.getElementById('sidebarDiv')){ Sidebar.prototype.theSidebar = new Sidebar(document.getElementById('sidebarDiv'), true, true,false); };if(window.PreferenceBits){window.PreferenceBits.prototype.csrfToken="VmpFPSxNakF4TmkweE1pMHlOVlF4T0RveU5qbzBPQzR3TXpSYSxLRTFnWDhhZk1nMHJtVXp4QTYwTF9qLE1HVXdaalF3";};}function bodyOnBeforeUnload(){if ((window.sfdcPage) && (sfdcPage.executeOnBeforeUnloadQueue)){sfdcPage.executeOnBeforeUnloadQueue();};}function bodyOnFocus(){closePopupOnBodyFocus();}function bodyOnUnload(){}</script>
+  
+  </apex:component>

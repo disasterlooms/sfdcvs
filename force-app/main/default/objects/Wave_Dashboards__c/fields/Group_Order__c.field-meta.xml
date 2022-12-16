@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Group_Order__c</fullName>
+    <description>Order of the tabs in each group. Allows to set an order</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Order of the tabs in each group. Allows to set an order of how user will see each tab. Can order by type or name or any way that makes sense.</inlineHelpText>
+    <label>Group Order</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

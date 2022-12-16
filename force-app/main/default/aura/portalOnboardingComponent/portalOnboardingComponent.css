@@ -1,0 +1,19 @@
+.THIS {
+}
+
+.cPortalOnboardingComponent .flowButton {
+   display: grid;
+}
+
+.THIS {
+ border-style: none;
+}
+.THIS .flowBtnClass{
+    color: white;
+}
+
+.THIS .slds-card{
+    border-width: 0px;
+    border:none;
+    border-style: none;
+}

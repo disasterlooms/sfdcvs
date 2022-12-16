@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>creator</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Opportunity_Name__c</field>
+        <field>Eval_Type__c</field>
+        <field>Reason_for_Request__c</field>
+        <field>Special_Instructions__c</field>
+        <field>Opportunity_Amount__c</field>
+        <field>Product_Name__c</field>
+        <field>Quantity__c</field>
+        <field>Billing_Contact_Name__c</field>
+        <field>Shipping_Contact_Name__c</field>
+        <field>Expected_Receive_Date__c</field>
+        <field>Name</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <description>Sends a request to director for approval</description>
+        <label>Director Approval</label>
+        <name>Director_Approval</name>
+        <rejectionActions>
+            <action>
+                <name>Notifies_Sales_Rep</name>
+                <type>Alert</type>
+            </action>
+        </rejectionActions>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>brian.igoe@viewsonic.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Eval_Request__c.Large_Format_Request__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </criteriaItems>
+        </entryCriteria>
+        <label>VP Approval</label>
+        <name>VP_Approval</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>End User/Disty/Reseller Eval request approval from director and then notifies operations sales. Not for canada due to eval agreement. This sends Eval Agreement both with or without credit card depending on user input</description>
+    <emailTemplate>Product_Request/End_User_Evaluation_Request</emailTemplate>
+    <enableMobileDeviceAccess>true</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>Large_Format_Request__c = false &amp;&amp;
+$UserRole.Name != &apos;ViewSonic Corporation Partner User&apos;&amp;&amp;
+text(Approval_Status__c) != &apos;Approved&apos; &amp;&amp;
+(text( Eval_Type__c )=&apos;End-User/Reseller/Disty Eval&apos; || text( Eval_Type__c )=&apos;Reseller Demo&apos; )&amp;&amp;
+$User.Country != &apos;Canada&apos; &amp;&amp;
+Created_Mobile__c = false &amp;&amp;  
+GovEd_Account_Waive_Agreement__c = false</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>Change_to_Approved_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Eval_Agreement</name>
+            <type>OutboundMessage</type>
+        </action>
+        <action>
+            <name>Eval_Approved_to_Sales_Rep</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>EvalProcessW_Agreement</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Change_to_Rejected_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Eval_Process_Submission</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>Change_to_Pending_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Eval_End_UserRequest_Recieved</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>Eval_Process_Default</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>EvalProcessStage</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>End User/ Eval Request U.S. &amp; Latin Ame</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
+        <userHierarchyField>Manager</userHierarchyField>
+    </nextAutomatedApprover>
+    <processOrder>5</processOrder>
+    <recallActions>
+        <action>
+            <name>Approval_Status_Blank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Eval_Process_Submission</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

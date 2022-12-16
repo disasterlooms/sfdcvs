@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllMyOpportunities_VSAUS</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>End_User_Lookup_Account__c</columns>
+    <columns>Resellers_and_Type__c</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>SPA_ID__c</columns>
+    <columns>Product_Name_Main__c</columns>
+    <columns>Product_Family__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>All My Opportunities</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinatesInternal>National_Sales_Manager_Pen_Display</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

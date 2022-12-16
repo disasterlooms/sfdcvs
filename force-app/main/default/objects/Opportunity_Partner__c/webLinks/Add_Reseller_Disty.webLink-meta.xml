@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Add_Reseller_Disty</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Add Reseller/Disty</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>/a06/e??CF00NA0000006VQwu_lkid={!Quote.OpportunityId__c}&amp;CF00NA0000006VQwu={!Quote.OpportunityName__c}&amp;CF00N1H00000AQHcb={!Quote.Name}&amp;CF00N1H00000AQHcb_lkid={!Quote.Id}&amp;retUrl=%2F{!Quote.Id}&amp;saveURL=%2F{!Quote.Id}&amp;cancelURL=%2F{!Quote.Id}</url>
+</WebLink>

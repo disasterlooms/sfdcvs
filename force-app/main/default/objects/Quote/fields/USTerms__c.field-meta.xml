@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>USTerms__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;Minimum $10K Free Freight Program. $10K per Location per&quot;&amp; 
+&quot; shipment based on standard price. Shipments must be delivered within the 48 contiguous U.S. &quot;&amp; 
+&quot;states and Canada metropolitan areas only. ViewSonic shall determine&quot; 
+&amp;&quot; the best shipping method for the designated locations.&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>USTerms</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Spa_to_Transfer_to__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Part of workflow to transfer spa products from large deals with many products to other spas. this allows a process to ensure prices are consistent.</description>
+    <externalId>false</externalId>
+    <label>Spa to Transfer to</label>
+    <referenceTo>Opportunity</referenceTo>
+    <relationshipLabel>Opportunities (Spa to Transfer to)</relationshipLabel>
+    <relationshipName>Opportunities1</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,5 @@
+<apex:page >
+<script>
+ window.location.href = '/apex/EvaluationTab?fcf=00BA0000007pug5';
+</script>
+</apex:page>

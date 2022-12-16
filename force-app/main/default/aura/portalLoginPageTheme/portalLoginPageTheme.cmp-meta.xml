@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <description>Theme Layout for Community Page Partner portal, Login Page but can be used when a full Width view with split screen i s needed.</description>
+</AuraDefinitionBundle>

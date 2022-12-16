@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approval_Review__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( $User.Alias =&apos;swang&apos; &amp;&amp; VP_Price_Review__c =true,true,
+if(( $User.Alias =&apos;pmark&apos; || $User.Alias =&apos;admin&apos;)&amp;&amp;  Product_Manager_Review__c  =true,true,false))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Approval Review</label>
+    <type>Checkbox</type>
+</CustomField>

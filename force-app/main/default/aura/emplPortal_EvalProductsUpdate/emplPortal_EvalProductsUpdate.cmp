@@ -1,0 +1,98 @@
+<aura:component controller="EvalUnitstoQuote"
+    implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:availableForFlowScreens">
+    <aura:attribute name="options" type="List" default="[
+    {'label': 'Outstanding', 'value': 'Outstanding'},
+    {'label': 'Product Returned', 'value': 'Product Returned'},
+    {'label': 'Purchased/Invoiced', 'value': 'Purchased'},
+    {'label': 'Purchased', 'value': 'Purchased/Invoiced'},
+    {'label': 'Write-off', 'value': 'Write-off'},
+    ]"/>
+    <aura:attribute name="records" type="Eval_Unit_Details__c[]" access="public" />
+    <aura:attribute name="flowname" type="String" access="public" />
+    <aura:attribute name="quoteid" type="String" access="public" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="unitSelected" type="Eval_Unit_Details__c[]" />
+    <aura:attribute name="actname" type="String" />
+    <aura:attribute name="header" type="String" default="Select Evals to Send out for Quote" />
+    <aura:attribute name="btnnext" type="boolean" />
+
+    <aura:handler name="change" value="{!v.btnnext}" action="{!c.returnflow}" />
+    <aura:attribute name="selected" type="Eval_Unit_Details__c[]" access="public" />
+    <aura:attribute name="completed" type="boolean" />
+    <aura:attribute name="flowRun" type="boolean" default="false" />
+    <aura:attribute name="showbtn" type="boolean" default="false" />
+    <aura:handler name="init" action="{!c.init}" value="{!this}" />
+    <aura:attribute name="accessCheck" type="Boolean" default="false" />
+    <aura:attribute name="confirmationPage" type="boolean" default="false"
+        description="shows the EvalUnits in read only" />
+    <aura:attribute name="shippingconfirmationPage" type="boolean" default="false"
+        description="shows the EvalUnits in read only" />
+    <aura:attribute name="quoted" type="Boolean" />
+    <aura:attribute name="transferEval" type="Boolean" />
+    <aura:attribute name="toggleClass" type="String" default="" />
+    
+    <aura:attribute name="totalEvalPrice" type="String"
+        description="when using in read only, displays the total cost in string format" />
+    <aura:attribute name="TotalPrice" type="Double"
+        description="when using in read only, displays the total cost in Double format" />
+        <lightning:spinner aura:id="mySpinner" class="{!v.toggleClass}" alternativeText="Retrieving Info" />
+    <div aura:id="evalunitsv2" class="">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2>
+                        <span class="slds-text-heading_small">{!v.header}</span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                <tr class="slds-text-title_caps">
+                   
+                    <th scope="col">
+                        <div class="slds-truncate" title="Account Name">SKU</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Serial">Serial Number</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Status">Status</div>
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.records}" var="u">
+                    <tr>
+                            <td>
+                                <ui:outputText value="{!u.SKU__r.Name }" />
+                            </td>
+                            <td>
+                                <ui:outputText value="{!u.Name}" />
+                            </td>
+                            <td>
+                                <lightning:combobox name="progress" label="Status" value="{!u.Status__c}"
+                                 placeholder="Select Progress" options="{! v.options}" onchange="{! c.handleChange }"/>
+                                
+                            </td>
+                </tr>
+                </aura:iteration>
+                </tbody>
+            </table>
+           
+            <br/> <br/> 
+                <lightning:button label="Update" variant="brand" onclick="{!c.updateProducts}" class="slds-float_right" />
+            <br/> <br/>
+            </div>
+               
+        <!--
+    </div>
+   
+        <div aura:id="flow">
+            <lightning:flow aura:id="flowquote" onstatuschange="{!c.flowComplete}" />
+            
+        </div>
+   
+    startflow-->
+</aura:component>

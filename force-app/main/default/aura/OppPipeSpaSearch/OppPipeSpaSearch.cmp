@@ -1,0 +1,54 @@
+<aura:component access="global" controller="SpaSearch">
+    <aura:attribute name="product" type="String"/>
+    <aura:attribute name="reseller" type="String" /> 
+    <aura:attribute name="enduser" type="String" />
+    <aura:attribute name="family" type="String" />
+    <aura:attribute name="industry" type="String" />
+    <aura:attribute name="spaid" type="String" />
+    <aura:attribute name="status" type="String[]" />
+    <aura:attribute name="industries" type="String[]" />
+    <aura:attribute name="families" type="String[]" />
+     <aura:attribute name="load" type="boolean" default="false"/> 
+    <aura:attribute name="user" type="User" />
+    <aura:attribute name="opportunities" type="Opportunity[]" />
+    <aura:attribute name="ofields" type="String" default="Id,AccountId, Account.Name,Product_Name_Main__c,
+                                                                CloseDate,Project_or_Site_Information__c,name,Resellers_and_Type__c,
+                                                                Pricebook2Id,SPA_Expiration_Date__c,Bid_Registered__c,Spa_Resubmission_Note__c"/>
+   <aura:attribute name="pfields" type="String" default="Name,Quantity,Product2Id,Product2.Name,ServiceDate
+                       ,Ship_Out_Date__c,status__c"/>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="spinnerspa" class="slds-hide" variant="brand" size="large"/>
+    </div>    
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <div style="text-align: center" >
+        <ui:button label="Search" press="c.search" />
+        <ui:button label="Clear Filters" press="c.clear" />
+        <ui:button label="Save All Spa Info" press="c.pupdate" />
+    </div>
+    <div class="slds-grid slds-grid_pull-padded-medium" onkeyup="{!c.enterkey}">
+      <div class="slds-col slds-p-horizontal_medium">
+        <ui:inputText aura:id="product" label="Product" placeholder="Search by Product - Partial Name is Ok" value="{!v.product}"/>
+        <ui:inputText aura:id="reseller" label="Reseller" placeholder="Search by Reseller - Partial Name is Ok" value="{!v.reseller}"/>
+        <ui:inputText aura:id="enduser" label="End User" placeholder="Search by End User - Partial Name is Ok" value="{!v.enduser}"/>
+      </div>
+      <div class="slds-col slds-p-horizontal_medium">
+        <ui:inputText aura:id="spaid" label="Spa ID" placeholder="Search by SpaId - Partial Id is Ok" value="{!v.spaid}"/>
+        <label class="slds-form-element__label" for="select">Product Type</label>
+        <lightning:select name="select" variant="label-hidden" value="{!v.family}" label="Product Type">
+        	 <aura:iteration items="{!v.families}" var="s">
+            	 <option value="{!s}" text="{!s}"></option>
+             </aura:iteration>
+        </lightning:select>
+        <label class="slds-form-element__label" for="select">Industry</label>
+        <lightning:select name="select" variant="label-hidden" value="{!v.industry}" label="Industry">
+        	 <aura:iteration items="{!v.industries}" var="s">
+            	 <option value="{!s}" text="{!s}"></option>
+             </aura:iteration>
+        </lightning:select>
+    	</div>
+    </div>
+        <ul> 
+            
+    	</ul>
+    <br/>
+</aura:component>

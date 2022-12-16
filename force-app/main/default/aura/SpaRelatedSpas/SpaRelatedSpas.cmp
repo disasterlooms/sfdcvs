@@ -1,0 +1,35 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride,flexipage:availableForAllPageTypes,force:lightningQuickAction"
+                access="global"
+                controller="CompMultiSelect">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="records" type="Object[]" description="the collection of records received from query"/>
+    <aura:attribute name="wherestmt" type="string" default="where name != null"/>
+	<aura:attribute name="parentid" type="string" default=" "/>
+    <aura:attribute name="childrensaved" type="boolean"
+                    description="this is to allow the parent component to create a specific apex code to update records"/>
+    <aura:handler name="change" value="{!v.childrensaved}" action="{!c.childSaved}"/>
+        <c:MultiSelectItems title="Related Spas" 
+                            objToQuery="Quote" 
+                            wherestmt="where active__c = true "
+                            limitstmt="limit 10"
+                            orderstmnt="Order by ExpirationDate desc"
+                            Columnfields="Name,Status,ExpirationDate,Bid_Registered__c ,SpaId__c,Recent_Approval_Date__c"
+                            Columnheaders="Name,Status,Expiration,Bid Reg,Spa Id,Recent Approval"
+                            btnName="Add Selected Products"
+                            records="{!v.records}"
+                            searchplaceholder="Search by product name - Partial ok. Press Enter to search"
+                            searchlabel="Product Name"
+                            searchfield="Status"
+                            childrensaved="{!v.childrensaved}"
+                            btnbutton="false"
+                            showSearch="false"
+                            showSelectors="false"
+                            spasearch="true">
+            
+        </c:MultiSelectItems>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    
+</aura:component>

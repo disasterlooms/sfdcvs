@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION">
+   <aura:attribute name="oppid" type="String"/>
+</aura:event>

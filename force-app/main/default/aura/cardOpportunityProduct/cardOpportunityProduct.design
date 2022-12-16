@@ -1,0 +1,4 @@
+<design:component>
+    <design:attribute name="recordId" description="Id of Opportunity used to query"/>
+  
+</design:component>

@@ -1,0 +1,24 @@
+<aura:component controller="partnerPortalFlow"
+                implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes,lightning:availableForFlowScreens" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.checkDomain}" /> 
+    <aura:attribute name="domain" type="string"/>
+    <aura:attribute name="isGeneric" type="Boolean"/>
+    <aura:attribute name="code" type="integer"/>
+    
+    
+    
+    
+    <aura:if isTrue="{!v.isGeneric}">
+        <div class="exampleHolder">
+            <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+            
+            {!$Label.c.pp_Application_EmailError}
+            <br/>
+        </div>
+        <aura:set attribute="else">
+         <lightning:spinner aura:id="mySpinner" class="" variant="brand" size="large"/>
+        </aura:set>
+    </aura:if>
+    
+    
+</aura:component>

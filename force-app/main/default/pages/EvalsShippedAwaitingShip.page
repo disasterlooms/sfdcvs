@@ -1,0 +1,80 @@
+<apex:page standardController="Eval_Request__c" recordSetvar="evals">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<script type="text/javascript">
+$( document ).ready(function() {
+    $('select[id*="list3"]').val('00B12000008StQEEA0') ;
+    $('select[id*="list4"]').val('00B12000008StQJEA0') ;
+    refreshMyPanel();
+    refreshMyPanel2();
+    });
+</script>
+<style type="text/css">
+
+</style>
+<div id="my-timeline" style="height:300px;">
+  <apex:pageBlock title="Evals Shipped Last 7 Days">
+
+ 
+
+  <apex:form id="list" >
+    <apex:panelGrid columns="2">
+      <apex:outputLabel value="View:"/>
+      <apex:selectList id="list3" value="{!filterId}" size="1">
+        
+        <apex:actionFunction name="refreshMyPanel2" reRender="list" />
+        <apex:actionSupport event="onchange" rerender="list"/>
+        <apex:selectOptions id="mydropdownlist" value="{!listviewoptions}"/>
+      </apex:selectList>
+    </apex:panelGrid>
+    <apex:pageBlock >            
+  <apex:pageBlockTable value="{!evals}" var="e">
+    <apex:column value="{!e.Evaluation__c}"/> 
+     <apex:column >
+    <apex:facet name="header">Tracking Info</apex:facet>
+   <a href="http://www.fedex.com/Tracking?ascend_header=1&clienttype=dotcom&cntry_code=us&language=english&tracknumbers={!e.Fed_Ex_Tracking__c}" target="_blank">FedEx Tracking</a>
+     
+     </apex:column>
+
+ 
+    
+</apex:pageBlockTable>
+</apex:pageBlock> 
+    
+    
+    
+  </apex:form> 
+  </apex:pageBlock>
+  
+  
+  <apex:pageBlock title="Evals Awaiting Shipping">
+  <apex:form id="list2">
+    <apex:panelGrid columns="2">
+      <apex:outputLabel value="View:"/>
+      <apex:selectList id="list4" value="{!filterId}" size="1">
+        <apex:actionFunction name="refreshMyPanel" reRender="list2" />
+        <apex:actionSupport event="onchange" rerender="list2"/>
+        <apex:selectOptions value="{!listviewoptions}"/>
+      </apex:selectList>
+    </apex:panelGrid>
+    <apex:pageBlock >            
+  <apex:pageBlockTable value="{!evals}" var="e">
+    <apex:column value="{!e.Evaluation__c}"/> 
+     <apex:column >
+    <apex:facet name="header">Days Awaiting Ship</apex:facet>
+   {!e.Days_Not_Shipped__c}
+     
+     </apex:column>
+
+ 
+    
+</apex:pageBlockTable>
+</apex:pageBlock> 
+    
+    
+    
+  </apex:form> 
+  </apex:pageBlock>
+  </div>
+</apex:page>

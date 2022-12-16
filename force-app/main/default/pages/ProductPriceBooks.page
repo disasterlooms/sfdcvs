@@ -1,0 +1,30 @@
+<apex:page standardcontroller="product2"  standardStylesheets="false" sidebar="false" showheader="false">
+
+ <apex:form >
+ <apex:pageBlock >
+
+<apex:dataTable value="{!product2.PricebookEntries}"  var="pb"  cellPadding="4" border="1">    
+       
+      <apex:facet name="header">Prices for SKU {!product2.Name} </apex:facet>
+       
+       
+       <apex:column >
+       <apex:facet name="header">Price Book Name</apex:facet>
+       <apex:outputtext value="{!pb.Pricebook2.Name}" />
+       </apex:column>
+       
+       <apex:column >
+       <apex:facet name="header">Standard Price</apex:facet>
+         <apex:outputText value="{0, number, currency}"><apex:param value="{!pb.UnitPrice}" /></apex:outputText>
+       </apex:column>
+       
+       
+       
+       
+       
+       </apex:dataTable>
+
+</apex:pageBlock>
+
+</apex:form>
+</apex:page>

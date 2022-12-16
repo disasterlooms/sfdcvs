@@ -1,0 +1,3 @@
+<apex:page action="URLFOR($Action.Case.Tab, )], true)}" >
+
+</apex:page>

@@ -1,0 +1,152 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens" access="global" 
+                    controller="HttpCalloutGetURL">
+        <aura:handler event="wave:selectionChanged" action="{!c.poEASearch}"/>
+        <aura:handler name="change" value="{!v.poedusite}" action="{!c.poSearch}"/>
+        <aura:registerEvent name="discoverEvent" type="wave:discover"/>
+        <aura:handler name="init" action="{!c.myAction}" value="{!this}" />  
+        <aura:attribute name="pos" type="Object" />
+        <aura:attribute name="parsed" type="Object[]" />
+        <aura:attribute name="disabled" type="Boolean" default="false" />
+        <aura:attribute name="ponumber" type="String" />
+        <aura:attribute name="poedusite" type="String" />
+        <aura:handler event="wave:discoverResponse" action="{!c.handleDiscoverResponse}"/>
+        <lightning:spinner aura:id="mySpinnerspa" class="slds-hide" variant="brand" size="large"/>
+        
+         <lightning:card >
+          <aura:set attribute="actions">
+        <lightning:input label="Search by PO #" class="field" value="{!v.ponumber}" updateOn="click"/>
+                 
+         <lightning:button label="Search" title="Search by PO" onclick="{!c.poSearch}" disabled="{!v.disabled}"/>   
+             </aura:set>
+        </lightning:card>
+        <aura:if isTrue="{!v.pos.length ==0}"> 
+        Sorry, no results found. Please make sure that the PO # is correct. 
+        </aura:if>
+        <aura:iteration items="{!v.pos}" var="p">
+            
+            <lightning:card >
+                <lightning:layout horizontalAlign="space" pullToBoundary="medium">
+                    <lightning:layoutItem  flexibility="auto" padding="horizontal-medium">
+                        <lightning:input value="{!p.customer_name}" label="Customer" disabled="true"/>                
+                        <lightning:input value="{!p.ship_address}" label="Ship Address" disabled="true"/>                
+                         <lightning:input value="{!p.order_open_flag}" label="Open Order Flag" disabled="true"/>
+                    </lightning:layoutItem>
+                     <lightning:layoutItem  flexibility="auto" padding="horizontal-medium">
+                    <lightning:input value="{!p.order_number}" label="Order #" disabled="true"/>
+                    <aura:if isTrue="{!p.order_open_flag =='N'}" >
+                            <lightning:input value="Shipped" label="Status" disabled="true"/>
+                            <aura:set attribute="else">
+                                <lightning:input value="Not Shipped" label="Status" disabled="true"/>
+                            </aura:set>
+                        </aura:if>
+                          <lightning:input value="{!p.order_cancelled_flag}" label="Cancel Flag" disabled="true"/>
+                    </lightning:layoutItem>
+                    
+                    <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                        
+                        
+                        <br/>
+                        <lightning:input value="{!p.ordered_date}" label="Order Date" disabled="true"/>
+                        <lightning:input value="{!p.order_type}" label="Order Type" disabled="true"/>
+                        
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <aura:set attribute="footer">
+                    
+                    <div class="flexipageComponent" data-aura-class="flexipageComponent">
+                        <div class="slds-card__header slds-grid">
+                            <table  class="slds-table slds-table_bordered slds-table_striped slds-table_fixed-layout slds-table_bordered slds-table_col-bordered" role="grid">
+                                
+                                <thead>
+                                    <tr class="slds-text-title_caps">
+                                        <th scope="col" class="slds-cell-wrap">
+                                            <div class="slds-truncate" title="Customer">Product</div>
+                                        </th>
+                                        <th scope="col" class="slds-cell-wrap">
+                                            <div class="slds-truncate" title="PO">Order QTY</div>
+                                        </th>
+                                        <th scope="col" class="slds-cell-wrap">
+                                            <div class="slds-truncate" title="PO">Status</div>
+                                        </th>
+                                        <th scope="col" class="slds-cell-wrap">
+                                            <div class="slds-truncate" title="status">Sched Ship Date</div>
+                                        </th>
+                                        <th scope="col" class="slds-cell-wrap">
+                                            <div class="slds-truncate" title="ship_carrier">Reserved QTY</div>
+                                        </th>
+                                        <th scope="col" class="slds-cell-wrap">
+                                            <div class="slds-truncate" title="ship_carrier">Picked QTY</div>
+                                        </th>
+                                        <th scope="col" class="slds-cell-wrap">
+                                            <div class="slds-truncate" title="ship_carrier">Shipped Date</div>
+                                        </th>
+                                        <th scope="col" class="slds-cell-wrap">
+                                            <div class="slds-truncate" title="ship_carrier">Shipped QTY</div>
+                                        </th>
+                                        <th scope="col" class="slds-cell-wrap">
+                                            <div class="slds-truncate" title="ship_carrier">Carrier</div>
+                                        </th>
+                                        <th scope="col" class="slds-cell-wrap">
+                                            <div class="slds-truncate" title="ship_carrier">Waybill</div>
+                                        </th>
+                                        <th scope="col" class="slds-cell-wrap">
+                                            <div class="slds-truncate" title="ship_carrier">Serial #s</div>
+                                        </th>
+                                        
+                                    </tr>
+                                </thead>
+                                <aura:iteration items="{!p.lines}" var="l">
+                                    <tbody>
+                                        
+                                        <td class="slds-cell-wrap">
+                                            <ui:outputText value="{!l.ordered_item}"/> 
+                                        </td>
+                                        <td class="slds-cell-wrap">
+                                            <ui:outputText value="{!l.ordered_quantity}"/>
+                                        </td> 
+                                        <td class="slds-cell-wrap">
+                                            <ui:outputText value="{!l.line_status}"/>
+                                        </td> 
+                                        <td class="slds-cell-wrap">
+                                            <ui:outputText value="{!l.schedule_ship_date}"/>
+                                        </td> 
+                                        
+                                        <td class="slds-cell-wrap">
+                                            <ui:outputText value="{!l.reserved_quantity}"/>
+                                        </td>
+                                        <td class="slds-cell-wrap">
+                                            <ui:outputText value="{!l.picked_quantity}"/>
+                                        </td> 
+                                        <td class="slds-cell-wrap">
+                                             <ui:outputText value="{!l.ship_date}" />   
+                                        </td> 
+                                        <td class="slds-cell-wrap">
+                                            <ui:outputText value="{!l.shipped_quantity}"/>
+                                        </td> 
+                                        <td class="slds-cell-wrap">
+                                             <ui:outputText value="{!l.ship_carrier}" /> 
+                                        </td> 
+                                        <td class="slds-cell-wrap">
+                                            <aura:if isTrue="{!l.ship_waybill !=''}" >
+                                             <ui:outputURL value="{!l.ship_waybill_link}" label="Way Bill" target="_blank"/>  
+                                            </aura:if>
+                                        </td> 
+                                        
+                                       
+                                        
+                                        <td class="slds-cell-wrap">
+                                            <aura:if isTrue="{!l.serial_numbers !=''}" >
+                                           <ui:outputURL value="{!l.serial_numbers}" label="Serial Numbers"/>
+                                            </aura:if>
+                                        </td> 
+                                        
+                                    </tbody>
+                                </aura:iteration>
+                            </table>
+                        </div>
+                    </div>
+                </aura:set>
+            </lightning:card>
+        </aura:iteration>
+        
+    </aura:component>

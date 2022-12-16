@@ -1,0 +1,5 @@
+<apex:page >
+<br><br><b><center>Your invoice request has been sent to the eval team. </center></b></br></br>
+<center><i>The evals will not be removed until the invoice is sent out. You will receive confirmation when this happens. </i></center>
+
+</apex:page>

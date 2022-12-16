@@ -1,0 +1,46 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="Tutorial" >
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}"/>
+    <aura:attribute name="settings" type="LightningTutorial__c"/>    
+    <div aria-hidden="true" role="dialog" class="slds-modal slds-modal--large slds-fade-in-hide" aura:id="modaldialog" style="max-width:65%">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h2 class="slds-text-heading--medium">Welcome to ViewSonic Lightning</h2>
+            </div>
+            
+            <div class="slds-modal__content">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_2-of-3">
+                        <img src="{!$Resource.LightniningBackground}"/>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-modal__header">
+                            <h2 class="slds-text-heading--medium">Get SalesForce's Full Power</h2>
+                        </div>
+                        <br/>
+                        <br/>
+                        <iframe src="https://www.youtube.com/embed/zV8Gv1lkiQw" frameborder="0" allow="autoplay; encrypted-media" style="width:90%;margin-left:5%;"></iframe>
+                        <br/>
+                        <br/>
+                        
+                            <h2 class="slds-text-heading--small">*Click YouTube to see in full screen</h2>
+                    </div>
+                </div>
+                
+                
+            </div>
+            
+            <div class="slds-modal__footer">
+                <div class="slds-x-small-buttons--horizontal">
+                    <button class="slds-button slds-button_brand " onclick="{!c.later}" value="false">Show me Later</button>
+                    <button class="slds-button slds-button_brand " onclick="{!c.dismiss}" value="true">I know what do. Dismiss Forever</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="slds-backdrop slds-backdrop--hide" aura:id="backdrop">
+        
+    </div>
+    
+</aura:component>

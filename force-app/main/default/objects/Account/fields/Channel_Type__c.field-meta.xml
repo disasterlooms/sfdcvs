@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Channel_Type__c</fullName>
+    <description>Subset of Account Type when Account type = Channel Partner or Channel Reseller</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If account is a Channel Partner or Channel Reseller, please tell us which kind</inlineHelpText>
+    <label>Channel Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AV Integrator</fullName>
+                <default>false</default>
+                <label>AV Integrator</label>
+            </value>
+            <value>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+                <label>Consulting</label>
+            </value>
+            <value>
+                <fullName>Corporate Integrator</fullName>
+                <default>false</default>
+                <label>Corporate Integrator</label>
+            </value>
+            <value>
+                <fullName>Digital Signage</fullName>
+                <default>false</default>
+                <label>Digital Signage</label>
+            </value>
+            <value>
+                <fullName>DMR</fullName>
+                <default>false</default>
+                <label>DMR</label>
+            </value>
+            <value>
+                <fullName>E-Tail</fullName>
+                <default>false</default>
+                <label>E-Tail</label>
+            </value>
+            <value>
+                <fullName>Hardware</fullName>
+                <default>false</default>
+                <label>Hardware</label>
+            </value>
+            <value>
+                <fullName>Manufacturer&apos;s Rep</fullName>
+                <default>false</default>
+                <label>Manufacturer&apos;s Rep</label>
+            </value>
+            <value>
+                <fullName>OEM</fullName>
+                <default>false</default>
+                <label>OEM</label>
+            </value>
+            <value>
+                <fullName>Retail</fullName>
+                <default>false</default>
+                <label>Retail</label>
+            </value>
+            <value>
+                <fullName>SI</fullName>
+                <default>false</default>
+                <label>SI</label>
+            </value>
+            <value>
+                <fullName>Software</fullName>
+                <default>false</default>
+                <label>Software</label>
+            </value>
+            <value>
+                <fullName>VAR/SPG</fullName>
+                <default>false</default>
+                <label>VAR/SPG</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

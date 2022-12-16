@@ -1,0 +1,15 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="objname" type="String" description="the name of the object that will be created" required="true"/>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="slds-hide" variant="brand" size="large"/>
+    </div> 
+    <aura:attribute name="newRecord" type="Object"/>
+    <aura:attribute name="simpleNew" type="Object"/>
+    <aura:attribute name="newRecordError" type="String"/>
+    <force:recordData aura:id="creator"
+                      layoutType="FULL"
+                      targetRecord="{!v.newRecord}"
+                      targetFields="{!v.simpleNew}"
+                      targetError="{!v.newRecordError}"
+                      />
+</aura:component>

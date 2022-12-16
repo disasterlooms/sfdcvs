@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OppOldest__c</fullName>
+    <description>get oldest opportunity to determine if it is new for ABM purposes. Different than New Business, this helps exclude ABM activities of existing accounts. it may have some false exclusions but this imperfect process is the best version of the truth.</description>
+    <externalId>false</externalId>
+    <label>OppOldest</label>
+    <summarizedField>Opportunity.CreatedDate</summarizedField>
+    <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
+    <summaryOperation>min</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

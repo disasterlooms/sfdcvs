@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Ref__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(isblank(Spiff_Claim_Payment__c) &amp;&amp; isblank(legacySpiffPaymentNumber__c),&apos;&apos;,
+if(not(isblank( Spiff_Claim_Payment__r.finofferNumber__c))&amp;&amp; not(isblank(Spiff_Claim_Payment__c)) ,
+text(Spiff_Claim_Payment__r.finofferNumber__c), 
+if(not(isblank(legacySpiffPaymentNumber__c)),legacySpiffPaymentNumber__c,
+Spiff_Claim_Payment__r.pmtRefAutoNumber__c)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Payment Ref #</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>allminecanada</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>End_User_Lookup_Account__c</columns>
+    <columns>Resellers_and_Type__c</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <filterScope>MyTeamTerritory</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Development,Negotiation,Pending PO,Purchasing</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Opportunity.Standard_Canada</value>
+    </filters>
+    <label>A5 All Opportunities My Territory/Acct</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Canada</group>
+    </sharedTo>
+</ListView>

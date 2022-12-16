@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Account__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Enterprise uses target accounts for SIP to differentiate the focus , which expects revenue, from targets which looks at activiites</description>
+    <externalId>false</externalId>
+    <label>Target Account</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

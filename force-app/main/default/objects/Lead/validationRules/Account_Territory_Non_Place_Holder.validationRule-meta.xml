@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Territory_Non_Place_Holder</fullName>
+    <active>false</active>
+    <description>This rule fies an error if a user chooses one of the Place Holders that is included in the Territory Picklist</description>
+    <errorConditionFormula>ISPICKVAL( Territory__c , &quot;--None--&quot;) || ISPICKVAL( Territory__c , &quot;-- US --&quot;)  ||  ISPICKVAL( Territory__c , &quot;-- CANADA --&quot;) ||  ISPICKVAL( Territory__c , &quot;-- LATIN AMERICA --&quot;) ||  ISPICKVAL( Territory__c , &quot;-- Other Regions --&quot;)</errorConditionFormula>
+    <errorMessage>Please choose a valid Territory</errorMessage>
+</ValidationRule>

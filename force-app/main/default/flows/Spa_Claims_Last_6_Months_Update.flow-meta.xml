@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <assignments>
+        <name>Assign_6_months</name>
+        <label>Assign 6 months</label>
+        <locationX>659</locationX>
+        <locationY>67</locationY>
+        <assignmentItems>
+            <assignToReference>Sobjvari.Last_6_Months_Workflow__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Col_Create</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Col_Create</name>
+        <label>Col Create</label>
+        <locationX>663</locationX>
+        <locationY>196</locationY>
+        <assignmentItems>
+            <assignToReference>colSpaClaims</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Sobjvari</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>sobj</targetReference>
+        </connector>
+    </assignments>
+    <formulas>
+        <name>last30days</name>
+        <dataType>Date</dataType>
+        <expression>{!$System.OriginDateTime}-30</expression>
+    </formulas>
+    <interviewLabel>Spa Claims Last 6 Months Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Spa Claims Last 6 Months Update</label>
+    <loops>
+        <name>sobj</name>
+        <label>sobj</label>
+        <locationX>404</locationX>
+        <locationY>70</locationY>
+        <assignNextValueToReference>Sobjvari</assignNextValueToReference>
+        <collectionReference>colSpaClaims</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_6_months</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Records</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processType>Flow</processType>
+    <recordUpdates>
+        <name>Update_Records</name>
+        <label>Update Records</label>
+        <locationX>225</locationX>
+        <locationY>298</locationY>
+        <inputReference>colSpaClaims</inputReference>
+    </recordUpdates>
+    <startElementReference>sobj</startElementReference>
+    <status>Draft</status>
+    <variables>
+        <name>colSpaClaims</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Spa_Claims__c</objectType>
+    </variables>
+    <variables>
+        <name>Sobjvari</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Spa_Claims__c</objectType>
+    </variables>
+</Flow>

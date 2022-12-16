@@ -1,0 +1,57 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+                controller="getAccountsMap"
+                access="global" >
+     <aura:handler event="wave:selectionChanged" action="{!c.eaChange}"/>
+    <aura:attribute name="districtSchls" type="Account[]"/>
+    <aura:attribute name="accts" type="Account[]"/>
+    <aura:attribute name="schools" type="sObject[]"/>
+    <aura:attribute name="mapMarkers" type="Object"/>
+    <aura:attribute name="center" type="Object" />
+    <aura:attribute name="zoomLevel" type="Integer" />
+    <aura:attribute name="markersTitle" type="String" />
+    <aura:attribute name="showFooter" type="Boolean" />
+    
+    <aura:attribute name="city" type="String" default=""/>
+    <aura:attribute name="state" type="String" default=""/>
+    <aura:attribute name="county" type="String" default=""/>
+    <aura:attribute name="zip" type="String" default=""/>
+    <aura:attribute name="ind" type="String" default=""/>
+    <aura:attribute name="acctType" type="String" default=""/>
+    <aura:attribute name="classSize" type="Integer" />
+    <aura:attribute name="rev" type="Integer" />
+    <aura:attribute name="rank" type="Integer" />
+    <aura:attribute name="limitstmnt" type="Integer" default="25"/>
+    <aura:attribute name="wherestmnt" type="String" />
+    <aura:attribute name="orderstmnt" type="String" />
+    <aura:attribute name="focus" type="String" />  
+    <aura:attribute name="toggleClass" type="String" default="slds-hide" />
+    <lightning:spinner aura:id="mySpinner" class="{!v.toggleClass}" alternativeText="Retrieving Info"/>
+    <br/>
+    <lightning:card footer="" title="Search using fields or Filter using Dashboard">
+        <aura:set attribute="actions">
+            <lightning:button variant="brand" label="Search" title="Search" onclick="{! c.mapSearch }" />
+        </aura:set>
+        <lightning:input name="city" label="City" value="{!v.city}"/>
+        <lightning:input name="state" label="State" value="{!v.state}"/>
+        <lightning:input name="county" label="County" value="{!v.county}"/>
+        <lightning:input name="Industry" label="Industry" value="{!v.ind}" />
+         <lightning:input name="limit" label="Number of District - Limit is 50" value="{!v.limitstmnt}" type="number" max="50" />
+    </lightning:card>
+    
+    
+    
+    <br/>
+    
+    
+    
+    <aura:handler name="init" value="{!this }" action="{!c.setMaps }"/> <!-- handlers -->      <!-- the map component -->
+    <lightning:map
+                   mapMarkers="{! v.mapMarkers }"
+                   center="{! v.center }"
+                   zoomLevel="{! v.zoomLevel }"
+                   markersTitle="{! v.markersTitle }"
+                   showFooter="{ !v.showFooter }" > 
+    </lightning:map>
+    
+    
+</aura:component>

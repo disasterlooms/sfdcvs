@@ -1,0 +1,17 @@
+<apex:page standardController="Eval_Request__c" recordSetVar="eval">
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:repeat value="{!eval}" var="row" rendered="false">
+     {!row.Id}
+     {!row.Product_Status__c}
+     {!row.Name}
+     
+     
+          
+    </apex:repeat>
+    <!-- Runs your Flow -->   
+    <flow:interview name="Eval_Product_Status"
+          finishLocation="{!'/a0y?fcf=00B12000008CjFq'}">
+          
+        <apex:param name="ColEvalsP" value="{!Selected}"/>
+    </flow:interview>
+</apex:page>

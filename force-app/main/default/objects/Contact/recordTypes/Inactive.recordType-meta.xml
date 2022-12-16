@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inactive</fullName>
+    <active>true</active>
+    <description>Inactive contacts</description>
+    <label>Inactive</label>
+    <picklistValues>
+        <picklist>Area_of_Responsibility__c</picklist>
+        <values>
+            <fullName>Administrative</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beverage Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Corp%2E Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Culinary Chef</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Design %2F Construction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Development%2FReal Est</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Distribution</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FOH Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Franchisor%2FFranchisee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>General Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Independent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>International Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MIS%2FIT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchasing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales %2F Marketing</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Call_Result__c</picklist>
+        <values>
+            <fullName>Left Message</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Answer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spoke to Contact</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Citrix_Partner_Level__c</picklist>
+        <values>
+            <fullName>Citrix</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citrix Authorized</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citrix Gold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citrix Platinum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citrix Silver</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Citrix_Program_Type__c</picklist>
+        <values>
+            <fullName>Citrix Solution Advisor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citrix System Integrator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Designated</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>DOZISF__ZoomInfo_Enrich_Status__c</picklist>
+        <values>
+            <fullName>Company Enrich Only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enriched</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Error</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No-Match</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Decision_Maker__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Finch_Club_Status__c</picklist>
+        <values>
+            <fullName>Active - Enrolled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inactive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Approval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Follow_Up_Email__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Functional_Department__c</picklist>
+        <values>
+            <fullName>IT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchasing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Industry__c</picklist>
+        <values>
+            <fullName>Audio%2FVideo-Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Audio%2FVideo-Enterprise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Audio%2FVideo-Home Theater</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Audio%2FVideo-House of Worship</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Education-K-12</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Education-University</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enterprise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Government-Federal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Government-Local</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Government-State</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Healthcare</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SMB</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LID__Level__c</picklist>
+        <values>
+            <fullName>Primary</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Secondary</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tertiary</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LID__No_longer_at_Company__c</picklist>
+        <values>
+            <fullName>Ignore</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not at Company</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Advertisement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email Advertisment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Employee Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Existing Business Relationship</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>External Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LinkedIn Navigator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Relations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seminar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trade Show</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Web</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Lead_Source_Name__c</picklist>
+        <values>
+            <fullName>Canada Top 100</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Level_in_Organization__c</picklist>
+        <values>
+            <fullName>Director</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Exec%2FSr VP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Owner%2FC-level</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Rep</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Name</picklist>
+        <values>
+            <fullName>Dr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mrs%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ms%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prof%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ownership__c</picklist>
+        <values>
+            <fullName>Public</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Portal_Contact_Actions__c</picklist>
+        <values>
+            <fullName>Deactivate User%2FContact</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promote to Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remove Admin</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Portal_Role__c</picklist>
+        <values>
+            <fullName>Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Portal_Spiff_Payment_Type__c</picklist>
+        <values>
+            <fullName>Check - In Company Name</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Check- In My Name</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paypal</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Portal_Status__c</picklist>
+        <values>
+            <fullName>Account Verified Need Onboard</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awaiting Info from Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awaiting Review from Channel Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disqualified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Onboarded and Verified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Verify Account</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Preferred_Language__c</picklist>
+        <values>
+            <fullName>English</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>French %28français%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Português</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spanish %28español%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Focus__c</picklist>
+        <values>
+            <fullName>Digital Signage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monitors</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Null</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>PC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Projectors</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tablet</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Interest__c</picklist>
+        <values>
+            <fullName>Projectors</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Program_Focus__c</picklist>
+        <values>
+            <fullName>Digital Signage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Applicable</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>ProAV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ViewSchool</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Purchasing_Role__c</picklist>
+        <values>
+            <fullName>Decision Maker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Influencer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Rating__c</picklist>
+        <values>
+            <fullName>Cold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Warm</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reseller_Engagment__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Passive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Solid</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ship_Method__c</picklist>
+        <values>
+            <fullName>Delivery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Will Call</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Inactive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Primary</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Secondary</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Suffix__c</picklist>
+        <values>
+            <fullName>II</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>III</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sr%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Tier_Level__c</picklist>
+        <values>
+            <fullName>Bronze</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Null</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Platinum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Silver</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>VSRegion__c</picklist>
+        <values>
+            <fullName>GPG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSCN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>VSSubRegion__c</picklist>
+        <values>
+            <fullName>VSA CAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSA LA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSA US</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSCN BE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSCN HK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSCN SH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE AU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE DE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE ES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE FR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE NL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE RU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE TR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE UK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI ID</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI IN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI JP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI KR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI MA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI MY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI SG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI TH</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ViewBoard_User_Type__c</picklist>
+        <values>
+            <fullName>Application Owner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Super Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pp_Country__c</picklist>
+        <values>
+            <fullName>Canada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>United States</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

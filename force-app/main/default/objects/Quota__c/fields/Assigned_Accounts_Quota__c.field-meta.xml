@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assigned_Accounts_Quota__c</fullName>
+    <description>Account Focus PJ or Territory Product focus DS/IFP</description>
+    <externalId>false</externalId>
+    <label>RBM_TM Assigned Accounts Quota</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Currency</type>
+</CustomField>

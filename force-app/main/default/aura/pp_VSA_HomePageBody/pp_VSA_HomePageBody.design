@@ -1,0 +1,27 @@
+<design:component >
+    <design:attribute name="IconHeaderText" label="Icon Header Text" />
+    <design:attribute name="showProductDemos" label="Show Product Demos" /> 
+    <design:attribute name="onlineDemos" label="Online Demo Header"/>
+    <design:attribute name="onlineDemosDescription" label="Online Demo Description"/>
+    
+    <design:attribute name="showSpecialPricing" label="Show Special Pricing" />
+    <design:attribute name="specialPricing" label="Special Pricing Header"/>
+    <design:attribute name="specialPricingDescription" label="Special Pricing  Description"/>
+    
+    <design:attribute name="showResourceLibrary" label="Show Resource Library" />
+    <design:attribute name="resourceLibrary" label="Resource Library Header"/>
+    <design:attribute name="resourceLibraryDescription" label="Resource Library Description"/>
+    
+    <design:attribute name="showPromotions" label="Show Promotions" />
+    <design:attribute name="promotions" label="Promotions Header"/>
+    <design:attribute name="promotionsDescription" label="Promotions Description"/>
+    
+    <design:attribute name="showCustomizableMarketing" label="Show Customizable Marketing" />
+    <design:attribute name="customizableMarketing" label="Customizable Marketing Header"/>
+    <design:attribute name="customizableMarketingDescription" label="Customizable Marketing Description"/>
+    
+    <design:attribute name="showSpiFFS" label="Show SPIFFS" />
+    <design:attribute name="spiffs" label="SPIFFS Header"/>
+    <design:attribute name="spiffsDescription" label="SPIFFS Description"/>
+
+</design:component>

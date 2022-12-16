@@ -1,0 +1,35 @@
+<apex:page standardcontroller="Eval_Request__c">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<style type="text/css">
+input.btn[name="new_eval_unit_details"] {
+            display: none;
+        }
+input.btn[name="multiple_product_requests"] {
+            display: none;
+        } 
+ input.btn[name="new00NA000000AKSaY"] {
+            display: none;
+        }
+ input.btn[name="add_products_to_invoice"] {
+            display: none;
+        }   
+</style>
+<apex:messages />
+
+    <apex:sectionheader title="{!$ObjectType.Eval_Request__c.label} Transfer Products to New Eval" subtitle="{!IF(ISNULL(Eval_Request__c.Name), 'New Eval Request',Eval_Request__c.Name& ' RMA # '&Eval_Request__c.RMA__c)}"/>
+<apex:form > 
+<br><center><apex:commandButton action="{!Cancel}" value="Cancel" id="cancel" style="font-size: 1.1em; margin: 4px;" />   <apex:commandButton action="{!URLFOR($Action.Eval_Request__c.Add_Attachment, Id)}"  id="attach" value="Attach Files" style="font-size: 1.1em; margin: 4px;" />
+             </center></br>
+</apex:form> 
+ <apex:outputpanel id="list" >
+  <apex:pageblock >
+  <apex:pageblocksection title="Select Products that you want to Tranfer to New Eval" showheader="true" columns="1">
+ <apex:relatedlist list="Eval_Unit_Details__r" title="Eval Unit Details"/>
+ </apex:pageblocksection> 
+  </apex:pageblock>
+   </apex:outputpanel>
+ 
+</apex:page>

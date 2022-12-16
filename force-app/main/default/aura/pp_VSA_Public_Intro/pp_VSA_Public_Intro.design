@@ -1,0 +1,8 @@
+<design:component>
+    <design:attribute name="introText" label="Intro Text"/>
+	<design:attribute name="showBtns" label="Show Call to Action Buttons" 
+    description="Show Call To Action buttons"/>
+    <design:attribute name="signupText" label="Sign Up Button Text"/>
+    <design:attribute name="loginText" label="Login Button Text"/>
+   
+</design:component>

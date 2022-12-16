@@ -1,0 +1,32 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,lightning:availableForFlowScreens" access="global" >
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="disabled" type="Boolean" default="false"/>
+    <aura:attribute name="showhide" type="String" default="slds-hide"/>
+    
+    
+    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="{!v.showhide}" variant="brand" size="large"/>
+    </div> 
+    <lightning:card>
+    <aura:set attribute="title">
+    <h1>Request a Change to this Page or to Salesforce ViewSonic</h1>
+    </aura:set>
+     <lightning:recordEditForm
+            onload="{!c.handleLoad}"
+            onsubmit="{!c.handleSubmit}"
+            onsuccess="{!c.handleSuccess}"
+            objectApiName="SalesForce_Change_Request__c">
+            <!-- the messages component is for error messages -->
+            <lightning:messages />
+
+            <lightning:inputField fieldName="Request_Scope__c" />
+            <lightning:inputField fieldName="How_will_this_help_ViewSonic__c" />
+            <footer class="slds-card__footer">
+                <lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" />
+           </footer>
+    </lightning:recordEditForm>
+        
+    </lightning:card>
+	
+</aura:component>

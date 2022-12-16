@@ -1,0 +1,81 @@
+.THIS.pp-home {
+    color: #1F1F1F;
+    font-family: "Open Sans", sans-serif;   
+    background-color:#263d57;
+}
+.THIS.pp-home .pp-footer {
+    background-color: #263D57;
+    padding: 3rem 0rem;
+    max-width: 1520px;
+    margin: 0 auto;
+}
+.THIS.pp-home .pp-footer .pp-footer-row1 {
+    margin-bottom: 2rem;
+    display:flex;
+}
+.THIS.pp-home .pp-footer .pp-footer-row1 .pp-lists ul {
+    list-style-type: none;
+    display:inline-flex;
+    margin-bottom: 1rem;
+}
+.THIS.pp-home .pp-footer .pp-footer-row1 .pp-lists ul li {
+    padding-right:2rem;
+}
+.THIS.pp-home .pp-footer .pp-footer-row1 .pp-lists ul li a {
+    display: block;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.THIS.pp-home .pp-footer .pp-footer-row1 .pp-lists ul li a:hover {
+    color: #E0AD37;
+}
+.THIS.pp-home .pp-footer .pp-footer-row1 .pp-socials {
+    margin-left: auto;
+    margin-top: -10px;
+}
+.THIS.pp-home .pp-footer .pp-footer-row1 .pp-socials ul {
+    list-style-type: none;
+    display:inline-flex;
+}
+.THIS.pp-home .pp-footer .pp-footer-row1 .pp-socials ul li {
+  padding-right: 6px;
+}
+.THIS.pp-home .pp-footer .pp-footer-row1 .pp-socials ul li img {
+    width: 30px;
+    filter: grayscale(100%);
+}
+.THIS.pp-home .pp-footer .pp-footer-row1 .pp-socials ul li a:hover img {
+    width: 30px;
+    filter: none;
+}
+.THIS.pp-home .pp-footer .pp-footer-row2 p {
+    color: #5A99E0;
+    font-size: 13px;
+}
+/* Media */
+@media (max-width: 992px) {
+    .THIS.pp-home .pp-footer {
+        padding: 2rem;
+    }
+    .THIS.pp-home .pp-footer .pp-footer-row1 {
+        flex-direction: column;
+    }
+    .THIS.pp-home .pp-footer .pp-footer-row1 .pp-lists ul {
+    	display: block;
+	}
+    .THIS.pp-home .pp-footer .pp-footer-row1 .pp-lists ul li {
+    	padding-right: 0;
+        padding-bottom: 1rem;
+	}
+    .THIS.pp-home .pp-footer .pp-footer-row1 .pp-socials {
+        margin: 0 auto;
+	}
+}
+@media (min-width: 993px) and (max-width: 1441px) {
+    .THIS.pp-home .pp-footer {
+    	max-width: 1420px;
+        padding: 2rem;
+    }
+}

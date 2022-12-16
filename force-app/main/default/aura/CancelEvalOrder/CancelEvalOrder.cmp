@@ -1,0 +1,38 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:hasRecordId,flexipage:availableForRecordHome,lightning:availableForFlowScreens" controller="EvalContacts" >
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="evalRequest" type="Eval_Request__c" />
+
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:attribute name="toggleClass" type="String" default="slds-hide" />
+<lightning:spinner aura:id="mySpinner" class="{!v.toggleClass}" alternativeText="Retrieving Info"/>
+
+  <aura:if isTrue="{!v.evalRequest.Locked_for_Approval__c}">
+  <lightning:icon iconName="utility:error" alternativeText="Error!" variant="error"/>
+  <b>Record is locked!</b> <br/><br/>You must unlock record before you can cancel order. If you unlock, you can change the order and resubmit it without cancelling order!
+  <br/><br/>
+  You can check out this video if unsure how to unlock and recall approval request.<br/><br/>
+  	<pal_youtube_cmp:paladin_youtube link="https://www.youtube.com/embed/pOywq7VkKJU"/>
+      
+  <aura:set attribute="else">
+ ... please wait while closing record
+
+  </aura:set>
+
+
+  </aura:if>
+
+    <!-- Display a header with details about the record --> 
+    <lightning:flow aura:id="flowcancel" onstatuschange="{!c.handleStatusChange}"/>
+
+    
+    <!--
+    <ui:outputText value="{!v.simpleRecord.Eval_Process_Stage__c}"/>
+    <ui:outputText value="{!v.simpleRecord.Product_Status__c}"/>
+    <ui:outputText value="{!v.simpleRecord.Approval_Status__c}"/>  
+    -->
+    <!--
+    <lightning:button variant="neutral" label="Close" onclick="{!c.close }" />
+
+--> 
+	
+</aura:component>

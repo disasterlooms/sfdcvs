@@ -1,0 +1,85 @@
+<aura:component controller="EducationRegLight"
+                implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+    <aura:handler name="showToast" event="c:showToast"
+                  action="{!c.toastconAdd}"/>
+    <aura:handler name="orderCreated" event="c:siteTrainingOrderCreated"
+                  action="{!c.orderCreated}" />
+    <aura:attribute type="Boolean" name="orderChange" default="true"/>
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="account" type="Account"/>
+    <aura:attribute name="headertype" type="string"/>
+    <aura:attribute name="contacts" type="Contact[]"/>
+    <aura:attribute name="custid" type="String"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="ponumber" type="String"/>
+    <aura:attribute name="imageUrl" type="String"/>
+    
+    <aura:attribute name="accNotFound" type="boolean" default="true"/>
+    <!--<aura:handler name="change" value="{!v.account.LRP_ViewBoard_Exists__c}" action="{!c.lrpNeeded}"/>-->
+    <c:MessageContainer aura:id="messageContainer" timeOverride="99999990"/>
+    <lightning:card >
+        <aura:set attribute="title">
+            <div class="c-container">
+                <lightning:layout>
+                    <lightning:layoutItem  >
+                        <div class="custom-box">
+                            <b>Welcome to the ViewSonic MyViewboard Portal</b>
+                        </div>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem alignmentBump="left">
+                        <div class="custom-box">
+                            <b>&nbsp;{!v.account.Name}</b>
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </div>
+            
+        </aura:set>
+        <aura:set attribute="actions">
+            <!-- <lightning:button variant="brand" label="Add New Contact" title="Add New Contact" onclick="{!c.contactCreate }" /> -->
+            
+        </aura:set>
+       <!-- <aura:if isTrue="{!v.account.LRP_ViewBoard_Exists__c}"> -->
+            <lightning:tabset>
+                <lightning:tab label="Account Information">
+                    <c:EducationRegHome acct="{!v.account}"/>
+                </lightning:tab>
+                <lightning:tab label="Users and Contacts" title="Training">
+                    
+                    <c:EducationPubContacts accid="{!v.account.Id}"/>
+                    
+                </lightning:tab>
+                <!--
+                <lightning:tab label="New Training Request">
+                    <c:siteEducationProffesionalDevelopment acct="{!v.account}"/>
+                </lightning:tab>
+                -->
+                <lightning:tab label="Training Requests">
+                    
+                    <c:siteEducationTrainingRequested  acct="{!v.account.Id}" orderChange="{!v.orderChange}"/>
+                </lightning:tab>
+                <!--<lightning:tab label="Shipping Info for Recent/Pending Shipments">
+                   
+                    <c:siteEducationShipping  acct="{!v.account.Id}"/>  
+
+                </lightning:tab>-->
+                <lightning:tab label="Report an Issue/Contact Us">                    
+                    <c:siteEducationReportIssue   acct="{!v.account.Id}"/>
+                </lightning:tab>
+               
+            </lightning:tabset> 
+            <!--
+            <aura:set attribute="else">
+                <c:educationPortalConCreate acct="{!v.account.Id}" 
+                                            ready="{!v.account.LRP_ViewBoard_Exists__c}" 
+                                            acctNotFound="{!v.accNotFound}" 
+                                            headertype="{!v.headertype}"
+                                            imageUrl="{!v.imageUrl}"/>
+                  
+            </aura:set>
+        </aura:if>
+          -->
+        
+    </lightning:card>
+    
+</aura:component>

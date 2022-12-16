@@ -1,0 +1,38 @@
+<apex:component >
+    <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+    <script>
+    var $j = jQuery.noConflict();
+    setTimeout(setid, 30);
+    function setid(){
+    //var input = $j("[id$=lookup]").attr('id');
+    //document.getElementById(input).id="{!id}";
+    
+    var input2 = $j("[id$=lookup_lkid]").attr('id');
+    document.getElementById(input2).id="{!id}_lkid";
+   
+    
+
+    }
+    </script>
+    
+    
+    <apex:attribute name="label" type="String" description="label for field" required="true"/>
+    <apex:attribute name="id" type="string" description="id for the inputfield"/>
+    <apex:attribute name="inputtype" type="string" description="slds class type for the input" required="false"/>
+    <apex:attribute name="required" type="string" description="Is field Required" required="false"/>
+    <apex:attribute name="lookupobj" type="string" description="the object the lookup field relates to" required="false"/> 
+    <apex:attribute name="placeholder" type="string" description="text in the search box" required="false"/>
+    <apex:attribute name="boxid" type="string" description="html element id for searchbox" required="false"/>
+    <apex:attribute name="lookupobj" type="string" description="Object we are looking up" required="false"/>  
+    
+
+      <div class="slds-form-element">
+          <label class="slds-form-element__label" for="{!id}" style="font-weight: bold;">{!label}</label>
+          <div class="slds-form-element__control">
+            <input type="hidden" name="lookupid" id="lookup_lkid" value="000000000000000"/>
+           </div>
+      </div>
+      
+      <c:Typeahead placeholder="{!placeholder}" searchBoxId="{!boxid}" object="{!lookupobj}" destinationForSelectedId="{!id}_lkid" destinationForSelectedValue="{!id}" styleClass="slds-input"/>
+               
+</apex:component>

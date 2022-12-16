@@ -1,0 +1,6 @@
+<apex:page standardController="Opportunity">
+<base target="_top" />
+<script>
+navigateToUrl('https://na18.salesforce.com/006/e?retURL=/006/o&opp3=test');
+</script>
+</apex:page>

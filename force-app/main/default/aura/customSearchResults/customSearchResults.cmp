@@ -1,0 +1,125 @@
+<aura:component 
+                implements="forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens"
+                controller="CustomSearchController"
+                access="global">
+    <aura:attribute type="ContentDocument[]" name="files"/>
+    <aura:attribute type="String" name="exclusion" description="the library we will exclude from query results"/>
+    <aura:attribute type="Integer" name="qty" default="100"/>
+    <aura:attribute type="Boolean" name="resutsFound" default="true"/>
+    <aura:attribute name="searchText" type="String" />
+    <aura:attribute name="channelPrograms" type="Boolean" />
+    <aura:attribute name="spiffs" type="Boolean" default="false"/>
+    <aura:attribute name="pricing" type="Boolean" default="false"/>
+    <aura:attribute name="otherPromos" type="Boolean" default="false"/>
+    <aura:attribute name="showSearch" type="boolean" default="false"/>
+    <aura:attribute name="exceptionLib" type="String" description="to exclude a library on query call"/>
+    <aura:attribute name="library" type="String" description="to explicity call one library on a query call"/>
+    <aura:attribute name="congaTemplateId" type="String"/>
+    <aura:attribute name="flownxtpg" type="Boolean" default="false"/>
+    <aura:handler name="change" value="{!v.flownxtpg}" action="{!c.flowNextScreen}"/>
+    <aura:attribute type="String" name="assetId"/>
+    <aura:attribute type="String" name="ContentId"/>
+    <aura:attribute type="String" name="LogoURL"/>
+    <aura:attribute type="String" name="fileId"/>
+    <aura:attribute type="String" name="category" default="all"/>
+    <aura:attribute name="showDescription" type="boolean"/>
+
+    <aura:attribute name="all" type="String" default="All"/>
+    <aura:attribute name="products" type="String" default="Products"/>
+    <aura:attribute name="solutions" type="String" default="Solutions"/>
+    <aura:attribute name="training" type="String" default="Training"/>
+    <aura:attribute name="webinars" type="String" default="Webinars/Videos"/>
+    <aura:attribute name="scenarioimages" type="String" default="Scenario Images"/>
+    <aura:attribute name="others" type="String" default="Others"/>
+    
+    <aura:attribute name="searchtitle" type="String" default="Search for Resources"/>
+    <aura:attribute name="searchPlaceholder" type="String" default="Search"/>
+    
+
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="" variant="brand" size="large"/>
+    </div>
+    <aura:handler name="init" value="{!this}" action="{!c.handleClick}"/>
+    <aura:if isTrue="{!v.showSearch}">
+        <h2 class="slds-text-heading--medium">{!v.searchtitle}</h2>    
+        
+        <div class="slds-form-element slds-lookup" data-select="single">
+            <div class="slds-form-element__control ">       
+                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                    <lightning:input oncommit="{!c.handleClick}"  value="{!v.searchPlaceholder}" placeholder="{!v.searchtitle}" />
+                    <lightning:buttonIcon  iconName="utility:search" variant="inverse" onclick="{! c.handleClick }"
+                                          alternativeText="Search" class="slds-input__icon searchIcn"  />
+                </div>
+            </div>
+        </div>
+        <br/><br/>
+        
+        
+        <lightning:tabset selectedTabId="all">
+            
+            <lightning:tab label="{!v.all}" id="all" onactive="{!c.handleClick}">
+                <c:customSearchResultItem files="{!v.files}" 
+                                          flownxtpg="{!v.flownxtpg}"
+                                          congaTemplateId="{!v.congaTemplateId}"
+                                          showDescription="{!v.showDescription}" />
+            </lightning:tab>
+            
+            <lightning:tab label="{!v.products}" id="Products" onactive="{!c.handleClick}">
+                <c:customSearchResultItem files="{!v.files}" 
+                                          flownxtpg="{!v.flownxtpg}"
+                                          congaTemplateId="{!v.congaTemplateId}"
+                                          showDescription="{!v.showDescription}" />
+            </lightning:tab>
+            <lightning:tab label="{!v.solutions}" id="Solutions" onactive="{!c.handleClick}">
+                <c:customSearchResultItem files="{!v.files}" 
+                                          flownxtpg="{!v.flownxtpg}"
+                                          congaTemplateId="{!v.congaTemplateId}"
+                                          showDescription="{!v.showDescription}" />
+            </lightning:tab>
+            <lightning:tab label="{!v.training}" id="Training" onactive="{!c.handleClick}">
+                <c:customSearchResultItem files="{!v.files}" 
+                                          flownxtpg="{!v.flownxtpg}"
+                                          congaTemplateId="{!v.congaTemplateId}"
+                                          showDescription="{!v.showDescription}" />
+            </lightning:tab>
+            
+            <lightning:tab label="{!v.webinars}" id="Webinars/Videos" onactive="{!c.handleClick}">
+                <c:customSearchResultItem files="{!v.files}" 
+                                          flownxtpg="{!v.flownxtpg}"
+                                          congaTemplateId="{!v.congaTemplateId}"
+                                          showDescription="{!v.showDescription}" />
+            </lightning:tab>
+            <!--
+            <lightning:tab label="Newsletters" id="Newsletters" onactive="{!c.handleClick}">
+                <c:customSearchResultItem files="{!v.files}" 
+                                          flownxtpg="{!v.flownxtpg}"
+                                          congaTemplateId="{!v.congaTemplateId}"
+                                          showDescription="{!v.showDescription}" />
+            </lightning:tab>
+            -->
+            <lightning:tab label="{!v.scenarioimages}" id="Scenario Images" onactive="{!c.handleClick}">
+                <c:customSearchResultItem files="{!v.files}" 
+                                          flownxtpg="{!v.flownxtpg}"
+                                          congaTemplateId="{!v.congaTemplateId}"
+                                          showDescription="{!v.showDescription}" />
+            </lightning:tab>
+            
+            <lightning:tab label="{!v.others}" id="Others" onactive="{!c.handleClick}">
+                <c:customSearchResultItem files="{!v.files}" 
+                                          flownxtpg="{!v.flownxtpg}"
+                                          congaTemplateId="{!v.congaTemplateId}"
+                                          showDescription="{!v.showDescription}" />
+            </lightning:tab>
+        </lightning:tabset>
+        <aura:set attribute="else">
+            <c:customSearchResultItem files="{!v.files}" 
+                                      flownxtpg="{!v.flownxtpg}"
+                                      congaTemplateId="{!v.congaTemplateId}"
+                                      showDescription="{!v.showDescription}" />
+        </aura:set>
+    </aura:if>
+    <aura:if isTrue="{!not(v.resutsFound)}">
+        <b> No Result found</b>
+    </aura:if>
+    
+</aura:component>

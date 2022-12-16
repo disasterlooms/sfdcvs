@@ -1,0 +1,85 @@
+<apex:page controller="EvalUnits" sidebar="False" id="units" >
+ <apex:form >
+ <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<script type="text/javascript">
+$( document ).ready(function() {
+    
+    $("#shipdate").val('{!text(month(today()))&'/'&text(day(today()))&'/'&text(year(today()))}');
+    $(".ship").val('{!text(month(today()))&'/'&text(day(today()))&'/'&text(year(today()))}');
+    });onfocus="DatePicker.pickDate(false, this , false);"</script>
+<script type="text/javascript">
+function checkValue2(){
+       var rma = $("#rma").val();
+        
+        $(".rma1").val(rma);
+   }
+</script>
+<script type="text/javascript">
+function checkValue3(){
+       var rma = $("#rma").val();
+        $(".rma1").val(rma);
+        var shipdate = $("#shipdate").val();
+        $(".ship").val(shipdate);
+        var cour = $("#cor").val();
+        $(".courier").val(cour);
+ }
+</script>
+<script type="text/javascript">
+function checkValue4(){
+        var shipdate = $("#shipdate").val();
+        $(".ship").val(shipdate);
+    }
+    function checkValue5(){
+       var cour = $("#cor").val();
+        $(".courier").val(cour);
+    }
+</script>
+   <apex:pageBlock title="Bulk Eval Unit Create">
+  <b>RMA </b><input label="RMA" id="rma" onchange="checkValue2();"/>
+   <b>Courier Info</b> <input id="cor"   onchange="checkValue5();"/>
+   <b>Shipping Date if different than today's date: "mm/dd/yyyy"</b> <input id="shipdate"   onchange="checkValue4();"/>
+    <br>
+   </br>
+   
+      <br><apex:pageBlockTable value="{!wrappers}" var="wrapper" id="details" rowClasses="cartRow">
+         <apex:column headerValue="Record">
+            <apex:outputText value="{!wrapper.ident}"/>
+         </apex:column>
+         <apex:column headerValue="Serial Number">
+            <apex:inputField value="{!wrapper.acc.Name}"/>
+         </apex:column>
+         <apex:column id="rmax" headerValue="SKU - (Required Field)">
+            <apex:inputField style="border-left: 4px solid #c00; border-right: 0px #fff;" value="{!wrapper.acc.SKU__c}"/>
+         </apex:column>
+         <apex:column headerValue="RMA">
+            <apex:inputField value="{!wrapper.acc.RMA__c}" styleClass="rma1" id="rma1"/>
+         </apex:column>
+         <apex:column headerValue="Status">
+            <apex:inputField id="status" value="{!wrapper.acc.RMA__c}"/>
+         </apex:column>
+         <apex:column headerValue="Courier Info ">
+            <apex:inputField value="{!wrapper.acc.Courier_Info__c}" styleClass="courier"/>
+         </apex:column>
+         <apex:column headerValue="Tracking #">
+            <apex:inputField value="{!wrapper.acc.Tracking_Number__c}"  />
+         </apex:column>
+         <apex:column headerValue="Ship Date (Defaults to Today)"  >
+            <apex:inputField value="{!wrapper.acc.Ship_Date__c}" styleClass="ship"/>
+         </apex:column>
+         <apex:column headerValue="Action">
+            <apex:commandButton value="Delete" action="{!delWrapper}" rerender="details" oncomplete="checkValue3();">
+               <apex:param name="toDelIdent" value="{!wrapper.ident}" assignTo="{!toDelIdent}"/> 
+            </apex:commandButton>
+         </apex:column>
+      </apex:pageBlockTable>
+      <apex:commandButton value="Add Row" action="{!addRows}" rerender="details">
+         <apex:param name="addCount" value="1" assignTo="{!addCount}"/> 
+      </apex:commandButton>
+      <apex:commandButton value="Add 5 Rows" action="{!addRows}" rerender="details" oncomplete="checkValue3();"  >
+         <apex:param name="addCount" value="5" assignTo="{!addCount}"/> 
+      </apex:commandButton>
+      <apex:commandButton value="Save" action="{!save}"/>
+   </br></apex:pageBlock>
+ </apex:form>
+</apex:page>

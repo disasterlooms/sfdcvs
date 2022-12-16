@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Owner_Cannot_Change_VS</fullName>
+    <active>true</active>
+    <description>Ensures, for eval process, that the contact owner does not change.</description>
+    <errorConditionFormula>Account.Name = &apos;ViewSonic Corporation&apos; &amp;&amp; ischanged(OwnerId)&amp;&amp; $User.Alias != &apos;admin&apos;</errorConditionFormula>
+    <errorMessage>Viewsonic Contact Ownership cannot change.</errorMessage>
+</ValidationRule>

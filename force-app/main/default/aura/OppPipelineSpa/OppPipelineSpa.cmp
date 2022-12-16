@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" access="global">
+    <aura:attribute name="opportunities" type="Opportunity[]" />    
+    <c:VFHeader opportunities="{!v.opportunities}"/>
+    <c:OppPipelineFollowUp opportunities="{!v.opportunities}"/>    
+    <c:NewOppProduct />
+</aura:component>

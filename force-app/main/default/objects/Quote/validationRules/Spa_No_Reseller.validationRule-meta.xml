@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Spa_No_Reseller</fullName>
+    <active>true</active>
+    <errorConditionFormula>Opportunity.SPA_Resellers__c &lt; 1 &amp;&amp; isnew() &amp;&amp; 
+ not(CONTAINS(text($User.UserType),&apos;Partner&apos;  ) )&amp;&amp;
+not(contains(Name,&apos;Apex&apos;))&amp;&amp;  Opportunity.ApexTest__c == false</errorConditionFormula>
+    <errorMessage>You must have at least one reseller to create this spa. please add a reseller on the opportunity page.</errorMessage>
+</ValidationRule>

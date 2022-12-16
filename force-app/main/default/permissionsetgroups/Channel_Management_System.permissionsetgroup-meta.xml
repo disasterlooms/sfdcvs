@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Channel Management System</label>
+    <mutingPermissionSets>Channel_Management_System_Muted</mutingPermissionSets>
+    <permissionSets>External_Company_Admin</permissionSets>
+    <permissionSets>External_Company_Request_Admin</permissionSets>
+    <permissionSets>Import_Custom_Objects</permissionSets>
+    <permissionSets>Sell_Through_Report_Admin</permissionSets>
+    <permissionSets>Sell_Through_Report_Header_Admin</permissionSets>
+    <permissionSets>Sell_Through_Report_Import_Admin</permissionSets>
+    <permissionSets>Stock_Report_Admin</permissionSets>
+    <permissionSets>Stock_Report_Header_Admin</permissionSets>
+    <permissionSets>Stock_Report_Import_Admin</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

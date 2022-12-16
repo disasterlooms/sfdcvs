@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_PD_Orders</fullName>
+    <columns>Named_Location_of_Training__c</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>ORDER.SHIP_TO_CONTACT</columns>
+    <columns>Contact_Email__c</columns>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <columns>ORDER.SHIPPING_STATE</columns>
+    <columns>ORDERS.STATUS</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>Oracle_Order_Number__c</columns>
+    <columns>Sales_Rep__c</columns>
+    <columns>Products__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>QUOTE.NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Oracle_Order_Number__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>ORDERS.STATUS</field>
+        <operation>equals</operation>
+        <value>Ordered</value>
+    </filters>
+    <label>Open PD Orders</label>
+</ListView>

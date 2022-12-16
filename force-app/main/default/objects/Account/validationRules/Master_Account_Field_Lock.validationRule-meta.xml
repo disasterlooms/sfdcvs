@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Master_Account_Field_Lock</fullName>
+    <active>false</active>
+    <description>Locking down Master Account field so only Admin can change the name.</description>
+    <errorConditionFormula>IF( HQ_Account_Check_if_HQ__c =True, (ISCHANGED( Name ) &amp;&amp; 
+NOT ( ISNEW() ) &amp;&amp; $UserRole.Name &lt;&gt; &quot;System Administrator&quot; 
+), False)</errorConditionFormula>
+    <errorMessage>You can not make changes to Master Account</errorMessage>
+</ValidationRule>

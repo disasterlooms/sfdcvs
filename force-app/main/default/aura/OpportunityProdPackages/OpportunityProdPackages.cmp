@@ -1,0 +1,51 @@
+<aura:component controller="OppPackageProducts" implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionwithoutHeader" access="global" >
+	<aura:attribute name="recordId" type="String" />
+    <aura:attribute name="childrensaved" type="boolean" />
+    <aura:attribute name="quant" type="String"/>
+    
+    <aura:attribute name="quannull" type="boolean" default="true"/>
+    <aura:attribute name="records" type="Object[]" description="the collection of records received from query"/>
+    <aura:attribute name="selections" type="SObject[]" description="that which is selected"/>
+    <aura:attribute name="overrideaction" type="Boolean" 
+                    description="this is to allow the parent component to create a specific apex code to update records" default="false"/>
+    <aura:handler name="change"  value="{!v.overrideaction}" action="{!c.createProducts}"/>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div> 
+    <aura:if isTrue="{!v.quannull}" >
+        Please give a quantity. <br/>
+        
+    <lightning:input value="{!v.quant}" type="number" label="Quantity"/><br/>
+        <div class="slds-x-small-buttons--horizontal">
+            <button class="slds-button slds-button_brand " onclick="{!c.myAction}" value="true">Next Add Bundle</button>
+        </div>
+        <aura:set attribute="else">
+            
+    
+            <c:MultiSelectItems title="Select Packages to add to Opportunity" 
+                            objToQuery="Product_Package__c" 
+                            wherestmt="where id != null"
+                            limitstmt="limit 25"
+                            orderstmnt="Order by Name desc"
+                            Columnfields="Name,Products__c"
+                            Columnheaders="Package,Products"
+                            btnName="Add Selected Package"
+                            records="{!v.records}"
+                            searchplaceholder="Search by package name - Partial ok. Press Enter to search"
+                            searchlabel="Package Name"
+                            searchfield="Name"
+                            recordId="{!v.recordId}"
+                            objToCreate="Package__c"
+                            objToCreateFields="Product_Package__c,Product__c"
+                            createOveride="true"
+                            overrideaction="{!v.overrideaction}"
+                            selections="{!v.selections}"
+                            childrensaved="{!v.childrensaved}"
+                            subtitle="Don't see a bundle? Create your own bundle on 'My Product Bundles' tab"
+                            owneronly="false"
+                            ownertoggle="false">            
+        </c:MultiSelectItems>
+            </aura:set>
+        
+        </aura:if>
+</aura:component>

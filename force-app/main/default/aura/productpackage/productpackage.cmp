@@ -1,0 +1,40 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="pid" type="String" />
+    <aura:attribute name="step1" type="boolean" default="false" />
+    <aura:attribute name="newPackage" type="Object"/>
+    <aura:attribute name="fnewPackage" type="Object"/>
+    <aura:attribute name="newPackageError" type="String"/>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <force:recordData aura:id="packageCreator"
+                      layoutType="FULL"
+                      targetRecord="{!v.newPackage}"
+                      targetFields="{!v.fnewPackage}"
+                      targetError="{!v.newPackageError}"
+                      />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"/>
+     <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <!-- Display the new package form -->
+    <div class="" aura:id="create">
+        <!--<lightning:card iconName="action:Product_Package__c" title="Create Product Package">-->
+            <div class="slds-p-horizontal--small">
+                Step 1 Create a package Name
+                <lightning:input aura:id="name" label="Name" value="{!v.fnewPackage.Name}"/>
+                <lightning:input aura:id="global" label="Global - (Private by Default)" value="{!v.fnewPackage.Global_Package__c}" type="checkbox"/>
+                <br/>
+               <lightning:button label="Next Step - Add Products" variant="brand" onclick="{!c.handleSavePackage}"/>
+            </div>
+       <!--ß </lightning:card>-->
+    </div>
+    
+    <!-- Display Lightning Data Service errors -->
+    <aura:if isTrue="{!not(empty(v.newPackageError))}">
+        <div class="recordError">
+            {!v.recordError}</div>
+    </aura:if>
+    
+</aura:component>

@@ -1,0 +1,78 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:hasRecordId"                
+                access="global" >
+    
+    <aura:attribute name="files" type="ContentDocument[]"/>
+    <aura:attribute name="showDescription" type="boolean"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    <aura:attribute name="congaTemplateId" type="String"/>
+    <aura:attribute name="flownxtpg" type="Boolean" default="false"/>
+    <!--
+    <force:recordData aura:id="recordLoader"
+                      recordId="{!v.recordId}"
+                      layoutType="COMPACT"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      targetError="{!v.recordError}"  />
+    <aura:iteration items="{!v.accounts}" var="account">
+    <lightning:fileCard fileId="{!v.simpleRecord.Id}" description="{!v.simpleRecord.Title}"/>
+    
+    -->    
+    <!--iconName="standard:file"-->
+
+    <div class="c-container">
+        <lightning:layout multipleRows="true">
+            <aura:iteration items="{!v.files}" var="f">
+                
+                <lightning:layoutItem size="12" smallDeviceSize="9" mediumDeviceSize="6" largeDeviceSize="3" padding="around-small">
+                    <div class="custom-box">
+                        <lightning:card variant="narrow"  class="slds-m-around--small  slds-card_boundary">
+                            <aura:set attribute="title">
+                                <!-- --> {!f.Title} 
+                            </aura:set>
+                            <aura:if isTrue="{!v.showDescription}">
+                                <lightning:fileCard fileId="{!f.Id}" description="{!f.Description}"/>
+                                <aura:set attribute="else">
+                                    <lightning:fileCard fileId="{!f.Id}"/>
+                                </aura:set>
+                            </aura:if> 
+                            <br/>
+                            <aura:if isTrue="{!v.showDescription}">
+                                <aura:set attribute="else">                                        
+                                    <lightning:button variant="brand" label="Select Document"
+                                                      name="{!f.Description}" title="Brand action" onclick="{!c.sumbitDocument}" />                                        
+                                    
+                                </aura:set>
+                            </aura:if>
+                        </lightning:card>
+                    </div>
+                </lightning:layoutItem>
+                
+                
+            </aura:iteration>
+            
+        </lightning:layout>
+    </div>     
+    
+    
+    
+    
+    
+    <!-- Display a header with details about the record -->
+    <!--
+    <div class="slds-page-header" role="banner">
+        
+    </div>
+-->
+    
+    <!-- Display Lightning Data Service errors, if any
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            <ui:message title="Error" severity="error" closable="true">
+                {!v.recordError}
+            </ui:message>
+        </div>
+    </aura:if>
+ -->
+</aura:component>

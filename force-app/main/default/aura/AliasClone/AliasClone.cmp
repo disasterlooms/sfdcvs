@@ -1,0 +1,66 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" 
+                controller="posAliasApp" access="global" >
+    <aura:handler event="wave:selectionChanged" action="{!c.aliasName}"/>
+    <aura:registerEvent name="discoverEvent" type="wave:discover"/>
+    <aura:registerEvent name="newRecPage" type="force:navigateToSObject"/>
+   
+    <aura:attribute name="aliasname" type="String"/>
+    <aura:attribute name="aliases" type="POSAccountAliases__c[]" />  
+    <lightning:button label="New" title="New" onclick="{!c.newAlias}"/>
+    <div class="flexipageComponent" data-aura-class="flexipageComponent">
+        <div class="slds-card__header slds-grid">
+            <table  class="slds-table slds-table_bordered slds-table_striped slds-table_fixed-layout slds-table_bordered slds-table_col-bordered" role="grid">
+                
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col" class="slds-cell-wrap">
+                            <div class="slds-truncate" title="Customer">Name</div>
+                        </th>
+                        <th scope="col" class="slds-cell-wrap">
+                            <div class="slds-truncate" title="PO">Salesforce Account</div>
+                        </th>
+                        <th scope="col" class="slds-cell-wrap">
+                            <div class="slds-truncate" title="PO">Alias Reseller</div>
+                        </th>
+                        <th scope="col" class="slds-cell-wrap">
+                            <div class="slds-truncate" title="status">Alias End User</div>
+                        </th>
+                        <th scope="col" class="slds-cell-wrap">
+                            <div class="slds-truncate" title="ship_carrier">Channel</div>
+                        </th>
+                        <th scope="col" class="slds-cell-wrap">
+                            <div class="slds-truncate" title="ship_carrier">Actions</div>
+                        </th>
+                    </tr>
+                </thead>
+                <aura:iteration items="{!v.aliases}" var="l" indexVar="index">
+                    <tbody>
+                        
+                        <td class="slds-cell-wrap">
+                            <ui:outputText value="{!l.Name}"/> 
+                        </td>
+                        <td class="slds-cell-wrap">
+                            <ui:outputText value="{!l.SFDC_Account__r.Name}"/>
+                        </td> 
+                        <td class="slds-cell-wrap">
+                            <ui:outputText value="{!l.Reseller_Alias__c}"/>
+                        </td> 
+                        
+                        <td class="slds-cell-wrap">
+                            <ui:outputText value="{!l.End_User_Alias__c}"/>
+                        </td>
+                        <td class="slds-cell-wrap">
+                            <ui:outputText value="{!l.Channel__c}"/>
+                        </td>
+                        <td class="slds-cell-wrap">
+                            <lightning:button label="Clone" title="Clone" onclick="{!c.clone}" value="{!index}"/>
+                            <lightning:button label="Edit" title="Edit"  onclick="{!c.editSelected}" value="{!l.Id}"/>  
+                        </td>                          
+                    </tbody>
+                </aura:iteration>
+            </table>
+        </div>
+    </div>
+    
+    
+</aura:component>

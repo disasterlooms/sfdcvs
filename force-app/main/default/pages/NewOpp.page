@@ -1,0 +1,5 @@
+<apex:page standardController="Opportunity">
+<script type="text/javascript">
+window.location.href = '/006/e';
+</script>
+</apex:page>

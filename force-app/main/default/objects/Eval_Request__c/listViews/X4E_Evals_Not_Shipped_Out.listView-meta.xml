@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X4E_Evals_Not_Shipped_Out</fullName>
+    <booleanFilter>(1 AND 2) OR (2 and 3)</booleanFilter>
+    <columns>Eval_Process_Stage__c</columns>
+    <columns>Shipping_Contact_Name__c</columns>
+    <columns>Opportunity_Name__c</columns>
+    <columns>Approval_Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Eval_Process_Stage__c</field>
+        <operation>equals</operation>
+        <value>Awaiting Submission Request,Awaiting Approval from Director or VP</value>
+    </filters>
+    <filters>
+        <field>Approval_Status__c</field>
+        <operation>equals</operation>
+        <value>Approved</value>
+    </filters>
+    <filters>
+        <field>Eval_Process_Stage__c</field>
+        <operation>equals</operation>
+        <value>Awaiting Upload of Agreement,Awaiting Shipping</value>
+    </filters>
+    <label>4E  - Evals Not Shipped Out</label>
+    <language>en_US</language>
+</ListView>

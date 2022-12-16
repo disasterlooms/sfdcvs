@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quantity_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR(ISPICKVAL(VS_Region__c, &apos;VSI&apos;),ISPICKVAL(VS_Region__c, &apos;VSE&apos;)), Quantity__c,null)
+/*			
+CASE(distributor__r.Name  , 
+					&apos;ALSO Deutschland GmbH&apos;, 	Quantity__c	, 
+					&apos;Ingram Micro Distribution GmbH&apos;, Menge_Quantity__c, 
+					&apos;Computation Systemhaus GmbH&apos;, Quantity__c	, 
+					&apos;Delo Computer GmbH&apos;, Menge_Quantity__c,
+					&apos;Herweck AG&apos;, Quantity__c, 
+		   &apos;Schuss AV-Projektionssysteme GmbH&apos;, Quantity__c,
+					&apos;Tarox AG&apos;, Menge_Quantity__c,
+					&apos;prodyTel Distribution GmbH&apos;,  gerPOS_Anzahl_Quantity__c, 
+					null)
+*/</formula>
+    <label>Quantity</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

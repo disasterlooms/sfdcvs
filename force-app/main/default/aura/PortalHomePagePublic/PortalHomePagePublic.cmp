@@ -1,0 +1,56 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+    access="global">
+
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="showBtns" type="Boolean" default="true" />
+    <aura:attribute name="showBody" type="Boolean" default="true" />
+    <aura:attribute name="showVideo" type="Boolean" default="false" />
+    <aura:attribute name="showPromotion" type="Boolean" default="false" />
+    <aura:attribute name="showImage" type="Boolean" default="false" />
+    <aura:attribute name="imageURL" type="String" default="false" />
+    <aura:attribute name="englishUS" type="Boolean" default="true" />
+    <aura:attribute name="document" type="String"
+        default="https://www.viewsonic.com/media/wysiwyg/Library/21ALL_CHN1351a_rev1_VAR_Recruitment_New-Members_Opt.pdf" />
+    <aura:attribute name="promotionDate" type="String" default="Submit your first SPIFF claim in the new Partner Portal by Oct. 31, 2021 and earn a cash bonus of up to $200. For more information on eligibility, 
+    click the link below." />
+    <aura:attribute name="promtionLinkText" type="String" default=" Learn more about the Claim Your Cash promotion." />
+    <aura:attribute name="videoURL" type="String"
+        default="https://www.youtube.com/embed/OU4MD5g0BrU?amp;showinfo=0&amp;modestbranding=1&amp;autoplay=0&amp;rel=0&amp;mute=0" />
+    <aura:attribute name="videotitle" type="String" default="Welcome message from " />
+    <aura:attribute name="videomessage" type="String" default="Jeff Volpe, President ViewSonic Americas" />
+
+    <aura:attribute name="login" type="String" default="LOG IN" />
+    <aura:attribute name="signup" type="String" default="SIGN UP" />
+    <aura:attribute name="paragraphIntro" type="String"
+        default="ViewSonic is a channel-first company with over 30 years of success rooted in the relationships we have cultivated with our partners. Today, we are more 
+    committed than ever to delivering performance, value and world class support with one of the widest array of visual engagement solutions, best-in-class 
+    service and programs to ensure that our partners thrive. As a partner, you have access to the products, promotions and support needed to grow your business." />
+
+    <div class="pp-home">
+        <div class="pp-header">
+            <div class="pp-header-left">
+                <div>
+                    <div class="pp-logo">
+                        <img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/partner-program-lowercase.svg"
+                            alt="Partner Program Logo"></img>
+                    </div>
+                    <div>
+                        <p>
+
+                            {!v.paragraphIntro}
+
+                        </p>
+                    </div>
+                    <div class="pp-btn">
+                        <aura:if isTrue="{!v.showBtns}">
+                            <a class="pp-signup" href="/s/partnersignup">{!v.signup}</a>
+                            <a class="pp-login" href="/s/login">{!v.login}</a>
+                        </aura:if>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</aura:component>

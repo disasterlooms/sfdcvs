@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ingram_New_Import</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Synced_to_TCRM__c</columns>
+    <columns>Import_File__c</columns>
+    <columns>CsvUploaderFileIdentifier__c</columns>
+    <columns>Product_Code_Formula__c</columns>
+    <columns>Ready_to_Sync_to_TCRM__c</columns>
+    <columns>External_Product_Code_Formula__c</columns>
+    <columns>Stock_Report_Date_Formula__c</columns>
+    <columns>Datenstand_Date__c</columns>
+    <columns>Purchase_Order_Formula__c</columns>
+    <columns>Sales_Order_Formula__c</columns>
+    <columns>Stock_Stock__c</columns>
+    <columns>Sold_Formula__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account__c</field>
+        <operation>equals</operation>
+        <value>Ingram Micro Distribution GmbH</value>
+    </filters>
+    <filters>
+        <field>Synced_to_TCRM__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Ingram_New_Import</label>
+    <sharedTo>
+        <group>VSE_Germany_CMS_Admin</group>
+    </sharedTo>
+</ListView>

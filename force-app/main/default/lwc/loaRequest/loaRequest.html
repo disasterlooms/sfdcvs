@@ -1,0 +1,39 @@
+<template>
+  <div class="spinner">
+    <template if:true={isLoading}>
+         <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+         </lightning-spinner>
+    </template>
+</div>
+    <lightning-card title="LOA Request" icon-name="custom:custom14">
+      <div class="slds-m-around_medium">
+      <template if:false={isSubmitted}>
+<p>Please make sure to submit one of the following documents to <lightning-formatted-email value="partners@viewsonic.com" hide-icon></lightning-formatted-email>. We are not able to issue the Letter of Authorization until we receive the document.</p>
+<ul  class="slds-list_dotted slds-m-top_large">
+  <li>Uniform Sales and Use Tax Resale Certificate -- Your state</li>
+  <li>Uniform Sales and Use Tax Resale Certificate -- Multijurisdiction</li>
+  <li>Business License</li>
+</ul><br/>
+<p>Not sure what to submit? Please refer to the information <lightning-formatted-url value="https://viewsonic--fullsand--c.sandbox.vf.force.com/resource/1664953457000/StateTaxRequirements" tooltip="Use https://domain-name" label="here" target="_self" ></lightning-formatted-url></p>
+
+        <lightning-input type="text" disabled label="Name  of Requester" value={conName}></lightning-input>
+        <lightning-input type="text" disabled label="Company Name" value={conAccountName}></lightning-input>
+        <lightning-input type="text" disabled label="Physical Business Address" value={conAddress}></lightning-input>
+        <lightning-input type="text" disabled label="Requester Email" value={currentUserEmailId}></lightning-input>
+        <lightning-input type="text" disabled label="Oracle ID" value={conOracle}></lightning-input>
+        <lightning-input type="text"  label="Business Tax ID/License #" value={businessTaxID} onchange={businessTaxIDChange}></lightning-input>
+        <lightning-input type="date" label="Document Expiration Date" value={expirationDate} onchange={expirationDateChange}></lightning-input>
+     
+
+<!--<lightning-input type="file" label="Attachment" multiple onchange={openfileUpload}></lightning-input>-->
+
+
+        <lightning-button variant="brand" label="Submit" title="Submit" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+
+    </template>
+    <template if:true={isSubmitted}>
+      Your request has been submitted. We will let you know if any further information is needed.
+    </template>
+    </div>
+    </lightning-card>
+  </template>

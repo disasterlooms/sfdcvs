@@ -1,0 +1,77 @@
+<aura:component controller="OppPipelineFollowUp">
+    <aura:handler event="c:OppPipeFollowUp" action="{!c.showOppmodal}" />
+    <aura:attribute name="opportunities" type="Opportunity[]" />
+    <aura:attribute name="oppcontacts" type="Contact_Role__c[]" access="public"/>
+    <aura:attribute name="conemails" type="Contact_Role__c[]" access="public"/> 
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerflu" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <div aria-hidden="true" role="dialog" class="slds-modal slds-modal--large slds-fade-in-hide" aura:id="modaldialog">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-button--icon-inverse slds-modal__close" onclick="{!c.hideModal}">
+                        <span>
+                            <lightning:icon iconName="action:close" size="small" alternativeText="Close"/>
+                        </span>                 
+                    </button>
+                    <h2 id="header43" class="slds-text-heading--medium">Select Contacts to Send Follow Up Email</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around--medium">
+                	<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+              <thead>
+                <tr class="slds-text-title_caps">
+                  <th scope="col">
+                      <ui:inputCheckbox change="{!c.checkAllCheckboxescon}" aura:id="checkboxcon"/>
+                  </th>
+                  <th scope="col">
+                    <div class="slds-truncate" title="Name">Opportunity</div>
+                  </th>
+                  <th scope="col">
+                    <div class="slds-truncate" title="Name">Role</div>
+                  </th>
+                  <th scope="col">
+                    <div class="slds-truncate" title="Name">Name</div>
+                  </th>
+                  <th scope="col">
+                    <div class="slds-truncate" title="Account">Account</div>
+                  </th>
+                  <th scope="col">
+                    <div class="slds-truncate" title="Email">Email</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <aura:iteration items="{!v.oppcontacts}" var="c">
+                  <tr>
+                    <td> 
+                       <ui:inputCheckbox aura:id="DependentCheckboxcon" name="{!c.Id}"/>
+                    </td>
+                    <td>
+                        <ui:outputText value="{!c.Opportunity__r.Name}"/>
+                    </td>
+                    <td>
+                        <ui:outputText value="{!c.Role__c}"/>
+                    </td>
+                    <td>
+                        <ui:outputText value="{!c.Contact_Name__c}"/>
+                    </td>
+                    <td>
+                      <ui:outputText value="{!c.Contact__r.Account.Name }"/>
+                    </td>
+                    <td>
+                      <ui:outputText value="{!c.Email__c}"/>                        
+                    </td>
+               	</tr>
+               </aura:iteration>
+              </tbody>
+            </table>    
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" onclick="{!c.hideModal}">Cancel</button>
+                    <lightning:button label="Send Emails" onclick="{!c.sendmail}"
+                                      class="slds-button slds-button--neutral slds-button--brand"/>                </div>
+            </div>
+        </div>
+         <div class="slds-backdrop slds-backdrop--hide" aura:id="backdrop">
+    </div>
+</aura:component>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_territory_s_Accounts_UVS</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.PHONE1</columns>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>CORE.USERS.FIRST_NAME</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <filterScope>MyTerritory</filterScope>
+    <label>My territory&apos;s Accounts_UVS</label>
+    <sharedTo>
+        <territoryAndSubordinates>VSA_Sales_Matrix.UVS</territoryAndSubordinates>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PM_Adjusted_Landed__c</fullName>
+    <description>adjusted landed cost to cacluate margin at time of sale when costs will shift enough to recalculate a more distinct margin</description>
+    <externalId>false</externalId>
+    <label>PM Adjusted Landed</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Currency</type>
+</CustomField>

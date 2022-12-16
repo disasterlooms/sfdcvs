@@ -1,0 +1,28 @@
+<apex:page standardcontroller="Quote" extensions="qproducts" action="{!getprods}" standardStylesheets="false">
+    <apex:messages />
+    <apex:form >
+        <apex:pageBlock id="lineitems">
+            <apex:pageBlockSection title="" id="resultsBlock" columns="1" showHeader="false">
+                
+                <b>Spa Claims</b>                
+                <apex:pageBlockTable value="{!spaclaims}" var="item" rendered="{!NOT(ISNULL(spaclaims))}" title="Spa Claims">
+                    <apex:column headerValue="Product" width="200">
+                        <apex:OutputField value="{!item.Product__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Quantity" width="200">
+                        <apex:OutputField value="{!item.Quantity__c}"/>
+                    </apex:column> 
+                    <apex:column headerValue="Unit Selling Price" width="200">
+                        <apex:OutputField value="{!item.Unit_Selling_Price__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Transaction Line Item" width="200">
+                        <apex:OutputField value="{!item.Transaction_Line_Amount__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Order Date" width="200">
+                        <apex:OutputField value="{!item.Order_Date__c}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

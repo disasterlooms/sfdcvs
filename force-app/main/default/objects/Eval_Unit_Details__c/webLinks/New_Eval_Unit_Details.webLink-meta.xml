@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Eval_Unit_Details</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Add 1 Eval Unit</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>/a0x/e?CF00NA000000AKSaY={!Eval_Request__c.Name}&amp;CF00NA000000AKSaY_lkid={!Eval_Request__c.Id}&amp;saveURL={!Eval_Request__c.Id}&amp;retURL={!Eval_Request__c.Id}</url>
+</WebLink>

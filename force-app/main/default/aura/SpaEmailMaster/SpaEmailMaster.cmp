@@ -1,0 +1,54 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+                access="global" 
+                controller="SpaMessages">
+    <aura:attribute name="recordId" type="String" access="public"/>
+    <aura:attribute name="searchpage" type="boolean" />
+    <aura:attribute name="wherestmnt" type="string" default="and subject like 'ViewSonic SPA%'"/>
+    <aura:attribute name="addfields" type="string" default=",RelatedTo.Name"/>
+    <aura:attribute name="messages" type="SObject[]" access="public"/>
+    <aura:attribute name="orderstmnt" type="string" default="order by messagedate desc"/>
+    <aura:attribute name="message" type="SObject" access="public"/>
+    <aura:attribute name="nospa" type="boolean" default="true"/>
+    <aura:attribute name="selectedId" type="String" access="public"/>
+    <aura:attribute name="spaid" type="String" access="public"/>
+    <aura:handler name="init"  value="{!this}" action="{!c.myAction}"/>
+    <!-- created a parent component control search-->
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="spinnerspa" class="slds-hide" variant="brand" size="large"/>
+    </div>  
+    <lightning:card title="SPA Historical Search of Approval Emails" iconName="standard:quote">   
+        <div class="slds-form-element__control">
+            <div class="slds-input-has-icon slds-input-has-icon--right" onkeyup="{!c.enterkey}">                
+
+                <div class="slds-box">
+                    <!--
+                    <lightning:buttonIcon iconName="utility:search" variant="container" onclick="{!c.getMessages}" alternativeText="Search" class="slds-input__icon"/>
+                 -->
+                    <b>SPA ID Search</b>
+                    <br/>
+                    <ui:inputText value="{!v.spaid}" class="slds-lookup__search-input slds-input" 
+                                  placeholder="Enter SPA Id and Click Search or Press Enter"/>
+                    <div class="slds-no-flex">
+                        <br/>
+                        <lightning:button label="Search" variant="brand" onclick="{!c.getMessages}"/> 
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <c:SpaEmails recordId="{!v.recordId}" 
+                     wherestmnt="{!v.wherestmnt}" 
+                     addfields="{!v.addfields}" 
+                     orderstmnt="{!v.orderstmnt}"
+                     nospa="{!v.nospa}"
+                     messages="{!v.messages}"/>
+    </lightning:card>
+    <aura:if isTrue="{!v.nospa}" >
+        <br/>
+        <br/>
+        ....Please enter a SPA ID to Search..If you searched and got this message, your search did not get any results, please ensure
+        The SPA ID is valid. If the SPA Id is valid and you get no results after searching, notify admin and give admin the SPA ID.
+    </aura:if>
+    
+    
+</aura:component>

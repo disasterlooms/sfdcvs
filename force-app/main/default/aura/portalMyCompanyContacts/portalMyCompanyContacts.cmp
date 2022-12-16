@@ -1,0 +1,87 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens"
+                controller="portalManageUsers"
+                access="global" >    
+    <aura:attribute name="contacts" type="sObject[]"/>
+    <aura:attribute name="unfilteredContacts" type="sObject[]"/>
+    <aura:attribute name="showCons" type="Boolean"/>
+    <aura:attribute name="conId" type="String"/>
+    <aura:attribute name="userId" type="String"/>
+    <aura:attribute name="searchWord" type="String"/>    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="" variant="brand" size="large"/>
+    </div>
+    <aura:handler name="init" value="{!this}" action="{!c.getContactInfo}"/>
+    <lightning:card >
+        <aura:set attribute="title">
+            List of Your Companies Contacts
+        </aura:set>
+        <aura:set attribute="actions">
+            <div onkeyup="{!c.handleKeyUp }">
+                <lightning:input
+                                 name="enter-search"
+                                 label="Press Enter to Search List by Name"
+                                 type="search"
+                                 value="{!v.searchWord}"
+                                 >
+                    
+                    <!-- <lightning:button variant="brand" label="Search" onclick="{!c.searchList}" />-->
+                </lightning:input>
+            </div>
+        </aura:set>
+        <div class="slds-no-flex">
+        </div>
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                <tr class="slds-text-title_caps">                            
+                    <th scope="col">
+                        <div class="slds-truncate" title="Name">Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Email">Email</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Title">Title</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Active Login">Active Login</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Manage User">Manage User</div>
+                    </th>
+                    
+                </tr>
+            </thead>
+            <aura:if isTrue="{!v.showCons}">
+                <tbody>
+                    
+                    <aura:iteration items="{!v.contacts}" var="con" indexVar="idx">
+                        <tr>
+                            <td>
+                                <ui:outputURL value="{!'/partner/s/contact/'+con.conId+'/'}" label="{!con.conName}" target="_blank"/>
+                                
+                                
+                            </td>
+                            <td>
+                                {!con.conEmail}
+                            </td>
+                            <td>
+                                {!con.title}
+                            </td>
+                            <td>
+                                {!con.UserActive}
+                            </td> 
+                            <td>
+                                <lightning:button disabled="{!not(con.UserActive)}" variant="brand" label="Deactivate This Person" value="{!con.conId}" title="{!con.userId}" onclick="{!c.manageThis}" />
+                            </td> 
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+                
+                <aura:set attribute="else">
+                    <h2><b>No Contacts Found</b></h2>
+                </aura:set>                
+            </aura:if>
+        </table>
+    </lightning:card >
+    
+</aura:component>

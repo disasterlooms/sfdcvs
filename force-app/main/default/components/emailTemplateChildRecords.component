@@ -1,0 +1,51 @@
+<apex:component controller="vfEvalUnitDetails" access="global">
+    <style type="text/css">
+        body {font-family: Open Sans size: 12pt;}
+        
+        table {
+        border-width: 0px;
+        border-spacing: 0px;
+        width: 900px;
+        background-color: #FFFFFF;
+    }
+
+    td {
+        border-width: 0px;
+        padding: 4px;
+        border-style: solid;
+        border-color: #000000;
+        content:'$';
+        width: 700px;
+        
+    }
+    
+    th { 
+        color: #FFFFFF;
+        border-width: 0px ;
+        padding: 4px ;
+        border-style: solid ;
+        border-color: #000000;
+        background-color: #900000;
+        width: 800px;
+    }
+    
+    
+    </style>
+    <!-- This is for Visualforce Email Templates to create filter criteria for -->
+    <apex:attribute name="sringQuery" type="String" description="String Query" assignTo="{!squery}" />
+    <apex:attribute name="evalId" type="Id" description="Id of Eval" assignTo="{!eId}" />
+    <table border="0">
+        <tr>
+            <th>SKU</th>
+            <th>Serial Number</th>
+            <th>Status</th>
+        </tr>
+        <apex:repeat var="c" value="{!records}">
+            <tr>
+                <td>{!c.SKU__r.Name}</td>
+                <td>{!c.Name}</td>
+                <td>{!c.Status__c}</td>
+            </tr>
+        </apex:repeat>
+    </table>
+</apex:component>

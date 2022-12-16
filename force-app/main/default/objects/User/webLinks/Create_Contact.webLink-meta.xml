@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Contact</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Create Contact</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/flow/CreateContact?&amp;userid={!User.Id}&amp;retURL={!User.Id&amp;&apos;?noredirect=1&apos;}&amp;noredirect=1&amp;isUserEntityOverride=1&amp;saveURL={!User.Id&amp;&apos;?noredirect=1&apos;}</url>
+</WebLink>

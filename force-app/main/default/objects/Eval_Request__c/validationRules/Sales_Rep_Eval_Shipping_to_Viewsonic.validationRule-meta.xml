@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Rep_Eval_Shipping_to_Viewsonic</fullName>
+    <active>true</active>
+    <errorConditionFormula>isnew() &amp;&amp; text(Eval_Type__c )=&apos;ViewSonic Sales Rep Eval&apos; 
+&amp;&amp;( isblank(Sales_Rep_Billing__c)  ||
+isblank(Sales_Rep_Shipping__c))</errorConditionFormula>
+    <errorMessage>Sales Rep Evals must have ViewSonic sales reps as billing and shipping contact. You can update Your Address on the Home Page of Salesforce</errorMessage>
+</ValidationRule>

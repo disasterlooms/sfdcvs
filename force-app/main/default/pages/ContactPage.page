@@ -1,0 +1,174 @@
+<apex:page standardcontroller="Contact" sidebar="false">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:messages />
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<style type="text/css">
+
+  body button, body .x-btn, body .btn, body .btnDisabled, body .btnCancel, body .menuButton .menuButtonButton {
+    color: #333;
+    margin: 1px;
+    padding: 2px 3px;
+    border: 1px solid #b5b5b5;
+    border-bottom-color: #7f7f7f;
+    background: #e8e8e9 url('/img/alohaSkin/btn_sprite.png') repeat-x right top;
+    font-weight: bold;
+    font-size: 1.5em !important;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+} 
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0 ;
+    font-weight: bolder ;
+    text-align: center ;
+    vertical-align: middle ;
+    touch-action: manipulation ;
+    cursor: pointer ;
+    background-image: none ;
+    border: 1px solid transparent;
+    white-space: nowrap ;
+    background-color: white ;
+    padding: 6px 12px ;
+    font-size: 12px !important;
+    line-height: 1.42857143 ;
+    border-radius: 4px ;
+    letter-spacing: .5px ;
+    -webkit-user-select: none ;
+    -moz-user-select: none ;
+    -ms-user-select: none ;
+    user-select: none ;
+    background: none !important;
+    
+}
+.btn-red-text {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text:hover, .btn-red-text:focus {
+    background: #990000 !important;
+    color: #ffffff !important;
+}
+    
+    .btn2 {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    letter-spacing: .5px;
+    font-size: 10px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn-red-text2 {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 10px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text2:hover, .btn-red-text:focus {
+    background: #990000;
+    color: #ffffff !important;
+}
+span.truncateLabel {
+    max-width: 100px;
+    
+}     
+</style>
+<script>    
+    $( document ).ready(function() {
+        
+     $("[id$=test]").hide() 
+     
+     
+     });
+</script>
+<!--
+<script>    
+    $( document ).ready(function() {
+     if( {!Contact.PR_Total_Past_Due__c} < 1)
+     {   
+     $("[id$=pastdue]").hide() 
+     }
+     
+     });
+</script> 
+
+<script>    
+    $( document ).ready(function() {
+     if( {!Contact.PR_Total_Past_Due__c} > 1)
+     {   
+     $("[id$=current]").hide() 
+     }
+     
+     });
+</script>   
+  -->          
+     <apex:form >
+       
+<apex:outputpanel id="test">
+</apex:outputpanel>
+<!--
+<apex:outputpanel id="pastdue">-->
+            <!-- **********   [Record Type : Active ]   **********  -->
+            
+        <!--       <font size="3.5" >  <br>
+                   <b> Attention !!!{!' '&$User.FirstName&','} </b>You currently have{!" "} <b><apex:outputtext style="color:red"  value="{0, number, currency}"> <apex:param value="{!Contact.PR_Total_Past_Due__c}"/> </apex:outputText>{!" "}</b> in past due evaluations. Soon you may be <b style="color:red" > blocked</b> from requesting evaluations unless they are resolved.
+                  
+              
+               </br>
+               <br>
+               To Fix, You May Go to the Eval Page and:</br>
+               <br><table  margin-left="2px" style="margin-left: 10px;"  cellpadding="3" >
+                   <tr ><td >- Request an Extension</td></tr>
+                    <tr><td>- Request a write off </td> </tr>
+                   <tr><td>- Give Business Reasons</td> </tr>
+                   </table></br>
+
+                </font>
+   </apex:outputpanel>
+   -->
+   <apex:outputpanel id="current">
+   <b>Congratulations ! You do not have any past due evaluations! Please be a good sport and click this I understand to create your eval! </b>
+   </apex:outputpanel>
+        
+    </apex:form>
+<br></br>
+</apex:page>

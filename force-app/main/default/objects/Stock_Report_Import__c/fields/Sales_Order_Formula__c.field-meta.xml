@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Order_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>/*
+CASE(Account__r.Name, 
+					&apos;ALSO Deutschland GmbH&apos;, Auftragsbestand_Sales_Order__c, 
+					&apos;Ingram Micro Distribution GmbH&apos;, AB_Sales_Order__c, 
+					&apos;Delo Computer GmbH&apos;,Kundenbacklog_Sales_Order__c, 
+					&apos;Tarox AG&apos;,  KD_BACKLOG_Sales_Order__c, 
+					null)
+*/
+IF(ISPICKVAL(VS_Region__c, &apos;VSE&apos;),
+Auftragsbestand_Sales_Order__c
+,null)</formula>
+    <label>Sales Order</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

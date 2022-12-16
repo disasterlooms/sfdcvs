@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Partner</fullName>
+    <active>false</active>
+    <description>Ensures Partner has a Phone when created</description>
+    <errorConditionFormula>OR(AND(CONTAINS(Profile.Name,&quot;Partner&quot;),  Phone = null), AND(CONTAINS(Profile.Name,&quot;Partner&quot;), Email = Null))</errorConditionFormula>
+    <errorMessage>Must have Phone Number and Email</errorMessage>
+</ValidationRule>

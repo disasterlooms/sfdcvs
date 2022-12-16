@@ -1,0 +1,8 @@
+<apex:page >
+  Choose Price Book You want to Transfer Products
+   <flow:interview name="TransferProductsNewPriceBook" buttonStyle="color:#050; background-color:#fed; border:1px solid;"  > 
+  
+</flow:interview>
+  
+  
+</apex:page>

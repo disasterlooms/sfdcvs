@@ -1,0 +1,6 @@
+<apex:page standardController="User">
+    <apex:form >
+  <iframe src="http://www.partneravenue.com/CMRCubes/SFOlapCubeLanding.aspx?SessionId={!$Api.Session_ID}&URL={!$Api.Partner_Server_URL_240}&Destination=CrystalReports"
+      width="100%" height="600px" frameborder="0" scrolling="auto" />
+  </apex:form>
+</apex:page>

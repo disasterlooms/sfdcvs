@@ -1,0 +1,23 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute name="recordId" type="String" access="public"/>
+    <lightning:recordEditForm
+                              onload="{!c.handleLoad}"
+                              onsubmit="{!c.handleSubmit}"
+                              onsuccess="{!c.handleSuccess}"
+                              recordId="{!v.recordId}"
+                              objectApiName="Quotes">
+        <!-- the messages component is for error messages -->
+        <lightning:messages />
+        
+        <lightning:inputField fieldName="Name" />
+        <lightning:inputField fieldName="Has_Weakness__c" />
+        <lightning:inputField fieldName="Weakness__c" />
+        <lightning:inputField fieldName="Weakness__c" />
+        <lightning:inputField fieldName="Birthday__c" />
+        <lightning:inputField fieldName="Email_Address__c" />
+        <lightning:inputField fieldName="Rich_Text_Field__c" />
+        <div class="slds-m-top_medium">
+            <lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" />
+        </div>
+    </lightning:recordEditForm>
+</aura:component>

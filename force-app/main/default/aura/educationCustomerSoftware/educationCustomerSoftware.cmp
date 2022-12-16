@@ -1,0 +1,25 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="disabled" type="Boolean"/>
+    <lightning:recordEditForm
+                              onload="{!c.handleLoad}"
+                              onsubmit="{!c.handleSubmit}"
+                              onsuccess="{!c.handleSuccess}"
+                              recordId="{!v.recordId}"
+                              objectApiName="Account">
+        <!-- the messages component is for error messages -->
+        <lightning:messages />
+        <lightning:inputField fieldName="Conference_Room_Software__c" />
+        <lightning:inputField fieldName="Devices_Connected__c" />
+        <lightning:inputField fieldName="Software_Being_Used__c" />
+        <lightning:inputField fieldName="Cloud_Service__c" />
+        <lightning:inputField fieldName="SSO_Type__c" />
+        <lightning:inputField fieldName="Technology_Notes__c"/>
+        <lightning:inputField fieldName="PD_Notes__c"/> 
+        
+        <footer class="slds-card__footer">
+            <lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" />
+        </footer>
+    </lightning:recordEditForm>
+    
+</aura:component>

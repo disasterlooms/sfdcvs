@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_VIP_Needs_Date</fullName>
+    <active>false</active>
+    <errorConditionFormula>(ischanged (VIP_Service_Contract__c) &amp;&amp; VIP_Service_Contract__c = true &amp;&amp;  (isblank(VIP_Service_Expiration_Date__c ) &amp;&amp; $User.Alias != &apos;admin&apos; )|| (VIP_Service_Expiration_Date__c &lt; today()) &amp;&amp; $User.Alias != &apos;admin&apos; &amp;&amp; VIP_Service_Contract__c = true)</errorConditionFormula>
+    <errorMessage>VIP Service Accounts must have an expiration date in the future</errorMessage>
+</ValidationRule>

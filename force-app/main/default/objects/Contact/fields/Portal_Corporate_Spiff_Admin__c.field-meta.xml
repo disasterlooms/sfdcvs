@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Portal_Corporate_Spiff_Admin__c</fullName>
+    <defaultValue>false</defaultValue>
+    <externalId>false</externalId>
+    <inlineHelpText>If Checked, user has access to all spas and all company spiffs within their company. If other users cannot enter spiffs, then the company must have Spiff Type Corporate, otherwise all individuals in company will be able to access spiffs.</inlineHelpText>
+    <label>Portal Corporate Spiff Admin</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

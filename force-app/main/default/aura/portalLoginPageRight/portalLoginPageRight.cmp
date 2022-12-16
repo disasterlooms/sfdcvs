@@ -1,0 +1,33 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+	<div class="pp-login">
+        <div class="pp-col-right">
+            <div class="pp-col-right-cont">
+                <div class="pp-logo">
+                    <img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/partner-program-lowercase.svg" alt="Partner Program Logo"></img>
+                </div>              
+                            
+            </div>
+        </div>            
+    <div class="pp-login-cont">
+                    <h1>Log In</h1>
+                    <div>
+                        <form action="">
+                            <div class="pp-field">
+                              <div><label for="username">Username</label></div>
+                              <div><input type="text" id="" name="" value=""></input></div>
+                            </div>
+                            <div class="pp-field">
+                              <div><label for="password">Password</label></div>
+                              <div><input type="text" id="" name="" value=""></input></div>
+                            </div>
+                            <div class="pp-btn">
+                          	  <input type="submit" value="Log In"></input>
+                            </div>
+                            <div class="pp-sm-text">
+                                <a href="#">Forgot your password?</a>
+                            </div>                            
+                        </form> 
+                    </div>                    
+                </div>  
+    </div>
+</aura:component>

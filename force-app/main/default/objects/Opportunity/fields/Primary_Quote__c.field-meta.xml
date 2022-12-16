@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Quote__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Primary quote that opp is using. this allows user to see the quote stages</description>
+    <externalId>false</externalId>
+    <label>Primary Quote</label>
+    <lookupFilter>
+        <active>false</active>
+        <filterItems>
+            <field>$Source.AccountId</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>Quote</referenceTo>
+    <relationshipLabel>Opportunities</relationshipLabel>
+    <relationshipName>Opportunities</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

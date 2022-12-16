@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ParentId</fullName>
+    <inlineHelpText>If this is not your HQ Account please Search to link this Daughter to the proper parent.</inlineHelpText>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Parent Account must be a HQ Account</errorMessage>
+        <filterItems>
+            <field>Account.Id</field>
+            <operation>notEqual</operation>
+            <valueField>$Source.Id</valueField>
+        </filterItems>
+        <infoMessage>Choose a HQ Account</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Hierarchy</type>
+</CustomField>

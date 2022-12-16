@@ -1,0 +1,8 @@
+<aura:component >
+    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+        <input type="text" class="slds-input slds-combobox__input" id="combobox-unique-id-2" aria-autocomplete="list" aria-controls="listbox-unique-id" autocomplete="off" role="textbox" placeholder="Search Salesforce"/>
+            <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                <lightning:icon iconName="utility:search" size="x-small"/>
+        </span>
+               </div>	
+    </aura:component>

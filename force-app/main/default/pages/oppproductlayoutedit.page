@@ -1,0 +1,56 @@
+<apex:page standardcontroller="OpportunityLineItem">
+<apex:messages />
+    <apex:sectionheader title="{!$ObjectType.OpportunityLineItem.label} Edit" subtitle="{!IF(ISNULL(OpportunityLineItem.Opportunity.Name), 'New Opportunity Product',OpportunityLineItem.Opportunity.Name)}"/>
+    <apex:form >
+        <apex:pageblock mode="edit" title="{!$ObjectType.OpportunityLineItem.label} Edit">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!Save}"/>
+                <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+            </apex:pageblockbuttons>
+                <apex:pageblocksection title="SPA Approval Information" showheader="true" columns="2">
+                    <apex:inputfield value="{!OpportunityLineItem.UnitPrice}" required="true"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Max_Qty__c}" required="false"/>
+                    <apex:outputfield value="{!OpportunityLineItem.ListPrice}"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Min_Qty__c}" required="false"/>
+                    <apex:outputfield value="{!OpportunityLineItem.List_Price__c}" />
+                    <apex:inputfield value="{!OpportunityLineItem.SPA_Approval_Date__c}" required="false"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Approved_Price__c}" required="false"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Quantity}" required="true"/>
+                    <apex:inputfield value="{!OpportunityLineItem.SPA_Expiration_Date__c}" required="false"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Spiff_Amount__c}" required="false"/>
+                    <apex:inputfield value="{!OpportunityLineItem.SPA_Status__c}" required="false"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Margin__c}" required="false"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Landing_Cost2__c}" required="false" rendered="{!$User.Alias = 'admin' || $User.Alias = 'BidDesk'}"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Product_Manager_Review__c}" required="false" rendered="{!$User.Alias = 'admin' || $User.Alias = 'BidDesk'}"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Evaluation_Product__c}" required="false" />
+                    <apex:inputfield value="{!OpportunityLineItem.VP_Price_Review__c}" required="false" rendered="{!$User.Alias = 'admin' || $User.Alias = 'BidDesk'}"/>
+                    <apex:pageblocksectionitem />
+                    <apex:outputfield value="{!OpportunityLineItem.Original_Request_Sales_Price__c}"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Product Manager" showheader="true" columns="2" rendered="{!$User.Alias = 'admin' || $User.Alias = 'BidDesk'}">
+                    <apex:inputfield value="{!OpportunityLineItem.Product_Manager_Email__c}" required="false"/>
+                    <apex:inputfield value="{!OpportunityLineItem.PM_Approval_Request_Date__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!OpportunityLineItem.PM_Approval_Date__c}" required="false"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Product Information" showheader="true" columns="2">
+                    <apex:outputfield value="{!OpportunityLineItem.Product_Pillar__c}" />
+                    <apex:inputfield value="{!OpportunityLineItem.OpportunityId}" required="true"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Competitor Info" showheader="true" columns="2">
+                    <apex:inputfield value="{!OpportunityLineItem.Competitor_Name_del__c}" required="false"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Competitor_Price_del__c}" required="false"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Competitor_SKU__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Description Information" showheader="false" columns="1">
+                    <apex:inputfield value="{!OpportunityLineItem.Description}" required="false"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Notes__c}" required="false"/>
+                    <apex:inputfield value="{!OpportunityLineItem.Terms_and_Conditions__c}" required="false"/>
+                </apex:pageblocksection>
+        </apex:pageblock>
+    </apex:form>
+
+</apex:page>

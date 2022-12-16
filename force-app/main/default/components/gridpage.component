@@ -1,0 +1,72 @@
+<apex:component >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<apex:stylesheet value="{!URLFOR($Resource.vssitesytle)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.vssitegridlex)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.vssitefonts)}"/>
+<script>
+function promo1(){
+ $("[id$=promopage]").hide();
+ $("[id$=pb]").show();
+ }
+ </script>  
+  <apex:attribute name="title" description="This is the title for the component."
+                    type="String" required="false" />
+  <apex:attribute name="description" description="This is the description for the component."
+                    type="String" required="false"/>
+  <apex:attribute name="distiopp" description="This is the opportuntiy id for the component."
+                    type="String" required="false"/>
+  <apex:attribute name="directopp" description="This is the opportuntiy id for the component."
+                    type="String" required="false"/>
+  <apex:attribute name="canadaopp" description="This is the opportuntiy id for the component."
+                    type="String" required="false"/>                                    
+  <apex:attribute name="image" description="This is the image for the component."
+                    type="String" required="false"/>
+  <apex:attribute name="promonum" description="This is the id for the component."
+                    type="String" required="false"/>
+  
+  
+  
+  <apex:outputText escape="false" value="</span>" />
+
+
+
+                <li class="col" id="promopage">
+                   <!-- <a onclick="window.top.location.href = '/{!oppid}/e?clone=1&retURL=home&common.udd.actions.ActionsUtilORIG_URI={!oppid}&cloneli=1'" class="grid-middle-noGutter-spaceBetween tile-individual-wrapper"> -->
+                   <a onclick="$('[id$=promopage]').hide();$('[id$={!promonum}]').show();" class="grid-middle-noGutter-spaceBetween tile-individual-wrapper">
+                        <div class="col tile-image-container">
+                            <img class="tile-image" src="{!image}"/>
+                        </div>
+                        <div class="col tile-text-wrapper grid-column-spaceBetween">
+                            <div class="tile-title">{!title}</div>
+                            <div class="tile-description">
+                                {!description}
+                            </div>
+                            <div class="tile-link-wrapper">
+                                <span class="tile-link">Create Spa</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+          
+   <div style="display:none" id="{!promonum}">
+  
+   <h2><center>Is this going through U.S. Distributor, Directly Through Reseller (e.g. CDW) , or Canada Distributor</center></h2>
+   <br><br>
+   <center>
+       <a  class="btn btn-red-text" onclick="window.top.location.href = '/{!distiopp}/e?clone=1&retURL=home&common.udd.actions.ActionsUtilORIG_URI={!distiopp}&cloneli=1'" >U.S Distributor</a>
+       <a  class="btn btn-red-text" onclick="window.top.location.href = '/{!directopp}/e?clone=1&retURL=home&common.udd.actions.ActionsUtilORIG_URI={!directopp}&cloneli=1'" >Reseller Direct -No Distributor</a>
+       <a  class="btn btn-red-text" onclick="window.top.location.href = '/{!canadaopp}/e?clone=1&retURL=home&common.udd.actions.ActionsUtilORIG_URI={!canadaopp}&cloneli=1'">Canada Distributor</a>
+   </center>
+   </br></br>
+   
+  </div>
+                
+  <apex:outputText escape="false" value="<span>" />
+
+    
+
+  
+
+
+</apex:component>

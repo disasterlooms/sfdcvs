@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CampaignCheck__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checks if the task has been searched for related campaign so the schedule only runs record once</description>
+    <externalId>false</externalId>
+    <label>CampaignCheck</label>
+    <type>Checkbox</type>
+</CustomField>

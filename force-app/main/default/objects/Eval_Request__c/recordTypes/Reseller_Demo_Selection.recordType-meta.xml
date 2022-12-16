@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reseller_Demo_Selection</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>VSA_Sales_Admin_and_Credit</compactLayoutAssignment>
+    <label>Create Reseller Demo</label>
+    <picklistValues>
+        <picklist>Approval_Status__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Eval_Approval_Process__c</picklist>
+        <values>
+            <fullName>Default Process</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Goved Waiver</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Post Write Off Approval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VP Special Approval Agreeement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VP Special Approval Agreeement Canada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VP Special Approval Waive Agreeement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VP Write Off</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Eval_Process_Stage__c</picklist>
+        <values>
+            <fullName>Awaiting Approval from Director or VP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awaiting Shipping</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awaiting Submission Request</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Awaiting Upload of Agreement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancellation Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shipped</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Eval_Type_Change_Request__c</picklist>
+        <values>
+            <fullName>End-User%2FReseller%2FDisty Eval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reseller Demo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ViewSonic Sales Rep Eval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Write Off Request</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Eval_Type__c</picklist>
+        <values>
+            <fullName>Reseller Demo</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Status__c</picklist>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outstanding %28Not Past Due%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Past Due</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Returned%2FPurchased</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Written Off</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ship_Method__c</picklist>
+        <values>
+            <fullName>Delivery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transfer Eval from Previous Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Will Call</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Stage__c</picklist>
+        <values>
+            <fullName>Approval Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Eval Type Selection</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Reason For Write Off</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Write off Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Written-Off</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Will_this_be_for_a_Trade_Show__c</picklist>
+        <values>
+            <fullName>No%2E Not for trade show</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes%2E Trade Show</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Write_Off_Response__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

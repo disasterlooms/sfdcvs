@@ -1,0 +1,127 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"/>
+    <aura:attribute name="showBtns" type="Boolean" default="true"/>
+    <aura:attribute name="showBody" type="Boolean" default="true"/>
+    <aura:attribute name="showVideo" type="Boolean" default="false"/>
+    <aura:attribute name="showPromotion" type="Boolean" default="false"/>
+    <aura:attribute name="showImage" type="Boolean" default="false"/>
+    
+    <div class="pp-home">        
+        <div class="pp-header">
+            <div class="pp-header-left">
+                <div>
+                    <div class="pp-logo">
+                        <img src="https://www.viewsonic.com/skin/frontend/smartwave/viewsonic/images/business-solution/partner-program-lowercase.svg" alt="Partner Program Logo"></img>
+                    </div>              
+                    <div>
+                        <p>
+                            ViewSonic is a channel-first company with over 30 years of success rooted in the relationships we have cultivated with our partners. Today, we are more 
+                            committed than ever to delivering performance, value and world class support with one of the widest array of visual engagement solutions, best-in-class 
+                            service and programs to ensure that our partners thrive. As a partner, you have access to the products, promotions and support needed to grow your business.
+                        </p>
+                    </div>
+                    <div class="pp-btn">
+                        <aura:if isTrue="{!v.showBtns}">                          
+                            <a class="pp-signup" href="/s/partnersignup">SIGN UP</a>
+                            <a class="pp-login" href="/s/login">LOG IN</a>   
+                        </aura:if>
+                    </div>
+                    
+                </div>
+            </div>
+            <aura:if isTrue="{!v.showVideo}">
+                <!-- put your code here for video -->
+                <div class="pp-header-right">
+                    <div class="pp-yt">
+                        <iframe width="100%" height="" src="https://www.youtube.com/embed/OU4MD5g0BrU?amp;showinfo=0&amp;modestbranding=1&amp;autoplay=0&amp;rel=0&amp;mute=0" title="Partner Program" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-pictur; fullscreen"></iframe> 
+                        <p class="pp-yt-title">
+                            Welcome message from <strong>Jeff Volpe, President ViewSonic Americas</strong>
+                        </p>
+                    </div>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!v.showPromotion}">                
+                <!-- put your code here for promotion -->  
+                
+                <div class="pp-header-right">
+                    <a class="pp-img-link" href="https://www.viewsonic.com/media/wysiwyg/Library/21ALL_CHN1351a_rev1_VAR_Recruitment_New-Members_Opt.pdf" target="_blank">
+                    <div class="pp-promo">  
+                       <div class="pp-promo-cont">
+                           <div>
+                               <p>Submit your first SPIFF claim in the new Partner Portal by Dec. 31st, 2021 and earn a cash bonus of up to $200. For more information on eligibility, 
+                               click the link below.
+                               </p>
+                           </div>
+                       </div>
+                    </div>
+                    </a>
+                    <div class="pp-promo-claim">
+                        <a href="https://www.viewsonic.com/media/wysiwyg/Library/21ALL_CHN1351a_rev1_VAR_Recruitment_New-Members_Opt.pdf" target="_blank">Learn more about the Claim Your Cash promotion.</a>
+                    </div>
+                </div>  
+            </aura:if>
+            <aura:if isTrue="{!v.showImage}"> 
+                    <div class="pp-header-right">
+                        <div>                            
+                            <img class="pp-header-img" src="https://www.viewsonic.com/media/wysiwyg/Library/pp-Home_820x712.jpg" alt="Partner Program"></img>                            
+                        </div>
+                    </div> 
+            </aura:if>
+            
+           
+            
+        </div>
+        <aura:if isTrue="{!v.showBody}">      
+            <div class="pp-section">
+                <h1>Sign up now for access to the following partner benefits:</h1>
+                <div class="pp-icons-box">
+                    <div class="pp-icon">
+                        <img src="https://www.viewsonic.com/skin/frontend/smartwave/viewsonic/images/business-solution/pp-icons-demo.svg" alt="Partner Program Demos"></img>
+                        <div class="pp-icon-text">
+                            <h2>Online Product Demos</h2>
+                            <p>A ViewSonic representative will showcase a product of your choice.</p>
+                        </div>                        
+                    </div>
+                    <div class="pp-icon">
+                        <img src="https://www.viewsonic.com/skin/frontend/smartwave/viewsonic/images/business-solution/pp-icons-deal.svg" alt="Partner Program deals"></img>
+                        <div class="pp-icon-text">
+                            <h2>Special Pricing</h2>
+                            <p>Discounted pricing for select opportunities.</p>
+                        </div>
+                    </div>
+                    <div class="pp-icon">
+                        <img src="https://www.viewsonic.com/skin/frontend/smartwave/viewsonic/images/business-solution/pp-icons-libarary.svg" alt="Partner Program library"></img>
+                        <div class="pp-icon-text">
+                            <h2>Resources Library</h2>
+                            <p>Access sell sheets, brochures, case studies, videos and more. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pp-icons-box">
+                    <div class="pp-icon">
+                        <img src="https://www.viewsonic.com/skin/frontend/smartwave/viewsonic/images/business-solution/pp-icons-promotion.svg" alt="Partner Program promotions"></img>
+                        <div class="pp-icon-text">
+                            <h2>Promotions</h2>
+                            <p>Find our latest sales incentives and end user promotions to help you sell. </p>
+                        </div>
+                    </div>
+                    <div class="pp-icon">
+                        <img src="https://www.viewsonic.com/skin/frontend/smartwave/viewsonic/images/business-solution/pp-icons-customizemarketing.svg" alt="Partner Program marketing"></img>
+                        <div class="pp-icon-text">
+                            <h2>Customizable Marketing</h2>
+                            <p>Customize marketing collateral with your logo and contact info. </p>
+                        </div>
+                    </div>
+                    <div class="pp-icon">
+                        <img src="https://www.viewsonic.com/skin/frontend/smartwave/viewsonic/images/business-solution/pp-icons-spiff.svg" alt="Partner Program Spiffs"></img>
+                        <div class="pp-icon-text">
+                            <h2>SPIFFs</h2>
+                            <p>Submit claims to make more money selling ViewSonic products.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aura:if>
+    </div>
+    
+</aura:component>

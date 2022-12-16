@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Approver</name>
+    </customPermissions>
+    <description>gives managers ability to see approval list within the apps that they use outside of the VS Sales Management.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Approver Management</label>
+</PermissionSet>

@@ -1,0 +1,41 @@
+<apex:page controller="ExternalEmailMatch"  standardStylesheets="true" docType="html-5.0">
+    <apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+    <apex:stylesheet value="{!$Resource.OppVFOverride}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Jquery, '/jquery-ui-1.11.4/jquery-ui.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+    <apex:slds />
+    <apex:form >
+        <apex:pageBlock >
+            Please Enter Your Email Address. Your Sales Rep must set you up before submitting
+            <br/>
+             <br/> <apex:inputText value="{!searchText}" styleclass="requiredInput slds-input" label="Your Email Address"/>
+            <br/><br/><br/>
+            <apex:commandButton action="{!submit}" value="Submit"/>
+            <br/>
+            <br/>
+             <apex:outputText value="{!mssg}"/><br/>
+            <apex:pageMessages />
+            <br/>
+            <apex:pageblockSection rendered="{!flowrender}" columns="2">
+                <apex:inputText value="{!endusername}" label="End User Name" styleclass="requiredInput slds-input" required="true"/>
+                <apex:inputText value="{!enduserstreet}" label="End User Street" styleclass="slds-input"/>
+                <apex:inputText value="{!endusercity}" label="End User City" styleclass="requiredInput slds-input" required="true"/>
+                <apex:inputText value="{!enduserstate}" label="End User State" styleclass="requiredInput slds-input" required="true"/>
+                <apex:inputText value="{!enduserzip}" label="End User PostalCode" styleclass="slds-input"/><br/>
+                
+                <apex:inputTextarea value="{!distributors}" label="Distributors" styleclass="requiredInput slds-input" required="true"/>
+                <apex:inputTextarea value="{!products}" label="Products" styleclass="requiredInput slds-input" required="true"/>
+                <apex:input value="{!quantity}" type="number" styleclass="requiredInput slds-input" label="Quantity" required="true"/> 
+                <!--<apex:input value="{!closedate}" type="datetime" styleclass="slds-input" label="Purchase Date" required="true"/> -->
+               
+            </apex:pageblockSection>
+        </apex:pageBlock>
+        <apex:commandButton action="{!quote}" value="Submit Quote Request" rendered="{!flowrender}"/>
+    </apex:form><!--
+    <apex:form rendered="{!flowrender}">
+        
+        
+        
+    </apex:form>
+    <flow:interview name="ResellerBid" rendered="{!flowrender}"></flow:interview>-->
+</apex:page>

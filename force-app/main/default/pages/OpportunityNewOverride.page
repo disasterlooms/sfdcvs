@@ -1,0 +1,252 @@
+<apex:page standardcontroller="Opportunity" docType="html-5.0" id="page" action="{!if($User.UITheme != 'Theme4t', null,URLFOR($Action.Opportunity.New, Opportunity.Id)&'?nooverridde=1')}">
+<!--
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"/>
+<apex:includescript value="{!URLFOR($Resource.OppNewScript)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/css/jquery-confirm.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/css/jquery-confirm.css')}"/>
+<apex:stylesheet value="{!$Resource.OppVFOverride}"/>
+
+
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+
+ <apex:remoteObjects >
+<apex:remoteObjectModel name="Product2" jsShorthand="product" fields="Name,Id">
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+
+ <apex:remoteObjects >
+<apex:remoteObjectModel name="PricebookEntry" fields="Name,Id,IsActive,ProductCode,Pricebook2Id,Product2Id">
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+<script>    
+    jQuery(document).ready(function ($) {
+    if({!isblank(messages)} == true){
+      $("[id$=pricebook_lkid]").val('{!$CurrentPage.parameters.pbid}');
+      $("[id$=pricebook]").val('{!$CurrentPage.parameters.pricebook}');
+     $("[id$=stage]").val('Development');
+     $("[id$=country]").val('{!if($User.Country <> "Canada" && $User.Country <> "United States", "Latin America",$User.Country) }');
+     $("[id$=acct]").val('{!$CurrentPage.parameters.end}');
+     $("[id$=acct_lkid]").val('{!$CurrentPage.parameters.end_lkid}');
+     $("[id$=acct_lkold]").val('{!$CurrentPage.parameters.end}');
+     $("[id$=end]").val('{!$CurrentPage.parameters.end}');     
+     $("[id$=end_lkid]").val('{!$CurrentPage.parameters.end_lkid}');
+     $("[id$=end_lkold]").val('{!$CurrentPage.parameters.end}');
+     
+     $("[id$=reseller_lkid]").val('{!$CurrentPage.parameters.reseller_lkid}');
+     $("[id$=direct]").val('{!$CurrentPage.parameters.direct}');
+     $("input[id$=acct]").prop("disabled",true);
+     }
+     });
+</script>
+ <script>
+    jQuery(document).ready(function ($) {
+        var role = '{!$UserRole.Name}';
+        var user = '{!$User.LastName}';
+        var alias = '{!$User.Alias}';
+        var resid = $("[id$=reseller_lkid]").val();
+        console.log(role+' '+resid);
+        if(role != 'RBM' && alias != 'admin' && alias != 'BidDesk' && alias != 'SHenr' && resid == ''){
+        console.log('condition 1');
+        document.getElementById("page:oppcreate:pgblock:seller:end_lkid").setAttribute('required', 'true');
+        document.getElementById("page:oppcreate:pgblock:seller:reseller").setAttribute('required', 'true');
+        document.getElementById("j_id0:oppcreate:j_id49:j_id60:j_id63").setAttribute('required', 'true');
+        }else {
+            console.log('condition 2');
+        document.getElementById("page:oppcreate:pgblock:seller:reseller").setAttribute('required', 'true');
+        document.getElementById("page:oppcreate:pgblock:seller:end_lkid").setAttribute('required', 'true');
+    }  
+
+     });
+
+      
+    function prodactive(selectedValue) {
+        var prod = selectedValue;        
+        //get pricebook id that was selected but if none, use vsa distributor as default
+        var prbk =  $("[id$=pricebook_lkid]").val();
+        if(prbk=='000000000000000'){
+        var prbk = '01sA00000008gzSIAQ'
+        }else{
+        }
+        //query pricebook entries and check if active
+        var pbe = new SObjectModel.PricebookEntry(selectedValue);
+        pbe.retrieve({
+            where: {
+                ProductCode: {
+                    eq: prod
+                }, Pricebook2Id: {
+                    eq: prbk
+                }
+            },
+            limit: 1
+        }, function(err, records, event) {
+            records.forEach(function(record) {
+                // check the product acitve
+                var act = record.get("IsActive");
+                if(act == false){
+                alert('Error! You cannot use this product, it is inactive. Please choose an active product, or you will get an error!');
+                $("[id$=prod]").val('');
+                $("[id$=prod_lkid]").val('');
+                }
+            });
+        });
+    };
+  
+  
+
+     
+</script> 
+<script>    
+    
+    jQuery(document).ready(function ($) {
+        if({!if($CurrentPage.parameters.endparam='1','1','0')} == 1){
+       $("[id$=end]").val('{!$CurrentPage.parameters.end}')   
+}
+     });
+     
+</script> 
+<script>    
+    
+    jQuery(document).ready(function ($) {
+       if({!if($CurrentPage.parameters.resparam='1','1','0')}== 1){
+       $("[id$=reseller]").val('{!$CurrentPage.parameters.reseller}')   
+}
+     });
+  
+     
+</script> 
+<apex:outputpanel rendered="true" id="mssgs">
+            <apex:messages />
+            </apex:outputpanel>
+ <outputpanel id="createsection" rendered="{!$User.External_Partner__c    != true}">
+<apex:sectionheader title="Hi {!$User.FirstName}, Welcome to the Opportunity Creation Page"  
+  subtitle="{!IF($Profile.Name  = 'Sales - Latin America','Opportunidad Nuevo','New Opportunity')}"/>
+    
+</outputpanel>
+  <c:LoadSave />    
+    <apex:form id="eval" style="display:none" rendered="{!$User.External_Partner__c    != true}" >
+       
+       <center><a class="btn2 btn-red-text2" id="continue" onclick="OnChangeCheckbox0(event);" style="display:none;" >Continue &amp; Create Opportunity</a></center>
+     
+
+    </apex:form>
+    <apex:form id="oppcreate"  rendered="{!$User.External_Partner__c    != true}" >
+      
+        <apex:pageblock mode="edit" title="{!$ObjectType.Opportunity.label} Edit " id="pgblock">
+            <apex:pageblockbuttons id="buttons">
+                <apex:commandbutton id="savebtn" onclick="saverecord();saveoppnow();console.log('save triggered');return false;" styleclass="btn btn-red-text" style="line-height: 22px;" value="{!if( $Profile.Name  != 'Sales - Latin America','Save','Guardar')}" action="{!Save}"/>
+                <apex:actionfunction action="{!Save}" name="saveoppnow" oncomplete="console.log('save completed');hidemessage();console.log('{!messages}');" rerender="mssgs,buttons" status="status"/>
+               
+                <apex:commandbutton styleclass="btn btn-red-text" style="line-height: 22px;" value="{!if( $Profile.Name  != 'Sales - Latin America','Cancel','Cancelar')}" action="{!Cancel}"/>
+            </apex:pageblockbuttons>-->
+
+            <!-- **********   [Viewsonic Internal Sales Opp Creation Page  ]   **********  -->
+            
+          <!--  <apex:outputpanel rendered="true" id="panel">
+           
+                <apex:pageblocksection title="Opportunity Information" showheader="true" columns="2">
+                    <apex:inputfield value="{!Opportunity.Name}" required="true" id="opp" />
+                    <apex:inputfield value="{!Opportunity.StageName}" id="stage" required="true"/>
+                    
+                    <apex:inputfield value="{!Opportunity.Type}" id="type" required="true"/>
+                    <apex:inputfield value="{!Opportunity.Channel__c}" id="channel" required="false"/>
+                    <apex:inputfield value="{!Opportunity.CloseDate}" required="true"/>
+                    <apex:inputfield value="{!Opportunity.Project_or_Site_Information__c}"  required="false"/>
+                    <apex:inputfield value="{!Opportunity.Amount}" id="amount" required="false"/>
+                    <apex:inputfield label="Trade Show or Marketing Campaign" value="{!Opportunity.CampaignId}" required="false"/>
+                    <apex:inputfield label="Promo Type" style="{!if($User.Alias = 'admin' || $User.Alias = 'ndasi', '','display:none;')}"  value="{!Opportunity.Promo_Type__c}" required="false"/>RBM - West
+                    </apex:pageblocksection>
+                <apex:pageblocksection title="End User & Reseller Lookup Fields {If Account Does not Exist, Create with button on top of Screen}" id="seller" showheader="true" columns="2">
+                    <apex:inputfield value="{!Opportunity.End_User_Lookup_Account__c}" id="end" required="{!if($User.Alias = 'admin' || $User.Alias = 'ndasi', false,true)}"/>
+                    <apex:inputfield value="{!Opportunity.Partner_Account_Search__c}" id="reseller"  required="{!if($User.Alias = 'admin' || $User.Alias = 'ndasi' || $User.Alias = 'bcoll' || $UserRole.Name = 'RBM - East' || $UserRole.Name = 'RBM - West', false,true)}"/>
+                    </apex:pageblocksection>
+                    <apex:outputPanel id="text" onclick="alert('Please Create Accounts and Contacts with button on top left hand of screen');">
+               -->
+               <!-- The following is commented out. In case it needs to be put back
+               
+               <apex:pageblocksection title="Inactive. Please Use Create Contact or Account Button on top" showheader="true" columns="2">
+                    
+                    <apex:inputfield value="{!Opportunity.End_User_Company__c}" required="false" id="eu"/>
+                    <apex:inputfield value="{!Opportunity.Reseller_Name__c}"   required="false" id="rs"/>
+                    <apex:inputfield value="{!Opportunity.End_User_City__c}" required="false" id="euc"/>
+                    <apex:inputfield value="{!Opportunity.Reseller_City__c}" required="false" id="rsc"/>
+                    <apex:inputfield value="{!Opportunity.StateLookup__c}" required="false" id="eus"/>
+                    <apex:inputfield value="{!Opportunity.Reseller_State__c}" required="false" id="rss"/>
+                    <apex:inputfield value="{!Opportunity.End_User_Zip__c}" required="false" id="euz"/>
+                    <apex:inputfield value="{!Opportunity.Reseller_Zip__c}" required="false" id="rsz"/>
+                   
+                </apex:pageblocksection> -->
+                <!--</apex:outputPanel>
+                <apex:pageblocksection title="Contact Info - You can set either or both contacts up for follow up emails" showheader="true" columns="2" id="sellers">
+                    <apex:inputfield value="{!Opportunity.End_User_Contact__c}" rendered="{!$User.Alias !='revan' && $User.Alias != 'SHenr'}"  required="false"/>  
+                    <apex:inputfield value="{!Opportunity.Reseller_Contact_Name__c}" rendered="{!$User.Alias ='revan' || $User.Alias = 'SHenr' || $User.Alias = 'jkim'}"  required="{!$User.Alias ='revan' || $User.Alias = 'SHenr' || $User.Alias = 'jkim'}" />
+                    <apex:inputfield value="{!Opportunity.ResellerContact__c}" rendered="{!$User.Alias !='revan' && $User.Alias != 'SHenr' && $User.Alias != 'jkim'}"    required="{!$User.LastName != 'Henriksen' && $User.LastName != 'Tisch' && $UserRole.Name != 'RBM' && $User.Alias != 'BidDesk' && $User.Alias != 'admin' && $User.Alias != 'ndasi' && $User.Alias != 'jkim' && $User.Alias != 'bcoll' && $UserRole.Name != 'RBM - East' && $UserRole.Name != 'RBM - West'}"/>
+                     <apex:inputfield value="{!Opportunity.Reseller_Contact_Email__c}" rendered="{!$User.Alias ='revan' || $User.Alias = 'SHenr' || $User.Alias = 'jkim'}"  required="{!$User.Alias ='revan' || $User.Alias = 'SHenr' || $User.Alias = 'jkim' }" />
+                    <!-- <apex:inputfield value="{!Opportunity.Set_as_Follow_Up_Contact__c}" required="false"/>
+                    <apex:inputfield value="{!Opportunity.Set_as_Follow_Up_Contact_Reseller__c}" required="false"/> -->
+                   <!--</apex:pageblocksection>
+                <apex:pageblocksection title="Product Information " showheader="true" columns="1">
+                   <apex:outputLabel ><b><u>Price Book - if blank will go to default. Latin America Must specify Pricebook</u></b></apex:outputLabel>
+                   <apex:inputfield value="{!Opportunity.Pricebook2Id}" required="{!$Profile.Name = 'Sales - Latin America'}" id="pricebook" onchange="var selectedValue = $('[id$=prod]').val(); prodactive(selectedValue);"/>
+                   <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem />
+                   <apex:inputfield value="{!Opportunity.Product_Name_Main__c}" required="false" id="prod" onchange="prodactive(this.value);"/>
+                   <apex:inputfield value="{!Opportunity.Product_Quantity__c}" required="false"/>
+                    <apex:outputpanel >
+                    <apex:commandlink style="font-size:.9em !important;letter-spacing: -.5px;" styleclass="btn btn-red-text" value="Click to Get Prices"  onclick="getprodid();var $j = jQuery.noConflict();var product = $j('[id$=prod]').val();if(product == ''){alert('Please Choose Main Product First');}return false;"/>
+                    <b><apex:outputLabel styleclass="labelCol vfLabelColTextWrap" style="margin-left: 55px;">Spa Request Price</apex:outputLabel></b>
+                    <apex:inputfield value="{!Opportunity.Product_Sales_Price__c}" required="false" label="product" style="margin: 0 10px;" id="salesprice" />
+                    
+                    </apex:outputpanel>
+                    <apex:inputfield value="{!Opportunity.DonotAddAccessories__c}" />
+                    </apex:pageblocksection>
+              <apex:pageblocksection title="Lead Source Information" showheader="true" columns="2">
+                    <apex:inputfield value="{!Opportunity.LeadSource}" required="false"/>
+                    </apex:pageblocksection>
+                <apex:pageblocksection title="System Information" showheader="true" columns="2">
+                    <apex:inputfield value="{!Opportunity.AccountId}" id="acct" required="false" />
+                    <apex:inputfield value="{!Opportunity.Country__c}" id="country" required="false"/>
+                    <apex:inputfield value="{!Opportunity.Auto_Update_Opp_Name__c}" required="false"/>
+                    <apex:inputfield value="{!Opportunity.Reseller_Direct__c}"  styleClass="check"  required="false" rendered="false"/>
+                    <apex:inputcheckbox value="{!Opportunity.Reseller_Direct__c}"  selected="false"  id="resdirect" required="false" rendered="{!if($CurrentPage.parameters.resellerdirect='true',false,true)}"  />
+                    <apex:inputcheckbox value="{!Opportunity.Reseller_Direct__c}"  selected="true" required="false"  rendered="{!if($CurrentPage.parameters.resellerdirect='true',true,false)}"   />
+                    <apex:pageblocksectionitem />
+                    <apex:inputhidden value="{!Opportunity.Probability}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+            </apex:outputpanel>
+  </apex:pageblock>
+    </apex:form>
+    <apex:include pagename="UIInteractions"/>-->
+<!--
+<apex:includeScript value="{!$Resource.spasearch_js}" />
+<style type="text/css">   
+
+    .headerSearchRightRoundedCorner #SpaSearchButton {
+    background: transparent url(/img/alohaSkin/unified_search_background_sprite.png) repeat-x scroll left -120px;
+    border: 0 none;
+    height: 24px;
+    margin: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: bold;
+    font-size: 90%;
+    font-family: Arial;
+    color: #1797c0;
+    cursor: pointer;
+    width: auto;
+    overflow: visible;
+    border-radius: 0;
+}
+.phHeaderCustomLogo .headerSearchRightRoundedCorner #SpaSearchButton {
+    background: transparent url(/img/alohaSkin/unified_search_background_sprite.png) repeat-x scroll left top;
+}
+
+.headerSearchRightRoundedCorner #phSearchButton{
+    padding-right: 8px; 
+}
+</style>
+-->
+</apex:page>

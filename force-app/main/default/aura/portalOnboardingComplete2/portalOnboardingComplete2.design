@@ -1,0 +1,6 @@
+<design:component>
+	<design:attribute name="badgeIcon" description="URl for corresponding badge" label="Badge Icon URL"/>
+	<design:attribute name="ShowIcon" label="Show Icon"/>
+	<design:attribute name="headerText" label="Text for Header" />
+    <design:attribute name="DescriptionText" label="Text for Paragraph" />
+</design:component>

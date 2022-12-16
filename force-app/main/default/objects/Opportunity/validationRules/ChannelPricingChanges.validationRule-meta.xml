@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ChannelPricingChanges</fullName>
+    <active>true</active>
+    <description>Cannot change channel pricing on opp after creation...must create new/cloned opp because it does not trigger a new price book..</description>
+    <errorConditionFormula>text(Channel__c) !=  text(PRIORVALUE(Channel__c))
+&amp;&amp;$User.Alias != &apos;admin&apos;
+&amp;&amp;$User.Alias != &apos;BidDesk&apos;</errorConditionFormula>
+    <errorMessage>You cannot change Pricing. If pricebook is incorrect, you need to clone with products (Button on top of Opportunity Page) and create a new opportunity and notify admin to delete current opportunity.</errorMessage>
+</ValidationRule>

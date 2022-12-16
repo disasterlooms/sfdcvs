@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Workflow</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Conga Workflow</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_290}
+&amp;id={!Campaign.Id}
+&amp;ReportId={!&apos;00O12000006FFGq?pv0=&amp;pv1=&apos;}{!Campaign.Name},00O12000006FFOa?scopeid={!Campaign.Name},{!&apos;00O12000006FIY9?pv0=&apos;}{!Campaign.Name},{!&apos;00O12000006FMqq?pv0=&amp;pv1=&apos;} {!left(Campaign.Name, find(&apos;&amp;&apos;,Campaign.Name)-1)&amp;Substitute(Campaign.Name, left(Campaign.Name,find(&apos;&amp;&apos;,Campaign.Name)),&apos;%26&apos;)}
+&amp;TemplateId=a0p12000003NhpI</url>
+</WebLink>

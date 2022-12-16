@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>What_type_of_Casting_would_you_like__c</fullName>
+    <externalId>false</externalId>
+    <label>What type of Casting would you like</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>myViewBoard</fullName>
+                <default>false</default>
+                <label>myViewBoard</label>
+            </value>
+            <value>
+                <fullName>Vcast</fullName>
+                <default>false</default>
+                <label>Vcast</label>
+            </value>
+            <value>
+                <fullName>Chrome Cast for Education</fullName>
+                <default>false</default>
+                <label>Chrome Cast for Education</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

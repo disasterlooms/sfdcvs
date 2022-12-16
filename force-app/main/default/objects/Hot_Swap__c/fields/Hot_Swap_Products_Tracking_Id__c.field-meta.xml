@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hot_Swap_Products_Tracking_Id__c</fullName>
+    <externalId>false</externalId>
+    <label>Hot Swap Products Tracking Id &amp; Case Id</label>
+    <length>38768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
+</CustomField>

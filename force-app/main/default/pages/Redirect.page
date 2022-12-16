@@ -1,0 +1,7 @@
+<apex:page >
+<apex:outputlink value="/apex/NewAccount"> 
+
+Click Here 
+ <apex:param name="msg" value="success"/> </apex:outputlink>
+ <br> By Clicking here you agree to try really hard not to create a duplicate account.</br>
+</apex:page>

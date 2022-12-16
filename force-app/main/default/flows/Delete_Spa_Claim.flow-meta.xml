@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <interviewLabel>Delete Spa Claim {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Delete Spa Claim</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>Delete_Spa_Record</name>
+        <label>Delete Spa Record</label>
+        <locationX>152</locationX>
+        <locationY>104</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Delete__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Spa_Claims__c</object>
+    </recordDeletes>
+    <startElementReference>Delete_Spa_Record</startElementReference>
+    <status>Active</status>
+</Flow>

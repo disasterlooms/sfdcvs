@@ -1,0 +1,37 @@
+<aura:component controller="OppPipelineSpas" implements="flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId" access="global">
+   <!--<aura:registerEvent name="showspas" type="c:displayspas" /> -->
+   <aura:handler event="c:spinner" action="{!c.toggle}" />
+   <aura:registerEvent name="updatespas" type="c:updatespas" />
+   <aura:registerEvent name="createspas" type="c:createspas" />
+   <aura:attribute name="opportunity" type="Opportunity" access="public"/>
+   <aura:attribute name="oppid" type="String" access="public" /> 
+   <aura:handler event="c:displayopp" action="{!c.showOppmodal}" />
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerspa" class="slds-hide" variant="brand" size="large"/>
+    </div>  
+    <div aria-hidden="true" role="dialog" class="slds-modal slds-modal--large slds-fade-in-hide" aura:id="modaldialog">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+              <h2 class="slds-text-heading--medium">Spas Linked to Opportunity</h2>
+               <button class="slds-button slds-button--icon-inverse slds-modal__close" onclick="{!c.hideModal}">
+                <span class="slds-assistive-text">Close</span>
+              </button> 
+            </div>
+          <div class="slds-modal__content">
+              <c:SpaLink recordId="{!v.oppid}"/>
+            </div>
+          <div class="slds-modal__footer">
+            <div class="slds-x-small-buttons--horizontal">
+              <button class="slds-button slds-button--neutral" onclick="{!c.hideModal}">Cancel</button>
+              <lightning:button label="Update&nbsp;Spas" variant="neutral" onclick="{!c.spaupdate}"  />
+              <lightning:button label="Spa&nbsp;Does&nbsp;Not&nbsp;Exist&nbsp;Create&nbsp;New" variant="neutral" onclick="{!c.createSpa}" value="{!v.opportunity}" />
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    
+        <div class="slds-backdrop slds-backdrop--hide" aura:id="backdrop">
+          
+      </div>
+</aura:component>

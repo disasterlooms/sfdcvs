@@ -1,0 +1,131 @@
+<apex:page docType="html-5.0" title="Create Spa" >
+<link rel="stylesheet" type="text/css" href="{!URLFOR ($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}"/>
+
+<script src='/canvas/sdk/js/publisher.js'></script>
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    .mypage {
+        font-family: "ProximaNovaSoft-Regular", Calibri; 
+        font-size: 110%;
+        padding-top: 12px;
+        width: 100%;
+    }
+    .mypage input[type=text] {
+        width: 100%;
+        height: 35px;
+        -webkit-appearance: none;
+        padding: 0 8px;
+        margin: 4px 0;
+        line-height: 21px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        outline: none;
+    }
+    .mypage button {
+        -webkit-appearance: button;
+        border-radius: 3px;
+        display: block;
+        padding: 12px;
+        margin: 4px 0;
+        width: 100%;
+        background: #eee;
+        border: solid 1px #ccc;
+    }
+</style>
+  
+    <apex:remoteObjects >
+        <apex:remoteObjectModel name="Account" fields="Id,Name"/>
+    </apex:remoteObjects>
+     
+     
+     <div class="viewsonic">
+
+
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2">
+                <div class="slds-form--stacked">
+                    <div class="slds-lookup" data-select="multi" data-scope="single" data-typeahead="true">
+                          <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="lookup">End User Account</label>
+                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                              <svg aria-hidden="true" class="slds-input__icon">
+                                <use xlink:href="{!URLFOR ($Resource.Lightningcss, 'assets/icons/utility-sprite/svg/symbols.svg#search')}"></use>
+                              </svg>                              
+                              <input id="lookup" value="" class="slds-input" type="text" aria-autocomplete="list" role="combobox" aria-expanded="false" aria-activedescendant="" />
+                            </div>
+                          </div>
+                          <div class="slds-lookup__menu" role="listbox" id="results" style="display:none">
+                            <div class="slds-lookup__item">
+                              <button class="slds-button">
+                                <svg aria-hidden="true" class="slds-icon slds-icon-text-default slds-icon--small">
+                                  <use xlink:href="{!URLFOR ($Resource.Lightningcss, 'assets/icons/utility-sprite/svg/symbols.svg#search')}"></use>
+                                </svg>&quot;<span id="keyword"></span>&quot; in Contacts</button>
+                            </div>
+                            <ul class="slds-lookup__list" role="presentation" id="ui_results">                                                                                       
+                            </ul>                           
+                          </div>
+                        </div>
+
+                </div>
+            </div>
+      
+        </div>
+    </div>   
+    <div class="mypage">
+        Account Name:
+        <input type="text" id="accountName"/>
+   <apex:form >     
+         <div class="custompubblock">
+<div class="custompublabel">Account:</div>
+
+ <h3>Account Name:</h3>
+        <c:Typeahead searchBoxId="acctSearchBox" object="Account" primaryField="Name" secondaryField="BillingCity" 
+                searchScope="NAME" placeholder="Account Name" minSearchLength="3" 
+                destinationForSelectedId="accountId" destinationForSelectedValue="accountName" stealFocus="false" />  
+        
+        
+        <input type="hidden" name="accountId" id="accountId" />     
+        <input type="hidden" name="accountName" id="accountName" />     
+<br></br><br></br><br></br>
+<br></br><br></br><br></br>
+<br></br><br></br><br></br>
+<!-- <apex:inputField value="{!Opportunity.accountId}" style="margin-left:0;"/> -->
+</div>
+</apex:form> 
+
+       <!-- <button onclick="createAccount()">Create Account</button> -->
+    </div>
+    
+<script>
+  
+  
+    // When the panel is displayed, enable the submit button
+Sfdc.canvas.publisher.subscribe({name: "publisher.showPanel", onData:function(e) {
+    Sfdc.canvas.publisher.publish(
+        {name: "publisher.setValidForSubmit", payload: "true"});
+}});
+
+// When the submit button is pressed, create an account, and close the panel
+Sfdc.canvas.publisher.subscribe({ name: "publisher.post", onData: function(e) {
+    // Create the account using the Remote Object
+    var accountName = document.getElementById("accountName").value;
+    var account = new SObjectModel.Account();
+    account.create({Name: accountName}, function(error, records) {
+        if (error) {
+            alert(error.message);
+        } else {
+            //  Close the publisher panel
+            Sfdc.canvas.publisher.publish(
+                { name: "publisher.close", payload:{refresh:"true"}});
+        }
+    });
+}});
+
+
+</script>  
+</html>
+    
+</apex:page>

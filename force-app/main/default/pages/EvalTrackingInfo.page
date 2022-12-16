@@ -1,0 +1,274 @@
+<apex:page standardcontroller="Eval_Request__c" standardStylesheets="false">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<style type="text/css">
+  body .bRelatedList .bPageBlock .pbButton .btn, body.homeTab .bMyCalendar .pbButton .btn, body.homeTab .bMyDashboard .pbButton .btn, .sidebarModuleBody .btn {
+    padding: 0px 3px;
+    margin: 1px;
+   
+}
+div.tooltip {
+    width: 195px;
+    float: left;
+  }
+  
+
+.phHeaderCustomLogo #tsidButton {
+    display: none;
+}
+
+  div.tooltip:hover {
+    background: #ffffff;
+    text-decoration: none;
+  } /*BG color is a must for IE6*/
+  div.tooltip span {
+    display: none;
+    padding: 2px 3px;
+    margin-left: 8px;
+    width: 195px;
+  }
+  div.tooltip:hover span {
+    display: inline;
+    position: absolute;
+    border: 1px solid #cccccc;
+    background: #FFC;;
+    color: #000000;
+  } 
+  .pbHeader .pbTitle h2, .pbHeader .pbTitle h3 {
+     
+}.myRequired {
+    background-color: #c00;
+    position: absolute;
+    left: -4px;
+    width: 3px;
+    top: 1px;
+    bottom: 1px;
+}
+.chatterShowHideFeed .linkText:before {
+  content: "Create Contacts or Accounts Click Here:    ";
+}
+.myButton {
+    -moz-box-shadow: 3px 4px 0px 0px #899599;
+    -webkit-box-shadow: 3px 4px 0px 0px #899599;
+    box-shadow: 3px 4px 0px 0px #899599;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+    background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+    background-color:#ededed;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    border:1px solid #d6bcd6;
+    display:inline-block;
+    cursor:pointer;
+    color:#3a8a9e;
+    font-family:Arial;
+    font-size:17px;
+    padding:7px 25px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #e1e2ed;
+}
+.myButton:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+    background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+    background-color:#bab1ba;
+}
+.myButton1 {
+    -moz-box-shadow:inset 0px 1px 0px 0px #d6c64b;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #d6c64b;
+    box-shadow:inset 0px 1px 0px 0px #d6c64b;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fae34b), color-stop(1, #c77b00));
+    background:-moz-linear-gradient(top, #fae34b 5%, #c77b00 100%);
+    background:-webkit-linear-gradient(top, #fae34b 5%, #c77b00 100%);
+    background:-o-linear-gradient(top, #fae34b 5%, #c77b00 100%);
+    background:-ms-linear-gradient(top, #fae34b 5%, #c77b00 100%);
+    background:linear-gradient(to bottom, #fae34b 5%, #c77b00 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fae34b', endColorstr='#c77b00',GradientType=0);
+    background-color:#fae34b;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #ffaa22;
+    display:inline-block;
+    cursor:pointer;
+    color:#333333;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #c9b942;
+}
+.myButton1:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c77b00), color-stop(1, #fae34b));
+    background:-moz-linear-gradient(top, #c77b00 5%, #fae34b 100%);
+    background:-webkit-linear-gradient(top, #c77b00 5%, #fae34b 100%);
+    background:-o-linear-gradient(top, #c77b00 5%, #fae34b 100%);
+    background:-ms-linear-gradient(top, #c77b00 5%, #fae34b 100%);
+    background:linear-gradient(to bottom, #c77b00 5%, #fae34b 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c77b00', endColorstr='#fae34b',GradientType=0);
+    background-color:#c77b00;
+}
+.myButton1:active {
+    position:relative;
+    top:1px;
+}
+.btn {
+    display: inline-block;
+    margin-bottom: 0 ;
+    font-weight: bolder ;
+    text-align: center ;
+    vertical-align: middle ;
+    touch-action: manipulation ;
+    cursor: pointer ;
+    background-image: none ;
+    border: 1px solid transparent;
+    white-space: nowrap ;
+    background-color: white ;
+    padding: 6px 12px ;
+    font-size: 12px !important;
+    line-height: 1.42857143 ;
+    border-radius: 4px ;
+    letter-spacing: .5px ;
+    -webkit-user-select: none ;
+    -moz-user-select: none ;
+    -ms-user-select: none ;
+    user-select: none ;
+    background: none !important;
+    
+}
+.btn-red-text {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text:hover, .btn-red-text:focus {
+    background: #990000 !important;
+    color: #ffffff !important;
+}
+    
+    .btn2 {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    letter-spacing: .5px;
+    font-size: 10px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn-red-text2 {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 10px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text2:hover, .btn-red-text:focus {
+    background: #990000;
+    color: #ffffff !important;
+}
+span.truncateLabel { 
+    max-width: 100px;
+    
+}
+input.btn[name="new_eval_unit_details"] {
+            display: none;
+        }
+input.btn[name="multiple_product_requests"] {
+            display: none;
+        } 
+ input.btn[name="new00NA000000AKSaY"] {
+            display: none;
+        } 
+        
+       
+  input.btn[name="check_selected_products_and_then_click_here"] {
+            display: none;
+        }        
+        
+        
+        
+              
+</style>
+<style type="text/css">
+input.btn[name="new_eval_unit_details"] {
+            display: none;
+        }
+input.btn[name="multiple_product_requests"] {
+            display: none;
+        } 
+ input.btn[name="new00NA000000AKSaY"] {
+            display: none;
+        }
+ input.btn[name="add_products_to_invoice"] {
+            display: none;
+        } 
+  input.btn[name="request_transfer"] {
+            display: none;
+        }
+ input.btn[name="check_selected_products_and_then_click_here"] {
+            display: none;
+        }          
+</style>
+<apex:messages />
+
+    <apex:sectionheader title="{!$ObjectType.Eval_Request__c.label} Return Shipping Information" subtitle="{!IF(ISNULL(Eval_Request__c.Name), 'New Eval Request',Eval_Request__c.Name& ' RMA # '&Eval_Request__c.RMA__c)}"/>
+<apex:form > 
+    <br><center><apex:commandButton styleclass="btn btn-red-text"  action="{!Cancel}" value="Cancel" id="cancel" style="line-height: 22px;width: 130px;" />
+   <apex:commandButton styleclass="btn btn-red-text"  action="{!URLFOR($Action.Eval_Request__c.Add_Attachment, Id)}"  id="attach" value="Attach Files" style="line-height: 22px;width: 130px;" />
+             </center></br>
+</apex:form> 
+ <apex:outputpanel id="list" >
+  <apex:pageblock >
+  <apex:pageblocksection title="Select Products that you want to update shipping return information and Click Button Below" showheader="true" columns="1">
+ <apex:relatedlist list="Eval_Unit_Details__r" title="Eval Unit Details"/>
+ </apex:pageblocksection> 
+  </apex:pageblock>
+   </apex:outputpanel>
+ 
+</apex:page>

@@ -1,0 +1,39 @@
+<apex:page showHeader="True" sidebar="True" standardcontroller="Case">
+  
+  <apex:stylesheet value="{!URLFOR($Resource.VSInternalSpa)}"/>
+  
+  <apex:insert name="header"/>
+  <apex:insert name="body"/>
+  
+ eval test 2
+  
+  <apex:form >
+        <apex:pageblock mode="edit" title="{!$ObjectType.Case.label} Edit">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!Save}"/>
+                <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+            </apex:pageblockbuttons>
+
+            <!-- **********   [Record Type : Master ]   **********  -->
+            <apex:outputpanel >
+                <apex:pageblocksection title="Case Information" showheader="true" columns="2">
+                    <apex:inputfield value="{!Case.SuppliedCompany}" required="false"/>
+                    <apex:inputfield value="{!Case.AccountId}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    
+                    <apex:pageblocksectionitem />
+                    
+                    <apex:pageblocksectionitem />
+                    
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                
+                <apex:pageblocksection title="Web Information" showheader="true" columns="2">
+                    
+                    
+                </apex:pageblocksection>
+            </apex:outputpanel>
+        </apex:pageblock>
+    </apex:form>
+  <apex:insert name="footer"/>
+</apex:page>

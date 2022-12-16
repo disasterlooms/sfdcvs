@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stock_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>/*
+CASE(Account__r.Name, 
+					&apos;ALSO Deutschland GmbH&apos;, 	Lagerbestand_Stock__c, 
+					&apos;Ingram Micro Distribution GmbH&apos;, LB_Stock__c,
+					&apos;Amazon EU SARL&apos;, Vorr_tige_marktf_hige_Produkte_Stock__c, 
+					&apos;Caseking GmbH&apos;, Gesamtbestand_Stock__c, 
+					&apos;Computation Systemhaus GmbH&apos;, Stock_Stock__c,
+					&apos;Delo Computer GmbH&apos;, Lagerbestand_Stock__c,
+					&apos;Notebooksbilliger.de AG&apos;,  Bestand_Stock__c, 
+					&apos;Tarox AG&apos;, LAGER_Stock__c, 
+					&apos;visunext International GmbH &amp; Co. KG&apos;,  Lagermenge_Stock__c, 
+					&apos;Wensauer Com-Systeme GmbH&apos;, Bestand_Stock__c, 
+					null)
+*/
+IF(ISPICKVAL(VS_Region__c, &apos;VSE&apos;),
+Lagerbestand_Stock__c
+,null)</formula>
+    <label>Stock</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

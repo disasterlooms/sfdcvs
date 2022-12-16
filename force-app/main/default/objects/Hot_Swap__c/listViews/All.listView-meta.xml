@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>SPA__c</columns>
+    <columns>Recipient_Name__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>HotSwap_Product_Quantity__c</columns>
+    <columns>Reason_For_Hot_Swap__c</columns>
+    <columns>Hot_Swap_Request_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

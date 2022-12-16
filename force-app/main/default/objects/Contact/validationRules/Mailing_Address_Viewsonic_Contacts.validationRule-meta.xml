@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mailing_Address_Viewsonic_Contacts</fullName>
+    <active>true</active>
+    <description>OnlyAdmin can update a viewsonic employee mailing address</description>
+    <errorConditionFormula>(AccountId  = &apos;0011200001Dq2NA&apos; ||
+priorvalue(AccountId) = &apos;0011200001Dq2NA&apos;)
+
+&amp;&amp;  $Profile.Name != &apos;SFDC Admin&apos; 
+&amp;&amp; (ischanged(MailingStreet) || ischanged(MailingCity) || ischanged(MailingState) || ischanged(MailingPostalCode) || ischanged(AccountId) || ischanged(Email) || ischanged(AccountId))</errorConditionFormula>
+    <errorMessage>Only admin can change a Viewsonic Employee Addresss. 
+If this is for an evaluation unit, please reload the page and put the special address in the special instructions. 
+Thanks</errorMessage>
+</ValidationRule>

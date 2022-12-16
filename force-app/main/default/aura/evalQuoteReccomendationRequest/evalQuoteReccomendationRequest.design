@@ -1,0 +1,22 @@
+<design:component>
+    <design:attribute name="recordId" description="record Id"/>
+    <design:attribute name="quoteId" description="Quote Id"/>
+    
+    <design:attribute name="companyName" description="Company"/>
+    <design:attribute name="Billing_Contact_Phone__c" description="contact email"/>
+    
+    <!--
+    <design:attribute name="companyName" description="Company"/>
+    <design:attribute name="Billing_Street__c" description="Street"/>
+    <design:attribute name="Billing_City__c" description="City"/>
+    <design:attribute name="Billing_State__c" description="State"/>
+    <design:attribute name="Billing_Zip_Postal__c" description="zip"/>
+    <design:attribute name="Billing_Country__c" description="country"/>
+    <design:attribute name="Billing_Contact_Name__c" description="contact name"/>
+    <design:attribute name="Billing_Contact_Email__c" description="contact email"/>
+    <design:attribute name="Billing_Contact_Phone__c" description="contact email"/>
+
+-->
+    
+    
+</design:component>

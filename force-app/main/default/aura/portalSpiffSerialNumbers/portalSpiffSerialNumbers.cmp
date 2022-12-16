@@ -1,0 +1,89 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+                controller="getAssetSearch"
+                access="global" >
+    <aura:attribute name="serialNumber" type="Asset[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.getSales}"/>    
+    <aura:attribute name="addfields" type="String" default=",Product2.Name,product2.family,Account.Name,Account.owner.Name,Spiff_Request__r.Name, Spiff_Request__r.Per_Unit_Spiff__c ,Spiff_Request__r.Added_Special_SPIF__c ,Spiff_Request__r.Total_SPIF__c ,Spiff_Request__r.Status__c "/>
+    <aura:attribute name="wherestmnt" type="String" default=" WHERE Spiff_Request__c  = : spiffId "/>    
+    <aura:attribute name="orderstmnt" type="String" default=" order by PurchaseDate desc "/>
+    <aura:attribute name="limitstatement" type="String" default=" limit 100 "/>
+    <aura:attribute name="spiffSearch" type="Boolean" default="true" description="Spiff Page Search using the spiff"/>
+    <aura:attribute name="serialsFound" type="Boolean" default="false" description="displays of serial numbers were found"/> 
+    <aura:attribute name="recordId" type="String" description="Spiff Id for record"/>
+    
+   
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="" variant="brand" size="large"/>
+    </div>
+
+    
+    
+     <br/> <br/> <br/>
+    <aura:if isTrue="{!not(v.serialsFound)}">
+    Sorry, no results found, There are no Serial Numbers linked to this Spiff Claim
+    </aura:if>
+    <br/> <br/> <br/>
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+                
+                <th scope="col">
+                    <lightning:input name="input1" label="Serial Number" readonly="true"/>
+                </th>
+                <th scope="col">
+                    <lightning:input  name="input1" label="Product" readonly="true"/>
+                </th>
+                <th scope="col">
+                    <lightning:input type="date" name="input1" label="Sale Date" readonly="true"/>
+                </th>
+                <th scope="col">
+                    <lightning:input name="input1" label="Distributor" readonly="true"/>
+                </th>
+                <th scope="col">
+                    <lightning:input name="input1" label="Standard Spiff" readonly="true"/>
+                </th>
+                <th scope="col">
+                    <lightning:input name="input1" label="Added Spiff" readonly="true"/>
+                </th> 
+                <th scope="col">
+                    <lightning:input name="input1" label="Total Spiff" readonly="true"/>
+                </th>                            
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.serialNumber}" var="p" indexVar="idx">
+                <tr>
+                    <td>
+                        
+                        <ui:inputCheckbox aura:id="DependentCheckbox" name="{!p.Id}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1"  readonly="true" value="{!p.SerialNumber}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1" readonly="true"  value="{!p.Product__c}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1" readonly="true" value="{!p.PurchaseDate}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1"  readonly="true" value="{!p.Distributor__c}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1" readonly="true" value="{!p.Reseller__c}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1" readonly="true" value="{!p.End_User__c}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1"  readonly="true" value="{!p.SpaId__c}"/>
+                    </td>
+                    <td>
+                        <lightning:input name="input1"  readonly="true" value="{!p.Spiff_Request__r.Name}"/>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+    
+</aura:component>

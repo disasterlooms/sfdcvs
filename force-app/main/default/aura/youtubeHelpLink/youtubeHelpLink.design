@@ -1,0 +1,3 @@
+<design:component>
+    <design:attribute name="youtubeurl" description="the youtube url to have in video"/>
+</design:component>

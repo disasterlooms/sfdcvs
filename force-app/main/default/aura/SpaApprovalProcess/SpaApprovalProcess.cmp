@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global" 
+                controller="approvalRecId">
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="componentWithRecordId" type="Aura.Component[]"/>
+    <aura:attribute name="objExpected" type="String"/>
+    <aura:attribute name="margins" type="Boolean" default="false"/>
+    <aura:attribute name="relatedRecId" type="String"/>
+    <aura:attribute name="objType" type="String"/>
+    <!-- Quotes/Spas Approval Process -->
+    
+    
+    <aura:if isTrue="{!v.objType == '0Q0'}">
+            <c:SpasProductIssues recordId="{!v.relatedRecId}" 
+                                 wherestmnt="and ( product2.Isactive = false or product2.Isactive = true)"
+                                 addfields=",PricebookEntry.Product2.Cost__c,PricebookEntry.Total_Cost__c,Product2.Name,Product2.IsActive,PricebookEntry.IsActive, PricebookEntry.UnitPrice,PricebookEntry.Disty_Spiff__c,PricebookEntry.Reseller_Spiff__c"
+                                 orderstmnt="order by Product2.Name asc limit 75"/>
+        </aura:if>
+    
+   
+    
+</aura:component>

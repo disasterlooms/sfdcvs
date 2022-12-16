@@ -1,0 +1,7 @@
+<design:component>
+    <design:attribute name="imageURL" description="URL to show logo"/>
+    <design:attribute name="relatedId" description="Associated Record"/>
+    <design:attribute name="docId" description="The Created Document Id"/>
+    <design:attribute name="customLabelbtn" description="Label of the button for next"/>
+    <design:attribute name="attchLabel" label="Attachemnt Component Label"/>    
+</design:component>

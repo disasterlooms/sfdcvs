@@ -1,0 +1,166 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute type="string" name="sectiontitle"/>
+    <aura:attribute type="string" name="videopage"/>
+    <aura:attribute type="string" name="urls"/>
+    <aura:attribute type="string" name="url1"/>
+    <aura:attribute type="string" name="label1"/>
+    <aura:attribute type="string" name="url2"/>
+    <aura:attribute type="string" name="label2"/>
+    <aura:attribute type="string" name="url3"/>
+    <aura:attribute type="string" name="label3"/>
+    <aura:attribute type="string" name="url4"/>
+    <aura:attribute type="string" name="label4"/>
+    <aura:attribute type="string" name="url5"/>
+    <aura:attribute type="string" name="label5"/>
+    <aura:attribute type="string" name="url6"/>
+    <aura:attribute type="string" name="label6"/>
+    <aura:attribute type="string" name="url7"/>
+    <aura:attribute type="string" name="label7"/>
+    <aura:attribute type="string" name="url8"/>
+    <aura:attribute type="string" name="label8"/>
+    <aura:attribute type="string" name="header"/> 
+    <div class="slds-section" aura:id="helpsection">
+        <button aria-controls="expando-unique-id" aria-expanded="false" class="slds-button" onclick="{!c.showOppmodal}">
+            <!--<svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch" />
+      </svg>-->
+            <lightning:icon iconName="standard:question_feed" size="small"/>
+            <span class="slds-truncate" title="Section Title">&nbsp;&nbsp; {!v.sectiontitle}</span>
+        </button>
+        <div aria-hidden="true" class="slds-section__content" id="helpsection">
+            
+            
+            
+            
+        </div>
+    </div>
+    
+    <div aria-hidden="true" role="dialog" class="slds-modal slds-modal--large slds-fade-in-hide" aura:id="modaldialog">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h2 class="slds-text-heading--medium">{!v.header}</h2>
+                <button class="slds-button slds-button--icon-inverse slds-modal__close" onclick="{!c.hideModal}">
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </div>
+            <div class="slds-modal__content"> 
+                <div class="slds-grid slds-wrap slds-grid_pull-padded">
+                    
+                    <div class="slds-p-horizontal_small slds-size_1-of-3">
+                        <aura:if isTrue="{!v.url1.length >0}">
+                            <div class="slds-page-header">
+                                <center>
+                                    <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="{!v.label1}">{!v.label1}</h1>
+                                </center>
+                                <cloudx_cms:SS_uiVideoBanner videoUrl="{!v.url1}"  
+                                                             showVideoControls="true" title=""/>
+                            </div>
+                        </aura:if>
+                    </div>
+                    
+                    <div class="slds-p-horizontal_small slds-size_1-of-3">
+                        <aura:if isTrue="{!v.url2.length >0}">
+                            <div class="slds-page-header">
+                                <center>
+                                    <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="{!v.label2}">{!v.label2}</h1>
+                                </center>
+                                
+                                <cloudx_cms:SS_uiVideoBanner videoUrl="{!v.url2}" 
+                                                             showVideoControls="true" title=""/>
+                                
+                            </div>
+                        </aura:if>
+                    </div>
+                    <div class="slds-p-horizontal_small slds-size_1-of-3">
+                        <aura:if isTrue="{!v.url3.length >0}">
+                            <div class="slds-page-header">
+                                <center>
+                                    <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="{!v.label3}">{!v.label3}</h1>
+                                </center>
+                                
+                                <cloudx_cms:SS_uiVideoBanner videoUrl="{!v.url3}" 
+                                                             showVideoControls="true" title=""/>
+                                
+                            </div>
+                        </aura:if>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-grid_pull-padded">
+                    <div class="slds-p-horizontal_small slds-size_1-of-3">
+                        <aura:if isTrue="{!v.url4.length >0}">
+                            <div class="slds-page-header">
+                                <center>
+                                    <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="{!v.label4}">{!v.label4}</h1>
+                                </center>
+                                
+                                <cloudx_cms:SS_uiVideoBanner videoUrl="{!v.url4}" 
+                                                             showVideoControls="true" title=""/>
+                                
+                            </div>
+                        </aura:if>
+                    </div>
+                    <div class="slds-p-horizontal_small slds-size_1-of-3">
+                        <aura:if isTrue="{!v.url5.length >0}">
+                            <div class="slds-page-header">
+                                <center>
+                                    <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="{!v.label5}">{!v.label5}</h1>
+                                </center>
+                                <cloudx_cms:SS_uiVideoBanner videoUrl="{!v.url5}"
+                                                             showVideoControls="true" title=""/>
+                            </div>
+                        </aura:if>
+                    </div>
+                    <div class="slds-p-horizontal_small slds-size_1-of-3">
+                        <aura:if isTrue="{!v.url6.length >0}">
+                            <div class="slds-page-header">
+                                <center>
+                                    <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="{!v.label6}">{!v.label6}</h1>
+                                </center>
+                                <cloudx_cms:SS_uiVideoBanner videoUrl="{!v.url6}"
+                                                             showVideoControls="true" title=""/>
+                            </div>
+                        </aura:if>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-grid_pull-padded">
+                    <div class="slds-p-horizontal_small slds-size_1-of-3">
+                        <aura:if isTrue="{!v.url7.length >0}">
+                            <div class="slds-page-header">
+                                <center>
+                                    <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="{!v.label7}">{!v.label7}</h1>
+                                </center>
+                                <cloudx_cms:SS_uiVideoBanner videoUrl="{!v.url7}"
+                                                             showVideoControls="true" title=""/>
+                            </div>
+                        </aura:if>
+                    </div>
+                    <div class="slds-p-horizontal_small slds-size_1-of-3">
+                        <aura:if isTrue="{!v.url8.length >0}">
+                            <div class="slds-page-header">
+                                <center>
+                                    <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="{!v.label8}">{!v.label8}</h1>
+                                </center>
+                                <cloudx_cms:SS_uiVideoBanner videoUrl="{!v.url8}"
+                                                             showVideoControls="true" title=""/>
+                            </div>
+                        </aura:if>
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div class="slds-modal__footer">
+                <div class="slds-x-small-buttons--horizontal">
+                    <button class="slds-button slds-button--neutral" onclick="{!c.hideModal}">Close</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="slds-backdrop slds-backdrop--hide" aura:id="backdrop">
+        
+    </div>
+    
+    
+</aura:component>

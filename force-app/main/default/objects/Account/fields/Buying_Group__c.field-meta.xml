@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Buying_Group__c</fullName>
+    <externalId>false</externalId>
+    <label>Buying Group</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Expert</fullName>
+                <default>false</default>
+                <label>Expert</label>
+            </value>
+            <value>
+                <fullName>Euronics</fullName>
+                <default>false</default>
+                <label>Euronics</label>
+            </value>
+            <value>
+                <fullName>RedZac</fullName>
+                <default>false</default>
+                <label>RedZac</label>
+            </value>
+            <value>
+                <fullName>Akcent</fullName>
+                <default>false</default>
+                <label>Akcent</label>
+            </value>
+            <value>
+                <fullName>EP</fullName>
+                <default>false</default>
+                <label>EP</label>
+            </value>
+            <value>
+                <fullName>PC Spezialist</fullName>
+                <default>false</default>
+                <label>PC Spezialist</label>
+            </value>
+            <value>
+                <fullName>Büroring</fullName>
+                <default>false</default>
+                <label>Büroring</label>
+            </value>
+            <value>
+                <fullName>iTeam</fullName>
+                <default>false</default>
+                <label>iTeam</label>
+            </value>
+            <value>
+                <fullName>Computer Compass</fullName>
+                <default>false</default>
+                <label>Computer Compass</label>
+            </value>
+            <value>
+                <fullName>Bechtle</fullName>
+                <default>false</default>
+                <label>Bechtle</label>
+            </value>
+            <value>
+                <fullName>Medimax</fullName>
+                <default>false</default>
+                <label>Medimax</label>
+            </value>
+            <value>
+                <fullName>MSH - Saturn</fullName>
+                <default>false</default>
+                <label>MSH - Saturn</label>
+            </value>
+            <value>
+                <fullName>MSH - MediaMarkt</fullName>
+                <default>false</default>
+                <label>MSH - MediaMarkt</label>
+            </value>
+            <value>
+                <fullName>Printus</fullName>
+                <default>false</default>
+                <label>Printus</label>
+            </value>
+            <value>
+                <fullName>Bureau Vallée</fullName>
+                <default>false</default>
+                <label>Bureau Vallée</label>
+            </value>
+            <value>
+                <fullName>Compte Partagé AD/DA</fullName>
+                <default>false</default>
+                <label>Compte Partagé AD/DA</label>
+            </value>
+            <value>
+                <fullName>Groupe LDLC</fullName>
+                <default>false</default>
+                <label>Groupe LDLC</label>
+            </value>
+            <value>
+                <fullName>MSH</fullName>
+                <default>false</default>
+                <label>MSH</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

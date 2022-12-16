@@ -1,0 +1,11 @@
+<apex:page >
+ <script>
+ 
+            function redirect(){
+                window.location.href='https://na18.lightning.force.com/one/one.app?source=aloha#/sObject/{!$User.Contact_ID__c}/view?t=1465514024740'; 
+            }
+ 
+            window.onload = window.setTimeout(redirect(),5000);
+ 
+        </script>
+</apex:page>

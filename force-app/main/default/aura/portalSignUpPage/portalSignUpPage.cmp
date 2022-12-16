@@ -1,0 +1,29 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+     <aura:handler name="init" value="{!this}" action="{!c.myAction}" /> 
+    
+    <!--
+    <div class="pp-signup">
+        <div class="pp-col-left">
+            <div>
+                
+            </div>
+        </div>
+        <div class="pp-col-right">
+            <div>
+                <div class="pp-logo">
+                    <img src="https://www.viewsonic.com/skin/frontend/smartwave/viewsonic/images/business-solution/partner-program-lowercase.svg" alt="Partner Program Logo"></img>
+                </div>              
+                <div class="pp-col-text">
+                    <h1>Sign Up</h1>
+                    <p>Become a member by completing the form. We will review your application within 1-2 business days.</p>
+                    <span><span class="pp-asterisk">*</span> All fields with red asterisks are required. </span>
+                    <div class="pp-btn">
+                    	<a class="pp-signup" onclick="{!c.callToAction}">Start Application</a>
+                	</div>
+                </div>                
+            </div>
+        </div>            
+    </div>	
+ -->
+
+</aura:component>

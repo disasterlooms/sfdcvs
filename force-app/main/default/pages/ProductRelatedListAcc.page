@@ -1,0 +1,14 @@
+<apex:page standardcontroller="Product2" sidebar="false" showHeader="false">
+<style>
+input.btn[name="new00N1200000Asi7I"] {
+            display: none;
+        }
+
+</style>
+<apex:form >
+
+</apex:form>
+<apex:relatedlist list="Accessories__r" title="Accessories">
+<apex:param name="oppid" value="78910"/>
+</apex:relatedlist>
+</apex:page>

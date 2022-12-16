@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X4_Autorenewal</fullName>
+    <columns>Spa_Name__c</columns>
+    <columns>QUOTE.STATUS</columns>
+    <columns>Re_Submission_Date__c</columns>
+    <columns>QUOTE.EXPIRATIONDATE</columns>
+    <columns>Spa_Request_Submitter__c</columns>
+    <columns>Resubmitter__c</columns>
+    <columns>RecentRequest__c</columns>
+    <columns>Auto_Renew_Start_Date__c</columns>
+    <columns>Auto_Renew_End_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>End_User__c</field>
+        <operation>notContain</operation>
+        <value>abc test,abc ignore</value>
+    </filters>
+    <filters>
+        <field>Auto_Renew__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>4 Autorenewal</label>
+    <sharedTo>
+        <role>BidDesk</role>
+    </sharedTo>
+</ListView>

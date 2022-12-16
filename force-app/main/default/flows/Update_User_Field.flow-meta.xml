@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <interviewLabel>Update User Field {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update User Field</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>User_Lock_Feild</name>
+        <label>User Lock Feild</label>
+        <locationX>154</locationX>
+        <locationY>38</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>userid</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Evaluation_Past_Due_Limit__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>User</object>
+    </recordUpdates>
+    <startElementReference>User_Lock_Feild</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>userid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,62 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+                access="global" controller="modalUniversalClass">
+    <aura:attribute name="parentFields" type="String" default=",Modal__r.AllowPermanentDismissal__c ,Modal__r.Name,Modal__r.Content__c,Modal__r.Description__c ,
+                                                               Modal__r.Header__c ,Modal__r.ResourceUrl__c,
+                                                               Modal__r.Tagline__c,Modal__r.useComponent__c ,
+                                                               Modal__r.Component_Name__c, Modal__r.DelayDismissal__c ,
+                                                               Modal__r.Component_Attribute_Value__c ,Modal__r.Component_Attributes__c,
+                                                               Modal__r.showActionButton__c,Modal__r.Action_Button_Name__c,
+                                                                Modal__r.Action_URL__c " />
+    <aura:attribute name="whereStatement" type="String" default="and ShowModal__c = true"/>
+    <aura:attribute name="orderStatement" type="String" default=" order by Last_Date_Shown__c asc"/>
+    <aura:attribute name="limitStatement" type="String" default=" limit 1" />
+    <aura:attribute name="modalName" type="String"/>
+    <aura:attribute name="classHide" type="String" default=""/>
+    <aura:attribute name="account" type="String"/>
+    <aura:attribute name="cmpCustom" type="Aura.Component"/>
+    <aura:attribute name="profile" type="String"/>
+    <aura:attribute name="modalSize" type="String" />
+    <aura:attribute name="modalSet" type="Modal_Settings__c"/>
+    <aura:attribute name="role" type="String"/>
+    <aura:attribute name="removeModal" type="boolean" default="false"/>
+    <aura:handler name="init" value="this" action="{!c.myAction}"/>
+     <aura:attribute name="dismiss" type="String" default="Show me Later"/>
+    <aura:attribute name="remove" type="String" default="Dismiss Forever"/>
+    <aura:attribute name="disabled" type="boolean" default="true"/>
+   
+    <div role="dialog" class="slds-modal slds-backdrop slds-modal_large slds-fade-in-hide" aura:id="modaldialog" style="max-width:65%">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h2 class="slds-text-heading--medium">{!v.modalSet.Modal__r.Header__c}</h2>
+                 <p class="slds-m-top_x-small"> {!v.modalSet.Modal__r.Tagline__c}</p>
+            </div> 
+            <div class="slds-modal__content">
+                        <br/>
+                <!-- the custom compnent below can by dynamically created if there is a
+					component name in the design template and cmp is set for true. this way
+                we can modal any component without having to create content only on the  		
+	            modal content__c field on modal page. -->
+                {!v.cmpCustom}
+                
+                        <!--<iframe src="{!v.videoURL}" frameborder="0" allow="autoplay; encrypted-media" style="width:90%;margin-left:5%;"></iframe>  slds-fade-in-hide  slds-fade-in-open -->
+                <center> {!v.modalSet.Modal__r.Content__c}
+                </center>
+            </div>
+            
+            <div class="slds-modal__footer">
+                <div class="slds-x-small-buttons--horizontal">
+                    <lightning:button variant="brand" label="{!v.dismiss}" title="dismiss" onclick="{!c.later}" value="false" disabled="{!v.disabled}"/>
+                    <!--<button class="slds-button slds-button_brand " onclick="{!c.later}" value="false" disabled="{!v.disabled}">{!v.dismiss}</button>-->
+                    <aura:if isTrue="{!v.modalSet.Modal__r.AllowPermanentDismissal__c}">
+                    <button class="slds-button slds-button_brand " onclick="{!c.dismiss}" value="true" disabled="{!v.disabled}">{!v.remove}</button>
+                    </aura:if>
+                    <aura:if isTrue="{!v.modalSet.Modal__r.showActionButton__c}">
+                    <button class="slds-button slds-button_brand " onclick="{!c.callToAction}" value="true" disabled="{!v.disabled}">{!v.modalSet.Modal__r.Action_Button_Name__c}</button>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</aura:component>

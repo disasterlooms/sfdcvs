@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PB_and_Landed_Cost__c</fullName>
+    <externalId>false</externalId>
+    <formula>Opportunity.Pricebook2.Name &amp;&apos; $&apos;&amp;
+if( CONTAINS(&apos;.&apos;, text(Landing_Cost2__c)) ,text(Landing_Cost2__c),text(Landing_Cost2__c)&amp;&apos;.00&apos;)</formula>
+    <label>PB and Landed Cost</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

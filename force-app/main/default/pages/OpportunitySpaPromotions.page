@@ -1,0 +1,112 @@
+<apex:page sidebar="false" docType="html-5.0">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"/>
+<apex:includescript value="{!URLFOR($Resource.OppNewScript)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:iframe src="/apex/gridpage" scrolling="true" height="1800" />
+<script>
+    jQuery(document).ready(function ($) {
+        var element = document.getElementById("searchButtonContainer"); 
+        var spasearch  = document.createElement("input");
+        spasearch.setAttribute("id", "SpaSearchButton");
+        spasearch.type = "button";
+        spasearch.value = "SPA Super Search";
+        var contentwrapper = document.getElementById("contentWrapper").style.minWidth ="auto";
+        console.log(contentwrapper); 
+        
+        element.appendChild(spasearch);
+        
+        //removeAllListeners(element, 'click');
+        spasearch.addEventListener('click', function() {
+                var search = document.getElementById("phSearchInput").value;
+                if(search ==''){
+                alert('Please put part of the spa name. Can be Spa ID, End User, or project site information');
+                }else{
+                var task = 'Super Spa Search Click';
+                console.log('{!$User.Alias}');
+                if('{!$User.Alias}' != 'admin'){
+                supersearchui(task);
+                }
+                var search = document.getElementById("phSearchInput").value;
+                //console.log(search);
+                window.location.href = "/apex/OpportunityTab?save_new=1&sfdc.override=1&superspa="+search;
+                event.stopPropagation();
+                event.preventDefault();
+                }
+                event.stopPropagation();
+                event.preventDefault();
+                return false;
+            }, true);
+
+        //searchcon.appendchild(spasearch);
+
+        //var searchcon = document.getElementsByClassName("searchCell");
+        //element.appendChild(para);           
+
+
+
+                     //searchcon[0].innerHTML =
+                        //'<div class="headerSearchContainer" id="phSearchContainer"> \
+                        // '
+                       //   //document.getElementById('searchButtonContainer').appendChild(searchcon);
+                       //var spasearch = document.getElementById("SpaSearchButton");
+                        }); 
+      
+        var seasrchbox = document.getElementById("phSearchInput"); 
+        seasrchbox.addEventListener('keydown', function(e) {
+                if(e.keyCode == 13)
+                    {
+                       var search = document.getElementById("phSearchInput").value;
+                       console.log(search);
+                       //alert('Enter will do a Spa Search, if you wish to search Accounts, Contacts, or Eval Requests, then please click on Search, Instead of enter key');
+                       var task = 'Super Spa Search Enter';
+                       console.log('{!$User.Alias}');
+                       if('{!$User.Alias}' != 'admin'){
+                            supersearchui(task);
+                            }
+                       window.location.href = "/apex/OpportunityTab?save_new=1&sfdc.override=1&superspa="+search;
+                       event.preventDefault();
+                       event.stopPropagation();
+                    }
+               
+            }, true);
+        
+        
+                    
+                   
+
+</script>
+
+<style type="text/css">
+    
+
+    .headerSearchRightRoundedCorner #SpaSearchButton {
+    background: transparent url(/img/alohaSkin/unified_search_background_sprite.png) repeat-x scroll left -120px;
+    border: 0 none;
+    height: 24px;
+    margin: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: bold;
+    font-size: 90%;
+    font-family: Arial;
+    color: #1797c0;
+    cursor: pointer;
+    width: auto;
+    overflow: visible;
+    border-radius: 0;
+}
+.Custom50Tab .brdPalette {
+    border-top-color: transparent;
+}
+.phHeaderCustomLogo .headerSearchRightRoundedCorner #SpaSearchButton {
+    background: transparent url(/img/alohaSkin/unified_search_background_sprite.png) repeat-x scroll left top;
+}
+
+.headerSearchRightRoundedCorner #phSearchButton{
+    padding-right: 8px; 
+}
+</style>
+<apex:include pagename="UIInteractions"/>
+
+
+</apex:page>

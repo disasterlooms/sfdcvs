@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quantity_4_is_blank</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND((or(isblank(Product_Name_4__c),isnull(Product_Name_4__c))),(OR(not(ISBLANK(Quantity_4__c)),not(isnull(Quantity_4__c)))))</errorConditionFormula>
+    <errorDisplayField>Product_Name_4__c</errorDisplayField>
+    <errorMessage>Input product because there is a value in Quantity</errorMessage>
+</ValidationRule>

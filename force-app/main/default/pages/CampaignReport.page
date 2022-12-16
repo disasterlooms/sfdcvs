@@ -1,0 +1,17 @@
+<apex:page >
+
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" /> 
+
+<div id="divTestArea1">
+</div>
+
+<script>
+j$ = jQuery.noConflict();
+
+j$(function()
+{
+$("#divTestArea1").load("https://na18.salesforce.com/00O12000006FNLK");
+});
+</script>
+
+</apex:page>

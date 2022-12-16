@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reseller_Contact_Email__c</fullName>
+    <description>Do not need to add, if you put a contact name and the contact has an email address, the name will be added automatically.</description>
+    <externalId>false</externalId>
+    <label>Reseller Contact Email</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Email</type>
+    <unique>false</unique>
+</CustomField>

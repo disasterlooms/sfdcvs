@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>eSPA_Approver__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>With the current eSPA approval process, the eSPA approver must be set to the ViewSonic IT User.</inlineHelpText>
+    <label>eSPA Approver</label>
+    <relationshipName>eSPA_Submitters</relationshipName>
+    <restrictedAdminField>true</restrictedAdminField>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Hierarchy</type>
+</CustomField>

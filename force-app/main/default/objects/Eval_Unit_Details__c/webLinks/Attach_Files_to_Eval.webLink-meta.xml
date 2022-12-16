@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attach_Files_to_Eval</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Attach Files to Eval</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>/p/attach/NoteAttach?pid={!Eval_Request__c.Id}&amp;parentname={!Eval_Request__c.Name}&amp;retURL=%2Fapex%2FEvalTrackingInfo%3FscontrolCaching%3D1%26id%3D{!Eval_Request__c.Id}</url>
+</WebLink>

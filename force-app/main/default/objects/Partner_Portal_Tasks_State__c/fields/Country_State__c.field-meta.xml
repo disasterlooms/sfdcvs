@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Country_State__c</fullName>
+    <externalId>false</externalId>
+    <label>Country State</label>
+    <referenceTo>CountriesRegions__c</referenceTo>
+    <relationshipLabel>Partner Portal Tasks States</relationshipLabel>
+    <relationshipName>Partner_Portal_Tasks_States</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

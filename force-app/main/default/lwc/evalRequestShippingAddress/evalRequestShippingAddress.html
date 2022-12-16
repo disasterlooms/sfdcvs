@@ -1,0 +1,91 @@
+<template>
+
+
+
+<div style="color:rgba(255, 0, 0, 0.733);font-size:30px">
+    <center>
+        <b><lightning-formatted-text value={errorMsg} >        
+            </lightning-formatted-text></b></center></div>
+
+<lightning-layout>    
+    <lightning-layout-item padding="around-small" size="7">        
+        <template if:true={getBillingInfo}>
+        <lightning-input type="text" label="Company Name" onchange={companyChange} value={Company} required="true"></lightning-input>
+        <lightning-input type="text" onchange={fnameChange} label="Name" value={FirstName} required="true"></lightning-input>
+        <lightning-input type="text" onchange={lnameChange} label="Last Name" value={LastName} required="true"></lightning-input>
+    </template>
+        <lightning-input-address
+                                    address-label="Address"
+                                    street-label="Street"
+                                    city-label="City"
+                                    country-label="Country"
+                                    province-label="State/Province"
+                                    postal-code-label="PostalCode"
+                                    street={address.street}
+                                    city={address.city}
+                                    country={address.country}
+                                    province={address.province}
+                                    postal-code={address.postalCode}
+                                    field-level-help="You can leverage power of Google and have them auto fill and verify address" 
+                                    country-options={getCountryOptions}
+                                    province-options={getProvinceOptions}
+                                    show-address-lookup="true"
+                                    address-lookup-placeholder="Type Address for Google Address Search Assist"
+                                    onchange={handleChange}
+                                    
+                                    ></lightning-input-address>
+        <lightning-input type="email" label="Email address" value={email}
+                            onchange={emailChange}  required></lightning-input>
+        <lightning-input type="tel" 
+                            label="Telephone" onchange={phoneChange}
+                            name="Shipping Con Phone" value={phone} required
+                            >
+        </lightning-input>
+        <template if:true={displayDefaultOption}>
+        <center>
+            <br/><b>
+            <lightning-input type="checkbox" onchange={handleCheckboxChange}
+            label="Make Contact's Default Address" name="input1"></lightning-input></b>
+        </center>
+        </template>
+    </lightning-layout-item>
+    
+    <template if:true={showAddressHistory}>
+        <lightning-layout-item padding="around-small" size="5">
+            <lightning-card title="Use Previous Addresses Linked to Customer by Clicking On Address Selection" icon-name="custom:custom14">
+                <ul class="slds-m-around_medium">
+                    <template for:each={listofAddresses} for:item="addr">
+                        <li key={addr.Id}>
+                            <!-- since the checkox can only show one field, the address is listed a full address-->
+                            <lightning-input 
+                             type="checkbox" label={addr.fullAddress__c} title={addr.State_Province__c}
+                                                onchange={addressSelection} data-element="address-checkbox"
+                                                name={addr.externalId__c} value={addr.Country__c} placeholder={addr.Postal_Code__c}
+                                                id={addr.City__c} 
+                                                > {addr.Company__c}
+                                            </lightning-input>
+                                            <!--date-aria-label={addr.State_Province__c}
+                                                date-style={addr.Country__c}	-->
+                            
+                        </li>
+                    </template>
+                </ul>
+            </lightning-card>
+
+
+        </lightning-layout-item>
+    </template>
+</lightning-layout>
+
+<p  style="background-color: #f9f9fa;"> 
+    <br/>
+    <lightning-button
+                        label="Next Step"
+                        title="Next Step"
+                        onclick={handleGoNext}
+                        class="btnRight"
+                        variant="brand">
+    </lightning-button>
+    <br/><br/><br/>
+</p>
+</template>

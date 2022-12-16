@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Margin__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(Landed_Cost__c=0,0,
+if(Approved_Price__c = 0,
+((UnitPrice  -  Landed_Cost__c)/UnitPrice),
+((Approved_Price__c - Landed_Cost__c)/Approved_Price__c )))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Margin</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Percent</type>
+</CustomField>

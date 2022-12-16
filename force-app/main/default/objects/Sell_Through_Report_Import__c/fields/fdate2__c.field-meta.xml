@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>fdate2__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(fdate_Date__c) , TODAY(), DATEVALUE(LEFT(fdate_Date__c,4)&amp;&apos;-&apos;&amp;MID(fdate_Date__c,5,2)&amp;&apos;-&apos;&amp;RIGHT(fdate_Date__c,2)))</formula>
+    <label>fdate2</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

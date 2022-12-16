@@ -1,0 +1,47 @@
+<apex:page showHeader="false" sidebar="false">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<script>
+alert('Welcome {!$User.FirstName}');
+</script>
+<script type="text/javascript">
+document.getElementsByTagName('nav')[0].style.border="1px solid white";
+document.getElementsByClassName('left')[0].style.visibility = 'hidden';
+document.getElementById('phHeaderLogoImage').style.visibility = 'visible';
+document.getElementsByClassName('right')[0].style.visibility = 'hidden';
+document.getElementsByClassName('multiforce')[0].style.visibility = 'visible';
+document.getElementsByTagName('nav')[0].style.borderTopLeftRadius = '.5em'; 
+document.getElementsByTagName('nav')[0].style.borderTopRightRadius = '.5em'; 
+document.getElementsByTagName('nav')[0].style.MozBorderRadiusTopleft = '.5em'; 
+document.getElementsByTagName('nav')[0].style.MozBorderRadiusTopright = '.5em'; 
+document.getElementsByTagName('nav')[0].style.WebkitBorderTopLeftRadius = '.5em';
+document.getElementsByTagName('nav')[0].style.WebkitBorderTopRightRadius = '.5em';
+</script>
+<!--
+ @ author Harpreet Dhillon
+ @ email hsdmail@yahoo.com
+ @ created 06-05-2012 
+ @ free to use and modify, please do not remove this comment.
+-->
+<style>
+.sidebarModuleHeader
+{
+background-image: transparent!important;
+background-color: #336699!important;
+color: #FFFFFF!important;
+}
+.sfdcBody, #AppBodyHeader, #AppBodyHeader *{
+background-color: #336699!important;
+color: #FFFFFF!important;}
+#AppBodyHeader{
+background-image: none!important;
+}
+.tabNavigation .allTabsArrow, .tabMenu .allTabsArrow {
+    background-image: url("/img/alohaSkin/addTabs.png")!important;
+    height: 12px !important;
+    width: 12px !important;
+}
+</style>
+
+</apex:page>

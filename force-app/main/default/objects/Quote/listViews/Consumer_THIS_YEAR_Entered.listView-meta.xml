@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Consumer_THIS_YEAR_Entered</fullName>
+    <columns>CreatedBy</columns>
+    <columns>QUOTE.NAME</columns>
+    <columns>Bid_Registered__c</columns>
+    <columns>Resellers__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Approval_Date__c</columns>
+    <columns>QUOTE.EXPIRATIONDATE</columns>
+    <columns>QUOTE.TOTALPRICE</columns>
+    <columns>Resubmission_Notes__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Resellers__c</field>
+        <operation>equals</operation>
+        <value>PCNation,Office Depot Inc.,Staples,Best Buy,B&amp;H Photo &amp; Electronics Corp.</value>
+    </filters>
+    <filters>
+        <field>Approval_Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_YEAR</value>
+    </filters>
+    <label>Consumer THIS YEAR Entered</label>
+</ListView>

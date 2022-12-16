@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Billing_Address__c</fullName>
+    <externalId>false</externalId>
+    <formula>Account.Name &amp; BR() &amp; Account.BillingStreet  &amp;BR()&amp; Account.BillingCity &amp;&apos;, &apos;&amp; Account.BillingState &amp;&apos; &apos;&amp; Account.BillingPostalCode &amp;BR() &amp;  Account.BillingCountry&amp;br()&amp;  Account.Phone</formula>
+    <inlineHelpText>This is the linked Address. If you need to update the billing address, you can do on the contact page, through the non linked Account Billing Address Field</inlineHelpText>
+    <label>Account Billing Address (Linked)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

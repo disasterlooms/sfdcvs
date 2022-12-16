@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>Qualified Spa Submitters</audienceName>
+    <container>VS Partner Programs Portal</container>
+    <criteria>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <entityField>Contact.Account.Type</entityField>
+                <entityType>User</entityType>
+                <fieldValue>Distributor</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+    </criteria>
+    <formulaFilterType>AllCriteriaMatch</formulaFilterType>
+    <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>fae91030-a696-40c8-8ada-04f62e346f3a$#$5a4147c4-d9bc-4d33-a1de-207eae81ef90</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Opportunity_Detail_Headline_Component</targetValue>
+        </target>
+        <target>
+            <groupName>fae91030-a696-40c8-8ada-04f62e346f3a$#$86f78b99-2886-4043-8730-4aaf8964419d</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Opportunity_Detail_Rich_Content_Editor_Component</targetValue>
+        </target>
+        <target>
+            <groupName>fae91030-a696-40c8-8ada-04f62e346f3a$#$d9fdffcf-ef09-4fb9-97f0-ab00608620bb</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Opportunity_Detail_Related_List_Single_Component</targetValue>
+        </target>
+    </targets>
+</Audience>

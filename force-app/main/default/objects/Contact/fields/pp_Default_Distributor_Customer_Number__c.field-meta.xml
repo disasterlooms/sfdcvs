@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pp_Default_Distributor_Customer_Number__c</fullName>
+    <description>The customer number for a partner that they use with their Default Distributor</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The customer number for a partner that they use with their Default Distributor</inlineHelpText>
+    <label>pp_Default Distributor Customer Number</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

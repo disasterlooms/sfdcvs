@@ -1,0 +1,8 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:hasRecordId" >
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"/>
+    <aura:attribute name="recordId" type="string" />
+    <div aura:id="flow"  >
+        <lightning:flow aura:id="flowexp" onstatuschange="{!c.flowComplete}"/>
+    </div>
+    
+</aura:component>

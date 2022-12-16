@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Freight_Terms__c</fullName>
+    <defaultValue>&quot;Minimum $10K Free Freight Program. $10K per shipment location per purchase order&quot;&amp; &quot; based on standard price. Order must be established on a single order to a single&quot;&amp; &quot; address within the 48 contiguous U.S. states and Canada metropolitan areas only.&quot;&amp; &quot; SPECIAL ACCESSORIAL SERVICE ELIGIBILITY SHALL BE DETERMINED AT VIEWSONIC’S SOLE &quot;&amp; &quot; DISCRETION.&quot;&amp;
+&quot; FOR MULTIPLE ORDERS AND/OR MULTIPLE SHIP-TO ADDRESSES, THE FOLLOWING CHARGES IN USD &quot;&amp;
+&quot; WILL APPLY FOR EACH LOCATION:&quot;&amp;
+BR()+&quot; Liftgate: $129&quot;&amp;
+BR()+&quot; Inside Delivery Service: $75&quot;&amp;
+BR()+&quot; Limited Access Surcharge: $75&quot;&amp;
+BR()+&quot; Multiple PO/Location process handling Fee: $45&quot;</defaultValue>
+    <externalId>false</externalId>
+    <label>Freight Terms</label>
+    <length>3000</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

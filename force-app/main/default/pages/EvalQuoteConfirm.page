@@ -1,0 +1,5 @@
+<apex:page >
+<br><br><b><center>Your quote request has been finalized and both you and your customer will recieve a pdf quote via email. Please ensure that your customer recieved the email as it could get put in their spam folder or stopped by their email server.. </center></b></br></br>
+<center><i>The next step is to receive a PO or confirmation to create an invoice from your customer. This eval will continue on your outstanding until the invoice is sent out. </i></center>
+
+</apex:page>

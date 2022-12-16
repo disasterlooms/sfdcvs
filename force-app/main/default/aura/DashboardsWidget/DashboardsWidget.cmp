@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="Dashboards">
+    <aura:handler name="init" value="{!this}" action="{!c.getDashboards}" />
+    
+    <aura:attribute name="dashboards" type="Wave_Dashboards__c[]"/>
+     <lightning:tabset class="tabcolor">
+        <aura:iteration items="{!v.dashboards}" var="d">
+            <lightning:tab label="{!d.Name}">
+                <wave:waveDashboard dashboardId="{!d.Dashboard_Id__c}" height="1000" showTitle="true" showHeader="true" 
+                                    showSharing="true"/>                
+            </lightning:tab>
+        </aura:iteration>
+    </lightning:tabset>
+</aura:component>

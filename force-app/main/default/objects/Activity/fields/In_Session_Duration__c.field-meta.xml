@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>In_Session_Duration__c</fullName>
+    <description>This is the amount of time the contact was actually &quot;On&quot; the call or Webinar.</description>
+    <externalId>false</externalId>
+    <label>In Session Duration</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

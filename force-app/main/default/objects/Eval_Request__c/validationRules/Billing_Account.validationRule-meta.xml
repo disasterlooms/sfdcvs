@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Account</fullName>
+    <active>true</active>
+    <errorConditionFormula>(Shipping_Contact_Name__r.AccountId = &apos;0011200001Dq2NA&apos; || 
+Billing_Contact_Name__r.AccountId = &apos;0011200001Dq2NA&apos;) &amp;&amp;
+text(Eval_Type__c ) != &apos;ViewSonic Sales Rep Eval&apos; &amp;&amp; text(Eval_Type__c ) != &apos;Oracle&apos;&amp;&amp;  $Organization.Id = &apos;00D7d0000077lG5&apos;</errorConditionFormula>
+    <errorMessage>The Billing Contact &amp; Shpping Contact must be the End User or Reseller. 
+
+It Cannot Be a Viewsonic Contact or Viewsonic Account</errorMessage>
+</ValidationRule>

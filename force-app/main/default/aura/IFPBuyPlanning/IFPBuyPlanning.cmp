@@ -1,0 +1,189 @@
+<aura:component access="global" controller="MyOpportunityPipeline" implements="flexipage:availableForAllPageTypes,force:appHostable">
+    <aura:registerEvent name="showNewProduct" type="c:newproduct" />    
+    <aura:registerEvent name="showOpportunities" type="c:displayopp" />
+    <aura:registerEvent name="showfollowup" type="c:OppPipeFollowUp" />
+    <aura:attribute name="opportunities" type="Opportunity[]" />
+    <aura:attribute name="lineitems" type="OpportunityLineItem[]" />
+    <aura:attribute name="product" type="String" />
+    <aura:attribute name="loading" type="String" default="...loading opps, please await for results"/>
+    <aura:attribute name="reseller" type="String" />
+    <aura:attribute name="shipfrom" type="Date" /> 
+    <aura:attribute name="shipto" type="Date" /> 
+    <aura:attribute name="enduser" type="String" />
+    <aura:attribute name="salesreps" type="String[]" default="0"/>
+    <aura:attribute name="rep" type="String" />
+    <aura:attribute name="family" type="String" />
+    <aura:attribute name="industry" type="String" />
+    <aura:attribute name="status" type="String[]" />
+    <aura:attribute name="industries" type="String[]" />
+    <aura:attribute name="months" type="Date[]" />
+    <aura:attribute name="families" type="String[]" />
+    <aura:attribute name="accounts" type="String" />
+    <aura:attribute name="user" type="User" />
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:attribute name="newprodoppid" type="String" />
+    <aura:attribute name="myDate" type="Date" />
+    <aura:attribute name="parentattribute" type="String"/>
+    <aura:attribute name="spaoppid" type="String" description="one related spa id is clicked. This passes opp id"/>
+    
+    <aura:attribute name="oppid" type="String" default="0061H00000ZJv3oQAD" description="passes id to modal on mouseover" />
+    <c:RecordDataComp /><!--add a modal for preview-->
+    <!-- Value change handler -->
+    <aura:handler name="change" value="{!v.myDate}" action="{!c.handleValueChange}" access="global"/>
+    <aura:handler event="c:oppsearch" action="{!c.myAction}" />
+    <div style="text-align: center" >
+        <ui:button label="Search" press="c.search" />
+        <ui:button label="Clear Filters" press="c.clear" />
+        <ui:button label="Save All Opportunity Info" press="c.pupdate" />
+    </div>
+    <div class="slds-grid slds-grid_pull-padded-medium" onkeyup="{!c.enterkey}">
+        <div class="slds-col slds-p-horizontal_medium">
+            <ui:inputText aura:id="product" label="Product" placeholder="Search by Product - Partial Name is Ok" value="{!v.product}"/>
+            <ui:inputText aura:id="reseller" label="Reseller" placeholder="Search by Reseller - Partial Name is Ok" value="{!v.reseller}"/>
+            <ui:inputText aura:id="enduser" label="End User" placeholder="Search by End User - Partial Name is Ok" value="{!v.enduser}"/>
+            <br/>
+            <lightning:input  aura:id="commit" type="toggle" label="Commited Opp" name="commit" onchange="{!c.commit}" checked="true" required="false" variant="label-hidden" messageToggleInactive="Non Commited Opps" messageToggleActive="Commited Opps"/>
+            <lightning:input  aura:id="likely" type="toggle" label="Likely Products" name="likely" onchange="{!c.likely}" checked="true" required="false" variant="label-hidden" messageToggleInactive="Unlikely Products" messageToggleActive="Likely Product"/>
+            <lightning:input  aura:id="myopps" type="toggle" label="My Opps" name="myopps" onchange="{!c.myopps}" checked="true" required="false" variant="label-hidden" messageToggleInactive="All Opps" messageToggleActive="My Opps"/>
+        </div>
+        <div class="slds-col slds-p-horizontal_medium">
+            <label class="slds-form-element__label" for="select">Product Type</label>
+            <lightning:select name="select" variant="label-hidden" value="{!v.family}" label="Product Type">
+                <aura:iteration items="{!v.families}" var="s">
+                    <option value="{!s}" text="{!s}"></option>
+                </aura:iteration>
+            </lightning:select>
+            <label class="slds-form-element__label" for="select">Industry</label>
+            <lightning:select name="select" variant="label-hidden" value="{!v.industry}" label="Industry">
+                <aura:iteration items="{!v.industries}" var="s">
+                    <option value="{!s}" text="{!s}"></option>
+                </aura:iteration>
+            </lightning:select>
+            <aura:if isTrue="{!v.salesreps.length > 1}">
+                <label class="slds-form-element__label" for="select">Sales Rep</label>
+                <lightning:select name="select" variant="label-hidden" value="{!v.rep}" label="Industry">
+                    <aura:iteration items="{!v.salesreps}" var="s">
+                        <option value="{!s}" text="{!s}" ></option>
+                    </aura:iteration>
+                </lightning:select>
+            </aura:if>
+        </div>
+    </div>
+    <ul> 
+    </ul>
+    
+    <ui:outputtext value="{!v.loading}"/>
+    <div class="hideme" id="spinnerdiv">
+        <div class="demo-only demo--inverse" style="height: 6rem;">
+            <div class="slds-spinner_container" style="height: 600%;">
+                <div role="status" class="slds-spinner slds-spinner--brand slds-spinner--large">
+                    <span class="slds-assistive-text">Loading</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    
+    <!-- Class Calls Pipeline Opportunities and Corresponding Products -->
+    <!--
+         
+    -->
+    <br/>
+    <br/>
+    <div class="slds-grid">
+        
+        <div class="slds-col" style="min-width:20%;max-width:20%;">
+            
+            
+            <table >
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <div class="slds-truncate" title="End Users">Opp Name</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- the record input to be put on each record is too much to load. find a better
+     way to add preview for opps
+      <c:RecordDataComp oppid="{!v.oppid}"/>
+
+      -->
+                    
+                    <aura:iteration items="{!v.lineitems}" var="opp">
+                        <tr >                            
+                            <a>
+                                <lightning:input value="{!opp.Name}" readonly="true" onblur="{!c.hideOpp}" onfocus="{!c.showOpp}" title="{!opp.OpportunityId}" label=""/>
+                            </a>
+                            
+                            
+                        </tr>   
+                    </aura:iteration>
+                </tbody>
+            </table>            
+        </div>
+        
+        
+        <div class="slds-col" style="min-width:20%;max-width:20%;">
+            <table >
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Product">Product</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Likely Purchase">Likely Purchase</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    <aura:iteration items="{!v.lineitems}" var="opp">
+                        <tr>                            
+                            <td style="width:40%">
+                                <lightning:input value="{!opp.Product2.Name}" label="" readonly="true" />
+                            </td>
+                            <td >
+                                <ui:inputCheckbox value="{!opp.Likely_Purchase__c}" label=""/>
+                            </td>
+                        </tr>
+                        
+                    </aura:iteration>
+                </tbody>
+            </table> 
+        </div>
+        
+        <div class="slds-col">
+            
+            
+            <table>
+                <thead>
+                    <tr>
+                        <aura:iteration items="{!v.months}" var="m">
+                            <th scope="col">
+                                <div class="slds-truncate" title="End Users">
+                                    <ui:outputDate value="{!m}" format="MMM" /></div>
+                            </th>
+                        </aura:iteration>
+                    </tr>
+                </thead>
+                <tbody> 
+                    <aura:iteration items="{!v.lineitems}" var="opp">
+                        <tr>
+                            <aura:iteration items="{!opp.OpportunityLineItemSchedules}" var="sch">
+                                <td>
+                                    <lightning:input value="{!sch.Quantity}" type="number" label=""/>
+                                </td>
+                            </aura:iteration>
+                        </tr>
+                        
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+    
+    
+</aura:component>

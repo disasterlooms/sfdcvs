@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <constants>
+        <name>two</name>
+        <dataType>Number</dataType>
+        <value>
+            <numberValue>2.0</numberValue>
+        </value>
+    </constants>
+    <interviewLabel>Eval Attachments Update From Upload {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Eval Attachments Update From Upload</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>EvalRequest_Attachments</name>
+        <label>EvalRequest Attachments</label>
+        <locationX>112</locationX>
+        <locationY>56</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>parent</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Attachments__c</field>
+            <value>
+                <elementReference>two</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Eval_Request__c</object>
+    </recordUpdates>
+    <startElementReference>EvalRequest_Attachments</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>parent</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

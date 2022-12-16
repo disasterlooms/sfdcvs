@@ -1,0 +1,18 @@
+<apex:page >
+
+Content Starts Here/resource/1588020906000/AVSolutionsApplication
+
+ <!--<script>
+        window.location.href = "data:application/pdf;base64,{!$Resource.AVSolutionsApplication}"; // switch between match1,match2
+    </script> -->
+
+
+dd
+
+<object
+        data="{!$Resource.AVSolutionsApplication}"
+        width="100%"
+        style="height: 1500px; border: 1px solid grey;" 
+        type="application/pdf"
+        />
+</apex:page>

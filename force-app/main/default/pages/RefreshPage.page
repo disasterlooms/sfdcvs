@@ -1,0 +1,10 @@
+<apex:page >
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"/>
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<script type = "text/javascript">
+  {        
+       window.top.location='/{!$CurrentPage.Parameters.oppid}';
+       
+    };
+</script>
+</apex:page>

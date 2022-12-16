@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reseller_Direct__c</fullName>
+    <externalId>false</externalId>
+    <formula>Pricebook2.Name != &apos;VSA Distributor Price List&apos; &amp;&amp; text(Opportunity.Country__c) = &apos;United States&apos; &amp;&amp; text(CreatedBy.VS_Sub_Region__c) != &apos;VSA LA&apos;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Reseller Direct</label>
+    <type>Checkbox</type>
+</CustomField>

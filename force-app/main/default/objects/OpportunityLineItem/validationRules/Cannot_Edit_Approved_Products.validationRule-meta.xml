@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Edit_Approved_Products</fullName>
+    <active>false</active>
+    <errorConditionFormula>$User.Alias  != &quot;admin&quot; &amp;&amp; $User.Alias  != &quot;pmark&quot;  &amp;&amp; $User.Alias  != &quot;swang&quot;     &amp;&amp; $User.Alias  != &quot;BidDesk&quot; &amp;&amp;  not(isblank(Approved_Price__c ))</errorConditionFormula>
+    <errorMessage>You cannot change any product line information after spa approval. You must use Spa Resubmission Note</errorMessage>
+</ValidationRule>

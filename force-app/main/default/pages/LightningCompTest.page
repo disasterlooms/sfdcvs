@@ -1,0 +1,17 @@
+<apex:page >
+    <apex:includeScript value="/lightning/lightning.out.js"/>
+    <apex:includeLightning />
+
+    <div id="lightning" />
+
+    <script>  
+        $Lightning.use("c:TestingApp", function() {
+          $Lightning.createComponent("c:test1",
+          { label : "" },
+          "lightning",
+          function(cmp) {
+            // do some stuff
+          });
+        });
+    </script>
+</apex:page>

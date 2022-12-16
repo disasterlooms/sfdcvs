@@ -1,0 +1,69 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,lightning:availableForFlowScreens" controller="EvalContacts" access="global" >
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:attribute type="string" name="billingstate" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="quoteId" type="String" />
+    <aura:attribute name="shipCon" type="Contact" />
+    <aura:attribute name="resellerCon" type="Contact" />
+    <aura:attribute name="resellerConExists" type="Boolean" default="false"/>
+    <aura:attribute name="billCon" type="Contact" />
+    <aura:attribute name="evalRequest" type="Eval_Request__c" />
+    <aura:attribute name="opp" type="Opportunity" />    
+    <aura:attribute name="toggleClass" default="slds-hide" type="String"/>
+     
+    
+    <aura:attribute name="createQuote" type="Eval_Quote__c" default="{'sobjectType': 'Eval_Quote__c'}"/>
+    
+    <aura:attribute name="Billing_Street__c" type="String"/>
+    <aura:attribute name="Billing_City__c" type="String"/>
+    <aura:attribute name="Billing_State__c" type="String"/>
+    <aura:attribute name="Billing_Zip_Postal__c" type="String"/>
+    <aura:attribute name="Billing_Country__c" type="String"/> 
+    <aura:attribute name="Billing_Contact_Name__c" type="String"/>
+    <aura:attribute name="Billing_Contact_Email__c" type="String"/>
+    <aura:attribute name="companyName" type="String"/>
+    <aura:attribute name="Billing_Contact_Phone__c" type="String"/>
+    
+    <lightning:card>
+        <aura:set attribute="actions">
+            <button class="slds-button slds-button_neutral" onclick="{!c.billCon}">Billing Contact Info</button>
+            <button class="slds-button slds-button_neutral" onclick="{!c.shipCon}">Shipping Contact Info</button>
+            <aura:if isTrue="{!v.resellerConExists}" >
+                <button class="slds-button slds-button_neutral" onclick="{!c.resellerCon}">Reseller Contact Info</button>
+            </aura:if>
+        </aura:set>
+        <lightning:spinner aura:id="mySpinner" class="{!v.toggleClass}" alternativeText="Retrieving Info"/>
+        <lightning:recordEditForm
+                                  onload="{!c.handleLoad}"
+                                  onsubmit="{!c.handleSubmit}"
+                                  onerror="{!c.handleError}"
+                                  onsuccess="{!c.handleSuccess}"
+                                  objectApiName="Eval_Quote__c">
+            <!-- the messages component is for error messages -->
+            <lightning:messages />
+            
+            <lightning:inputField fieldName="Billing_Company_Name__c" value="{!v.companyName}"/>
+            <lightning:inputField fieldName="Billing_Contact_Phone__c" value="{!v.Billing_Contact_Phone__c}"/>
+            <lightning:inputField fieldName="Billing_Street__c" value="{!v.Billing_Street__c}"/>
+            <lightning:inputField fieldName="Billing_City__c" value="{!v.Billing_City__c}"/>
+            <lightning:inputField fieldName="Billing_State__c" value="{!v.Billing_State__c}"/>
+            <lightning:inputField fieldName="Billing_Zip_Postal__c" value="{!v.Billing_Zip_Postal__c}"/>
+            <lightning:inputField fieldName="Billing_Country__c" value="{!v.Billing_Country__c}"/>
+            <lightning:inputField fieldName="Billing_Contact_Name__c" value="{!v.Billing_Contact_Name__c}"/>        
+            <lightning:inputField fieldName="Billing_Contact_Email__c" value="{!v.Billing_Contact_Email__c}"/>
+            <lightning:inputField fieldName="Eval_Request__c" value="{!v.recordId}"/>
+            
+            <footer class="slds-modal__footer">
+                <lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save and Next" />
+            </footer>
+        </lightning:recordEditForm>
+        
+        <!--
+        <aura:set attribute="footer">
+            <lightning:button aura:id="NEXT" label="Next" 
+                              variant="brand" onclick="{!c.nextScreen}" />   
+        </aura:set>
+-->
+    </lightning:card>
+    
+</aura:component>

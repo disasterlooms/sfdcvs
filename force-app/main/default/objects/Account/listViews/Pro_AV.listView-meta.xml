@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pro_AV</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>AV_Solutions_Partner__c</columns>
+    <columns>HQ_Account_Check_if_HQ__c</columns>
+    <columns>Evals_Past_Due__c</columns>
+    <columns>ACCOUNT.LAST_ACTIVITY</columns>
+    <columns>AV_Lead_Source__c</columns>
+    <columns>AV_Network__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>MyTeamTerritory</filterScope>
+    <filters>
+        <field>ACCOUNT.INDUSTRY</field>
+        <operation>equals</operation>
+        <value>AV Solution</value>
+    </filters>
+    <filters>
+        <field>Account_Type__c</field>
+        <operation>equals</operation>
+        <value>VAR</value>
+    </filters>
+    <label>AP 1 - My Pro AV Accounts</label>
+    <sharedTo>
+        <roleAndSubordinatesInternal>VSA_US_AV_Solutions_Sales</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

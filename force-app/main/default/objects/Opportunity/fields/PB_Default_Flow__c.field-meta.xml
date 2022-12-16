@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PB_Default_Flow__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>supresses Price Book Default Flow when the Expired products flow is running. This is to clear out expired opportunity products that are on the opp page that can cause errors to other flows or updates. need to clear out these fields when the products expire.</description>
+    <externalId>false</externalId>
+    <label>PB Default Flow</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Return_Date__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(text( Eval_Type__c )= &apos;ViewSonic Sales Rep Eval&apos;,  null ,
+if(text(Eval_Type__c) =&apos;Reseller Demo&apos; , Latest_Ship_Date__c +185,
+if(ispickval(Eval_Type__c,&quot;Write-Off&quot;), null,
+if(Product_Class__c = 1, Latest_Ship_Date__c +185, 
+Latest_Ship_Date__c +95 ))))</formula>
+    <label>New Return Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

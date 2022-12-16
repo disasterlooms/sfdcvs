@@ -1,0 +1,84 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="getSpas">
+    <aura:attribute name="recordId" type="String" access="public"/>
+    <aura:attribute name="quotes" type="Quote[]" access="public"/>
+    <aura:attribute name="id" type="String" default="" access="GLOBAL"/>
+    <aura:handler name="init" value="{!this}" action="{!c.getProducts}"/>
+    <aura:attribute name="showProds" type="boolean" default="false" access="public"/>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="slds-hide" variant="brand" size="large"/>
+    </div>    
+    <div class="flexipageComponent" data-aura-class="flexipageComponent">
+        <article class="slds-card">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate"><div class="slds-media__body">
+                    <h2>
+                        <span class="slds-text-heading_small">Related Spas</span>
+                    </h2>
+                    </div>
+                </header>
+            </div>
+            
+            <aura:if isTrue="{!v.showProds}">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Name">Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Status">Status</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Expiration Date">Expiration Date</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Bid Registered">Bid Registered</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Specialty">Specialty</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Approval Date">Approval Date</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.quotes}" var="p">
+                        <tr>
+                             <td>
+                                <!--<ui:outputText value="{!p.Name}"/>-->
+                                 <span class="slds-text-heading_small">
+                                <a href="{!'/lightning/r/Quote/'+p.Id+'/view'}">{!p.Name}</a>
+                            </span>
+                                
+                            </td>
+                            <td>
+                                <ui:outputText value="{!p.Status}"/>
+                                
+                            </td>
+                            <td>
+                                <ui:outputDate value="{!p.ExpirationDate}" format="MM/dd/yy"/>
+                            </td>
+                            <td>
+                                <ui:outputCheckbox value="{!p.Bid_Registered__c}"/> 
+                            </td>
+                            <td>
+                                <ui:outputText value="{!p.Specialty_Spa__c}"/> 
+                            </td>
+                            <td>
+                                <ui:outputDate value="{!p.Recent_Approval_Date__c }" format="MM/dd/yy"/> 
+                            </td>
+                            
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+                <aura:set attribute="else">
+                There are no other spas
+                </aura:set>
+
+                </aura:if>
+            
+        </article> 
+    </div>        
+</aura:component>

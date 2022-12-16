@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_Customer_Id_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(VS_Region__c, &apos;VSE&apos;), Customer_External_Customer_Id__c,null)
+/*
+CASE(distributor__r.Name, 
+					&apos;ALSO Deutschland GmbH&apos;,  Customer_External_Customer_Id__c, 
+					&apos;Ingram Micro Distribution GmbH&apos;, KundeNr_External_Customer_Id__c, 
+					&apos;Computation Systemhaus GmbH&apos;, CustomerID_External_Customer_Id__c, 
+					&apos;Delo Computer GmbH&apos;, KD_Nr_External_Customer_Id__c,
+					&apos;Herweck AG&apos;, Kundenummer_External_Customer_Id__c,
+					&apos;Schuss AV-Projektionssysteme GmbH&apos;, Custumer_Number_External_Customer_Id__c,
+					&apos;Tarox AG&apos;,  KDNUMM_External_Customer_Id__c,
+					&apos;prodyTel Distribution GmbH&apos;,  gerPOS_KdNr_External_Customer_Id__c, 
+					null)
+					*/</formula>
+    <label>External Customer Id</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

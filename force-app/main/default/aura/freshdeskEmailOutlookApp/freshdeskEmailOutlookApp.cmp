@@ -1,0 +1,28 @@
+<aura:component
+    implements="lightning:availableForFlowScreens,clients:availableForMailAppAppPage,force:appHostable,flexipage:availableForAllPageTypes,clients:hasEventContext,clients:hasItemContext"
+    controller="OutlookEmailPane">
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:attribute name="people" type="Object" />
+    <aura:attribute name="subject" type="String" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="dates" type="Object" />
+    <aura:attribute name="messageBody" type="String" />
+    <aura:attribute name="submission" type="Boolean" default="true" />
+    <aura:handler name="change" value="{!v.refreshString}" action="{!c.itemsChange}" />
+
+
+    <aura:if isTrue="{!v.submission}">
+        <h1>Please fill out all fields to submit ticket for customer to customer service.</h1>
+        <lightning:recordEditForm objectApiName="Contact">
+            <lightning:inputField fieldName="AccountId" aria-required="true"
+             value="{!v.recordId}" required="true" />
+        </lightning:recordEditForm>
+        <c:createFresh_Ticket accountId="{!v.recordId}" subject="{!v.subject}" email="{!v.people.from.email}"
+            name="{!v.people.from.name}" outlook="true" refreshcmp="{!v.refreshString}"
+            onvaluechange="{!c.itemsChange}" />
+        <aura:set attribute="else">
+            The ticket has been successfully submited. Please give 24 hours to see in the full Freshdesk ticket
+            application.
+        </aura:set>
+    </aura:if>
+</aura:component>

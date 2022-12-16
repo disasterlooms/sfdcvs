@@ -1,0 +1,6 @@
+<design:component>
+    <design:attribute name="recordsReturned" description="The collection of Eval Units."/>
+    <design:attribute name="recordId" description="RecordId from the master record"/>
+    <design:attribute name="RMA" description="RMA for the Eval if needed"/>
+    <design:attribute name="quoteId" description="Quoteid if it is set"/>
+</design:component>

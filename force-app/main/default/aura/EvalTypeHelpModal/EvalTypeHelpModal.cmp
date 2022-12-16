@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId" access="global">
+    <aura:attribute name="help" type="boolean" default="true"/>
+    <div aria-hidden="false">
+        <img src="{!'/resource/1508265521000/EvalReqTypeCheatSheet'}"></img>  
+    </div>
+</aura:component>

@@ -1,0 +1,14 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="languageDefault_Iso" type="string"/>
+    
+    <div class="pp-signup">
+    	<div class="pp-col-text">
+            <p>{!$Label.c.pp_SignUP_Intro}</p>
+            <span><span class="pp-asterisk">*</span> {!$Label.c.All_Fields_Required_Aster} </span>
+            <div class="pp-btn">
+                <a class="pp-signup" onclick="{!c.callToAction}">{!$Label.c.pp_signUP_callToAction}</a>  
+                {!v.body}
+            </div>
+         </div> 
+    </div>
+</aura:component>

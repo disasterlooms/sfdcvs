@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>42.0</apiVersion>
+    <description>Lets users no there are no products on app and will get error on spa create...utilizes the page filter criteria</description>
+</AuraDefinitionBundle>

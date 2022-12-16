@@ -1,0 +1,3 @@
+<apex:page standardcontroller="Opportunity" action="URLFOR($Action.Eval_Request__c.New, Opportunity.Id)">
+
+</apex:page>

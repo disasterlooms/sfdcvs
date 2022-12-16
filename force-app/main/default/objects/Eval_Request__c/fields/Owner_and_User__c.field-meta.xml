@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Owner_and_User__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( Evaluation_Owner__c  =   $User.Contact_ID__c  ,true,
+if( $UserRole.Id= &apos;00EA0000000MBWl&apos;,true,
+false))</formula>
+    <label>Owner and User</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

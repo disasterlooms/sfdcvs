@@ -1,0 +1,52 @@
+<aura:component implements="lightning:availableForFlowScreens,force:lightningQuickAction,lightning:actionOverride" controller="NewEval"  access="global">
+     <aura:attribute name="owner" type="String" />
+     <aura:attribute name="type" type="String" />
+     <aura:attribute name="trade" type="String" />
+     <aura:attribute name="tradeinfo" type="boolean" default="false" />
+     <aura:attribute name="etype" type="String[]" />
+     <aura:attribute name="options" type="String[]" />
+     <aura:attribute name="help" type="boolean" default="false"/>
+     <aura:attribute name="transferEval" type="boolean" default="false" />
+     <aura:attribute name="evalId" type="String" />
+
+     <aura:attribute name="product1" type="String" />
+     <aura:attribute name="product2" type="String" />
+     <aura:attribute name="product3" type="String" />
+     <aura:attribute name="product4" type="String" />
+     <aura:attribute name="product5" type="String" />
+
+     <aura:attribute name="quantity1" type="String" />
+     <aura:attribute name="quantity2" type="String" />
+     <aura:attribute name="quantity3" type="String" />
+     <aura:attribute name="quantity4" type="String" />
+     <aura:attribute name="quantity5" type="String" />
+     
+     <aura:handler name="init" action="{!c.etype}" value="{!this}" />
+	 <aura:handler name="change" action="{!c.neweval}" value="{!this}" />
+    
+     <div class="slds-truncate">
+         <label class="col-sm-2 control-label">
+         	<abbr class="slds-required" title="required">*</abbr>Evaluation Type (Who is going to be financially responsible?)
+         </label>
+         <lightning:select name="select" variant="label-hidden" value="{!v.type}">
+             <aura:iteration items="{!v.etype}" var="t">
+                 <option value="{!t}" text="{!t}"></option>
+            </aura:iteration>
+         </lightning:select>
+         <a class="uiOutputURL" onclick="{!c.showhelp}">Eval Type Help? Click Here for Cheat Sheet</a>
+         <br/>
+         <br/>
+         <ui:inputCheckbox label="Trade Show" value="{!v.trade}" click="{!c.trade}"/>
+         <br/>
+          	<aura:if isTrue="{!v.tradeinfo}">
+                <lightning:icon iconName="utility:warning" size="large" alternativeText="You cannot waive agreeement!"/>
+                <br/>You cannot waive agreement if you select End User/Reseller/Disty
+                <br/>No exceptions.
+                <br/> If you select Sales Rep and unit is not returned,                
+                <br/>You agree to be personally financially responisble.
+               
+         	</aura:if>
+         </div>
+	<br/>
+    <ui:button label="Create Eval" press="c.type" />
+</aura:component>

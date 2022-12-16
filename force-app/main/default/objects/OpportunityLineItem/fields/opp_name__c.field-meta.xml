@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>opp_name__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( Opportunity.Old_Spa_ID__c &lt;&gt; null, true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Opp Name</label>
+    <type>Checkbox</type>
+</CustomField>

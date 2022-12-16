@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	 <lightning:flow aura:id="flow" onstatuschange="{!c.statusChange}"/>
+    test
+</aura:component>

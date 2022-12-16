@@ -1,0 +1,39 @@
+<apex:page StandardController="Contact" extensions="AcctConOwners" >
+  <!--
+<apex:outputpanel style="display: none;">
+  {!Contact.Id}
+  {!Contact.OwnerId}
+  {!Contact.MailingState}
+  {!Contact.AccountId}
+  {!Contact.Account.State__c}
+  {!Contact.Account.Account_Type__c}
+
+  </apex:outputpanel>
+<apex:pageMessages />
+<apex:form >
+
+<apex:actionFunction name="update" action="{!updateowners}"/>
+</apex:form>
+  <script>
+ console.log('state '+'{!Contact.Account.State__c}');
+ console.log('type '+'{!Contact.Account.Account_Type__c}');
+ var type = '{!if(Contact.Account.Account_Type__c !='End User' && not(Contains(Contact.Account.Account_Type__c, 'VAR')) = true, true,false)}';
+ console.log(type);
+ if('{!Contact.Account.State__c}' == '' && {!len(Contact.MailingState) != 2} ){
+
+  alert('The Account is State is blank, please update the Account State. When you click ok, you will be sent to the account edit page. After editing, you will need to click update owners on the contact page. Thank You ');
+  location.href = '/{!Contact.AccountId}/e?retURL={!Contact.Id}&saveURL={!Contact.Id}';
+ }else if( type == 'true'){ 
+
+ alert('The account type is not SPG or End User. To update the account owner, please do manually or update the account type. When you click ok, you will be sent to the account edit page. After editing, you will need to click update owners on the contact page. Thank You ');
+    location.href = '/{!Contact.AccountId}/e?retURL={!Contact.Id}&saveURL={!Contact.Id}';
+
+ } else{
+
+    update();
+ }
+
+
+  </script>
+  -->
+</apex:page>

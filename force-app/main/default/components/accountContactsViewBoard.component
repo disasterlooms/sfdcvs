@@ -1,0 +1,46 @@
+<apex:component controller="accountVBContact" access="global">
+<apex:attribute name="accountId" type="Id" description="Id of the account" assignTo="{!accId}"/>
+<apex:attribute name="name" type="String" description="Id of the account" />
+<apex:attribute name="street" type="String" description="Id of the account" />
+<apex:attribute name="city" type="String" description="Id of the account" />
+<apex:attribute name="state" type="String" description="Id of the account" />
+<apex:attribute name="zip" type="String" description="Id of the account"/> 
+<apex:attribute name="phone" type="String" description="Id of the account"/>
+<apex:attribute name="rep" type="String" description="Id of the account"/>
+<apex:attribute name="type" type="String" description="Id of the account"/>
+<apex:attribute name="sso" type="String" description="Id of the account"/> 
+<apex:attribute name="cloud" type="String" description="Id of the account"/>
+<apex:attribute name="conference" type="String" description="Id of the account"/> 
+<apex:attribute name="soft" type="String" description="Id of the account"/>         
+
+<apex:attribute name="rep" type="Id" description="Id of the account"/>        
+        
+<br/><b>Entity Type: </b>{!type}
+<br/><b>Company or District Name: </b>{!name}
+<br/><b>Phone: </b>{!phone}
+<br/><b>Street: </b>{!street}
+<br/><b>City: </b>{!city}
+<br/><b>State: </b>{!state}
+<br/><b>Zip: </b>{!zip}
+<br/>
+<br/><b>Sales Rep: </b>{!rep}
+<br/><b>Cloud Service: </b>{!cloud}
+<br/><b>SSO Type: </b>{!sso}
+<br/><b>Conference Software: </b>{!conference}
+<br/><b>Software being Used: </b>{!soft}
+<br/><br/>
+<table border="0" >
+                 <tr > 
+                     <th>Contact Name</th><th>Contact Phone</th><th>Contact Email</th><th>User Type</th>
+                  </tr>
+<apex:repeat var="c" value="{!cons}" >
+       <tr>  
+            <td>{!c.Name}</td>
+            <td>{!c.Phone}</td>
+            <td>{!c.Email}</td>
+            <td>{!c.ViewBoard_User_Type__c}</td>
+        </tr>
+ </apex:repeat>  
+ </table>
+ 
+ </apex:component>

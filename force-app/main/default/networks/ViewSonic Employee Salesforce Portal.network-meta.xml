@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowInternalUserLogin>false</allowInternalUserLogin>
+    <allowMembersToFlag>false</allowMembersToFlag>
+    <allowedExtensions>png,pdf,jpg,gif,jpeg,xls,xlsx,mp4,csv</allowedExtensions>
+    <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
+    <communityRoles>
+        <customerUserRole>Employee</customerUserRole>
+        <employeeUserRole></employeeUserRole>
+        <partnerUserRole>Administrator</partnerUserRole>
+    </communityRoles>
+    <description>Allows employees that support sales to assist with communities and sales support processs</description>
+    <disableReputationRecordConversations>false</disableReputationRecordConversations>
+    <emailSenderAddress>jason.orbison@viewsonic.com</emailSenderAddress>
+    <emailSenderName>Partner Portal Admin</emailSenderName>
+    <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
+    <enableDirectMessages>true</enableDirectMessages>
+    <enableExperienceBundleBasedSnaOverrideEnabled>false</enableExperienceBundleBasedSnaOverrideEnabled>
+    <enableGuestChatter>true</enableGuestChatter>
+    <enableGuestFileAccess>true</enableGuestFileAccess>
+    <enableGuestMemberVisibility>false</enableGuestMemberVisibility>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>true</enableKnowledgeable>
+    <enableMemberVisibility>false</enableMemberVisibility>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enablePrivateMessages>true</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <enableShowAllNetworkSettings>true</enableShowAllNetworkSettings>
+    <enableSiteAsContainer>true</enableSiteAsContainer>
+    <enableTalkingAboutStats>false</enableTalkingAboutStats>
+    <enableTopicAssignmentRules>true</enableTopicAssignmentRules>
+    <enableTopicSuggestions>true</enableTopicSuggestions>
+    <enableUpDownVote>true</enableUpDownVote>
+    <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
+    <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
+    <networkMemberGroups>
+        <profile>sfdc admin</profile>
+        <profile>viewsonic employee channel admin</profile>
+        <profile>partner viewsonic channel marketing</profile>
+        <profile>platform accounting</profile>
+        <profile>custom platform user</profile>
+        <profile>channel marketing</profile>
+        <profile>salesforce platform custom</profile>
+        <profile>viewsonic employee portal</profile>
+        <profile>viewsonic employee portal credit</profile>
+        <profile>viewsonic employee portal sales admin</profile>
+        <profile>viewsonic employee portal customer service</profile>
+        <profile>viewsonic employee login channel admin</profile>
+        <profile>salesforce platform channel marketing</profile>
+    </networkMemberGroups>
+    <networkPageOverrides>
+        <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
+        <forgotPasswordPageOverrideSetting>Standard</forgotPasswordPageOverrideSetting>
+        <homePageOverrideSetting>Designer</homePageOverrideSetting>
+        <loginPageOverrideSetting>Standard</loginPageOverrideSetting>
+        <selfRegProfilePageOverrideSetting>Designer</selfRegProfilePageOverrideSetting>
+    </networkPageOverrides>
+    <picassoSite>ViewSonic_Employee_Salesforce_Portal1</picassoSite>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>false</sendWelcomeEmail>
+    <site>ViewSonic_Employee_Salesforce_Portal</site>
+    <siteArchiveStatus>NotArchived</siteArchiveStatus>
+    <status>Live</status>
+    <tabs>
+        <customTab>Spiff_Request__c</customTab>
+        <customTab>Eval_Quote__c</customTab>
+        <customTab>Eval_Requests</customTab>
+        <customTab>Eval_Request__c</customTab>
+        <customTab>Eval_Unit_Details__c</customTab>
+        <defaultTab>Chatter</defaultTab>
+        <standardTab>Chatter</standardTab>
+        <standardTab>Account</standardTab>
+        <standardTab>Contact</standardTab>
+        <standardTab>Opportunity</standardTab>
+        <standardTab>Quote</standardTab>
+    </tabs>
+    <urlPathPrefix>employee</urlPathPrefix>
+    <welcomeTemplate>Partner_Program_Portal/CommunityWelcomeEmailTemplate</welcomeTemplate>
+</Network>

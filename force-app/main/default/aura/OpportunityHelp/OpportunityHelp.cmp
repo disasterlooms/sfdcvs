@@ -1,0 +1,58 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute type="string" name="videopage" />
+    <aura:attribute name="greeting" type="String" default="Hello" access="global" />
+    <aura:attribute name="subject" type="String" default="World" access="global" />   
+    
+    <div class="slds-section" aura:id="helpsection">
+        <button aria-controls="expando-unique-id" aria-expanded="false" class="slds-button" onclick="{!c.showOppmodal}">
+            <!--<svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch" />
+      </svg>-->
+            <lightning:icon iconName="standard:question_feed" size="small"/>
+            <span class="slds-truncate" title="Section Title">&nbsp;&nbsp; Click for Help</span>
+        </button>
+        <div aria-hidden="true" class="slds-section__content" id="helpsection">
+            
+            
+           
+            
+        </div>
+    </div>
+    
+    <div aria-hidden="true" role="dialog" class="slds-modal slds-modal--large slds-fade-in-hide" aura:id="modaldialog">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+              <h2 class="slds-text-heading--medium">Opportunity Help Page</h2>
+               <button class="slds-button slds-button--icon-inverse slds-modal__close" onclick="{!c.hideModal}">
+                <span class="slds-assistive-text">Close</span>
+              </button>
+            </div>
+          <div class="slds-modal__content">
+               <div class="slds-grid slds-grid_vertical">
+                    <div class="slds-container_small">
+                        <lightning:card title="Create a Spa">
+                            <cloudx_cms:SS_uiVideoBanner videoUrl="https://www.youtube.com/embed/hWvE99Cciso" autoPlay="false" 
+                                                         showVideoControls="true" title=""/>
+                        </lightning:card>
+                    </div>
+                    <div class="slds-container_small">            
+                    </div>
+                    <div class="slds-container_small">            
+                    </div>
+                </div>
+            </div>
+          <div class="slds-modal__footer">
+            <div class="slds-x-small-buttons--horizontal">
+              <button class="slds-button slds-button--neutral" onclick="{!c.hideModal}">Close</button>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    
+        <div class="slds-backdrop slds-backdrop--hide" aura:id="backdrop">
+          
+      </div>
+    
+    
+</aura:component>

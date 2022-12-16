@@ -1,0 +1,358 @@
+<apex:page standardcontroller="Opportunity" id="spacreation" docType="html-5.0" >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<title>ViewSonic SPA Creation</title>
+ <!--<apex:remoteObjects >
+<apex:remoteObjectModel name="PricebookEntry" fields="Name,Id,IsActive,ProductCode,Pricebook2Id,Product2Id">
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+<style>
+    .modal {    
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+</style>
+
+<script>    
+function setFocusOnLoad() {}
+    jQuery(document).ready(function ($) {
+    // set required fields
+    setTimeout(hideelements, 10);
+    
+    $('label[for="prodm"]').hide(); 
+    $("[id$=quantity]").wrapAll("<div class='requiredInput' id='rblock'></div>");
+    $("<div class='requiredBlock' id='rblock'></div>").insertBefore("[id$=quantity]");
+    $("input[id$=name]").val("New Opportunity Created");
+    $("input[id$=prodm_lkid]").val("{!$CurrentPage.parameters.prodid}");
+    $("input[id$=prodm_lkold]").val("{!$CurrentPage.parameters.prodname}");    
+    $("input[id$=prodm]").val("{!$CurrentPage.parameters.prodname}");
+    
+    if('{!$User.Country}' =='United States' || '{!$User.Country}' =='Canada'){    
+    document.getElementById("spacreation:form:pb:psect:country").value = "{!$User.Country}";
+    
+    }else{
+    document.getElementById("spacreation:form:pb:psect:country").value = "Latin America";
+    }
+    var ct = document.getElementById("country");
+    //console.log(ct);  
+    $(".hideListButton").remove();
+    //$("input[id$=prodqty]").val(10);
+    //$("input[id$=oppidold_lkid]").val("{!$CurrentPage.parameters.id}");
+    $("[id$=acct]").val('{!$CurrentPage.parameters.enduserid}');
+    $("[id$=eu_lkold]").val('{!$CurrentPage.parameters.endusername}');
+    $("input[id$=eu]").val("{!$CurrentPage.parameters.endusername}");
+    $("input[id$=eu_lkid]").val("{!$CurrentPage.parameters.enduserid}");
+    $("input[id$=reseller]").val("{!$CurrentPage.parameters.resellername}");
+    $("input[id$=reseller_lkid]").val("{!$CurrentPage.parameters.resellerid}");
+    
+    //set reseller direct  
+    $("[id$=direct]").val('{!if($CurrentPage.parameters.resellerdirect='',false,$CurrentPage.parameters.resellerdirect)}');
+    
+     //var id = $("input[id$=oppidold_lkid]").val();
+     //$("input[id$=oppidold_lkold]").val("{!$CurrentPage.parameters.oppname}");
+     var name = $("input[id$=oppidold_lkold]").val();
+     $("input[id$=oppidold]").val("{!$CurrentPage.parameters.oppname}");
+     //$("input[id$=prodbtn]")..prop("disabled",true);
+     var id = '{!$CurrentPage.parameters.id}';
+     //console.log(name);
+     //console.log(id);
+     if('{!$CurrentPage.parameters.pricebookblock}' == '1'){ 
+     $("input[id$=pricebookid]").prop("disabled", true);
+     document.getElementById("pageclone:form:pb:psect:pricebookid_lkwgt").style.display = 'none';
+
+     } 
+    $(".slds-select option[value='Master Spa']").each(function() {
+    $(this).remove();
+        });
+     });
+    function formswitch(){
+         var $j = jQuery.noConflict();
+         var roll = $j("[id$=roll]").val();
+         var qty =  $j("[id$=quantity]").val();
+         var type = $j("[id$=type]").val();
+         var time =  $j("[id$=time]").val();
+         var freq = $j("[id$=freq]").val();
+         var errmsg = "<span class='errorMsg'><strong> * This Field is Required!</strong></span>"
+        // console.log(roll+' '+qty+' '+type+' '+time+' '+freq)
+         if(type =="Project" && roll != '' &&  qty != ''){
+            $j("[id$=prodbtn]").hide();
+            $j("[id$=spacreatebtn]").show();
+            $j("[id$=saveonlybtn]").show();
+            $j("[id$=prodinfo]").hide();
+            $j("[id$=spapanel]").show();
+        }else if(type =="Project"){
+            
+            if(roll ==''){
+                $( "[id$=roll]" ).addClass( "viewsonic slds-input error" );
+                $( errmsg ).insertAfter( $( "[id$=roll]" ) );
+            }
+            if(qty ==''){
+                $( "[id$=quantity]" ).addClass( "viewsonic slds-input error" );
+                $( errmsg  ).insertAfter( $( "[id$=quantity]" ) );
+            }    
+
+             alert('Error! Please complete required field(s) in red.');   
+
+        }else if(type =="Run Rate" && time !='' && freq != '' && roll != '' &&  qty != ''){
+            
+            $j("[id$=prodbtn]").hide();
+            $j("[id$=spacreatebtn]").show();
+            $j("[id$=saveonlybtn]").show();
+            $j("[id$=prodinfo]").hide();
+            $j("[id$=spapanel]").show();
+        }else{
+            
+            if(time ==''){
+                $( "[id$=time]" ).addClass( "viewsonic slds-input error" );
+                $( errmsg  ).insertAfter( $( "[id$=time]" ) );
+            }
+            if(freq ==''){
+                $( "[id$=freq]" ).addClass( "viewsonic slds-input error" );
+                $(errmsg  ).insertAfter( $( "[id$=freq]" ) );
+            }
+            if(roll ==''){
+                $( "[id$=roll]" ).addClass( "viewsonic slds-input error" );
+                $( errmsg  ).insertAfter( $( "[id$=roll]" ) );
+            }
+            if(qty ==''){
+                $( "[id$=quantity]" ).addClass( "viewsonic slds-input error" );
+                $( errmsg  ).insertAfter( $( "[id$=quantity]" ) );
+            } 
+            alert('Error! Please complete required field(s) in red.');
+        }
+            }
+    function spacreate(oppid,type,pbid,qty,prodid){
+        $('[id$=loadingmessage]').show();
+        //console.log('opp created and id is '+oppid);
+        if(oppid==''){console.log('error message: {!messages}');
+        messages();
+        $("[id$=loadingmessage]").hide();
+        }else{
+         $("[id$=loadingmessages]").show();
+         //$("[id$=prodinfo]").hide();
+         //$("[id$=spapanel]").hide();
+         //$("[id$=loadingscreen]").show();
+         
+         
+         //alert('Your Products, Accessories, and Parnters are being Created. The next screen will look like nothing is happening, but a lot is happening. Click Okay and Allow everything to be finalized.\n\nOnce it is created, you will be able to removed any products and/or partners before converting to spa');  
+        //window.location = '/apex/OpportunitySpaCreate?id='+oppid+'&prodid={!$CurrentPage.parameters.prodid}&spacreate='+decodeURIComponent(type);
+        window.location = '/flow/OpportunitySpaAddAccessories?oppid='+oppid+'&prodid='+prodid+'&pricebook='+pbid+'&Quantity='+qty+'&retURL=/apex/OpportunitySpaCreate?id='+oppid+'&spacreate='+decodeURIComponent(type);
+
+
+        $("[id$=loadingmessage]").hide();
+        }
+    }
+    function getActive(selectedValue){
+        var otype = selectedValue;
+        if(otype =='Run Rate'){
+            $("[id$=runrate]").show();
+            //$("label[for='spacreation:form:pb:quantityprice:quantity']").text("Product Quantity Per Period");
+           
+        }else{
+            $("[id$=runrate]").hide();
+        }
+       
+        }
+        
+        //check if product is active in default or selected pricebook
+        prodactive();
+        function prodactive() {      
+        var prod =  '{!$CurrentPage.parameters.prodname}';
+        //console.log(prod);
+        //get pricebook id that was selected but if none, use vsa distributor as default  spacreation:form:pb:psect:pricebookid_lkid
+        
+        var prbk =  $('[id$=pricebookid_lkid]').val(); 
+        if(prbk=='000000000000000'){
+        var prbk = '01sA00000008gzSIAQ'
+        }else{
+        }
+        //query pricebook entries and check if active
+        var pbe = new SObjectModel.PricebookEntry();
+        pbe.retrieve({
+            where: {
+                ProductCode: {
+                    eq: prod
+                }, Pricebook2Id: {
+                    eq: '01sA00000008gzSIAQ'
+                }
+            },
+            limit: 1
+        }, function(err, records, event) {
+            records.forEach(function(record) {
+                // check the product acitve
+                var act = record.get("IsActive");
+                if(act == false){
+                alert('Error! You cannot use this product '+prod+' , it is inactive in this price book. Please choose an active product, or you will get an error if you do not select a pricebook the product is active in!');
+                //window.location = '/apex/OpportunitySpaProductsolutionCreate';
+                }
+                console.log(act);
+            });
+        });
+    };
+
+</script>
+<script>
+ 
+ function hideelements(){
+    //document.getElementById("runrate").setAttribute("style", "display:none;");
+    $("[id$=runrate]").attr("style","display:none;");
+    $("[id$=time]").wrapAll("<div class='requiredInput' id='rblock'></div>");
+    $("<div class='requiredBlock' id='rblock'></div>").insertBefore("[id$=time]");
+    $("[id$=freq]").wrapAll("<div class='requiredInput' id='rblock'></div>");
+    $("<div class='requiredBlock' id='rblock'></div>").insertBefore("[id$=freq]");
+ }
+</script>
+<style>
+label[for="pageclone:form:pb:psect3:oppidold"] { display: none;}
+</style>
+
+<apex:outputpanel id="mssgs">
+<apex:messages />
+</apex:outputpanel>
+    <apex:sectionheader title="New Spa" subtitle="{!IF(ISNULL(Opportunity.Name), 'Creating a SPA with full Product Solution',Opportunity.Name)}"/>
+    <c:CreateRecordsQuick />
+    
+    
+
+
+
+
+
+
+    <apex:form id="form" >
+    <c:LoadSave />
+        <apex:pageblock mode="edit" title="{!$ObjectType.Opportunity.label} Edit" id="pb">
+            <apex:pageblockbuttons id="buttons">
+                <a  class="btn btn-red-text" onclick="formswitch();" id="prodbtn">Save &amp; Continue</a> 
+                <a id="spacreatebtn" style="display:none;" class="btn btn-red-text" onclick="$('[id$=loadingmessage]').show();saveoppnow1();">Submit SPA</a>
+                <apex:actionfunction action="{!QuickSave}" rerender="mssgs" name="saveoppnow1"  oncomplete="var pbid = '{!Opportunity.Pricebook2Id}';var qty = '{!Opportunity.Product_Quantity__c}'; var prodid = '{!Opportunity.Product_Main_Id__c}'; var oppid = '{!Opportunity.Id}';var type = 'Spa Request';spacreate(oppid,type,pbid,qty,prodid);"/> 
+
+                                
+                <a id="saveonlybtn" style="display:none;" class="btn btn-red-text" onclick="$('[id$=loadingmessage]').show();saveoppnow3();">Save Only</a>
+                <apex:actionfunction action="{!Save}"  rerender="mssgs" oncomplete="$('[id$=loadingmessage]').hide();" name="saveoppnow3"/> 
+                <apex:actionFunction name="messages" rerender="mssgs"/>
+
+                <a  class="btn btn-red-text" onclick="window.location = '/apex/OpportunitySpaProductsolutionCreate'" id="cancel">Cancel</a>             
+             
+              
+              
+         
+                
+                
+            </apex:pageblockbuttons>
+            -->
+
+            <!-- **********   Allow Quick Create of Accounts and Contacts   **********  -->
+            
+
+            <!-- **********   [Spa Creation Form ]   **********  -->
+            <!--<apex:outputPanel id="loadingscreen" style="display:none;">
+            <center>
+            <image styleClass="body.loading modal" src="{!URLFOR($Resource.loading)}" />
+            </center>
+            </apex:outputPanel><br></br> -->
+            <center><div id='loadingmessages'  class="modal" style="display:none;"></div></center>  
+           <!-- 
+            
+            <div class="viewsonic" >
+            <apex:outputPanel id="prodinfo" >
+                <apex:pageblocksection title="Product Information" showheader="false" columns="1" id="prodpbsect">
+                    <apex:inputfield value="{!Opportunity.Type}" id="type" styleclass="slds-select" style="width: 350px;" required="true" onchange="getActive(this.value);"/>
+                    <apex:inputfield value="{!Opportunity.Roll_Out_Date__c}" label="Estimated Roll Out Start Date"  id="roll" styleclass="slds-input" style="width: 350px;" onchange="$('[id$=closedate]').val(this.value);" required="true"/>
+                    <!-- <apex:inputfield  value="{!Opportunity.Roll_Out_Time_Line__c}" id="rollfreq" styleclass="slds-input" style="width:350px;display:none;" required="true" label="Run Rate Frequency"/> -->
+                    <!--</apex:pageblocksection>
+                    <apex:pageblocksection showheader="false" columns="1" id="runrate">
+                    <apex:inputfield value="{!Opportunity.Roll_Out_Finish_Date__c}" label="Roll Out Estimated Finish Date" id="freq" styleclass="slds-input" style="width: 350px;" required="false"/>
+                    
+                    <apex:inputfield label="Run Rate Period Type" value="{!Opportunity.Roll_Out_Time_Line__c}" id="time" styleclass="slds-input" style="width: 350px;" html-placeholder="Quarterly or Monthly"/>
+                    </apex:pageblocksection>
+                 <apex:pageblocksection showheader="false" columns="1" id="quantityprice">
+                    <apex:inputfield value="{!Opportunity.Product_Quantity__c}" id="quantity" styleclass="slds-input" style="width: 350px;" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                    <apex:inputfield value="{!Opportunity.Product_Sales_Price__c}" id="salesprice" styleclass="slds-input" style="width: 350px;" label="Reqested Price"/>
+                 </apex:pageblocksection>
+            </apex:outputPanel>-->
+            
+
+
+<!--
+            <apex:outputPanel id="spapanel" style="display:none" >
+            <apex:outputpanel id="panel">
+                <apex:pageblocksection title="Spa Information" showheader="true" columns="2" id="psect">
+                    <apex:inputfield value="{!Opportunity.End_User_Lookup_Account__c}" id="eu" required="true" style=" width: 350px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;"/>
+                    <apex:inputfield value="{!Opportunity.Partner_Account_Search__c}" id="reseller" required="{!if($User.Alias = 'admin' || $User.Alias = 'ndasi' || $UserRole.Name = 'RBM', false,true)}"  style=" width: 350px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;"/>
+                    <apex:inputfield value="{!Opportunity.End_User_Contact__c}" style=" width: 350px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;"/>
+                    <apex:inputfield value="{!Opportunity.ResellerContact__c}"  rendered="{!$User.Alias !='revan' && $User.Alias != 'SHenr'}" id="resellercon"  required="{!$User.LastName != 'Henriksen' && $User.LastName != 'Evans' && $UserRole.Name != 'RBM' && $User.Alias != 'BidDesk' && $User.Alias != 'admin' && $User.Alias != 'ndasi'}" style=" width: 350px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;"/>
+                    
+                    <apex:inputfield value="{!Opportunity.Reseller_Contact_Name__c}" styleclass="slds-select" style="width: 350px;" rendered="{!$User.Alias ='revan' || $User.Alias = 'SHenr' }"  required="{!$User.Alias ='revan' || $User.Alias = 'SHenr'}" />
+                    
+                     <apex:inputfield value="{!Opportunity.Reseller_Contact_Email__c}" styleclass="slds-select" style="width: 350px;" rendered="{!$User.Alias ='revan' || $User.Alias = 'SHenr'}"  required="{!$User.Alias ='revan' || $User.Alias = 'SHenr'}" />
+                    
+                    <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem />
+                    <apex:inputfield value="{!Opportunity.Project_or_Site_Information__c}" id="projinfo" styleclass="slds-select" style="width: 350px;"/>
+                    <apex:inputfield value="{!Opportunity.Opportunity_Notes__c}" id="notes" styleclass="slds-select" style="width: 350px;"/>
+                    <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem />
+
+    -->
+                    <!-- <apex:inputfield value="{!Opportunity.SPA_Request__c}" id="spareq" style="{!if($User.Alias = 'admin' || $User.Alias ='BidDesk','','display:none;')}" /> -->
+                   <!--<apex:inputfield value="{!Opportunity.Pricebook2Id}" required="false" id="pricebookid" style=" width: 350px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" onchange="prodactive();"/>-->
+                   <!--  <apex:inputfield value="{!Opportunity.SPA_Expiration_Date__c}" required="false"/>-->
+                   <!-- 
+                    <apex:inputfield value="{!Opportunity.Country__c}" id="country" styleclass="slds-input" style="width: 350px;" required="true"/>
+                    <apex:pageblockSectionItem />
+                    <apex:inputfield value="{!Opportunity.Reseller_Direct__c}" required="false" styleclass="slds-checkbox" id="direct"/>                    
+                  </apex:pageblocksection>
+                  <apex:pageblocksection title="Opportunity Information" showheader="true" columns="2">                    
+                    <apex:inputfield value="{!Opportunity.StageName}" id="stage" styleclass="slds-select" style="width: 350px;"/>
+                    <apex:pageblockSectionItem />
+                    <apex:inputfield value="{!Opportunity.CloseDate}" id="closedate" styleclass="slds-input" style="width: 350px;"/>
+                    
+                </apex:pageblocksection>
+                
+                <apex:pageblocksection title="Trade Show & Leads Info" showheader="true" columns="2" id="psect3">
+                
+                   <apex:inputfield value="{!Opportunity.Trade_Show_or_Marketing_Campaign__c}" required="false" style="width: 350px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;"/>
+                   <apex:inputfield value="{!Opportunity.LeadSource}" required="true" styleclass="slds-select" style="width: 350px;"/>
+                
+                   
+                    <apex:inputhidden value="{!Opportunity.Name}" id="name" required="false"/>
+                    <apex:inputhidden value="{!Opportunity.AccountId}" id="acct" required="false"/>
+                    
+                </apex:pageblocksection>
+                <apex:outputPanel id="prodpanel" style="display:none;" >
+                    <apex:inputfield value="{!Opportunity.Product_Name_Main__c}" id="prodm"/>
+                    <apex:inputfield value="{!Opportunity.Product_Sales_Price__c}" required="false" id="prodprice"/>
+                   
+                    <apex:inputfield value="{!Opportunity.Spa__c}" id="oppidold" />
+                                    
+            </apex:outputpanel>
+            </apex:outputpanel>
+            </apex:outputpanel>
+
+            </div>
+        </apex:pageblock>
+    </apex:form>
+    -->
+</apex:page>

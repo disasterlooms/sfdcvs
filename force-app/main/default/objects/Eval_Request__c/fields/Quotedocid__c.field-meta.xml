@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quotedocid__c</fullName>
+    <description>gets doc id from a flow and then passes to email button so that the attactment quote last sent to customer will be added to eval teams attachments.</description>
+    <externalId>false</externalId>
+    <label>Quotedocid</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

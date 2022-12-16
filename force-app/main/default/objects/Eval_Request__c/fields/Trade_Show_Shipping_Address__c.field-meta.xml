@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trade_Show_Shipping_Address__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Address that product needs to be shipped to. For Trade shows only.</inlineHelpText>
+    <label>Trade Show Shipping Address</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

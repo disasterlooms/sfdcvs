@@ -1,0 +1,30 @@
+.THIS .cmpStep{
+    padding-left: 31px;
+}
+
+.THIS .cmpFlow{
+    padding-left: 25px;
+    padding-right: 20px;
+}
+
+.THIS .forceCommunityFlowCommunity {
+    background-color: #FFFFFF;
+    border-width: .5px;
+    border-color: rgba(183, 183, 183, 0.5);
+    border-style: solid;
+    border-radius: .3em;
+}
+
+.THIS.pp-onboard {
+    background-color: #263d57;
+    padding: 0.8rem 1.12rem;
+    margin-bottom: 10px;
+}
+.THIS.pp-onboard h1 {
+    color: #fff;
+    font-size: 1.24rem;
+    font-weight: 600;
+}
+.THIS.pp-onboard-cont {
+    padding-bottom: 3rem;
+}

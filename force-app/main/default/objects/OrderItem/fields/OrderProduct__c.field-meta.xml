@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OrderProduct__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>This is Order number and SKU concatenation to get an unique order product that can be used in upsert calls in informatica or any middleware integration</description>
+    <externalId>true</externalId>
+    <label>OrderProduct</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

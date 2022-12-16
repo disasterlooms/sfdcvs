@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tracking_Cannot_be_purchase</fullName>
+    <active>true</active>
+    <errorConditionFormula>CONTAINS(Tracking_Number__c,&apos;purchase&apos;) ||
+CONTAINS(Tracking_Number__c,&apos;invoice&apos;)</errorConditionFormula>
+    <errorMessage>Eval Purchases cannot be inserted or created</errorMessage>
+</ValidationRule>

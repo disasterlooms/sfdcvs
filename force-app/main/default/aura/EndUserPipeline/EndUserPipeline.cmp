@@ -1,0 +1,197 @@
+<aura:component implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global"
+                >
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    
+    <lightning:overlayLibrary aura:id="overlayLib1"/>
+    <!-- controller="AcctBasedPipeline"-->
+    <!--
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="pageReference" type="Object"/>
+    -->
+    <aura:attribute name="oppfields" type="string"/>
+    <aura:attribute name="prodfields" type="string" />
+    <aura:attribute name="lmt" type="integer" description="the default limit for the query" default="25" />
+    <aura:attribute name="ofset" type="integer" description="the defaut offset" default="0" />
+    <aura:attribute name="SchpageReference" type="Object"/>
+    <aura:attribute name="olineId" type="string" default="00kA000000DkZctIAF"/>
+    
+   
+
+    <aura:attribute name="wherestmnt" type="string"/>
+    
+    <aura:attribute name="addfields" type="string" />
+    <aura:attribute name="orderstmnt" type="string"/>
+    <aura:attribute name="title" type="string" />
+    <aura:attribute name="opps" type="Opportunity[]" />
+    
+    <aura:attribute name="sortfield" type="string" default="Account.Name"/>
+    <aura:attribute name="sortorder" type="string" default="asc"/>
+    
+    
+    <aura:attribute name="states" type="string" default=""/>
+    <aura:attribute name="products" type="string" default=""/>
+    <aura:attribute name="accounts" type="string" default=""/>
+    <aura:attribute name="industries" type="string" default=""/>
+    <aura:attribute name="owners" type="string" default=""/>
+     <aura:if isTrue="{!v.showModal}" >
+    
+    
+    </aura:if>
+    
+    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerspa" class="slds-hide" variant="brand" size="large"/>
+    </div>  
+    <div>       
+         <lightning:buttonGroup  >
+                                <lightning:button label="Search" onclick="{!c.myAction}" />
+                                <lightning:button label="Save Records" onclick="{!c.addProds}" />
+                                </lightning:buttonGroup>
+        <div class="flexipageComponent" data-aura-class="flexipageComponent">
+            
+            <div class="slds-card__header slds-grid">
+               
+                
+                <table  class="slds-table slds-table_bordered slds-table_fixed-layout" role="grid">
+                    
+                    <thead>                            
+                        <tr class="slds-text-title_caps" onkeyup="{!c.enterKey}">
+                            <th scope="col" class="slds-cell-wrap">
+                                <lightning:input type="text" name="enduser" label="End User" value="{!v.accounts}" />
+                            </th>
+                            <th scope="col" class="slds-cell-wrap">
+                                <lightning:input type="text" name="state" label="State " value="{!v.states}" />
+                            </th>
+                            <th scope="col" class="slds-cell-wrap">
+                                <lightning:input type="text" name="industry" label="Industry" value="{!v.industries}" />
+                            </th>
+                            <th scope="col" class="slds-cell-wrap">
+                                <lightning:input type="text" name="owner" label="Account Owner" value="{!v.owners}"/>
+                            </th>
+                            <th scope="col" class="slds-cell-wrap">
+                                <lightning:input type="text" name="products" label="Products" value="{!v.products}"/>
+                            </th>
+                            
+                            <td scope="col" class="slds-cell-wrap">
+                                <br/><br/>
+                                
+                            </td>
+                            
+                        </tr>
+                    </thead>
+                    <br/>
+                    <lightning:button iconName="utility:back" iconPosition="left" variant="base" label="back" disabled="true" aura:id="backbtn" onclick="{!c.back}"/> &nbsp;&nbsp;  {!v.ofset} to {!v.ofset+25} Records out of
+                    {!v.opps[0].Opportunity_Days__c}&nbsp;&nbsp;<lightning:button iconName="utility:forward" iconPosition="right" variant="base" label="next page" onclick="{!c.forward}"/> 
+                    <thead>
+                        <tr >
+                            <th aria-label="Name" aria-sort="descending" class="slds-is-sortable slds-is-sorted slds-is-sorted_desc " scope="col" onclick="{!c.sorteu}">
+                                <c:TableHeaderSortable name="End User" issortfield="true" sortdirection="utility:arrowup" id="1"  aura:id="enduser" direction="asc"/>
+                            </th>
+                            
+                            <th scope="col" class="slds-cell-wrap" onclick="{!c.sortstate}">
+                                <c:TableHeaderSortable name="State" issortfield="false" id="2" aura:id="state" sortdirection="utility:arrowdown"/> 
+                            </th>
+                            <th scope="col" class="slds-cell-wrap" onclick="{!c.sortind}">
+                                <c:TableHeaderSortable name="Industry" issortfield="false" id="3"  aura:id="industry" sortdirection="utility:arrowdown"/>
+                                <!--<c:TableSortableColumn SDGField="test"/>-->
+                            </th>
+                            <th scope="col" class="slds-cell-wrap">
+                                <div class="slds-truncate" title="Account Owner">Account Owner</div>
+                            </th>
+                            <th scope="col" class="slds-cell-wrap">
+                                <div class="slds-truncate" title="Products">Products Shipping</div>
+                            </th>
+                            <th scope="col" class="slds-cell-wrap">
+                                <div class="slds-truncate" title="Date">Shipping Date</div>
+                            </th>
+                            <th scope="col" class="slds-truncate">
+                                <div class="slds-truncate" title="Date">QTY</div>
+                            </th>
+                            <!--
+                            <th scope="col" class="slds-cell-wrap">
+                                <div class="slds-truncate" title="Bid Registration">New SKU</div>
+                            </th>
+                            
+                            <th scope="col" class="slds-cell-wrap">
+                                <div class="slds-truncate" title="Products">Quantity</div>
+                            </th>
+                            <th scope="col" class="slds-cell-wrap">
+                                <div class="slds-truncate" title="Resubmission Notes">Order Date</div>
+                            </th>
+                            -<th scope="col" class="slds-cell-wrap">
+                                <div class="slds-truncate" title="Actions">Actions</div>
+                            </th>-->
+                        </tr>
+                    </thead>
+                    <aura:iteration items="{!v.opps}" var="opp">
+                        <tbody>
+                            <tr>
+                                
+                                <td class="slds-cell-wrap">
+                                    <ui:outputText value="{!opp.Account.Name }"/>
+                                </td>
+                                <td class="slds-cell-wrap">
+                                    <ui:outputText value="{!opp.Account.BillingState}"/>
+                                </td>
+                                <td class="slds-cell-wrap">
+                                    <ui:outputText value="{!opp.Account.Industry}"/>
+                                </td>
+                                
+                                <td class="slds-cell-wrap">
+                                    <ui:outputText value="{!opp.Account.Owner.Name}"/>
+                                </td>
+                                
+                                <td class="slds-cell-wrap">
+                                    <aura:iteration items="{!opp.OpportunityLineItems}" var="l">
+                                        <lightning:buttonIcon iconName="utility:delete" variant="bare" onclick="{!c.proddel}" size="x-small" value="{!l.Id}"/>
+                                        &nbsp;<ui:outputText value="{!l.Product2.Name}" click="{!c.oline}" title="{!l.Id}"/><br/>
+                                        
+                                    </aura:iteration>
+                                </td>
+                                
+                                <td class="slds-cell-wrap">
+                                    <aura:iteration items="{!opp.OpportunityLineItems}" var="l">
+                                            <ui:outputDate value="{!l.ServiceDate}" format="MM-dd-YY"/><br/>
+
+                                    </aura:iteration>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!opp.OpportunityLineItems}" var="l">
+                                            <ui:outputNumber value="{!l.Quantity}" format="MM-dd-YY"/>
+                                        	<br/>
+                                    </aura:iteration>
+                                </td>
+                               <!--
+                                <td class="slds-cell-wrap">
+                                    
+                                    <lightning:recordEditForm
+                                                              
+                                                              objectApiName="Opportunity">                                        
+                                    
+                                        <lightning:inputField fieldName="Product_Name_Main__c" value="{!opp.Product_Name_Main__c}"
+                                                          />    
+                                    </lightning:recordEditForm>
+                                        
+                                                                       
+                                </td>
+                                <td class="slds-cell-wrap">
+                                    
+                                    <lightning:input value="{!opp.Product_Quantity__c }"/>
+                                </td>
+                                <td class="slds-cell-wrap">
+                                      <ui:inputDate value="{!opp.Roll_Out_Date__c}" displayDatePicker="true"/>
+                                </td>
+                                <td class="slds-cell-wrap">
+                                    <lightning:button label="Opp Page" onclick="{!c.goToOpp}" value="{!opp.Id}"/>
+                                </td>-->
+                                
+                                
+                            </tr>
+                        </tbody>
+                    </aura:iteration>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</aura:component>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standard_Pen_Display</fullName>
+    <active>true</active>
+    <businessProcess>VSA Sales Stages</businessProcess>
+    <label>Standard Pen Display</label>
+    <picklistValues>
+        <picklist>Channel__c</picklist>
+        <values>
+            <fullName>AV Central %26 Eastern USD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AV Mediterranean Euros</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pen Display</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UK AV GBP VSE</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Country__c</picklist>
+        <values>
+            <fullName>Canada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Latin America</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>United States</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>DB_Competitor__c</picklist>
+        <values>
+            <fullName>Competitor A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competitor B</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competitor C</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ForecastCategoryName</picklist>
+        <values>
+            <fullName>Best Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LID__DeliveryInstallationStatus__c</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yet to begin</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Advertisement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email Advertisment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Employee Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Existing Business Relationship</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>External Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LinkedIn Navigator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Relations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seminar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trade Show</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Web</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Submission_Type__c</picklist>
+        <values>
+            <fullName>Internal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Portal Distribution</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Portal Reseller</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Task_Reminder__c</picklist>
+        <values>
+            <fullName>Schedule Meeting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Eval Unit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Submit SPA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Competitive Pipeline</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Project</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Run Rate</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>VSRegion__c</picklist>
+        <values>
+            <fullName>GPG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSCN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>VSSubRegion__c</picklist>
+        <values>
+            <fullName>VSA CAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSA LA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSA US</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSCN BE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSCN HK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSCN SH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE AU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE DE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE ES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE FR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE NL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE RU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE TR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSE UK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI ID</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI IN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI JP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI KR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI MA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI MY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI SG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VSI TH</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

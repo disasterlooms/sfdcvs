@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Card_Waiver</fullName>
+    <active>true</active>
+    <description>Requires reason for credit card waiver</description>
+    <errorConditionFormula>(No_Credit_Card_Eval_Agreement__c = true || 
+ No_Credit_Card_Eval_Agreement__c  = true)
+
+ &amp;&amp;  isblank(Reason_for_No_Credit_Card__c )&amp;&amp;  $Organization.Id = &apos;00D7d0000077lG5&apos;</errorConditionFormula>
+    <errorMessage>To waive credit card or to waive agreement, you must have a reason entered in system.</errorMessage>
+</ValidationRule>

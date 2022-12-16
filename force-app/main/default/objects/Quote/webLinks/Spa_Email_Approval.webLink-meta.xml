@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Spa_Email_Approval</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Spa Email Approval</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/APXTConga4__Conga_Composer
+?serverUrl={!API.Partner_Server_URL_370}&amp;
+id={!Quote.Id}
+&amp;EmailFromID=0D212000000L50F
+&amp;ds7=2
+&amp;QueryId=a0o1H00000Cf6if,a0o1H00000Cf6ip,a0o1H00000Cf6iz,a0o1H00000Cf6o4
+&amp;QVar1Id=a0o1H00000Cf6jO
+&amp;QVar2ID=a0o1H00000Cf6jJ
+&amp;TemplateID=a0p1H000005Mlae
+&amp;EmailBCC={!Quote.Emails_Overwrite_Quote_Email__c&amp;&quot;,&quot;}{!Quote.Emails__c}{!Opportunity.Spa_Email_Contacts__c&amp;&quot;,&quot;}{QVar2}
+&amp;CETID=00X1H000001LTBo
+&amp;EmailAdditionalTo={QVar1}{!&apos;,&apos;&amp;Quote.Sales_Ops_Emails__c},GSC-salessupport@gsc.viewsonic.com,bid.desk@viewsonic.com
+&amp;UF0=1
+&amp;MFTS0=Resubmission_Notes__c
+&amp;MFTSValue0=null
+&amp;MFTS1=Status
+&amp;MFTSValue1=Approved
+&amp;AC0=1
+&amp;AC1=Approved Spa Sent
+&amp;SC0=1
+&amp;SC1=Attachments
+&amp;AttachmentParentID={!Quote.Id}
+&amp;OFN={!&quot;Approval for SPA # &quot;&amp;Quote.SpaId__c&amp;&quot; End User: &quot;
+&amp;left(Quote.End_User_Name__c,20)}</url>
+</WebLink>

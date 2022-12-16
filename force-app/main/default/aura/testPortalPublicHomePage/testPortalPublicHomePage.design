@@ -1,0 +1,7 @@
+<design:component>
+	<design:attribute name="showBtns" description="Show Call To Action buttons"/>
+    <design:attribute name="showBody" description="Show Body"/>
+    <design:attribute name="showVideo" label="Show video if true"/>
+    <design:attribute name="showPromotion" label="Show promotion if true" />
+    <design:attribute name="showImage" label="Show Image if true" />
+</design:component>

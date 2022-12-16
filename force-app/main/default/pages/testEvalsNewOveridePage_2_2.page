@@ -1,0 +1,1058 @@
+<apex:page docType="html-5.0" extensions="EvalContact" standardcontroller="Eval_Request__c" sidebar="false" id="evalreqpage" >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<apex:includeScript value="{!URLFOR($Resource.Jquery, '/jquery-ui-1.11.4/jquery-ui.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.sweetalert, '/sweetalert-master/dist/sweetalert.min.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.sweetalert, '/sweetalert-master/dist/sweetalert.css')}"/>
+<apex:includeScript value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/dist/jquery-confirm.min.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/css/jquery-confirm.css')}"/>
+<apex:stylesheet value="{!$Resource.OppVFOverride}"/>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<apex:remoteObjects >
+<apex:remoteObjectModel name="Contact" fields="Name,Id,AccountId">
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+<style>
+body button, body .x-btn, body .btn, body .btnDisabled, body .btnCancel, body .menuButton .menuButtonButton {
+    color: #900;
+    margin: 1px;
+    padding: 2px 3px;
+    border: 1px solid #b5b5b5;
+    border-bottom-color: #7f7f7f;
+    background: #e8e8e9 url('/img/alohaSkin/btn_sprite.png') repeat-x right top;
+    font-weight: normal;
+    font-size: .9em;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea;
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+.Custom98Tab .secondaryPalette, .individualPalette .Custom98Block .secondaryPalette {
+    background-color: #aa8e0a;
+    border-color: #990000;
+}
+.bPageBlock .detailList tr td, .bPageBlock .detailList tr th, .hoverDetail .bPageBlock .detailList tr td, .hoverDetail .bPageBlock .detailList tr th {
+    border-bottom: 0px solid #ffffff;
+}
+
+</style>
+
+<style>
+.jconfirm {
+
+    margin-left: 350px !important;
+}
+.jconfirm.jconfirm-white .jconfirm-bg {
+    background-color: none !important;
+}
+element.style {
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0.36, 1.1, 0.2, 1);
+    opacity: 0 !important;
+}
+
+.jconfirm.jconfirm-white .jconfirm-bg {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+</style>
+ 
+ 
+ <style type="text/css">
+
+  body button, body .x-btn, body .btn, body .btnDisabled, body .btnCancel, body .menuButton .menuButtonButton {
+    color: #333;
+    margin: 1px;
+    padding: 2px 3px;
+    border: 1px solid #b5b5b5;
+    border-bottom-color: #7f7f7f;
+    background: #e8e8e9 url('/img/alohaSkin/btn_sprite.png') repeat-x right top;
+    font-weight: bold;
+    font-size: 1.5em !important;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}      
+</style>     
+ <script>    
+    $( document ).ready(function() {
+       $("[id$=auraErrorMessage]").hide(); 
+     $("[id$=continue]").hide() 
+  
+     });
+</script>
+<script>
+    $("[id$=auraErrorMessage]").hide();
+</script>
+<script>
+function OnChangeCheckbox21(event){
+var checkbox = event.target;
+            if (checkbox.checked) {
+            
+           $("[id$=continue]").show();
+          
+            
+    }
+    else{
+        $("[id$=continue]").hide();
+            }
+}
+      
+
+
+</script>
+
+<apex:messages />
+ 
+<apex:outputPanel id="buttons" style="display:none"> 
+    <a  class="btn btn-red-text" onclick="contactaccount();" id="show">{!if( $Profile.Name  != 'Sales - Latin America','Create Account or Contact','Crear Contacto o Cuenta')}</a>
+    <a  class="btn btn-red-text" onclick="lastates();" id="show2" style="display:none">Latin America Codigos Para Estados para Cada Paìs</a>
+   <script>
+         function lastates(){   
+            $.confirm({
+            title: 'Latin America Codigos Para Estados para Cada Paìs',
+            content: 'url:/apex/LatinAmericaCountryStateCodes',
+            animation: 'top',
+            columnClass: 'col-md-6 col-md-offset-3',
+            closeAnimation: 'bottom',
+            backgroundDismiss: true,
+                                });
+                            }
+                            function lalistbutton(){
+                             $('[id$=show2]').toggle();
+                             }
+                            
+    </script> 
+
+
+</apex:outputPanel>
+
+
+
+<br><br><apex:outputPanel id="actions" style="display:none">
+        <apex:pageBlock >
+   
+            <apex:pageblockSection id="Publisher" title="Create Contact or Account" columns="1" rendered="True" collapsible="true" showheader="false">
+            <chatter:feed entityId="{!if(isblank(Eval_Request__c.Id),'0011200001Dq2NA',Eval_Request__c.Id)}" id="feedeval" showPublisher="true" /> 
+   
+            </apex:pageblockSection>
+        </apex:pageBlock>
+   </apex:outputPanel> </br></br>  
+  <div class="viewsonic">   
+
+<apex:form id="pastdue" style="{!if(Eval_Request__c.Evals_Past_Due_Contact__c > 0 && isblank(messages) && $User.Alias != 'admin', "","display:none;")}">
+
+ <br> <br><center><apex:commandbutton style="display:none;" styleclass="btn btn-red-text"  value="Create an Eval" onclick="$('[id$=evalreq]').show();$('[id$=pastdue]').hide();$('[id$=buttons]').show();return false;"    id="continue"   rendered="true"/></center> </br> </br>
+
+
+<center><font size="5"><b>Your Outstanding And Past Due Evals Grouped by Days Past Due</b></font>
+<br><br><analytics:reportChart reportId="00O12000004t50e" filter="{column:'Eval_Unit_Details__c.Eval_Request__c.Evaluation_Owner__c.Name', operator:'equals', value:'{!$User.FirstName&' '&$User.LastName}'}" />
+</br></br></center>
+<br>  <font size="4.5" ><b>New eval requests may be locked after exceeding the % Past Due limit. Currently this limit is being reviewed. You can see your outstanding evals, your past due evals, and % of past due below. </b></font>
+<div style="font-size:24px;">
+<br> <apex:panelGrid columns="2" id="theGrid" border="1" frame="border" cellpadding="3px" width="500px" >
+        <apex:outputText value="% of Past Due:" id="theFith"/>
+        <apex:outputText style="{!if(Eval_Request__c.Total_Past_Due_Evals__c>10,'float:right; background-color: #900000; color: #FFFFFF;','float:right;')}" value="{!Eval_Request__c.Total_Past_Due_Evals__c }%" id="theSixth"/>
+    
+        <apex:outputText value="Past Due Amount:" id="theFirst"/>
+        <apex:outputText style="float:right;" value="{0, number, currency}" id="theSecond"><apex:param value="{!Eval_Request__c.Evals_Past_Due_Contact__c}"/> </apex:outputText>
+        <apex:outputText value="Outstanding Amount:" id="theThird"/>
+        <apex:outputText style="float:right;" value="{0, number, currency}"  id="theFourth"><apex:param value="{!Eval_Request__c.Evals_Outstanding_Contact__c }"/> </apex:outputText>
+        
+    </apex:panelGrid></br> 
+
+</div>
+
+<font size="3.5" >  <br> <a style="color:red" id="theLink" name="Outstanding Evaluations" href="https://viewsonic.my.salesforce.com/a0y?fcf=00B12000008hqJM">My Outstanding Evaluations</a>
+              </br></font>
+              <font size="3.5" >  <br> <a style="color:red" id="theLink" name="Outstanding Evaluations" href="https://viewsonic.my.salesforce.com/a0y?fcf=00B12000008CjOs&rolodexIndex=-1&page=1">My Past Due Evaluations</a>
+              </br></font></br>
+  <br><br><font size="3.5" ><input type="checkbox" id="agree" name="agree" value="Bike" onclick="OnChangeCheckbox21(event);"/> {!if(Eval_Request__c.Total_Past_Due_Evals__c<10,"I will continue to be an eval Rock Star","I understand and agree to resolve my past due evals.")}</font></br></br>
+      
+
+ </apex:form>
+ 
+ <apex:form id="evalreq" style="{!if(Eval_Request__c.Evals_Past_Due_Contact__c < 1 || not(isblank(messages)) || $User.Alias ='admin', "","display:none;")}" >
+ 
+  
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<script>
+ $( document ).ready(function() {
+    document.getElementById ("con4__09D12000000B5G8").value='';
+      
+    $("[id$=Oppname]").val('test');
+    }
+
+<script>
+<script type="text/javascript">
+  function Init () {
+            var checkbox = document.getElementById ("trade");
+            if (checkbox.addEventListener) {
+                checkbox.addEventListener ("CheckboxStateChange", OnChangeCheckbox, false);
+            }
+        }
+
+        function OnChangeCheckbox (event) {
+            var checkbox = event.target;
+            if (checkbox.checked) {
+                $("[id$=tradeshow]").show();  
+                $("[id$=reason]").val('Trade Show. See Trade Show Info'); 
+                
+            }
+            else {
+                $("[id$=tradeshow]").hide();
+                $("[id$=reason]").val('');
+            }
+        }
+    function OnChangeCheckbox3 (event) {
+            var checkbox = event.target;
+            if (checkbox.checked) {
+                 
+                 
+                $("[id$=noccreasson]").css({"border-left": "4px solid #c00"}); 
+                
+            }
+            else {
+                
+                $("[id$=noccreasson]").css({"border-left": "none"}); 
+            }
+        }
+    
+    
+    function OnChangeCheckbox2 (event) {
+            var checkbox = event.target;
+            if (checkbox.checked &&  $("[id$=Oppname]").val() == '') {
+                 var sales='Viewsonic Trade Show Loaner Eval Requests';
+                $("[id$=Oppname]").val('Viewsonic Trade Show Loaner Eval Requests');   
+            }
+            else if ( checkbox.checked == false && $("[id$=Oppname]").val() == 'Viewsonic Trade Show Loaner Eval Requests') {
+                $("[id$=Oppname]").val('')
+                ;
+            }
+        }
+</script>
+
+
+
+<script type="text/javascript">
+function getActive(selectedValue) 
+    {  
+    if( selectedValue == 'ViewSonic Sales Rep Eval')
+    
+    {
+    var sales='ViewSonic Corporation Sales Rep Eval Units';
+    
+    
+    $('[id$=ship]').val('{!$User.Contact_Name__c}');
+    $("[id$=product]").show();
+    $('[id$=bill]').val('{!$User.Contact_Name__c}');
+    $("[id$=ship]").prop("readonly",true);
+    $("[id$=bill]").prop("readonly",true); 
+    $("[id$=ship_lkwgt]").hide(); 
+    $("[id$=shippinginfo]").show(); 
+    $("[id$=bill_lkwgt]").hide(); 
+    $('[id$=Oppname]').addClass("required");
+    $("[id$=writeoff]").hide(); 
+    $("[id$=labelr]").show();
+    $("[id$=reason]").show();
+    $("[id$=reason]").val('');
+    $("[id$=info]").show() 
+    $("[id$=credit]").hide() 
+    $("input[id$=Oppname]").prop("disabled",false);
+    $("input[id$=trade]").prop("disabled",false);        
+      
+    
+           
+     
+    }else if(selectedValue == 'End-User/Reseller/Disty Eval')
+    {
+        var trade= '';
+     
+     $("[id$=ship]").prop("readonly",false);
+     $("[id$=credit]").show() 
+     $("[id$=bill]").prop("readonly",false); 
+     $("[id$=shippinginfo]").show();
+     $("[id$=ship_lkwgt]").show(); 
+     $("[id$=bill_lkwgt]").show();
+     $("[id$=ship]").val('');
+     $("[id$=bill]").val(''); 
+     $("[id$=writeoff]").hide();
+     $("[id$=labelr]").show();
+     $("[id$=reason]").show();
+     $("[id$=reason]").val('');
+     $("[id$=info]").show()
+     $("[id$=gov]").show()
+     $("input[id$=Oppname]").prop("disabled",false);     
+     $("input[id$=gov]").prop("disabled",false); 
+     $("input[id$=trade]").prop("disabled",false);        
+       
+       
+   
+    } else if(selectedValue == 'Reseller Demo')
+    {
+        var trade= '';
+     
+     alert('Reseller Demos are NOT associated with an opportunity. POS Sales will be used to determine ROI. Demos are for 90 days and must be reviewed after 90 days based on POS.');
+     $("[id$=ship]").prop("readonly",false);
+     $("[id$=credit]").show() 
+     $("[id$=bill]").prop("readonly",false); 
+     $("[id$=shippinginfo]").show();
+     $("[id$=ship_lkwgt]").show(); 
+     $("[id$=bill_lkwgt]").show();
+     $("[id$=ship]").val('');
+     $("[id$=bill]").val(''); 
+     $("[id$=writeoff]").hide();
+     $("[id$=labelr]").show();
+     $("[id$=reason]").show();
+     $("[id$=reason]").val('');
+     $("[id$=info]").show()
+     $("[id$=gov]").show()
+     $("input[id$=Oppname]").prop("disabled",true);
+     $('[id$=Oppname]').val(''); 
+     $("input[id$=gov]").prop("disabled",true);
+      $("input[id$=trade]").prop("disabled",true);
+      $('.check').attr('checked', false);
+      $("[id$=tradeshow]").hide();
+      
+      
+      
+     
+       
+   
+    } 
+     
+    else if(selectedValue == 'Write Off Request')
+    {
+        var blank= '';
+   
+   
+    $("[id$=ship]").prop("readonly",false);
+     $("[id$=bill]").prop("readonly",false); 
+     $("[id$=ship_lkwgt]").show(); 
+     $("[id$=bill_lkwgt]").show();
+     $("[id$=shippinginfo]").show();
+     $("[id$=ship]").val('');
+     $("[id$=bill]").val('');
+     $("[id$=writeoff]").show();
+     $("[id$=reason]").show();
+     $("[id$=labelr]").show();
+     $("[id$=reason]").val('See Write-Off Reason');
+     $("[id$=info]").show() 
+     $("[id$=credit]").hide() 
+     $("input[id$=Oppname]").prop("disabled",false); 
+     $("input[id$=trade]").prop("disabled",false); 
+         
+     
+     
+     
+        
+    
+    } 
+    
+    } 
+    
+</script>    
+ <script>   
+    function getActive2(selectedValue) 
+    {  
+    if( selectedValue == 'ViewSonic Sales Rep Eval' &&  $("[id$=Oppname]").val() == '')
+    
+    {
+    var sales='ViewSonic Corporation Sales Rep Eval Units';
+    
+    
+     $("[id$=Oppname]").val(sales);
+    
+    }
+     
+   else if(selectedValue != 'ViewSonic Sales Rep Eval' && $("[id$=Oppname]").val() == 'ViewSonic Corporation Sales Rep Eval Units')
+    {
+        $("[id$=Oppname]").val('');
+      
+        
+    
+    } 
+    
+    }
+    
+</script>
+    <script>    
+    $( document ).ready(function() {
+        
+     $("[id$=publisherAttach09D12000000FTLp]").hide();
+     $("[id$=auraErrorMessage]").hide();
+     
+     
+     
+     });
+<script>
+function checkValue(){
+    if(jQuery('[id$=type]').val() == ''){
+        jQuery('[id$=shippinginfo]').hide();
+    }
+    else{
+        jQuery('[id$=shippinginfo]').show();
+    }
+}
+</script>
+<script>
+function checkValue2(){
+    
+        $("[id$=shipphone]").val('');
+        $("[id$=shipemail]").val('');
+        $("[id$=shipstreet]").val('');
+        $("[id$=shipcity]").val('');
+        $("[id$=shipstate]").val('');
+        $("[id$=shipzip]").val('');
+        $("[id$=shipcountry]").val('');
+        
+    }
+</script>
+<script>
+function checkValue3(){
+    
+        $("[id$=billphone]").val('');
+        $("[id$=billemail]").val('');
+        $("[id$=billstreet]").val('');
+        $("[id$=billcity]").val('');
+        $("[id$=billstate]").val('');
+        $("[id$=billzip]").val('');
+        $("[id$=billaccount]").val('');
+        
+    }
+</script>
+    <script>
+function checkValue4(){
+    $("[id$=lalist]").show()
+        $("[id$=actions]").show();
+    $("[id$=hide]").show()
+     $("[id$=hide2]").show()
+     $("[id$=show]").hide()
+     $("[id$=show2]").hide()
+        
+        
+    }
+</script>
+    <script>
+function checkValue5(){
+    $("[id$=lalist]").hide()
+        $("[id$=actions]").hide();
+    $("[id$=hide]").hide()
+     $("[id$=hide2]").hide()
+     $("[id$=show]").show()
+     $("[id$=show2]").show()
+     $("[id$=lalist2]").hide()
+    $("[id$=lalist]").hide()
+    $("[id$=lastate]").hide()
+        
+        
+    }
+</script>
+    <script>
+function checkValue6(){
+    $("[id$=lastate]").show()
+    $("[id$=lalist2]").show()
+    $("[id$=lalist]").hide()
+        
+        
+    }
+    
+    function checkValue8(){
+    $("[id$=instruct]").show()
+    $("[id$=ins]").hide()
+    $("[id$=ins2]").show()
+        
+        
+    }
+    function checkValue9(){
+    $("[id$=ins2]").hide()
+    $("[id$=instruct]").hide()
+    $("[id$=ins]").show()
+        
+        
+    }
+    
+    
+</script>
+    <script>
+function checkValue5(){
+    
+        $("[id$=lalist]").hide()
+        $("[id$=actions]").hide();
+    $("[id$=hide]").hide()
+     $("[id$=hide2]").hide()
+     $("[id$=show]").show()
+     $("[id$=show2]").show()
+     $("[id$=lalist2]").hide()
+    $("[id$=lalist]").hide()
+    $("[id$=lastate]").hide()
+        
+        
+    }
+</script>
+<script>    
+    $( document ).ready(function() {
+     $("[id$=hide]").hide()
+     $("[id$=hide2]").hide()
+     $("[id$=ins2]").hide()
+     
+     
+
+});
+</script>
+<script>
+function checkValue2(){
+    if($("[id$=ship]").val() != null && $("[id$=bill]").val() != null ){
+        $("[id$=product]").show(); 
+    }
+    else{
+        jQuery('[id$=product]').hide();
+    }
+}
+</script>
+    
+    <script>    
+    $( document ).ready(function() {
+        
+     $("[id$=credit]").hide() 
+     $("[id$=lalist2]").hide()    
+     $("[id$=lalist]").hide()   
+     $("[id$=hide]").hide()
+     $("[id$=hide2]").hide()
+     $("[id$=publisherAttach09D12000000FTLp]").hide() 
+     $("[id$=publisherAttach09D170000004H08]").show()
+     $("[id$=publisherAttach09DA00000008rbe]").hide()
+     $("[id$=publisherAttach09D120000006zBO]").hide() 
+     $("[id$=publisherAttach09D120000006zBT]").hide()
+     $("[id$=feedwrapper]").hide()
+     $("[id$=info]").hide()
+     $("[id$=shippinginfo]").{!if((ISNULL(messages)),'hide','show')}()
+     $("[id$=info]").{!if((ISNULL(messages)),'hide','show')}()
+     $("[id$=product]").{!if((ISNULL(messages)),'hide','show')}()
+     $("[id$=credit]").{!if((ISNULL(messages)),'hide','show')}()
+     
+     });
+</script>
+<script>
+        
+        function contactaccount(){
+        var $j = jQuery.noConflict();
+        //alert('test');
+        $j('[id$=actions]').toggle();
+        $j("[id$=con4__09D12000000B5G8]").val('');
+        
+        if("{!$Profile.Name}" == "Sales - Latin America"){
+        lalistbutton();
+        }else{
+            }
+           
+         }
+</script>
+
+<script>
+function govedwarn(){
+            $.confirm({
+    icon: 'fa fa-warning',
+    title: 'You will get an error if you select this and the Billing Account Type is not End User and Industry is not Government!',
+    cancelButton: false
+    
+    });
+        
+    }
+
+    //alert('Error! You will get an error if you select this and the billing account is not an end user goved account!');
+</script>
+<script>
+ function reasonnocc(){
+              do{  
+                input = prompt('Reason for No Credit Card');
+                }while(input == null || input == "" );
+                console.log(input);                
+                $("[id$=noccreasson]").val(input);
+                $("[id$=noccreasson]").css({"border-left": "4px solid #c00"});  
+                
+    }
+
+     
+</script>
+
+   <script> 
+     function reasonnoccundo(){
+              $("[id$=noccreasson]").css({"border-left": "none"}); 
+               
+                
+    }
+   </script> 
+
+<style type="text/css">
+  body .bRelatedList .bPageBlock .pbButton .btn, body.homeTab .bMyCalendar .pbButton .btn, body.homeTab .bMyDashboard .pbButton .btn, .sidebarModuleBody .btn {
+    padding: 0px 3px;
+    margin: 1px;
+   
+}
+div.tooltip {
+    width: 195px;
+    float: left;
+  }
+  
+
+.phHeaderCustomLogo #tsidButton {
+    display: none;
+}
+
+  div.tooltip:hover {
+    background: #ffffff;
+    text-decoration: none;
+  } /*BG color is a must for IE6*/
+  div.tooltip span {
+    display: none;
+    padding: 2px 3px;
+    margin-left: 8px;
+    width: 195px;
+  }
+  div.tooltip:hover span {
+    display: inline;
+    position: absolute;
+    border: 1px solid #cccccc;
+    background: #FFC;;
+    color: #000000;
+  } 
+  .pbHeader .pbTitle h2, .pbHeader .pbTitle h3 {
+     
+}.myRequired {
+    background-color: #c00;
+    position: absolute;
+    left: -4px;
+    width: 3px;
+    top: 1px;
+    bottom: 1px;
+}
+.chatterShowHideFeed .linkText:before {
+  content: "Create Contacts or Accounts Click Here:    ";
+}
+.myButton {
+    -moz-box-shadow: 3px 4px 0px 0px #899599;
+    -webkit-box-shadow: 3px 4px 0px 0px #899599;
+    box-shadow: 3px 4px 0px 0px #899599;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+    background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+    background-color:#ededed;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    border:1px solid #d6bcd6;
+    display:inline-block;
+    cursor:pointer;
+    color:#3a8a9e;
+    font-family:Arial;
+    font-size:17px;
+    padding:7px 25px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #e1e2ed;
+}
+.myButton:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+    background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+    background-color:#bab1ba;
+}
+.myButton1 {
+    -moz-box-shadow:inset 0px 1px 0px 0px #d6c64b;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #d6c64b;
+    box-shadow:inset 0px 1px 0px 0px #d6c64b;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fae34b), color-stop(1, #c77b00));
+    background:-moz-linear-gradient(top, #fae34b 5%, #c77b00 100%);
+    background:-webkit-linear-gradient(top, #fae34b 5%, #c77b00 100%);
+    background:-o-linear-gradient(top, #fae34b 5%, #c77b00 100%);
+    background:-ms-linear-gradient(top, #fae34b 5%, #c77b00 100%);
+    background:linear-gradient(to bottom, #fae34b 5%, #c77b00 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fae34b', endColorstr='#c77b00',GradientType=0);
+    background-color:#fae34b;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #ffaa22;
+    display:inline-block;
+    cursor:pointer;
+    color:#333333;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #c9b942;
+}
+.myButton1:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c77b00), color-stop(1, #fae34b));
+    background:-moz-linear-gradient(top, #c77b00 5%, #fae34b 100%);
+    background:-webkit-linear-gradient(top, #c77b00 5%, #fae34b 100%);
+    background:-o-linear-gradient(top, #c77b00 5%, #fae34b 100%);
+    background:-ms-linear-gradient(top, #c77b00 5%, #fae34b 100%);
+    background:linear-gradient(to bottom, #c77b00 5%, #fae34b 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c77b00', endColorstr='#fae34b',GradientType=0);
+    background-color:#c77b00;
+}
+.myButton1:active {
+    position:relative;
+    top:1px;
+}
+.btn {
+    display: inline-block;
+    margin-bottom: 0 ;
+    font-weight: bolder ;
+    text-align: center ;
+    vertical-align: middle ;
+    touch-action: manipulation ;
+    cursor: pointer ;
+    background-image: none ;
+    border: 1px solid transparent;
+    white-space: nowrap ;
+    background-color: white ;
+    padding: 6px 12px ;
+    font-size: 12px !important;
+    line-height: 1.42857143 ;
+    border-radius: 4px ;
+    letter-spacing: .5px ;
+    -webkit-user-select: none ;
+    -moz-user-select: none ;
+    -ms-user-select: none ;
+    user-select: none ;
+    background: none !important;
+    
+}
+.btn-red-text {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text:hover, .btn-red-text:focus {
+    background: #990000 !important;
+    color: #ffffff !important;
+}
+    
+    .btn2 {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    letter-spacing: .5px;
+    font-size: 10px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn-red-text2 {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 10px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text2:hover, .btn-red-text:focus {
+    background: #990000;
+    color: #ffffff !important;
+}
+span.truncateLabel {
+    max-width: 100px;
+    
+}
+        
+</style>
+<script>
+         function evaltypeins(){   
+            $.confirm({
+            title: 'Eval Type Instructions',
+            content: 'url:/apex/EvalTypeInstructsions',
+            animation: 'top',
+            columnClass: 'col-md-6 col-md-offset-3',
+            closeAnimation: 'bottom',
+            backgroundDismiss: true,
+                                });
+                            }
+                            
+                            
+    </script>
+  <script>
+         function tradeshowins(){   
+            $.confirm({
+            title: 'Trade Show Instructions',
+            content: 'url:/apex/EvalTradeshowInstructions',
+            animation: 'top',
+            columnClass: 'col-md-6 col-md-offset-3',
+            closeAnimation: 'bottom',
+            backgroundDismiss: true,
+                                });
+                            }
+                            
+                            
+    </script> 
+<script>
+function billingcon(){
+ 
+ var $j = jQuery.noConflict();
+ var bcon = $j("[id$=bill]").val();
+ var type = $j("[id$=type]").val();
+ 
+ if(type == 'ViewSonic Sales Rep Eval'){
+ //alert('sales rep');
+ billingconcomplete();
+ 
+ }else if(bcon == ''){
+  
+ alert('There is no Billing Contact, please put a billing contact in');
+ 
+ }else{
+ 
+ var conid = document.getElementById("evalreqpage:evalreq:reqinputs:contacts:bill_lkid").value;
+ 
+ 
+ var con = new SObjectModel.Contact();
+  con.retrieve({
+      where: { 
+       Id: {eq: conid } 
+     }, limit: 1
+    }, function(err, records) {
+      if (err) alert(err);
+      else ;
+       records.forEach(function(record) {
+      
+ var acct = record.get("AccountId");
+ //alert(acct);
+ accountcheck(acct);
+ 
+  });
+ });
+
+//billingconcomplete();
+}
+
+}
+function accountcheck(acct){
+ //alert(acct);
+ if(acct == '0011200001Dq2NAAAZ'){
+ swal("Error! You cannot have a Viewsonic Employee for Billing Contact on this Eval Type.","If you do not want an agreement sent out, please change the eval type to write off. \n\n If this is a trade show and you are responsible for unit, change eval type to Sales Rep.\n\n Otherwise you must put the responsible party as the billing contact");
+ }else{
+ billingconcomplete();
+ }
+ }
+
+</script>
+<style>
+element.style {
+    display: inline-block;
+    box-shadow: rgba(140, 212, 245, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.0470588) 0px 0px 0px 1px inset;
+    background-color: #990000 !important;
+}
+.sweet-alert button {
+    background-color: #8CD4F5;
+    color: white;
+    border: none;
+    box-shadow: none;
+    font-size: 17px;
+    font-weight: 500;
+    -webkit-border-radius: 4px;
+    border-radius: 5px;
+    padding: 10px 32px;
+    margin: 26px 5px 0 5px;
+    cursor: pointer;
+    background-color: #990000;
+    background: #990000 !important;
+}
+.bPageBlock .lookupIcon, .bPageBlock .lookupIconOn, .genericPageBlockTable .lookupIcon, .genericPageBlockTable .lookupIconOn {
+    vertical-align: middle;
+    padding-bottom: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 1px;
+}
+
+
+</style>
+   
+
+    <apex:sectionheader title="{!$ObjectType.Eval_Request__c.label&' ' &if(Eval_Request__c.Eval_Type__c='ViewSonic Sales Rep Eval','Sales Rep Eval Product: '&Eval_Request__c.Product_Name__r.Name,  Eval_Request__c.Opportunity_Name__r.Name)}" subtitle="{!IF(ISNULL(Eval_Request__c.Name), 'New Product Request',Eval_Request__c.Name)}"/>
+    
+    <body onload="Init ()">
+        <br> <apex:outputlink style="float:right;" value="/069120000026luG"  target="self"><u>Need Help? Open Eval Process Full Guide</u></apex:outputlink></br>
+    
+        <apex:pageblock mode="InlineEdit" title="New {!$ObjectType.Eval_Request__c.label}" id="reqinputs">
+            <apex:pageblockbuttons >
+                <apex:commandbutton styleclass="btn btn-red-text" onclick="billingcon();return false;" value="Save" action="{!Save}"  rendered="{!if(or(Eval_Request__c.Approval_Status__c='Pending',Eval_Request__c.Approval_Status__c='Approved'),false,true)}" />
+                <apex:actionfunction name="billingconcomplete" action="{!Save}"/>
+                
+                <apex:commandbutton styleclass="btn btn-red-text"  value="Cancel" action="{!Cancel}" rendered="{!if(or(Eval_Request__c.Approval_Status__c='Pending',Eval_Request__c.Approval_Status__c='Approved'),false,true)}" onclick="window.location.href = '/a0y/o';return false;"/>
+                <b>{!if(or(Eval_Request__c.Approval_Status__c='Approved',Eval_Request__c.Approval_Status__c='Pending'),"The Prduct Request status is "&Eval_Request__c.Approval_Status__c&" and is Locked From Editing","")}</b>
+                </apex:pageblockbuttons>
+
+            <!-- **********   [Record Type : Selection Type Step 1. ]   **********  -->
+              
+            
+           
+           
+            <apex:outputpanel id="Request" rendered="true" >
+                
+                       <apex:pageblocksection title="Request Type - Step 1 Select Your Request Type" showheader="true" columns="2" collapsible="false">
+                    <apex:pageblocksectionitem />
+                     <center> <a id="ins"  class="btn2 btn-red-text2" onclick="evaltypeins();">Eval Type Instructions &amp; FAQ</a> </center>
+                    <apex:inputfield style=" width: 500px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;"  value="{!Eval_Request__c.Opportunity_Name__c}" required="false" id="Oppname"/>
+                    <apex:inputfield styleclass="slds-input" label="Eval Type" value="{!Eval_Request__c.Eval_Type__c}" required="true" id="type"   onchange="getActive(this.value); getActive2(this.value);"/>
+                     <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+             
+                    <apex:pageblocksection id="info" title="" showheader="false" columns="2" collapsible="false">
+                     <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Reason_for_Request__c}" id="reason" required="{!if($UserRole.Name ='RBM',True,false)}"/>
+                     
+                      <apex:inputCheckBox styleClass="check" value="{!Eval_Request__c.Trade_Show__c}" id="trade" required="false"        selected="false"          onchange="$('[id$=tradeshow]').toggle();$('[id$=trade]').toggle();$('[id$=trade2]').toggle();$('[id$=trade2]').prop('checked', true);if ( $('[id$=Oppname]').val() == '') {$('[id$=Oppname]').val('Viewsonic Trade Show Loaner Eval Requests')};"> 
+                      <apex:inputCheckBox styleClass="check" value="{!Eval_Request__c.Trade_Show__c}" id="trade2" required="false" selected="true"                 onchange="$('[id$=trade2]').toggle();$('[id$=tradeshow]').toggle();$('[id$=trade]').toggle(); $('[id$=trade]').prop('checked', false);if ( $('[id$=Oppname]').val() == 'Viewsonic Trade Show Loaner Eval Requests') {$('[id$=Oppname]').val('')}; " style="display:none;"> </apex:inputcheckbox></apex:inputcheckbox>
+                     
+                     <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Expected_Receive_Date__c}" required="true" id="rcvdate"/>
+                     
+                     <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Ship_Method__c}" required="true" />
+                     
+                     <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Special_Instructions__c}"  required="false" />
+                      
+                     
+                      
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                    
+             
+             
+             <apex:outputpanel id="credit"  rendered="true" > 
+                    
+                    <apex:pageblocksection title="Evaluation Agreements" showheader="true" columns="2" collapsible="false">
+                    <apex:inputCheckBox styleClass="check" label="GovEd Waive Eval Agreement" value="{!Eval_Request__c.GovEd_Account_Waive_Agreement__c}" required="false" id="gov"   onchange="$('[id$=creditcard]').toggle();$('[id$=gov]').toggle();$('[id$=gov2]').toggle();$('[id$=gov2]').prop('checked', true);govedwarn();" >
+                    <apex:inputCheckBox styleClass="check" label="GovEd Waive Eval Agreement" value="{!Eval_Request__c.GovEd_Account_Waive_Agreement__c}" required="false" id="gov2"   style="display:none;" onchange="$('[id$=creditcard]').toggle();$('[id$=gov]').toggle();$('[id$=gov2]').toggle();$('[id$=gov]').prop('checked', false);" >
+                    </apex:inputcheckbox></apex:inputcheckbox>
+                    <apex:pageblocksectionitem />
+                    
+                     
+                   </apex:pageblocksection>
+                    <apex:pageblocksection title="" id="creditcard" showheader="false" columns="2" collapsible="false">
+                    <apex:inputcheckbox label="Credit Card Waiver" value="{!Eval_Request__c.No_Credit_Card_Eval_Agreement__c}" required="false" id="nocc"  onchange="reasonnocc();$('[id$=nocc]').toggle();$('[id$=nocc2]').toggle();$('[id$=nocc2]').prop('checked', true);"    >
+                    <apex:inputcheckbox label="Credit Card Waiver" style="display:none;" value="{!Eval_Request__c.No_Credit_Card_Eval_Agreement__c}" required="false" id="nocc2" onchange="$('[id$=nocc]').toggle();$('[id$=nocc2]').toggle();$('[id$=nocc]').prop('checked', false);$('[id$=noccreasson]').val('');reasonnoccundo();"    > </apex:inputcheckbox></apex:inputcheckbox>
+                     
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Reason_for_No_Credit_Card__c}" required="false" id="noccreasson"   />
+                    <apex:pageblocksectionitem />
+                    
+                     
+                   </apex:pageblocksection>
+                    </apex:outputpanel>
+                
+                    
+                    
+                    
+                     
+                
+                
+                </apex:outputpanel>
+                <apex:outputPanel style="{!if(ISNULL(messages)  ,'display:none;','')}" id="shippinginfo">
+                <apex:pageblocksection id="contacts" collapsible="false" title="Shipping & Billing Contacts - Sales Rep Evals Defaut to Creator of Record. If Contact does not Exist, you can Create with Button on Top of this Page" showheader="true" columns="2">
+                     <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" label="Billing Contact" value="{!Eval_Request__c.Billing_Contact_Name__c}" required="true"  id="bill" onchange="checkValue2();"/>
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" label="Shipping Contact" value="{!Eval_Request__c.Shipping_Contact_Name__c}" required="true"  id="ship" onchange="checkValue2();" />
+                   
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                </apex:outputPanel>
+            
+            <apex:outputPanel styleclass="requiredBlock" style="display:none" id="tradeshow" layout="block">
+                
+                 <apex:pageblocksection title="Trade Show Information - You will not be able to get shipped without this info" showheader="true"  collapsible="false" columns="2">
+                    <apex:pageblocksectionitem />
+                    <center><a id="ins3"  class="btn2 btn-red-text2" onclick="tradeshowins();">Trade Show Instructions &amp; FAQ</a></center>
+                   
+                    <apex:inputfield styleclass="slds-input" style="border-left: 4px solid #c00;" value="{!Eval_Request__c.Name_of_Trade_Show__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" style="border-left: 4px solid #c00;" value="{!Eval_Request__c.Trade_Show_Expected_Return_Date__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Trade_Show_Shipping_Phone__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" style="border-left: 4px solid #c00; width: 100%;" value="{!Eval_Request__c.Trade_Show_Shipping_Address__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>             
+                </apex:outputPanel>
+                <apex:outputPanel style="{!if(Eval_Request__c.Eval_Type__c='Write Off Request','','display:none')}" id="writeoff">
+                 <apex:pageblocksection title="Business Case For Write Off" showheader="true" columns="1" collapsible="false" >
+                    <apex:inputfield Label="" value="{!Eval_Request__c.Business_Case_Write_Off__c}" required="false" style="border-left:4px solid #c00; width:100%; " id="reason"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+            </apex:outputpanel>                
+            <apex:outputPanel style="display:none" id="product">
+                <apex:pageblocksection title="Products & Quantities. Prefilled Products are from the related opportunity." showheader="true" columns="2" collapsible="false">
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" value="{!Eval_Request__c.Product_Name__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Quantity__c}" required="false"/>
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" value="{!Eval_Request__c.Product_Name_2__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Quantity_2__c}" required="false"/>
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" value="{!Eval_Request__c.Product_Name_3__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Quantity_3__c}" required="false"/>
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" value="{!Eval_Request__c.Product_Name_4__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Quantity_4__c}" required="false"/>
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" value="{!Eval_Request__c.Product_Name_5__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Quantity_5__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                </apex:outputPanel>
+      </apex:pageblock>
+ 
+     </body>
+ 
+ 
+ </apex:form>
+ 
+ 
+</div>
+ 
+ 
+ 
+</apex:page>

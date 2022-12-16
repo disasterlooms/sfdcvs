@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Outstanding_Evals__c</fullName>
+    <externalId>false</externalId>
+    <label>Outstanding Evals</label>
+    <summaryFilterItems>
+        <field>Eval_Unit_Details__c.Status__c</field>
+        <operation>notEqual</operation>
+        <value>Product Returned, Purchased/Invoiced, Write-off</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Eval_Unit_Details__c.Eval_Request__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,44 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionwithoutheader"
+                    controller="acctOwnerUp"
+                    access="global" >
+        <aura:attribute name="recordId" type="String" /> 
+        <aura:attribute name="disabled" type="boolean" default="false" /> 
+        <lightning:card  
+                        title="Owner is based on fields below, Ensure they are correct before Update">
+            <lightning:recordEditForm
+                                      onload="{!c.handleLoad}"
+                                      onsubmit="{!c.handleSubmit}"
+                                      onsuccess="{!c.handleSuccess}"
+                                      recordId="{!v.recordId}"
+                                      objectApiName="Account"
+                                      aura:id="acct">
+                
+                <lightning:inputField fieldName="Account_Type__c" />
+                <lightning:inputField fieldName="Industry" />
+                <lightning:inputField fieldName="BillingAddress" />
+                <br/><br/>
+                <div class="slds-m-top_medium" style="float:right">
+                 <lightning:button variant="brand" type="submit" name="save" label="Save" disabled="{!v.disabled}"/>
+            <lightning:button variant="brand" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
+                </div>
+                
+            </lightning:recordEditForm>
+            
+                 <br/><br/>
+            
+             <aura:set attribute="footer">
+                  </aura:set>
+            
+            
+            <!--
+            <aura:set attribute="footer">
+            
+            </aura:set>
+         -->
+        </lightning:card><!--
+    <div class="slds-docked-form-footer">
+                <lightning:button variant="brand" type="submit" name="save" label="Save" disabled="{!v.disabled}"/>
+            <lightning:button variant="brand" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
+                </div>-->
+        
+    </aura:component>

@@ -1,0 +1,33 @@
+<apex:page standardStylesheets="false" sidebar="false"  >
+<script>
+window.location.href = 'https://viewsonic.force.com/s/';
+</script>
+<!--
+<apex:stylesheet value="{!URLFOR($Resource.BidDeskcss)}"/>
+<style type="text/css">
+input.btn[name="rkexporttoexcel__export_to_excel"] {
+            display: none;
+        }
+input.btn[name="new_spa_request"] {
+            
+        } 
+        input.btn[name="send_follow_email"] {
+            display: none;
+        }
+        input.btn[name="stage_update"] {
+            display: none;
+        }
+        
+        
+</style>
+<apex:form >
+</apex:form>
+
+
+<apex:enhancedList type="Opportunity" height="400" rowsPerPage="100" customizable="true"  >             
+</apex:enhancedList>
+
+<wave:dashboard dashboardId="0FK1H000000dMgVWAU"/>
+-->
+        
+</apex:page>

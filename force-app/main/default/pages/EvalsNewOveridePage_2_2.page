@@ -1,0 +1,364 @@
+<apex:page docType="html-5.0" standardcontroller="Eval_Request__c" sidebar="false" id="evalreqpage" action="{!if($User.UITheme != 'Theme4t', null,URLFOR($Action.Eval_Request__c.new, Id)&'?nooverridde=1')}" >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.evalnewjs}"/>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<apex:includeScript value="{!URLFOR($Resource.Jquery, '/jquery-ui-1.11.4/jquery-ui.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.sweetalert, '/sweetalert-master/dist/sweetalert.min.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.sweetalert, '/sweetalert-master/dist/sweetalert.css')}"/>
+<apex:includeScript value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/dist/jquery-confirm.min.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/css/jquery-confirm.css')}"/>
+<apex:stylesheet value="{!$Resource.OppVFOverride}"/>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.evalnew)}" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<apex:remoteObjects >
+<apex:remoteObjectModel name="Contact" fields="Name,Id,AccountId">
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+
+<apex:Pagemessages id="error"/>
+ <!--
+ 
+ -->
+  <div class="viewsonic">   
+<!--
+<apex:form id="pastdue" style="{!if(Eval_Request__c.Evals_Past_Due_Contact__c > 0 && isblank(messages) && $User.Alias != 'admin', "","display:none;")}">
+
+ <br> <br><center><apex:commandbutton style="display:none;" styleclass="btn btn-red-text"  value="Create an Eval" onclick="$('[id$=evalreq]').show();$('[id$=pastdue]').hide();$('[id$=buttons]').show();return false;"    id="continue"   rendered="true"/></center> </br> </br>
+
+
+<center><font size="5"><b>Your Outstanding And Past Due Evals Grouped by Days Past Due</b></font>
+<br><br><analytics:reportChart reportId="00O12000004t50e" filter="{column:'Eval_Unit_Details__c.Eval_Request__c.Evaluation_Owner__c.Name', operator:'equals', value:'{!$User.FirstName&' '&$User.LastName}'}" />
+</br></br></center>
+<br>  <font size="4.5" ><b>New eval requests may be locked after exceeding the % Past Due limit. Currently this limit is being reviewed. You can see your outstanding evals, your past due evals, and % of past due below. </b></font>
+<div style="font-size:24px;">
+<br> <apex:panelGrid columns="2" id="theGrid" border="1" frame="border" cellpadding="3px" width="500px" >
+        <apex:outputText value="% of Past Due:" id="theFith"/>
+        <apex:outputText style="{!if(Eval_Request__c.Total_Past_Due_Evals__c>10,'float:right; background-color: #900000; color: #FFFFFF;','float:right;')}" value="{!Eval_Request__c.Total_Past_Due_Evals__c }%" id="theSixth"/>
+    
+        <apex:outputText value="Past Due Amount:" id="theFirst"/>
+        <apex:outputText style="float:right;" value="{0, number, currency}" id="theSecond"><apex:param value="{!Eval_Request__c.Evals_Past_Due_Contact__c}"/> </apex:outputText>
+        <apex:outputText value="Outstanding Amount:" id="theThird"/>
+        <apex:outputText style="float:right;" value="{0, number, currency}"  id="theFourth"><apex:param value="{!Eval_Request__c.Evals_Outstanding_Contact__c }"/> </apex:outputText>
+        
+    </apex:panelGrid></br> 
+
+</div>
+
+<font size="3.5" >  <br> <a style="color:red" id="theLink" name="Outstanding Evaluations" href="https://viewsonic.my.salesforce.com/a0y?fcf=00B12000008hqJM">My Outstanding Evaluations</a>
+              </br></font>
+              <font size="3.5" >  <br> <a style="color:red" id="theLink" name="Outstanding Evaluations" href="https://viewsonic.my.salesforce.com/a0y?fcf=00B12000008CjOs&rolodexIndex=-1&page=1">My Past Due Evaluations</a>
+              </br></font></br>
+  <br><br><font size="3.5" ><input type="checkbox" id="agree" name="agree" value="Bike" onclick="OnChangeCheckbox21(event);"/> {!if(Eval_Request__c.Total_Past_Due_Evals__c<10,"I will continue to be an eval Rock Star","I understand and agree to resolve my past due evals.")}</font></br></br>
+      
+
+ </apex:form>
+ -->
+ <apex:form id="evalreq">
+ <c:LoadSave />   
+<script type="text/javascript">
+    function getActive(selectedValue) {
+        if (selectedValue == 'ViewSonic Sales Rep Eval')
+
+        {
+            var sales = 'ViewSonic Corporation Sales Rep Eval Units';
+
+
+            $('[id$=ship]').val('{!$User.Contact_Name__c}');
+            document.getElementById("evalreqpage:evalreq:reqinputs:contacts:bill_lkid").value ='{!$User.Contact_ID__c}';
+            document.getElementById("evalreqpage:evalreq:reqinputs:contacts:bill_lkold").value ='{!$User.Contact_Name__c}';
+            document.getElementById("evalreqpage:evalreq:reqinputs:contacts:ship_lkid").value ='{!$User.Contact_ID__c}';
+            document.getElementById("evalreqpage:evalreq:reqinputs:contacts:ship_lkold").value ='{!$User.Contact_Name__c}';
+            document.getElementById("evalreqpage:evalreq:reqinputs:contacts:bill_mod").value =1;
+            document.getElementById("evalreqpage:evalreq:reqinputs:contacts:ship_mod").value =1;
+            
+            
+            
+            $("[id$=product]").show();
+            $('[id$=bill]').val('{!$User.Contact_Name__c}');
+           
+            idtest = $('[id$=bill_lkid]').val();
+            console.log(idtest);
+
+            $("[id$=ship]").prop("readonly", true);
+            $("[id$=bill]").prop("readonly", true);
+            $("[id$=ship_lkwgt]").hide();
+            $("[id$=shippinginfo]").show();
+            $("[id$=bill_lkwgt]").hide();
+            $('[id$=Oppname]').addClass("required");
+            $("[id$=writeoff]").hide();
+            $("[id$=labelr]").show();
+            $("[id$=reason]").show();
+            $("[id$=reason]").val('');
+            $("[id$=info]").show()
+            $("[id$=credit]").hide()
+            $("input[id$=Oppname]").prop("disabled", false);
+            $("input[id$=trade]").prop("disabled", false);
+
+
+
+
+        } else if (selectedValue == 'End-User/Reseller/Disty Eval') {
+            var trade = '';
+
+            $("[id$=ship]").prop("readonly", false);
+            $("[id$=credit]").show()
+            $("[id$=bill]").prop("readonly", false);
+            $("[id$=shippinginfo]").show();
+            $("[id$=ship_lkwgt]").show();
+            $("[id$=bill_lkwgt]").show();
+            $("[id$=ship]").val('');
+            $("[id$=bill]").val('');
+            $("[id$=writeoff]").hide();
+            $("[id$=labelr]").show();
+            $("[id$=reason]").show();
+            $("[id$=reason]").val('');
+            $("[id$=info]").show()
+            $("[id$=gov]").show()
+            $("input[id$=Oppname]").prop("disabled", false);
+            $("input[id$=gov]").prop("disabled", false);
+            $("input[id$=trade]").prop("disabled", false);
+
+
+
+        } else if (selectedValue == 'Reseller Demo') {
+            var trade = '';
+
+            alert('Reseller Demos are NOT associated with an opportunity. POS Sales will be used to determine ROI. Demos are for 90 days and must be reviewed after 90 days based on POS.');
+            $("[id$=ship]").prop("readonly", false);
+            $("[id$=credit]").show()
+            $("[id$=bill]").prop("readonly", false);
+            $("[id$=shippinginfo]").show();
+            $("[id$=ship_lkwgt]").show();
+            $("[id$=bill_lkwgt]").show();
+            $("[id$=ship]").val('');
+            $("[id$=bill]").val('');
+            $("[id$=writeoff]").hide();
+            $("[id$=labelr]").show();
+            $("[id$=reason]").show();
+            $("[id$=reason]").val('');
+            $("[id$=info]").show()
+            $("[id$=gov]").show()
+            $("input[id$=Oppname]").prop("disabled", true);
+            $('[id$=Oppname]').val('');
+            $("input[id$=gov]").prop("disabled", true);
+            $("input[id$=trade]").prop("disabled", true);
+            $('.check').attr('checked', false);
+            $("[id$=tradeshow]").hide();
+
+
+
+
+        } else if (selectedValue == 'Write Off Request') {
+            var blank = '';
+
+
+            $("[id$=ship]").prop("readonly", false);
+            $("[id$=bill]").prop("readonly", false);
+            $("[id$=ship_lkwgt]").show();
+            $("[id$=bill_lkwgt]").show();
+            $("[id$=shippinginfo]").show();
+            $("[id$=ship]").val('');
+            $("[id$=bill]").val('');
+            $("[id$=writeoff]").show();
+            $("[id$=reason]").show();
+            $("[id$=labelr]").show();
+            $("[id$=reason]").val('See Write-Off Reason');
+            $("[id$=info]").show()
+            $("[id$=credit]").hide()
+            $("input[id$=Oppname]").prop("disabled", false);
+            $("input[id$=trade]").prop("disabled", false);
+
+
+
+
+        }
+
+    }
+</script>
+
+
+
+<script>
+    $(document).ready(function() {
+
+
+        $("[id$=shippinginfo]"). {
+            !
+            if ((ISNULL(messages)), 'hide', 'show')
+        }()
+        $("[id$=info]"). {
+            !
+            if ((ISNULL(messages)), 'hide', 'show')
+        }()
+        $("[id$=product]"). {
+            !
+            if ((ISNULL(messages)), 'hide', 'show')
+        }()
+        $("[id$=credit]"). {
+            !
+            if ((ISNULL(messages)), 'hide', 'show')
+        }()
+
+    });
+</script>
+<script>
+    function contactaccount() {
+        //var $j = jQuery.noConflict();
+        //alert('test');
+        $('[id$=actions]').toggle();
+        $("[id$=con4__09D12000000B5G8]").val('');
+
+        if ("{!$Profile.Name}" == "Sales - Latin America") {
+            lalistbutton();
+        } else {}
+
+    }
+</script>
+
+
+
+<script>
+</script>
+<script>
+    function rmvclass() {
+        var $j = jQuery.noConflict();
+         $('.btn btn-red-text').removeClass('saving');
+         $('.btnDisabled').addClass('saving');
+    }
+</script>
+
+
+   
+
+    <apex:sectionheader title="{!$ObjectType.Eval_Request__c.label&' ' &if(Eval_Request__c.Eval_Type__c='ViewSonic Sales Rep Eval','Sales Rep Eval Product: '&Eval_Request__c.Product_Name__r.Name,  Eval_Request__c.Opportunity_Name__r.Name)}" subtitle="{!IF(ISNULL(Eval_Request__c.Name), 'New Product Request',Eval_Request__c.Name)}"/>
+    
+    <body onload="Init ()">
+        <br> <apex:outputlink style="float:right;" value="/069120000026luG"  target="self"><u>Need Help? Open Eval Process Full Guide</u></apex:outputlink></br>
+    
+        <apex:pageblock mode="InlineEdit" title="New {!$ObjectType.Eval_Request__c.label}" id="reqinputs">
+            <apex:pageblockbuttons >
+                <apex:commandbutton styleclass="btn btn-red-text" value="Save" action="{!Save}"  reRender="error,savebtn" id="savebtn" onclick="rmvclass();" status="status"/>
+            <!--    <apex:actionStatus id="status" stopText="" startText="saving...please wait" startStyle="font-size: 20px;font-weight: bold;" onstart="console.log('startjs');$('[id$=loadingmessage]').toggle();" onstop="$('[id$=loadingmessage]').toggle();"/> -->
+
+                <!--<apex:actionfunction name="billingconcomplete" action="{!Save}" rerender="error,loadingmessage" /> -->
+                
+                <apex:commandbutton styleclass="btn btn-red-text"  value="Cancel" action="{!Cancel}" rendered="{!if(or(Eval_Request__c.Approval_Status__c='Pending',Eval_Request__c.Approval_Status__c='Approved'),false,true)}" onclick="window.location.href = '/a0y/o';return false;"/>
+                <b>{!if(or(Eval_Request__c.Approval_Status__c='Approved',Eval_Request__c.Approval_Status__c='Pending'),"The Prduct Request status is "&Eval_Request__c.Approval_Status__c&" and is Locked From Editing","")}</b>
+                </apex:pageblockbuttons>
+
+            <!-- **********   [Record Type : Selection Type Step 1. ]   **********  -->
+              
+            
+           
+           
+            <apex:outputpanel id="Request" rendered="true" >
+                
+                       <apex:pageblocksection title="Request Type - Step 1 Select Your Request Type" showheader="true" columns="2" collapsible="false">
+                    <apex:pageblocksectionitem />
+                     <center> <a id="ins"  class="btn2 btn-red-text2" onclick="window.open('/apex/EvalTypeInstructsions','pagename','resizable,height=560,width=450');">Eval Type Instructions &amp; FAQ</a> </center>
+                    <apex:inputfield style=" width: 500px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;"  value="{!Eval_Request__c.Opportunity_Name__c}" required="false" id="Oppname"/>
+                    <apex:inputfield styleclass="slds-input" label="Eval Type" value="{!Eval_Request__c.Eval_Type__c}" required="true" id="type"   onchange="getActive(this.value); getActive2(this.value);"/>
+                         <apex:pageblocksectionitem />
+                        </apex:pageblocksection>
+                    <apex:pageblocksection id="info" title="" showheader="false" columns="2" collapsible="false">
+                    <apex:inputfield label="Reason for Request"  styleclass="slds-input" value="{!Eval_Request__c.Reason_for_Request__c}" id="reason" required="{!if($UserRole.Name ='RBM',True,false)}"/>
+                    <apex:inputCheckBox styleClass="check" value="{!Eval_Request__c.Trade_Show__c}" id="trade" required="false"        selected="false"          onchange="$('[id$=tradeshow]').toggle();$('[id$=trade]').toggle();$('[id$=trade2]').toggle();$('[id$=trade2]').prop('checked', true);if ( $('[id$=Oppname]').val() == '') {$('[id$=Oppname]').val('Viewsonic Trade Show Loaner Eval Requests')};"> 
+                    <apex:inputCheckBox styleClass="check" value="{!Eval_Request__c.Trade_Show__c}" id="trade2" required="false" selected="true"                 onchange="$('[id$=trade2]').toggle();$('[id$=tradeshow]').toggle();$('[id$=trade]').toggle(); $('[id$=trade]').prop('checked', false);if ( $('[id$=Oppname]').val() == 'Viewsonic Trade Show Loaner Eval Requests') {$('[id$=Oppname]').val('')}; " style="display:none;"> </apex:inputcheckbox></apex:inputcheckbox>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Expected_Receive_Date__c}" required="true" id="rcvdate"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Ship_Method__c}" required="true" />
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Special_Instructions__c}"  required="false" />
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+             <apex:outputpanel id="credit"  rendered="true" > 
+                    <apex:pageblocksection title="Evaluation Agreements" showheader="true" columns="2" collapsible="false">
+                    <apex:inputCheckBox styleClass="check" label="Gov/Ed/Enterprise Waive Eval Agreement" value="{!Eval_Request__c.GovEd_Account_Waive_Agreement__c}" required="false" id="gov"   onchange="$('[id$=creditcard]').toggle();$('[id$=gov]').toggle();$('[id$=gov2]').toggle();$('[id$=gov2]').prop('checked', true);govedwarn();reasonnocc();" >
+                    <apex:inputCheckBox styleClass="check" label="Gov/Ed/Enterprise Waive Eval Agreement" value="{!Eval_Request__c.GovEd_Account_Waive_Agreement__c}" required="false" id="gov2"   style="display:none;" onchange="$('[id$=creditcard]').toggle();$('[id$=gov]').toggle();$('[id$=gov2]').toggle();$('[id$=gov]').prop('checked', false);" >
+                    </apex:inputcheckbox></apex:inputcheckbox>
+                    <apex:pageblocksectionitem />
+                   </apex:pageblocksection>
+                    <apex:pageblocksection title="" id="creditcard" showheader="false" columns="2" collapsible="false">
+                    <apex:inputcheckbox label="Credit Card Waiver" value="{!Eval_Request__c.No_Credit_Card_Eval_Agreement__c}" required="false" id="nocc"  onchange="reasonnocc();$('[id$=nocc]').toggle();$('[id$=nocc2]').toggle();$('[id$=nocc2]').prop('checked', true);"    >
+                    <apex:inputcheckbox label="Credit Card Waiver" style="display:none;" value="{!Eval_Request__c.No_Credit_Card_Eval_Agreement__c}" required="false" id="nocc2" onchange="$('[id$=nocc]').toggle();$('[id$=nocc2]').toggle();$('[id$=nocc]').prop('checked', false);$('[id$=noccreasson]').val('');reasonnoccundo();"    > </apex:inputcheckbox></apex:inputcheckbox>
+                    <apex:inputfield label="Reason Waive Credit Card or Agreement" styleclass="slds-input" value="{!Eval_Request__c.Reason_for_No_Credit_Card__c}" required="false" id="noccreasson"   />
+                    <apex:pageblocksectionitem />
+                   </apex:pageblocksection>
+                    </apex:outputpanel>
+                </apex:outputpanel>
+                <apex:outputPanel style="{!if(ISNULL(messages)  ,'display:none;','')}" id="shippinginfo">
+                <apex:pageblocksection id="contacts" collapsible="false" title="Shipping & Billing Contacts - Sales Rep Evals Defaut to Creator of Record. If Contact does not Exist, you can Create with Button on Top of this Page" showheader="true" columns="2">
+                     <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" label="Billing Contact" value="{!Eval_Request__c.Billing_Contact_Name__c}" required="true"  id="bill" onchange="checkValue2();"/>
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" label="Shipping Contact" value="{!Eval_Request__c.Shipping_Contact_Name__c}" required="true"  id="ship" onchange="checkValue2();" />
+                  <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                </apex:outputPanel>
+            
+            <apex:outputPanel styleclass="requiredBlock" style="display:none" id="tradeshow" layout="block">
+                
+                 <apex:pageblocksection title="Trade Show Information - You will not be able to get shipped without this info" showheader="true"  collapsible="false" columns="2">
+                    <apex:pageblocksectionitem />
+                    <center><a id="ins3"  class="btn2 btn-red-text2" onclick="window.open('/apex/EvalTradeshowInstructions','pagename','resizable,height=560,width=450');">Trade Show Instructions &amp; FAQ</a></center>
+                   
+                    <apex:inputfield styleclass="slds-input" style="border-left: 4px solid #c00;" value="{!Eval_Request__c.Name_of_Trade_Show__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" style="border-left: 4px solid #c00;" value="{!Eval_Request__c.Trade_Show_Expected_Return_Date__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Trade_Show_Shipping_Phone__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" style="border-left: 4px solid #c00; width: 100%;" value="{!Eval_Request__c.Trade_Show_Shipping_Address__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>             
+                </apex:outputPanel>
+                <apex:outputPanel style="{!if(Eval_Request__c.Eval_Type__c='Write Off Request','','display:none')}" id="writeoff">
+                 <apex:pageblocksection title="Business Case For Write Off" showheader="true" columns="1" collapsible="false" >
+                    <apex:inputfield Label="" value="{!Eval_Request__c.Business_Case_Write_Off__c}" required="false" style="border-left:4px solid #c00; width:100%; " id="reason"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+            </apex:outputpanel>                
+            <apex:outputPanel style="display:none" id="product">
+                <apex:pageblocksection title="Products & Quantities. Prefilled Products are from the related opportunity." showheader="true" columns="2" collapsible="false">
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" value="{!Eval_Request__c.Product_Name__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Quantity__c}" required="false"/>
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" value="{!Eval_Request__c.Product_Name_2__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Quantity_2__c}" required="false"/>
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" value="{!Eval_Request__c.Product_Name_3__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Quantity_3__c}" required="false"/>
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" value="{!Eval_Request__c.Product_Name_4__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Quantity_4__c}" required="false"/>
+                    <apex:inputfield style=" width: 525px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" value="{!Eval_Request__c.Product_Name_5__c}" required="false"/>
+                    <apex:inputfield styleclass="slds-input" value="{!Eval_Request__c.Quantity_5__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                </apex:outputPanel>
+      </apex:pageblock>
+     </body>
+ </apex:form>
+</div>
+<apex:include pagename="UIInteractions"/>
+<apex:includeScript value="{!$Resource.spasearch_js}" />
+<style type="text/css">   
+
+    .headerSearchRightRoundedCorner #SpaSearchButton {
+    background: transparent url(/img/alohaSkin/unified_search_background_sprite.png) repeat-x scroll left -120px;
+    border: 0 none;
+    height: 24px;
+    margin: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: bold;
+    font-size: 90%;
+    font-family: Arial;
+    color: #1797c0;
+    cursor: pointer;
+    width: auto;
+    overflow: visible;
+    border-radius: 0;
+}
+.phHeaderCustomLogo .headerSearchRightRoundedCorner #SpaSearchButton {
+    background: transparent url(/img/alohaSkin/unified_search_background_sprite.png) repeat-x scroll left top;
+}
+
+.headerSearchRightRoundedCorner #phSearchButton{
+    padding-right: 8px; 
+}
+</style>
+</apex:page>

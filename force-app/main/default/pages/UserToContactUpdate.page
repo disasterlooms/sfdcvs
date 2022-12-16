@@ -1,0 +1,22 @@
+<apex:page standardController="User" tabStyle="User" recordSetVar="AllUsers">
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:repeat value="{!AllUsers}" var="row" rendered="false">
+     {!row.FirstName}
+      {!row.LastName}
+        {!row.Email}
+        {!row.Phone}
+        {!row.MobilePhone}
+        {!row.Street}
+        {!row.City}
+        {!row.State}
+        {!row.PostalCode}
+        {!row.Contact_ID__c }
+        
+        
+    </apex:repeat>
+    <!-- Runs your Flow -->   
+    <flow:interview name="UsertoContactUpdate"
+          finishLocation="{!URLFOR($Action.Opportunity.Tab, $ObjectType.Opportunity)}">
+        <apex:param name="ColUsers" value="{!Selected}"/>
+    </flow:interview>
+</apex:page>

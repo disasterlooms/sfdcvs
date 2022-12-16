@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Change_Viewsonic_Account_Info</fullName>
+    <active>true</active>
+    <errorConditionFormula>Id =&quot;0011200001Dq2NA&quot; &amp;&amp; $User.Alias != &apos;admin&apos; 
+&amp;&amp; 
+$User.Alias != &apos;VITadmin&apos; &amp;&amp; 
+(ischanged(BillingStreet ) || ischanged(BillingState) || ischanged(BillingCity) || ischanged(BillingState)||ischanged(BillingPostalCode ) || ischanged(Phone) || ischanged(Name))</errorConditionFormula>
+    <errorMessage>Only Admin can change Viewsonic Address</errorMessage>
+</ValidationRule>

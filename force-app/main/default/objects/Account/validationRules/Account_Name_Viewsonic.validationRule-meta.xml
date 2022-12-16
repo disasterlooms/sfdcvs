@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Name_Viewsonic</fullName>
+    <active>true</active>
+    <description>Ensures no other Viewsonic Accounts are created</description>
+    <errorConditionFormula>and(isnew(),or(contains( lower(Name) ,&apos;viewsonic&apos;),contains( lower(Name) ,&apos;view sonic&apos;)),$User.Alias &lt;&gt; &apos;admin&apos;) &amp;&amp;  Apex_Test__c = false</errorConditionFormula>
+    <errorMessage>Please do not create Viewsonic Accounts, If there is a business need for this account, please contact SFDC Admin</errorMessage>
+</ValidationRule>

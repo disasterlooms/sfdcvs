@@ -1,0 +1,64 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="OppContacts">
+    <aura:attribute name="recordId" type="String" access="public"/>
+    <aura:attribute name="contacts" type="OpportunityContactRole[]" access="public"/>
+    <aura:attribute name="title" type="String" access="public" default="Contacts to Follow Up"/>
+    <aura:attribute name="mailContacts" type="OpportunityContactRole[]" access="public"/>
+    <aura:handler name="init" value="{!this}" action="{!c.getContacts}" />
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <div class="slds-border_top  slds-border_right slds-border_left slds-border_bottom flexipageComponent" data-aura-class="flexipageComponent">
+    	<article class="slds-card">
+          <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate"><div class="slds-media__body">
+                <h2>
+                    <span class="slds-text-heading_small">{!v.title}</span>
+                </h2>
+              </div>
+            </header>
+            <div class="slds-no-flex">
+              <lightning:button label="Send&nbsp;Follow&nbsp;Up&nbsp;Email" variant="neutral" onclick="{!c.newEmail}" value="{!recordid}"  />
+              <lightning:button label="New&nbsp;Opportunity&nbsp;Contact" variant="neutral" onclick="{!c.newContact}" value="{!recordid}"  /> 
+            </div>
+          </div>
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+              <thead>
+                <tr class="slds-text-title_caps">
+                  <th scope="col">
+                      <ui:inputCheckbox change="{!c.checkAllCheckboxescon}" aura:id="checkboxcon"/>
+                  </th>
+                  <th scope="col">
+                    <div class="slds-truncate" title="Name">Name</div>
+                  </th>
+                  <th scope="col">
+                    <div class="slds-truncate" title="Account">Account</div>
+                  </th>
+                  <th scope="col">
+                    <div class="slds-truncate" title="Email">Email</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <aura:iteration items="{!v.contacts}" var="c">
+                  <tr>
+                    <td>
+                       <ui:inputCheckbox aura:id="DependentCheckboxcon" name="{!c.Id}"/>
+                    </td>
+                    <td>
+                        <ui:outputText value="{!c.Contact.Name}"/>
+                    </td>
+                    <td>
+                      <ui:outputText value="{!c.Contact.Account.Name}"/>
+                    </td>
+                    <td>
+                      <ui:outputText value="{!c.Contact.Email}"/>                        
+                    </td>
+               	</tr>
+               </aura:iteration>
+              </tbody>
+            </table>
+            
+        </article>
+    	</div>
+        
+</aura:component>

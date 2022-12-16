@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <interviewLabel>Lead Update date {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Lead Update date</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Lead_Latest_Sales_Rep_Activity_Date</name>
+        <label>Lead Latest Sales Rep Activity Date</label>
+        <locationX>209</locationX>
+        <locationY>214</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>LeadId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Latest_Sales_Rep_Activity__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Lead</object>
+    </recordUpdates>
+    <startElementReference>Lead_Latest_Sales_Rep_Activity_Date</startElementReference>
+    <status>Active</status>
+    <variables>
+        <description>Id from the headless process builder</description>
+        <name>LeadId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DoNotUpdateAcctTeam__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Tells Class account team not to update this account. It is for mostly national or high volume distribution, Reseller Accounts that the team rarely changes and there are so few we can just update manually instead of through this trigger. 
+
+It will prevent the need to lock records for update</description>
+    <externalId>false</externalId>
+    <label>DoNotUpdateAcctTeam</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

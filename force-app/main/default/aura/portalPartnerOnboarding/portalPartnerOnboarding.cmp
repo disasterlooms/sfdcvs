@@ -1,0 +1,106 @@
+<aura:component controller="portalResellerOnboarding"
+                implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes,lightning:availableForFlowScreens" 
+                access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.sPassword}" />
+    <aura:attribute name="userid" type="string"/>
+    <aura:attribute name="conEmail" type="string"/>
+    <aura:attribute name="newPasswd" type="string"/>
+    <aura:attribute name="acctOwnerId" type="string"/>
+    <aura:attribute name="reset" type="boolean"/>    
+    <aura:attribute name="errMsg" type="string"/>
+    <aura:attribute name="accounts" type="Account[]"/>
+    <aura:attribute name="acctFound" type="Boolean"/>
+    <aura:attribute name="btnDisabled" type="Boolean" default="true"/>     
+    <aura:attribute name="acctId" type="String"/>
+    <aura:attribute name="incorrectAcct" type="Boolean" default="false"/>
+    <aura:attribute name="defaultAcct" type="String" default="001Z000001V3DDx"/>
+    
+    {!v.errMsg}
+    
+    
+    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="" variant="brand" size="large"/>
+    </div>
+    <aura:if isTrue="{!v.acctFound}">
+         <b>{!v.accounts[0].Parent_Account_Name__c }&nbsp;</b> {!$Label.c.pp_onboardingAccountMatch}
+        <br/><br/>
+        <lightning:input type="checkbox" label="{!$Label.c.pp_application_wrongAcct}" name="input1"
+                         aura:id="IncorrectAcct" onchange="{!c.incorrect}" ischecked="{!v.incorrectAcct}"
+                         value="{!v.defaultAcct}"/>
+        <br/><br/>
+        <div class="slds-border_top  slds-border_right slds-border_left slds-border_bottom flexipageComponent" data-aura-class="flexipageComponent">
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate"><div class="slds-media__body">
+                        <h2>
+                            <span class="slds-text-heading_small">{!v.title}</span>
+                        </h2>
+                        </div>
+                    </header>
+                    <div class="slds-no-flex">
+                    </div>
+                </div>
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Account Name">{!$Label.c.Company}</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Quantity">{!$Label.c.City}</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Contact">{!$Label.c.State_Province}</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Contact">{!$Label.c.Country}</div>
+                            </th>
+                            <th scope="col">
+                                <!--<div class="slds-truncate" title="Requested Price">Reseller Contact</div>-->
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.accounts}" var="p">
+                            <tr>
+                                
+                                <td>
+                                    <lightning:input type="checkbox" label="" 
+                                                     name="{!p.OwnerId}" aura:id="DependentCheckboxpart"
+                                                     value="{!p.Id}"
+                                                     checked="false" onchange="{!c.updateAcct}"/>
+                                    
+                                    <!-- <ui:inputCheckbox aura:id="DependentCheckboxpart" name="{!p.Id}"/>-->
+                                </td>
+                                <td>
+                                    <ui:outputText value="{!p.Name}"/>
+                                    
+                                </td>
+                                <td>
+                                    <ui:outputText value="{!p.BillingCity}"/>
+                                </td><td>
+                                <ui:outputText value="{!p.BillingState}"/>
+                                </td>
+                                <td>
+                                    <ui:outputText value="{!p.BillingCountry}"/>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+                
+            </article> 
+        </div>  
+    </aura:if>
+    <lightning:card>
+        <aura:set attribute="actions">
+            <lightning:button aura:id="NEXT" label="{!$Label.c.submitButton}"
+                              variant="brand" onclick="{!c.nextFlow}" class="flowBtnClass" disabled="{!v.btnDisabled}"/>
+        </aura:set>
+    </lightning:card>
+    
+    
+</aura:component>

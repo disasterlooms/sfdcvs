@@ -1,0 +1,54 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens" access="global"
+                controller="CustomSearchController">
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"/>
+    <aura:method name="sampleMethod" action="{!c.doAction}"
+                 description="Sample method with parameters"/>
+    <aura:attribute name="method" type="Aura.action"/> 
+    <aura:attribute type="String" name="docId" description="The Created Document Id"/>    
+     <aura:attribute type="String" name="docName" description="The Created Document Name"/>    
+    <aura:attribute type="ContentDocument" name="doc" description="The Created Document Record"/>
+    
+     <aura:attribute type="String" name="attchLabel" description="label for attachment"/>
+    <aura:attribute type="String" name="relatedId" description="Associated Record"/>
+    <aura:attribute type="String" name="imageURL" description="URL to show logo"/> 
+    <aura:attribute type="Boolean" name="btnDisabled" default="true"/> 
+    <aura:attribute name="testImageUrl" type="String"/>
+    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    
+    <!--<img src="{!v.imageURL}" style="max-width:120px;"/>-->
+    
+   
+    <h2><b></b></h2>
+    <br/>
+    <!--<span onclick="{!c.clickfound}">-->
+    <lightning:fileUpload label="{!v.attchLabel}"
+                          accept=".pdf,.jpg,.png,.jpeg"
+                          name="fileUploader"
+                          multiple="false"
+                          recordId="{!v.relatedId}"
+                          onuploadfinished="{!c.handleUploadFinished}"
+                          aura:id="fUpload">
+        
+        <br/>
+    </lightning:fileUpload>
+    <aura:if isTrue="{!not(v.btnDisabled)}">   
+        <h2><b>{!$Label.c.pp_upload_docName} : {!v.docName}</b></h2>
+    </aura:if> 
+    <br/>
+    <b>{!$Label.c.pp_acceptedFileFormats}</b>
+    <br/>
+    
+    <!-- </span> -->
+    <aura:attribute name="customLabelbtn" type="String" default="Send File"/>    
+    <lightning:card>
+        <aura:set attribute="actions">
+             <lightning:button aura:id="PREVIOUS" label="Previous"
+                              variant="brand" onclick="{!c.previous}" class="flowBtnClass"/>
+            <!--<lightning:button aura:id="NEXT" label="{!v.customLabelbtn}" disabled="{!v.btnDisabled}"
+                              variant="brand" onclick="{!c.onButtonPressed}" class="flowBtnClass"/>-->
+        </aura:set>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hot_Swap_Request_Status__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF (HotSwap_Final_Status__c==FALSE, TEXT(SPA__r.Hot_Swap_Approved_Or_Rejected__c),&apos;Request Closed&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Hot Swap Approval Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

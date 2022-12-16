@@ -1,0 +1,248 @@
+.THIS {
+}
+.THIS .inverseTextColor{
+    color:black !important;
+}
+.THIS .vCenter {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+.THIS .logoContainer {
+    background-image: t('url(' + brandLogoImage  + ')');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 99;
+    cursor: pointer;
+    position: relative;
+    max-width: 100%;
+    max-height: 52px;
+    display: block;
+    outline: 0;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.THIS .contentPanel:before,
+.THIS .contentPanel:after {
+    content: " ";
+    display: table;
+}
+.THIS .contentPanel:after {
+    clear: both;
+}
+.THIS .left {
+    float: left;
+    width: 40%;
+}
+.THIS .right {
+    float: right;
+    width: 60%;
+}
+
+.THIS.pp-login {
+    color: #1F1F1F;
+    font-family: "Open Sans", sans-serif;
+    display: flex;
+    width:100%;
+}
+.THIS.pp-login .pp-col-left { 
+    background-color: #f5f5f5;
+    width:40%;
+    background-image:url({!v.sideImageURL});
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: center;
+    height: 81vh;
+}
+.THIS.pp-login .pp-col-right { 
+    background-color: #fff;
+    width:60%;
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+}
+.THIS.pp-login .pp-col-right .pp-col-right-cont {
+    width:100%;
+}
+.THIS.pp-login .pp-col-right .pp-logo img{
+    width: 54%;
+}
+.THIS.pp-login .pp-col-right .pp-login-cont {
+    padding-left: 8px;
+}
+.THIS.pp-login .pp-col-right .pp-login-cont .pp-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+.THIS.pp-login .pp-col-right .pp-login-cont .pp-field > div {
+    padding: 3px 0;
+}
+.THIS.pp-login .pp-col-right .pp-login-cont label {
+  width: 360px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+ .THIS.pp-login .pp-col-right .pp-login-cont input {
+  width: 360px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  font-size: 1rem;
+  border: none;
+  background-color: #f5f5f5;
+  padding: 12px 10px;
+}
+.THIS.pp-login .pp-col-right .pp-login-cont .pp-btn {
+    padding-top: 14px;
+    margin-bottom: 14px;
+}
+.THIS.pp-login .pp-col-right .pp-login-cont .pp-btn input{
+    font-size: 1rem;    
+    padding: 0.8rem 2rem;
+    letter-spacing: 0;
+    font-family: "Open Sans", Arial, sans-serif;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    font-weight: 400;
+    text-transform: capitalize;
+    background: #990000;
+    color: #fff;
+    border: 1px solid #990000;
+}
+.THIS.pp-login .pp-col-right .pp-login-cont .pp-btn input:hover {
+    background: #c50d0d ;
+    color: #fff;
+    border: 1px solid #c50d0d ;
+}
+.THIS.pp-login .pp-col-right .pp-login-cont .pp-sm-text a {
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    font-weight: 300;
+    color: #0A72DB;
+}
+.THIS.pp-login .pp-col-right .pp-login-cont .pp-sm-text a:hover {
+    text-decoration: underline;
+}
+.THIS.pp-login .pp-col-right h1 {
+    font-size: 2rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+.THIS.pp-login .pp-col-right p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.04rem;
+    line-height: 1.4;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.THIS.pp-login .pp-col-right span {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 300;
+    margin-bottom: 3.4rem;
+}
+.THIS.pp-login .pp-col-right span.pp-asterisk {
+    color: #990000;
+}
+
+.THIS.pp-login .pp-col-right .pp-btn a.pp-login-btn {
+    font-size: 1rem;    
+    padding: 0.7rem 2rem;
+    letter-spacing: 0;
+    font-family: "Open Sans", Arial, sans-serif;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    font-weight: 400;
+    text-transform: capitalize;
+    background: #990000;
+    color: #fff;
+    border: 1px solid #990000;
+    margin-right: 10px;
+}
+.THIS.pp-login .pp-col-right .pp-btn a.pp-login-btn:hover {
+    background: #c50d0d ;
+    color: #fff;
+    border: 1px solid #c50d0d ;
+}
+/* Media */
+@media (max-width: 992px) {
+    .THIS.pp-login {
+        flex-direction: column;
+    }    
+    .THIS.pp-login .pp-col-left { 
+        background-image:url('https://www.viewsonic.com/media/wysiwyg/Library/pp-SignUp_tablet.jpg');
+        width:100%;
+        height: 400px;
+    	margin-bottom: 2rem;
+    }
+    .THIS.pp-login .pp-col-right { 
+    	width:100%;
+    }    
+    .THIS.pp-login .pp-col-right .pp-logo img{
+    	width: 100%;
+	}
+    .THIS.pp-login .pp-col-right { 
+        background-color: #fff;
+        padding-left: 1rem;
+        padding-right: 1rem;
+	}
+    .THIS.pp-login .pp-col-right .pp-login-cont {
+        margin-bottom: 2rem;
+    }
+    .THIS.pp-login .pp-col-right .pp-login-cont input {
+  		width: 300px;
+    }
+    .THIS.pp-login .pp-col-right h1 {
+    	font-size: 1.4rem;
+        margin-top: 1rem;
+    }
+    .THIS.pp-login .pp-col-right p {
+    	font-size: 1rem;
+    }
+    
+    .THIS.logoImage {
+        width: 193px !important;
+    }
+}
+@media screen and (max-width: 600px) {
+    .THIS.pp-login .pp-col-left { 
+        background-image:url('https://www.viewsonic.com/media/wysiwyg/Library/pp-SignUp_1150x1200.jpg');
+        height: 320px;
+    }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+    .THIS.pp-login .pp-col-right .pp-logo img{
+    	width: 70%;
+	}
+    .THIS.pp-login .pp-col-right { 
+        padding-left:5%;
+    }
+}
+@media (min-width: 993px) and (max-width: 1441px) {
+    .THIS.pp-login .pp-col-right .pp-logo img{
+    	width: 70%;
+	}
+    .THIS.pp-login .pp-col-right { 
+        padding-left: 2.6rem;
+    }
+     .THIS.pp-login .pp-col-right h1 {
+    	font-size: 1.6rem;
+        margin-top: 2rem;
+    }
+     .THIS.pp-login .pp-col-right .pp-login-cont input {  
+  		padding: 7px 8px;
+	}
+    .THIS.pp-login .pp-col-right .pp-login-cont .pp-btn {
+        padding-top: 8px;
+        margin-bottom: 8px;
+	}
+}

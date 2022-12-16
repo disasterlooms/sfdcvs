@@ -1,0 +1,46 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >        
+   <div class="pp-home">
+    <div class="pp-footer">
+            <div class="pp-footer-row1">
+                <div class="pp-lists">
+                    <ul>
+                        <li><a href="/s/contactsupport"  target="_blank">{!$Label.c.pp_footer_ContactUs}</a></li>
+                        <li><a href="{!$Label.c.pp_TermsURL}"  target="_blank">{!$Label.c.pp_footer_Terms}</a></li>
+                        <li><a href="{!$Label.c.pp_privacyURL}"  target="_blank">{!$Label.c.pp_FooterPrivacy}</a></li>
+                        <li><a href="../s/faq"  target="_blank">FAQs</a></li>
+
+                    </ul>
+                </div>
+                <div class="pp-socials">
+                    <ul>
+                        <li> <a href="{!$Label.c.pp_Facebook}" target="_blank"><img src="https://www.viewsonic.com/media/wysiwyg/Library/footer-fb.png" alt="facebook"></img></a></li>
+                        <li> <a href="{!$Label.c.pp_Instagram}" target="_blank"><img src="https://www.viewsonic.com/media/wysiwyg/Library/footer-insta.png" alt="instagram"></img></a></li>
+                        <li> <a href="https://www.linkedin.com/company/viewsonic" target="_blank"><img src="https://www.viewsonic.com/media/wysiwyg/Library/footer-link.png" alt="linkin"></img></a></li>                        
+                        <li> <a href="{!$Label.c.pp_twitter}" target="_blank"><img src="https://www.viewsonic.com/media/wysiwyg/Library/footer-tw.png" alt="tweeter"></img></a></li>                        
+                        <li> <a href="{!$Label.c.pp_youtube}" target="_blank"><img src="https://www.viewsonic.com/media/wysiwyg/Library/footer-yt.png" alt="youtube"></img></a></li>                        
+                    </ul>
+                </div>
+            </div>
+            <div class="pp-footer-row2">
+                <p>{!$Label.c.pp_footerLegalese}</p>
+            </div>
+        </div>
+       </div>
+<!--
+    <center>
+    <div class="vsFooter">
+        <div style="display: inline-block; text-align: left;">
+            <ul>
+                <li style="padding-left: 1.5em;"><a href="/s/support" style="color:black"> Contact Us</a></li>
+                <li style="padding-left: 1.5em;"> <a href="https://www.viewsonic.com/us/company/terms-of-use" class="footer-link"  style="color:black">Terms of Use</a></li>
+                <li style="padding-left: 1.5em;"><a href="https://www.viewsonic.com/us/company/privacy-policy/" style="color:black">Privacy Policy</a></li>
+            </ul>
+            <br/>
+            <center>
+                <p>Program, pricing, specifications &amp; availability are subject to change without notice. All prices, unless otherwise stated, are in U.S. Dollars. Selection, offers and programs may vary by country. Corporate names and trademarks stated herein are the property of their respective companies. Copyright© 2000-2021 ViewSonic Corporation. All rights reserved.</p>
+            </center>
+        </div>
+    </div>
+    </center>
+-->
+</aura:component>

@@ -1,0 +1,24 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:availableForFlowScreens,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:isUrlAddressable" access="global" >
+    <aura:attribute name="ButtonLabel" type="string"/>
+    <aura:attribute name="ButtonLabel2" type="string"/>
+    
+    <aura:attribute name="ButtonURL1" type="string"/>
+    <aura:attribute name="ButtonURL2" type="string"/>
+    
+    
+    
+    <div class="pBanner" style="background-color:#900;">        
+        <div class="pbtGroup">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <lightning:button variant="inverse" label="{!v.ButtonLabel}" title="Brand action" onclick="{!c.onClick1}" class="pbtButtonlft"/>
+                </div>
+                <div class="slds-col">
+                    <lightning:button variant="inverse" label="{!v.ButtonLabel2}" title="Brand action" onclick="{!c.onClick2}" class="pbtButtonrgt"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</aura:component>

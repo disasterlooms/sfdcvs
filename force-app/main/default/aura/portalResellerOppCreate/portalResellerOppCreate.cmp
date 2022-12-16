@@ -1,0 +1,9 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens" access="global" >
+    <aura:attribute name="fields" type="String[]" default="['Name','StageName','AccountId']" />
+     <lightning:recordEditForm recordId="" objectApiName="Opportunity">
+        <lightning:messages />
+        <lightning:inputField fieldName="AccountId" />
+    </lightning:recordEditForm>
+    
+	
+</aura:component>

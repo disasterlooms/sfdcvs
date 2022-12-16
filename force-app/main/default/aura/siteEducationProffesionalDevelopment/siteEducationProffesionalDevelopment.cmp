@@ -1,0 +1,77 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global"
+                controller="EducationRegLight">
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:registerEvent name="orderCreated" type="c:siteTrainingOrderCreated"/>
+    <aura:attribute type="String" name="acctId"/>
+    <aura:attribute type="String" name="recordId"/>
+    <aura:attribute type="Account" name="acct"/>
+    <aura:attribute type="String" name="errMessage"/>
+    <aura:attribute type="String" name="orderId"/>
+    <aura:attribute type="Order" name="order" default="{'sobjectType':'Order'}"/>
+    <c:MessageContainer aura:id="messageContainer"/>
+    {!v.body}
+    
+    <lightning:card>
+        {!v.orderId}
+        
+        
+        <aura:set attribute="title">
+            ViewSonic Professional Development - Fact Finding for District Name {!v.acct.Name}						
+        </aura:set>
+        <lightning:recordEditForm aura:id="recordViewForm"
+                                  recordId=""
+                                  objectApiName="Order"
+                                  onsubmit="{!c.handleSubmit}"
+                                  onsuccess="{!c.handleSuccess}"
+                                  onerror="{!c.handleError}"
+                                  onload="{!c.loadedValues}">
+            <lightning:messages />
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning:inputField fieldName="Named_Location_of_Training__c" value="{!v.order.Named_Location_of_Training__c}"/> 
+                     <lightning:inputField fieldName="ShippingCountryCode" value="{!v.order.ShippingCountry}"/>
+                    <lightning:inputField fieldName="ShippingStreet" value="{!v.order.ShippingStreet}"/>
+                    <lightning:inputField fieldName="ShippingCity" value="{!v.order.ShippingCity}"/>
+                    <lightning:inputField fieldName="ShippingStateCode" value="{!v.order.ShippingStateCode}"/>
+                    <lightning:inputField fieldName="ShippingPostalCode" value="{!v.order.ShippingPostalCode}"/>
+                    <br/>
+                    <lightning:inputField fieldName="Devices_Students_Use__c" value="{!v.order.Devices_Students_Use__c}"/>
+                    <lightning:inputField fieldName="What_Browsers_do_you_Use__c" value="{!v.order.What_Browsers_do_you_Use__c}"/>
+                    <lightning:inputField fieldName="Which_do_you_want_to_focus_on__c" value="{!v.order.Which_do_you_want_to_focus_on__c}"/>
+                    <lightning:inputField fieldName="Objective_1__c" value="{!v.order.Objective_1__c}"/>
+                    <lightning:inputField fieldName="Notes__c" value="{!v.order.Notes__c}"/>
+                    
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning:inputField fieldName="EffectiveDate" value="{!v.order.EffectiveDate}" variant="" aura:id="effecdate"/>
+                    <lightning:inputField fieldName="Start_Time_of_Training__c"   value="{!v.order.Start_Time_of_Training__c}"/>
+                    <lightning:inputField fieldName="Contact_Name__c" value="{!v.order.Contact_Name__c}" required="true"/>
+                    <lightning:inputField fieldName="Contact_Email__c"  value="{!v.order.Contact_Email__c}" required="true"/>
+                    <lightning:inputField fieldName="Contact_Phone__c"  value="{!v.order.Contact_Phone__c}"/>
+                    <lightning:inputField fieldName="Have_Teachers_Setup_Their_ViewBoard__c" value="{!v.order.Have_Teachers_Setup_Their_ViewBoard__c}"/>
+                    
+                     
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <lightning:inputField fieldName="Devices_You_Use__c" value="{!v.order.Devices_You_Use__c}"/>
+                    <lightning:inputField fieldName="What_type_of_Casting_would_you_like__c" value="{!v.order.What_type_of_Casting_would_you_like__c}"/>
+                    <lightning:inputField fieldName="What_Device_s_are_Physically_Connected__c" value="{!v.order.What_Device_s_are_Physically_Connected__c}"/>
+                    
+                    <br/><br/> <br/><br/><br/> <br/><br/> <br/><br/><br/>
+                    <lightning:inputField fieldName="Objective2__c" value="{!v.order.Objective2__c}"/>
+                </div>
+            </div>
+            <footer class="slds-card__footer">
+                <lightning:button aura:id="submit" type="submit" label="Submit Request" class="slds-m-top_medium"/>
+            </footer>
+        </lightning:recordEditForm>
+    </lightning:card> 
+    
+    
+    
+
+    
+</aura:component>

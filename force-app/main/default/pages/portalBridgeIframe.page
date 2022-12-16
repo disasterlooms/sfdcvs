@@ -1,0 +1,5 @@
+<apex:page showHeader="false">
+<!--<iframe width="800" height="600" style="border: 1px solid" src="https://viewsonic.bridgeapp.com/" />-->
+<apex:iframe src="https://viewsonic.bridgeapp.com/" />
+
+</apex:page>

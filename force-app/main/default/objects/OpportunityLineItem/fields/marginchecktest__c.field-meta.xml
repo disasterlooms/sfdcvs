@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>marginchecktest__c</fullName>
+    <description>text(find( &apos;.&apos;,text(Margin__c), 2))</description>
+    <externalId>false</externalId>
+    <formula>if(len(text(round((Margin__c*100),2)))= 4,
+ text(round((Margin__c*100),2))&amp;&apos;0%&apos;,
+
+
+if( len(text(round((Margin__c*100),2)))= 2,
+ text(round((Margin__c*100),2))&amp;&apos;.00%&apos;,
+
+ 
+ text(round((Margin__c*100),2))&amp;&apos;%&apos;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>marginchecktest</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

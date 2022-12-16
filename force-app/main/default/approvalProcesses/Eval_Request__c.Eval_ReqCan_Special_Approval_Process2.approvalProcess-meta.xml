@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>creator</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Opportunity_Name__c</field>
+        <field>Eval_Type__c</field>
+        <field>Reason_for_Request__c</field>
+        <field>Special_Instructions__c</field>
+        <field>Opportunity_Amount__c</field>
+        <field>Product_Name__c</field>
+        <field>Quantity__c</field>
+        <field>Billing_Contact_Name__c</field>
+        <field>Shipping_Contact_Name__c</field>
+        <field>Expected_Receive_Date__c</field>
+        <field>Name</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>Director_Approved_VP_Sales_Awaiting</name>
+                <type>Alert</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <description>Sends a request to Sales director for first approval</description>
+        <label>Sales Director</label>
+        <name>Sales_Director</name>
+        <rejectionActions>
+            <action>
+                <name>Notifies_Sales_Rep</name>
+                <type>Alert</type>
+            </action>
+        </rejectionActions>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>brian.igoe@viewsonic.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>Unanimous</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Sends to VP Operations after Director Approval</description>
+        <entryCriteria>
+            <formula>($User.ManagerId  == &apos;005A0000000TGUf&apos; ||
+ $User.ManagerId  == &apos;005A0000000TGUf&apos; ||
+ $User.ManagerId  == &apos;005A0000000TGUfIAO&apos; ||
+ $User.ManagerId  == &apos;005A0000000TGUfIAO&apos;) &amp;&amp; $UserRole.Name != &apos;LA Sales TM&apos;</formula>
+        </entryCriteria>
+        <label>VP of Operations</label>
+        <name>VP_of_Operations</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>Eval request approval from VP and then notifies operations sales. For Canada. No agreement</description>
+    <emailTemplate>Product_Request/End_User_Evaluation_Request</emailTemplate>
+    <enableMobileDeviceAccess>true</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>(Product_Name_2__r.Name = &apos;CDE7051-TL&apos; || 
+Product_Name_2__r.Name = &apos;CDE7561T&apos; || 
+Product_Name_2__r.Name = &apos;CDE7061T&apos;|| 
+Product_Name_2__r.Name = &apos;CDE7060T&apos; || 
+Product_Name_2__r.Name = &apos;CDE8451-TL&apos; || 
+Product_Name_2__r.Name = &apos;CDE8452T&apos; || 
+Product_Name_2__r.Name = &apos;CDP9800&apos; || 
+Product_Name__r.Name = &apos;IFP6550&apos; ||
+Product_Name__r.Name = &apos;IFP7500&apos; ||
+Product_Name__r.Name = &apos;IFP7550&apos; ||
+Product_Name__r.Name = &apos;IFP8650&apos; ||
+Product_Name__r.Name = &apos;CDE7051-TL&apos; || 
+Product_Name__r.Name = &apos;CDE7561T&apos; || 
+Product_Name__r.Name = &apos;CDE7061T&apos;|| 
+Product_Name__r.Name = &apos;CDE7060T&apos; || 
+Product_Name__r.Name = &apos;CDE8451-TL&apos; || 
+Product_Name__r.Name = &apos;CDE8452T&apos; || 
+Product_Name__r.Name = &apos;CDP9800&apos; ||
+ Large_Format_Request__c = true ) &amp;&amp; 
+$UserRole.Name != &apos;ViewSonic Corporation Partner User&apos; &amp;&amp; 
+$User.Country = &apos;Canada&apos; &amp;&amp; 
+text(Eval_Type__c ) != &apos;Write Off Request&apos;</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>Change_to_Approved_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>EvalProcessW_Shipping</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Notifies_Sales_Ops</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>Unlocked_for_Approval</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Change_to_Rejected_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>Approval_Process_Canada</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Change_to_Pending_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>EvalProcessStage</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Locked_for_Approval</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Canada Large Format Eval Approval</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
+        <userHierarchyField>Manager</userHierarchyField>
+    </nextAutomatedApprover>
+    <processOrder>2</processOrder>
+    <recallActions>
+        <action>
+            <name>Approval_Status_Blank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Eval_Process_Submission</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

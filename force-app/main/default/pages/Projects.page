@@ -1,0 +1,35 @@
+<apex:page >
+<style type="text/css">
+            body {font-family: Open Sans size: 12pt;}
+            
+            table {
+            border-width: 0px;
+            border-spacing: 0px;
+            width: 900px;
+            background-color: #FFFFFF;
+        }
+
+        td {
+            border-width: 0px;
+            padding: 4px;
+            border-style: solid;
+            border-color: #000000;
+            content:'$';
+            width: 700px;
+            
+        }
+        
+        th { 
+            color: #FFFFFF;
+            border-width: 0px ;
+            padding: 4px ;
+            border-style: solid ;
+            border-color: #000000;
+            background-color: #900000;
+            width: 800px;
+        }
+        
+        
+        </style>
+
+</apex:page>

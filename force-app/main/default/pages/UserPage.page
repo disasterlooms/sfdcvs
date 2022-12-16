@@ -1,0 +1,4 @@
+<apex:page standardController="User" tabStyle="User" >
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:listViews type="User"  />           
+</apex:page>

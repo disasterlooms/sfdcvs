@@ -1,0 +1,6 @@
+<design:component>
+	 <design:attribute name="acctId" description="This is the account that was selected"/>
+     <design:attribute name="conEmail" description="The email given"/>
+     <design:attribute name="incorrectAcct" description="if the account is refused"/>
+    <design:attribute name="acctOwnerId" description="The ownerId of the account"/>
+</design:component>

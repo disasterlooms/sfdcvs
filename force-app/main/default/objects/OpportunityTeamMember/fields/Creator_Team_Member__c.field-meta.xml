@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Creator_Team_Member__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>Used to determine if email alert should be sent out. Creator of opportunity does not need an email alert</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Used to determine if email alert should be sent out. Creator of opportunity does not need an email alert</inlineHelpText>
+    <label>Creator = Team Member</label>
+    <type>Checkbox</type>
+</CustomField>

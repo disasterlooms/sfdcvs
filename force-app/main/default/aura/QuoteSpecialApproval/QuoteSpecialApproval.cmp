@@ -1,0 +1,18 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" >
+    <aura:attribute name="recordId" type="string" />
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <lightning:recordEditForm recordId="{!v.recordId}" objectApiName="Quote" onsuccess="{!c.saved}" onsubmit="{!c.submitted}" onerror="{!c.errormsg}">
+        <lightning:messages />
+        <lightning:inputField fieldName="Bid_Desk_to_PM_Notes__c" />
+        <lightning:inputField fieldName="Product_Manager__c" />
+        <lightning:inputField fieldName="Special_Approval__c" />       
+        <br/>
+        <br/>
+        <div class="slds-float_right"> 
+            <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
+        </div> 
+        
+    </lightning:recordEditForm>
+</aura:component>

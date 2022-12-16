@@ -1,0 +1,10 @@
+<template>
+    <!-- Created this component because flows do not have a standard rich text field
+    which is required for this use case. if flows add the component, we can switch to a flow
+    -->
+    {richTxtLabel}
+    <lightning-input-rich-text value={myVal} onchange={handleChange}>
+    </lightning-input-rich-text>
+
+    <lightning-button variant="base" label="Submit" title="Submit" onclick={handleSubmission} class="slds-m-left_x-small"></lightning-button>
+</template>

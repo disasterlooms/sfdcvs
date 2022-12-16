@@ -1,0 +1,123 @@
+<aura:component
+    implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,lightning:availableForFlowScreens,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+    access="global">
+    <aura:attribute name="recordId" type="string" />
+    <aura:attribute name="taskStatus" type="String" />
+    <aura:attribute name="actionType" type="String" />
+    <aura:attribute name="taskName" type="String" />
+    <aura:attribute name="title" type="string" />
+    <aura:attribute name="imageUrl" type="string" />
+    <aura:attribute name="button" type="string" />
+    <aura:attribute name="description" type="string" />
+    <aura:attribute name="maxImageDimensions" type="string" />
+    <aura:attribute name="incomplete" type="Boolean" />
+    <aura:attribute name="completed" type="string" />
+    <aura:attribute name="downloadUrl" type="string" />
+    <aura:attribute name="downloadString" type="string" />
+
+    <aura:attribute name="downloadUrl2" type="string" />
+    <aura:attribute name="downloadString2" type="string" />
+
+    <aura:attribute name="inProgress" type="Boolean" default="false" />
+
+    <aura:attribute name="cmpTask" type="Boolean" default="false" />
+    <aura:attribute name="cmpImage" type="Boolean" default="false" />
+    <aura:attribute name="cmpDescription" type="Boolean" default="false" />
+    <aura:attribute name="cmpButton" type="Boolean" default="false" />
+    <aura:attribute name="statusP" type="String" />
+    <aura:attribute name="UrlTwo" type="Boolean" default="false" />
+
+
+    <aura:if isTrue="{!v.cmpTask}">
+        <lightning:recordViewForm recordId="{!v.taskStatus}" objectApiName="PortalOnboardingProgress__c">
+            
+        <div style="float:left;">
+            <b>{!v.taskName}</b>
+            <br />{!$Label.c.Status}: <lightning:outputField fieldName="Status__c"
+            
+            variant="label-hidden"/>
+        </div>
+        </lightning:recordViewForm>
+
+    </aura:if>
+
+    <aura:if isTrue="{!v.cmpImage}">
+image below
+        <center>
+            <img alt="Person name" src="{!v.imageUrl}" /><!-- style="{!v.maxImageDimensions}"-->
+        </center>
+
+    </aura:if>
+
+    <aura:if isTrue="{!v.cmpDescription}">
+
+        <center>
+            <b>
+                <p> {!v.description}</p>
+            </b>
+            <br />
+            <lightning:formattedUrl value="{!v.downloadUrl}" tooltip="{!v.downloadString}" target="_blank"
+                label="{!v.downloadString}" />
+            <br />
+            <lightning:formattedUrl value="{!v.downloadUrl2}" tooltip="{!v.downloadString2}" target="_blank"
+                label="{!v.downloadString2}" />
+
+        </center>
+
+    </aura:if>
+
+    <aura:if isTrue="{!v.cmpButton}">
+
+        <div style="float:right;">
+            <aura:if isTrue="{!v.incomplete}">
+                <img alt="Person name" src="{!v.completed}" />
+            </aura:if>
+            <aura:if isTrue="{!not(v.incomplete)}">
+                <aura:if isTrue="{!v.inProgress}">
+                    In Progress
+
+                    <aura:set attribute="else">
+                        <lightning:button aura:id="NEXT" label="{!v.button}" variant="brand"
+                            onclick="{!c.onButtonPressed}" />
+                    </aura:set>
+
+                </aura:if>
+            </aura:if>
+
+        </div>
+
+    </aura:if>
+    <!--
+    
+    
+    <div class="c-container">
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-4">                
+                <img alt="Person name" src="{!v.imageUrl}"  style="{!v.maxImageDimensions}"/>
+            </div>
+            <div class="slds-col slds-size_1-of-4">
+                
+                <b>{!v.taskName}</b> 
+                <br/>Status: {!v.taskStatus}
+            </div>
+            <div class="slds-col slds-size_1-of-4">
+                
+                <p> {!v.description}</p>
+            </div>
+            <div class="slds-col slds-size_1-of-4">                
+                <div style="float:right;"> 
+                    <div class="flowButton" >
+                        <lightning:button aura:id="NEXT" label="{!v.button}"
+                                          variant="brand" onclick="{!c.onButtonPressed}" class="flowBtnClass"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    -->
+
+    <!--
+        
+ -->
+</aura:component>

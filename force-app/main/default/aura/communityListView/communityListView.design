@@ -1,0 +1,6 @@
+<design:component>
+    <design:attribute name="object" description="name of the object"/>
+    <design:attribute name="listname" description="Name of the List"/>
+    <design:attribute name="rows" description="# of Rows"/>
+	
+</design:component>

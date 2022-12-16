@@ -1,0 +1,25 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <!--<aura:handler name="init" value="{!this}" action="{!c.showOppmodal}"/>-->
+    <aura:handler event="c:oppBuyPLan" action="{!c.showOppmodal}" />
+    <aura:handler event="c:oppBuyPlanhide" action="{!c.hideModal}" />
+    <aura:attribute name="oppid" type="String"/>
+   
+    <div aria-hidden="true" role="dialog" class="slds-modal slds-modal--large slds-fade-in-hide" aura:id="modaldialog">
+       modal
+        <div class="slds-modal__container">
+            <lightning:card title="">
+                <div class="slds-p-horizontal*-small">
+                    <lightning:recordViewForm recordId="{!v.oppid}" objectApiName="Opportunity">
+                        <div class="slds-box">
+                            <lightning:outputField fieldName="Name"/>
+                            <lightning:outputField fieldName="End_User__c" />
+                            <lightning:outputField fieldName="Resellers_and_Type__c"/>
+                            <lightning:outputField fieldName="CreatedDate" />
+                            <lightning:outputField fieldName="CloseDate" />
+                        </div>
+                    </lightning:recordViewForm>
+                </div>
+            </lightning:card>
+        </div>
+    </div>
+</aura:component>

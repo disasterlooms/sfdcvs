@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Created_by_equals_Owner</fullName>
+    <active>false</active>
+    <description>Ensures that the owner is the creator of evaluation unless overridden by admin</description>
+    <errorConditionFormula>Evaluation_Owner__c !=  $User.Contact_ID__c &amp;&amp; $User.Alias != &apos;admin&apos; &amp;&amp; isnew() &amp;&amp;
+CASESAFEID(Evaluation_Owner__c ) !=  $User.Contact_ID__c&amp;&amp;  $Organization.Id = &apos;00D7d0000077lG5&apos;</errorConditionFormula>
+    <errorMessage>The owner of this record must be the user entering the evaluation. If you have not changed the evaluation owner, please contact admin for assistance, otherwise, ensure you are the owner. 
+Thank You</errorMessage>
+</ValidationRule>

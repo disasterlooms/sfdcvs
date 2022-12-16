@@ -1,0 +1,40 @@
+<apex:page showheader="false" standardStylesheets="false">
+    
+        <style>
+  #right{
+    float: right;
+    width:49%;
+    }
+   #left{
+    float: left;
+    width:49%;
+    }
+    #sidebar {
+    float:right;
+    width:45%;
+   }
+  </style>
+
+
+<body>
+
+<div id="left">
+<p><apex:iframe src="/apex/CasesAdmin" scrolling="true"/></p>
+</div>
+<div id="right">
+<p><apex:include pageName="ProjectsSalesforce"/></p>
+
+</div>
+
+
+</body>
+                
+               
+                
+                
+                
+                
+              
+                
+      
+</apex:page>

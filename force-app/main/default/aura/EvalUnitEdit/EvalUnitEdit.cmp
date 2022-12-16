@@ -1,0 +1,26 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global" >
+    <aura:attribute name="recordId" type="String" access="public"/> 
+    <aura:attribute name="admin" type="Boolean" access="public" default="false"/>    
+    <aura:handler name="init" action="{!c.checkUser}" value="{!this}" />
+    <!--<aura:if isTrue="{!v.admin}">
+        <lightning:recordEditForm
+            onload="{!c.handleLoad}"
+            onsubmit="{!c.handleSubmit}"
+            onsuccess="{!c.handleSuccess}"
+            recordId="{!v.recordId}"
+            objectApiName="Eval_Unit_Details__c">
+            <lightning:messages />
+            <lightning:inputField fieldName="Name" />
+            <lightning:inputField fieldName="SKU__c" />
+            <lightning:inputField fieldName="Sku_Text__c" />
+            <lightning:inputField fieldName="Status__c" />
+            <lightning:inputField fieldName="Courier_Info__c" />
+            <lightning:inputField fieldName="Product_Code__c" />
+            <lightning:inputField fieldName="Quote_Product__c" />
+            <lightning:outputField fieldName="RMA__c"/>
+            <div class="slds-m-top_medium">
+                <lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" />
+            </div>
+        </lightning:recordEditForm>
+    </aura:if> -->
+</aura:component>

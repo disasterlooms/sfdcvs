@@ -1,0 +1,21 @@
+<design:component>
+    <design:attribute name="recordId" description="record id"/>
+    <design:attribute name="flowSide" description="use flow navigation"/>
+    <design:attribute description="Company Name" name="company" />
+    <design:attribute description="Street" name="street" />
+    <design:attribute description="Phone" name="phone" />
+    <design:attribute description="City" name="city" />
+    <design:attribute description="State" name="state" />
+    <design:attribute description="Postal Code" name="postal" />
+    <design:attribute description="Country" name="country" />
+    <design:attribute description="Email" name="email" />
+    <design:attribute description="Contact Name" name="contactname"/>
+    <design:attribute description="Billing Account Id" name="bconAcctId"/>    
+    <design:attribute description="First Name" name="lastName" />
+    <design:attribute description="Last Name" name="firstName" />
+	<design:attribute description="account id" name="acctId" />   
+    <design:attribute description="Shipping Contact Id" name="shippingContact"/>
+    <design:attribute description="Billing Contact Id" name="billingContact"/>
+    <design:attribute description="Reseller Contact Id" name="resellerContact"/>
+    
+</design:component>

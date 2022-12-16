@@ -1,0 +1,6 @@
+<apex:page standardcontroller="Account">
+Please Wait While Loading...
+<script>
+sforce.one.navigateToURL("{!URLFOR($Action.Eval_Request__c.New)}");
+</script>
+</apex:page>

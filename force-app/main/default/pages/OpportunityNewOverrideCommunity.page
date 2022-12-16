@@ -1,0 +1,239 @@
+<apex:page standardcontroller="Opportunity" standardStylesheets="true" docType="html-5.0" >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:stylesheet value="{!$Resource.OppVFOverride}"/>
+<apex:includeScript value="{!URLFOR($Resource.Jquery, '/jquery-ui-1.11.4/jquery-ui.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+<!--
+<script>
+
+ function getacctstate(){    
+    var acct = new SObjectModel.Account();
+    var id = $('[id$=acctname_lkid]').val();
+    
+    //var id = document.getElementById("j_id0:communityoppform:j_id24:j_id37:acctname_lkid").value;
+    //alert(name);
+    acct .retrieve({
+      where: { 
+        Id: {eq: id} 
+      }, limit: 1
+    }, function(err, records) {
+      if (err){ alert(err.message);
+      }else{       
+      records.forEach(function(record) {
+           var stid = record.get("State__c");
+           var city = record.get("BillingCity");
+           var euname = record.get("Name");
+           var stname = record.get("State_Name__c");
+           console.log('id '+stid+' name '+stname);
+           
+           $('[id$=extstate_lkid]').val(stid);
+           $('[id$=extstate]').val(stname);
+           $('[id$=extstate_lkold]').val(stname);
+           $('[id$=extstate_lktp]').val('a0Q');
+           $('[id$=extstate_mod]').val('1');
+           $('[id$=city]').val(city);
+           $('[id$=euname]').val(euname);
+           
+           
+           //document.getElementById("j_id0:communityoppform:j_id24:j_id38:extstate_lkid").value =  stid;
+           //document.getElementById("j_id0:communityoppform:j_id24:j_id38:extstate").value =  stname;
+           //document.getElementById("j_id0:communityoppform:j_id24:j_id38:extstate_lkold").value =  stname;
+           //document.getElementById("j_id0:communityoppform:j_id24:j_id38:extstate_lktp").value =  'a0Q';
+           //document.getElementById("j_id0:communityoppform:j_id24:j_id38:extstate_mod").value =  '1';      
+      
+      });
+                }
+            });
+        };
+
+</script>
+<script>
+  $( document ).ready(function() {
+     //alert('Hello');
+     $("[id$=partopp]").val('New Spa Request');
+     $("[id$=partstage]").val('Distributor SPA Request');
+     $("[id$=partspareq]").val('Spa Request');
+     $("[id$=subemail]").val('{!$User.Email}'); 
+     $("[id$=distaccount]").prop( "checked", true );
+     
+     
+     });
+     function saveopp(){
+         var $j = jQuery.noConflict();
+         console.log('Please wait while this is created.');
+        
+         return false;
+         }
+         
+
+</script>
+
+<style>
+body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
+    background-color: #ffffff;
+    .btn {
+    display: inline-block;
+    margin-bottom: 0 ;
+    font-weight: bolder ;
+    text-align: center ;
+    vertical-align: middle ;
+    touch-action: manipulation ;
+    cursor: pointer ;
+    background-image: none ;
+    border: 1px solid transparent;
+    white-space: nowrap ;
+    background-color: white ;
+    padding: 6px 12px ;
+    font-size: 12px !important;
+    line-height: 1.42857143 ;
+    border-radius: 4px ;
+    letter-spacing: .5px ;
+    -webkit-user-select: none ;
+    -moz-user-select: none ;
+    -ms-user-select: none ;
+    user-select: none ;
+    background: none !important;
+    
+}
+.btn-red-text {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text:hover, .btn-red-text:focus {
+    background: #990000 !important;
+    color: #ffffff !important;
+}
+    
+
+.btn-red-text2:hover, .btn-red-text:focus {
+    background: #990000;
+    color: #ffffff !important;
+    
+}
+body button, body .x-btn, body .btn, body .btnDisabled, body .btnCancel, body .menuButton .menuButtonButton {
+    color: #900 !important;
+    margin: 1px;
+    padding: 2px 3px;
+    border: 1px solid #b5b5b5;
+    border-bottom-color: #7f7f7f;
+    background: #e8e8e9 url('/img/alohaSkin/btn_sprite.png') repeat-x right top;
+    font-weight: normal;
+    font-size: .9em;
+    -moz-border-radius: 3px !important;
+    -webkit-border-radius: 3px !important;
+    border-radius: 3px;
+}
+  
+    </style>
+<script>
+    function error(){
+        var shipdate = document.getElementById("j_id0:communityoppform:j_id14:j_id20:j_id23").value;
+        console.log(shipdate);
+        if(shipdate ==''){
+            $('[id$=loadingmessage]').hide();
+            //showerror();
+            }
+        }
+
+</script>
+
+
+
+
+   
+  <apex:pagemessages id="errormessage" />
+
+     
+       <apex:form onclick="" rendered="{!$User.External_Partner__c = true}" styleClass="slds-form--inline" id="communityoppform">
+
+<c:LoadSave />
+        <apex:pageblock mode="edit" title="Spa Creation for {!$User.CompanyName}">
+            <apex:pageblockbuttons >
+                <apex:commandbutton styleclass="btn btn-red-text" id="savebtn" value="Save" action="{!Save}" onclick="var $j = jQuery.noConflict();$j('[id$=loadingmessage]').show();error();"/>
+                <apex:actionfunction action="{!Save}" name="saveoppnow" oncomplete=" var $j = jQuery.noConflict();$j('[id$=loadingmessage]').hide();" rerender="errormessage"/>
+                <apex:commandbutton action="{!Cancel}" styleclass="btn btn-red-text" value="Cancel" />
+            
+            </apex:pageblockbuttons>
+
+          
+          
+           <div class="viewsonic" >
+
+            <apex:outputpanel >
+            
+                <apex:pageblocksection title="SPA Information" showheader="true" columns="2">
+                   
+                    <apex:inputfield label="Spa Request Name" value="{!Opportunity.Name}"  required="true" id="partopp" styleclass="slds-input"  />
+                    
+                   
+                   <apex:inputfield value="{!Opportunity.Type}" required="true" styleclass="slds-select"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Opportunity.CloseDate}" required="true" label="Spa Request Ship by" style=" width: 350px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" />
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Opportunity.Project_or_Site_Information__c}" required="false" styleclass="slds-input"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="End User Information - Use Lookup to find account, if not Use Text Fields Below" showheader="true" columns="2">
+                    <apex:inputfield value="{!Opportunity.End_User_Lookup_Account__c}"  id="acctname" style=" width: 350px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" required="false"  html-placeholder="Try Searching Here First" onchange="getacctstate();"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="End User Text Fields - (Only use if lookup field does not produce result)" showheader="true" columns="2">
+                    <apex:inputfield value="{!Opportunity.End_User_Company__c}" required="false" html-placeholder="Use ONLY if Lookup has no results"  styleclass="slds-input" id="euname" />
+                    <apex:inputfield value="{!Opportunity.End_User_Contact_Name_Community_Field__c}" required="false" styleclass="slds-input" />
+                    <apex:inputfield value="{!Opportunity.End_User_City__c}" required="true" styleclass="slds-input" html-placeholder="Use ONLY if Lookup has no results" id="eucity"  />
+                    <apex:inputfield value="{!Opportunity.End_User_Contact_Email__c}" required="false" styleclass="slds-input" />
+                    <apex:inputfield value="{!Opportunity.StateLookup__c}" required="true" id="extstate" style=" width: 350px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" html-placeholder="Use ONLY if Lookup has no results"  />
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Reseller - If more than one, must add on Spa Page in Opportunity Partner Section" showheader="true" columns="2">
+                    <apex:inputfield value="{!Opportunity.Partner_Account_Search__c}" required="false"  style=" width: 350px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" html-placeholder="Try Searching Here First"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Reseller - Text Fields (If Lookup Field Does not Produce Result)" showheader="true" columns="2">
+                    <apex:inputfield value="{!Opportunity.Reseller_Name__c}" styleclass="slds-input"  required="false" html-placeholder="Use ONLY if Lookup has no results"/>
+                    <apex:inputfield value="{!Opportunity.Reseller_Phone__c}" styleclass="slds-input"  required="false" html-placeholder="Use ONLY if Lookup has no results" />
+                    <apex:inputfield value="{!Opportunity.Reseller_Address__c}" styleclass="slds-input"  required="false" html-placeholder="Use ONLY if Lookup has no results"/>
+                    <apex:inputfield value="{!Opportunity.Reseller_City__c}" styleclass="slds-input"  required="false" html-placeholder="Use ONLY if Lookup has no results"/>
+                    <apex:inputfield value="{!Opportunity.Reseller_State__c}"  style=" width: 350px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" required="false" id="resstate" html-placeholder="Use ONLY if Lookup has no results"/>
+
+                    <apex:inputfield value="{!Opportunity.Reseller_Zip__c}" styleclass="slds-input" required="false" html-placeholder="Use ONLY if Lookup has no results"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Reseller Contact Info" showheader="true" columns="2">
+                    <apex:inputfield value="{!Opportunity.Reseller_Contact_Name__c}" styleclass="slds-input"  required="false" id="partrescon"/>
+                    <apex:inputfield value="{!Opportunity.Reseller_Contact_Email__c}" styleclass="slds-input"  required="false"/>
+                    
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Internal Use" showheader="false" columns="2">
+                   
+                    
+                    <apex:inputhidden value="{!Opportunity.StageName}"  id="partstage" />
+                    <apex:inputhidden value="{!Opportunity.Auto_Update_Opp_Name__c}"  id="partautoup" required="false" />
+                    <apex:inputhidden value="{!Opportunity.Distributor_Account__c}" required="true" id="distaccount" />
+                   
+                    
+                </apex:pageblocksection>
+       
+            </apex:outputpanel>
+          </div>
+
+        </apex:pageblock>
+  
+    </apex:form> 
+    
+    -->
+
+   
+</apex:page>

@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+     <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:attribute name="recordId" type="String" access="public"/>
+	
+</aura:component>

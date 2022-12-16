@@ -1,0 +1,54 @@
+<aura:component access="global" controller="quotesMobile" implements="flexipage:availableForAllPageTypes,force:appHostable">
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:attribute name="searchinput" type="String"/>
+    <aura:attribute name="load" type="boolean" default="false"/> 
+    <aura:attribute name="user" type="User" />
+    <aura:attribute name="spas" type="Quote[]" />
+    <aura:attribute name="ofields" type="String" default="Id,AccountId, Account.Name,Product_Name_Main__c,
+                                                          CloseDate,Project_or_Site_Information__c,name,Resellers_and_Type__c,
+                                                          Pricebook2Id,SPA_Expiration_Date__c,Bid_Registered__c,Spa_Resubmission_Note__c"/>
+    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerspas" class="slds-hide" variant="brand" size="large"/>
+    </div>    
+    
+    <div style="text-align: center" >
+        <lightning:button variant="Neutral" label="Search for Spas" title="Search Spas" onclick="{!c.search}"/>
+        <!--
+        <ui:button label="Spa Search" press="c.search"/>-->
+    </div>
+    <div class="slds-grid slds-grid_pull-padded-medium">
+        <div class="slds-col slds-p-horizontal_medium">
+            <span onkeypress="{!c.keyCheck}" class="slds-size--11-of-12">
+            <lightning:input aura:id="search" label="Spas Search" 
+                          placeholder="Search by SpaId,End User, or Reseller" value="{!v.searchinput}"
+                          />
+            </span>
+        </div>
+        
+    </div>
+    <ul> 
+        <br/>
+        <aura:renderIf isTrue="{!v.spas.length > -1}">
+            <lightning:card variant="Narrow" title="Spa Search Results" iconName="standard:quotes">
+                <aura:iteration items="{!v.spas}" var="s">
+                    <a href="{!'/'+s.Id}" class="blackft"> <!--onclick="{!c.myAction}"-->
+                    <lightning:card variant="Narrow" title="{!s.Opportunity.Name}" iconName="standard:quotes">                        
+                        Status: {!s.Status}
+                        <br/>
+                        Expiration Date: {!s.ExpirationDate}
+                        <br/>
+                        Resellers: {!s.Resellers__c }
+                        <br/>
+                        Bid Registerd: {!s.Bid_Registered__c }
+                    </lightning:card>
+                        </a>
+                    
+                </aura:iteration>
+                
+            </lightning:card>
+        </aura:renderIf>
+        
+    </ul>
+    <br/>
+</aura:component>

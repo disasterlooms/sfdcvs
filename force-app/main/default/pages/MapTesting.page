@@ -1,0 +1,10 @@
+<apex:page >
+
+    <h1>Address</h1>
+  
+    <!-- Display the address on a map -->
+    <apex:map width="600px" height="400px" mapType="roadmap" zoomLevel="16"
+        center="10 Point Dr, Brea, CA">
+    </apex:map>
+    
+</apex:page>

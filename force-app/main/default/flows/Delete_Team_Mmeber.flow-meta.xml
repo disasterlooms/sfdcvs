@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <interviewLabel>{!Delete_Team_MemberII}</interviewLabel>
+    <label>Delete Team Mmeber</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>Delete_Team_MemberII</name>
+        <label>Delete Team Member</label>
+        <locationX>37</locationX>
+        <locationY>32</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Delete__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>OpportunityTeamMember</object>
+    </recordDeletes>
+    <startElementReference>Delete_Team_MemberII</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>TeamMember</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OpportunityTeamMember</objectType>
+    </variables>
+</Flow>

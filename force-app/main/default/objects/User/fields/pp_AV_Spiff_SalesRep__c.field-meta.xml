@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pp_AV_Spiff_SalesRep__c</fullName>
+    <externalId>false</externalId>
+    <formula>text(Contact.Account.Spiff_Type__c ) == &apos;Sales Rep&apos;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>pp AV Spiff SalesRep</label>
+    <type>Checkbox</type>
+</CustomField>

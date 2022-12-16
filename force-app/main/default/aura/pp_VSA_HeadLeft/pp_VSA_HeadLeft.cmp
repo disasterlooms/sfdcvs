@@ -1,0 +1,33 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+    access="global">
+    <aura:attribute name="showBtns" type="Boolean" default="true" />
+    <aura:attribute name="introText" type="String" default="ViewSonic is a channel-first company with over 30 years
+    of success rooted in the relationships
+    we have cultivated with our partners. Today, we are more 
+    committed than ever to delivering performance, value and world
+    class support with one of the widest array of visual engagement solutions,
+    best-in-class 
+    service and programs to ensure that our partners thrive. As a partner,
+    you have access to the products, promotions and support needed to grow your business." />
+    <aura:attribute name="signupText" type="String" default="SIGN UP" />
+    <aura:attribute name="loginText" type="String" default="LOG IN" />
+    <aura:attribute name="IconHeaderText" type="String"/>
+    <div>
+        <div class="pp-logo">
+            <img src="https://www.viewsonic.com/skin/frontend/smartwave/viewsonic/images/business-solution/partner-program-lowercase.svg"
+                alt="Partner Program Logo"></img>
+        </div>
+        <div>
+            <p>
+                {!v.introText}
+            </p>
+        </div>
+        <div class="pp-btn">
+            <aura:if isTrue="{!v.showBtns}">
+                <a class="pp-signup" href="/s/partnersignup">{!v.signupText}</a>
+                <a class="pp-login" href="/s/login">{!v.loginText}</a>
+            </aura:if>
+        </div>
+
+    </div>
+</aura:component>

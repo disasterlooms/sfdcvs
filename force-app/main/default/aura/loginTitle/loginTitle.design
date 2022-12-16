@@ -1,0 +1,4 @@
+<design:component>
+     <design:attribute name="LoginTitle" label="Login Title" description="Title above the login or reset"/>
+	
+</design:component>

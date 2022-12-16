@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TestCongaButton</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>TestCongaButton</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID} 
+&amp;serverUrl={!API.Partner_Server_URL_290}
+&amp;ds7=0
+&amp;id={!Quote.Id}
+&amp;EmailToId={!User.Id}
+&amp;QueryId=a0o1H00000Cf6if,a0o1H00000Cf6ip,a0o1H00000Cf6iz,a0o1H00000Cf6o4
+&amp;QVar1Id=a0o1H00000Cf6jO
+&amp;QVar2ID=a0o1H00000Cf6jJ
+&amp;TemplateID=a0p1H000005Mlae
+&amp;EmailBCC={!Opportunity.Spa_Email_Contacts__c&amp;&quot;,&quot;}{QVar2}
+&amp;CETID=00X1H000001LTBo
+&amp;EmailAdditionalTo={QVar1}
+&amp;UF0=1
+&amp;MFTS0=Status
+&amp;MFTSValue0=Approved
+&amp;MFTS1=Resubmission_Notes__c
+&amp;MFTSValue1=null
+&amp;AC0=1
+&amp;AC1=Approved Spa Sent
+&amp;SC0=1
+&amp;SC1=Attachments
+&amp;AttachmentParentID={!Quote.Id}
+&amp;OFN={!&quot;Approval for SPA # &quot;&amp;Quote.SpaId__c&amp;&quot; End User: &quot;
+&amp;left(Quote.End_User_Name__c,20)}</url>
+</WebLink>

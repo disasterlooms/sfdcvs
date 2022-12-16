@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <description>Get rid of upper case with click of button</description>
+    <formulas>
+        <name>newaccname</name>
+        <dataType>String</dataType>
+        <expression>lower({!accname})</expression>
+    </formulas>
+    <interviewLabel>Account Proper name {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account Proper name</label>
+    <processType>Flow</processType>
+    <recordUpdates>
+        <name>Get_Account_name</name>
+        <label>Get Account name</label>
+        <locationX>144</locationX>
+        <locationY>72</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>accid</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>newaccname</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <startElementReference>Get_Account_name</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>accid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>accname</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

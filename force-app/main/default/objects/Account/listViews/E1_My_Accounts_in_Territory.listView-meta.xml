@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>E1_My_Accounts_in_Territory</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.INDUSTRY</columns>
+    <columns>ACCOUNT.ADDRESS1_COUNTRY_CODE</columns>
+    <columns>Account_Type__c</columns>
+    <columns>CountofContacts__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Mine</filterScope>
+    <label>E1 My Accounts in Territory</label>
+    <sharedTo>
+        <roleAndSubordinatesInternal>VSI_VSE</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

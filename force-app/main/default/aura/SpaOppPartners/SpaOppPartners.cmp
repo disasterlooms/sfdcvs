@@ -1,0 +1,27 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+     <aura:handler name="change" action="{!c.myAction}" value="{!v.simpleRecord.OpportunityId__c}" />
+     <aura:attribute name="recordId" type="string" />
+	 <lightning:recordEditForm aura:id="recordEditForm" 
+                           objectApiName="Opportunity_Partner__c">
+        <lightning:messages />
+         <lightning:inputField fieldName="Partner_Account_Name__c" />
+         <lightning:inputField fieldName="Opportunity__c" arua:id="opp"/>
+         <lightning:inputField fieldName="Quote__c" arua:id="quote"/>
+        <lightning:button class="slds-m-top_small slds-float_right" type="submit" label="Create Partner" />
+    </lightning:recordEditForm>
+    
+     <aura:attribute name="record" type="Object" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    
+    <force:recordData aura:id="eval"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      mode="EDIT"/>
+</aura:component>

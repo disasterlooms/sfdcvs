@@ -1,0 +1,168 @@
+<aura:component
+    implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:availableForFlowScreens"
+    access="global" controller="EvalContacts">
+    <aura:attribute name="recordId" type="String" access="public" />
+    <aura:attribute name="showFooter" type="Boolean" default="true" />
+    <aura:attribute name="shipCon" type="Contact" />
+    <aura:attribute name="billCon" type="Contact" />
+    <aura:attribute name="evalRequest" type="Eval_Request__c" />
+    <aura:attribute name="opp" type="Opportunity" />
+    <aura:attribute name="bacct" type="Boolean" default="true" />
+    <aura:attribute name="toggleClass" type="String" default="slds-hide" />
+    <aura:attribute name="scon" type="Boolean" default="false" />
+    <aura:attribute name="bcon" type="Boolean" default="false" />
+    <aura:attribute name="allclear" type="Boolean" />
+    <aura:attribute name="billinfo" type="boolean" default="false" />
+    <aura:attribute name="shipinfo" type="boolean" default="false" />
+    <aura:attribute name="salesRepEval" type="boolean" default="false" />
+    <aura:attribute name="userData" type="User" />
+
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <lightning:spinner aura:id="mySpinner" class="{!v.toggleClass}" alternativeText="Retrieving Info" />
+    <aura:if isTrue="{!v.evalRequest.Locked_for_Approval__c}">
+        Record is Locked for approval. You need to recall approval before editing or submitting for approval.
+        <aura:set attribute="else">
+            <!---->
+            <aura:if isTrue="{!v.salesRepEval}">
+                <lightning:card iconName="custom:custom21" title="{!'Sales Rep Eval Request'}">
+                    <div class="slds-p-horizontal--small">
+                        <div class="slds-box slds-theme_default">
+                            <lightning:input name="input4" readonly="true" value="{!v.userData.Name}"
+                                label="Contact Name" />
+                            <lightning:input name="input4" readonly="true" value="{!v.evalRequest.Shipping_Phone__c}"
+                                label="Phone" />
+                            <lightning:input name="input4" readonly="true" value="{!v.evalRequest.Shipping_Email__c}"
+                                label="Email" />
+                            <lightning:input name="input4" readonly="true"
+                                value="{!v.evalRequest.Oracle_Ship_Street__c}" label="Street" />
+                            <lightning:input name="input4" readonly="true" value="{!v.evalRequest.Oracle_Ship_City__c}"
+                                label="City" />
+                            <lightning:input name="input4" readonly="true" value="{!v.evalRequest.Oracle_Ship_State__c}"
+                                label="State" />
+                            <lightning:input name="input4" readonly="true" value="{!v.evalRequest.Oracle_Ship_Zip__c}"
+                                label="Postal Code" />
+                            <lightning:input name="input4" readonly="true"
+                                value="{!v.evalRequest.Oracle_Ship_Country__c}" label="Country" />
+                            <lightning:input name="input4" readonly="true"
+                                value="{!v.evalRequest.Special_Instructions__c}" label="Special Instructions" />
+
+                        </div>
+                    </div>
+                </lightning:card>
+                <br />
+                <aura:if isTrue="{!v.showFooter}">
+                    <footer style="float:right;">
+                        <lightning:button variant="neutral" label="Previous" onclick="{!c.cancel }" />
+                        <lightning:button variant="brand" label="Submit" onclick="{!c.save}" />
+                    </footer>
+                </aura:if>
+
+                <aura:set attribute="else">
+                    <aura:if isTrue="{!and(v.evalRequest.GovEd_Account_Waive_Agreement__c,v.bacct)}">no error
+                        <lightning:icon iconName="utility:error" size="medium" variant="error"
+                            alternativeText="Indicates approval">
+
+                        </lightning:icon>
+                        You are requesting to waive an agreement for a Billing Account that is a Reseller. This cannot
+                        be done.
+                        <br />
+                        The Billing Account must be an End User that is education, government, or enterprise Account.
+                        Please Remove the
+                        waiver request or change the billing contact/account to an End User that is education,
+                        government, or enterprise.
+                        <br />
+                        <aura:set attribute="else">
+
+                            <lightning:card iconName="custom:custom21" title="{!'Eval for '+v.opp.Name}">
+                                <div class="slds-p-horizontal--small">
+                                    <aura:if isTrue="{!and(v.shipinfo,v.billinfo)}">
+                                        <aura:if isTrue="{!and(v.scon,v.bcon)}"> <b>Shipping Contact Demographics</b> -
+                                            If correct, click submit on bottom of this page.
+                                            Request will be routed to management automatically.
+                                            <br />
+                                            <br />
+
+                                            <div class="slds-box slds-theme_default">
+                                                <lightning:input name="input4" readonly="true" value="{!v.shipCon.Name}"
+                                                    label="Contact Name" />
+                                                <lightning:input name="input4" readonly="true"
+                                                    value="{!v.evalRequest.Shipping_Phone__c}" label="Phone" />
+                                                <lightning:input name="input4" readonly="true"
+                                                    value="{!v.evalRequest.Shipping_Phone__c}" label="Phone" />
+                                                <lightning:input name="input4" readonly="true"
+                                                    value="{!v.evalRequest.Shipping_Email__c}" label="Email" />
+                                                <lightning:input name="input4" readonly="true"
+                                                    value="{!v.evalRequest.Oracle_Ship_Street__c}" label="Street" />
+                                                <lightning:input name="input4" readonly="true"
+                                                    value="{!v.evalRequest.Oracle_Ship_City__c}" label="City" />
+                                                <lightning:input name="input4" readonly="true"
+                                                    value="{!v.evalRequest.Oracle_Ship_State__c}" label="State" />
+                                                <lightning:input name="input4" readonly="true"
+                                                    value="{!v.evalRequest.Oracle_Ship_Zip__c}" label="Postal Code" />
+                                                <lightning:input name="input4" readonly="true"
+                                                    value="{!v.evalRequest.Oracle_Ship_Country__c}" label="Country" />
+                                                <lightning:input name="input4" readonly="true"
+                                                    value="{!v.evalRequest.Special_Instructions__c}"
+                                                    label="Special Instructions" />
+
+                                            </div>
+                                            <br />
+                                            <aura:if isTrue="{!v.showFooter}">
+                                                <footer style="float:right;">
+                                                    <lightning:button variant="neutral" label="Previous"
+                                                        onclick="{!c.cancel }" />
+                                                    <lightning:button variant="brand" label="Submit"
+                                                        onclick="{!c.save}" />
+                                                </footer>
+                                            </aura:if>
+                                            <br />
+                                            <aura:set attribute="else">
+                                                <aura:if isTrue="{!not(v.scon)}">
+                                                    <lightning:buttonIcon iconName="utility:warning" variant="bare"
+                                                        alternativeText="Settings" iconClass="dark" />
+                                                    <b>The shipping contact</b>, {!v.scondemos.Name}, is missing
+                                                    demographic info. You can edit on the evaluation page on the right
+                                                    side
+                                                    of page by double clicking.
+                                                </aura:if>
+                                                <br />
+                                                <br />
+
+                                                <aura:if isTrue="{!not(v.bcon)}">
+                                                    <lightning:buttonIcon iconName="utility:warning" variant="bare"
+                                                        alternativeText="Settings" iconClass="dark" />
+                                                    <b>The billing contact</b> is missing demographic info. You can edit
+                                                    on the evaluation page on the right side
+                                                    of page by double clicking.
+                                                </aura:if>
+                                                <br />
+                                                <br />
+                                                <!--
+                                <aura:if isTrue="{!not(v.bacct)}">
+                                    <lightning:buttonIcon iconName="utility:warning" variant="bare" alternativeText="Settings" iconClass="dark"/>
+                                    <b>The billing Account</b> is missing demographic info. You can edit on the evaluation page by clicking
+                                    on the button on top right side, called "Account Billing Address Update".
+                                </aura:if>
+                                -->
+                                            </aura:set>
+
+
+                                        </aura:if>
+                                        <aura:set attribute="else">
+                                            ..please waite while loading
+                                        </aura:set>
+                                    </aura:if>
+
+                                    <footer style="float:right;">
+                                        <!--<lightning:button variant="neutral" label="Cancel" onclick="{!c.cancel }" />-->
+                                    </footer>
+                                </div>
+                                <br />
+                            </lightning:card>
+                        </aura:set>
+                    </aura:if>
+                </aura:set>
+            </aura:if>
+        </aura:set>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldOverrides>
+        <field>Name</field>
+        <formula>&quot;Onboarding &quot; &amp;Contact.FirstName&amp;&quot; &quot;&amp;Contact.LastName</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Portal_Account__c</field>
+        <formula>Contact.AccountId</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Portal_Contact__c</field>
+        <formula>Contact.Id</formula>
+    </fieldOverrides>
+    <label>Assign Onboarding Task</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Partner_Portal_Task__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns/>
+    </quickActionLayout>
+    <targetObject>PortalOnboardingProgress__c</targetObject>
+    <targetParentField>Portal_Contact__c</targetParentField>
+    <type>Create</type>
+</QuickAction>

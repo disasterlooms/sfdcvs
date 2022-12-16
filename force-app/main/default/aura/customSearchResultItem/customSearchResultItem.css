@@ -1,0 +1,7 @@
+.THIS .slds-card__body > div {
+    width: 100% !important;
+}
+.THIS .slds-file--card {
+    border-left: none;
+    border-right: none;
+}

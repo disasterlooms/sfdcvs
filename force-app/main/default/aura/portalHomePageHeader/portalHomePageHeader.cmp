@@ -1,0 +1,26 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="ButtonLabel" type="string"/>
+    <aura:attribute name="ButtonLabel2" type="string"/>    
+    <aura:attribute name="ButtonURL1" type="string"/>
+    <aura:attribute name="ButtonURL2" type="string"/>
+    <aura:attribute name="backgroundImageClass" type="string"  />
+    <aura:attribute name="backgroundImage" type="string"  />
+    <aura:attribute name="showButtons" type="boolean"/>
+    
+    <div class="{!v.backgroundImageClass}" >
+        <div class="pbtGroup">
+            <aura:if isTrue="{!v.showButtons}">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <lightning:button variant="inverse" label="{!v.ButtonLabel}" title="Brand action" onclick="{!c.onClick1}" class="pbtButtonlft"/>
+                    </div>
+                    <div class="slds-col">
+                        <lightning:button variant="inverse" label="{!v.ButtonLabel2}" title="Brand action" onclick="{!c.onClick2}" class="pbtButtonrgt"/>
+                    </div>
+                </div>
+            </aura:if>
+        </div>
+        
+    </div>
+   
+</aura:component>

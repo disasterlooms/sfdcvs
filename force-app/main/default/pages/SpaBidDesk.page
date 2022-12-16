@@ -1,0 +1,22 @@
+<apex:page standardcontroller="Opportunity" recordSetVar="records" docType="html-5.0" id="oppage" title="Spa Creation" sidebar="false" >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"/>
+<apex:includescript value="{!URLFOR($Resource.OppNewScript)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/css/jquery-confirm.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/css/jquery-confirm.css')}"/>
+<apex:stylesheet value="{!$Resource.OppVFOverride}"/>
+
+
+<div id="listview" class="viewsonic" > 
+     <br></br>
+     <apex:enhancedList type="Opportunity" height="800" id="opplists" /> 
+     </div>
+
+
+
+
+
+
+
+</apex:page>

@@ -1,0 +1,6 @@
+<apex:page standardController="opportunity">
+{!$User.Id} <br/>
+{!$User.ContactId} <br/>
+{!text($User.UserType)} <br/>
+{!$UserRole.Name}
+</apex:page>

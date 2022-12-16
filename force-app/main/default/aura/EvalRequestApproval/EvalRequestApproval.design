@@ -1,0 +1,5 @@
+<design:component>
+	<design:attribute name="recordId" label="RecordId" />
+	<design:attribute name="showFooter" label="Show Component Footer" />
+
+</design:component>

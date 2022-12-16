@@ -1,0 +1,4 @@
+<design:component>
+    <design:attribute name="conId" description="Contact Id of User"/>
+    <design:attribute name="userId" description="User Id if it exists"/>	
+</design:component>

@@ -1,0 +1,146 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens" access="global" controller="EducationRegLight">
+    <aura:handler name="change" value="{!v.acct}" action="{!c.myAction}" />
+    <aura:attribute name="ready" type="String"/>
+    <aura:attribute name="headertype" type="String"/>
+    <aura:registerEvent name="showToast" type="c:showToast"/>
+    <aura:attribute name="acct" type="String"/>
+    <aura:attribute name="firstname" type="String" default="iejfasiefj"/>
+    <aura:attribute name="lastname" type="String" default="iejfasiefj"/>
+    <aura:attribute name="contacttitle" type="String" default="Super Admin"/>
+    <aura:attribute name="erromsg" type="String"/>    
+    <aura:attribute name="email" type="String" default="mailngingmyf@favcomp.com"/>
+    <aura:attribute name="phone" type="String" default="9095551312"/>
+    <aura:attribute name="sameLRP" type="Boolean" default="false"/>
+    <aura:attribute name="step" type="integer" default="1"/>
+    <aura:attribute name="utype" type="String" default="LRP"/>
+    <aura:attribute name="savebtn" type="String" default="Save and Next"/>
+    <aura:attribute name="contacts" type="Contact[]"/>
+    <aura:attribute name="progress" type="Integer" default="20"/>
+    <c:MessageContainer aura:id="messageContainer"/>
+    <aura:attribute name="steps" type="Map"/>
+    <aura:attribute name="acctNotFound" type="Boolean"/>
+    <aura:attribute name="showmodal" type="String" />
+    <aura:attribute name="acctTypeInfo" type="Boolean" default="true"/>
+    <aura:attribute name="showModalFlow" type="Boolean" default="true"/>
+    <aura:attribute name="disabled" type="Boolean" default="true"/>
+    <aura:attribute name="imageUrl" type="String" default="true"/>
+    
+    {!v.body}
+    <aura:if isTrue="{!v.acctTypeInfo}">
+        <!--
+        <div class="{!v.showmodal}">
+            <c:modalPublicSite header="" modalSize="slds-modal_medium" headerClass="slds-modal__header_empty" hideModal="{!v.showmodal}">
+                <aura:set attribute="content">
+                    <c:siteEducationPortalLanding hideModal="{!v.showmodal}" header="{!v.headertype}" imageUrl="{!v.imageUrl}"/>
+                </aura:set>
+            </c:modalPublicSite>
+        </div>
+        -->
+        <lightning:card>
+            <aura:set attribute="title">
+                Please Let us know your Cloud Service type and SSO info, if you do not know leave blank and submit.
+                <br/><br/>
+                Step <b>{!v.step}</b> of 3 <br/><br/>
+                <aura:iteration items="{!v.steps}" var="s" indexVar="s1">
+                    <aura:if isTrue="{!s1==v.step-1}">
+                        <b>IT Info </b>
+                    </aura:if>
+                </aura:iteration>
+            </aura:set>
+            <lightning:recordEditForm
+                                      aura:id="myformacct"
+                                      onload="{!c.handleLoad}"
+                                      onsubmit="{!c.handleSubmit}"
+                                      onsuccess="{!c.handleSuccess}"
+                                      recordId=""
+                                      objectApiName="Account">
+                <!-- the messages component is for error messages -->
+                <lightning:messages />
+                <lightning:inputField fieldName="SSO_Type__c"/>
+                <lightning:inputField fieldName="Cloud_Service__c"/>
+                <lightning:inputField fieldName="Conference_Room_Software__c"/>
+                <lightning:inputField fieldName="Software_Being_Used__c"/>
+                <footer class="slds-card__footer">
+                    <lightning:button variant="brand" type="submit" name="Save" label="Submit and Next" disabled="{!v.disabled}" />
+                </footer>
+            </lightning:recordEditForm>
+            
+        </lightning:card>
+        
+        
+        <aura:set attribute="else">            
+            <lightning:card >
+                
+                <aura:set attribute="title">
+                    <h1>ViewSonic Entity Enrollment Form</h1>
+                    <br/> <br/>
+                    <h2>This information is needed to start the Entity Enrollment for myViewBoard.</h2>
+                    <br/> <br/>
+                    <lightning:progressBar value="{!v.progress}" size="large" /> 
+                    <!-- <lightning:progressIndicator currentStep="{!v.progress/25}" type="base" hasError="false" variant="base">
+                    <lightning:progressStep label="Super User" value="1"/>
+                    <lightning:progressStep label="IT Management" value="2"/>
+                    <lightning:progressStep label="Entity Application Owner" value="3"/>
+                    <lightning:progressStep label="Instructional Coach" value="4"/>
+                </lightning:progressIndicator>
+                -->
+                    
+                    <br/>
+                    Step <b>{!v.step+1}</b> of 3 <br/><br/>
+                    <aura:iteration items="{!v.steps}" var="s" indexVar="s1">
+                        <aura:if isTrue="{!s1==v.step-1}">
+                            <b>User Type: {!s.name} </b>
+                        </aura:if>
+                    </aura:iteration>
+                    <br/>
+                    <br/>
+                    
+                </aura:set>
+                <aura:iteration items="{!v.contacts}" var="item" indexVar="index">
+                    <form >
+                        
+                        <aura:if isTrue="{!index==v.step-1}">
+                            
+                            <lightning:input name="FirsttName" label="First Name" required="true" value="{!item.FirstName}" disabled="{!item.SameasLRP}"/>
+                            <lightning:input name="LastName" label="Last Name" required="true" value="{!item.LastName}"  disabled="{!item.SameasLRP}"/>
+                            <lightning:input name="Email" label="Email" required="true" value="{!item.Email}" type="email" placeholder="youraddress@company.com" disabled="{!item.SameasLRP}"/>
+                            <lightning:input name="Phone" label="Phone" required="true" value="{!item.Phone}" type="tel" placeholder="areacode-phone" disabled="{!item.SameasLRP}"/>
+                            <aura:if isTrue="{!index==1}">
+                                
+                            </aura:if>
+                            
+                        </aura:if>
+                    </form>
+                </aura:iteration>
+                
+                
+                <aura:set attribute="footer">
+                    <aura:if isTrue="{!v.step==2}">
+                        <!--<lightning:button name="previous" label="Previous" onclick="{!c.previous}" variant="neutral"/>
+                        <lightning:button name="same" label="Same as Previous Next" onclick="{!c.sameprv}" variant="brand"/>-->
+                        
+                        
+                    </aura:if>
+                    <aura:if isTrue="{!v.step==3}">
+                        <lightning:button name="previous" label="Previous" onclick="{!c.previous}" variant="neutral"/>
+                        <lightning:button name="same" label="Skip" onclick="{!c.skip}"  variant="brand"/>
+                    </aura:if>   
+                    
+                    <aura:if isTrue="{!v.step==2}"> 
+                        <lightning:button name="previous" label="Previous" onclick="{!c.previous}" variant="neutral"/>
+                        <lightning:button name="Skip and Finsh" label="Skip and Submit" onclick="{!c.handleSave}"  variant="neutral" />
+                        <lightning:button name="Add and Finsh" label="Submit" onclick="{!c.handleSave}"  variant="neutral" />
+                        
+                        <aura:set attribute="else">
+                            <lightning:button name="save" label="Next" onclick="{!c.handleNext}"  variant="neutral" disabled="{!v.acctNotFound}"/>
+                             
+                        </aura:set>
+                    </aura:if>
+                </aura:set>
+            </lightning:card>
+            <br/>
+            <br/>
+        </aura:set>
+    </aura:if>
+    
+</aura:component>

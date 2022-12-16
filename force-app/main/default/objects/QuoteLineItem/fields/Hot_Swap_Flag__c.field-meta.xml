@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hot_Swap_Flag__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Flag to determine if the SKU is chosen/requested for Hot Swap</description>
+    <externalId>false</externalId>
+    <label>Hot Swap Flag</label>
+    <type>Checkbox</type>
+</CustomField>

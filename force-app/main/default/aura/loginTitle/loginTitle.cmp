@@ -1,0 +1,33 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="LoginTitle" type="String"/>
+    <div class="pp-login">
+        <div class="pp-login-cont">
+            <div class="pp-form">
+                <h1>{!v.LoginTitle}</h1>
+                <div>
+                    <!-- The dynamic field below can have the css edited in this component but the class names cannot change, must add to the stlye sheet
+                                 in this component the classes you want to edit  -->
+                
+                    <!-- Commented out
+                            <form action="">
+                                <div class="pp-field">
+                                    <div><label for="username">Username</label></div>
+                                    <div><input type="text" id="" name="" value=""></input></div>
+                                </div>
+                                <div class="pp-field">
+                                    <div><label for="password">Password</label></div>
+                                    <div><input type="text" id="" name="" value=""></input></div>
+                                </div>
+                                <div class="pp-btn">
+                                    <input type="submit" value="Log In"></input>
+                                </div>
+                                <div class="pp-sm-text">
+                                    <a href="#">Forgot your password?</a>
+                                </div>                            
+                            </form>  -->
+                </div> 
+            </div>
+        </div>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,57 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride,lightning:availableForFlowScreens,flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader"
+                access="global"
+                controller="OppPackageProducts">
+    <aura:handler name="cmpEvent" event="c:multiCmpOppCompEvt" action="{!c.createProducts}"/>
+    <aura:handler name="change"  value="{!v.overrideaction}" action="{!c.createProducts}"/>
+    <aura:handler event="force:refreshView" action="{!c.myAction}" />
+    <aura:attribute name="pid" type="String" />
+    <aura:attribute name="oppId" type="string"/>
+    <aura:attribute name="externalUser" type="Boolean" default="false"/>
+    <aura:attribute name="oppProducts" type="Boolean" default="false"/>
+    <aura:attribute name="createCounter" type="Boolean" default="true"
+                    description="this is to prevent running the method more than once." />
+
+    <aura:attribute name="overrideaction" type="boolean" default="false"
+                    description="this is to allow the parent component to create a specific apex code to update records"/>
+    <aura:attribute name="records" type="Object[]" description="the collection of records received from query"/>
+    <aura:attribute name="selections" type="SObject[]" description="that which is selected"/>
+    <aura:attribute name="quant" type="String"/>
+     <aura:attribute name="quotes" type="boolean" default="false"/>
+    <aura:attribute name="wherestmt" type="string" default="where name != null"/>
+    <aura:attribute name="parentid" type="string" default=" "/>
+    <aura:attribute name="recordId" type="string"/>
+    <aura:attribute name="pricebookActive" type="string" />
+    <aura:attribute name="activePrices" type="String" default="true"/>
+    
+    <aura:attribute name="childrensaved" type="boolean"
+                    description="this is to allow the parent component to create a specific apex code to update records"/>
+   
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <c:MultiSelectItems title="Select Products to Add" 
+                        objToQuery="Product2" 
+                        wherestmt="{!'where isactive = true '+v.pricebookActive}"
+                        limitstmt="limit 35"
+                        orderstmnt="Order by Accessory__c, Name asc"
+                        Columnfields="Name,Main_Products__c "
+                        Columnheaders="Name,Accessory To"
+                        btnName="Add Selected Products"
+                        records="{!v.records}"
+                        searchplaceholder="Search by product name - Partial ok. Press Enter to search"
+                        searchlabel="Product Name"
+                        searchfield="ProductSearch__c"
+                        recordId="{!v.pid}"
+                        objToCreate="Package__c"
+                        objToCreateFields="Product_Package__c,Product__c"
+                        parentid="{!v.recordId}"
+                        childrensaved="{!v.childrensaved}"
+                        createOveride="true"
+                        overrideaction="{!v.overrideaction}"
+                        selections="{!v.selections}"
+                        activePrices="{!v.activePrices}"
+                        >
+        
+    </c:MultiSelectItems>
+    
+</aura:component>

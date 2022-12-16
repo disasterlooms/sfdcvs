@@ -1,0 +1,56 @@
+<apex:page standardController="Eval_Unit_Details__c" recordSetVar="opp">
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.vsevalinvoice)}"/>
+<script>
+function bstreet(){
+ console.log('buttonworks');
+ 
+ //var billstreet =  document.getElementById("{!$Component.j_id0:j_id10:i:f:pb:d:Billing_Street.input}");
+ console.log('{!Eval_Unit_Details__c.Eval_Request__r.Billing_Contact_Name__r.MailingStreet}');
+ var billstreet =  document.getElementById("j_id0:j_id10:i:f:pb:d:Billing_Street.input");
+ console.log(billstreet);
+ billstreet.value ="{!Eval_Unit_Details__c.Eval_Request__r.Billing_Contact_Name__r.MailingStreet}";
+ 
+ 
+ //
+ }
+ </script>
+ <style>
+  body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea;
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+</style>
+    
+         
+        <apex:pageblock > 
+         <apex:outputpanel >
+          <apex:pageblocksection title="Invoice Billing Information" showheader="false" columns="1">
+                <center><a  class="btn btn-red-text" onclick="bstreet();"  id="show">Use Eval Billing Info</a>  
+                         <a  class="btn btn-red-text" onclick="checkValue3();"  id="show">Use Eval Shipping Info</a></center>
+                       <apex:outputField id="shippingstreet" rendered="true" style="display:nones;" value="{!Eval_Unit_Details__c.Eval_Request__c}"/>
+      
+            </apex:pageblocksection> 
+     </apex:outputpanel>
+        </apex:pageblock> 
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:repeat value="{!opp}" var="row" rendered="false">
+     {!row.Id}
+     {!row.SKU__c}
+     {!row.Name}
+     {!row.Eval_Request__c}
+     
+          
+    </apex:repeat>
+    <!-- Runs your Flow -->   
+    <flow:interview name="Eval_Units_Quote_Request"
+          finishLocation="/apex/EvalInvoiceConfirm?id={!id}">
+          <apex:param name="RMA" value="{!Eval_Unit_Details__c.RMA__c}"/>
+        <apex:param name="ColEvalUnits" value="{!Selected}"/>
+    </flow:interview>
+</apex:page>

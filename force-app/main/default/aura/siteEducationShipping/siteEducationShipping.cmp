@@ -1,0 +1,12 @@
+<aura:component controller="EducationRegLight" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" 
+                access="global">
+   
+    <aura:handler name="init" value="{!this}" action="{!c.getPOInformation}" />
+    <aura:attribute name="ponumber" type="String" />
+    <aura:attribute name="orders" type="VSA_Open_Order__c[]"/>
+    <aura:attribute name="acct" type="String"/>
+    <aura:attribute name="noorders" type="String"/>
+    {!v.noorders}
+  
+    <c:VSAOraclePOcmp  ponumber="{!v.ponumber}" poedusite="{!v.ponumber}"/>
+</aura:component>

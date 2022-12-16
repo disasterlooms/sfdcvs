@@ -1,0 +1,192 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:availableForFlowScreens" controller="EvalUnitstoQuote" access="global" >
+    <aura:attribute type="string" name="billingstate" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordName" type="String" />
+    <aura:attribute name="units" type="Eval_Unit_Details__c[]" access="public"/>
+    <aura:attribute name="selectedunits" type="Eval_Unit_Details__c[]" access="public"/>
+    <aura:attribute name="quoteid" type="String"/>
+    <aura:attribute name="completed" type="boolean"/>
+    <aura:attribute name="flowSide" type="boolean" default="true"/>
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+        
+    <!-- Changes for Reseller Contact Info Jul-19 -->
+    <aura:handler name="change" action="{!c.rcon}" value="{!v.simpleRecord.Reseller_Contact_Name__c}" />
+    <aura:handler name="change" action="{!c.racct}" value="{!v.rconRecord.AccountId}" />
+    <aura:handler name="change" action="{!c.bcon}" value="{!v.simpleRecord.Billing_Contact_Name__c}" />
+    <aura:handler name="change" action="{!c.bacct}" value="{!v.bconRecord.AccountId}" />
+    <aura:handler name="change" action="{!c.scon}" value="{!v.simpleRecord.Shipping_Contact_Name__c}" />
+    <aura:handler name="change" action="{!c.sacct}" value="{!v.sconRecord.AccountId}" />
+
+    <!-- End Changes for Reseller Contact Info July-19 -->
+    
+    <aura:handler name="change" action="{!c.completed}" value="{!v.completed}" />
+	<aura:registerEvent name="getselected" type="c:getselectedunits"/>    
+    <!-- comments -->
+    <aura:attribute name="record" type="Object" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    
+    <force:recordData aura:id="eval"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      mode="EDIT"/>
+    
+    <aura:attribute name="bacctrecord" type="Object" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="sacctrecord" type="Object" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="baccRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="saccRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="bacctError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    <aura:attribute name="sacctError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    
+    <!-- Changes for Reseller Contact Info Jul-19 -->
+    <aura:attribute name="racctrecord" type="Object" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="raccRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="racctError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    <!-- End Changes for Reseller Contact Info Jul-19 -->
+    
+
+      <force:recordData aura:id="bacct"  
+                      layoutType="FULL"
+                      recordId="{!v.bconRecord.AccountId}"
+                      targetError="{!v.bacctError}"
+                      targetRecord="{!v.bacctrecord}"
+                      targetFields="{!v.baccRecord}"
+                      mode="EDIT"/> 
+      <force:recordData aura:id="sacct"  
+                      layoutType="FULL"
+                      recordId="{!v.sconRecord.AccountId}"
+                      targetError="{!v.sacctError}"
+                      targetRecord="{!v.sacctrecord}"
+                      targetFields="{!v.saccRecord}"
+                      mode="EDIT"/>
+    
+      <force:recordData aura:id="racct"  
+                      layoutType="FULL"
+                      recordId="{!v.rconRecord.AccountId}"
+                      targetError="{!v.racctError}"
+                      targetRecord="{!v.racctrecord}"
+                      targetFields="{!v.raccRecord}"
+                      mode="EDIT"/>
+     
+    
+    <force:recordData aura:id="scon"  
+                      layoutType="FULL"
+                      recordId="{!v.simpleRecord.Shipping_Contact_Name__c }"
+                      targetError="{!v.conError}"
+                      targetRecord="{!v.sconObj}"
+                      targetFields="{!v.sconRecord}"
+                      mode="EDIT"/> 
+    
+     <force:recordData aura:id="rcon"  
+                      layoutType="FULL"
+                      recordId="{!v.simpleRecord.Reseller_Contact_Name__c }"
+                      targetError="{!v.conError}"
+                      targetRecord="{!v.rconObj}"
+                      targetFields="{!v.rconRecord}"
+                      mode="EDIT"/> 
+    
+    <force:recordData aura:id="bcon"  
+                      layoutType="FULL"
+                      recordId="{!v.simpleRecord.Billing_Contact_Name__c }"
+                      targetError="{!v.conError}"
+                      targetRecord="{!v.conrecord}"
+                      targetFields="{!v.bconRecord}"
+                      mode="EDIT"/> 
+    
+   
+    
+    
+    <aura:attribute name="conrecord" type="Object" 
+                    description="The record object to be displayed"/>
+        <aura:attribute name="rconObj" type="Object" 
+                    description="The record object to be displayed"/>
+     <aura:attribute name="sconObj" type="Object" 
+                    description="The record object to be displayed"/>   
+    
+   <aura:attribute name="bconRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/> 
+     <aura:attribute name="sconRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+      <aura:attribute name="rconRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="conError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    
+      
+    
+   
+    
+    <aura:attribute name="newQuote" type="Object"/>
+    <aura:attribute name="simpleNewQuote" type="Object"/>
+    <aura:attribute name="newQuoteError" type="String"/>
+    <force:recordData aura:id="quotecreator"
+                      layoutType="FULL"
+                      targetRecord="{!v.newQuote}"
+                      targetFields="{!v.simpleNewQuote}"
+                      targetError="{!v.newQuoteError}"
+                      />
+    
+    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="slds-hide" variant="brand" size="large"/>
+    </div> 
+    
+    <lightning:card title="Evaluation Quote Request Step 1 - Billing Info" aura:id="billing">
+        <br/>
+            <div class="slds-button-group slds-hide" role="group" aura:id="buttons">
+                <button class="slds-button slds-button_neutral" onclick="{!c.billCon}">Billing Contact Info</button>
+                <button class="slds-button slds-button_neutral" onclick="{!c.shipCon}">Shipping Contact Info</button>
+                <button aura:id="rbutton" class="slds-button slds-button_neutral" onclick="{!c.resellerCon}">Reseller Contact Info</button>
+            </div> 
+        
+            
+          <div class="slds-p-horizontal--small">
+                <br/>
+                <lightning:input aura:id="company" label="Company Name" value="{!v.simpleNewQuote.Billing_Company_Name__c}" required="true"/>
+                <lightning:input aura:id="phone" label="Phone" value="{!v.simpleNewQuote.Billing_Contact_Phone__c}" required="true"/>
+                <lightning:input aura:id="street" label="Billing Street" value="{!v.simpleNewQuote.Billing_Street__c}" required="true"/>
+                <lightning:input aura:id="city" label="Billing City" value="{!v.simpleNewQuote.Billing_City__c}" required="true"/>
+                <lightning:input aura:id="state" label="Billing State" value="{!v.simpleNewQuote.Billing_State__c}" maxlength="2" required="true"/>
+                <lightning:input aura:id="zip" label="Billing Postal Code" value="{!v.simpleNewQuote.Billing_Zip_Postal__c}" required="true"/>
+                <lightning:input aura:id="country" label="Billing Country" value="{!v.simpleNewQuote.Billing_Country__c }" required="true"/>
+                <lightning:input aura:id="name" label="Contact Name" value="{!v.simpleNewQuote.Billing_Contact_Name__c}" required="true"/>
+                <lightning:input aura:id="email" label="Email" value="{!v.simpleNewQuote.Billing_Contact_Email__c}" required="true"/>
+                <lightning:input aura:id="request" label="request" value="{!v.simpleNewQuote.Eval_Request__c}" required="true" class="slds-hide"/>
+                <br/>
+          </div>
+        <br/>
+        <aura:if isTrue="{!v.flowSide}" >
+       
+        <lightning:button label="Next Page" variant="brand" onclick="{!c.saveQuote}" class="slds-float_right"/>  
+             </aura:if>
+    </lightning:card> 
+    
+    <div aura:id="evalunits" class="slds-hide" >
+        <c:EvalRequestUnitsTable records="{!v.units}"
+                                 selected="{!v.selelectedunits}"
+                                 flowname="EvalUnitsQuoteLightning"
+                                 quoteid="{!v.quoteid}"
+                                 recordId="{!v.recordId}"
+                                 completed="{!v.completed}"
+                                 header="Select Evals to Send out for Quote"
+                                 actname="updateUnits"
+                                 showbtn="true"/>
+    </div>
+        
+    
+</aura:component>

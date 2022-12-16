@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AV_Solutions_Accounts</fullName>
+    <active>true</active>
+    <errorConditionFormula>isnew() &amp;&amp;
+ text(Industry) = &apos;AV Solution&apos; &amp;&amp;
+ CreatedBy.Alias != &apos;RStra&apos;
+ &amp;&amp;  CreatedBy.Alias != &apos;admin&apos; &amp;&amp;
+ text(VSRegion__c ) = &apos;VSA&apos;</errorConditionFormula>
+    <errorMessage>Please do not set to AV Solutions. This will be done by the AV Certification Team</errorMessage>
+</ValidationRule>

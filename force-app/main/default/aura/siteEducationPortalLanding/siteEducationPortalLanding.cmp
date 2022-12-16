@@ -1,0 +1,126 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="hideModal" type="String"/>
+    <aura:attribute name="header" type="String"/>
+    <aura:attribute name="imageUrl" type="String" />
+    <aura:attribute name="industry" type="String"/>
+    
+  <aura:handler name="change" value="{!v.industry}" action="{!c.myAction}" />
+    <div class="slds-modal__content" id="welcome-mat-100-content">
+        <div class="slds-welcome-mat">
+            <div class="slds-welcome-mat__content slds-grid">
+                
+                <div class="slds-welcome-mat slds-size_1-of-2">
+                    <br/>
+                    <img src="{!v.imageUrl}"/>
+                    <div class="slds-welcome-mat__info-content">
+                        <h2 class="slds-welcome-mat__info-title" id="welcome-mat-100-label">ViewSonic {!v.header} Portal!</h2>
+                        <div class="slds-welcome-mat__info-description slds-text-longform">
+                            <p>Welcome to ViewSonic portal, where you can Track Shipping, set up Admin Users, submit service issues and more!</p>
+                        </div>
+                    </div>
+                </div>
+                <ul class="slds-welcome-mat__tiles slds-size_1-of-2">
+                    <li class="slds-welcome-mat__tile">
+                        <div class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center">
+                            <div class="slds-welcome-mat__tile-figure">
+                                <div class="slds-welcome-mat__tile-icon-container">
+                                    <span class="slds-icon_container slds-icon-utility-animal_and_nature">
+                                        
+                                    </span>
+                                    <span class="slds-icon_container slds-icon_container_circle slds-icon-action-check" title="Completed">
+                                        
+                                        <span class="slds-assistive-text">Completed</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-welcome-mat__tile-body">
+                                <h3 class="slds-welcome-mat__tile-title">Add Users for ViewBoard</h3>
+                                <p class="slds-welcome-mat__tile-description">Add Admins and Users for ViewBoard. This is the first step. The wizard will guide you through</p>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="slds-welcome-mat__tile">
+                        <div class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center">
+                            <div class="slds-welcome-mat__tile-figure">
+                                <div class="slds-welcome-mat__tile-icon-container">
+                                    <span class="slds-icon_container slds-icon-utility-upload">
+                                    </span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-welcome-mat__tile-body">
+                                <h3 class="slds-welcome-mat__tile-title">Request a training session</h3>
+                                <p class="slds-welcome-mat__tile-description">Our Proffesional Development Trainers can meet at your school or district.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="slds-welcome-mat__tile">
+                        <div class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center">
+                            <div class="slds-welcome-mat__tile-figure">
+                                <div class="slds-welcome-mat__tile-icon-container">
+                                    <span class="slds-icon_container slds-icon-utility-magicwand">
+                                        
+                                    </span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-welcome-mat__tile-body">
+                                <h3 class="slds-welcome-mat__tile-title">Report an Issue with any product</h3>
+                                <p class="slds-welcome-mat__tile-description">You can report an issue and our service department will contact you to help. Yes, an actual human being!</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="slds-welcome-mat__tile">
+                        <div class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center">
+                            <div class="slds-welcome-mat__tile-figure">
+                                <div class="slds-welcome-mat__tile-icon-container">
+                                    <span class="slds-icon_container slds-icon-utility-knowledge_base">
+                                        
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-welcome-mat__tile-body">
+                                <h3 class="slds-welcome-mat__tile-title">Track Shippment info</h3>
+                                <p class="slds-welcome-mat__tile-description">Need to track shipping and ensure that everything runs smoothly? This can be done in the portal.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <!--
+                    <li class="slds-welcome-mat__tile">
+                        <div class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center">
+                            <div class="slds-welcome-mat__tile-figure">
+                                <div class="slds-welcome-mat__tile-icon-container">
+                                    <span class="slds-icon_container slds-icon-utility-call">
+                                        
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-welcome-mat__tile-body">
+                                <h3 class="slds-welcome-mat__tile-title">Add more users as needed</h3>
+                                <p class="slds-welcome-mat__tile-description">Change the admin or add teachers to ViewBoard at a later time</p>
+                            </div>
+                        </div>
+                    </li>
+     -->
+                    
+                </ul>
+            </div>
+            <footer class="slds-modal__footer">
+                <lightning:button variant="brand" label="Close" title="dismiss" onclick="{!c.dismissModal}" />
+            </footer>
+        </div>
+    </div>
+    
+    
+</aura:component>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BillingCityRequired</fullName>
+    <active>true</active>
+    <description>RequiresBilling City</description>
+    <errorConditionFormula>isblank(BillingCity )&amp;&amp; isnew()&amp;&amp;text(VSRegion__c) == &apos;VSA&apos;</errorConditionFormula>
+    <errorMessage>You must have a billing city on all accounts created. Please give a billing city. Thanks</errorMessage>
+</ValidationRule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_Type__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(Call__c=true, &apos;Call&apos;,
+if(Visit__c=true, &apos;Meeting&apos;,
+if(  Begins(lower(Subject), &apos;email&apos;)=true,&apos;Email&apos;,  
+if(  Email__c =true, &apos;Email&apos;  ,
+if( not(isblank(WhoId)), &apos;Meeting&apos;, 
+&apos;&apos;)))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Activity Type</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

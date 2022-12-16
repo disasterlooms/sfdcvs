@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Country__c</fullName>
+    <businessStatus>DeprecateCandidate</businessStatus>
+    <description>Region of the deal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Region of deal. The distributors added depend on this field. US, Canada, or no distributors will be added based on this field.</inlineHelpText>
+    <label>Region</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>United States</fullName>
+                <default>true</default>
+                <label>United States</label>
+            </value>
+            <value>
+                <fullName>Canada</fullName>
+                <default>false</default>
+                <label>Canada</label>
+            </value>
+            <value>
+                <fullName>Latin America</fullName>
+                <default>false</default>
+                <label>Latin America</label>
+            </value>
+            <value>
+                <fullName>VSI</fullName>
+                <default>false</default>
+                <label>VSI</label>
+            </value>
+            <value>
+                <fullName>VSE</fullName>
+                <default>false</default>
+                <label>VSE</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

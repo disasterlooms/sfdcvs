@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quota_Update_Only_by_Directors</fullName>
+    <active>false</active>
+    <description>Restricts access to CQ Quota field to be only editable by Director Roles and Above.  10/29 deactivating per Colleen&apos;s directive.  Reps will be updating their own quotas for the time being.  Keeping the rule definition here in case it is needed</description>
+    <errorConditionFormula>AND( 
+AND(
+NOT(CONTAINS($UserRole.Name , &quot;System&quot;)),
+NOT(CONTAINS($UserRole.Name , &quot;Director&quot;))),
+ISCHANGED(CQ_Quota__c))</errorConditionFormula>
+    <errorMessage>Quota may only be edited by Directors</errorMessage>
+</ValidationRule>

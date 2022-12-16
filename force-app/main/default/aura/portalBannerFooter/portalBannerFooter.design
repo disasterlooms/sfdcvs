@@ -1,0 +1,8 @@
+<design:component>
+    <design:attribute name="ButtonLabel" description="Name on the Button"/>
+    <design:attribute name="ButtonLabel2" description="Name on the Button"/>
+    
+    <design:attribute name="ButtonURL1" description="url of page going to for button 1"/>
+    <design:attribute name="ButtonURL2" description="url of page going to for button 2"/>
+    
+</design:component>

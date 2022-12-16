@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2022_Bucket_List_AV_Contacts</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CONTACT.TITLE</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>Billing_State__c</columns>
+    <columns>Account.Spiff_Type__c</columns>
+    <columns>Finch_Club_Status__c</columns>
+    <columns>Partner_Portal_Enrollment_Status__c</columns>
+    <columns>Reseller_Opp_Count__c</columns>
+    <columns>pi__score__c</columns>
+    <columns>CONTACT.LAST_ACTIVITY</columns>
+    <columns>pi__pardot_hard_bounced__c</columns>
+    <columns>ACCOUNT.OWNER.LAST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AccountTypeCorrect__c</field>
+        <operation>equals</operation>
+        <value>AV</value>
+    </filters>
+    <filters>
+        <field>Billing_Country__c</field>
+        <operation>notEqual</operation>
+        <value>CA,Canada</value>
+    </filters>
+    <filters>
+        <field>IndustryAcc__c</field>
+        <operation>equals</operation>
+        <value>AV Solution</value>
+    </filters>
+    <filters>
+        <field>CONTACT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contact.Active</value>
+    </filters>
+    <filters>
+        <field>Account.AV_Lead_Source__c</field>
+        <operation>notContain</operation>
+        <value>consultant</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>contains</operation>
+        <value>bluum,ccs,Connecticut Business Systems,encore,lee hartman,forward edge,avidex,kansas city,camera corner,affinitech,image net</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>notContain</operation>
+        <value>avi systems,conference</value>
+    </filters>
+    <filters>
+        <field>CONTACT.TITLE</field>
+        <operation>notContain</operation>
+        <value>zz,no longer</value>
+    </filters>
+    <label>2022 Bucket List AV Contacts</label>
+</ListView>

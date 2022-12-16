@@ -1,0 +1,30 @@
+<aura:component access="global" implements="lightning:availableForFlowScreens">
+        <aura:attribute name="parent" type="Aura.Component"/>
+   <!-- Determine which actions are available -->
+    <aura:attribute name="customLabel" type="String" />
+     <aura:attribute name="callAction" type="Boolean" default="false"/>    
+    <aura:attribute name="showPrev" type="Boolean" default="false"/>
+    <aura:attribute name="disableBtn" type="Boolean" default="false"/>
+    <aura:attribute name="finish" type="Boolean" default="false"/>
+    
+    <aura:attribute name="addressValidation" type="Boolean" default="false"/>    
+    <aura:attribute name="street" type="String" />
+    <aura:attribute name="city" type="String" />
+    <aura:attribute name="state" type="String" default="cal"/>
+    <aura:attribute name="country" type="String" />
+    <aura:attribute name="zip" type="String" />
+    <aura:attribute name="county" type="String" />
+    
+    {!v.street}
+    
+    <lightning:card>
+        <aura:set attribute="actions">
+            <aura:if isTrue="{!v.showPrev}">
+            <lightning:button aura:id="PREVIOUS" label="Previous"
+                              variant="brand" onclick="{!c.onCancel}" class="flowBtnClass"/>
+                </aura:if>
+            <lightning:button aura:id="NEXT" label="{!v.customLabel}"
+                              variant="brand" onclick="{!c.onButtonPressed}" class="flowBtnClass" disabled="{!v.disableBtn}"/>
+        </aura:set>
+    </lightning:card>
+</aura:component>

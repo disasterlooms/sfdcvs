@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>componentUsed</fullName>
+    <active>true</active>
+    <errorConditionFormula>useComponent__c == true &amp;&amp;
+(
+isblank(Component_Attributes__c) ||
+isblank( Component_Attribute_Value__c  ) ||
+isblank( Component_Name__c )
+)</errorConditionFormula>
+    <errorMessage>When using component, need component name, attribute name and value. if more than 1 attribute exists, cannot use this method.</errorMessage>
+</ValidationRule>

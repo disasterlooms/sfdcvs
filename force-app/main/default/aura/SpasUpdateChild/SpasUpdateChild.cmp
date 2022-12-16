@@ -1,0 +1,3 @@
+<aura:component controller="OppPipelinUpdateSpas" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	
+</aura:component>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <interviewLabel>Opportunity Partners Delete Selected {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Partners Delete Selected</label>
+    <processType>Flow</processType>
+    <recordDeletes>
+        <name>DeletePartners</name>
+        <label>DeletePartners</label>
+        <locationX>103</locationX>
+        <locationY>35</locationY>
+        <inputReference>ColPartners</inputReference>
+    </recordDeletes>
+    <startElementReference>DeletePartners</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <name>ColPartners</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Opportunity_Partner__c</objectType>
+    </variables>
+</Flow>

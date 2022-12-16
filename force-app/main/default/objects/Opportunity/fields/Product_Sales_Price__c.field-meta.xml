@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Sales_Price__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Requested Spa Price if new spa request. The the spa has been approved and making a pipeline opportunity, then this is the price that was approved.</inlineHelpText>
+    <label>Product Spa Price</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,304 @@
+<apex:page standardcontroller="Eval_Request__c" extensions="EvalQuoteReset" showHeader="True" standardStylesheets="True" action="{!reset}"  >
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.vsevalinvoice)}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+
+
+
+<script>   
+$j = jQuery.noConflict();
+function checkValue4(){
+    $j("[id$=company]").val('{!Eval_Request__c.Billing_Contact_Name__r.Account.Name}');   
+    $j("[id$=street]").val('{!Eval_Request__c.Billing_Contact_Name__r.Account.BillingStreet}');
+    $j("[id$=city]").val('{!Eval_Request__c.Billing_Contact_Name__r.Account.BillingCity}');
+    $j("[id$=state]").val('{!Eval_Request__c.Billing_Contact_Name__r.Account.BillingState}');
+    $j("[id$=zip]").val('{!Eval_Request__c.Billing_Contact_Name__r.Account.BillingPostalCode}');
+    $j("[id$=country]").val('{!Eval_Request__c.Billing_Contact_Name__r.Account.BillingCountry}');
+    $j("[id$=name]").val('{!Eval_Request__c.Billing_Contact_Name__r.Name}');
+    $j("[id$=phone]").val('{!Eval_Request__c.Billing_Contact_Name__r.Phone}');   
+    $j("[id$=email]").val('{!Eval_Request__c.Billing_Contact_Name__r.Email}');
+     
+        
+    }    
+</script>
+
+<script> 
+$j = jQuery.noConflict();  
+function shipping(){
+    $j("[id$=company]").val('{!Eval_Request__c.Shipping_Contact_Name__r.Account.Name}');
+    $j("[id$=street]").val('{!Eval_Request__c.Shipping_Contact_Name__r.MailingStreet}');
+    $j("[id$=city]").val('{!Eval_Request__c.Shipping_Contact_Name__r.MailingCity}');
+    $j("[id$=state]").val('{!Eval_Request__c.Shipping_Contact_Name__r.MailingState}');
+    $j("[id$=zip]").val('{!Eval_Request__c.Shipping_Contact_Name__r.MailingPostalCode}');
+    $j("[id$=country]").val('{!Eval_Request__c.Shipping_Contact_Name__r.MailingCountry}');
+    $j("[id$=name]").val('{!Eval_Request__c.Shipping_Contact_Name__r.Name}');
+    $j("[id$=phone]").val('{!Eval_Request__c.Shipping_Contact_Name__r.Phone}');   
+    $j("[id$=email]").val('{!Eval_Request__c.Shipping_Contact_Name__r.Email}');
+     
+        
+    }    
+</script>
+ <script>    
+    $j = jQuery.noConflict();
+    $j( document ).ready(function() {
+        
+     $j("[id$=list]").hide() 
+     });
+</script>
+
+<script> 
+$j = jQuery.noConflict();
+
+function checkValue2(){
+ //alert('{!messages}');
+var list = document.getElementById("j_id0:errormsg").hasChildNodes();
+console.log(list); 
+
+if(list != true){
+
+$j("[id$=list]").show(); 
+$j("[id$=billing]").hide(); 
+$j("[id$=buttons]").hide(); 
+}
+
+ //oncomplete="checkValue2();"
+        
+    }    
+</script>
+<style>
+input.btn[name="add_products_to_invoice"] {
+            display: none;
+        }
+input.btn[name="request_transfer"] {
+            display: none;
+        }
+ </style>       
+
+<apex:pagemessages id="errormsg"/>
+
+
+    <apex:sectionheader title="{!$ObjectType.Eval_Request__c.label} Invoice Request" subtitle="{!IF(ISNULL(Eval_Request__c.Name), 'New Eval Request',Eval_Request__c.Name& ' RMA # '&Eval_Request__c.RMA__c)}"/>
+  
+    <apex:form >
+       <div class="viewsonic">
+        <apex:pageblock mode="edit" title="" id="buttons">
+            <center>
+            <apex:pageblockbuttons >
+               <apex:commandbutton value="Next" action="{!QuickSave}" style="float:right" oncomplete="{!if(messages='','checkValue2();','')}" rerender="errormsg"/>
+            <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+           
+            </apex:pageblockbuttons>
+            </center>
+            <!-- **********   [Record Type : Selection Type ]   **********  -->
+            <apex:outputpanel title="Invoice Billing Information" id="billing" rendered="true">
+            
+              
+                <center><a  class="btn btn-red-text" onclick="console.log('{!Eval_Request__c.Name}');checkValue4();"  id="show">Use Eval Billing Info</a>
+                   <a  class="btn btn-red-text" onclick="shipping();"  id="show">Use Eval Shipping Info</a></center>
+                
+                 <div class="tile-container grid-2_sm-1">
+                    <ul class="tile-list grid-1 col">
+                        <li class="col">
+                    <label for="company" class="slds-form-element__label"><abbr class="slds-required" title="required">*</abbr>Billing Company Name</label>
+                    <apex:inputfield id="company" style="width: 450px;" value="{!Eval_Request__c.Billing_Company_Name__c}" required="true" styleclass="slds-input"/>
+                    
+                    <label for="company" class="slds-form-element__label">Billing Street</label>
+                    <apex:inputfield id="street" style="width: 450px;" value="{!Eval_Request__c.Billing_Street_Quote__c}" required="true" styleclass="slds-input"/>
+                 
+                    <label for="company" class="slds-form-element__label"><abbr class="slds-required" title="required">*</abbr>Billing City</label>
+                    <apex:inputfield id="city" style="width: 450px;" value="{!Eval_Request__c.Billing_City_Quote__c}" required="true" styleclass="slds-input"/>
+                   
+                    <label for="company" class="slds-form-element__label"><abbr class="slds-required" title="required">*</abbr>Billing State</label>
+                    <apex:inputfield id="state" style="width: 450px;" value="{!Eval_Request__c.Billing_State_Quote__c}" required="true" styleclass="slds-input"/>
+                    
+                    <label for="company" class="slds-form-element__label"><abbr class="slds-required" title="required">*</abbr>Billing Zip/Postal Code</label>
+                    <apex:inputfield id="zip" style="width: 450px;" value="{!Eval_Request__c.Billing_Zip_Quote__c}" required="true" styleclass="slds-input"/>
+                   
+                    <label for="company" class="slds-form-element__label"><abbr class="slds-required" title="required">*</abbr>Billing Country</label>
+                    <apex:inputfield id="country" style="width: 450px;" value="{!Eval_Request__c.Billing_Country_Quote__c}" required="true" styleclass="slds-input"/>
+                 
+                    <label for="company" class="slds-form-element__label"><abbr class="slds-required" title="required">*</abbr>Billing Contact Name</label>
+                    <apex:inputfield id="name" style="width: 450px;" value="{!Eval_Request__c.Billling_Contact_Name__c}" required="true" styleclass="slds-input"/>                    
+                    
+                    <label for="company" class="slds-form-element__label"><abbr class="slds-required" title="required">*</abbr>Billing Contact Phone</label>
+                    <apex:inputfield id="phone" style="width: 450px;" value="{!Eval_Request__c.Billing_Contact_Phone__c}" required="true" styleclass="slds-input"/>
+                    
+                    <label for="company" class="slds-form-element__label"><abbr class="slds-required" title="required">*</abbr>Billing Contact Email</label>
+                    <apex:inputfield id="email" style="width: 450px;" label="Billing Contact Email" value="{!Eval_Request__c.Billing_Contact_Email_Invoice__c}" required="true" styleclass="slds-input"/>  
+                    
+
+
+                    </li>
+                
+            </ul>
+
+             <ul class="tile-list grid-1 col">
+                <li class="col">
+                    <label for="conSearchBox" class="slds-form-element__label" style="font-weight: bold;">Pull a Specific Contacts Info and Use it</label>
+                    <c:Typeahead searchBoxId="conSearchBox" object="Contact" destinationForSelectedId="contactId" styleClass="slds-input" placeholder="Type Contact Name And Results will Show. Click Contact & Click the Page"/>   
+                    <input type="hidden" name="contactId" id="contactId"  />
+
+                    <label for="accSearchBox" class="slds-form-element__label" style="font-weight: bold;">Pull a Specific Account Info and Use it</label>
+                    <c:Typeahead searchBoxId="accSearchBox" object="Account" destinationForSelectedId="accountId" styleClass="slds-input" placeholder="Type Account Name And Results will Show. Click Account & Click the Page"/>   
+                    <input type="hidden" name="accountId" id="accountId"  />
+                    
+                </li>
+                
+            </ul>
+        </div>
+
+                    
+           
+                 
+
+              </apex:outputpanel>
+        </apex:pageblock>
+    </div>
+    </apex:form>
+ <apex:outputpanel id="list" >
+  <apex:pageblock >
+  <apex:pageblocksection title="Select Products Wanted on Quote" showheader="true" columns="1">
+ <apex:relatedlist list="Eval_Unit_Details__r" title="Eval Unit Details"/>
+ </apex:pageblocksection> 
+  </apex:pageblock>
+ </apex:outputpanel>
+ <apex:stylesheet value="{!URLFOR($Resource.vssitesytle)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.vssitegridlex)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.vssitefonts)}"/>
+<apex:remoteObjects >
+<apex:remoteObjectModel name="Contact" fields="Name,Id,FirstName,LastName,Phone,Email,Title,AccountId,MailingStreet,MailingCity,MailingState,MailingPostalCode,MailingCountry,PR_Account_Name__c">
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+
+<apex:remoteObjects >
+<apex:remoteObjectModel name="Account" fields="Name,Id,BillingStreet,BillingCity,BillingPostalCode,BillingState,BillingCountry,Phone">
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+
+<script>
+$j = jQuery.noConflict();
+$j("div").removeClass("requiredInput");
+
+ consearch = document.getElementById('conSearchBox');
+ consearch.addEventListener(
+     'change',
+     function() { var conid = $j("[id$=contactId]").val(); searchcon(conid); },
+     false
+  );
+ accsearch = document.getElementById('accSearchBox');
+ accsearch.addEventListener(
+     'change',
+     function() { console.log('acctsearch');
+                  var acctid = $j("[id$=accountId]").val();
+                  accname(acctid); 
+              },
+     false
+  );
+
+function searchcon(conid){
+    console.log('searchign: '+conid);
+        var con = new SObjectModel.Contact();
+        con.retrieve({
+          where: { 
+            Id: { eq: conid }
+          }
+        }, function(err, records) {
+          if (err) alert(err);
+             else ;
+          records.forEach(function(record) {
+           var name = record.get("Name");
+           var phone = record.get("Phone"); 
+           var email = record.get("Email"); 
+           var street = record.get("MailingStreet"); 
+           var city = record.get("MailingCity");  
+           var state = record.get("MailingState"); 
+           var zip = record.get("MailingPostalCode");
+           var country = record.get("MailingCountry");
+           var acctid = record.get("AccountId");
+           acctname(acctid);
+
+
+            $j("[id$=street]").val(street);
+            $j("[id$=city]").val(city);
+            $j("[id$=state]").val(state);
+            $j("[id$=zip]").val(zip);
+            $j("[id$=country]").val(country);
+            $j("[id$=name]").val(name);
+            $j("[id$=phone]").val(phone);   
+            $j("[id$=email]").val(email);  
+            });
+      
+        });
+    }
+
+        function acctname(acctid){
+            console.log('acctfun '+acctid);
+        var acc = new SObjectModel.Account();
+        acc.retrieve({
+          where: { 
+            Id: { eq: acctid }
+          }
+        }, function(err, records) {
+          if (err) alert(err);
+             else ;
+          records.forEach(function(record) {
+           var name = record.get("Name");  
+
+           $j("[id$=company]").val(name);
+            });
+      
+        });
+    }
+
+    function accname(acctid){
+            console.log('acctfun '+acctid);
+        var acc = new SObjectModel.Account();
+        acc.retrieve({
+          where: { 
+            Id: { eq: acctid }
+          }
+        }, function(err, records) {
+          if (err) alert(err);
+             else ;
+          records.forEach(function(record) {
+           var name = record.get("Name");
+           var phone = record.get("Phone");
+           var street = record.get("BillingStreet"); 
+           var city = record.get("BillingCity");  
+           var state = record.get("BillingState"); 
+           var zip = record.get("BillingPostalCode");
+           var country = record.get("BillingCountry");
+
+
+            $j("[id$=street]").val(street);
+            $j("[id$=city]").val(city);
+            $j("[id$=state]").val(state);
+            $j("[id$=zip]").val(zip);
+            $j("[id$=country]").val(country);
+            $j("[id$=phone]").val(phone);  
+
+           $j("[id$=company]").val(name);
+            });
+      
+        });
+    }
+
+
+</script>
+<style>
+body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
+    
+    width: 80%;
+
+}
+body .bPageTitle .ptBody .pageType {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+body .bPageTitle .ptBody .pageType, body .bPageTitle .ptBody .pageDescription {
+    margin-left: 37px;
+    color: black;
+}
+</style>
+</apex:page>

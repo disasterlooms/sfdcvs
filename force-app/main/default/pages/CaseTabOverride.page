@@ -1,0 +1,5 @@
+<apex:page >
+<script>
+window.location.href = '/500?fcf=00BA0000001LLLA';
+</script>
+</apex:page>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>jim.lawerence@veiwsonic.com</contactEmail>
+    <label>Bridge ViewSonic</label>
+    <samlConfig>
+        <acsUrl>https://auth.bridgeapp.com/saml/callback/9834441f-54ec-4e51-b55f-ba0dd5ecea2e</acsUrl>
+        <encryptionType>AES_128</encryptionType>
+        <entityUrl>https://auth.bridgeapp.com/saml/metadata/9834441f-54ec-4e51-b55f-ba0dd5ecea2e</entityUrl>
+        <issuer>https://viewsonic.my.salesforce.com</issuer>
+        <samlNameIdFormat>Unspecified</samlNameIdFormat>
+        <samlSigningAlgoType>SHA1</samlSigningAlgoType>
+        <samlSubjectType>Username</samlSubjectType>
+    </samlConfig>
+    <startUrl>https://partner-viewsonic.bridgeapp.com/</startUrl>
+</ConnectedApp>

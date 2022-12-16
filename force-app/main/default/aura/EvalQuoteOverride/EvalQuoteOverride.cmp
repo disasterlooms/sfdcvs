@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global" >
+Quotes cannot be created from this page. You must use the button "Request Quote" that is on the specific eval request page.
+	
+</aura:component>

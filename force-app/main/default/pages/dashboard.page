@@ -1,0 +1,33 @@
+<apex:page >
+<script>
+        
+            var configObj = {};
+            configObj['acErrorNotFound'] = "No dashboards matched your search.";
+            configObj['acWidth'] = 323;
+            configObj['acExpandedWidth'] = 323;
+            configObj['acInitialText'] = "Find a dashboard...";
+            configObj['acPagingToolbarPrevious'] = "Previous";
+            configObj['acOnSelect'] = function(value) {var onSelectFunc = function(dashboardId) { if(dashboardId) {navigateToUrl('/' + dashboardId, 'DASHBOARD');} }; onSelectFunc(value);};
+            configObj['acPagingToolbarNext'] = "Next";
+            configObj['acFolder'] = "acFolder";
+            configObj['acPagingToolbarPageSize'] = 0;
+            // Add the datastoreUrl as an attribute to the config object so that the same can be accessed by the DashboardFinderCombo
+            configObj['datastoreUrl'] = "/dash/dashboardFinderServlet.apexp";  
+        
+            SFDC.analytics.GwtModuleManager.INSTANCE.onReady(function(){
+                sfdc.DashboardFinderCombo.create(this, 'thePage:j_id30:dashboardFinder:finder:autoCompleteCombo:comboContainer', configObj);
+            });
+        </script>
+        
+  <div id="thePage:j_id30:dashboardFinder:finder:autoCompleteCombo:j_id39" style="clear:both;"></div>
+  
+  <div id="thePage:j_id40" class="buttonBarContainer"><input value=" Edit "  class="btn" id="j_id41" name="edit" onclick="navigateToUrl('/01Z12000000OeNV/e?retURL=%2F01Z12000000OeNV','DASHBOARD','edit');" title="Edit" type="button" /><input value=" Clone "  class="btn" id="j_id43" name="clone" onclick="navigateToUrl('/01Z/e?cloneId=01Z12000000OeNV&retURL=%2F01Z12000000OeNV','DASHBOARD','clone');" title="Clone" type="button" /></div>
+  <div class="menuButton" id="refresh"><div class="menuButtonButton hasDefault" id="refreshButton"><span  class="menuButtonLabel" id="refreshLabel" tabindex="0">Refresh</span></div></div>
+  <div class="menuButtonMenu" id="refreshMenu"><a href="javascript:sfdc.dashboardView.doRefresh%28false%29" class="menuButtonMenuLink firstMenuItem">Refresh Now</a><a href="/p/dash/sched/ScheduleDashboardPage/e?pid=01Z12000000OeNV&amp;retURL=%2F01Z12000000OeNV%3Fm%3DVIEW" class="menuButtonMenuLink" shouldstayinownframe="true">Schedule Refresh...</a></div>
+  <script>new MenuButton('refresh', true);</script><div id="thePage:j_id50" class="refreshLabelContainer"></div>
+
+
+
+  
+  <apex:iframe id="act" title="Dashboard" src="/servlet/servlet.ChartServer?rsid=0FL12000002pXw8&ruid=005A0000000T6JG&did=01Z12000000OeNV&s=8&fs=12&tfg=12&tfs=-16777216&explode=0&c=bar&cs=1&title=&eh=no&compo=yes&fg=-16777216&bg1=-1&bg2=-1&bgdir=2&dl1=Created+By&dl2=Created+Date&l=2&sax=yes&Yman=no&nc=17&actUrl=%2F00O120000069CVz&sd=4&scv=no&sct=no&spt=no&bd=yes&cu=USD&ab=X&u=0&vt=0&ab2=Y&u2=0&vt2=0&vl0=Record+Count&spoc=no&topn=no&gc0=-1&gc1=-1&gc2=-1&sona=0&refreshts=1430327079000" height="400" width="200" frameborder="false" />
+</apex:page>

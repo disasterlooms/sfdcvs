@@ -1,0 +1,23 @@
+<design:component>
+    <design:attribute name="cmpName" label="Name of component with namespace"  required="true"/>
+    <design:attribute name="objExpected" label="First 3 of recId for Obj"  required="true"/>
+    
+    <design:attribute name="getParentID" label="Boolean look for parent recid"/>
+    <design:attribute name="parentFieldNames" label="Names of Parent fields"/>
+    <design:attribute name="parentfieldname" label="Name of parent record id e.g. opporunityId"/>
+     <design:attribute name="ObjName" label="Name Object that will have related ids"/>
+    
+    
+    <design:attribute name="dashboardId" label="Id of Analytics dashboard to use"/> 
+    <design:attribute name="dashboardFilter" label="Deprectated Do not use"/>
+     <design:attribute name="dashboardHeight" label="Height in hundreds for dahshboard"/>
+    <design:attribute name="dashboardUseParent" label="Use the related record id or record id?"/>
+    <design:attribute name="dashboarddatsetName" label="Dataset Name for filter"/>
+    <design:attribute name="dashboardFieldtoCompare" label="dataset field to compare for filter"/>
+    <design:attribute name="fieldtoMatch" label="useDifferentField" description="use a different field for dashboard filtering than the parentId"/>
+    
+    
+    
+    
+        
+</design:component>

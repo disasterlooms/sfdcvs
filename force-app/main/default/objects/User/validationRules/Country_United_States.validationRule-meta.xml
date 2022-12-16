@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Country_United_States</fullName>
+    <active>false</active>
+    <errorConditionFormula>Profile.Name != &apos;Sales - Latin America&apos; &amp;&amp; CountryCheck__c = false &amp;&amp; Apex_Test__c = false &amp;&amp; Profile.Name != &apos;Sales Directors&apos;</errorConditionFormula>
+    <errorMessage>Country must be in full name format 
+
+United States, Canada, Mexico...etc.</errorMessage>
+</ValidationRule>

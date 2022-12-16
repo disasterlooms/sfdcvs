@@ -1,0 +1,3 @@
+<apex:page standardController="Opportunity_Partner__c">
+    <apex:enhancedList type="Opportunity_Partner__c" height="800" rowsPerPage="50" />
+</apex:page>

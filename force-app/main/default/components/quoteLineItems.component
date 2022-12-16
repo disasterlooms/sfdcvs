@@ -1,0 +1,32 @@
+<apex:component controller="quoteResellerGetProducts" access="global">
+
+    <apex:attribute name="qId" type="Id" description="Opp Id of the quote" assignTo="{!accId}" />
+    <table border="0">
+        <tr>
+            <th>Distributors Approved</th>
+        </tr>
+        <apex:repeat var="part" value="{!parts}">
+            <tr align="right">
+                <td align="left">{!part.Partner_Account__r.Name}</td>
+            </tr>
+        </apex:repeat>
+    </table>
+    <br /><br />
+    <table border="0">
+        <tr>
+            <th>ViewSonic SKU</th>
+            <th>Quantity</th>
+            <th>Description</th>
+        </tr>
+        <apex:repeat var="prod" value="{!cons}">
+            <tr align="right">
+                <td align="left">
+                    <apex:outputLink value="https://www.viewsonic.com/us/catalog/product_datasheet/view/key/{!prod.Product2.Name}"
+                        id="theLink">{!prod.Product2.Name}</apex:outputLink>
+                </td>
+                <td align="left">{!prod.Quantity}</td>
+                <td align="left">{! prod.Product2.Description}</td>
+            </tr>
+        </apex:repeat>
+    </table>
+</apex:component>

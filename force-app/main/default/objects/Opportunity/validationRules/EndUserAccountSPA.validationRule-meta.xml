@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EndUserAccountSPA</fullName>
+    <active>false</active>
+    <description>Ensures an End User Account is attached and Reseller is named to opportunity before a SPA can be requested</description>
+    <errorConditionFormula>or(and( Distributor_Account__c = true,    End_User_Company__c = null,  End_User_Lookup_Account__c = null),and( Distributor_Account__c = true,  End_User_Lookup_Account__c  = null,   StateLookup__c  = null  ))</errorConditionFormula>
+    <errorMessage>Please add a End User to &quot;End User Lookup Account&quot;.   If you could not locate the End User account, please add to End User Company (Text) and the End User State.</errorMessage>
+</ValidationRule>

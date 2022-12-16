@@ -1,0 +1,68 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" controller="EvalsUnshipped" access="global">	
+    <aura:handler name="init" value="{!this}" action="{!c.unShipped}" />
+	<aura:attribute name="designHeight" type="String" />
+    <aura:attribute name="recordId" type="String" access="public"/>
+    <aura:attribute name="evals" type="Eval_Request__c[]" />
+    	<div class="flexipageComponent" data-aura-class="flexipageComponent">
+            <article class="slds-card">
+              <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate"><div class="slds-media__body">
+                    <h2>
+                        <span class="slds-text-heading_small">
+                            <aura:if isTrue="{!v.recordId == null}">
+                                You have no unshipped eval orders.
+                                <aura:set attribute="else">
+                                   Unshipped Evaluation Requests
+                                </aura:set>
+                            </aura:if>
+                        </span>
+                    </h2>
+                  </div>
+                </header>
+              </div>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+              <thead>
+                <tr class="slds-text-title_caps">
+                  <th scope="col" class="slds-cell-wrap">
+                    <div class="slds-truncate" title="Billing Account">Billing Account</div>
+                  </th>
+                  <th scope="col" class="slds-cell-wrap">
+                    <div class="slds-truncate" title="Stage">Stage</div>
+                  </th>
+                  <th scope="col" class="slds-cell-wrap">
+                    <div class="slds-truncate" title="Opportunity Name">Opportunity Name</div>
+                  </th>
+                  <th scope="col" class="slds-cell-wrap">
+                    <div class="slds-truncate" title="RMA/Eval Order #">RMA/Eval Order #</div>
+                  </th>
+                  <th scope="col" class="slds-cell-wrap">
+                    <div class="slds-truncate" title="Products">Products</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <aura:iteration items="{!v.evals}" var="e">
+                  <tr class="slds-text-title_caps">
+                    <td class="slds-cell-wrap">
+                        <ui:outputURL label="{!e.Billing_Contact_Name__r.Account.Name}" value="{!'/one/one.app#/sObject/'+e.Id+'/view'}" target="_parent"/>
+                    </td>
+                       <td class="slds-cell-wrap">
+                      <ui:outputText value="{!e.Eval_Process_Stage__c}"/>
+                    </td >
+                    <td class="slds-cell-wrap">
+                      <ui:outputText value="{!e.Opportunity_Name__r.Name}"/>
+                    </td>
+                    <td class="slds-cell-wrap">
+                      <ui:outputText value="{!e.Name}"/>
+                    </td>
+                    <td class="slds-cell-wrap">
+                      <ui:outputText value="{!e.Products_List__c}"/>
+                    </td>
+                  </tr>
+               </aura:iteration>
+              </tbody>
+            </table>
+            </article>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>myViewBoard_Enroll_Date__c</fullName>
+    <description>Date of enrollment. This field is created on 4.2.2021 , enrollments before this date, may have a blank value</description>
+    <externalId>false</externalId>
+    <label>myViewBoard Enroll Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

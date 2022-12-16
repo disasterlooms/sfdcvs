@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BR_Approved_Education_SPAs</fullName>
+    <columns>QUOTE.NAME</columns>
+    <columns>CreatedBy</columns>
+    <columns>BR_Rep_that_did_meeting__c</columns>
+    <columns>End_User__c</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Approval_Date__c</columns>
+    <columns>QUOTE.EXPIRATIONDATE</columns>
+    <columns>QUOTE.STATUS</columns>
+    <columns>BR_Meeting_Date__c</columns>
+    <columns>List_of_Work_Activity_c__c</columns>
+    <columns>Business_Reason_for_Bid_Registration__c</columns>
+    <columns>LastModifiedBy</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Bid_Registered__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>QUOTE.EXPIRATIONDATE</field>
+        <operation>equals</operation>
+        <value>NEXT_MONTH</value>
+    </filters>
+    <label>BR Approved Education SPAs</label>
+    <sharedTo>
+        <role>BidDesk</role>
+    </sharedTo>
+</ListView>

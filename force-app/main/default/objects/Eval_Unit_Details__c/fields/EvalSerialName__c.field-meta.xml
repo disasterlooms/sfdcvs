@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EvalSerialName__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>unique name of units to avoid duplicates created by oracle/informatica sync in error</description>
+    <externalId>false</externalId>
+    <label>EvalSerialName</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

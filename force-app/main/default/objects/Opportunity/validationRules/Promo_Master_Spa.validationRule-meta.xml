@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Promo_Master_Spa</fullName>
+    <active>false</active>
+    <description>Prevent changes by non admin to promo spas</description>
+    <errorConditionFormula>not(isblank(text(Promo_Type__c))) &amp;&amp;  $User.Alias != &apos;admin&apos; &amp;&amp; $User.Alias != &apos;BidDesk&apos; &amp;&amp;
+$User.Alias != &apos;ndasi&apos; &amp;&amp;  $Organization.Id = &apos;00D780000004d2r&apos;</errorConditionFormula>
+    <errorMessage>Only Admins can update a spa promo</errorMessage>
+</ValidationRule>

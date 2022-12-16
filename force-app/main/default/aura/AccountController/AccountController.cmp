@@ -1,0 +1,6 @@
+<aura:component controller="AccountVIP">
+    <aura:handler name="init" value="{!this}" action="{!c.getAccount}" />
+    <aura:method name="getvipinfo" action="{!c.getAccount}" access="PUBLIC"/>
+    <aura:attribute name="account" type="Account"/>	
+    <aura:attribute name="recordId" type="String" required="true"/>	
+</aura:component>

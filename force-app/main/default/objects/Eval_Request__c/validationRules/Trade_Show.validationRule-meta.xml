@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trade_Show</fullName>
+    <active>true</active>
+    <description>Must have trade show information</description>
+    <errorConditionFormula>Trade_Show__c = true &amp;&amp;  Created_Mobile__c = false&amp;&amp; (isblank( Name_of_Trade_Show__c )||isblank(  Trade_Show_Expected_Return_Date__c ))</errorConditionFormula>
+    <errorMessage>If Trade show must have Name of Trade Show, Expected Return Date, and Shipping Address of show.</errorMessage>
+</ValidationRule>

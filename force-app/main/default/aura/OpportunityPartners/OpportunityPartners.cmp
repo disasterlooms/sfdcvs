@@ -1,0 +1,117 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global" controller="OpportunityPartners">
+    <aura:attribute name="title" type="string" default="Update or Remove Distributors or Resellers"/>
+    <aura:attribute name="recordId" type="String" access="public"/>
+    <aura:handler event="force:refreshView" action="{!c.getProducts}" />
+    <aura:attribute name="disabled" type="Boolean" default="false"/>
+    <aura:attribute name="resellersOnly" type="Boolean" default="false" access="public"/>
+    <aura:attribute name="partners" type="Opportunity_Partner__c[]" access="public"/>
+    <aura:attribute name="delpartners" type="Opportunity_Partner__c[]" access="public"/>
+    <aura:attribute name="id" type="String" default="" access="GLOBAL"/>
+    <aura:attribute name="objNew" type="Contact" default="{'sobjectType':'Contact',  
+                                                          'Id':null}" />
+    <aura:handler name="init" value="{!this}" action="{!c.getProducts}" />
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    
+    <aura:attribute name="record" type="Object" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    
+    <force:recordData aura:id="eval"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      mode="EDIT"/>
+    
+    <div class="slds-border_top  slds-border_right slds-border_left slds-border_bottom flexipageComponent" data-aura-class="flexipageComponent">
+        <article class="slds-card">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate"><div class="slds-media__body">
+                    <h2>
+                        <span class="slds-text-heading_small">{!v.title}</span>
+                    </h2>
+                    </div>
+                </header>
+                <div class="slds-no-flex">
+                    <lightning:button label="Delete&nbsp;Selected" variant="neutral" onclick="{!c.deleteparts}" value="{!recordid}" disabled="{!v.disabled}"/>
+                    <!--<lightning:button label="Update&nbsp;Reseller&nbsp;Contact" variant="neutral" onclick="{!c.update}" value="{!recordid}"  />-->
+                </div>
+            </div>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <ui:inputCheckbox change="{!c.checkAllCheckboxes}" aura:id="checkboxpart"/>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Account Name">Account</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Quantity">Role</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Contact">Contact</div>
+                        </th>
+                        <th scope="col">
+                            <!--<div class="slds-truncate" title="Requested Price">Reseller Contact</div>-->
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <aura:iteration items="{!v.partners}" var="p">
+                        <aura:if isTrue="{!p.Partner_Type__c == 'Reseller / VAR' || not(v.resellersOnly)}">
+                            <tr>
+                                
+                                <td>
+                                    <ui:inputCheckbox aura:id="DependentCheckboxpart" name="{!p.Id}"/>
+                                </td>
+                                <td>
+                                    <ui:outputText value="{!p.Partner_Account__r.Name}"/>
+                                    
+                                </td>
+                                <td>
+                                    <ui:outputText value="{!p.Partner_Type__c}"/>
+                                </td>
+                                <!--
+                     <td> 
+                        
+                      <lightning:recordEditForm aura:id="recordViewForm" 
+                                                    recordId="{!p.Id}"
+                                                    recordTypeId=""
+                                                    objectApiName="Opportunity_Partner__c">
+                             <lightning:inputField fieldName="Reseller_Contact__c" html-placeholder="reseller contact"/>
+                          </lightning:recordEditForm>
+                      </td>
+   -->
+                                
+                                
+                                <td>
+                                    <aura:renderIf isTrue="{!p.Partner_Type__c != 'Distributor'}">
+                                        <ui:outputText value="{!p.Reseller_Contact__r.Name}"/>
+                                    </aura:renderIf>
+                                </td>
+                                <td>
+                                    <lightning:button label="Edit"
+                                                      iconName="utility:edit"
+                                                      iconPosition="left"
+                                                      variant="base"
+                                                      onclick="{!c.editpartner}"
+                                                      value="{!p.Id}"
+                                                      />
+                                </td>                    
+                            </tr>
+                        </aura:if>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            
+        </article> 
+    </div>        
+</aura:component>

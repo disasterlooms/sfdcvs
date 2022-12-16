@@ -1,0 +1,46 @@
+<apex:component >
+    <apex:attribute name="selectedfilterpicklistval" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="savedfilteroptions" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="gridwizardurl" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="userhasgridwizardperms" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="lang" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="exportenabled" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="udcenabled" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="udfenabled" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="massupdatesenabled" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="currentpage" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="totalpages" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="rendernextpagelink" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="firstpage" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="gotopagesetter" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="renderfirstpage" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="pagenumbers" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="gridtitle" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="noofrecordstxt" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="iscreateable" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="iseditable" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="showreadonly" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="pagesizeoptions" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="pagesize" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="readonlygridaction" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="resetpagesizeaction" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="gotopageaction" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="nextpageaction" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="previouspageaction" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="hasparentrecords" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="nodeleteaccess" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="renderdeleteall" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="hascreateableobjects" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="deletesenabled" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="deleteallaction" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="deleteaction" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="refreshgriddataaction" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="editgriddataaction" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="saveaction" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="savereturnaction" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="parentgrid" type="String" description="TODO: Describe me"/>
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Congratulations</h1>
+  This is your new Component: gridpagecomponent
+  <!-- End Default Content REMOVE THIS -->
+</apex:component>

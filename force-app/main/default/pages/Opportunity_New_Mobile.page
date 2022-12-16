@@ -1,0 +1,127 @@
+<apex:page standardcontroller="Opportunity" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<apex:includeScript value="{!URLFOR($Resource.Jquery, '/jquery-ui-1.11.4/jquery-ui.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/dist/jquery-confirm.min.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/css/jquery-confirm.css')}"/>
+<apex:stylesheet value="{!$Resource.OppVFOverride}"/>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Salesforce Lightning Design System Trailhead Module</title>
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+<body>
+
+<apex:remoteObjects >
+<apex:remoteObjectModel name="Opportunity" fields="Name,Type,StageName,CloseDate">
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+<script type="application/javascript">
+    function createopp(){
+    var $j = jQuery.noConflict();
+    
+    var name    = $j("[id$=name]").val();
+    var type    = $j("[id$=type]").val();
+    var stage   = 'Development';
+    var close   = new Date('{!NOW()+90}');
+    //var country = $("[id$=sst]").val();
+    //var end     = $("[id$=sz]").val();
+    //var prod    = $("[id$=scountry]").val();
+    //var quant   = $("[id$=scountry]").val();
+    //var price   = $("[id$=scountry]").val();
+    
+    
+    var opp = new SObjectModel.Opportunity({ Name: 'Javascript Object', Type: 'Project', StageName: 'Development', CloseDate: close });
+    opp.create(function(err) {
+  if (err) alert(err);
+  else alert(opp.get('Id'));
+});
+    
+    
+    
+       
+    //opptoCreate.set('Name', name);
+    //opptoCreate.set('Type', type);
+    //opptoCreate.set('StageName', stage);
+    //opptoCreate.set('CloseDate', close);
+    //opptoCreate.set('MailingState', sstate);
+    //opptoCreate.set('MailingPostalCode', szip);
+    //opptoCreate.set('MailingCountry', scountry);
+    //opptoCreate.create(createCallback);
+    //alert('opp created');
+}
+    
+function createCallback(err){
+    if (err) { 
+        alert(err); 
+    } else{
+    alert('no error given');
+    }
+}
+</script>
+ <apex:form >
+ <div class="viewsonic">
+
+<button class="slds-button slds-button--neutral" style="float:right" onclick="createopp();var $j = jQuery.noConflict();var euid = $j('[id$=end_lkid]').val();">Save</button>
+
+<br><div class="slds-form--stacked">
+
+  <div class="slds-form-element" style="display:none">
+     <label class="slds-form-element__label" for="text-input-01">Opportunity Name</label>
+  <div class="slds-form-element__control">
+    <apex:inputfield id="name" value="{!Opportunity.Name}" styleclass="slds-input" Html-placeholder="Dept. of .. or Project ABC Specifics beyond end user"/>
+    
+  </div>
+  </div>
+ <div class="slds-modal--form">
+  <div class="slds-form-element">
+  <label class="slds-form-element__label" for="select-01">Type</label>
+  <div class="slds-form-element__control">
+    <div class="slds-select_container">
+      <select id="select-01" class="slds-select">
+        <option>Project</option>
+        <option>Run Rate</option>
+        
+      </select>
+    </div>
+  </div>
+</div>
+      <div class="slds-form-element">
+     <label class="slds-form-element__label" for="text-input-01">Project or Site Information</label>
+  <div class="slds-form-element__control">
+    <apex:inputfield id="project" value="{!Opportunity.Project_or_Site_Information__c}" styleclass="slds-input" Html-placeholder="Dept. of .. or Project ABC Specifics beyond end user"/>
+    
+  </div>
+  </div>
+   <div class="slds-form-element">
+     <label class="slds-form-element__label" for="text-input-01">End User</label>
+  <div class="slds-form-element__control">
+    <apex:inputfield id="end" value="{!Opportunity.End_User_Lookup_Account__c}" styleclass="slds-input slds-lookup" Html-placeholder="End User Account"/>
+    
+  </div>
+  </div>
+  <div class="slds-form-element" style="display:none;">
+     <label class="slds-form-element__label" for="text-input-01">Project or Site Information</label>
+  <div class="slds-form-element__control">
+    <apex:inputfield id="stage" value="{!Opportunity.StageName}" styleclass="slds-input" Html-placeholder="Dept. of .. or Project ABC Specifics beyond end user"/>
+    
+  </div>
+  </div>
+    </div> 
+   </div></br>
+
+</div>        
+                 <apex:inputhidden value="{!Opportunity.CloseDate}" />
+                    <apex:inputhidden value="{!Opportunity.Project_or_Site_Information__c}"  />
+                    <apex:inputhidden value="{!Opportunity.Amount}" id="amount" />
+</apex:form>
+</body>
+</html>
+</apex:page>

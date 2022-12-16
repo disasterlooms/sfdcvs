@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllowPermanentDismissal__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>allow users to dismiss permanently. This is usually true but sometimes a modal like tasks need to be permanent.</description>
+    <externalId>false</externalId>
+    <label>AllowPermanentDismissal</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

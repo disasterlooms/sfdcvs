@@ -1,0 +1,113 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global"
+                controller="UserOppTeam">
+    <aura:attribute type="boolean" name="open" default="false"/>
+    <aura:attribute type="boolean" name="open2" default="false"/>
+    <aura:attribute type="boolean" name="open3" default="false"/>
+    <aura:attribute type="boolean" name="open4" default="false"/>
+    <aura:attribute type="String" name="button" default="test"/>
+    
+    <aura:attribute type="String" name="label"/>
+    <aura:attribute type="String" name="email"/>
+    <aura:attribute type="String" name="emailto"/>
+    <aura:attribute type="String" name="emailfrom"/>
+    <aura:attribute type="String" name="transopen"/>
+    
+    <aura:attribute name="onclick" type="Aura.Action"/>
+    <aura:attribute name="submission" type="Aura.Action"/>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <lightning:button variant="brand" label="{!v.label}" onclick="{!c.showmodal}"/>
+    <aura:if isTrue="{!v.open}">
+    <div class="slds-modal slds-fade-in-open" style="height: 640px;" role="dialog" aura:id="modaldialog">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">1
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">User Email Address</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                   <lightning:input name="email" value="{!v.email}" label="User Email" />
+                    <aura:if isTrue="{!v.transopen}">
+                   <lightning:input name="from email" value="{!v.email}" label="User Email the opps will be transfered from" /> 
+                    </aura:if>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.hideModal}" />
+                    <lightning:button variant="brand" label="Submit" onclick="{!c.oppartners}" />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+        </aura:if>
+    
+    <aura:if isTrue="{!v.open2}">
+    <div class="slds-modal slds-fade-in-open" style="height: 640px;" role="dialog" aura:id="modaldialog">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">User Email Address</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                   <lightning:input name="email" value="{!v.email}" label="User Email" />
+                    <aura:if isTrue="{!v.transopen}">
+                   <lightning:input name="from email" value="{!v.emailfrom}" label="User Email the opps will be transfered from" /> 
+                    </aura:if>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.hideModal}" />
+                    <lightning:button variant="brand" label="Submit" onclick="{!c.acctransfer}" />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+        </aura:if>
+    
+    <aura:if isTrue="{!v.open3}">
+    <div class="slds-modal slds-fade-in-open" style="height: 640px;" role="dialog" aura:id="modaldialog">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">User Email Address</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                   <lightning:input name="email" value="{!v.emailto}" label="User Email" />
+                    <aura:if isTrue="{!v.transopen}">
+                   <lightning:input name="from email" value="{!v.emailfrom}" label="User Email the opps will be transfered from" /> 
+                    </aura:if>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.hideModal}" />
+                    <lightning:button variant="brand" label="Submit" onclick="{!c.opptransfer}" />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+        </aura:if>
+    
+    <aura:if isTrue="{!v.open4}">
+    <div class="slds-modal slds-fade-in-open" style="height: 640px;" role="dialog" aura:id="modaldialog">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">User Email Address</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                   <lightning:input name="email" value="{!v.email}" label="User Email" />
+                    <aura:if isTrue="{!v.transopen}">
+                   <lightning:input name="from email" value="{!v.email}" label="User Email the opps will be transfered from" /> 
+                    </aura:if>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.hideModal}" />
+                    <lightning:button variant="brand" label="Submit" onclick="{!c.oppteamupdate}" />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+        </aura:if>
+        
+</aura:component>

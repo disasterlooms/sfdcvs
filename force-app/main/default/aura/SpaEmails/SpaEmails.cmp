@@ -1,0 +1,51 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,lightning:availableForFlowScreens"
+                controller="SpaMessages" access="global" >
+    <aura:attribute name="recordId" type="String" access="public"/>
+    <aura:handler event="force:refreshView" action="{!c.getProducts}" />
+    <aura:attribute name="messages" type="SObject[]" access="public"/>
+    <aura:attribute name="wherestmnt" type="string" default="and subject like 'ViewSonic SPA%'"/>
+    <aura:attribute name="addfields" type="string" default=",RelatedTo.Name"/>
+    <aura:attribute name="nospa" type="boolean"/>
+    <aura:attribute name="orderstmnt" type="string" default="order by messagedate desc"/>
+    <aura:attribute name="spaname" type="string" default=""/>
+    <aura:attribute name="acctname" type="string" default=""/>
+    <aura:attribute name="selectedId" type="String" access="public"/>    
+    <aura:handler name="init" value="{!this}" action="{!c.getMessages}"/>
+    <aura:handler name="change" value="{!v.recordId}" action="{!c.getMessages}" />
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="extra-large"/>
+    </div>
+    <div class="flexipageComponent" data-aura-class="flexipageComponent">
+        <article class="slds-card">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate"><div class="slds-media__body">
+                    <h2>
+                        <span class="slds-text-heading_small">Approval Emails by Date</span>
+                    </h2>
+                    </div>
+                </header>
+            </div>
+            <lightning:tabset >
+                <aura:iteration items="{!v.messages}" var="m">
+                    <lightning:tab label="{!m.MessageDate}"> 
+                        <aura:set attribute="label">
+                            <ui:outputDate value="{!m.MessageDate}" format="MM/dd/YY"  />
+                        </aura:set>
+                        <!--<ui:outputDate value="{!m.MessageDate}" format="MM/dd/YY"  />
+                        <ui:outputText value="{!m.RelatedTo.Name}" title="{!m.Id}" aura:id="{!m.id}" click="{!c.selected}"/>-->
+                        <b>To Addresses: &nbsp;&nbsp;</b>
+                        <ui:outputText value="{!m.ToAddress}"/>
+                        <br/>
+                        <br/>
+                        <lightning:formattedRichText value="{!m.HtmlBody}" />
+                    </lightning:tab>
+                </aura:iteration>
+            </lightning:tabset>
+        </article>
+    </div>
+    <!--<aura:if isTrue="{!v.nomssgs}" >
+    No Results. Please double check the SPA ID or send the SPA ID to admin to check if there are any historical emails.
+    </aura:if>-->
+
+    
+</aura:component>

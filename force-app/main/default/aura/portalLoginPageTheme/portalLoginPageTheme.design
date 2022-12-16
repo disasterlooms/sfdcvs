@@ -1,0 +1,4 @@
+<design:component label="Login Layout">
+	 <design:attribute name="smallLogo" label="Small Logo"/>
+     <design:attribute name="sideImageURL" label="URL for Side Image"/>
+</design:component>

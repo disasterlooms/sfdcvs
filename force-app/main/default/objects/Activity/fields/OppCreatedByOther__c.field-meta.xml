@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OppCreatedByOther__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Updated by apex, this is true if the actiivty is related to an opportunity that the user did not create. It helps tracks deals that sales help close even if they did not create the deal. We are trying to differentiate deals they created and deals they work but did not create.</description>
+    <externalId>false</externalId>
+    <label>OppCreatedByOther</label>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SHIPPING_CONTACT_NAME_ORACLE__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( text(Eval_Type__c ) == &apos;ViewSonic Sales Rep Eval&apos;, 
+Owner:User.FirstName+&apos; &apos;+Owner:User.LastName,   Shipping_Contact_Name__r.FirstName+&apos; &apos;+Shipping_Contact_Name__r.LastName)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>SHIPPING_CONTACT_NAME_ORACLE</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride,flexipage:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	Please create opportunities on the Global Creation Section on top of screen. If you have a question, please see video on home screen.
+    <br/>
+    <img src="/resource/1520288166000/GlobalActionScreen?isdtp=p1"/>
+</aura:component>

@@ -1,0 +1,21 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,lightning:availableForFlowScreens,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:isUrlAddressable" access="global" >
+    <aura:attribute name="btnLabel" type="String"/>
+    <aura:attribute name="onClicktype" type="String"/>
+    <aura:attribute name="onClick" type="String" access="global"/>
+    <aura:attribute name="reseller" type="Boolean"/>
+    <aura:attribute name="showIcon" type="Boolean" default="true"/>
+    <aura:attribute name="center" type="String" default="text-align:center"/>
+    
+    
+    <aura:attribute name="iName" type="String" default="action:quote"/>
+    <aura:if isTrue="{!v.showIcon}" >
+        <center>
+            <lightning:icon iconName="{!v.iName}" alternativeText="Approved" size="large"/>
+        </center>
+    
+    <br/><br/>
+        </aura:if>
+        <div style="{!v.center}">
+            <lightning:button variant="brand" label="{!v.btnLabel}" title="Brand action" onclick="{!c.onClick}" class="flowBtnClass"/>
+        </div>
+</aura:component>

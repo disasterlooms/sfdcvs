@@ -1,0 +1,3 @@
+<design:component>
+	<design:attribute name="con" description="Contact Id of newly created contact" />    
+</design:component>

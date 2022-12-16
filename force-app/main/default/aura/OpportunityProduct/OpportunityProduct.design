@@ -1,0 +1,5 @@
+<design:component>
+    <design:attribute name="hideLikelyProduct"/>
+    <design:attribute name="hideScheduleButton"/>
+    
+</design:component>

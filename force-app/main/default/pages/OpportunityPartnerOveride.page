@@ -1,0 +1,60 @@
+<apex:page standardcontroller="Opportunity_Partner__c">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="{!URLFOR($Resource.OppNewScript)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/> 
+<apex:stylesheet value="{!$Resource.OppVFOverride}"/>
+ <script>    
+    $( document ).ready(function() {
+       $("[id$=feedwrapper]").hide(); 
+       
+     });
+</script>
+
+
+
+<apex:pagemessages />
+    <apex:sectionheader title="{!$ObjectType.Opportunity_Partner__c.label} Edit" subtitle="{!IF(ISNULL(Opportunity_Partner__c.Name), 'New Opportunity Partner',Opportunity_Partner__c.Name)}"/>
+
+<c:CreateRecordsQuick /> 
+
+
+       <c:LoadSave />  
+       <apex:form >
+        <apex:pageblock mode="edit" title="{!$ObjectType.Opportunity_Partner__c.label} Edit">
+            <apex:pageblockbuttons >
+                <!-- onclick="saverecord();saveoppnow();return false;" -->
+                
+                
+                <apex:commandbutton id="savebtn"  value="{!if( $Profile.Name  != 'Sales - Latin America','Save','Guardar')}" action="{!Save}"/>
+                <apex:actionfunction action="{!QuickSave}" name="saveoppnow" oncomplete="window.location = '/{!Opportunity_Partner__c.Opportunity__c}';" status="status" />
+                
+                <apex:commandbutton id="savenew" onclick="saverecord();saveoppnowcreate();return false;" value="{!if( $Profile.Name  != 'Sales - Latin America','Save & New','Guardar &  Nuevo')}" action="{!Save}"/>
+                <apex:actionfunction action="{!QuickSave}" name="saveoppnowcreate" oncomplete="window.location = '{!URLFOR($Action.Opportunity_Partner__c.New)&'&CF00NA0000006VQwu_lkid='&Opportunity_Partner__c.Opportunity__c&'&CF00NA0000006VQwu='&Opportunity_Partner__c.Opportunity__r.Name}';" status="status" />
+                
+                <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+            </apex:pageblockbuttons>
+
+            <!-- **********   [Record Type : Master ]   **********  -->
+            <apex:outputpanel >
+                <apex:pageblocksection title="Information" showheader="true" columns="2">
+                    <apex:inputfield value="{!Opportunity_Partner__c.Partner_Account__c}" required="true"/>
+                    <apex:inputfield value="{!Opportunity_Partner__c.Partner_Type__c}" required="true"/>
+                    <apex:inputfield value="{!Opportunity_Partner__c.Reseller_Contact__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Contact Info" showheader="true" columns="2">
+                    <apex:inputfield value="{!Opportunity_Partner__c.Contact_Name__c}" required="false"/>
+                    <apex:inputfield value="{!Opportunity_Partner__c.Contact_Phone__c}" required="false"/>
+                    <apex:inputfield value="{!Opportunity_Partner__c.Contact_Email__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="System Information" showheader="true" columns="2">
+                    <apex:outputfield value="{!Opportunity_Partner__c.Name}"/>
+                    <apex:inputfield value="{!Opportunity_Partner__c.Opportunity__c}" required="true" id="opp"/>
+                    <apex:inputfield value="{!Opportunity_Partner__c.Quote__c}" required="{!not(isblank(Opportunity_Partner__c.Opportunity__r.Primary_Quote__c))}" id="quote"/>
+                </apex:pageblocksection>
+            </apex:outputpanel>
+        </apex:pageblock>
+    </apex:form>
+
+</apex:page>

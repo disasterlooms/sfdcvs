@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MergeComplete__c</fullName>
+    <externalId>false</externalId>
+    <formula>(Correct_Account__c == Merge_Account_1__c   &amp;&amp; isblank(Merge_Account_2__c))  
+||
+(Correct_Account__c == Merge_Account_1__c   &amp;&amp; Correct_Account__c == Merge_Account_2__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>MergeComplete</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

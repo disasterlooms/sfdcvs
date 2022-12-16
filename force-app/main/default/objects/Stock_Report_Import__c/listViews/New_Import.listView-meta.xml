@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Import</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>distributor_Id__c</columns>
+    <columns>Date__c</columns>
+    <columns>Stock_Report_Date_Formula__c</columns>
+    <columns>External_Product_Code_Formula__c</columns>
+    <columns>Product_Code_Formula__c</columns>
+    <columns>Purchase_Order_Formula__c</columns>
+    <columns>Sales_Order_Formula__c</columns>
+    <columns>Sold_Formula__c</columns>
+    <columns>Stock_Formula__c</columns>
+    <columns>Synced_to_TCRM__c</columns>
+    <columns>Ready_to_Sync_to_TCRM__c</columns>
+    <columns>VS_Region__c</columns>
+    <columns>VS_SubRegion__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Synced_to_TCRM__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>New Import</label>
+    <sharedTo>
+        <group>VSE_Germany_CMS_Admin</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ResellerAccountSPA</fullName>
+    <active>false</active>
+    <description>Ensures an End User Account is attached and Reseller is named to opportunity before a SPA can be requested</description>
+    <errorConditionFormula>or(and( Distributor_Account__c = true,  Reseller_Exists__c = false),and( Distributor_Account__c = true, Reseller_State__c = null,  Partner_Account_Search__c = null))</errorConditionFormula>
+    <errorMessage>Please add a reseller to &quot;Reseller Account&quot;.   If you could not locate the reseller account, please add to Reseller Company Name and the Reseller State.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,83 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="demoURL" type="String"/>
+    <aura:attribute name="dealURL" type="String"/>
+    <aura:attribute name="libraryURL" type="String"/>
+    <aura:attribute name="promotionURL" type="String"/>
+    <aura:attribute name="customizeURL" type="String"/>
+    <aura:attribute name="spiffoURL" type="String"/>
+    <aura:attribute name="storeURL" type="String"/>
+    <aura:attribute name="onBoarded" type="boolean"/>
+
+    <aura:attribute name="onlineDemoText" type="String" default="Online Product Demos"/>
+    <aura:attribute name="specialPricingText" type="String" default="Special Pricing"/>
+    <aura:attribute name="resourceLibraryText" type="String" default="Resources Library"/>
+    <aura:attribute name="promotionsText" type="String" default="Promotions"/>
+    <aura:attribute name="customizedMarketingText" type="String" default="Customizable Marketing"/>
+    <aura:attribute name="spiffText" type="String" default="SPIFFs"/>
+    <aura:attribute name="demoStoreText" type="String" default="Demo Store"/>
+
+    <div class="pp-benefits">
+        <aura:if isTrue="{!not(v.onBoarded)}">
+            <h1>Partner benefits:</h1>
+        </aura:if>    
+        <div class="pp-icons-box">
+            <aura:if isTrue="{!not(empty(v.demoURL))}">
+                <a href="{!v.demoURL}">
+                    <div class="pp-icon">
+                        <div><img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-demo.svg" alt="Partner Program Demos"></img></div>                
+                        <div class="pp-icon-text">{!v.onlineDemoText}</div>
+                    </div>
+                </a>
+            </aura:if>
+            <aura:if isTrue="{!not(empty(v.dealURL))}">
+                <a href="{!v.dealURL}">
+                    <div class="pp-icon">
+                        <div><img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-deal.svg" alt="Partner Program deals"></img></div>
+                        <div class="pp-icon-text">{!v.specialPricingText}</div>
+                    </div>
+                </a>
+            </aura:if>   
+            <aura:if isTrue="{!not(empty(v.libraryURL))}">
+                <a href="{!v.libraryURL}">
+                    <div class="pp-icon">
+                        <div><img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-libarary.svg" alt="Partner Program library"></img></div>
+                        <div class="pp-icon-text">{!v.resourceLibraryText}</div>
+                    </div>
+                </a>
+            </aura:if>       
+            <aura:if isTrue="{!not(empty(v.promotionURL))}">
+                <a href="{!v.promotionURL}">
+                    <div class="pp-icon">
+                        <div><img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-promotion.svg" alt="Partner Program promotions"></img></div>
+                        <div class="pp-icon-text">{!v.promotionsText}</div>
+                    </div>
+                </a>
+            </aura:if>            
+            <aura:if isTrue="{!not(empty(v.customizeURL))}">
+                <a href="{!v.customizeURL}">
+                    <div class="pp-icon">
+                        <div><img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-customizemarketing.svg" alt="Partner Program marketing"></img></div>
+                        <div class="pp-icon-text">{!v.customizedMarketingText}</div>
+                    </div>
+                </a>
+            </aura:if>                 
+            <aura:if isTrue="{!not(empty(v.spiffoURL))}">
+                <a href="{!v.spiffoURL}">            
+                    <div class="pp-icon">
+                        <div><img src="https://www.viewsonic.com/skin/frontend/smartwave/v2020/images/business-solution/pp-icons-spiff.svg" alt="Partner Program Spiffs"></img></div>
+                        <div class="pp-icon-text">{!v.spiffText}</div>
+                    </div>
+                </a>
+            </aura:if>                      
+            <aura:if isTrue="{!not(empty(v.storeURL))}">
+                <a href="{!v.storeURL}">
+                    <div class="pp-icon">
+                        <div><img src="https://www.viewsonic.com/media/wysiwyg/Library/pp-icons-demo-store.png" alt="Partner Program Demo Store"></img></div>
+                        <div class="pp-icon-text">{!v.demoStoreText}</div>
+                    </div>
+                </a>
+            </aura:if>
+        </div>
+    </div>
+    
+</aura:component>

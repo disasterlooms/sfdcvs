@@ -1,0 +1,10 @@
+<aura:component >    <aura:attribute name="dashboardId" type="String"/>
+    <aura:attribute name="filter" type="String"/>  
+    <aura:attribute name="dashboardUseParent" type="Boolean"/>
+    <aura:attribute name="dashboardHeight" type="String"/>
+    <aura:attribute name="dashboarddatsetName" type="String"/>
+    <aura:attribute name="dashboardFieldtoCompare" type="String"/>
+    
+    <wave:waveDashboard dashboardId="{!v.dashboardId}" height="1000" filter="{!v.filter}" showTitle="false" showHeader="false" 
+                                    showSharing="true"/>
+</aura:component>

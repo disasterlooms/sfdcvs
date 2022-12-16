@@ -1,0 +1,4 @@
+<design:component>
+	<design:attribute name="spiffReq" description="Will this display a spiff? if so true, else false"/>
+    <design:attribute name="adminSearch" label="Is this for adminstrative Search. If true, they can see everything"/>
+</design:component>

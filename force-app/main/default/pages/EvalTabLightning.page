@@ -1,0 +1,7 @@
+<apex:page >
+
+<script>
+sforce.one.navigateToURL("/one/one.app?source=aloha#/sObject/Eval_Request__c/list?filterName=00BA0000007pug5MAA");
+</script>
+
+</apex:page>

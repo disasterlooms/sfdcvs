@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DayinQ__c</fullName>
+    <externalId>false</externalId>
+    <formula>TODAY() -
+IF(MONTH(TODAY()) &lt;= 3, 
+DATE(YEAR(TODAY()), 01 , 01 ), 
+IF(MONTH(TODAY()) &lt;= 6, 
+DATE(YEAR(TODAY()), 04 , 01 ), 
+IF(MONTH(TODAY()) &lt;= 9, 
+DATE(YEAR(TODAY()), 07 , 01 ), 
+DATE(YEAR(TODAY()), 10 , 01 ))))</formula>
+    <label>DayinQ</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

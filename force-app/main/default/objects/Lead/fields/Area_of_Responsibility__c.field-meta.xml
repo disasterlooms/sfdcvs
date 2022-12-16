@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Area_of_Responsibility__c</fullName>
+    <description>This is the department or area this contact works in.</description>
+    <externalId>false</externalId>
+    <label>Area of Responsibility</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+                <label>Administrative</label>
+            </value>
+            <value>
+                <fullName>AV Mgt</fullName>
+                <default>false</default>
+                <label>AV Mgt</label>
+            </value>
+            <value>
+                <fullName>Beverage Management</fullName>
+                <default>false</default>
+                <label>Beverage Management</label>
+            </value>
+            <value>
+                <fullName>Corp. Management</fullName>
+                <default>false</default>
+                <label>Corp. Management</label>
+            </value>
+            <value>
+                <fullName>Culinary Chef</fullName>
+                <default>false</default>
+                <label>Culinary Chef</label>
+            </value>
+            <value>
+                <fullName>Design / Construction</fullName>
+                <default>false</default>
+                <label>Design / Construction</label>
+            </value>
+            <value>
+                <fullName>Development/Real Est</fullName>
+                <default>false</default>
+                <label>Development/Real Est</label>
+            </value>
+            <value>
+                <fullName>Distribution</fullName>
+                <default>false</default>
+                <label>Distribution</label>
+            </value>
+            <value>
+                <fullName>Exec/Mgt</fullName>
+                <default>false</default>
+                <label>Exec/Mgt</label>
+            </value>
+            <value>
+                <fullName>FOH Management</fullName>
+                <default>false</default>
+                <label>FOH Management</label>
+            </value>
+            <value>
+                <fullName>Franchisor/Franchisee</fullName>
+                <default>false</default>
+                <label>Franchisor/Franchisee</label>
+            </value>
+            <value>
+                <fullName>General Manager</fullName>
+                <default>false</default>
+                <label>General Manager</label>
+            </value>
+            <value>
+                <fullName>Independent</fullName>
+                <default>false</default>
+                <label>Independent</label>
+            </value>
+            <value>
+                <fullName>In-House Prod</fullName>
+                <default>false</default>
+                <label>In-House Prod</label>
+            </value>
+            <value>
+                <fullName>Install/ServTech</fullName>
+                <default>false</default>
+                <label>Install/ServTech</label>
+            </value>
+            <value>
+                <fullName>International Operations</fullName>
+                <default>false</default>
+                <label>International Operations</label>
+            </value>
+            <value>
+                <fullName>MIS/IT</fullName>
+                <default>false</default>
+                <label>MIS/IT</label>
+            </value>
+            <value>
+                <fullName>Operations</fullName>
+                <default>false</default>
+                <label>Operations</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Purchasing</fullName>
+                <default>false</default>
+                <label>Purchasing</label>
+            </value>
+            <value>
+                <fullName>Rental/Staging Tech</fullName>
+                <default>false</default>
+                <label>Rental/Staging Tech</label>
+            </value>
+            <value>
+                <fullName>Sales / Marketing</fullName>
+                <default>false</default>
+                <label>Sales / Marketing</label>
+            </value>
+            <value>
+                <fullName>Syst Des/Engineer</fullName>
+                <default>false</default>
+                <label>Syst Des/Engineer</label>
+            </value>
+            <value>
+                <fullName>Syst Install Mgt</fullName>
+                <default>false</default>
+                <label>Syst Install Mgt</label>
+            </value>
+            <value>
+                <fullName>Technical/Eng</fullName>
+                <default>false</default>
+                <label>Technical/Eng</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

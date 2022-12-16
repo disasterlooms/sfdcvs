@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OpportunityProductsAdded</fullName>
+    <active>false</active>
+    <description>OppLineItems can be added only by admin or bid desk when it is a spa</description>
+    <errorConditionFormula>(priorvalue(SPA_Products__c) != SPA_Products__c &amp;&amp; text(Spa_Stage__c) != null &amp;&amp; $User.Alias != &apos;BidDesk&apos; &amp;&amp; $User.Alias != &apos;admin&apos; &amp;&amp;  not(contains($Profile.Name,&apos;Partner&apos;))) ||
+(priorvalue(SPA_Products__c) != SPA_Products__c &amp;&amp; text(Spa_Stage__c) != &apos;Submitted&apos; &amp;&amp; $User.Alias != &apos;BidDesk&apos; &amp;&amp; $User.Alias != &apos;admin&apos; &amp;&amp;  contains($Profile.Name,&apos;Partner&apos;))&amp;&amp;  $Organization.Id = &apos;00D780000004d2r&apos;</errorConditionFormula>
+    <errorMessage>Only bid desk or admin can change products after the spa has been submitted. Please use the re-submission field to add products.</errorMessage>
+</ValidationRule>

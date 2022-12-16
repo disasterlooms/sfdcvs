@@ -1,0 +1,10 @@
+<apex:page standardController="Eval_Request__c">
+<apex:relatedList list="ProcessSteps" title="Approval Section" rendered="{!Eval_Request__c.Approval_Ready__c}"/>
+<apex:outputText rendered="{!not(Eval_Request__c.Approval_Ready__c)}">You are missing information. Please check the missing info field and update the info.
+<br/>
+<br/>
+For better info, please switch to lighting and renter this eval.
+</apex:outputText>
+
+
+</apex:page>

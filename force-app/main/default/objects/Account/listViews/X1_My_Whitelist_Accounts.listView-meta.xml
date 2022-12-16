@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X1_My_Whitelist_Accounts</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>ACCOUNT.PHONE1</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>OppCount__c</columns>
+    <columns>ACCOUNT.LAST_ACTIVITY</columns>
+    <columns>Education_National_Rank__c</columns>
+    <columns>End_User_POS_CY__c</columns>
+    <columns>District_School_Count__c</columns>
+    <columns>District_Student_Count__c</columns>
+    <filterScope>MyTerritory</filterScope>
+    <filters>
+        <field>OppCount__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>1 - My Whitelist Accounts</label>
+    <language>en_US</language>
+    <sharedTo>
+        <territoryAndSubordinates>VSA_Sales_Matrix.ISR</territoryAndSubordinates>
+    </sharedTo>
+</ListView>

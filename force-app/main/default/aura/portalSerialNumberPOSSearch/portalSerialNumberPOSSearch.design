@@ -1,0 +1,4 @@
+<design:component>
+	<design:attribute name="recordId" description="Spiff Id for record"/>
+    <design:attribute name="spiffSearch" description="is this from the Spiff Page"/>
+</design:component>

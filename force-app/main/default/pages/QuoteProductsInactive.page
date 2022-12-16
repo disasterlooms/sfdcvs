@@ -1,0 +1,78 @@
+<apex:page standardcontroller="Quote" extensions="qproducts" action="{!getprods}" standardStylesheets="false">
+    <apex:messages />
+    <apex:form >
+        <apex:pageBlock id="lineitems">
+            <apex:pageBlockButtons >
+                <apex:actionStatus id="mySaveStatus" startText="..saving record">
+                    <apex:facet name="stop">
+                        <apex:commandButton value="Update High Prices" id="addItem" action="{! uphighprods}" status="mySaveStatus" oncomplete="getprods();"/>
+                    </apex:facet>
+                    <apex:facet name="start">
+                        <apex:commandButton value="Updating Prices" disabled="true"/>
+                    </apex:facet>
+                </apex:actionStatus>
+                
+                
+                <!--<apex:commandButton action="{!uphighprods}" value="Update High Prices" oncomplete="getprods();" status="updaterecord"/>-->
+                <apex:actionStatus id="updaterecord" startText="..saving record" stopText="" />
+                <apex:actionFunction name="getprods" action="{!getprods}" reRender="lineitems"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="" id="resultsBlock" columns="1" showHeader="false">
+                <script>
+                var prods = '{!high}';
+                console.log(prods);
+                if( prods == 'true'){
+                    alert('There are some products that have approved prices higher than list price');
+                }
+                </script>
+                <b>Approved Prices Higher than List Prices</b>
+                
+                <apex:pageBlockTable value="{!highprods}" var="item" rendered="{!NOT(ISNULL(highprods))}" title="Approved Price Higher than List">
+                    <apex:column headerValue="Product" width="200">
+                        <apex:OutputField value="{!item.Product2.Name}"/>
+                    </apex:column>
+                    <apex:column headerValue="Quantity" width="200">
+                        <apex:InputField value="{!item.Quantity}"/>
+                    </apex:column> 
+                    <apex:column headerValue="Approved Price" width="200">
+                        <apex:InputField value="{!item.Approved_Price__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="List Price" width="200">
+                        <apex:OutputField value="{!item.ListPrice}"/>
+                    </apex:column>
+                    <apex:column headerValue="Landed Cost" width="200">
+                        <apex:OutputField value="{!item.Landed_Cost__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Margin" width="200">
+                        <apex:OutputField value="{!item.Margin__c}"/>
+                    </apex:column>
+                </apex:pageBlockTable>    
+                <script>
+                var inprods = '{!inactive}';
+                console.log(inprods);
+                if( inprods == 'true'){
+                    alert('There are some inactive products');
+                }
+                </script>
+                <b>Inactive Products</b>
+                <apex:pageBlockTable value="{!inprods}" var="item" rendered="{!NOT(ISNULL(inprods))}" title="Inactive Products">
+                    <apex:column headerValue="Product" width="200">
+                        <apex:outputLink value="/{!item.ID}">{!item.Product2.Name}</apex:outputLink>
+                    </apex:column>
+                    <apex:column headerValue="Quantity" width="200">
+                        <apex:OutputField value="{!item.Quantity}"/>
+                    </apex:column> 
+                    <apex:column headerValue="Approved Price" width="200">
+                        <apex:OutputField value="{!item.Approved_Price__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="List Price" width="200">
+                        <apex:OutputField value="{!item.ListPrice}"/>
+                    </apex:column>
+                    <apex:column headerValue="Active Product" width="200">
+                        <apex:OutputField value="{!item.Active_Product__c}"/>
+                    </apex:column>  
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

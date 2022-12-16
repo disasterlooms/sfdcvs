@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Allow internal ViewSonic users to create tickets for their customers in salesforce or in outlook app</description>
+    <flowDefinition>createFDTickets</flowDefinition>
+    <label>Create Service Ticket</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

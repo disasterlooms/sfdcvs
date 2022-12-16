@@ -1,0 +1,11 @@
+<design:component>
+    <design:attribute name="showmodal" description="String toshow modal" />
+    <design:attribute name="ready" description="LRP to set to True" />
+    <design:attribute name="acctTypeInfo" description="Please do not use" />
+    <design:attribute name="showModalFlow" description="Hide Modal due to flow" />
+   
+    
+    
+    
+    
+</design:component>

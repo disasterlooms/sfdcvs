@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableForRecordHome,lightning:isUrlAddressable,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+	
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />   
+    <aura:attribute name="language" type="string" access="global"/>
+    <aura:attribute name="languageToSet" type="string" access="global"/>
+    <aura:attribute name="communitySite" type="string" access="global"/>
+    <aura:attribute name="cbaseURL" type="string" access="global"/>
+    <aura:attribute name="scriptCounter" type="integer" access="global" default="0"/>
+</aura:component>

@@ -1,0 +1,109 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global"
+                controller="CompMultiSelect" >
+    <aura:attribute name="recordId" type="string" />
+    <aura:attribute name="showButton" type="boolean" />
+    <aura:attribute name="Columnheaders" type="string[]" required="true" default=""/>
+    <aura:attribute name="title" type="string" required="true" default="Select Items"/>
+    <aura:attribute name="search" type="string" default=""/>
+    <aura:attribute name="searchlabel" type="string" default=""/>
+    <aura:attribute name="searchfield" type="string" default=""/>
+    <aura:attribute name="searchplaceholder" type="string" default=""/>
+    <aura:attribute name="objToQuery" type="string" required="true" default="Account"/>
+    <aura:attribute name="wherestmt" type="string" required="true" default=""/>
+    <aura:attribute name="Columnfields" type="string[]" required="true" default=""/>
+    <aura:attribute name="btnName" type="string" required="true" default=""/>
+    <aura:attribute name="limitstmt" type="string" required="true" default=""/>
+    <aura:attribute name="orderstmnt" type="string" required="true" default=""/>
+    <aura:attribute name="variable" type="string" required="true" default=""/>
+    <aura:attribute name="records" type="Object[]" />
+    <aura:attribute name="distis" type="Account[]"  />
+    <aura:attribute name="selected" type="String[]"/>
+    <aura:attribute name="addfields" type="String" default=" "/>
+    <aura:attribute name="parentid" type="String" default=" "/>    
+    <aura:attribute name="selectedname" type="string[]"/>
+    <aura:attribute name="selections" type="SObject[]"/>
+    <aura:attribute name="searchable" type="Boolean" />
+    <aura:attribute name="objToCreate" type="String" />
+    <aura:attribute name="showsearch" type="boolean" default="true"/>
+    <aura:attribute name="objToCreateFields" type="String[]" />
+    <aura:attribute name="createOveride" type="Boolean" default="false"/>
+    <aura:attribute name="overrideaction" type="Boolean" 
+                    description="this is to allow the parent component to create a specific apex code to update records" default="false"/>
+    <aura:attribute name="DependentCheckboxpart" type="string" />
+    <aura:attribute name="allowCheckbox" type="boolean" default="true" />
+    <aura:handler name="change" value="{!v.parentid}" action="{!c.refreshChild}" />
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div>    
+    <lightning:card title="{!v.title}" body="{v.test}">
+        <aura:if isTrue="{!v.showsearch}">
+        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+            <ui:inputText aura:id="search" label="" placeholder="{!v.searchplaceholder}" value="{!v.search}"
+                          keyup="{!c.searchk}" updateOn="keyup"/>
+            <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                <lightning:buttonIcon iconName="utility:search" size="medium" onclick="{!c.search}" variant="bare"/>
+            </span>
+        </div>
+            </aura:if>
+        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+            <br/>
+            <aura:iteration items="{!v.selections}" var="p" >
+                <lightning:pill label="{!p.Name}" onremove="{!c.handleRemove}" name="{!p.Name}"/>
+            </aura:iteration>
+        </div>
+        <br/>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-1">
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title_caps">                                   
+                            <aura:if isTrue="{!v.allowCheckbox}">
+                                <th scope="col" style="width: 3.75rem;">
+                                </th>
+                            </aura:if>
+                            <aura:iteration items="{!v.Columnheaders}" var="h">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="{!h}">{!h}</div>
+                                </th>
+                            </aura:iteration>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.records}" var="obj" indexVar="a">
+                            <tr>
+                                <aura:if isTrue="{!v.allowCheckbox}">
+                                    <td class="slds-text-align_right" role="gridcell" style="width: 3.75rem;" tabindex="0">
+                                        <div class="slds-checkbox_add-button">
+                                            <lightning:input type="checkbox-button" label="" name="{!obj.Id+obj.Name}" aura:id="DependentCheckboxpart" value="false" checked="false" onchange="{!c.select}"/>
+                                        </div>
+                                    </td>
+                                </aura:if>
+                                <aura:iteration items="{!v.Columnfields}" var="f">
+                                    <td role="gridcell">                                                
+                                        <div class="slds-truncate" title="Name">
+                                            <c:CompIterationField obj="{!obj}"
+                                                                  fieldName="{!f}"
+                                                                  parentId="{!v.parentId}"
+                                                                  wherestmt="{!v.wherestmt}"/>
+                                        </div>
+                                    </td>
+                                </aura:iteration>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </lightning:card>
+    
+    <div class="slds-modal__footer">
+        <div class="slds-x-small-buttons--horizontal">
+            <aura:if isTrue="{!v.showButton}">
+                <button class="slds-button slds-button_brand " onclick="{!c.save}" value="true">{!v.btnName}</button>
+            </aura:if>
+        </div>
+    </div>
+</aura:component>

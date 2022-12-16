@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Large_Format_Request__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This gets updated from a workflow rule in which any large format over 70 inches will be sent through VP approval Process</description>
+    <externalId>false</externalId>
+    <label>Large Format Request</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

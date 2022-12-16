@@ -1,0 +1,591 @@
+<apex:page standardController="Eval_Unit_Details__c" recordSetVar="opp">
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.vsevalinvoice)}"/>
+<script>
+function bstreet(){
+ console.log('buttonworks');
+ 
+ //var billstreet =  document.getElementById("{!$Component.j_id0:j_id10:i:f:pb:d:Billing_Street.input}");
+ console.log('{!Eval_Unit_Details__c.Eval_Request__r.Billing_Contact_Name__r.MailingStreet}');
+ var billstreet =  document.getElementById("j_id0:j_id10:i:f:pb:d:Billing_Street.input");
+ console.log(billstreet);
+ billstreet.value ="{!Eval_Unit_Details__c.Eval_Request__r.Billing_Contact_Name__r.MailingStreet}";
+ 
+ 
+ //
+ }
+ </script>
+ <style>
+<!--table
+    {mso-displayed-decimal-separator:"\.";
+    mso-displayed-thousand-separator:"\,";}
+@page
+    {mso-footer-data:"&CViewSonic Corporation     \000DHeadquarter - 10 Pointe Drive\, Brea\, California 92821     \000DWarehouse & Distribution – 14035 Pipeline Avenue\, Chino\, California 91710     \000Dhttp\:\/\/www\.viewsonic\.com     \000D";
+    margin:.75in .7in .75in .7in;
+    mso-header-margin:.3in;
+    mso-footer-margin:.3in;}
+.font5
+    {color:black;
+    font-size:8.0pt;
+    font-weight:700;
+    font-style:normal;
+    text-decoration:none;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;}
+.font6
+    {color:#DD0806;
+    font-size:8.0pt;
+    font-weight:700;
+    font-style:normal;
+    text-decoration:none;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;}
+.font7
+    {color:#006411;
+    font-size:8.0pt;
+    font-weight:700;
+    font-style:normal;
+    text-decoration:none;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;}
+.font8
+    {color:#666699;
+    font-size:8.0pt;
+    font-weight:700;
+    font-style:normal;
+    text-decoration:none;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;}
+.font9
+    {color:#006411;
+    font-size:10.0pt;
+    font-weight:700;
+    font-style:normal;
+    text-decoration:none;
+    font-family:"Times New Roman", serif;
+    mso-font-charset:0;}
+.font10
+    {color:#006411;
+    font-size:10.0pt;
+    font-weight:400;
+    font-style:normal;
+    text-decoration:none;
+    font-family:"Times New Roman", serif;
+    mso-font-charset:0;}
+.style45
+    {mso-number-format:"_\(\0022$\0022* \#\,\#\#0\.00_\)\;_\(\0022$\0022* \\\(\#\,\#\#0\.00\\\)\;_\(\0022$\0022* \0022-\0022??_\)\;_\(\@_\)";
+    mso-style-name:Currency;
+    mso-style-id:4;}
+.style0
+    {mso-number-format:General;
+    text-align:general;
+    vertical-align:bottom;
+    white-space:nowrap;
+    mso-rotate:0;
+    mso-background-source:auto;
+    mso-pattern:auto;
+    color:black;
+    font-size:11.0pt;
+    font-weight:400;
+    font-style:normal;
+    text-decoration:none;
+    font-family:Calibri, sans-serif;
+    mso-font-charset:0;
+    border:none;
+    mso-protection:locked visible;
+    mso-style-name:Normal;
+    mso-style-id:0;}
+td
+    {mso-style-parent:style0;
+    padding:0px;
+    mso-ignore:padding;
+    color:black;
+    font-size:11.0pt;
+    font-weight:400;
+    font-style:normal;
+    text-decoration:none;
+    font-family:Calibri, sans-serif;
+    mso-font-charset:0;
+    mso-number-format:General;
+    text-align:general;
+    vertical-align:bottom;
+    border:none;
+    mso-background-source:auto;
+    mso-pattern:auto;
+    mso-protection:locked visible;
+    white-space:nowrap;
+    mso-rotate:0;}
+.xl65
+    {mso-style-parent:style0;
+    border-top:none;
+    border-right:none;
+    border-bottom:1.0pt solid windowtext;
+    border-left:none;}
+.xl66
+    {mso-style-parent:style0;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:center;
+    vertical-align:middle;
+    border-top:1.0pt solid windowtext;
+    border-right:1.0pt solid windowtext;
+    border-bottom:none;
+    border-left:1.0pt solid windowtext;
+    white-space:normal;}
+.xl67
+    {mso-style-parent:style0;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:center;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:1.0pt solid windowtext;
+    white-space:normal;}
+.xl68
+    {mso-style-parent:style0;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:center;
+    vertical-align:middle;
+    border-top:1.0pt solid windowtext;
+    border-right:1.0pt solid windowtext;
+    border-bottom:none;
+    border-left:none;
+    white-space:normal;}
+.xl69
+    {mso-style-parent:style0;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:center;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:none;
+    white-space:normal;}
+.xl70
+    {mso-style-parent:style0;
+    color:black;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border:1.0pt solid windowtext;
+    background:#B2B2B2;
+    mso-pattern:black gray-25;
+    white-space:normal;}
+.xl71
+    {mso-style-parent:style0;
+    color:black;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:center;
+    vertical-align:middle;
+    border-top:1.0pt solid windowtext;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:none;
+    background:#B2B2B2;
+    mso-pattern:black gray-25;
+    white-space:normal;}
+.xl72
+    {mso-style-parent:style0;
+    color:black;
+    font-size:9.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:right;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:none;
+    white-space:normal;}
+.xl73
+    {mso-style-parent:style0;
+    color:black;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:1.0pt solid windowtext;
+    background:#B2B2B2;
+    mso-pattern:black gray-25;
+    white-space:normal;}
+.xl74
+    {mso-style-parent:style0;
+    color:black;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:center;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:none;
+    background:#B2B2B2;
+    mso-pattern:black gray-25;
+    white-space:normal;}
+.xl75
+    {mso-style-parent:style0;
+    color:black;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:right;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:1.0pt solid windowtext;
+    background:#B2B2B2;
+    mso-pattern:black gray-25;
+    white-space:normal;}
+.xl76
+    {mso-style-parent:style0;
+    color:black;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:right;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:none;
+    background:#B2B2B2;
+    mso-pattern:black gray-25;
+    white-space:normal;}
+.xl77
+    {mso-style-parent:style0;
+    font-size:10.0pt;
+    font-weight:700;
+    font-family:"Times New Roman", serif;
+    mso-font-charset:0;
+    text-align:left;
+    vertical-align:middle;
+    padding-left:6px;
+    mso-char-indent-count:1;}
+.xl78
+    {mso-style-parent:style0;
+    border-top:1.0pt solid windowtext;
+    border-right:none;
+    border-bottom:1.0pt solid windowtext;
+    border-left:none;}
+.xl79
+    {mso-style-parent:style0;
+    text-align:right;}
+.xl80
+    {mso-style-parent:style0;
+    font-weight:700;
+    text-align:right;}
+.xl81
+    {mso-style-parent:style45;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    mso-number-format:"_\(\0022$\0022* \#\,\#\#0\.00_\)\;_\(\0022$\0022* \\\(\#\,\#\#0\.00\\\)\;_\(\0022$\0022* \0022-\0022??_\)\;_\(\@_\)";
+    text-align:center;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:1.0pt solid windowtext;
+    white-space:normal;}
+.xl82
+    {mso-style-parent:style45;
+    color:black;
+    font-size:9.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    mso-number-format:"_\(\0022$\0022* \#\,\#\#0\.00_\)\;_\(\0022$\0022* \\\(\#\,\#\#0\.00\\\)\;_\(\0022$\0022* \0022-\0022??_\)\;_\(\@_\)";
+    text-align:center;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:1.0pt solid windowtext;
+    white-space:normal;}
+.xl83
+    {mso-style-parent:style0;
+    text-align:right;
+    border-top:none;
+    border-right:none;
+    border-bottom:1.0pt solid windowtext;
+    border-left:none;}
+.xl84
+    {mso-style-parent:style0;
+    mso-number-format:"Short Date";
+    text-align:right;
+    border-top:none;
+    border-right:none;
+    border-bottom:1.0pt solid windowtext;
+    border-left:none;}
+.xl85
+    {mso-style-parent:style0;
+    color:black;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:center;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:1.0pt solid windowtext;}
+.xl86
+    {mso-style-parent:style0;
+    color:black;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:left;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:1.0pt solid windowtext;}
+.xl87
+    {mso-style-parent:style45;
+    color:black;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    mso-number-format:"_\(\0022$\0022* \#\,\#\#0\.00_\)\;_\(\0022$\0022* \\\(\#\,\#\#0\.00\\\)\;_\(\0022$\0022* \0022-\0022??_\)\;_\(\@_\)";
+    text-align:right;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:1.0pt solid windowtext;}
+.xl88
+    {mso-style-parent:style45;
+    color:black;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:right;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:1.0pt solid windowtext;
+    white-space:normal;}
+.xl89
+    {mso-style-parent:style0;
+    color:black;
+    font-size:9.0pt;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    text-align:right;
+    vertical-align:middle;
+    border:1.0pt solid windowtext;}
+.xl90
+    {mso-style-parent:style0;
+    font-weight:700;
+    text-align:center;}
+.xl91
+    {mso-style-parent:style0;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border-top:1.0pt solid windowtext;
+    border-right:none;
+    border-bottom:none;
+    border-left:1.0pt solid windowtext;
+    white-space:normal;}
+.xl92
+    {mso-style-parent:style0;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border-top:1.0pt solid windowtext;
+    border-right:none;
+    border-bottom:none;
+    border-left:none;
+    white-space:normal;}
+.xl93
+    {mso-style-parent:style0;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border-top:1.0pt solid windowtext;
+    border-right:1.0pt solid windowtext;
+    border-bottom:none;
+    border-left:none;
+    white-space:normal;}
+.xl94
+    {mso-style-parent:style0;
+    color:red;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border-top:none;
+    border-right:none;
+    border-bottom:none;
+    border-left:1.0pt solid windowtext;
+    white-space:normal;}
+.xl95
+    {mso-style-parent:style0;
+    color:red;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    white-space:normal;}
+.xl96
+    {mso-style-parent:style0;
+    color:red;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:none;
+    border-left:none;
+    white-space:normal;}
+.xl97
+    {mso-style-parent:style0;
+    color:#00B050;
+    font-size:10.0pt;
+    font-weight:700;
+    font-family:"Times New Roman", serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border-top:none;
+    border-right:none;
+    border-bottom:none;
+    border-left:1.0pt solid windowtext;
+    white-space:normal;}
+.xl98
+    {mso-style-parent:style0;
+    color:#00B050;
+    font-size:10.0pt;
+    font-weight:700;
+    font-family:"Times New Roman", serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    white-space:normal;}
+.xl99
+    {mso-style-parent:style0;
+    color:#00B050;
+    font-size:10.0pt;
+    font-weight:700;
+    font-family:"Times New Roman", serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:none;
+    border-left:none;
+    white-space:normal;}
+.xl100
+    {mso-style-parent:style0;
+    color:red;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border-top:none;
+    border-right:none;
+    border-bottom:1.0pt solid windowtext;
+    border-left:1.0pt solid windowtext;
+    white-space:normal;}
+.xl101
+    {mso-style-parent:style0;
+    color:red;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border-top:none;
+    border-right:none;
+    border-bottom:1.0pt solid windowtext;
+    border-left:none;
+    white-space:normal;}
+.xl102
+    {mso-style-parent:style0;
+    color:red;
+    font-size:8.0pt;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    mso-font-charset:0;
+    vertical-align:middle;
+    border-top:none;
+    border-right:1.0pt solid windowtext;
+    border-bottom:1.0pt solid windowtext;
+    border-left:none;
+    white-space:normal;}
+-->
+</style>
+ <style>
+  body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea;
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+input.btn[name="add_products_to_invoice"] {
+            display: none;
+        }
+</style>
+    
+         
+ 
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:repeat value="{!opp}" var="row" rendered="false">
+     {!row.Id}
+     {!row.Sku_Text__c}
+     {!row.SKU__c}
+     {!row.Name}
+     {!row.Eval_Request__c}
+     {!row.Evaluation_Price__c}
+     {!row.RMA__c}
+     
+     
+     
+     
+     
+          
+    </apex:repeat>
+    <!-- Runs your Flow -->   
+    <flow:interview name="Eval_Units_Quote_Request"
+          finishLocation="/apex/EvalQuoteConfirm?id={!id}">
+          
+        <apex:param name="ColEvalUnits" value="{!Selected}"/>
+    </flow:interview>
+</apex:page>

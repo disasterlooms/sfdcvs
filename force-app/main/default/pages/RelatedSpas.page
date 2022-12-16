@@ -1,0 +1,31 @@
+<apex:page standardController="Account" extensions="acctspalist" showHeader="false" sidebar="false" standardStylesheets="true">
+<style>
+.accountTab .secondaryPalette, .individualPalette .accountBlock .secondaryPalette {
+    background-color: #236fbd;
+    border-color: #ffffff;
+}
+body .bEditBlock .pbHeader, body .bLayoutBlock .pbHeader, body .apexp .bPageBlock.apexDefaultPageBlock .pbHeader {
+    border-bottom: 1px solid #fff;
+    padding: 0;
+    display: none;
+}
+</style>
+<apex:form >
+
+
+<apex:outputText value="{!Account.ParentID__c}" rendered="false"/>
+
+
+<apex:pageblock id="CustomList" title=""  >
+   <apex:pageBlockTable value="{!oppz}" var="o" rendered="{!NOT(ISNULL(oppz))}">
+        <apex:column value="{!o.Opportunity_Name_Link__c}"/>
+        <apex:column value="{!o.End_User_Lookup_Account__c}"/>
+        <apex:column value="{!o.Type}"/>
+       <apex:column value="{!o.Amount}"></apex:column>
+       <apex:column value="{!o.CloseDate}"/>
+       <apex:column value="{!o.CreatedDate}"/>
+   </apex:pageBlockTable>
+   <apex:outputLabel value="No records to display" rendered="{!(ISNULL(oppz))}" styleClass="noRowsHeader"></apex:outputLabel>
+ </apex:pageblock>
+</apex:form>
+</apex:page>

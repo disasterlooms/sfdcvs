@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cancel_Eval_Order</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Cancel Eval Order</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/flow/Eval_Order_Cancellation_Request?evalid={!Eval_Request__c.Id}&amp;retURL={!Eval_Request__c.Id}&amp;alert=true</url>
+</WebLink>

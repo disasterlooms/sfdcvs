@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Opps_Evals_Not_Shipped_Eval_Stag</fullName>
+    <columns>NAME</columns>
+    <columns>Shipping_Contact_Name__c</columns>
+    <columns>Billing_Contact_Name__c</columns>
+    <columns>Eval_Process_Stage__c</columns>
+    <columns>Products__c</columns>
+    <columns>Evaluation_Owner__c</columns>
+    <columns>Approval_Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Eval_Process_Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Shipped,Closed</value>
+    </filters>
+    <filters>
+        <field>Approval_Status__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Product_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Past Due,Returned/Purchased,Written Off,Closed,Outstanding (Not Past Due)</value>
+    </filters>
+    <label>4E - Sales Opps Eval Not Shipped &amp; Stage</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Admins</group>
+    </sharedTo>
+</ListView>

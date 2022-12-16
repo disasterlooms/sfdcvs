@@ -1,0 +1,55 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="acct" type="String"/>
+     <aura:attribute name="name" type="String" default=""/>
+     <aura:attribute name="email" type="String" default=""/>
+     <aura:attribute name="phone" type="String" default=""/>
+    <aura:attribute name="type" type="String" default=""/>
+     <aura:attribute name="serial" type="String" default=""/>
+     <aura:attribute name="desc" type="String" default=""/>
+     <aura:attribute name="time" type="String"/>
+    
+    <c:MessageContainer aura:id="messageContainer"/>
+    
+    {!v.body}
+    <lightning:card>
+        <aura:set attribute="title">
+           Contact Us For Support				
+        </aura:set>
+        <lightning:recordEditForm aura:id="caseSubmission"
+                                  recordId=""
+                                  objectApiName="Case"
+                                  onsubmit="{!c.handleSubmit}"
+                                  onsuccess="{!c.handleSuccess}"
+                                  onerror="{!c.handleError}">
+            <lightning:messages />
+            <form>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning:inputField fieldName="Contact_Name__c" value="{!v.name}" required="true"/>
+                     <lightning:inputField fieldName="Contact_Email__c" value="{!v.email}" required="true"/> 
+                    <lightning:inputField fieldName="Serial_Number_of_Product__c" value="{!v.serial}"/>
+                </div> 
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning:inputField fieldName="Contact_Phone__c" value="{!v.phone}"/>
+                    <lightning:inputField fieldName="Inquiry_Type__c" value="{!v.type}" required="true"/>
+                    <lightning:inputField fieldName="Best_Time_to_Call__c" value="{!v.time}"/> 
+                    <lightning:inputField fieldName="Description" value="{!v.desc}" required="true"/> 
+                </div>
+            </div>
+                </form>
+            <footer class="slds-card__footer">
+                <lightning:button aura:id="submit" type="submit" label="Submit Request" class="slds-m-top_medium"/>
+            </footer>
+        </lightning:recordEditForm>
+         <footer class="slds-card__footer">
+        <p> 
+            <strong>ViewSonic Service Center Information: </strong>
+            <br/> Call Center Hours: Monday - Friday: 6am-6pm PST<br/>
+            Call Center Phone: US: 800-688-6688, CAN: 866-463-4775<br/>
+            Call Center Email: <a href="mailto: customerservice@viewsonic.com">customerservice@viewsonic.com</a>
+            <br/>RMA Center Address: 14035 Pipeline Ave, Chino, Ca 91710
+            <br/> Will Call Window Hours: Monday- Friday: 8am-5pm (closed 12 -1pm)
+        </p>
+        </footer>
+    </lightning:card> 
+</aura:component>

@@ -1,0 +1,28 @@
+<aura:component  implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" controller="approvalRecId">
+    <aura:attribute name="recordId" type="String"/>
+     <aura:handler name="init" value="this" action="{!c.myAction}"/>
+    <aura:attribute name="dashboardId" type="String"/>
+    <aura:attribute name="eval" type="sObject"/>
+    
+    <aura:attribute name="filterString" type="String"/>
+    
+    <aura:attribute name="relatedRecId" type="String"/>
+    <aura:attribute name="objType" type="String"/>
+    <aura:attribute name="inModal" type="boolean" default="true"/>
+    {!v.body}
+    <!--
+     <wave:waveDashboard dashboardId= "{!v.dashboardId}"
+                        showHeader="false"
+                        showTitle="true"
+                        showSharing="false"
+                        height="600"
+                         filter="{'datasets':{'EvalOrders':[{'fields':['EvalOrder.EvalOwner.Name'],'filter':{'operator':'in','values':['Alex Carlos']}}]}}"/>
+			-->
+    <aura:if isTrue="{!v.inModal}"> 
+    <wave:waveDashboard dashboardId= "{!v.dashboardId}"
+                        showHeader="false"
+                        showTitle="false"
+                        showSharing="false"
+                        height="600"/>
+        </aura:if>    
+</aura:component>

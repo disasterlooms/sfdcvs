@@ -1,0 +1,38 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <!--<aura:handler action="{!c.getOppId}" value="this" name="init"/>-->
+    <aura:handler event="wave:selectionChanged" action="{!c.handleChangeWave}"/>
+    <aura:handler event="force:navigateToSObject" action="{!c.navigateToRecord}"/>
+    <aura:attribute name="oppid" type="String" />
+    <aura:attribute name="oppname" type="String" />
+    <aura:attribute name="disabled" type="Boolean" />
+    <lightning:card  >
+        <aura:set attribute="title">
+            Opportunity Details
+            
+        </aura:set>
+        <lightning:recordEditForm
+                                  onload="{!c.handleLoad}"
+                                  onsubmit="{!c.handleSubmit}"
+                                  onsuccess="{!c.handleSuccess}"
+                                  recordId="{!v.oppid}"
+                                  objectApiName="Opportunity" aura:id="oppform">
+            <!-- the messages component is for error messages -->
+            <lightning:messages />
+            
+            <lightning:outputField fieldName="Name" />
+            
+            <lightning:outputField fieldName="CloseDate" />
+            <lightning:outputField fieldName="AccountId" />
+            <lightning:outputField fieldName="CreatedDate" />
+            <lightning:outputField fieldName="StageName" />
+            <lightning:outputField fieldName="Channel__c" />
+            <lightning:outputField fieldName="Resellers_and_Type__c" />
+            <lightning:outputField fieldName="OwnerId" />
+        </lightning:recordEditForm>
+        <footer class="slds-modal__footer">
+            <lightning:button disabled="{!empty(v.oppid)}" variant="brand" type="edit" name="edit" label="Edit Opp" onclick="{!c.editOpp}"/>
+            <lightning:button disabled="{!empty(v.oppid)}" variant="brand" type="view" name="view" label="Open Opp Page in New Tab" onclick="{!c.openOpp}"/>
+        </footer>
+    </lightning:card>
+    
+</aura:component>

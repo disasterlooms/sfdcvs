@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Quantity__c</fullName>
+    <description>For the Approval email to Sales Ops with products and quantities. Not needed for page layout..</description>
+    <externalId>false</externalId>
+    <formula>&apos;Product: &apos;&amp; Product_Name__r.Name&amp;br()&amp;
+&apos;Quantity: &apos;&amp;  text(Quantity__c) &amp;br()&amp;
+&apos;Product: &apos;&amp; Product_Name_2__r.Name&amp;br()&amp;
+&apos;Quantity: &apos;&amp; text(Quantity_2__c) &amp;br()&amp;
+&apos;Product: &apos;&amp; Product_Name_3__r.Name&amp;br()&amp;
+&apos;Quantity: &apos;&amp; text(Quantity_3__c) &amp;br()&amp;
+&apos;Product: &apos;&amp; Product_Name_4__r.Name&amp;br()&amp;
+&apos;Quantity: &apos;&amp; text(Quantity_4__c) &amp;br()&amp;
+&apos;Product: &apos;&amp; Product_Name_5__r.Name&amp;br()&amp;
+&apos;Quantity: &apos;&amp; text(Quantity_5__c) &amp;br()</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Product &amp; Quantity</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

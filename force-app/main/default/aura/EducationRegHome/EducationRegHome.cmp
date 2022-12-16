@@ -1,0 +1,42 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="acct" type="Account"/>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <lightning:card title="Your Account">
+                <lightning:input value="{!v.acct.Name}" label="Name" readonly="true"/>
+                <lightning:input value="{!v.acct.BillingCity}" label="City" readonly="true"/>
+                <lightning:input value="{!v.acct.BillingState }" label="State" readonly="true"/>                
+            </lightning:card>
+        </div>
+        <div class="slds-col">
+            <lightning:card title="Your Professional Development Contact">
+                <lightning:input value="Blake Everhart" label="Name" readonly="true"/>
+                <lightning:input value="(909) 444-8662" label="Phone" readonly="true"/>
+                <lightning:input value="blake.everhart@viewsonic.com" label="Email" readonly="true"/>
+                
+            </lightning:card>
+        </div>
+    </div>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <lightning:card title="Your Sales Rep">
+                
+                <lightning:input value="{!v.acct.Owner.Name}" label="Name" readonly="true"/>
+                <lightning:input value="{!v.acct.Owner.MobilePhone }" label="Phone" readonly="true"/>
+                <lightning:input value="{!v.acct.Owner.Email}" label="Email" readonly="true"/>
+            </lightning:card>
+        </div>
+        <div class="slds-col">
+            <lightning:card>
+                <aura:set attribute="title">
+                Your Sales Rep's Manager&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                </aura:set>
+                <lightning:input value="{!v.acct.Owner.Manager.Name}" label="Name" readonly="true"/>
+                <lightning:input value="{!v.acct.Owner.Manager.MobilePhone }" label="Phone" readonly="true"/>
+                <lightning:input value="{!v.acct.Owner.Manager.Email}" label="Email" readonly="true"/>
+            </lightning:card>
+        </div>
+    </div>
+    
+    
+</aura:component>

@@ -1,0 +1,520 @@
+<apex:page docType="html-5.0" standardcontroller="Eval_Request__c" sidebar="false" id="evalpage">
+<apex:variable var="e" value="{!Eval_Request__c}" />
+
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/css/jquery-confirm.css')}"/>
+<apex:stylesheet value="{!$Resource.OppVFOverride}"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+
+
+<style>
+body button, body .x-btn, body .btn, body .btnDisabled, body .btnCancel, body .menuButton .menuButtonButton {
+    color: #900;
+    margin: 1px;
+    padding: 2px 3px;
+    border: 1px solid #b5b5b5;
+    border-bottom-color: #7f7f7f;
+    background: #e8e8e9 url('/img/alohaSkin/btn_sprite.png') repeat-x right top;
+    font-weight: normal;
+    font-size: .9em;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea;
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+.Custom98Tab .secondaryPalette, .individualPalette .Custom98Block .secondaryPalette {
+    background-color: #aa8e0a;
+    border-color: #990000;
+}
+.bPageBlock .detailList tr td, .bPageBlock .detailList tr th, .hoverDetail .bPageBlock .detailList tr td, .hoverDetail .bPageBlock .detailList tr th {
+    border-bottom: 0px solid #ffffff;
+}
+
+</style>
+
+
+    <script>    
+    $( document ).ready(function() {
+        
+     $("[id$=lalist2]").hide()    
+     $("[id$=lalist]").hide()   
+     $("[id$=hide]").hide()
+     $("[id$=hide2]").hide()
+     $("[id$=publisherAttach09D12000000FTLp]").hide() 
+     $("[id$=publisherAttach09D170000004H08]").show()
+     $("[id$=publisherAttach09DA00000008rbe]").hide() 
+    $("[id$=a1]").prop("disabled",true); 
+     $("[id$=a2]").prop("disabled",true);
+     $("[id$=a3]").prop("disabled",true);
+     $("[id$=a4]").prop("disabled",true);
+     $("[id$=a5]").prop("disabled",true);
+     $("[id$=a6]").prop("disabled",true);
+     $("[id$=a7]").prop("disabled",true);
+     $("[id$=a8]").prop("disabled",true);
+     $("[id$=a9]").prop("disabled",true);
+     $("[id$=a10]").prop("disabled",true);
+     $("[id$=a11]").prop("disabled",true);
+     $("[id$=a12]").prop("disabled",true);
+     $("[id$=a13]").prop("disabled",true);
+     $("[id$=a14]").prop("disabled",true);
+     $("[id$=a15]").prop("disabled",true);
+     $("[id$=a16]").prop("disabled",true);
+     $("[id$=a17]").prop("disabled",true);
+     $("[id$=a18]").prop("disabled",true);
+     $("[id$=a19]").prop("disabled",true);
+     $("[id$=a20]").prop("disabled",true);
+     $("[id$=a21]").prop("disabled",true);
+     $("[id$=a22]").prop("disabled",true);
+     $("[id$=a23]").prop("disabled",true);
+     $("[id$=a24]").prop("disabled",true);
+     $("[id$=a25]").prop("disabled",true);
+     $("[id$=a26]").prop("disabled",true);
+     $("[id$=a27]").prop("disabled",true);
+     $("[id$=a28]").prop("disabled",true);
+     $("[id$=a29]").prop("disabled",true);
+     $("[id$=a30]").prop("disabled",true);
+     $("[id$=a31]").prop("disabled",true);
+     $("[id$=a32]").prop("disabled",true);
+     $("[id$=a33]").prop("disabled",true);
+     $("[id$=a34]").prop("disabled",true);
+     $("[id$=a35]").prop("disabled",true);
+     $("[id$=a36]").prop("disabled",true);
+     $("[id$=a37]").prop("disabled",true);
+     $("[id$=a60]").prop("disabled",true);
+     $("[id$=a61]").prop("disabled",true);
+     $("[id$=a55]").prop("disabled",true);
+     $("[id$=ins4]").hide();
+     $("[id$=shippinginfo2]").hide();
+    
+});
+</script>
+<script>
+$( document ).ready(function() {
+        
+     $("[id$=publisherAttach09D120000006zBT]").{!if(Eval_Request__c.Approval_Status__c="Approved"&&Eval_Request__c.Eval_Type__c<>'Write Off Request','show','hide')}
+() 
+     $("[id$=publisherAttach09D120000006zBO]").{!if(Eval_Request__c.Approval_Status__c="Approved"&&Eval_Request__c.Eval_Type__c<>'Write Off Request','show','hide')}
+() 
+    
+});
+
+</script>
+<script>
+$( document ).ready(function() {if(jQuery('[id$=type]').val() == 'Reseller Demo'){
+        $("input[id$=Oppname]").prop("disabled",true); 
+        $("input[id$=trade]").prop("disabled",true);    
+    }
+    else{
+        $("input[id$=Oppname]").prop("disabled",false);  
+    }
+  
+});
+
+</script>
+
+<style type="text/css">
+input.btn[name="add_products_to_invoice"] {
+            display: none;
+        } 
+.chatterShowHideFeed .linkText:before {
+  content: "Create Contacts or Accounts Click Here:    ";
+}
+
+
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0 ;
+    font-weight: bolder ;
+    text-align: center ;
+    vertical-align: middle ;
+    touch-action: manipulation ;
+    cursor: pointer ;
+    background-image: none ;
+    border: 1px solid transparent;
+    white-space: nowrap ;
+    background-color: white ;
+    padding: 6px 12px ;
+    font-size: 12px !important;
+    line-height: 1.42857143 ;
+    border-radius: 4px ;
+    letter-spacing: .5px ;
+    -webkit-user-select: none ;
+    -moz-user-select: none ;
+    -ms-user-select: none ;
+    user-select: none ;
+    background: none !important;
+    
+}
+.btn-red-text {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text:hover, .btn-red-text:focus {
+    background: #990000 !important;
+    color: #ffffff !important;
+}
+    
+    .btn2 {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    letter-spacing: .5px;
+    font-size: 10px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn-red-text2 {
+    border-radius: 0;
+    border-width: 1px;
+    font-family: "Roboto Slab";
+    font-size: 10px;
+    letter-spacing: .5px;
+    line-height: 37px;
+    margin-top: 0px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    transition: border 0.5s, color 0.5s, background 0.5s;
+    -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+    background: transparent;
+    border-color: #990000;
+    color: #990000 !important;
+    text-decoration: none;
+}
+.btn-red-text2:hover, .btn-red-text:focus {
+    background: #990000;
+    color: #ffffff !important;
+}
+span.truncateLabel {
+    max-width: 100px;
+    
+}
+
+h2 {
+    color: black
+}
+
+
+ input.btn[name="new00NA000000AKSaY"] {
+            display: none;
+        }
+ input.btn[name="add_products_to_invoice"] {
+            display: none;
+        } 
+        
+input.btn[name="attach_files_to_eval"] {
+            display: none;
+        }
+input.btn[name="cancel"] {
+            display: none;
+        }        
+input.btn[name="update_selected_products_return_tracking_info"] {
+            display: none;
+        }         
+        
+        
+        
+</style>
+<style>
+.viewsonic input {
+    
+   
+}
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+.bPageBlock .lookupIcon, .bPageBlock .lookupIconOn, .genericPageBlockTable .lookupIcon, .genericPageBlockTable .lookupIconOn {
+    vertical-align: middle;
+    padding-bottom: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 1px;
+}
+</style>
+
+
+
+
+    <apex:messages />
+   
+        
+ 
+    
+    <br><br><apex:outputPanel id="actions" style="display:none">
+        <apex:pageBlock >
+    
+            <apex:pageblockSection id="Publisher" title="Create Contact or Account" columns="1" rendered="True" collapsible="true" showheader="false">
+            </apex:pageblockSection>
+        </apex:pageBlock>
+   </apex:outputPanel> </br></br>
+ <style>
+.loader {
+    border: 5px solid #f3f3f3;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    border-top: 5px solid #555;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+<center><div id='loadingmessage'  class="loader" style="display:none">
+  
+</div></center>
+   
+ 
+       <apex:form style="{!if($User.Alias != 'admin','','display:none;')}" id="viewpage">
+    <div class="viewsonic">
+    <body onload="Init ()">
+       <apex:sectionheader title="{!'Product Req. # '&Eval_Request__c.Name}{!if(e.GovEd_Account_Waive_Agreement__c=true," - Waive Agreement Approved"," - Must Have Agreement")}"  subtitle="{!$ObjectType.Eval_Request__c.label&' ' &if(Eval_Request__c.Eval_Type__c='ViewSonic Sales Rep Eval','Sales Rep Eval Product: '&Eval_Request__c.Product_Name__r.Name,  'For Opporutnity: '&Eval_Request__c.Opportunity_Name__r.Name&' '&'RMA# '&Eval_Request__c.RMA__c)}" />
+      
+       <br> <apex:outputlink style="float:right;" value="/069120000026luG"  target="self"><u>Need Help? Open Eval Process Full Guide</u></apex:outputlink></br>
+          
+         
+        <apex:pageblock mode="{!if(Eval_Request__c.Approval_Ready__c =True,'inlineedit','inlineedit')}" title="" id="blocka">
+         <center><apex:pageblockbuttons id="buttons">
+        <script type="text/javascript">new MenuButton('MyMenu', false);</script>   
+               <div class="menuButton" id="MyMenu" >
+                <div class="btn btn-red-text" id="MyMenuButton"  style="line-height: 26px;width: 150px;">
+                   <span id="menuLabel" tabindex="0" style="">Quotes &amp; Invoices</span>
+                </div>
+                <div class="menuButtonMenu" id="MyMenuMenu" style="">
+                  <a href="" title="Get a quote sent to the billng contact of your choosing. You select the products and contact information" class="menuButtonMenuLink firstMenuItem" onclick="quotereq();">Request Quote</a>
+                  <a href="/_ui/core/email/author/EmailAuthor?p3_lkid={!Eval_Request__c.Id}&doc_id={!Eval_Request__c.Quotedocid__c}&retURL={!Eval_Request__c.Id}&template_id=00X12000001raQm&p2_lkid=0031200001fKezQ&p4={!$User.Email};jason.orbison@viewsonic.com" title="If you have a PO or a signed quote and need an invoice, click here!" class="menuButtonMenuLink" >Upload PO or Quote &amp; Get Invoice</a>
+                  <!--<a href="" title="If your customer needs a PO, do not do this first, first get a PO and use link #2 above. If no PO is needed and they know the price, then you can move forward and use this link" class="menuButtonMenuLink" onclick="invoicereq();">Request Invoice without PO or Quote</a> -->
+                  
+                </div>
+              </div>
+              </apex:pageblockbuttons> </center>
+                
+               <!-- **********   [Record Type : Pending or Approved For Sales ]   **********  -->
+            
+            <apex:outputpanel rendered="true">
+                               
+                <apex:pageblocksection title="Request Info" showheader="true" columns="2" collapsible="false">
+                    <apex:outputtext label="Opportunity" styleclass="slds-input" style="border-left: 0px solid #c00; width: 80%;"  value="{!Eval_Request__c.Opportunity_Name__r.Name}"  />
+                   
+                 
+                    
+                    <apex:outputtext styleclass="slds-input"  value="{!Eval_Request__c.Eval_Process_Stage__c}"      />
+                    <apex:pageBlockSectionItem />
+                     
+                    <apex:pageBlockSectionItem />
+                    <apex:outputtext styleclass="slds-input"  value="{!e.Eval_Type__c}"  />
+                   
+                    
+                     <apex:outputtext styleclass="slds-input"  value="{!e.Special_Instructions__c}"   />
+                    <apex:outputtext styleclass="slds-input" value="{!e.Approval_Status__c}"    />  
+                    <apex:outputtext styleclass="slds-checkbox" value="{!e.Trade_Show__c}"     /> 
+                    
+                    
+                    <apex:outputtext styleclass="slds-input" value="{!e.Ship_Method__c}"  />
+                    <apex:outputfield styleclass="slds-input" value="{!e.Expected_Receive_Date__c}"  />  
+                    
+                      <apex:outputtext styleclass="slds-input"  value="{!e.Reason_for_No_Credit_Card__c}"   rendered="{!if(isblank(Eval_Request__c.Reason_for_No_Credit_Card__c),false,true)}"   />
+                       <apex:outputtext styleclass="slds-checkbox" value="{!e.No_Credit_Card_Eval_Agreement__c}"     />
+                      <apex:outputtext styleclass="slds-input"  value="{!e.GovEd_Account_Waive_Agreement__c}"  />
+                     <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Return Info" showheader="true" columns="2" collapsible="false">
+                   
+                    <apex:outputtext styleclass="slds-input" value="{!e.Days_Outstanding__c}"  />  
+                    <apex:outputtext styleclass="slds-input" value="{!e.Latest_Ship_Date__c}" />
+                    <apex:outputtext styleclass="slds-input" value="{!e.New_Return_Date__c}"  /> 
+                   
+                    
+                    <apex:outputtext styleclass="slds-input" value="{!e.Fed_Ex__c}"  />
+                    <apex:outputtext styleclass="slds-input" value="{!e.Request_Write_Off__c}" style="display:none" />
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                
+                
+                
+                
+                
+                <apex:outputPanel style="{!if(Eval_Request__c.Eval_Type__c='ViewSonic Sales Rep Eval','display:none','')}">
+                <apex:pageblocksection title="Shipping & Billing Contacts - Sales Rep Evals Default to Creator of Record" showheader="true" columns="2" collapsible="false">
+                    <apex:outputtext styleclass="slds-input" label="Billing Contact" value="{!Eval_Request__c.Billing_Contact_Name__r.Name}" />
+                    <apex:outputtext label="Shipping Contact" value="{!Eval_Request__c.Shipping_Contact_Name__r.Name}"     />
+                     <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                </apex:outputPanel>
+            </apex:outputpanel>
+            <apex:outputPanel style="{!if(Eval_Request__c.Eval_Type__c='ViewSonic Sales Rep Eval','','display:none')}">
+                <apex:pageblocksection title="Shipping & Billing Contacts - Sales Rep Evals Default to Creator of Record" showheader="true" columns="2" collapsible="false">
+                    
+                    <apex:outputtext styleclass="slds-input"  label="Shipping Contact" value="{!Eval_Request__c.Shipping_Contact_Name__r.Name}"   />
+                    <apex:outputtext styleclass="slds-input"  label="Billing Contact" value="{!Eval_Request__c.Billing_Contact_Name__r.Name}"   />
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                </apex:outputPanel>
+            <apex:outputPanel >
+                    <apex:pageblocksection title="Billing & Shipping Address Update. You Can Update the Shipping Address or the Account Billing Address." showheader="true" columns="2" collapsible="false">
+                   
+                    
+                    <apex:outputtext styleclass="slds-input" label="Account Billing Name" value="{!Eval_Request__c.Billing_Contact_Name__r.Account.Name}"      />
+                    <apex:outputtext styleclass="slds-input"  label="Shipping Phone" value="{!Eval_Request__c.Shipping_Contact_Name__r.Phone}"   />
+                    <apex:outputtext styleclass="slds-input" label="Bililng Account Phone" value="{!Eval_Request__c.Billing_Contact_Name__r.Phone}"    />
+                    <apex:outputtext styleclass="slds-input"  label="Shipping Contact Email" value="{!Eval_Request__c.Shipping_Contact_Name__r.Email}" />
+                    <apex:outputtext styleclass="slds-input" label="Billing Contact Email" value="{!Eval_Request__c.Billing_Contact_Name__r.Email}"      />
+                    <apex:outputtext styleclass="slds-input"  label="Shipping Street" value="{!Eval_Request__c.Shipping_Contact_Name__r.MailingStreet}"   />
+                    <apex:outputtext styleclass="slds-input" label="Billing Street" value="{!Eval_Request__c.Billing_Contact_Name__r.Account.BillingStreet}" />
+                    <apex:outputtext styleclass="slds-input" label="Shipping City" value="{!Eval_Request__c.Shipping_Contact_Name__r.MailingCity}"  />
+                    <apex:outputtext styleclass="slds-input" label="Billing City" value="{!Eval_Request__c.Billing_Contact_Name__r.Account.BillingCity}"  />
+                    <apex:outputtext styleclass="slds-input" label="Shipping State" value="{!Eval_Request__c.Shipping_Contact_Name__r.MailingState}" />
+                    <apex:outputtext styleclass="slds-input" style=" width: 600px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" label="Billing State" value="{!Eval_Request__c.Billing_Contact_Name__r.Account.State__r.Name}"  /> 
+                    <apex:outputtext styleclass="slds-input" label="Shipping Zip" value="{!Eval_Request__c.Shipping_Contact_Name__r.MailingPostalCode}"   />
+                    <apex:outputtext styleclass="slds-input" label="Billing Zip" value="{!Eval_Request__c.Billing_Contact_Name__r.Account.BillingPostalCode}"   />
+                    <apex:outputtext styleclass="slds-input" label="Shipping Country" value="{!Eval_Request__c.Shipping_Contact_Name__r.MailingCountry}"    />
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                </apex:outputPanel>
+            <apex:outputPanel styleclass="requiredBlock" rendered="{!CASESAFEID(Eval_Request__c.RecordTypeId)='012170000008kCTAAY'}" style="{!if(Eval_Request__c.Trade_Show__c=false,'display:none','')}" id="tradeshow1" layout="block">
+                
+                 <apex:pageblocksection title="Trade Show Information - You will not be able to get shipped without this info" showheader="true"  columns="2" collapsible="false">
+                    <apex:pageblocksectionitem />
+                    <center><a id="ins3"  class="btn2 btn-red-text2" onclick="tradeshowins();">Trade Show Instructions &amp; FAQ</a></center>
+                    
+                    
+                    <apex:outputtext styleclass="slds-input" style="{!if(Eval_Request__c.Trade_Show__c=false,"border-left: 4px solid #c00;","")}"  value="{!Eval_Request__c.Name_of_Trade_Show__c}" />
+                    <apex:outputtext styleclass="slds-input" style="{!if(Eval_Request__c.Trade_Show__c=false,"border-left: 4px solid #c00;","")}"  value="{!Eval_Request__c.Trade_Show_Expected_Return_Date__c}" />
+                    <apex:outputtext styleclass="slds-input" value="{!Eval_Request__c.Trade_Show_Shipping_Phone__c}" />
+                    <apex:outputtext styleclass="slds-input" style="{!if(Eval_Request__c.Trade_Show__c=false,"border-left: 4px solid #c00;","")}"  value="{!Eval_Request__c.Trade_Show_Shipping_Address__c}" />
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>             
+                </apex:outputPanel>
+                <apex:outputPanel style="{!if(Eval_Request__c.Eval_Type__c ='Write Off Request','','display:none')}"  >
+                 <apex:pageblocksection title="Business Case For Write Off" showheader="true" columns="1" >
+                    <apex:outputtext Label=""   value="{!Eval_Request__c.Business_Case_Write_Off__c}" style="border-left:4px solid #c00; margin: 10px; width:80%; "/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+            </apex:outputpanel>                
+            <apex:outputPanel rendered="true">
+                <apex:pageblocksection title="Products & Quantities. Prefilled Products are from the related opportunity." showheader="true" columns="2" collapsible="false">
+                    <apex:outputtext styleclass="slds-input" label="Product Name"  value="{!Eval_Request__c.Product_Name__r.Name}"    />
+                    <apex:outputtext styleclass="slds-input" value="{!Eval_Request__c.Quantity__c}"   />
+                    <apex:outputtext styleclass="slds-input" label="Product Name" value="{!Eval_Request__c.Product_Name_2__r.Name}"   />
+                    <apex:outputtext styleclass="slds-input" value="{!Eval_Request__c.Quantity_2__c}"   />
+                    <apex:outputtext styleclass="slds-input" label="Product Name" value="{!Eval_Request__c.Product_Name_3__r.Name}"   />
+                    <apex:outputtext styleclass="slds-input" value="{!Eval_Request__c.Quantity_3__c}"   />
+                    <apex:outputtext styleclass="slds-input" label="Product Name" value="{!Eval_Request__c.Product_Name_4__r.Name}"  />
+                    <apex:outputtext styleclass="slds-input" value="{!Eval_Request__c.Quantity_4__c}"  />
+                    <apex:outputtext styleclass="slds-input" label="Product Name" value="{!Eval_Request__c.Product_Name_5__r.Name}"   />
+                    <apex:outputtext styleclass="slds-input" value="{!Eval_Request__c.Quantity_5__c}"   />
+                    
+                   
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                </apex:outputPanel>
+                <apex:outputPanel styleclass="requiredBlock" style="{!if(Eval_Request__c.Trade_Show__c=false,'display:none','')}" id="tradeshow2" layout="block">
+                
+                  <apex:pageblocksection title="Trade Show Information - You will not be able to get shipped without this info" showheader="true"  columns="2" collapsible="false">
+                    <apex:outputtext styleclass="slds-input" style="{!if(Eval_Request__c.Trade_Show__c=false,"border-left: 4px solid #c00;","")}" value="{!Eval_Request__c.Name_of_Trade_Show__c}" />
+                    <apex:outputtext styleclass="slds-input" style="{!if(Eval_Request__c.Trade_Show__c=false,"border-left: 4px solid #c00;","")}" value="{!Eval_Request__c.Trade_Show_Expected_Return_Date__c}" />
+                    <apex:outputtext styleclass="slds-input" value="{!Eval_Request__c.Trade_Show_Shipping_Phone__c}" />
+                    <apex:outputtext styleclass="slds-input" style="{!if(Eval_Request__c.Trade_Show__c=false,"border-left: 4px solid #c00;","")}" value="{!Eval_Request__c.Trade_Show_Shipping_Address__c}" />
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>             
+                </apex:outputPanel>
+                
+                
+                <apex:outputPanel >
+                <apex:pageblocksection title="Business Case For Write Off" showheader="false" columns="2" >
+                
+                </apex:pageblocksection>
+                </apex:outputPanel>
+                    
+                
+                 </apex:pageblock>
+ </body>
+ </div>
+    </apex:form>
+   <apex:outputpanel id="relatedlists2" rendered="{!$User.Alias != 'admin'}">
+
+    <apex:relatedList title="Approval History" list="ProcessSteps" rendered="{!if(or(Eval_Request__c.Approval_Status__c='Pending',$User.Alias='chino',Eval_Request__c.Approval_Status__c='Approved',$User.Alias="admin"),true,false)}"/>
+    <apex:relatedList list="Eval_Unit_Details__r" rendered="{!if(or(Eval_Request__c.Approval_Status__c='Pending',Eval_Request__c.Approval_Status__c='Approved'),true,false)}"/>
+    <apex:relatedList list="CombinedAttachments"/>    
+     <apex:relatedList subject="{!Eval_Request__c}" list="ActivityHistories" rendered="true"/>
+      <apex:relatedList subject="{!Eval_Request__c}" list="OpenActivities" rendered="true"/>
+  </apex:outputpanel>
+ 
+    
+
+
+ 
+ 
+  
+</apex:page>

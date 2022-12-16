@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payments_Submitted_to_Finance</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Company_Name__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Currency__c</columns>
+    <columns>First_Name__c</columns>
+    <columns>Individual_or_Company__c</columns>
+    <columns>Last_Name__c</columns>
+    <columns>PaymentDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Paid</value>
+    </filters>
+    <label>Payments Submitted to Finance</label>
+    <language>en_US</language>
+    <sharedTo>
+        <portalRoleAndSubordinates>ViewsonicPartnerUser</portalRoleAndSubordinates>
+    </sharedTo>
+</ListView>

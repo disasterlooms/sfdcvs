@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>46.0</apiVersion>
+    <isExposed>true</isExposed>
+    <description>This lwc is available in flows.</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+        <target>lightning__RecordAction</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__Inbox</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordAction">
+            <actionType>ScreenAction</actionType>
+        </targetConfig>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="description" label="Rich Text Value" type="String"/>
+            <property name="fileUploadLabel" label="File Upload label" type="String"/>
+            <property name="richTxtLabel" label="Rich Text Field Label" type="String"/>
+            <property name="name" label="Customer Name" type="String"/>
+            <property name="email" label="Customer Email" type="String"/>
+            <property name="subject" label="subject" type="String"/>
+            <property name="accountId" label="Account Id" type="String"/>
+            <property name="calloutError" label="if error on callout" type="Boolean"/>
+
+            <property name="account" label="Account Chosen" type="@salesforce/schema/Account"/>
+            
+        </targetConfig>
+    </targetConfigs>
+
+</LightningComponentBundle>

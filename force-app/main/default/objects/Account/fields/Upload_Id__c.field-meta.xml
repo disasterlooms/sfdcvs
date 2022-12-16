@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Upload_Id__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>This is an external id for uploaded accounts. This is to better match imported accounts and potentially imported contacts to better match contacts with accounts</description>
+    <externalId>true</externalId>
+    <label>Upload Id</label>
+    <length>50</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

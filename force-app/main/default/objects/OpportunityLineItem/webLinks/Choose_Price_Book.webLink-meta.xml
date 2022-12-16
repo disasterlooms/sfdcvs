@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Choose_Price_Book</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Choose Price Book</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+if ((Modal.confirm &amp;&amp; Modal.confirm(&apos;{!User.Name}, You will loose all products!\n\n If you continue, please document all skus, pricing, quantity and any important information as changing price books will delete all skus.\n\n And it will not be attrievable\n\nContinue?&apos;))||(!Modal.confirm &amp;&amp; window.confirm(&apos;Once you submit this record for approval, you might not be able to edit it or recall it from the approval process depending on your settings. Continue?&apos;))) navigateToUrl(&apos;https://na18.salesforce.com/oppitm/choosepricebook.jsp?id={!Opportunity.Id}&amp;retURL=%2F{!Opportunity.Id}&amp;saveURL=%2F{!Opportunity.Id}&apos;,null,&apos;piSubmit&apos;);</url>
+</WebLink>

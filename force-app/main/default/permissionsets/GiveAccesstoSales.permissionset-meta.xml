@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Temp due to profile changes that happened..this is to be deleted but allow for the time needed to add privledges to each profile.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>GiveAccesstoSales</label>
+</PermissionSet>

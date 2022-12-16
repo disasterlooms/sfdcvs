@@ -1,0 +1,6 @@
+<apex:page >
+ <c:CreateRecordsQuick ></c:CreateRecordsQuick>
+ <apex:form >
+ <c:LoadSave />
+ </apex:form>
+</apex:page>

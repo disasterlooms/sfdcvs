@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>VSA SPIFF Submission Access</audienceName>
+    <container>VS Partner Programs Portal</container>
+    <criteria>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <entityField>Contact.Account.$Account.Spiff_Type__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>Sales Rep</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>2</criteriaNumber>
+            <criterionValue>
+                <entityField>Contact.$Contact.Portal_Status__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>Onboarded and Verified</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>3</criteriaNumber>
+            <criterionValue>
+                <entityField>Contact.$Contact.Portal_Corporate_Spiff_Admin__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>true</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>4</criteriaNumber>
+            <criterionValue>
+                <profile>channel marketing</profile>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>4</criteriaNumber>
+            <criterionValue>
+                <profile>marketing channel</profile>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>4</criteriaNumber>
+            <criterionValue>
+                <profile>salesforce platform custom</profile>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>5</criteriaNumber>
+            <criterionValue>
+                <audienceDeveloperName>authenticated</audienceDeveloperName>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Audience</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>6</criteriaNumber>
+            <criterionValue>
+                <entityField>$User.VS_Sub_Region__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>VSA CAN</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>6</criteriaNumber>
+            <criterionValue>
+                <entityField>$User.VS_Sub_Region__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>VSA US</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+    </criteria>
+    <formula>((1 AND 2 AND 5) OR (2 AND 3 AND 5) OR 4 ) AND 6</formula>
+    <formulaFilterType>CustomLogicMatches</formulaFilterType>
+    <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>aaf967bd-1163-4a74-943e-03371e253d6f</groupName>
+            <priority>2</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Spiff_Request_Spiff_Request_Page</targetValue>
+        </target>
+        <target>
+            <groupName>f30b3dd7-cfef-447a-aee4-d8e41a034c16$#$aeefd024-fa22-4141-befc-099e388d02a9</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>authenticatedUsers_portalHomePageIcons_2_Component</targetValue>
+        </target>
+        <target>
+            <groupName>0dd26204-a9e1-427f-8446-e83d49fad56b$#$c29dec60-0a2f-47c7-be4b-76c687213691</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>VSA_Logged_In_CAN_portalHomePageIcons_Component</targetValue>
+        </target>
+    </targets>
+</Audience>

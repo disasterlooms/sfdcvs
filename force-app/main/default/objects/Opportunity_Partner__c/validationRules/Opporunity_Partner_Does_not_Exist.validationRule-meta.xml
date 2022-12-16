@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opporunity_Partner_Does_not_Exist</fullName>
+    <active>false</active>
+    <errorConditionFormula>VLOOKUP(   $ObjectType.Opportunity_Partner__c.Fields.Partner_Account__c   ,   $ObjectType.Opportunity_Partner__c.Fields.Name  ,   Partner_Account__c ) =  Partner_Account__c</errorConditionFormula>
+    <errorMessage>Duplicate opp account partner</errorMessage>
+</ValidationRule>

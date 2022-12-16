@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Opps_Evals_Awaiting_Shipping</fullName>
+    <columns>NAME</columns>
+    <columns>Shipping_Contact_Name__c</columns>
+    <columns>Billing_Contact_Name__c</columns>
+    <columns>Eval_Process_Stage__c</columns>
+    <columns>Products__c</columns>
+    <columns>Evaluation_Owner__c</columns>
+    <columns>Approval_Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Ship_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Eval_Process_Stage__c</field>
+        <operation>equals</operation>
+        <value>Awaiting Shipping</value>
+    </filters>
+    <filters>
+        <field>Approval_Status__c</field>
+        <operation>equals</operation>
+        <value>Approved</value>
+    </filters>
+    <label>4D  - Sales Opps Evals Awaiting to ship</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Admins</group>
+        <group>Sales_Ops</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>Pending Onboard and Verification</audienceName>
+    <container>VS Partner Programs Portal</container>
+    <criteria>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <entityField>Contact.$Contact.Portal_Status__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>Onboarded and Verified</fieldValue>
+            </criterionValue>
+            <operator>NotEqual</operator>
+            <type>FieldBased</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>2</criteriaNumber>
+            <criterionValue>
+                <profile>marketing channel</profile>
+            </criterionValue>
+            <operator>NotEqual</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>2</criteriaNumber>
+            <criterionValue>
+                <profile>salesforce platform custom</profile>
+            </criterionValue>
+            <operator>NotEqual</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>2</criteriaNumber>
+            <criterionValue>
+                <profile>channel marketing</profile>
+            </criterionValue>
+            <operator>NotEqual</operator>
+            <type>Profile</type>
+        </criterion>
+    </criteria>
+    <formulaFilterType>AllCriteriaMatch</formulaFilterType>
+    <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>f30b3dd7-cfef-447a-aee4-d8e41a034c16$#$752e9f7f-66c5-40f5-8a37-1bfee6d8f262</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>authenticatedUsers_portalHomePageIcons_Component</targetValue>
+        </target>
+        <target>
+            <groupName>f30b3dd7-cfef-447a-aee4-d8e41a034c16$#$638913e2-b90e-4b05-8967-a8dfaad41129</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>authenticatedUsers_portalOnboardingFlows_Component</targetValue>
+        </target>
+        <target>
+            <groupName>de866c12-9319-4aee-b481-0c47ebb7da53$#$1428ec22-541b-4e21-85f6-296f05cf151f</groupName>
+            <priority>2</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>cPage_Multilevel_Navigation_Menu_Component_Properties</targetValue>
+        </target>
+        <target>
+            <groupName>0dd26204-a9e1-427f-8446-e83d49fad56b$#$b22ced74-e985-4f50-b55b-7dbcdaa4c038</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>VSA_Logged_In_CAN_portalOnboardingFlows_Component</targetValue>
+        </target>
+        <target>
+            <groupName>0dd26204-a9e1-427f-8446-e83d49fad56b$#$c5bb7e64-dd30-4d5f-914e-90f739dd3ee2</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>VSA_Logged_In_CAN_portalHomePageIcons_2_Component</targetValue>
+        </target>
+        <target>
+            <groupName>c1c819a6-93cc-4a3e-b7e0-0af83baeb23d$#$b5c46bba-c921-45c8-8dcd-715433c9d8d4</groupName>
+            <priority>2</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Home_Multilevel_Navigation_Menu_5_Component_Properties</targetValue>
+        </target>
+        <target>
+            <groupName>f09b2622-4c93-410f-91dd-812365943a91$#$7c63d98c-307f-43a8-af26-392d3e7df38f</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>VSA_LoggedIn_LATM_portalOnboardingFlows_Component</targetValue>
+        </target>
+    </targets>
+</Audience>

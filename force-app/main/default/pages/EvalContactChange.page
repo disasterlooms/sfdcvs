@@ -1,0 +1,122 @@
+<apex:page docType="html-5.0" standardcontroller="Eval_Request__c" sidebar="false"  >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+<style>
+    .bPageBlock .lookupIcon, .bPageBlock .lookupIconOn, .genericPageBlockTable .lookupIcon, .genericPageBlockTable .lookupIconOn {
+        vertical-align: middle;
+        padding-bottom: 1px;
+        padding-left: 2px;
+        padding-right: 2px;
+        padding-top: 1px;
+    }
+        .btn {
+        display: inline-block;
+        margin-bottom: 0 ;
+        font-weight: bolder ;
+        text-align: center ;
+        vertical-align: middle ;
+        touch-action: manipulation ;
+        cursor: pointer ;
+        background-image: none ;
+        border: 1px solid transparent;
+        white-space: nowrap ;
+        background-color: white ;
+        padding: 6px 12px ;
+        font-size: 12px !important;
+        line-height: 1.42857143 ;
+        border-radius: 4px ;
+        letter-spacing: .5px ;
+        -webkit-user-select: none ;
+        -moz-user-select: none ;
+        -ms-user-select: none ;
+        user-select: none ;
+        background: none !important;
+        
+    }
+    .btn-red-text {
+        border-radius: 0;
+        border-width: 1px;
+        font-family: "Roboto Slab";
+        font-size: 14px;
+        letter-spacing: .5px;
+        line-height: 37px;
+        margin-top: 0px;
+        padding: 0 20px;
+        text-transform: uppercase;
+        transition: border 0.5s, color 0.5s, background 0.5s;
+        -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+        background: transparent;
+        border-color: #990000;
+        color: #990000 !important;
+        text-decoration: none;
+    }
+    .btn-red-text:hover, .btn-red-text:focus {
+        background: #990000 !important;
+        color: #ffffff !important;
+    }
+        
+        .btn2 {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        padding: 6px 12px;
+        letter-spacing: .5px;
+        font-size: 10px;
+        line-height: 1.42857143;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .btn-red-text2 {
+        border-radius: 0;
+        border-width: 1px;
+        font-family: "Roboto Slab";
+        font-size: 10px;
+        letter-spacing: .5px;
+        line-height: 37px;
+        margin-top: 0px;
+        padding: 0 20px;
+        text-transform: uppercase;
+        transition: border 0.5s, color 0.5s, background 0.5s;
+        -webkit-transition: border 0.5s, color 0.5s, background 0.5s;
+        background: transparent;
+        border-color: #990000;
+        color: #990000 !important;
+        text-decoration: none;
+    }
+    .btn-red-text2:hover, .btn-red-text:focus {
+        background: #990000;
+        color: #ffffff !important;
+    }
+</style>
+<apex:form >
+    <div class="viewsonic">
+        <apex:pageBlock >
+         <center><apex:pageblockbuttons id="buttons">
+                    <apex:commandbutton styleclass="btn btn-red-text" style="line-height: 22px;width: 130px;" value="Save" action="{!Save}"/>
+                    <apex:commandbutton styleclass="btn btn-red-text" style="line-height: 22px;width: 130px;" value="Cancel" action="{!Cancel}"/>
+                  </apex:pageblockbuttons> </center>
+              <apex:outputPanel id="shippinginfo2" >
+                <apex:pageblocksection title="Shipping & Billing Contacts - Sales Rep Evals Default to Creator of Record" showheader="false" columns="2">
+                       
+                    <apex:inputfield style=" width: 600px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" label="Billing Contact" value="{!Eval_Request__c.Billing_Contact_Name__c}" required="true"  />
+                    <apex:inputfield style=" width: 600px !important;height: 35px!important;border-radius: .25rem !important;border-width: .5px !important;" label="Shipping Contact" value="{!Eval_Request__c.Shipping_Contact_Name__c}" required="true"   />
+                    
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                </apex:outputPanel>
+         </apex:pageBlock>
+    </div>
+</apex:form>           
+</apex:page>

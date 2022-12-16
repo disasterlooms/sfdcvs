@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Acct_Team_Check__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used for batch class to update the account team when industry, account type, or owner is changed</description>
+    <externalId>false</externalId>
+    <label>Acct Team Check</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

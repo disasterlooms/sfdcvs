@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mobile_Created__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This is for a pilot program to allow some sales to create quotes via the salesforce app. This has been restricted because vital information is often missing in the Spa, specifically Opportunity Child Records, Including Distributors, Resellers, Products, and Price Books. This field will allow us to audit users submissions and revoke on a case by case basis.</description>
+    <externalId>false</externalId>
+    <label>Mobile Created</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

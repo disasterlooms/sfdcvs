@@ -1,0 +1,4 @@
+<design:component>
+	<design:attribute name="recordId" description="record id of contact"/>
+    <design:attribute name="userConId" description="record id user contact"/>
+</design:component>

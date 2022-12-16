@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Rep_User__c</fullName>
+    <externalId>false</externalId>
+    <formula>CONTAINS(&apos;Sales&apos;, $UserRole.Name )  || CONTAINS(&apos;RBM&apos;, $UserRole.Name ) || CONTAINS(&apos;RSM&apos;, $UserRole.Name )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sales Rep User</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

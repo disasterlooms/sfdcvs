@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="videoURL" type="String"/>  
+    <br/>    <!--<iframe src="{!v.videoURL}" frameborder="0" allow="autoplay; encrypted-media" style="width:90%;margin-left:5%;"></iframe>  slds-fade-in-hide  slds-fade-in-open -->
+    <center><iframe width="560" height="315" src="{!'https://www.youtube.com/embed/'+v.videoURL}" frameborder="0" 
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen="true"></iframe></center>
+    <br/>
+    
+</aura:component>

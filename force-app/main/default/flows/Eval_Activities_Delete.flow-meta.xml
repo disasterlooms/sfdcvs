@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <interviewLabel>Eval Activities Delete {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Eval Activities Delete</label>
+    <processType>Flow</processType>
+    <recordDeletes>
+        <name>Delete_All_Records</name>
+        <label>Delete All Records</label>
+        <locationX>259</locationX>
+        <locationY>54</locationY>
+        <inputReference>DeleteEvalActivitiesCol</inputReference>
+    </recordDeletes>
+    <startElementReference>Delete_All_Records</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>DeleteEvalActivitiesCol</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Eval_Activity_Report__c</objectType>
+    </variables>
+</Flow>

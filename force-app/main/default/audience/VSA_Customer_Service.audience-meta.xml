@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>VSA Customer Service</audienceName>
+    <container>ViewSonic Employee Salesforce Portal</container>
+    <criteria>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <profile>viewsonic employee portal customer service</profile>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Profile</type>
+        </criterion>
+    </criteria>
+    <formulaFilterType>AllCriteriaMatch</formulaFilterType>
+    <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>c8037d8f-d675-42a2-b70e-aed3ebedf248$#$9d0bc044-10dd-4beb-94d0-2a1cc1f37eec</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Default_Navigation_Menu_1_Component_Properties</targetValue>
+        </target>
+        <target>
+            <groupName>fcb93fe1-e076-44ef-9eaf-7c331592b7ec$#$94d0cf66-fa17-4355-aecb-428b4a03dc1e</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Account_Detail_Related_Record_List_Component</targetValue>
+        </target>
+        <target>
+            <groupName>81958001-dfd2-4cef-bfc0-8b56e64a5c4a</groupName>
+            <priority>3</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Home_Home_CustomerService_Page</targetValue>
+        </target>
+        <target>
+            <groupName>9f12b46e-2b4c-489d-a113-a5d8f927588d$#$2245be8e-f6b7-4003-b7dd-fcfd526b18e2</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>HelpVideos_7S_Video_Gallery_Component</targetValue>
+        </target>
+        <target>
+            <groupName>eb544a4a-8718-457d-8bd2-12dfc136f478$#$82174752-329b-4e7e-a5e9-63834a066732</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>SPA_Detail_Related_List_Single_Component</targetValue>
+        </target>
+    </targets>
+</Audience>

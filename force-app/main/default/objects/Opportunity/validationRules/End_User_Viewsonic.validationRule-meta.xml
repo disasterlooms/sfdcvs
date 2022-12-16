@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_User_Viewsonic</fullName>
+    <active>true</active>
+    <description>Ensures no opportunity has Viewsonic as the end user or reseller</description>
+    <errorConditionFormula>isnew() &amp;&amp; ( End_User_Lookup_Account__c = &quot;0011200001Dq2NA&quot; ||  Partner_Account_Search__c = &quot;0011200001Dq2NA&quot; || AccountId = &quot;0011200001Dq2NA&quot;) &amp;&amp;
+ text(Account.VSRegion__c ) = &apos;VSA&apos;</errorConditionFormula>
+    <errorMessage>If you need to create an evaluation for yourself, you do not  need to create an opportunity, just create evaluation as Sales Rep Eval and you will not need an opportunity related.</errorMessage>
+</ValidationRule>

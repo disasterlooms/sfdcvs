@@ -1,0 +1,31 @@
+<design:component>
+    <design:attribute name="qty" description="the limit of query results"/>
+    <design:attribute name="searchText"  description="Text for search, you can preset a search text on load"/>
+    <design:attribute name="exceptionLib"  description="to exclude a library on query call"/>
+    <design:attribute name="library" description="to explicity call one library on a query call"/>
+    <design:attribute name="showSearch" description="Show the Search"/>
+    <design:attribute name="showDescription" description="do not show file description when using marketing collateral"/>
+    <design:attribute name="congaTemplateId" description="The template chosen by the customer"/>
+    <design:attribute name="assetId" description="Content Asset Id"/>    
+    <design:attribute name="ContentId" description="The File Id or File Content Id"/>    
+    <design:attribute name="LogoURL" description="The Url for thumbnail image" />   
+    <design:attribute name="channelPrograms" label="Use Channel Programs" description="Must be set to true if looking at promotions like Spiffs or pricing where visibilty is set by Channel Programs" />
+
+    <design:attribute name="spiffs" label="Show Spiff Flyers" description="Shows Spiff flyers user has access to in Channel Programs"/>
+    <design:attribute name="pricing" label="Show Pricing Files" description="Show Pricing Files user has access to in Channel Programs"/>
+    <design:attribute name="otherPromos" label="Show other Promotions" description="Show other promotions that user has access to in Channel Programs"/>
+    <design:attribute name="all" label="Label for All Tab"/>
+    
+    <design:attribute name="products" label="Label for Products Tab" />
+    <design:attribute name="solutions" label="Label for Solutions Tab" />
+    <design:attribute name="training" label="Label for Training Tab" />
+    <design:attribute name="webinars" label="Label for Webinars Tab" />
+    <design:attribute name="scenarioimages" label="Label for Scenario/Images Tab" />
+    <design:attribute name="others" label="Label for Others Tab" />
+
+    <design:attribute name="searchtitle" label="Search Title"/>
+    <design:attribute name="searchPlaceholder" label="Search Placheholder"/>
+
+    
+
+</design:component>

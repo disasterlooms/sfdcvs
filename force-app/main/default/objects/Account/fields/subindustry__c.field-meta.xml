@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>subindustry__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(text(Industry) = &apos;Education&apos; , &apos;K-12&apos;,if(text(Industry) = &apos;Education - Higher Education&apos;, upper(&apos;Higher Education&apos;),&apos;&apos;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>subindustry</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

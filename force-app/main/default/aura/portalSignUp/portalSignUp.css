@@ -1,0 +1,125 @@
+.THIS.forceCommunitySection .cb-section_column{
+    padding: none !important;
+}
+.THIS.pp-signup {
+    color: #1F1F1F;
+    font-family: "Open Sans", sans-serif;
+    display: flex;
+    width:100%;
+}
+.THIS.pp-signup .pp-col-left { 
+    background-color: #f5f5f5;
+    width:40%;
+    background-image:url('https://www.viewsonic.com/media/wysiwyg/Library/partner-program-log-in-1200x1150.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: center;
+    height: 78vh;
+}
+.THIS.pp-signup .pp-col-right { 
+    background-color: #fff;
+    width:60%;
+    display: flex;
+    align-items: center;
+    padding-left: 4rem;
+}
+.THIS.pp-signup .pp-col-right .pp-logo img{
+    width: 80%;
+}
+.THIS.pp-signup .pp-col-right .pp-col-text {
+    padding-left: 8px;
+}
+.THIS.pp-signup .pp-col-right h1 {
+    font-size: 1.7rem;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.8;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+.THIS.pp-signup .pp-col-text p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.04rem;
+    line-height: 1.4;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.THIS.pp-signup .pp-col-text span {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 300;
+    margin-bottom: 3.4rem;
+}
+.THIS.pp-signup .pp-col-text span.pp-asterisk {
+    color: #990000;
+}
+.THIS.pp-signup .pp-col-text .pp-btn {
+    padding-top: 2.6rem !important;
+}
+.THIS.pp-signup .pp-col-text .pp-btn a.pp-signup {
+    font-size: 1rem;    
+    padding: 0.7rem 2rem;
+    letter-spacing: 0;
+    font-family: "Open Sans", Arial, sans-serif;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    font-weight: 400;
+    text-transform: capitalize;
+    background: #990000;
+    color: #fff;
+    border: 1px solid #990000;
+    margin-right: 10px;
+}
+.THIS.pp-signup .pp-col-text .pp-btn a.pp-signup:hover {
+    background: #c50d0d ;
+    color: #fff;
+    border: 1px solid #c50d0d ;
+}
+/* Media */
+@media (max-width: 992px) {
+    .THIS.pp-signup {
+        flex-direction: column;
+    }
+    .THIS.pp-signup .pp-col-left { 
+        width:100%;
+        height: 270px;
+    	margin-bottom: 2rem;
+    }
+    .THIS.pp-signup .pp-col-right { 
+    	width:100%;
+    }
+    .THIS.pp-signup .pp-col-right .pp-logo img{
+    	width: 100%;
+	}
+    .THIS.pp-signup .pp-col-right { 
+        background-color: #fff;
+        padding-left: 1rem;
+        padding-right: 1rem;
+	}
+    .THIS.pp-signup .pp-col-right h1 {
+    	font-size: 1.4rem;
+        margin-top: 1rem;
+    }
+    .THIS.pp-signup .pp-col-right p {
+    	font-size: 1rem;
+    }
+    .THIS.pp-signup .pp-col-right .pp-btn {
+    	padding-bottom: 3rem;
+    }
+    .THIS.logoImage {
+        width: 193px !important;
+    }
+}
+@media (min-width: 993px) and (max-width: 1441px) {
+    .THIS.pp-signup .pp-col-right .pp-logo img{
+    	width: 70%;
+	}
+    .THIS.pp-signup .pp-col-right { 
+        padding-left: 2.6rem;
+    }
+     .THIS.pp-signup .pp-col-right h1 {
+    	font-size: 1.6rem;
+        margin-top: 2rem;
+    }
+}

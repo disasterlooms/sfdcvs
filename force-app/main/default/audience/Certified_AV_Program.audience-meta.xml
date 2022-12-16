@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>Certified AV Program</audienceName>
+    <container>VS Partner Programs Portal</container>
+    <criteria>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <entityField>Contact.Account.$Account.AV_Solutions_Partner__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>true</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>2</criteriaNumber>
+            <criterionValue>
+                <entityField>Contact.$Contact.Portal_Status__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>Onboarded and Verified</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+    </criteria>
+    <formulaFilterType>AllCriteriaMatch</formulaFilterType>
+    <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>f30b3dd7-cfef-447a-aee4-d8e41a034c16$#$91f841ec-4784-4031-b94d-41abc6882dd0</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>authenticatedUsers_portalOnboardingComplete_3_Component</targetValue>
+        </target>
+        <target>
+            <groupName>0dd26204-a9e1-427f-8446-e83d49fad56b$#$0a1cac1e-83ad-4459-93c3-679772e37065</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>VSA_Logged_In_CAN_portalOnboardingComplete_1_Component</targetValue>
+        </target>
+    </targets>
+</Audience>

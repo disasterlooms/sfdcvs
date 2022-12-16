@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>Beta Testing (Admins and Testers)</audienceName>
+    <container>VS Partner Programs Portal</container>
+    <criteria>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <profile>sfdc admin</profile>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>2</criteriaNumber>
+            <criterionValue>
+                <profile>channel marketing</profile>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Profile</type>
+        </criterion>
+    </criteria>
+    <formulaFilterType>AnyCriterionMatches</formulaFilterType>
+    <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>80bd0926-438c-4523-b2b8-5a5221664db6</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>registerUser_registerUser_Page</targetValue>
+        </target>
+        <target>
+            <groupName>e8452580-5c39-4f12-a0ee-fe32a40e29cb</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Resources_Resources_Page</targetValue>
+        </target>
+        <target>
+            <groupName>5cb28d2c-a7bf-41ef-9d0d-5d6a49f83595</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Cobranding_Cobranding_Page</targetValue>
+        </target>
+        <target>
+            <groupName>aaf967bd-1163-4a74-943e-03371e253d6f</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Spiff_Request_Spiff_Request_1_Page</targetValue>
+        </target>
+        <target>
+            <groupName>5167b65c-fc3c-43d1-a036-96336512c659</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Learning_Center_Learning_Center_Page</targetValue>
+        </target>
+    </targets>
+</Audience>

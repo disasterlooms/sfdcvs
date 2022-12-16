@@ -1,0 +1,15 @@
+<apex:component access="global">
+<p><b style="color: rgb(15, 14, 14);">Freight:</b><span style="color: rgb(15, 14, 14);">&nbsp;(Subject to ViewSonic’s then-current Pre-paid Freight Program Terms and Conditions; See monthly price list for more complete details):&nbsp;</span></p>
+<p><span style="color: rgb(15, 14, 14);">Minimum $10K Free Freight Program. $10K per shipment location per purchase order based on standard price. Multiple PO/Location process handling Fee of $45 applied to orders NOT on a single order to a single address within the 48 contiguous U.S. states and Canada metropolitan areas only.&nbsp;</span><b style="color: rgb(15, 14, 14);">&nbsp;</b></p>
+<p><b style="color: rgb(15, 14, 14);">ONE OF THE FOLLOWING 4 FREIGHT OPTIONS MUST BE SELECTED&nbsp;FOR DROPSHIP ORDERS:&nbsp;&nbsp;</b></p>
+<p><b style="color: rgb(15, 14, 14);">Freight Option 1</b><span style="color: rgb(15, 14, 14);">&nbsp;– Dock to Dock Only Shipping to Warehouse Dock - Only Base Shipping Charge - Must have a full access working dock and equipment to unload.&nbsp;Due to carrier's liability issue, the driver (1 person) will not assist&nbsp;with unloading. Customer must self-unload and have equipment to move pallets off the truck. The dock must be able to accept a 53’ trailer and back up right to the dock to unload.</span><b style="color: rgb(15, 14, 14);">&nbsp;</b></p>
+<p><b style="color: rgb(15, 14, 14);">Freight Option 2</b><span style="color: rgb(15, 14, 14);">&nbsp;Shipping to Warehouse without Dock Lift Gate Base – Base Shipping Charge + $130 per truck - Freight truck includes a lift gate for driver (1 person)&nbsp;to unload to the ground. Customer must have the equipment to move the pallets once the shipment is&nbsp;unloaded.&nbsp;</span><b style="color: rgb(15, 14, 14);">&nbsp;</b></p>
+<p><b style="color: rgb(15, 14, 14);">Freight Option 3</b><span style="color: rgb(15, 14, 14);">&nbsp;Shipping to Non-Warehouse Facilities (ALL Education Orders unless they are shipping to a Warehouse) - Lift Gate, Inside Delivery, and Limited Access - Base Shipping Charge + 300.00 per truck. Freight truck includes a lift gate for driver&nbsp;to&nbsp;unload the shipment and&nbsp;deliver&nbsp;the pallet intact to the first landing, drop and go.&nbsp;</span><b style="color: rgb(15, 14, 14);">&nbsp;</b></p>
+<p><b style="color: rgb(15, 14, 14);">Freight Option 4</b><span style="color: rgb(15, 14, 14);">&nbsp;Shipping to Non-Warehouse &amp; Room of Choice / Depalletization Needed - White Glove Service - Base Shipping Charge + $375.00 starting&nbsp;charge&nbsp;(Please contact your Sales Admin for quote) - Freight truck includes&nbsp;2-person&nbsp;team, lift gate, delivery to room of choice, depalletize, and debris removal.</span></p>
+
+  <BR/>   <a><b>Freight Exclusions:</b></a> Dock to Dock Freight only, excluding the following accessorial charges:<BR/>    &emsp;&emsp;&emsp;-Residential and or limited access deliveries
+  <BR/>    &emsp;&emsp;&emsp;-Rural Zip code delivery
+  <BR/>    &emsp;&emsp;&emsp;-Oversize or Heavyweight handling
+  <BR/>    &emsp;&emsp;&emsp;-Return/ Refusal fees
+  <BR/>    &emsp;&emsp;&emsp;-Duty and tax fees
+</apex:component>

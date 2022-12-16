@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Follow_Up_By__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>This is the last person that clicked the &quot;Follow up with Email&quot; button. Allows us to send a copy to that person of each email.</description>
+    <externalId>false</externalId>
+    <label>Last Follow Up By</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Opp_Follow_Up_Contacts</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

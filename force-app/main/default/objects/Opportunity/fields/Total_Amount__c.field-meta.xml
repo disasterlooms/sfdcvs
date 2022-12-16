@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Amount__c</fullName>
+    <description>Used on VF Page as input and need formula to avoid error. Used on Bid Register Request VF Page</description>
+    <externalId>false</externalId>
+    <formula>text(Amount)</formula>
+    <label>Total Amount</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

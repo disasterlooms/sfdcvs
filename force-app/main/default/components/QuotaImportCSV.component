@@ -1,0 +1,13 @@
+<apex:component controller="importDataFromCSVController" allowDML="true">
+    <apex:form >
+        <apex:pagemessages />
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="4"> 
+                  <apex:inputFile value="{!csvFileBody}"  filename="{!csvAsString}"/>
+                <apex:panelGrid columns="2" id="buttons">
+                    <apex:commandButton value="Import Update Quotas" action="{!importCSVFile}"/>
+                </apex:panelgrid>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+   </apex:form>
+</apex:component>

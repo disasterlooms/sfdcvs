@@ -1,0 +1,91 @@
+<aura:component controller="UpdateSpaController">
+    <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> -->
+    <aura:attribute name="recordId" type="String" />  
+    <!--<lightning:flow aura:id="flowData"/>-->
+    <aura:attribute name="disabled" type="Boolean" default="true" />
+    <aura:attribute name="disableduploader" type="Boolean" default="false" />
+    <aura:attribute name="WorkActivity" type="String" />
+    <aura:attribute name="ScopeOfBidRegistration" type="String" />
+    <aura:attribute name="BusinessReasonforBidRegistration" type="String" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:attribute name="Spinner" type="boolean" />
+    
+    <aura:attribute name="bus" type="String" default=""/>
+    <aura:attribute name="eu" type="String" default=""/>
+    <aura:attribute name="work" type="String" default=""/>
+    <aura:attribute name="meet" type="String" default=""/>
+    <aura:attribute name="rep" type="String" default=""/>
+    <aura:attribute name="scope" type="String" default=""/>
+    <aura:attribute name="type" type="String" default="Bid Register Request" />
+    <aura:attribute name="oppid" type="String"/>
+    
+    <aura:if isTrue="{!v.Spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    
+    <lightning:card footer="Make sure all fields are filled out. Do not copy paste same info into fields or you will get an error" title="Bid Reg Request ** All Top Section Fields Are Required **">
+        <lightning:fileUpload  name="fileUploader"
+                              label= "Documentation Upload"
+                              multiple="{!v.multiple}"
+                              accept="{!v.accept}"
+                              disabled="{!v.disableduploader}"
+                              recordId="{!v.recordId}"
+                              onuploadfinished="{! c.handleUploadFinished }"/>
+        <br/>
+        <lightning:recordEditForm
+                                  onload="{!c.handleLoad}"
+                                  onsubmit="{!c.handleSubmit}"
+                                  onsuccess="{!c.handleSuccess}"
+                                  recordId="{!v.recordId}"
+                                  objectApiName="Quote"
+                                  aura:id="brrecord">
+            <!-- the messages component is for error messages -->
+            <lightning:messages />
+            <lightning:card>
+                <aura:set attribute="title">
+                    <center>Required Fields</center>
+                </aura:set>
+            </lightning:card>
+            <lightning:inputField fieldName="Spa_Request_Type__c" value="{!v.type}" />
+            
+            <lightning:inputField fieldName="Business_Reason_for_Bid_Registration__c" onchange="{!c.validation}" value="{!v.bus}" />
+            <lightning:inputField fieldName="BR_End_User_Contact__c" onchange="{!c.validation}" value="{!v.eu}"/>
+            <lightning:inputField fieldName="List_of_Work_Activity_c__c" onchange="{!c.validation}" value="{!v.work}"/>
+            <lightning:inputField fieldName="BR_Meeting_Date__c" onchange="{!c.validation}" value="{!v.meet}"/>
+            <lightning:inputField fieldName="BR_Rep_that_did_meeting__c" onchange="{!c.validation}" value="{!v.rep}"/>
+            <lightning:inputField fieldName="Scope_of_Bid_Registration__c" onchange="{!c.validation}" value="{!v.scope}"/>
+            <br/><br/>
+            <lightning:card>
+                <aura:set attribute="title">
+                    <center>Get better protection</center>
+                </aura:set>
+            </lightning:card>
+            <lightning:inputField fieldName="Protection_Requested__c" />
+            <lightning:inputField fieldName="Are_they_leading_exclusively_with_ViewSo__c" />
+            <lightning:inputField fieldName="Conference_Room_Software__c" />
+            <lightning:inputField fieldName="Next_Steps__c" />   
+            <lightning:inputField fieldName="Software_Being_Used__c" />
+            <lightning:inputField fieldName="What_devices_will_be_connected__c" />
+            
+            
+            
+            <div class="slds-m-top_medium">
+                <lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" />
+            </div>
+            <br/>
+            Opportunity - To Return Click
+            <lightning:outputField fieldName="OpportunityId"/>
+        </lightning:recordEditForm>
+        
+        
+    </lightning:card>
+    
+    
+</aura:component>

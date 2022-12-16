@@ -1,0 +1,7 @@
+<design:component>
+    <design:attribute name="selpartners"
+                      description="Partners Collection to send Email to selected Reseller Contacts"/>
+    <design:attribute name="title" description="Title of the Component"/>
+    <design:attribute name="recordId" description="Id of Record used to query, can be Quote, Opp, or Account"/>
+  
+</design:component>

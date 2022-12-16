@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SpecialExtWarranty__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Allows check for Warranties that are not available in certain countries. Using validation rules to ensure</description>
+    <externalId>false</externalId>
+    <label>SpecialExtWarranty</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,21 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+	<aura:attribute name="recordId" type="String" access="public"/>
+    <aura:handler event="force:refreshView" action="{!c.myAction}" />
+    <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Quick Update Spa"/>
+    <lightning:recordEditForm recordId="{!v.recordId}" objectApiName="Quote">
+        <lightning:messages />      
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+               <lightning:outputField fieldName="Resubmission_Notes__c" />
+               <lightning:inputField fieldName="Status" />
+            </div>
+            <div class="slds-col">
+                <lightning:outputField fieldName="Notes__c" />
+                <lightning:inputField fieldName="ExpirationDate" />
+                
+            </div>
+             
+        </div> 
+        
+    </lightning:recordEditForm>
+</aura:component>

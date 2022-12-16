@@ -1,0 +1,199 @@
+<apex:component >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="{!URLFOR($Resource.accounting, 'accounting.js-master/accounting.min.js')}" />
+
+
+<apex:attribute name="header" type="string" description="This is the text that will displayed on the related list header"
+required="true"/>
+
+<apex:attribute name="recordid" type="string" description="This is the id of the record"
+required="true"/>
+
+<apex:attribute name="object" type="string" description="related list queried object" required="false"/>
+
+
+
+
+<div class="listRelatedObject opportunityBlock">
+    <div class="bPageBlock brandSecondaryBrd secondaryPalette">
+      <form action="" id="massActionForm_{!recordid}_RelatedOpportunityList" method=
+      "post" name="massActionForm_{!recordid}_RelatedOpportunityList" onsubmit=
+      "return verifyChecked(document.getElementById('massActionForm_{!recordid}_RelatedOpportunityList'), 'ids', 'Please select at least one row')">
+      <div class="pbHeader">
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr>
+                <td class="pbTitle">
+                  <img src="/s.gif" alt="" width="1" height="1" class="minWidth" title=
+                  "" /><img src="/s.gif" alt="" class="relatedListIcon" title="" />
+
+                  <h3 nthid="{!recordid}_RelatedOpportunityList_title">
+                  {!header}</h3>
+                </td>
+
+                
+
+                <td class="pbHelp"><span class="help" title=
+                "Opportunities Help (New Window)"><a href=
+                "javascript:openPopupFocusEscapePounds(%27https://help.salesforce.com/apex/htdoor?loc=help&amp;target=opp_def.htm&amp;section=Opportunities&amp;language=en_US&amp;release=204.18.1&amp;instance=CS21%27,%20%27Help%27,%201024,%20768,%20%27width=1024,height=768,resizable=yes,toolbar=yes,status=yes,scrollbars=yes,menubar=yes,directories=no,location=yes,dependant=no%27,%20false,%20false);"
+                class="linkCol"><span class="linkSpan">Opportunities Help</span>
+                <img src="/s.gif" alt="Opportunities Help (New Window)" class="helpIcon"
+                title="Opportunities Help (New Window)" /></a></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pbBody" id="{!recordid}_RelatedOpportunityList_body">
+          <table class="list" border="0" cellspacing="0" cellpadding="0" id="rlisttable">
+            <tbody id="rlistbody">
+              <!-- Header for the List -->
+              <tr class="headerRow">
+                <th class="actionColumn" scope="col"><input id=
+                "allBox_RelatedOpportunityList" name="allBox_RelatedOpportunityList"
+                onclick=
+                "SelectAllOrNoneByCheckbox(Sfdc.Dom.getParent(this, 'FORM'), 'ids', this)"
+                title="Toggle All Rows" type="checkbox" value="" />&nbsp;Action</th>
+
+                <th scope="col" class=" zen-deemphasize">Opportunity Name</th>
+
+                <th scope="col" class="booleanColumn zen-deemphasize">Bid Registered</th>
+
+                <th scope="col" class=" zen-deemphasize">Created Date</th>
+
+                <th scope="col" class="CurrencyElement zen-deemphasize">Amount</th>
+
+                <th scope="col" class="DateElement zen-deemphasize">Roll Out Date</th>
+
+                <th scope="col" class=" zen-deemphasize">Spa Expiration</th>
+
+                <th scope="col" class=" zen-deemphasize">Stage</th>
+              </tr><!-- ListRow -->
+
+           
+
+              
+
+              
+              
+
+            </tbody>
+          </table>
+           <!-- commenting out the show more. Will limit it to 20
+          <div class="pShowMore">
+            <a href=
+            "javascript:showMoreList%28%27%2F{!recordid}%27%2C%20%27relatedListId%3DRelatedOpportunityList%26hideDL%3D1%26noh%3D1%26keepPref%3D1%26rowsperlist%3D10%27%2C%20%27{!recordid}_RelatedOpportunityList%27%29%3B">
+            Show more &#187;</a>
+          </div>
+          -->
+        </div>
+      </form>
+
+      <div class="pbFooter secondaryPalette">
+        <div class="bg"></div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+th {
+    font-weight: lighter;
+}
+body .pbBody table.list tr.dataRow th, body .pbBody table.list tr.dataRow td {
+    border-width: 0 0 1px 0;
+    vertical-align: middle;
+}
+</style>
+<script>
+oppquery();
+
+function oppquery(){
+    var accid = '{!recordid}';
+    console.log(accid);
+    var opp = new SObjectModel.Opportunity_Partner__c();
+    opp.retrieve({
+        where: {
+            Spa_Stage__c: {
+                ne: ''
+            },
+            Partner_Account__c: {
+                eq: accid
+            }
+        },
+        orderby: [{
+            SPA_Expiration_Date__c: 'DESC'
+        }],  
+         limit:20
+    }, function(err, records, event) {
+        if (err) {
+            alert(err.message);
+        } else {
+            //if no errors then go through each record and set name and id variables. Then run the create rows function to create the rows
+            records.forEach(function(record) {
+                var name = record.get("Opportunity_Name__c");
+                var id = record.get("Opportunity__c");
+                var amt = accounting.formatMoney(record.get("Amount__c"));
+                var date = record.get("CreatedDate");
+                var date = date.getMonth()+'/'+date.getDate()+'/'+date.getFullYear();
+                var spstg = record.get("Spa_Stage__c");
+                var bid = record.get("Bid_Registered__c");
+                var stage = record.get("Opportunity_Stage__c");
+                //var type = record.get("Type");
+                var exp = record.get("SPA_Expiration_Date__c");
+                    if(exp == undefined){
+                        var exp = '';
+                        }else{
+                        var exp = exp.getMonth()+'/'+exp.getDate()+'/'+exp.getFullYear();
+                        } 
+                var roll = record.get("Roll_Out_Date__c");
+                    if(roll == undefined){
+                        var roll = '';
+                        }else{
+                        var roll = roll.getMonth()+'/'+roll.getDate()+'/'+roll.getFullYear();
+                        } 
+                
+                var bid = record.get("Bid_Registered__c");
+                var amt = record.get("Amount");
+
+
+
+
+              
+                createrows(name,bid,date,stage,exp,roll,amt,id);
+
+            });
+        }
+    });
+};
+
+function createrows(name,bid,date,stage,exp,roll,amt,id){
+
+    console.log('rowcreated');
+            if(bid == true){
+                var chkstatus = 'checkbox_checked';
+
+            }else{
+                var chkstatus = 'checkbox_unchecked';
+            }       
+            var line = document.createElement("tr");
+
+                line.innerHTML =
+
+                '                                                           \
+                                                          \
+         <td class="actionColumn"><input id="sparelatedlist" name="ids" title="'+name+'" type="checkbox" value="'+id+'" />&nbsp;|&nbsp;<a href="/'+id+'/e" target="_blank" class="actionLink" title="Edit - '+name+'">Edit</a></td>                        \
+         <th scope="row" class=" dataCell"><a href="/'+id+'" target="_blank">'+name+'</a></th> \
+         <td class=" dataCell booleanColumn">\
+                <img src="/img/'+chkstatus+'.gif" alt="Not Checked" width="21" height="16" class="checkImg" title="Not Checked" />\
+                </td>\
+         <th scope="row" class=" dataCell">'+date+'</th> \
+         <th scope="row" class="dataCell CurrencyElement">'+accounting.formatMoney(amt)+'</th> \
+         <th scope="row" class=" dataCell">'+roll+'</th> \
+         <th scope="row" class=" dataCell">'+exp+'</th> \
+         <th scope="row" class=" dataCell">'+stage+'</th> \
+        '
+                document.getElementById("rlistbody").appendChild(line);
+
+}
+</script>
+</apex:component>

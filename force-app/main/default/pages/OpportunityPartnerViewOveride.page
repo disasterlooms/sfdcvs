@@ -1,0 +1,17 @@
+<apex:page standardcontroller="Opportunity_Partner__c">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+
+
+
+
+<apex:messages />
+    <apex:sectionheader title="{!IF(ISNULL(Opportunity_Partner__c.Opportunity__r.Name&' '&'Opportunity Parnter'), 'New Opportunity Partner',Opportunity_Partner__c.Opportunity__r.Name&' '&'Partner Account Name '&Opportunity_Partner__c.Partner_Account__r.Name)}"/>
+    
+    <br><br>
+    <a href="/{!Opportunity_Partner__c.Opportunity__c}">Back to Opportunity</a>
+    </br></br>
+       <apex:form >
+        
+    </apex:form>
+  <apex:detail subject="{!Opportunity_Partner__c.Id}" relatedList="true" title="false" inlineEdit="true" relatedListHover="false"/>
+</apex:page>

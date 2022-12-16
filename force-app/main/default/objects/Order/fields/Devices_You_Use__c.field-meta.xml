@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Devices_You_Use__c</fullName>
+    <externalId>false</externalId>
+    <label>Devices Techers Use</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Windows/PC</fullName>
+                <default>false</default>
+                <label>Windows/PC</label>
+            </value>
+            <value>
+                <fullName>Chromebook</fullName>
+                <default>false</default>
+                <label>Chromebook</label>
+            </value>
+            <value>
+                <fullName>Macbook</fullName>
+                <default>false</default>
+                <label>Macbook</label>
+            </value>
+            <value>
+                <fullName>Ipad</fullName>
+                <default>false</default>
+                <label>Ipad</label>
+            </value>
+            <value>
+                <fullName>Tablet Android</fullName>
+                <default>false</default>
+                <label>Tablet Android</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

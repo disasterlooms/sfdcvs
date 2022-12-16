@@ -1,0 +1,27 @@
+<design:component>
+	<design:attribute name="title" description="Title of card"/>
+    <design:attribute name="imageUrl" description="image url"/>
+    <design:attribute name="button" description="label for button"/>
+    <design:attribute name="description" description="subtext"/>
+    <design:attribute name="maxImageDimensions" description="max dimensions for image"/>
+    <design:attribute name="taskStatus" description="Status of Task"/>
+     <design:attribute name="taskName" description="Name of Task"/>
+    <design:attribute name="actionType" description="Upload or Agreement"/>
+    <design:attribute name="incomplete" description="is Task complted"/>
+    <design:attribute name="completed" description="the url for completed image"/>
+    
+    <design:attribute name="cmpTask" description="Show the task and status portion"/>
+    <design:attribute name="cmpImage" description="Show the image portion of component"/>
+    <design:attribute name="cmpDescription" description="Show description portion of component"/>
+    <design:attribute name="cmpButton" description="show button or complete portion of component"/>
+    
+    <design:attribute name="inProgress" description="There is an upload and in progress"/>
+    
+     <design:attribute name="downloadUrl" description="the url for download"/>
+     <design:attribute name="downloadString" description="the text for download"/>
+
+     <design:attribute name="downloadUrl2" description="the 2nd url for download"/>
+     <design:attribute name="downloadString2" description="the 2nd text for download"/>
+    
+    <design:attribute name="UrlTwo" description="If W9 then True"/>
+</design:component>

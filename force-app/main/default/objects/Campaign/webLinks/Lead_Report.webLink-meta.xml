@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Report</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Lead Report</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/00O?scopeid={!Campaign.Name}&amp;rt=5&amp;scope=1</url>
+</WebLink>

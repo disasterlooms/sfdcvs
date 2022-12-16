@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Contact_Email</fullName>
+    <active>true</active>
+    <errorConditionFormula>text(Eval_Type__c) !=&apos;ViewSonic Sales Rep Eval&apos;
+&amp;&amp;  (Contains( Billing_Contact_Name__r.Email ,&apos;viewsonic.com&apos; )
+|| Contains( Shipping_Contact_Name__r.Email ,&apos;viewsonic.com&apos; ))</errorConditionFormula>
+    <errorMessage>The Billing Contact and shipping contact must be the End User or Reseller. 
+
+It Cannot Be Viewsonic. It cannot be you.</errorMessage>
+</ValidationRule>

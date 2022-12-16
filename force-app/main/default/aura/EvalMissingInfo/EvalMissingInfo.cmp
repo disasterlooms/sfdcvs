@@ -1,0 +1,8 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId"  controller="EvalRequest" access="global" >
+	<aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="eval" type="Object" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <label class="slds-form-element__label issue" for="">There is some Missing Info. Please Update and then approval submission will be available.
+    	Shipping Contact and Billing Contact can be updated on the sections on the right column of this page.</label>
+    <lightning:input label="" name="myname" value="{!v.eval.Missing_Info_Lightnning__c}" class="issue"/>
+</aura:component>

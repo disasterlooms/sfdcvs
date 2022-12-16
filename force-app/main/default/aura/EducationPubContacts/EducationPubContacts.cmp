@@ -1,0 +1,136 @@
+<aura:component controller="EducationRegLight" implements="flexipage:availableForAllPageTypes,lightning:availableForFlowScreens,forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens" 
+                access="global">{!v.body}
+    <aura:handler name="closeModal" event="c:siteModal"
+      action="{!c.hideModal}"/>
+    <aura:handler name="showToast" event="c:showToast"
+      action="{!c.toastconAdd}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.gettingCons}" />
+    <!--<aura:handler name="change" value="{!v.accid}" action="{!c.gettingCons}"/>-->
+    <aura:attribute name="cons" type="Contact[]"/>
+    <aura:attribute name="shipping" type="String"/>
+    <aura:attribute name="showmodal" type="String" default="slds-hide"/>
+    <aura:attribute name="updatemesg" type="String" default="Success: Contacts Updated"/>
+    <aura:attribute name="accid" type="String" access="global"/>
+    <aura:attribute name="nextScreen" type="String" access="global"/>
+    <aura:attribute name="fromFlow" type="Boolean" access="global" default="false"/>
+    <aura:attribute name="showConForm" type="Boolean" access="global" default="false"/>
+    
+    <aura:attribute name="titlecard" type="String" 
+                    default="Existing Contacts in Your Organization which may or may not be set up as ViewBoard users"/>
+    <!--<c:educationPortalToast  message="{!v.updatemesg}"/>-->
+    <br/>
+    <c:MessageContainer aura:id="messageContainer"/>
+    <aura:if isTrue="{!v.showConForm}">
+     <c:siteContactCreate AccountId="{!v.accid}" fromFlow="{!v.fromFlow}"/>
+    </aura:if>
+    <div class="{!v.showmodal}">
+    <c:modalPublicSite header="Create User">
+        <aura:set attribute="content">
+            <c:siteContactCreate AccountId="{!v.accid}"/>
+        </aura:set>
+    </c:modalPublicSite>
+        </div>
+    <div class="{!v.showmodal}">
+    </div>
+    <lightning:card >
+        
+        <aura:set attribute="title">
+            {!v.titlecard}
+                        
+        </aura:set>
+        {!v.shipping}
+    </lightning:card>
+    <br/>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerspa" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <aura:if isTrue="{!empty(v.cons)}">
+        
+        
+        <lightning:card  >
+                <aura:set attribute="title">
+                    No Contacts Found. You may add contacts
+                </aura:set>
+                
+                <aura:set attribute="actions">
+                    <lightning:button name="save" label="Add a Contact to This Account" variant="brand" onclick="{!c.handleAdd}"/>
+                </aura:set>
+        </lightning:card>
+        <aura:set attribute="else">
+            <lightning:card  >
+                <aura:set attribute="title">
+                    Contacts for {!v.cons[0].Account.Name}
+                </aura:set>
+                
+                <aura:set attribute="actions">
+                    <lightning:button name="save" label="Add a Contact to This Account" variant="brand" onclick="{!c.handleAdd}"/>
+                    <aura:if isTrue="{!not(empty(v.cons))}" >
+                    </aura:if>
+                    <lightning:button name="save" label="{!'Update '+v.nextScreen}" variant="brand" onclick="{!c.handleSubmit}"/>
+                    <!--  <lightning:button name="create" label="Create New and Link" variant="brand" onclick="{!c.handleCreate}"/> -->
+                    
+                </aura:set>
+                
+                <div class="flexipageComponent" data-aura-class="flexipageComponent">
+                    <div class="slds-card__header slds-grid">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Spa Name">Name</div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Resellers">Email</div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Spa Expiration Date">Title</div>
+                                    </th>
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Resubmission Notes">myViewBoard User Type</div>
+                                    </th>
+                                     <!--
+                                    <th scope="col" class="slds-cell-wrap">
+                                        <div class="slds-truncate" title="Resubmission Notes">ViewBoard User</div>
+                                    </th>
+                                     -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <aura:iteration items="{!v.cons}" var="c">
+                                    <tr>
+                                        <td class="slds-cell-wrap ">
+                                            <ui:inputText value="{!c.Name }" class="slds-input"/>
+                                        </td>
+                                        <td class="slds-cell-wrap ">
+                                            <ui:inputText value="{!c.Email}" class="slds-input"/>
+                                        </td>
+                                        <td class="slds-cell-wrap ">
+                                            <ui:inputText value="{!c.Title}" class="slds-input"/>
+                                        </td >
+                                        <td class="slds-cell-wrap ">
+                                            <!--<ui:inputText value="{!c.ViewBoard_User_Type__c }" class="slds-input"/>-->
+                                            <ui:inputSelect class="single slds-select" aura:id="InputSelectSingle" value="{!c.ViewBoard_User_Type__c }">
+                                                <ui:inputSelectOption text="None" value="None" />
+                                                <ui:inputSelectOption text="User" value="User" />
+                                                <ui:inputSelectOption text="Super Admin" value="Super Admin" />
+                                                <ui:inputSelectOption text="Application Owner" value="Application Owner"/>
+                                            </ui:inputSelect>
+                                        </td>
+                                        <!--
+                                        <td class="slds-cell-wrap tdspace">
+                                            <center>
+                                                <ui:inputCheckbox value="{!c.Marketing_Post_Sales__c}"/>
+                                            </center>
+                                        </td> 
+										-->
+                                    </tr>
+                                </aura:iteration>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+               
+            </lightning:card>
+        </aura:set>
+    </aura:if>
+</aura:component>

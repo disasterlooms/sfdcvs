@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unit_Transfered_From_Request__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>This is the eval request that the product was previously transferred from</description>
+    <externalId>false</externalId>
+    <label>Unit Transfered From Request</label>
+    <referenceTo>Eval_Request__c</referenceTo>
+    <relationshipLabel>Eval Unit Details (Unit Transfered From Request)</relationshipLabel>
+    <relationshipName>Eval_Unit_Details1</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

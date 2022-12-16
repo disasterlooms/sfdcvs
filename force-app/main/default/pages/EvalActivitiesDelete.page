@@ -1,0 +1,12 @@
+<apex:page standardController="Eval_Activity_Report__c" tabStyle="Eval_Activity_Report__c" recordSetVar="opp">
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:repeat value="{!opp}" var="row" rendered="false">
+     {!row.Id}
+          
+    </apex:repeat>
+    <!-- Runs your Flow -->   
+    <flow:interview name="Eval_Activities_Delete"
+          finishLocation="{!'/{!Eval_Activity_Report__c.Eval_Request__c}'}">
+        <apex:param name="DeleteEvalActivitiesCol" value="{!Selected}"/>
+    </flow:interview>
+</apex:page>

@@ -1,0 +1,38 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,lightning:availableForFlowScreens" access="global" >
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="disabled" type="Boolean" default="false"/>
+    <aura:attribute name="showhide" type="String" default=""/>
+    
+    
+    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="{!v.showhide}" variant="brand" size="large"/>
+    </div> 
+    <lightning:card>
+    <aura:set attribute="title">
+    <h1>Update your demographic information. This is used by demo products (Evaluation Requests) default address</h1>
+    </aura:set>
+     <lightning:recordEditForm
+            onload="{!c.handleLoad}"
+            onsubmit="{!c.handleSubmit}"
+            onsuccess="{!c.handleSuccess}"
+            recordId="{!v.recordId}"
+            objectApiName="User">
+            <!-- the messages component is for error messages -->
+            <lightning:messages />
+
+            <lightning:inputField fieldName="Street" />
+            <lightning:inputField fieldName="City" />
+            <lightning:inputField fieldName="State" />
+            <lightning:inputField fieldName="PostalCode" />
+            <lightning:inputField fieldName="Country" />
+            <lightning:inputField fieldName="Phone" />
+            <lightning:inputField fieldName="MobilePhone" />
+            <footer class="slds-card__footer">
+                <lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" />
+           </footer>
+    </lightning:recordEditForm>
+        
+    </lightning:card>
+	
+</aura:component>

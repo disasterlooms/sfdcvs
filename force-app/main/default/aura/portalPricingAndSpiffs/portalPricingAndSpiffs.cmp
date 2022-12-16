@@ -1,0 +1,119 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,lightning:availableForFlowScreens,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global"
+                controller="portalPricingAndSpiffs">    <aura:attribute name="recordId" type="string"/>
+    <aura:attribute name="spiffReq" type="boolean"/>
+    <aura:attribute name="recordIds" type="String"/>
+    <aura:attribute name="showSearch" type="boolean" default="true"/>    
+    <aura:attribute name="records" type="Portal_Pricing__c[]"/>
+    <aura:attribute name="prodSearch" type="String[]"/> 
+    <aura:attribute name="userCountry" type="String"/> 
+    <aura:attribute name="conRecord" type="Contact"/>
+    <aura:attribute name="adminSearch" type="Boolean" default="false"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="currency" type="String"/>
+    <lightning:flow aura:id="flowData" onstatuschange="{!c.handleStatusChange}" class=""/>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="spinner" class="" variant="brand" size="large"/>
+    </div>
+    <h2 class="slds-text-heading--large"><center>Search by product to get <aura:if isTrue="{!v.spiffReq}">SPIFF <aura:set attribute="else">
+        Price </aura:set></aura:if>Info</center></h2>
+    <br/>
+    <div onkeyup="{! c.handleKeyUp }">
+        <lightning:input
+                         aura:id="search"
+                         name="enter-search"
+                         label="Search by entering partial or complete product name and pressing 'enter' key"
+                         type="search"
+                         />
+    </div>
+    <br/>
+    <!-- <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+           
+           
+     <ui:inputText aura:id="search" label="" placeholder="{!v.searchplaceholder}" value="{!v.search}"
+                          keyup="{!c.searchk}" updateOn="keyup"/>
+            <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                <lightning:buttonIcon iconName="utility:search" size="medium" onclick="{!c.search}" variant="bare"/>
+            </span>
+        </div>-->
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_1-of-1">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-text-title_caps">                                   
+                        
+                        <th scope="col">
+                            <div class="slds-truncate" title="Subject">Product</div>
+                        </th>
+                        
+                        <th scope="col">
+                            <div class="slds-truncate" title="Name">
+                                <aura:if isTrue="{!v.spiffReq}">
+                                    Current Spiff Amount
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{!v.records[0].MSRP__c > 0}">
+                                            MSRP
+                                            <aura:set attribute="else">
+                                                MAP
+                                                
+                                            </aura:set>
+                                        </aura:if>
+                                        
+                                    </aura:set>
+                                </aura:if>
+                            </div>
+                        </th>
+                        <aura:if isTrue="{!v.spiffReq}">
+                            
+                            <th scope="col">
+                                <div class="slds-truncate" title="Date"> Previous Month's Spiff Amount</div>
+                            </th>
+                        </aura:if>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.records}" var="d">
+                        <tr>                                           
+                            <td role="gridcell">
+                                <div class="slds-truncate" title="ANTLY">{!d.Product__c}</div>
+                            </td>
+                            <td role="gridcell">
+                                <div class="slds-truncate" title="ANTLY">
+                                    <aura:if isTrue="{!v.spiffReq}">
+                                        <lightning:input type="text" name="spiff" value="{!v.currency+'$ '+d.Spiff_Amount__c}"  step="0.01" readonly="true"/>
+                                        
+                                        
+                                        <aura:set attribute="else">
+                                            <aura:if isTrue="{!d.MSRP__c > 0}">
+                                                <lightning:input type="number" name="msrp" value="{!d.MSRP__c}" formatter="currency" step="0.01" readonly="true"/>
+                                                
+                                                
+                                                <aura:set attribute="else">
+                                                    <lightning:input type="number" name="map" value="{!d.MAP__c}" formatter="currency" step="0.01" readonly="true"/>
+                                                    
+                                                    
+                                                </aura:set>
+                                            </aura:if>
+                                            
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                            </td>
+                            <aura:if isTrue="{!v.spiffReq}">
+                                <td role="gridcell">
+                                    <div class="slds-truncate" title="ANTLY">
+                                        
+                                        <lightning:input type="text" name="spiff" value="{!v.currency+'$ '+d.PreviousMonths__c}"  step="0.01" readonly="true"/>
+                                        
+                                    </div>
+                                </td>
+                            </aura:if>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>  <br/><br/>  <br/> 
+    
+</aura:component>

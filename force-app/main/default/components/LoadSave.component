@@ -1,0 +1,47 @@
+<apex:component >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"/>
+<apex:stylesheet value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/css/jquery-confirm.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<style>
+    .modal {    
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+</style>
+<script>
+function saverecord(){
+         var $j = jQuery.noConflict();
+         
+         console.log('Please wait while this is created.');
+         
+         
+         }
+function savecomp(){
+console.log('savecomp');
+$j("[id$=loadingmessage]").hide();
+}
+        
+  </script>   
+  <center><div id='loadingmessage'  class="modal" style="display:none;"></div></center>
+<apex:actionStatus id="status" stopText="" startText="saving...please wait" startStyle="font-size: 20px;font-weight: bold;" onstart="console.log('startjs');$('[id$=loadingmessage]').toggle();" onstop="$('[id$=loadingmessage]').toggle();"/>  
+</apex:component>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VSEI_Standard</fullName>
+    <active>true</active>
+    <label>VSEI Standard</label>
+    <picklistValues>
+        <picklist>Are_they_leading_exclusively_with_ViewSo__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unknown</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Conference_Room_Software__c</picklist>
+        <values>
+            <fullName>G-Meet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GotoMeeting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Teams%2FSkype</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webex</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zoom</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Freight__c</picklist>
+        <values>
+            <fullName>All Inclusive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dock to dock</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Hot_Swap_Approved_Or_Rejected__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending For Approval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Next_Steps__c</picklist>
+        <values>
+            <fullName>Demo Unit to be shipped</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Field rep engagement to be scheduled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RFP release date</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Shipping_and_Receiving_Information__c</picklist>
+        <values>
+            <fullName>Dock to accommodate a 53%27 trailer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Forklift on site</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Forward facing pallets</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inside delivery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lift gate needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pallet jack only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shipping to multiple locations</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Software_Being_Used__c</picklist>
+        <values>
+            <fullName>Google</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Office 365</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promethean</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SMART</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Spa_Request_Type__c</picklist>
+        <values>
+            <fullName>Bid Register Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spa Request</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Special_Approval__c</picklist>
+        <values>
+            <fullName>Product Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VP</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Specialty_Spa__c</picklist>
+        <values>
+            <fullName>ACC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Demo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FTB</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delayed Info Missing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inactive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Needs Review</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>What_devices_will_be_connected__c</picklist>
+        <values>
+            <fullName>Chromebook</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mac</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,32 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" >
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"  />
+    <aura:attribute name="president" type="boolean" default="false"/>
+     <lightning:tabset class="tabcolor">
+            <lightning:tab label="Distribution">
+                <wave:waveDashboard dashboardId="0FK1H000000GnqIWAS" height="1000" showTitle="true" showHeader="false" />                
+            </lightning:tab>
+            <lightning:tab label="Nationals">
+                <wave:waveDashboard dashboardId="0FK1H000000GnpKWAS" height="1000" showTitle="true" showHeader="false" />                
+            </lightning:tab>
+            <lightning:tab label="TM">
+                <wave:waveDashboard dashboardId="0FK1H000000GnpjWAC" height="1000" showTitle="true" showHeader="false" />                
+            </lightning:tab>
+            <lightning:tab label="RBM">
+                <wave:waveDashboard dashboardId="0FK1H000000GnqrWAC" height="1000" showTitle="true" showHeader="false" />                
+            </lightning:tab>
+            <lightning:tab label="Consumer">
+                <wave:waveDashboard dashboardId="0FK1H000000GnvDWAS" height="1000" showTitle="true" showHeader="false" />                
+            </lightning:tab>
+         <lightning:tab label="AV">
+             <wave:waveDashboard dashboardId="0FK1H000000GnujWAC" height="1000" showTitle="true" showHeader="false" />                
+         </lightning:tab>
+            <lightning:tab label="Canada">
+                <wave:waveDashboard dashboardId="0FK1H000000Gnp0WAC" height="1000" showTitle="true" showHeader="false" />                
+            </lightning:tab>
+         <aura:if isTrue="{!v.president}">
+             <lightning:tab label="Latin America">
+                 <wave:waveDashboard dashboardId="0FK1H000000Gnq8WAC" height="1000" showTitle="true" showHeader="false" />                
+             </lightning:tab>
+         </aura:if>   
+    </lightning:tabset>
+</aura:component>

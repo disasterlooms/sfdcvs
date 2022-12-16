@@ -1,0 +1,5 @@
+<design:component>
+    <design:attribute name="domain" description="the domain of email"/>
+    <design:attribute name="isGeneric" description="Boolean value if it is in generic exclusion list"/>
+    <design:attribute name="code" description="the code emailed to verify the user email is valid"/>
+</design:component>

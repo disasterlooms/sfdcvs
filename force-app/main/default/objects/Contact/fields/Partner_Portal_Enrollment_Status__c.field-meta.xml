@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Portal_Enrollment_Status__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( PortalUserId__r.IsActive &amp;&amp; PortalUserId__r.LastLogin__c &gt; now()-90 , &apos;Active - Enrolled&apos; , 
+if( PortalUserId__r.IsActive,  &apos;Enrolled - Inactive&apos;,
+if( text(Finch_Club_Status__c) == &apos;Inactive&apos; ,  &apos;Legacy - Inactive&apos;,
+&apos;Not Enrolled&apos;)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Partner Portal Enrollment Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

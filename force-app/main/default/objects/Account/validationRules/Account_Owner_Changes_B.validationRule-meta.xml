@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Owner_Changes_B</fullName>
+    <active>false</active>
+    <description>RBM&apos;s can change owner. It does not affect ownership transfer if the owner and user are the same.</description>
+    <errorConditionFormula>AND($UserRole.Name = &quot;RBM&quot;,ischanged( OwnerId ), $User.Id &lt;&gt; PRIORVALUE( OwnerId ), TEXT ($User.RBM_Territory__c)&lt;&gt; TEXT( Territory__c ),  RMB__c &lt;&gt; &quot;RBM&quot;  )</errorConditionFormula>
+    <errorMessage>RBM Can only change Ownership for Accounts in their Territory and in SPG or End User</errorMessage>
+</ValidationRule>

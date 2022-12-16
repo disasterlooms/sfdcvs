@@ -1,0 +1,21 @@
+<design:component label="Help Page">
+    <design:attribute name="sectiontitle" label="Header" description="URL for the video" required="true"/>
+    <design:attribute name="header" label="Header" description="URL for the video" required="true"/>
+    <design:attribute name="urls" label="Video URL" description="URL for the video" />
+    <design:attribute name="label1" label="Label URL 1 Add autoplay = 0 to end of URL" description="Label for the video" />
+    <design:attribute name="url1" label="Video URL 1" description="URL for the video" />
+    <design:attribute name="label2" label="Label URL 2" description="Label for the video" />
+    <design:attribute name="url2" label="Video URL 2" description="URL for the video" />
+    <design:attribute name="label3" label="Label URL 3" description="Label for the video" />
+    <design:attribute name="url3" label="Video URL 3" description="URL for the video" />
+    <design:attribute name="label4" label="Label URL 4" description="Label for the video" />
+    <design:attribute name="url4" label="Video URL 4" description="URL for the video" />
+    <design:attribute name="label5" label="Label URL 5" description="Label for the video" />
+    <design:attribute name="url5" label="Video URL 5" description="URL for the video" />
+    <design:attribute name="label6" label="Label URL 6" description="Label for the video" />
+    <design:attribute name="url6" label="Video URL 6" description="URL for the video" />
+    <design:attribute name="label7" label="Label URL 7" description="Label for the video" />
+    <design:attribute name="url7" label="Video URL 7" description="URL for the video" />
+    <design:attribute name="label8" label="Label URL 8" description="Label for the video" />
+    <design:attribute name="url8" label="Video URL 8" description="URL for the video" /> 
+</design:component>

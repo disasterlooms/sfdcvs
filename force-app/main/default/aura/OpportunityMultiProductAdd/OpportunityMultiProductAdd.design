@@ -1,0 +1,11 @@
+<design:component>
+    <design:attribute name="pid" description="Parent Id , OppId in Opportunity Case" />	
+     <design:attribute name="recordId" description="Record Id"/>
+    <design:attribute name="pricebookActive" description="use to add string to query to search for pricebook entries active"/>
+    <design:attribute name="externalUser" label="is External User"/>
+     <design:attribute name="oppId" label="OpportunityId for Opp Products" description="Only Needed when this is used to add opp products"/>
+     <design:attribute name="oppProducts" description="True if adding Opp Line Items"/>
+     <design:attribute name="quant" description="Quantity"/>
+     <design:attribute name="overrideaction"
+                    description="this is to allow the parent component to create a specific apex code to update records"/>
+</design:component>

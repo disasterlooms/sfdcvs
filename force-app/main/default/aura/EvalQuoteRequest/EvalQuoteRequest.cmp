@@ -1,0 +1,66 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:availableForFlowScreens" access="global" >
+	<aura:attribute type="string" name="company" />
+    <aura:attribute type="string" name="street" />
+    <aura:attribute type="string" name="phone" />
+    <aura:attribute type="string" name="city" />
+    <aura:attribute type="string" name="state" />
+    <aura:attribute type="string" name="postal" />
+    <aura:attribute type="string" name="country" />
+    <aura:attribute type="string" name="email" />
+    <aura:attribute type="string" name="acctId" />
+    
+    <aura:attribute type="string" name="contactname" />
+     <aura:attribute type="string" name="lastName" />
+    <aura:attribute type="string" name="firstName" default="test" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="contactSelected" type="String" />
+    
+    <aura:attribute name="shippingContact" type="String" />
+    <aura:attribute name="billingContact" type="String" />
+    <aura:attribute name="resellerContact" type="String" />  
+    
+    <aura:attribute name="bconAcctId" type="String" /> 
+    
+    <aura:attribute name="recordName" type="String" />
+    <aura:attribute name="flowSide" type="boolean" default="true"/>
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerEval" class="" variant="brand" size="large"/>
+    </div> 
+     
+    <lightning:card title="Evaluation Quote Request Step 1 - Billing Info" aura:id="billing">
+    </lightning:card>
+        <br/>  <lightning:card>
+            <aura:set attribute="actions">
+                <button class="slds-button slds-button_neutral" onclick="{!c.billCon}">Billing Contact Info</button>
+                <button class="slds-button slds-button_neutral" onclick="{!c.shipCon}">Shipping Contact Info</button>
+                <button aura:id="rbutton" class="slds-button slds-button_neutral" onclick="{!c.resellerCon}">Reseller Contact Info</button>
+        </aura:set>
+        
+        <lightning:recordEditForm recordId="{!v.contactSelected}" objectApiName="Contact"
+                                  onload="{!c.handleCreateLoad}" aura:id="contactRecord"
+                                  onsubmit="{!c.handleSubmit}">
+            <lightning:messages />
+            <lightning:inputfield aura:id="accountId" fieldName="AccountId" required="true" disabled="true"/>           
+            <lightning:inputField fieldName="FirstName" aura:id="firstname" required="true"/>
+            <lightning:inputField fieldName="LastName" required="true"/> 
+            <lightning:inputField fieldName="Phone" required="true"/>
+            <lightning:inputField fieldName="Email" required="true"/>         
+            <lightning:inputField fieldName="MailingStreet" required="true"/>
+            <lightning:inputField fieldName="MailingCity" required="true"/>
+            <lightning:inputField fieldName="MailingState" required="true"/>
+            <lightning:inputField fieldName="MailingPostalCode" required="true"/>
+            <lightning:inputField fieldName="MailingCountry" required="true"/>
+            <lightning:card>
+                <aura:set attribute="actions">
+                    <lightning:button class="slds-m-top_small" type="submit" label="Next" variant="brand"/>
+                </aura:set>
+            </lightning:card>
+            
+        </lightning:recordEditForm>
+       
+        
+        <br/>
+    </lightning:card> 
+    
+</aura:component>

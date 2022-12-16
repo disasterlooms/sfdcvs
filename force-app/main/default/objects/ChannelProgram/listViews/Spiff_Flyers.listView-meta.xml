@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Spiff_Flyers</fullName>
+    <columns>Name</columns>
+    <columns>Category</columns>
+    <columns>Program_Type__c</columns>
+    <columns>Description</columns>
+    <columns>Sub_Category__c</columns>
+    <columns>IsActive</columns>
+    <columns>Country__c</columns>
+    <columns>VS_SubRegion__c</columns>
+    <columns>Spiff_Type_Specific__c</columns>
+    <columns>AV_Certified_Only_Members__c</columns>
+    <columns>Automate_Members_via_Code__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Program_Type__c</field>
+        <operation>equals</operation>
+        <value>Spiffs</value>
+    </filters>
+    <label>Spiff Flyers</label>
+    <language>en_US</language>
+</ListView>

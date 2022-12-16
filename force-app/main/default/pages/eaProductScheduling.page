@@ -1,0 +1,35 @@
+<apex:page standardStylesheets="false" docType="html-5.0">
+    <apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+    <apex:stylesheet value="{!$Resource.OppVFOverride}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.BidDeskcss)}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+    <apex:includeScript value="{!$Resource.Ersa}"/>
+    <apex:includeLightning />
+    <style>
+    .homeTab .brdPalette {
+    border-top-color: #990000;
+    }
+    </style>
+   
+ <div id="cmp"></div>
+    <div id="cmp5"></div>
+   
+     <div id="flowContainer"></div>
+    <script>
+    Ersa.uiTheme = '{!$User.UITheme}'; // tell Ersa which UITheme you are running in
+    Ersa.lightningApp = 'c:eaProductScheduling'; // tell Ersa which Lightning Dependency App you created
+    console.log('light app to comp');
+    // Add Lightning Components to load
+    
+    Ersa.addLightningComponent(
+        'c:ScheduleMulti'
+    );
+    
+    Ersa.loadComponents(); // loads the components
+    
+    console.log('start flow');
+    
+     
+    </script>
+    
+</apex:page>

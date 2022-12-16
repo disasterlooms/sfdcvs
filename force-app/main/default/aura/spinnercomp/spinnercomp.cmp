@@ -1,0 +1,5 @@
+<aura:component >
+	<div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="slds-hide" variant="brand" size="large"/>
+    </div>
+</aura:component>

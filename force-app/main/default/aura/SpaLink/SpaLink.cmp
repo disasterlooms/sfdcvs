@@ -1,0 +1,102 @@
+<aura:component controller="OppPipelineSpas" implements="flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId" access="global" extensible="true" >
+    <aura:handler event="force:refreshView" action="{!c.myAction}" />
+    <aura:registerEvent name="spinner" type="c:spinner" />
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:handler event="c:displayspas" action="{!c.myAction}" />
+    <aura:handler event="c:updatespas" action="{!c.spaupdate}" />
+    <aura:handler event="c:createspas" action="{!c.createSpa}" />
+    <aura:handler event="wave:selectionChanged" action="{!c.handleChangeWave}"/>
+    <!-- the attributes below drive the query. This is so fields can be added
+ by using the attribute below instead of changing server side query-->
+    <aura:attribute name="oppfields" type="String" default="Id,AccountId, Account.Name,OpportunityId,Opportunity.Record_is_Locked__c, active__c,isInactive__c,
+                                                            Opportunity.Project_or_Site_Information__c,Name,Opportunity.Resellers_and_Type__c,
+                                                            Pricebook2Id,Pricebook2.Name,ExpirationDate,Bid_Registered__c,In_Approval_Review__c,Resubmission_Notes__c, OpportunityName__c"/>
+    <aura:attribute name="prodfields" type="String" default="Quantity,Product2Id,Product2.Name,Approved_Price__c,SPA_Approval_Date__c"/>
+    <aura:attribute name="quotes" type="Quote[]" />
+    <aura:attribute name="oldquotes" type="Quote[]" />
+    <aura:attribute name="recordId" type="String" access="public"/>
+    <aura:attribute name="user" type="User" access="public"/>
+    <aura:attribute name="opportunity" type="Opportunity" access="public"/>
+    <aura:attribute name="load" type="boolean" default="false"/> 
+    <aura:attribute name="nospas" type="boolean" default="false"/>
+    <c:SpasUpdateChild aura:id="spasupdate"/> 
+    <div>
+        <aura:if isTrue="{!v.load}">
+            ...Loading Spas
+        </aura:if>
+        <aura:if isTrue="{!v.nospas}">
+            No Linked Spas Found
+        </aura:if>         
+        <aura:iteration items="{!v.quotes}" var="opp">
+            <div class="flexipageComponent" data-aura-class="flexipageComponent">
+                <div class="slds-card__header slds-grid">
+                    <table  class="slds-table slds-table_bordered slds-table_striped slds-table_fixed-layout slds-table_bordered slds-table_col-bordered" role="grid">
+                        
+                        <thead>
+                            <tr class="slds-text-title_caps">
+                                <th scope="col" class="slds-cell-wrap">
+                                    <div class="slds-truncate" title="Spa Name">Spa Name</div>
+                                </th>
+                                <th scope="col" class="slds-cell-wrap">
+                                    <div class="slds-truncate" title="Resellers">Resellers</div>
+                                </th>
+                                <th scope="col" class="slds-cell-wrap">
+                                    <div class="slds-truncate" title="Spa Expiration Date">Spa Expiration Date</div>
+                                </th>
+                                <th scope="col" class="slds-cell-wrap">
+                                    <div class="slds-truncate" title="Bid Registration">Bid Registration</div>
+                                </th>
+                                <th scope="col" class="slds-cell-wrap">
+                                    <div class="slds-truncate" title="Resubmission Notes">Resubmission Notes</div>
+                                </th>
+                                <th scope="col" class="slds-cell-wrap">
+                                    <div class="slds-truncate" title="Products">Products</div>
+                                </th>
+                                <th scope="col" class="slds-cell-wrap">
+                                    <div class="slds-truncate" title="BR"></div>
+                                </th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr>
+                                Pricebook Name:  <ui:outputText value="{!opp.Pricebook2.Name}"/>
+                            </tr>
+                            <tr>
+                                
+                                <td class="slds-cell-wrap">
+                                    <!--<ui:outputText value="{!opp.OpportunityName__c }"/>-->
+                                    <lightning:formattedUrl value="{!'/lightning/r/Quote/'+opp.Id+'/view'}" tooltip="go to spa" label="{!opp.OpportunityName__c }" target="_blank" />
+                                </td>
+                                <td class="slds-cell-wrap">
+                                    <ui:outputText value="{!opp.Opportunity.Resellers_and_Type__c}"/>
+                                </td>
+                                <td class="slds-cell-wrap">
+                                    <ui:outputDate value="{!opp.ExpirationDate}"/>
+                                </td >
+                                <td class="slds-cell-wrap">
+                                    <ui:outputCheckbox value="{!opp.Bid_Registered__c}"/>
+                                    
+                                </td>
+                                <td class="slds-cell-wrap">
+                                    
+                                    <ui:inputTextArea value="{!opp.Resubmission_Notes__c}" disabled="{!or(opp.In_Approval_Review__c,opp.isInactive__c)}"/>
+                                </td>
+                                <td class="slds-cell-wrap">
+                                    <aura:iteration items="{!opp.QuoteLineItems}" var="l">
+                                        <ui:outputText value="{!l.Product2.Name}"/>&nbsp;
+                                    </aura:iteration>
+                                </td>
+                                <td class="slds-cell-wrap">
+                                     <c:spabr recordId="{!opp.Id}" bidregd="{!opp.In_Approval_Review__c}" inactive="{!opp.isInactive__c}"/> 
+                                </td>  
+                                
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </aura:iteration>
+    </div>
+</aura:component>

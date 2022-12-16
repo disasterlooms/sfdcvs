@@ -1,0 +1,56 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global"
+                controller="getAccountsConsSpa">
+    <!--<aura:handler action="{!c.getOppId}" value="this" name="init"/>-->
+    <aura:handler event="wave:selectionChanged" action="{!c.handleChangeWave}"/>
+    <aura:attribute name="acct" type="Account" />
+    <aura:attribute name="cons" type="Contact[]" />
+    <aura:registerEvent name="cmpEvent" type="c:ContactIFPAccountEvent"/>
+    <aura:handler event="force:navigateToSObject" action="{!c.navigateToRecord}"/>
+    <aura:attribute name="acctId" type="String" />
+    <aura:attribute name="Opp" type="Opportunity" />
+    <aura:attribute name="vsaorder" type="VSA_Open_Order__c" />
+    <aura:attribute name="oppPartners" type="aura.Component"/>
+    <aura:attribute name="oppContacts" type="aura.Component"/>
+    <aura:attribute name="shippingExists" type="Boolean" default="false" />
+    <aura:attribute name="shipping" type="String" />
+    <aura:attribute name="oppname" type="String" />
+    <aura:attribute name="disabled" type="Boolean" />
+    <aura:attribute name="bstate" type="String"/>
+    <aura:attribute name="acctname" type="String"/>
+    <aura:attribute name="spinnerClass" type="String" default="slds-hide"/>
+    <div class="exampleHolder">
+        <!--<lightning:spinner aura:id="mySpinnerspa" class="{!v.spinnerClass}" variant="brand" size="large"
+                           alternativeText="spin"/>-->RemvdSpn
+    </div>
+    
+    <lightning:card  >
+        <aura:set attribute="title">
+            Account Details - If Blank No Account Found
+            
+        </aura:set>
+        <lightning:recordEditForm
+                                  onload="{!c.handleLoad}"
+                                  onsubmit="{!c.handleSubmit}"
+                                  onsuccess="{!c.handleSuccess}"
+                                  recordId="{!v.acct.Id}"
+                                  objectApiName="Account" aura:id="oppform">
+            <!-- the messages component is for error messages -->
+            <lightning:messages />
+            
+            <lightning:outputField fieldName="Name" />
+            
+            <lightning:outputField fieldName="Account_Type__c" />
+            <lightning:outputField fieldName="Industry" />
+            <lightning:outputField fieldName="BillingAddress" />
+            <lightning:outputField fieldName="OwnerId" />
+        </lightning:recordEditForm>
+        <footer class="slds-modal__footer">
+            <lightning:button disabled="{!empty(v.acctId)}" variant="brand" type="edit" name="edit" label="Edit Account" onclick="{!c.editOpp}"/>
+            <lightning:button disabled="{!empty(v.acctId)}" variant="brand" type="view" name="view" label="Open Account Page in New Tab" onclick="{!c.openOpp}"/>
+            <lightning:button  variant="brand" type="new" name="new" label="New Account" onclick="{!c.newAccount}"/>
+        </footer>
+    </lightning:card> 
+    <c:ContactList cons="{!v.acct.Contacts}" shippingExists="{!v.shippingExists}" vsaorder="{!v.vsaorder}"/>
+    {!v.oppPartners}
+    {!v.oppContacts}
+</aura:component>

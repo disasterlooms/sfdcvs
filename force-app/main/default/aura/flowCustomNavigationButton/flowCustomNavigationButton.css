@@ -1,0 +1,20 @@
+.THIS {
+    border-width: 0px;
+    border:none;
+    border-style: none;
+}
+
+.cFlowCustomNavigationButton .flowButton {
+   display: grid;
+}
+
+
+.THIS .flowBtnClass{
+    color: white;
+}
+
+.THIS .slds-card{
+    border-width: 0px;
+    border:none;
+    border-style: none;
+}

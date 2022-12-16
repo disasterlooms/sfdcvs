@@ -1,0 +1,39 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global"
+                controller="SandboxAccounts">
+    <aura:attribute type="boolean" name="open" default="false"/>
+    <aura:attribute type="boolean" name="open2" default="false"/>
+    <aura:attribute type="boolean" name="open3" default="false"/>
+    <aura:attribute type="boolean" name="open4" default="false"/>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <lightning:card title="SandBox Refresh Actions">                
+                <lightning:button variant="brand" label="Add Accounts" onclick="{!c.accounts}" />
+                <lightning:button variant="brand" label="Add Contacts/Users" onclick="{!c.contacts}" /> 
+                
+            </lightning:card>            
+        </div>        	
+        
+        <div class="slds-col">
+            <lightning:card title="Community Tasks">
+                <c:AdminUpdateOppTeam label="Community Opp Team" button="comoppteam" transopen="false"/>
+                </lightning:card>
+             <lightning:card title="Accounts">
+             <c:AdminUpdateOppTeam label="Transfer Accounts"  button="accts" transopen="false"/>
+               </lightning:card>
+             <lightning:card title="Opps">
+                <c:AdminUpdateOppTeam label="Transfer Opportunities"  button="opps" transopen="true"/>
+               </lightning:card>
+             <lightning:card title="Opp Teams">
+                <c:AdminUpdateOppTeam label="Add Internal to Opp Team"  button="oppteams" transopen="false"/>                
+            </lightning:card>
+           
+        </div>
+    </div>
+    
+</aura:component>

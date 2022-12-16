@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NetworkBranding xmlns="http://soap.sforce.com/2006/04/metadata">
+    <loginFooterText>Program, pricing, specifications &amp; availability are subject to change without notice. All prices, unless otherwise state</loginFooterText>
+    <loginLogo>Communities_Shared_Document_Folder/Picture2_png.png</loginLogo>
+    <loginLogoName>Picture2.png</loginLogoName>
+    <loginPrimaryColor>#990000</loginPrimaryColor>
+    <loginQuaternaryColor>#F8F8F8</loginQuaternaryColor>
+    <loginRightFrameUrl>https://www.viewsonic.com/us/solution/business#virtual-tour</loginRightFrameUrl>
+    <network>VSA Distribution Partner Portal</network>
+    <pageHeader>SharedDocuments/logo_resized6_png.png</pageHeader>
+    <primaryColor>#990000</primaryColor>
+    <primaryComplementColor>#FFFFFF</primaryComplementColor>
+    <quaternaryColor>#F8F8F8</quaternaryColor>
+    <quaternaryComplementColor>#222222</quaternaryComplementColor>
+    <secondaryColor>#212121</secondaryColor>
+    <tertiaryColor>#212121</tertiaryColor>
+    <tertiaryComplementColor>#FFFFFF</tertiaryComplementColor>
+    <zeronaryColor>#FFFFFF</zeronaryColor>
+    <zeronaryComplementColor>#222222</zeronaryComplementColor>
+</NetworkBranding>

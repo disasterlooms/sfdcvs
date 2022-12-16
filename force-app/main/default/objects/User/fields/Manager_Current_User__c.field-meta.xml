@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Manager_Current_User__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( Manager.FirstName &amp;&quot; &quot;&amp;Manager.LastName=  $User.FirstName&amp;&quot; &quot;&amp; $User.LastName, true,
+if( Manager.Manager.FirstName &amp;&quot; &quot;&amp;Manager.Manager.LastName=  $User.FirstName&amp;&quot; &quot;&amp; $User.LastName, true,
+if( Manager.Manager.Manager.FirstName &amp;&quot; &quot;&amp;Manager.Manager.Manager.LastName=  $User.FirstName&amp;&quot; &quot;&amp; $User.LastName, true,
+if( Manager.Manager.Manager.Manager.FirstName &amp;&quot; &quot;&amp;Manager.Manager.Manager.Manager.LastName=  $User.FirstName&amp;&quot; &quot;&amp; $User.LastName, true,
+ false))))</formula>
+    <label>Manager = Current User</label>
+    <type>Checkbox</type>
+</CustomField>

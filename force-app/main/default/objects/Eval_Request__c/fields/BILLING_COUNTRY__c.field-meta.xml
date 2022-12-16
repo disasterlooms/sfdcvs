@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BILLING_COUNTRY__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( text(Eval_Type__c ) == &apos;ViewSonic Sales Rep Eval&apos;, 
+Owner:User.Country,   
+if(not(isblank(Billing_Contact_Name__r.Account.BillingCountry)), Billing_Contact_Name__r.Account.BillingCountry, Oracle_Ship_Country__c ))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>BILLING_COUNTRY</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Clone_Quote_Products__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This is on the quote action to create a quote. lets class know to clone the quote as well. otherwise, the clone will only clone the opp</description>
+    <externalId>false</externalId>
+    <label>Clone Quote Products</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

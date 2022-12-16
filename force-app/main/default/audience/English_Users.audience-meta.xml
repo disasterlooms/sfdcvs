@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>English Users</audienceName>
+    <container>VS Partner Programs Portal</container>
+    <criteria>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <entityField>LanguageLocaleKey</entityField>
+                <entityType>User</entityType>
+                <fieldValue>en_US</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+    </criteria>
+    <formulaFilterType>AllCriteriaMatch</formulaFilterType>
+    <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>93851bff-f831-444b-ac56-0e0c3c7fb27a$#$59e53d43-acaf-45e0-b400-fbb2f5e33334</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>VSA_Contact_Support_Visualforce_Page_Component</targetValue>
+        </target>
+    </targets>
+</Audience>

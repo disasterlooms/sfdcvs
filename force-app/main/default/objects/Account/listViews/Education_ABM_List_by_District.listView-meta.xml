@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Education_ABM_List_by_District</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>ACCOUNT.PHONE1</columns>
+    <columns>ABMBuyingStage__c</columns>
+    <columns>ABMIntentScore__c</columns>
+    <columns>CountofContacts__c</columns>
+    <columns>ACCOUNT.EMPLOYEES</columns>
+    <columns>ACCOUNT.LAST_ACTIVITY</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>District_Student_Count__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OppCount__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.INDUSTRY</field>
+        <operation>equals</operation>
+        <value>Education,Education - Higher Education</value>
+    </filters>
+    <filters>
+        <field>Account_Type__c</field>
+        <operation>equals</operation>
+        <value>End User</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.ADDRESS1_COUNTRY</field>
+        <operation>equals</operation>
+        <value>United States</value>
+    </filters>
+    <filters>
+        <field>Education_National_Rank__c</field>
+        <operation>greaterThan</operation>
+        <value>250</value>
+    </filters>
+    <label>Education ABM List by District</label>
+    <sharedTo>
+        <role>VSA_US_National_Sales_Manager</role>
+    </sharedTo>
+</ListView>

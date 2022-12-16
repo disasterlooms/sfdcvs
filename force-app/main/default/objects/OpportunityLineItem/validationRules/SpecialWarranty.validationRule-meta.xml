@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SpecialWarranty</fullName>
+    <active>true</active>
+    <errorConditionFormula>Product2.SpecialExtWarranty__c &amp;&amp;  (Opportunity.Account.BillingCountry == &apos;Argentina&apos; ||
+Opportunity.Account.BillingCountry == &apos;Brazil&apos;)</errorConditionFormula>
+    <errorMessage>Extended Warranties cannot be used in Argentina or Brazil</errorMessage>
+</ValidationRule>

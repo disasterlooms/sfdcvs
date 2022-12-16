@@ -1,0 +1,142 @@
+<apex:page DocType="html-5.0" id="spapage" standardStylesheets="false" >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+
+<title>ViewSonic Inactive Products</title>
+<apex:remoteObjects >
+   <apex:remoteObjectModel name="Opportunity" jsShorthand="opp" fields="Id,Name,CreatedDate">
+   <apex:remoteObjectField name="Product_Name_Main__c" jsShorthand="product"/>
+   <apex:remoteObjectField name="Inactive_Product__c" jsShorthand="inact"/> 
+   <apex:remoteObjectField name="Product_Main_Id__c" jsShorthand="mainid"/> 
+    </apex:remoteObjectModel>
+</apex:remoteObjects>
+
+<style>
+body .bPageBlock, body #bodyCell .bResource .secondaryPalette, body .secondaryPalette.bPageBlock, body .individualPalette .secondaryPalette.bPageBlock, body .bodyDiv .genericTable, body .genericPageBlockTable, body .bodyDiv .bSubBlock, body .bComponentBlock .bPageBlock, body .bMyDashboard .bPageBlock, body.rlHoverFrame .bPageBlock, body.subjectSelectionPopup div.choicesBox, body.lookupTab .secondaryPalette.bPageBlock, body.popupTab .secondaryPalette.bPageBlock, body.UserTagStatsPage .secondaryPalette.bPageBlock {
+    background-color: transparent !important;
+      
+        }
+        
+</style>
+<script>
+oppsearch();
+function oppsearch() {
+       //Search for opplineitems
+        var date = new Date('2015-10-06');
+        var data1 = new SObjectModel.opp();
+            data1.retrieve({
+                where: {
+                   inact: {  
+                        eq: true
+                    },
+                    CreatedDate: { gt: date
+                    }  
+                }, 
+                limit: 50
+            }, function(err, result) {
+                //if failure
+                if (err) {
+                    //alert(err.message);
+                    location.reload();
+                } else {                    
+                    
+                    
+                    //console.log(result);     
+                    
+                    if(result == 0){
+                        console.log('Opportunities');
+                    }else{             
+                    
+                    
+                    result.forEach(function(record) {
+                     var id = record.get("Id");
+                     //var name = record.get("Name");
+                     var prod = record.get("product");
+
+                     idupdate(id,prod);
+                     //var mainid = record.get("mainid");                    
+                     //aprice.toLocaleString();
+                    
+                    //var line = document.createElement("tr");
+                    //line.setAttribute('class', 'slds-hint-parent');
+                        //line.innerHTML =
+                        //'<td role="gridcell" class="slds-cell-shrink" data-label="Select row"> \
+                         //           <label class="slds-checkbox"> \
+                         //             <input type="checkbox" name="products"id="'+id+'"/> \
+                         //             <span class="slds-checkbox--faux"></span> \
+                         //             <span class="slds-assistive-text">Select row</span> \
+                         //           </label> \
+                         //         </td> \
+                         //         <th scope="row" data-label="Opportunity"> \
+                         //           <div class="slds-truncate" title="Opportunity"><a href="/'+id+'" target="_blank">'+name+'</a></div> \
+                          //        </th> \
+                          //        <td role="gridcell" data-label="Main Product"> \
+                        //            <div class="slds-truncate" title="Main Product">'+prod+'</div> \
+                        //          </td> \
+                       //           <td role="gridcell" data-label="Product Id"> \
+                        //            <input class="slds-input" type="text" id="prodprice'+mainid+'"/> \
+                        //        </td>\
+                        //            <td role="gridcell" data-label="id" style="display:none;"> \
+                        //            <input type="checkbox" name="ids" id="p'+id+'" checked/> \
+                       //         </td>\
+                     //   '
+                        //append the li container that is inside the flex box with the queried records
+                    //document.getElementById('tbprod').appendChild(line);
+                    //document.getElementById('prodprice'+id).value= aprice;                    
+                    //console.log(record);               
+                    });
+                    }
+                    
+                }
+            });            
+            
+            }
+
+
+</script>
+            <script>
+
+              function idupdate(id,prod){ 
+                console.log('opp: '+id+' prod: '+prod);
+                var oppup = new SObjectModel.opp({
+                Id: id,
+                product: '',
+                mainid: prod
+                
+                    });
+                  oppup.update(updateCallback);
+                   
+                 
+                }
+
+             function updateCallback(err, ids){
+              if (err) { 
+                  //displayError(err);
+                  location.reload(); 
+                } else {
+                      location.reload();             
+                  }
+              }
+
+
+            </script>
+<apex:messages />
+
+    <apex:sectionheader title="Opportunities with Inactive Main Product" subtitle=""/>
+  
+
+
+
+<apex:form id="spaform">
+<!-- <c:LoadSave /> -->
+        
+
+
+<br><br>
+<!--
+<c:RelatedListTable title="Remove Products or Update Pricing" col1="Opportunity" col2="Inact Product" col3="MainId" col4="" tableid="tbprod" delfunction="productdel();" updatefunction="idupdate();" btnstyle="text-decoration: none !important;"/>
+-->
+    </br>
+    </br>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR(ISPICKVAL(VS_Region__c, &apos;VSI&apos;),ISPICKVAL(VS_Region__c, &apos;VSE&apos;)), DATE__c,null)
+/*
+			DATE__c,
+CASE(distributor__r.Name, 
+&apos;ALSO Deutschland GmbH&apos;, fdate2__c,
+&apos;Ingram Micro Distribution GmbH&apos;, Verkaufsdatum_Date__c,
+&apos;Computation Systemhaus GmbH&apos;, DATE__c, 
+&apos;Delo Computer GmbH&apos;, Datum_Date__c,
+&apos;Herweck AG&apos;, Datum_Date__c,
+&apos;Schuss AV-Projektionssysteme GmbH&apos;, factura_date_Date__c,
+&apos;Tarox AG&apos;, Datum_Date__c,					
+&apos;prodyTel Distribution GmbH&apos;,  gerPOS_DatumVK2__c, 
+					null)
+*/</formula>
+    <label>Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

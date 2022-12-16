@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>gerPOS_DatumVK2__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(gerPOS_DatumVK_Date__c) , TODAY(), DATEVALUE(RIGHT(gerPOS_DatumVK_Date__c,4)&amp;&apos;-&apos;&amp;MID(gerPOS_DatumVK_Date__c,4,2)&amp;&apos;-&apos;&amp;LEFT(gerPOS_DatumVK_Date__c,2)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>gerPOS_DatumVK2</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

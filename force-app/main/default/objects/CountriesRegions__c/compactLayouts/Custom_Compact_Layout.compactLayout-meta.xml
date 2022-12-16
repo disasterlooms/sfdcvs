@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Custom_Compact_Layout</fullName>
+    <fields>Name</fields>
+    <fields>Country__c</fields>
+    <fields>CountryCode__c</fields>
+    <fields>Available_StatesProvinces__c</fields>
+    <fields>Region__c</fields>
+    <fields>SubRegion__c</fields>
+    <fields>State__c</fields>
+    <fields>StateCode__c</fields>
+    <fields>MapOwnerId__c</fields>
+    <fields>ResellerDefaultSalessRep__c</fields>
+    <label>Custom Compact Layout</label>
+</CompactLayout>

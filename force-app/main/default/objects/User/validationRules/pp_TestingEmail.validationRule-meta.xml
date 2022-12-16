@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pp_TestingEmail</fullName>
+    <active>false</active>
+    <description>Stops testing email of jason.orbison@abcxyz.biz from working when testing out parts of registration on parter program portal</description>
+    <errorConditionFormula>Email ==&apos;jason.orbison@abcxyz.biz&apos; ||
+Username = &apos;jason.orbison@abcxyz.biz&apos; ||
+Email ==&apos;jason.orbison@trox.com&apos;</errorConditionFormula>
+    <errorMessage>no user with email &apos;&apos;jason.orbison@abcxyz.biz&apos; can exist. it is only a testing email.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Landed_or_List_Price_Chang__c</fullName>
+    <description>If landed cost changes on product, this field will be true. When informatica API tool runs, it filters for this checkmark and updates list price. This is done weekly to ensure that landed cost matches with Oracle.</description>
+    <externalId>false</externalId>
+    <formula>if(Landing_Cost2__c  &lt;&gt; Landed_Cost__c, true,
+if( List_Price__c  &gt;  Approved_Price__c , true,
+false))</formula>
+    <label>Landed or List Price Change</label>
+    <type>Checkbox</type>
+</CustomField>

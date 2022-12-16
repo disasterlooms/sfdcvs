@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Canada_Reseller</fullName>
+    <active>false</active>
+    <description>If canada attempts to add more resellers than 1 , only Deidre can add the Reseller</description>
+    <errorConditionFormula>SPA_Resellers__c &gt; 1 &amp;&amp; 
+ PRIORVALUE(SPA_Resellers__c) &lt; 2 &amp;&amp;
+ Account.BillingCountry == &apos;Canada&apos; &amp;&amp;
+ $User.LastName  != &apos;Deacon&apos;</errorConditionFormula>
+    <errorMessage>Please have Deidre Deacon add this reseller to this Opportunity/Spa because only Deidre can approve multiple resellers for Canada Opportunities/Spas</errorMessage>
+</ValidationRule>

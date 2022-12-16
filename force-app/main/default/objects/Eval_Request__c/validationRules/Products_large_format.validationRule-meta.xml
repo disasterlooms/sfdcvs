@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Products_large_format</fullName>
+    <active>true</active>
+    <description>makes sure large format are put in the first 2 products. This ensures that the approval process, which only looks at first 2 products (Done to keep size of formula within limits), is able to determine it is a large format process.</description>
+    <errorConditionFormula>Contains(Product_Name_3__r.Name , &apos;CDE7&apos; ) ||
+Contains(Product_Name_3__r.Name , &apos;CDE8&apos; ) || Contains(Product_Name_3__r.Name , &apos;CDP9&apos; ) ||
+
+Contains(Product_Name_4__r.Name , &apos;CDE7&apos; ) ||
+Contains(Product_Name_4__r.Name , &apos;CDE8&apos; ) || Contains(Product_Name_4__r.Name , &apos;CDP9&apos; ) ||
+
+Contains(Product_Name_5__r.Name , &apos;CDE7&apos; ) ||
+Contains(Product_Name_5__r.Name , &apos;CDE8&apos; ) || Contains(Product_Name_5__r.Name , &apos;CDP9&apos; )</errorConditionFormula>
+    <errorMessage>Please list large format displays in the first product. 
+
+Sorry for the inconvenience but it is necessary, I promise! 
+
+Thank You.</errorMessage>
+</ValidationRule>

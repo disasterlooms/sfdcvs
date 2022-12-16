@@ -1,0 +1,13 @@
+<apex:page >
+ <style>
+    body, td {
+    padding: 10px;
+    }
+ </style>
+    <table>
+            <td><analytics:reportChart reportId="00O12000006b0kz" size="small" >
+            </analytics:reportChart></td>
+            <td><analytics:reportChart reportId="00O12000004t50e" size="small"  filter="{column:'Eval_Unit_Details__c.Eval_Request__c.Evaluation_Owner__c.Name', operator:'equals', value:'{!$User.FirstName&' '&$User.LastName}'}" >
+            </analytics:reportChart></td>
+        </table>
+</apex:page>

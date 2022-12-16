@@ -1,0 +1,17 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride" access="global" >
+    te
+    <lightning:recordEditForm recordId="" objectApiName="Account"
+                              onload="{!c.onload}"
+                              onsuccess ="{!c.onload}"
+                              onsubmit	="{!c.onload}"
+                              onerror ="{!c.onload}">
+        <lightning:messages />
+        <lightning:outputField fieldName="Name" />
+        <lightning:inputField fieldName="Industry" />
+        <lightning:inputField fieldName="Account_Type__c" />
+        <lightning:inputField fieldName="BillingCountryCode" />
+        <lightning:inputField fieldName="BillingStateCode"/>
+        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="create" label="Create" />
+    </lightning:recordEditForm>
+    
+</aura:component>

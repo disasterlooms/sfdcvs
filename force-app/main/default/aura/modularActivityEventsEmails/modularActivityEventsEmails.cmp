@@ -1,0 +1,58 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+                controller="searchOjbectsSosl" access="global" >
+    <aura:handler name="init" value="this" action="{!c.myAction}"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="events" type="Event[]"/>
+    <aura:attribute name="tasks" type="Task[]"/>
+    <aura:attribute name="emails" type="EmailMessage[]"/>
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <lightning:card title="Tasks" iconName="standard:task" class="slds-card_boundary">
+                
+                <aura:iteration items="{!v.tasks}" var="t">
+                    <lightning:card class="slds-card_boundary">
+                        
+                        <aura:set attribute="title">
+                            Subject: {!t.Subject}
+                        </aura:set>                              
+                        <lightning:input name="date" type="date"  readonly="true" value="{!t.ActivityDate}" label="Date" dateStyle="short" />
+                        <lightning:input name="desc" readonly="true" value="{!t.Description}" label="Description" />
+                    </lightning:card>
+                </aura:iteration>
+            </lightning:card>
+        </div>
+        <div class="slds-col">
+            
+            <lightning:card title="Events" iconName="standard:event" class="slds-card_boundary">
+                
+                <aura:iteration items="{!v.events}" var="e">
+                    <lightning:card class="slds-card_boundary">
+                        
+                        <aura:set attribute="title">
+                            Subject: {!e.Subject}
+                        </aura:set>                              
+                        <lightning:input name="date" type="date" readonly="true" value="{!e.ActivityDate}" label="Date" dateStyle="short"/>
+                        <lightning:input name="desc" readonly="true" value="{!e.Description}" label="Description" />
+                    </lightning:card>
+                </aura:iteration>
+            </lightning:card>
+        </div>
+        <div class="slds-col">
+            <lightning:card title="Emails" iconName="standard:emailmessage" class="slds-card_boundary">
+                
+                <aura:iteration items="{!v.emails}" var="s">
+                    <lightning:card class="slds-card_boundary">
+                        
+                        <aura:set attribute="title">
+                            Subject: {!s.Subject}
+                        </aura:set>                              
+                        <lightning:input type="date" name="input6" readonly="true" value="{!s.MessageDate}" label="Date"  dateStyle="short"/>
+                        <lightning:input name="desc" readonly="true" value="{!s.TextBody}" label="Description" />
+                    </lightning:card>
+                </aura:iteration>
+            </lightning:card>
+        </div>
+    </div>
+    
+</aura:component>

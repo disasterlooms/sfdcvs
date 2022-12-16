@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Spiff_Excluded__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Product Does not Qualify for a Spiff</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Product Does not Qualify for a Spiff</inlineHelpText>
+    <label>Spiff Excluded</label>
+    <type>Checkbox</type>
+</CustomField>

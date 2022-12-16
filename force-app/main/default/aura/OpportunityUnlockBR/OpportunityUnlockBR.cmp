@@ -1,0 +1,10 @@
+<aura:component controller="OpportunityUnlock" implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId">
+	<aura:attribute name="recordId" type="String"/>
+   <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    <div class="slds-no-flex">
+              <lightning:button label="Unlock&nbsp;Record" variant="neutral" onclick="{!c.unlock}" value="{!recordId}"  /> 
+            </div>
+</aura:component>

@@ -1,0 +1,31 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    
+    <aura:attribute name="recordId" type="String" access="public"/>
+    
+    
+    <lightning:recordEditForm
+                              onload="{!c.handleLoad}"
+                              onsubmit="{!c.handleSubmit}"
+                              onsuccess="{!c.handleSuccess}"
+                              recordId="{!v.recordId}"
+                              objectApiName="Opportunity"
+                              aura:id="myRecordForm">
+        <!-- the messages component is for error messages -->
+        <lightning:messages />
+        
+        <lightning:outputField fieldName="End_User_Company__c" />
+        <lightning:outputField fieldName="End_User_Street__c" />
+        <lightning:outputField fieldName="End_User_City__c" />
+        <lightning:outputField fieldName="End_User_State_Text__c" />
+        <lightning:outputField fieldName="End_User_Zip__c" />
+        <lightning:outputField fieldName="Distributors_Requested__c" />
+        <lightning:outputField fieldName="Products__c" />
+        <lightning:outputField fieldName="Product_Quantity__c" />
+        
+        <lightning:inputField fieldName="AccountId" />
+        
+        <div class="slds-m-top_medium">
+            <lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" />
+        </div>
+    </lightning:recordEditForm>	 
+</aura:component>

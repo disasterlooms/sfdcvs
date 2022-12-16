@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    
+    <aura:attribute name="con" type="Contact"/>
+    <lightning:card >
+        
+        <aura:set attribute="title">
+            <h1>Create User</h1>
+        </aura:set>
+        <form >
+            <lightning:input name="FirsttName" label="First Name" required="true" value="{!con.FirstName}" />
+            <lightning:input name="LastName" label="Last Name" required="true" value="{!con.LastName}"  />
+            <lightning:input name="Email" label="Email" required="true" value="{!con.Email}" type="email" placeholder="youraddress@company.com" />
+            <lightning:input name="Phone" label="Phone" required="true" value="{!con.Phone}" type="tel" placeholder="areacode-phone"/>
+        </form>
+        
+        
+        <aura:set attribute="footer">
+                <lightning:button name="save" label="Save" onclick="{!c.Save}" variant="neutral"/>
+        </aura:set>
+    </lightning:card>
+    
+</aura:component>

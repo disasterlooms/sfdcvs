@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens"
+                controller="portalManageUsers"
+                access="global" >
+    <aura:attribute name="flowAction" type="String" default="FINISH"/>
+    <aura:attribute name="conId" type="String"/>
+    <aura:attribute name="userId" type="String"/>
+    <aura:attribute name="inactivate" type="Boolean"/>
+    <aura:handler name="init" value="{!this}" action="{!c.deactivate}"/>
+</aura:component>

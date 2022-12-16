@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VSA_USD_Currency</fullName>
+    <active>true</active>
+    <errorConditionFormula>text(CurrencyIsoCode) != &apos;USD&apos; &amp;&amp;
+ text($User.Region__c) != &apos;VSE&apos;  &amp;&amp;
+text($User.Region__c) != &apos;VSI&apos; &amp;&amp; 
+$User.Alias != &apos;admin&apos;</errorConditionFormula>
+    <errorMessage>Opportunities and Spas in the Americas must be in USD</errorMessage>
+</ValidationRule>

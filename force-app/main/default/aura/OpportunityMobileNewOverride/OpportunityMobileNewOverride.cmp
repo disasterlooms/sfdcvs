@@ -1,0 +1,20 @@
+<aura:component implements="force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride,flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasSObjectName" access="global" >
+<!--<aura:handler name="init" action="{!c.myAction}" value="{!this}" />-->
+    
+    Sorry, this button should not be used. To create an opportunity, please go to Spa/Opp Create on your mobile device and use the create
+    opportunity button on bottom of page. Salesforce does not allow removal of this button. Sorry for the inconvience. 
+
+    <!-- 
+    
+    <lightning:recordForm 
+         objectApiName="Opportunity" 
+         layoutType="Compact"
+         columns="1"
+         mode="edit"
+         
+         recordTypeId="{!v.rectype}"/>
+    
+    onsubmit="{!c.handleSubmit}"-->
+    
+    
+</aura:component>

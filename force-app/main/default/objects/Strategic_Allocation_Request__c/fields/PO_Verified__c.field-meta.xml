@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PO_Verified__c</fullName>
+    <externalId>false</externalId>
+    <label>PO Verified</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No Valid PO</fullName>
+                <default>false</default>
+                <label>No Valid PO</label>
+            </value>
+            <value>
+                <fullName>PO Verified</fullName>
+                <default>false</default>
+                <label>PO Verified</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

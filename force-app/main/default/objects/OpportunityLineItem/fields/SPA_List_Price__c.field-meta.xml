@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SPA_List_Price__c</fullName>
+    <description>Snapshot of SPA list price at time of SPA creation</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Snapshot of SPA list price at time of SPA creation</inlineHelpText>
+    <label>SPA List Price</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Currency</type>
+</CustomField>

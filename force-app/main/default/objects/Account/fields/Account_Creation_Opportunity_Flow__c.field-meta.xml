@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Creation_Opportunity_Flow__c</fullName>
+    <businessStatus>DeprecateCandidate</businessStatus>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Temporary field. When account is created from opportunity, it will track the process to auto  update the end user account and reseller account fields in the opportunity object.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Do not need to enter info unless creating account from an opportunity, which will automatically have the opportunity name entered in field.</inlineHelpText>
+    <label>Flow End User  Account Creation Opp</label>
+    <referenceTo>Opportunity</referenceTo>
+    <relationshipLabel>Accounts</relationshipLabel>
+    <relationshipName>Accounts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,19 @@
+<apex:page standardcontroller="Eval_Request__c" >
+    <apex:form >
+       <apex:pageblock mode="{!if(Eval_Request__c.Approval_Ready__c =True,'inlineedit','inlineedit')}" title="" id="block1">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!Save}" rendered="true"/>
+                
+                <apex:commandbutton value="Cancel" action="{!Cancel}" rendered="true"/>
+                </apex:pageblockbuttons> 
+ 
+        
+        <apex:pageblock >
+         <apex:pageblocksection title="Business Case For Write Off" showheader="true" columns="1" >
+                 <apex:inputfield Label="" rendered="true" required="true" value="{!Eval_Request__c.Business_Case_Write_Off__c}" style="border-left:4px solid #c00; width:100%; " id="reason"/>
+            <apex:pageblocksectionitem />
+          </apex:pageblocksection>
+        </apex:pageblock>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

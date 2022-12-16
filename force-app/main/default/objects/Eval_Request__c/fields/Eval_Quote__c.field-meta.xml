@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Eval_Quote__c</fullName>
+    <description>&quot;&amp;id=&quot; + Id +
+&quot;&amp;queryid=a0o1200000AvHp9&quot; + 
+&quot;&amp;defaultpdf=1&quot; + 
+&quot;&amp;emailtemplateid=00X12000001raQN&quot; + 
+&quot;&amp;templateid=a0p12000003vik9&quot; + 
+&quot;&amp;emailtoid=&quot; + $User.Contact_ID__c +
+&quot;&amp;emailadditionalto=&quot; + Billing_Contact_Email_Invoice__c +
+&quot;&amp;emailcc=&quot; + Evaluation_Owner_Email__c +
+&quot;&amp;qmode=SendEmail&quot; + 
+&quot;&amp;ofn=Evaluation Purchase Quote for RMA &quot; + RMA__c + &quot; &quot; + Name +
+&quot;&amp;uf0=1 &quot; + 
+&quot;&amp;sc1=Chatter&quot; + 
+&quot;&amp;sc0=1&quot; + 
+&quot;&amp;mfts0=Eval_Quote_Sent_Out__c&quot; + 
+&quot;&amp;mftsvalue0=True&quot;</description>
+    <externalId>false</externalId>
+    <formula>&quot;&amp;id=&quot; + Id +
+&quot;&amp;queryid=a0o1200000AvHp9&quot; + 
+&quot;&amp;defaultpdf=1&quot; + 
+&quot;&amp;emailtemplateid=a0n12000006mpFy&quot; + 
+&quot;&amp;templateid=a0p12000003vik9&quot; + 
+&quot;&amp;emailadditionalto=&quot; + Billing_Contact_Email_Invoice__c +&apos;,&apos;+ Eval_Submitter_Email__c + &apos;,Lori.Smith@viewsonic.com&apos; +
+&quot;&amp;qmode=SendEmail&quot; + 
+&quot;&amp;ofn=Evaluation Purchase Quote for RMA &quot; + RMA__c + &quot; &quot; + Name +
+&quot;&amp;uf0=1 &quot; + 
+&quot;&amp;sc1=Chatter&quot; + 
+&quot;&amp;sc0=1&quot; + 
+&quot;&amp;mfts0=Eval_Quote_Sent_Out__c&quot; + 
+&quot;&amp;mftsvalue0=True&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Eval Quote</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

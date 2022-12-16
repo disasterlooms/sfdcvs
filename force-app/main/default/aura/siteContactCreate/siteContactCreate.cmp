@@ -1,0 +1,39 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global"
+                controller="EducationRegLight">
+    <aura:registerEvent name="closeModal" type="c:siteModal"/>
+    <aura:registerEvent name="showToast" type="c:showToast"/>
+    <aura:attribute name="modal" type="Aura.Component[]" />
+    <aura:attribute name="AccountId" type="String"/>
+    <aura:attribute name="FirstName" type="String"/>
+    <aura:attribute name="LastName" type="String"/>
+    <aura:attribute name="Email" type="String"/>
+    <aura:attribute name="Phone" type="String"/>
+    <aura:attribute name="Type" type="String"/>
+    <aura:attribute name="fromFlow" type="Boolean" access="global" default="false"/>
+    <aura:attribute name="con" type="Contact" default="{'sobjectType':'Contact', 'FirstName':'','LastName' : '',
+                                                       Marketing_Post_Sales__c: true, Email : '',Phone:'',
+                                                       ViewBoard_User_Type__c : ''}"/>
+    {!v.modal}
+     <c:MessageContainer aura:id="messageContainer"/>
+    <lightning:card >
+        <form >
+            <lightning:input name="FirsttName" label="First Name" required="true" value="{!v.con.FirstName}" />
+            <lightning:input name="LastName" label="Last Name" required="true" value="{!v.con.LastName}"  />
+            <lightning:input name="Email" label="Email" required="true" value="{!v.con.Email}" type="email" placeholder="youraddress@company.com" />
+            <lightning:input name="Phone" label="Phone" required="true" value="{!v.con.Phone}" type="tel" placeholder="areacode-phone"/>
+            <lightning:select name="Type" label="User Type" required="true" value="{!v.con.ViewBoard_User_Type__c}">
+                <ui:inputSelectOption text="None" value="None" />
+                <ui:inputSelectOption text="User" value="User" />
+                <ui:inputSelectOption text="Super Admin" value="LRP" />
+                <ui:inputSelectOption text="Application Owner" value="Application Owner"/>
+            </lightning:select>
+        </form>
+        <aura:set attribute="footer">
+                <lightning:button name="save" label="Save" onclick="{!c.handleSave}" variant="neutral"/>
+            <aura:if isTrue="{!not(v.fromFlow)}">
+            <lightning:button name="cancel" label="Cancel" onclick="{!c.cancel}" variant="Brand"/>
+            </aura:if>
+        </aura:set>
+    </lightning:card>
+	
+</aura:component>

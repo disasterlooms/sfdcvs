@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2B_My_Evals_Awaiting_Shipping</fullName>
+    <columns>NAME</columns>
+    <columns>Shipping_Contact_Name__c</columns>
+    <columns>Products__c</columns>
+    <columns>Evaluation_Owner__c</columns>
+    <columns>Product_Status__c</columns>
+    <columns>Eval_Process_Stage__c</columns>
+    <columns>Approval_Status__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Eval_Process_Stage__c</field>
+        <operation>equals</operation>
+        <value>Awaiting Shipping</value>
+    </filters>
+    <filters>
+        <field>Approval_Status__c</field>
+        <operation>equals</operation>
+        <value>Approved</value>
+    </filters>
+    <filters>
+        <field>Evaluations_Outstanding__c</field>
+        <operation>lessThan</operation>
+        <value>1</value>
+    </filters>
+    <label>2B - My Evals Awaiting Shipping</label>
+    <language>en_US</language>
+</ListView>

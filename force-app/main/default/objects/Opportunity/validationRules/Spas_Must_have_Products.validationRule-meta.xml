@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Spas_Must_have_Products</fullName>
+    <active>false</active>
+    <description>Ensures there are products before submitting to spa..inactive until add abilty for disty partners to add spas withouth products</description>
+    <errorConditionFormula>text(SPA_Request__c )!=null &amp;&amp;  SPA_Products__c = 0</errorConditionFormula>
+    <errorMessage>Must add products before submitting for a spa</errorMessage>
+</ValidationRule>

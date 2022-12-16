@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Notes__c</fullName>
+    <description>Sales Rep can enter notes to set up reminders and situation on the the opportunity</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Sales Rep can enter notes to set up reminders and situation on the the opportunity</inlineHelpText>
+    <label>Opportunity Notes</label>
+    <length>2000</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

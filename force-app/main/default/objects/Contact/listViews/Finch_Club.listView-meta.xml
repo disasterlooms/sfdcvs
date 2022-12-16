@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Finch_Club</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CONTACT.TITLE</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Finch_Club_Status__c</field>
+        <operation>equals</operation>
+        <value>Active,Active - Enrolled,Inactive</value>
+    </filters>
+    <label>A2 - My Finch Club</label>
+    <sharedTo>
+        <roleAndSubordinatesInternal>President</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,32 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:availableForFlowScreens" access="global" >
+	<aura:attribute type="string" name="street" />
+    <aura:attribute type="string" name="city" />
+    <aura:attribute type="string" name="state" />
+    <aura:attribute type="string" name="zip" />
+    <aura:attribute type="string" name="country" />
+    
+     
+    
+    <lightning:inputAddress
+            addressLabel="Address"
+            streetLabel="Street"
+            cityLabel="City"
+            countryLabel="Country"
+            provinceLabel="2 Digit State/Province"
+            postalCodeLabel="PostalCode"
+            street="{!v.street}"
+            city="{!v.city}"
+            country="{!v.country}"
+            province="{!v.state}"
+            postalCode="{!v.zip}"
+            required="true"
+            fieldLevelHelp="Help Text for inputAddress field"
+            showAddressLookup="true"
+        />
+    <lightning:card>
+                <aura:set attribute="actions">
+                    <lightning:button class="slds-m-top_small" onclick="{!c.flowNext}" label="Next" variant="brand"/>
+                </aura:set>
+            </lightning:card>
+	
+</aura:component>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>isParterTask__c</fullName>
+    <externalId>false</externalId>
+    <formula>not(isblank(Owner:User.ContactId))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>isParterTask</label>
+    <type>Checkbox</type>
+</CustomField>

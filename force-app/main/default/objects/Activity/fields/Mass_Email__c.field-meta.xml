@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mass_Email__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This is used in flows that produce mass emails to ensure that the campaign email flow is not triggered during mass emails. Otherwise SOQL Query limits will be exceeded causing an error.</description>
+    <externalId>false</externalId>
+    <label>Mass Email</label>
+    <type>Checkbox</type>
+</CustomField>

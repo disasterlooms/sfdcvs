@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>kennyt@psggo.com</contactEmail>
+    <iconUrl>https://www.precisionservicesgroup.com/img/logo.png</iconUrl>
+    <label>Precision Services Group</label>
+    <logoUrl>https://www.precisionservicesgroup.com/img/logo.png</logoUrl>
+    <samlConfig>
+        <acsUrl>https://www.precisionservicesgroup.com/simplesaml/www/module.php/saml/sp/saml2-acs.php/default-sp</acsUrl>
+        <encryptionType>AES_128</encryptionType>
+        <entityUrl>https://www.precisionservicesgroup.com/simplesaml/www/module.php/saml/sp/metadata.php/default-sp</entityUrl>
+        <samlIdpSLOBindingEnum>RedirectBinding</samlIdpSLOBindingEnum>
+        <samlNameIdFormat>EmailAddress</samlNameIdFormat>
+        <samlSigningAlgoType>SHA1</samlSigningAlgoType>
+        <samlSloUrl>https://www.precisionservicesgroup.com/simplesaml/www/module.php/saml/sp/saml2-logout.php/default-sp</samlSloUrl>
+        <samlSubjectType>Username</samlSubjectType>
+    </samlConfig>
+    <startUrl>https://www.precisionservicesgroup.com/viewsonic</startUrl>
+</ConnectedApp>

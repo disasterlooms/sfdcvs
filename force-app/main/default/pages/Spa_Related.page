@@ -1,0 +1,437 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" standardcontroller="Opportunity">
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+<apex:includeScript value="https://rawgithub.com/BorisMoore/jsrender/master/jsrender.min.js"/>
+<apex:stylesheet value="{!$Resource.tablesortcss}"/>
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Spa Search Page</title>
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+ <!-- bootstrap css in case we need to go to it -- <apex:stylesheet value="{!$Resource.bootstrapcss}"  /> -->
+ <apex:stylesheet value="{!$Resource.bootstrapcss}"  />
+ <style>
+ .viewsonic body, .viewsonic:not(html) {
+    font-size: 1rem;
+}
+</style>
+ </head>
+<apex:remoteObjects >
+  <apex:remoteObjectModel name="Opportunity" fields="Id,Name,LastModifiedDate,CreatedDate">
+  <apex:remoteObjectField name="Opportunity_Name_Link__c" jsShorthand="namelink"/>
+  <apex:remoteObjectField name="SPA_ID__c" jsShorthand="spaid"/>
+  <apex:remoteObjectField name="Project_or_Site_Information__c" jsShorthand="site"/>
+  <apex:remoteObjectField name="Resellers_and_Type__c" jsShorthand="resellers"/>
+  <apex:remoteObjectField name="Bid_Registered__c" jsShorthand="bid"/>
+  <apex:remoteObjectField name="End_User_Parent_Account__c" jsShorthand="parent"/>
+  
+  
+  
+  </apex:remoteObjectModel>
+
+</apex:remoteObjects>
+<apex:remoteObjects >
+    <apex:remoteObjectModel name="OpportunityLineItem" jsShorthand="oppline" fields="Id,Name,Quantity,UnitPrice,OpportunityId,CreatedDate">
+   <apex:remoteObjectField name="Approved_Price__c" jsShorthand="appprice"/>
+   <apex:remoteObjectField name="Product__c" jsShorthand="product"/>
+   <apex:remoteObjectField name="ProductCode" jsShorthand="pcode"/>
+    </apex:remoteObjectModel>
+</apex:remoteObjects>
+
+<body>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Spa Search</a></li>
+  <li role="presentation"><a href="/home/home.jsp">Home</a></li>
+  <li role="presentation"><a href="/006/o">Opportunities</a></li>
+  <li role="presentation"><a href="/001/o">Accounts</a></li>
+  <li role="presentation"><a href="/003/o">Contacts</a></li>
+  <li role="presentation"><a href="/a0y/o">Eval Requests</a></li>
+</ul>
+<div class="viewsonic">
+    <!-- CREATE NEW ACCOUNT FORM -->
+    <form class="slds-form--stacked" >
+
+      <!-- BOXED AREA -->
+      <fieldset class="slds-box slds-theme--default slds-container--small">
+
+        <legend id="newaccountform" class="slds-text-heading--medium slds-p-vertical--medium">Search by End User. Use any part of name. </legend>
+
+        <div class="slds-form-element">
+          <label class="slds-form-element__label" for="account-name">End User Name</label>
+          <div class="slds-form-element__control">
+            <input class="slds-input" type="text" placeholder="End User" id="searchtext" onkeypress="return onKeyup_TxtFieldcom(event);"/>
+          </div>
+        </div>
+       <div class="slds-form-element">
+          <label class="slds-form-element__label" for="account-name">Product Name</label>
+          <div class="slds-form-element__control">
+            <input class="slds-input" type="text" placeholder="Product Sku" id="product" onkeypress="return onKeyup_TxtFieldcom(event);"/>
+          </div>
+        </div>
+        <button class="slds-button slds-button--brand slds-m-top--medium" type="button" onClick="updateOutputDiv();">Search</button>
+     
+      </fieldset>
+      <!-- / BOXED AREA -->
+    </form>
+    
+    
+    <!-- Test pageblock table to see if this nest works -->
+
+
+
+
+ <!-- CREATE NEW ACCOUNT FORM -->
+
+<!-- PRIMARY CONTENT WRAPPER -->
+<div class="myapp">
+
+  <!-- ACCOUNT LIST TABLE -->
+  <div id="account-list" class="slds-p-vertical--medium"></div>
+  <!-- / ACCOUNT LIST TABLE -->
+
+</div>
+<!-- / PRIMARY CONTENT WRAPPER -->
+
+</div>
+<!-- JAVASCRIPT Test1-->
+
+
+
+<!-- JAVASCRIPT Test2-->
+<script>
+  
+  function updateOutputDiv() {
+      
+      var $j = jQuery.noConflict();
+      var opportunity = new SObjectModel.Opportunity();
+      var outputDiv = document.getElementById('account-list');
+      var spaname = $j('[id$=searchtext]').val();
+      
+    opportunity.retrieve(
+      {where: { stage: {ne: ''} , 
+      
+      Name: {like: '%'+spaname+'%'}  }, orderby: [{ SPA_Expiration_Date__c: 'DESC' }], limit: 50 },
+      function(error, records) {
+        if (error) {
+          alert(error.message);
+        } else {
+        
+              
+          // create a data table for parent records
+          var dataTable = document.createElement('table');
+          dataTable.className = 'slds-table slds-table--bordered slds-table--cell-buffer slds-no-row-hover';
+          dataTable.setAttribute('id','table_headers'); 
+
+          // add header row
+          var tableHeader = dataTable.createTHead();
+          var tableHeaderRow = tableHeader.insertRow();
+
+          var tableHeaderRowCell1 = tableHeaderRow.insertCell(0);
+          tableHeaderRowCell1.appendChild(document.createTextNode('SPA Name'));
+          tableHeaderRowCell1.setAttribute('scope', 'col');
+         
+
+          var tableHeaderRowCell2 = tableHeaderRow.insertCell(1);
+          tableHeaderRowCell2.appendChild(document.createTextNode('Project or Site')); 
+          tableHeaderRowCell2.setAttribute('scope', 'col');
+          tableHeaderRowCell2.setAttribute('class', 'slds-text-heading--label');
+          
+          var tableHeaderRowCell3 = tableHeaderRow.insertCell(2);
+          tableHeaderRowCell3.appendChild(document.createTextNode('Spa ID'));
+          tableHeaderRowCell3.setAttribute('scope', 'col');
+          tableHeaderRowCell3.setAttribute('class', 'slds-text-heading--label');
+          
+          var tableHeaderRowCell4 = tableHeaderRow.insertCell(3);
+          tableHeaderRowCell4.appendChild(document.createTextNode('Expiration Date'));
+          tableHeaderRowCell4.setAttribute('scope', 'col');
+          tableHeaderRowCell4.setAttribute('class', 'slds-text-heading--label');
+          
+        
+          
+          var tableHeaderRowCell5 = tableHeaderRow.insertCell(4);
+          tableHeaderRowCell5.appendChild(document.createTextNode('Spa Stage'));
+          tableHeaderRowCell5.setAttribute('scope', 'col');
+          tableHeaderRowCell5.setAttribute('class', 'slds-text-heading--label');
+          
+          var tableHeaderRowCell6 = tableHeaderRow.insertCell(5);
+          tableHeaderRowCell6.appendChild(document.createTextNode('Bid Registered'));
+          tableHeaderRowCell6.setAttribute('scope', 'col');
+          tableHeaderRowCell6.setAttribute('class', 'slds-text-heading--label');
+          
+          var tableHeaderRowCell7 = tableHeaderRow.insertCell(6);
+          tableHeaderRowCell7.appendChild(document.createTextNode('Resellers'));
+          tableHeaderRowCell7.setAttribute('scope', 'col');
+          tableHeaderRowCell7.setAttribute('class', 'slds-text-heading--label');
+
+
+          
+
+          // build table body
+          var tableBody = dataTable.appendChild(document.createElement('tbody'))
+          var dataRow, dataRowCell1, dataRowCell2, recordName, recordId;
+          records.forEach(function(record) {
+            
+            
+            
+            // 2nd datatable insert kept in case still want the code
+            dataRow = tableBody.insertRow();
+            
+            // add nested table
+            child = tableBody.appendChild(document.createElement('table'));
+            child.setAttribute('style', 'margin:right;');
+            child.setAttribute('style', 'display:none;'); 
+            
+           
+
+
+            // add element so can convert to a hypelink
+            
+            //Get Id from each data row and use to query child product records send variables to productsearch function
+            oppid = record.get('Id');
+            
+            
+            dataRowCell1 = dataRow.insertCell(0);
+            recordId = document.createTextNode('+    '); 
+            recordId1 = document.createTextNode(record.get('Name'));            
+           
+            //document.getElementById(oppid).innerHTML = "Some text to enter";
+            
+            text = dataRowCell1.appendChild(document.createElement('a'));
+            
+            text.setAttribute('target', "_blank");
+            text.appendChild(recordId);
+            text.setAttribute('id', "test");
+            text.setAttribute('style', 'padding-right:10px;');
+            
+            text1 = dataRowCell1.appendChild(document.createElement('a'));
+            text1.setAttribute('href', "/"+oppid);
+            text1.appendChild(recordId1);
+            
+            
+            productsearch(oppid, child, text,dataRowCell1,dataRow);
+            
+            dataRowCell2 = dataRow.insertCell(1);
+            recordId = document.createTextNode(record.get('site'));
+            siteinfo = record.get('site');
+            
+            if(siteinfo == undefined){
+            console.log('=='+siteinfo);
+            
+            }else{
+            console.log('=='+siteinfo);
+            dataRowCell2.appendChild(recordId); 
+            }
+            
+            
+            
+            dataRowCell3 = dataRow.insertCell(2);
+            recordId = document.createTextNode(record.get('spaid'));
+            dataRowCell3.appendChild(recordId);
+            
+            
+            dataRowCell4 = dataRow.insertCell(3);
+            recordId = document.createTextNode(record.get('expire'));
+            dataRowCell4.appendChild(recordId);
+            
+            dataRowCell5 = dataRow.insertCell(4);
+            recordId = document.createTextNode(record.get('stage'));
+            dataRowCell5.appendChild(recordId);
+            
+            dataRowCell6 = dataRow.insertCell(5);
+            recordId = document.createTextNode(record.get('bid'));
+            dataRowCell6.appendChild(recordId);
+            
+            dataRowCell7 = dataRow.insertCell(6);
+            recordId = document.createTextNode(record.get('resellers'));
+            siteinfo = record.get('resellers');
+            
+            if(siteinfo == undefined){
+            
+            
+            }else{
+            
+            dataRowCell7.appendChild(recordId);
+            }
+            
+            
+            
+            
+            
+            
+          });
+           
+
+          if (outputDiv.firstChild) {
+            // replace table if it already exists
+            
+            outputDiv.replaceChild(dataTable, outputDiv.firstChild);
+            
+            
+            
+            
+          } else {
+            outputDiv.appendChild(dataTable);
+            
+            
+          }
+          
+        }
+      }
+    );
+  }
+
+ 
+  function productsearch(oppid, child,text,dataRowCell1,dataRow) {
+       //Nested Table TBody
+       
+       child.setAttribute('id','p'+oppid);
+       
+       var tableBodychild = child.appendChild(document.createElement('tbody'))
+         //console.log(oppid);   
+       // Set no conflict
+       var $j = jQuery.noConflict();
+        
+        //query opportunity products
+        var data1 = new SObjectModel.oppline();
+            var product = $j('[id$=product]').val();
+            //console.log(product);
+            data1.retrieve({
+                where: {
+                   OpportunityId: {
+                        eq: oppid
+                    } , ProductCode: {
+                        like: '%'+product+'%'
+                    }   
+
+                }, 
+                limit: 25
+            }, function(err, result) {
+                //if failure
+                if (err) {
+                    alert(err.message);
+                } else {                    
+                    
+                    
+                    //console.log(result);     
+                    var products = extractObjects(result);
+                                        
+                    
+                    
+                    result.forEach(function(record) {
+                    
+                    // create data row for each record
+                    dataRowchild = tableBodychild.insertRow();
+                    
+                    //insert text results into cells on each row with records
+                    
+                    
+                    
+                    dataRowCell0 = dataRowchild.insertCell(0);
+                    recordId = document.createTextNode('');
+                    dataRowCell0.appendChild(recordId);
+                    dataRowCell0.setAttribute('style', 'width:300px;');
+                    
+                    
+                    
+                    dataRowCell1 = dataRowchild.insertCell(1);
+                    recordId = document.createTextNode(record.get('Product__c'));
+                    dataRowCell1.appendChild(recordId);
+                    dataRowCell1.setAttribute('style', 'width:300px;');
+                    
+                    dataRowCell2 = dataRowchild.insertCell(2);
+                    recordId = document.createTextNode(record.get('Quantity'));
+                    dataRowCell2.appendChild(recordId);
+                    dataRowCell2.setAttribute('style', 'width:300px;');
+                    
+                    dataRowCell3 = dataRowchild.insertCell(3);                    
+                    recordId  = document.createTextNode('$'+record.get('Approved_Price__c'));
+                    approvedprice  = record.get('Approved_Price__c');
+                    
+                    
+                    if(approvedprice == undefined){
+             
+                    //console.log('++'+approvedprice);
+                    //dataRowCell3.appendChild();
+                    }else{
+                    //console.log('!!'+approvedprice);
+                    dataRowCell3.appendChild(recordId);
+                    }
+
+                    dataRowCell3.setAttribute('style', 'width:300px;');
+                    
+                    console.log(product);
+                    
+                    text.onclick = function() {
+                    $j(document.getElementById('p'+oppid)).toggle();
+                     };
+                    if(product == ''){
+                    //console.log('there are no product filters');
+                    }else{
+                    //child.setAttribute('style', '');
+                    
+                    child.setAttribute('style', '');
+                  }
+                    });
+                    
+                    
+                }
+            });
+            
+            
+            }
+            function extractObjects(result) {
+                    var objects = [];
+            
+                    for (var i = 0; i < result.length; i++) {
+                        objects.push(result[i]._props);
+                    }
+                    return objects;
+                }
+                
+               function replaceundefined(){
+               //alert('test');
+                
+
+               }
+
+  updateOutputDiv();
+  
+</script>
+<script type="text/javascript">          
+    function onKeyup_TxtFieldcom(e){               
+        if(window.event){                    
+            key = window.event.keyCode;     //IE               
+        } 
+        else{                    
+            key = e.which;     //firefox               
+        }               
+        if(key == 13) {                    
+            updateOutputDiv();
+            //href();                     
+            return false;               
+        } else{                    
+            return true;               
+        }          
+    } 
+    </script> 
+ 
+
+ <!-- JS Render Template -->
+    <script id="contactTableRowTmpl" type="text/x-jsrender">
+        <tr class="slds-truncate"" onmouseover="if (window.hiOn){hiOn(this);} " onmouseout="if (window.hiOff){hiOff(this);} " onblur="if (window.hiOff){hiOff(this);}" onfocus="if (window.hiOn){hiOn(this);}">
+            <td class="slds-truncate">{{>''}}</td>
+            
+            <td class="slds-truncate">{{>Product__c}}</td>
+            <td class="slds-truncate">{{>Quantity}}</td>
+            <td class="slds-truncate">{{>Approved_Price__c}}</td>
+            
+            
+        </tr>
+    </script>  
+<!-- / JAVASCRIPT -->
+
+</body>
+</html>
+</apex:page>

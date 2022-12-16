@@ -1,0 +1,136 @@
+<apex:component >
+<apex:stylesheet value="{!URLFOR($Resource.vssitefrontend)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.helptraincss)}"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+
+
+
+
+<div class="cards-component" style="background-color: #ffffff;">
+<table>
+<tr >
+<td>
+        <div class="container" style="background-color: #ffffff;">
+            <!-- ngRepeat: cards in cardsScope.cards -->
+            <div class="cards-row hidden-sm hidden-xs ng-scope" style="border:1px;border-style: solid;height:225px;">
+                
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-getstarted.png&quot;); ">
+                    <div class="cover">
+                                    <span class="nav-image"><svg class="drawsvg-initialized" height="50px" version="1.1" viewbox="0 0 158 87" width="100px" xmlns="http://www.w3.org/2000/svg">
+    <defs></defs>
+    <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
+        <g stroke="#212121" transform="translate(-1191.000000, -100.000000)">
+            <g transform="translate(1164.000000, 101.000000)">
+                <path d="M28,85 L183.833333,85 L183.833333,0 L28,0 L28,85 Z M32.8409835,4.49559067 L178.762057,4.49559067 L178.762057,81.1454437 L32.8409835,81.1454437 L32.8409835,4.49559067 Z" style="stroke-dasharray: 926.808, 926.808; stroke-dashoffset: 0;"></path>
+            </g>
+        </g>
+    </g></svg></span>
+                            <h4 class="ng-binding" style="color:black;">IFP Product Solution</h4>
+                            <p class="ng-binding" style="color:black;">Touch Diplays 55 inches and Above | All Accessories | Warranty Options</p>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "/0061200000VqoGbAAJ/e?clone=1&retURL=/apex/OpportunitySpaPromotions?sfdc.tabName=01r12000000sfn9&common.udd.actions.ActionsUtilORIG_URI=0061200000VqoGbAAJ&cloneli=1"
+                        target="_self">Create IFP Spa</a>
+                    </div>
+                </div>
+               </div>
+              </div>
+</td>
+<td>
+        <div class="container" style="background-color: #ffffff;">
+            
+            <div class="cards-row hidden-sm hidden-xs ng-scope" style="border:1px;border-style: solid;">
+                
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-getstarted.png&quot;);  height: 160px;">
+                    <div class="cover">
+                                    <span class="nav-image"><svg class="drawsvg-initialized" height="50px" version="1.1" viewbox="0 0 158 87" width="100px" xmlns="http://www.w3.org/2000/svg">
+    <defs></defs>
+    <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
+        <g stroke="#212121" transform="translate(-1191.000000, -100.000000)">
+            <g transform="translate(1164.000000, 101.000000)">
+                <path d="M28,85 L183.833333,85 L183.833333,0 L28,0 L28,85 Z M32.8409835,4.49559067 L178.762057,4.49559067 L178.762057,81.1454437 L32.8409835,81.1454437 L32.8409835,4.49559067 Z" style="stroke-dasharray: 926.808, 926.808; stroke-dashoffset: 0;"></path>
+            </g>
+        </g>
+    </g></svg></span>
+                            <h4 class="ng-binding" style="color:black;">Pro Series Projectors </h4>
+                            <p class="ng-binding" style="color:black;">PJDxxx1 | PJDxxx2 | PJDabcd || All Accessories | Warranty Options</p>
+                        </div><!-- ngIf: card.contentLink -->
+                        
+                        
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "/0061200000VqoGbAAJ/e?clone=1&retURL=/apex/OpportunitySpaPromotions?sfdc.tabName=01r12000000sfn9&common.udd.actions.ActionsUtilORIG_URI=0061200000VqoGbAAJ&cloneli=1"
+                        target="_self">Create Pro Series Projector Spa</a>
+                    </div>
+                </div>
+               </div>
+              </div>
+                    
+                 
+                   
+                    
+                    </td>
+                    <td>
+                    <div class="container" style="background-color: #ffffff;">
+            
+            <div class="cards-row hidden-sm hidden-xs ng-scope" style="border:1px;border-style: solid;">
+                
+                <div class="info-card ng-scope">
+                    <div class="wrapper" style=
+                    "background-image: url(&quot;/resource/1464404285000/HelpStaticResource/assets/images/bg-helptraining-card-getstarted.png&quot;);  height: 160px;">
+                    <div class="cover">
+                                    <span class="nav-image"><svg class="drawsvg-initialized" height="50px" version="1.1" viewbox="0 0 158 87" width="100px" xmlns="http://www.w3.org/2000/svg">
+    <defs></defs>
+    <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
+        <g stroke="#212121" transform="translate(-1191.000000, -100.000000)">
+            <g transform="translate(1164.000000, 101.000000)">
+                <path d="M28,85 L183.833333,85 L183.833333,0 L28,0 L28,85 Z M32.8409835,4.49559067 L178.762057,4.49559067 L178.762057,81.1454437 L32.8409835,81.1454437 L32.8409835,4.49559067 Z" style="stroke-dasharray: 926.808, 926.808; stroke-dashoffset: 0;"></path>
+            </g>
+        </g>
+    </g></svg></span>
+                            <h4 class="ng-binding" style="color:black;">Projectors </h4>
+                            <p class="ng-binding" style="color:black;">PJDxxx1 | PJDxxx2 | PJDabcd || All Accessories | Warranty Options</p>
+                        </div><!-- ngIf: card.contentLink -->
+                        
+                        
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="info-card-footer">
+                        <a class="ng-binding" href=
+                        "/0061200000VqoGbAAJ/e?clone=1&retURL=/apex/OpportunitySpaPromotions?sfdc.tabName=01r12000000sfn9&common.udd.actions.ActionsUtilORIG_URI=0061200000VqoGbAAJ&cloneli=1"
+                        target="_self">Create Projector Spa</a>
+                    </div>
+                </div>
+               </div>
+              </div>
+                    
+                    
+                    </td>
+                    
+                    
+                    
+                    
+                    
+                    </tr>
+                     </table>
+                     </div>
+
+</apex:component>

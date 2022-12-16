@@ -1,0 +1,15 @@
+<apex:page standardController="Contact" tabStyle="contact" recordSetVar="Con">
+    <!-- Add below each field you reference in your Flow -->   
+    <apex:repeat value="{!Con}" var="row" rendered="false">
+     {!row.Id}
+     {!row.UserID__c}
+      
+        
+        
+    </apex:repeat>
+    <!-- Runs your Flow -->   
+    <flow:interview name="AssignContactOwnersCorrectly"
+          finishLocation="{!URLFOR($Action.Contact.Tab, $ObjectType.Contact)}">
+        <apex:param name="ColContacts" value="{!Selected}"/>
+    </flow:interview>
+</apex:page>

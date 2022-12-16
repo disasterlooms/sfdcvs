@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Multiple_Product_Requests</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Add Multiple Eval Units</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>/apex/EvalDetails?CF00NA000000AKSaY={!Eval_Request__c.Name}&amp;CF00NA000000AKSaY_lkid={!Eval_Request__c.Id}&amp;retURL=2F{!Eval_Request__c.Id}</url>
+</WebLink>

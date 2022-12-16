@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Best_Time_to_Call__c</fullName>
+    <externalId>false</externalId>
+    <label>Best Time to Call</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>8:00AM</fullName>
+                <default>false</default>
+                <label>8:00AM</label>
+            </value>
+            <value>
+                <fullName>10:00AM</fullName>
+                <default>false</default>
+                <label>10:00AM</label>
+            </value>
+            <value>
+                <fullName>12:00PM</fullName>
+                <default>false</default>
+                <label>12:00PM</label>
+            </value>
+            <value>
+                <fullName>2:00PM</fullName>
+                <default>false</default>
+                <label>2:00PM</label>
+            </value>
+            <value>
+                <fullName>4:00PM</fullName>
+                <default>false</default>
+                <label>4:00PM</label>
+            </value>
+            <value>
+                <fullName>6:00PM</fullName>
+                <default>false</default>
+                <label>6:00PM</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

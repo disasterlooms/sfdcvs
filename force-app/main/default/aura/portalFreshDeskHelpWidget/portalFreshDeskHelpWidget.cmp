@@ -1,0 +1,16 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes" access="global" >
+   <!-- <aura:handler name="init" value="{!this}" action="{!c.myAction}" />-->
+    <aura:attribute name="message" type="String" default="test message"/>
+    <aura:attribute name="frameHeight" type="String" default="700"/>
+    <aura:attribute name="ShowIframe" type="Boolean" default="false"/>
+    
+    <aura:attribute name="vfHost" type="String"
+                    default="viewsonic--c.visualforce.com"/>
+    
+    
+    <aura:if isTrue="{!v.ShowIframe}">
+        <iframe src="{!'https://viewsonic--c.visualforce.com/apex/portalFreshDeskHelp'}" width="100%" height="{!v.frameHeight+'px;'}" frameBorder="0"
+                aura:id="vfFrame"/>
+    </aura:if>
+   <lightning:button variant="brand" label="Help Please!" title="Base action" onclick="{! c.handleClick }"/>
+</aura:component>

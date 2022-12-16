@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Reseller_VIP__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The primary reseller, originally for a VIP Express Exchange Acount but can be for any primary reseller
+
+Do not give access to partner portal users because it can inadverntly allow Resellers to see who an End User is buying from.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Most likely reseller. If multiple, pick the most likely one.</inlineHelpText>
+    <label>Primary Reseller</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Accounts</relationshipLabel>
+    <relationshipName>Accounts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

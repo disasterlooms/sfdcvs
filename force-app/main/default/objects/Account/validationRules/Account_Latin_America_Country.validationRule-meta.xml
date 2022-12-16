@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Latin_America_Country</fullName>
+    <active>false</active>
+    <description>Latin America must add a billing country on creation. Since edits are done from opportunities do not want opportunity errors to be made due to account validation failures on legacy accounts.</description>
+    <errorConditionFormula>$Profile.Name =&apos;Sales - Latin America&apos; &amp;&amp; isblank(BillingCountry) &amp;&amp; isnew()&amp;&amp;  $Organization.Id = &apos;00D780000004d2r&apos;</errorConditionFormula>
+    <errorMessage>Debe ingresar un país de facturación</errorMessage>
+</ValidationRule>

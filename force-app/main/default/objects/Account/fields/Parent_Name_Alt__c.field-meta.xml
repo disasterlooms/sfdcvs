@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Name_Alt__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(not(isblank(Parent.ParentId)), Parent.Parent.Name, 
+if(not(isblank(ParentId)),Parent.Name, 
+Name))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Parent Name Alt</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

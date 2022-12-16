@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>No SPIFF Access</audienceName>
+    <container>VS Partner Programs Portal</container>
+    <criteria>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <entityField>Contact.$Contact.Portal_Status__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>Onboarded and Verified</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>2</criteriaNumber>
+            <criterionValue>
+                <entityField>Contact.Account.$Account.Spiff_Type__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>Corporate</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>3</criteriaNumber>
+            <criterionValue>
+                <profile>sfdc admin</profile>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>Profile</type>
+        </criterion>
+        <criterion>
+            <criteriaNumber>4</criteriaNumber>
+            <criterionValue>
+                <entityField>Contact.$Contact.Portal_Corporate_Spiff_Admin__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>false</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+    </criteria>
+    <formula>(1 AND 2 AND 4) OR 3</formula>
+    <formulaFilterType>CustomLogicMatches</formulaFilterType>
+    <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>dd54c97c-9528-4681-bfc0-607011dcc370</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Spiff_Request_List_Spiff_Request_List_Page</targetValue>
+        </target>
+        <target>
+            <groupName>f30b3dd7-cfef-447a-aee4-d8e41a034c16$#$03bda149-af61-4bfe-8101-26c0c3aa0e99</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>authenticatedUsers_portalHomePageIcons_1_Component</targetValue>
+        </target>
+        <target>
+            <groupName>0dd26204-a9e1-427f-8446-e83d49fad56b$#$55bacd6f-ce9c-4fde-b4b6-4c6bc07dae31</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>VSA_Logged_In_CAN_portalHomePageIcons_1_Component</targetValue>
+        </target>
+    </targets>
+</Audience>

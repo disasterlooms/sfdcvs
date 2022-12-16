@@ -1,0 +1,8 @@
+<design:component>
+	<design:attribute description="Sale Rep Image" name="FullPhotoUrl"/>
+    <design:attribute description="Sales Rep Name" name="Name"/>
+    <design:attribute name="buttonLabel"/>
+    <design:attribute description="Contact is of user" name="conId"/>
+    <design:attribute description="account id of user" name="acctId"/>
+    <design:attribute description="sales rep assigned of user" name="repId"/>
+</design:component>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Will_this_be_for_a_Trade_Show__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>If this eval is being used for a trade show, then check this box. You will need to add all trade show information.</inlineHelpText>
+    <label>Will this be for a Trade Show?</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No. Not for trade show</fullName>
+                <default>true</default>
+                <label>No. Not for trade show</label>
+            </value>
+            <value>
+                <fullName>Yes. Trade Show</fullName>
+                <default>false</default>
+                <label>Yes. Trade Show</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

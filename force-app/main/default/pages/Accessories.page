@@ -1,0 +1,36 @@
+<apex:page standardController="Product2" extensions="ProdAccExtension" id="thePage" sidebar="true"> 
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<apex:includeScript value="{!$Resource.UtilJS}" />
+<apex:includeScript value="{!$Resource.Jquery}"/>
+
+    <apex:form id="theForm">
+        <center>
+            <apex:panelGrid columns="8" id="buttons">
+                <apex:commandButton reRender="error,theForm,buttons" onclick="alert('This only saves the list, not the entire page');" action="{!updateaccs}" value="Update Accessories" oncomplete="top.frames.location.href = top.frames.location.href;"/>
+              </apex:panelGrid>
+           </center>
+        <apex:pageBlock id="thePageBlock" mode="edit"> 
+            <apex:pageBlockTable value="{!accs}" var="acc" id="thePageBlockTable"> 
+                <apex:column width="30px">
+                    <apex:outputfield value="{!acc.Main_Product__c}" 
+                        id="main" />  
+                        <apex:facet name="header">Main Product</apex:facet>
+                </apex:column>
+                <apex:column width="60px">
+                    <apex:outputfield value="{!acc.Accessory_Product__c}" 
+                        id="acc" />  
+                        <apex:facet name="header">Accessory</apex:facet>
+                </apex:column>
+                <apex:column width="60px">
+                    <apex:outputfield value="{!acc.AutoAdd__c}" 
+                        id="autoadd" />  
+                        <apex:facet name="header">Auto Add</apex:facet>
+                </apex:column>
+                
+                <apex:inlineEditSupport showOnEdit="saveButton,cancelButton" event="onclick" hideOnEdit="editButton" /> 
+            </apex:pageBlockTable> 
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

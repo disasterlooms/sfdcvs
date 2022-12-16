@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_Conga_Parameters__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;&amp;id=&quot;+ Id +
+&quot;&amp;queryid=a0o1H00000Cf76S&quot; +
+&quot;&amp;defaultpdf=1&quot; +
+&quot;&amp;EmailReplyToID=&quot;+Eval_Request__r.OwnerId +
+&quot;&amp;emailtemplateid=a0n1H000009p3AD&quot; +
+&quot;&amp;templateid=a0p1H000005MlqW&quot; +
+&quot;&amp;emailadditionalto=&quot; +  Billing_Contact_Email__c  +&apos;,&apos;+ EvalOwnerEmail__c + &apos;,Lori.Smith@viewsonic.com&apos; +
+&quot;&amp;qmode=SendEmail&quot; +
+&quot;&amp;ofn=Evaluation Purchase Quote for RMA &quot; + RMA__c + &quot; &quot; + Name +
+&quot;&amp;sc0=1&quot; +
+&quot;&amp;sc1=Attachments&quot; +
+&quot;&amp;AC0=1&quot; +
+&quot;&amp;AC1=&quot; + &quot;Quote Generated And Sent&quot; +
+&quot;&amp;LGParentId=&quot; + Id +
+&quot;&amp;AttachmentParentID=&quot; + Id</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Quote Conga Parameters</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

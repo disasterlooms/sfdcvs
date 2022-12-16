@@ -1,0 +1,18 @@
+<template>
+  <div>
+    <a onclick={navigateToFiles}>Navigate To Files</a>
+  </div>
+
+  <lightning-card title="File Preview and Download">
+        <div class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12">
+            <a href='/sfc/servlet.shepherd/document/download/0695c00000BqjjdAAB?operationContext=S1' download>Download</a>
+        </div>
+        <div class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12">
+            <lightning-button label="Preview" variant="brand" >
+            </lightning-button>
+        </div>
+    </lightning-card>
+    <a href='/sfc/servlet.shepherd/document/download/0695c00000BqjjdAAB' download>Download</a>
+
+
+</template>

@@ -1,0 +1,6 @@
+<apex:page standardController="Quote">
+<apex:detail relatedListHover="false" inlineEdit="true" relatedList="true" subject="{!Quote.Id}" />
+
+<apex:detail subject="{!Quote.Opportunity.Id}" relatedList="true" title="true" inlineEdit="true" relatedListHover="true" rendered="{!$User.External_Partner__c = false }" /> 
+ 
+</apex:page>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ApexTest__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>used for test to run without hitting query limits on all the updates. This will be less needed as classes and triggers are updated with better efficiency</description>
+    <externalId>false</externalId>
+    <label>Apex Test</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

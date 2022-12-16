@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>VSA Logged In</audienceName>
+    <container>VS Partner Programs Portal</container>
+    <criteria>
+        <criterion>
+            <criteriaNumber>1</criteriaNumber>
+            <criterionValue>
+                <entityField>$User.Region__c</entityField>
+                <entityType>User</entityType>
+                <fieldValue>VSA</fieldValue>
+            </criterionValue>
+            <operator>Equal</operator>
+            <type>FieldBased</type>
+        </criterion>
+    </criteria>
+    <formulaFilterType>AllCriteriaMatch</formulaFilterType>
+    <isDefaultAudience>false</isDefaultAudience>
+    <targets>
+        <target>
+            <groupName>93851bff-f831-444b-ac56-0e0c3c7fb27a$#$756b8192-4de4-4568-9046-a4d70a2f205f</groupName>
+            <priority>1</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Contact_Support_portalMysalesRep_Component</targetValue>
+        </target>
+        <target>
+            <groupName>c1c819a6-93cc-4a3e-b7e0-0af83baeb23d$#$b5c46bba-c921-45c8-8dcd-715433c9d8d4</groupName>
+            <priority>4</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>Home_Multilevel_Navigation_Menu_1_Component_Properties</targetValue>
+        </target>
+        <target>
+            <groupName>de866c12-9319-4aee-b481-0c47ebb7da53$#$1428ec22-541b-4e21-85f6-296f05cf151f</groupName>
+            <priority>4</priority>
+            <targetType>ExperienceVariation</targetType>
+            <targetValue>cPage_Multilevel_Navigation_Menu_3_Component_Properties</targetValue>
+        </target>
+    </targets>
+</Audience>

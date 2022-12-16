@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MailingState2Digits</fullName>
+    <active>false</active>
+    <errorConditionFormula>isnew()&amp;&amp;len(MailingState)&gt;2  &amp;&amp;  $Organization.Id = &apos;00D780000004d2r&apos; &amp;&amp; text(Account.Account_Type__c) != &apos;VAR - Latin America&apos; &amp;&amp; (Account.BillingCountry == &apos;United States&apos; || Account.BillingCountry == &apos;Canada&apos;)</errorConditionFormula>
+    <errorMessage>States Must be 2 Digit codes. Latin America may use country codes if there are no states in the respective country</errorMessage>
+</ValidationRule>

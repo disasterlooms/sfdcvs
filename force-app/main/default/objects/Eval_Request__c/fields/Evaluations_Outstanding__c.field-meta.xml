@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Evaluations_Outstanding__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Dollar Amount of products that are not returned, whether or not they are past due. This is to keep an eye on total products going out for evaluation by sales rep and by account.</inlineHelpText>
+    <label>Evals Outstanding</label>
+    <summarizedField>Eval_Unit_Details__c.Evaluation_Price_Text__c</summarizedField>
+    <summaryFilterItems>
+        <field>Eval_Unit_Details__c.Status__c</field>
+        <operation>notEqual</operation>
+        <value>Product Returned, Purchased/Invoiced, Write-off</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Eval_Unit_Details__c.Eval_Request__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

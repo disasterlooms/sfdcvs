@@ -1,0 +1,107 @@
+<apex:page standardcontroller="Account">
+<!--
+<apex:messages />
+    <apex:sectionheader title="{!$ObjectType.Account.label} Edit" subtitle="{!IF(ISNULL(Account.Name), 'New Account',Account.Name)} " />
+    <apex:pageBlock title="Hello {!$User.FirstName}!  ">
+        <style>
+       h3{
+            font-size: 30px;
+        }
+        </style>
+           <p>Please keep an eye on duplicates. I added a feature that you do not have to enter the country if the territory is U.S. Canada, Mexico, or Chile. Also you can use the checkmark same as shipping if billing and shipping addresses are the same.</p>  
+           
+    </apex:pageBlock>
+    <apex:form >
+        <apex:pageblock mode="edit" title="{!$ObjectType.Account.label} Edit ">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!Save}"/>
+                <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+            </apex:pageblockbuttons>
+            <apex:outputpanel >
+                <apex:pageblocksection title="Account Information" showheader="true" columns="2">
+                    <apex:outputfield value="{!Account.OwnerId}"/>
+                    <apex:inputfield value="{!Account.Phone}" required="false"/>
+                    <apex:inputfield value="{!Account.Name}" required="true"/ >
+                    <apex:inputfield value="{!Account.Fax}" required="false"/>
+                    <apex:inputfield value="{!Account.Account_Type__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Do_Not_Call__c}" required="false"/>
+                    <apex:inputfield value="{!Account.HQ_Account_Check_if_HQ__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Do_Not_Email__c}" required="false"/>
+                    <apex:inputfield value="{!Account.ParentId}" required="false"/>
+                    <apex:inputfield value="{!Account.Website}" required="false"/>                        
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Address Information" showheader="true" columns="2">
+                                    <apex:inputfield value="{!Account.BillingStreet}" required="false" />
+                    <apex:inputfield value="{!Account.Same_As_Billing__c}" required="false" />
+                    <apex:inputfield value="{!Account.BillingCity}" required="false" />
+                    <apex:inputfield value="{!Account.ShippingStreet}" required="false" />
+                    <apex:inputfield value="{!Account.BillingState}" required="false" />
+                    <apex:inputfield value="{!Account.ShippingCity}" required="false" />
+                    <apex:inputfield value="{!Account.BillingPostalCode}" required="false"/>
+                    <apex:inputfield value="{!Account.ShippingState}" required="false" />
+                    <apex:inputfield value="{!Account.Territory__c}" required="{!$Profile.Name<>'Alternate Sales User'}" tabOrderHInt="6"/>
+                    <apex:inputfield value="{!Account.ShippingPostalCode}" required="false" tabOrderHInt="12"/>
+                    <apex:inputfield value="{!Account.Country_Billing__c}" required="false" tabOrderHInt="7"/>
+                    <apex:inputfield value="{!Account.ShippingCountry}" required="false" tabOrderHInt="13"/>
+                    
+                    
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Product Interest" showheader="true" columns="2">
+                    <apex:inputfield value="{!Account.All__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Commercial_Display__c}" required="false"/>
+                    <apex:inputfield value="{!Account.PC__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Desktop_Virtualization__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Projector__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Digital_Photo_Frames__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Monitors__c}" required="false"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Programs" showheader="true" columns="2">
+                    <apex:inputfield value="{!Account.Government__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Pro_Series_Authorized__c}" required="false"/>
+                    <apex:inputfield value="{!Account.ViewSchool__c}" required="false"/>
+                    <apex:inputfield value="{!Account.ProAV_Certified__c}" required="false"/>
+                    <apex:inputfield value="{!Account.DS_Certified__c}" required="false"/>
+                    <apex:inputfield value="{!Account.VDI_Certification__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Referrals__c}" required="false"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Additional Information" showheader="true" columns="2">
+                    <apex:inputfield value="{!Account.Product_Interest__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Ownership}" required="false"/>
+                    <apex:inputfield value="{!Account.Industry}" required="false"/>
+                    <apex:inputfield value="{!Account.Rating}" required="false"/>
+                    <apex:inputfield value="{!Account.Description}" required="false"/>
+                    <apex:inputfield value="{!Account.Company_Status__c}" required="false"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="GSA - Government Contract" showheader="true" columns="2">
+                    <apex:inputfield value="{!Account.GSA_Contract_Number__c}" required="false"/>
+                    <apex:inputfield value="{!Account.GSA_Contract_End_Date__c}" required="false"/>                    
+                </apex:pageblocksection>
+                <apex:pageblocksection title="System Information" showheader="true" columns="1">
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Account.BillingCountry}" required="false"/>
+                    <apex:inputfield value="{!Account.EC_Account_ID__c}" required="false"/>                    
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Re-Seller Certificate Information" showheader="true" columns="2">
+                    <apex:inputfield value="{!Account.Reseller_Certificate__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Account.Re_Seller_Cert_Status__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="End User Information" showheader="true" columns="2">
+                    <apex:inputfield value="{!Account.Sub_Category__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Number_of_Employees__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Sales_Purchases__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Number_of_Stores__c}" required="false"/>
+                    <apex:inputfield value="{!Account.Billing_Street__c}" required="false"/>
+                </apex:pageblocksection>
+            </apex:outputpanel>
+        </apex:pageblock>
+    </apex:form>
+    
+    <center><br/>
+        <i style="font-size:10px;color:#aaa;"> Created and Edited by your SFDC Adminstrator. If you want tab enhancements, let me know.</i>
+    </center><br/>
+    -->
+</apex:page>

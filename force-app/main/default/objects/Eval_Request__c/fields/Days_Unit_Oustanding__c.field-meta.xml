@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Days_Unit_Oustanding__c</fullName>
+    <description>How many days the unit has been out of Chino and not returned. This is not same as past due as this does not show and extensions.</description>
+    <externalId>false</externalId>
+    <formula>today()- datevalue(Latest_Ship_Date__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>How many days the unit has been out of Chino and not returned. This is not same as past due as this does not show and extensions.</inlineHelpText>
+    <label>Days Unit Oustanding</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

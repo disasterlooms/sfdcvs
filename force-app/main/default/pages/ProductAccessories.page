@@ -1,0 +1,24 @@
+<apex:page standardcontroller="Accessories__c" recordSetVar="acc" sidebar="false" showHeader="false">
+<!-- Add below each field you reference in your Flow -->   
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"/>
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<!-- Code for refresh button  commandButton value="Refresh" onclick="window.top.location='/{!left(right($CurrentPage.URL,len($CurrentPage.URL) - FIND('oppid',$CurrentPage.URL)-7),18)}'; return false" -->   
+    <apex:repeat value="{!acc}" var="row" rendered="false">
+     {!row.Id}
+     {!row.Main_Product__c}
+     {!row.Name}
+     {!row.Accessory_Product__c}
+            
+    </apex:repeat>
+      <style>
+
+</style> 
+    <!-- Runs your Flow -->   
+
+    <flow:interview name="Opportunity_Accessories_Add_to_Opportunity"
+          finishLocation="/{!id}">
+        <apex:param id="oppid" name="oppid" value="{!left(right($CurrentPage.URL,len($CurrentPage.URL) - FIND('oppid',$CurrentPage.URL)-7),18)}"/>
+        <apex:param name="ColAccessories" value="{!Selected}"/>
+    </flow:interview>
+
+</apex:page>

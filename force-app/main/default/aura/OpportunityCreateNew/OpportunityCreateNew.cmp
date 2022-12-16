@@ -1,0 +1,46 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionwithoutHeader" access="global" >
+    <aura:attribute name="recordId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <!--<aura:handler name="change" value="{!v.simpleRecord.Id}" action="{!c.setFields}"/>-->
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerspa" class="slds-hide" variant="brand" size="large"/>
+    </div>    
+    <!--get the name and other fields needed for spa using record data..not my favorite choice but better than a apex class..i think-->
+    <aura:attribute name="record" type="Object" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    
+    <force:recordData aura:id="record"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      mode="VIEW"/>
+    
+    <!-- Display the new contact form -->
+    <lightning:recordEditForm aura:id="SpaCreationForm" objectApiName="Opportunity" recordTypeId="012A0000000nzaY" onsuccess="{!c.saved}" onsubmit="{!c.submitted}">
+        <lightning:messages />
+        <lightning:inputField fieldName="End_User_Lookup_Account__c"/>
+        <lightning:inputField fieldName="Product_Sales_Price__c"/>
+        <lightning:inputField fieldName="End_User_Contact__c"/>
+        <lightning:inputField fieldName="Partner_Account_Search__c"/>
+        <lightning:inputField fieldName="ResellerContact__c"/>
+        <lightning:inputField fieldName="Opportunity_Notes__c"/>
+        <lightning:inputField fieldName="Project_or_Site_Information__c"/>
+        <lightning:inputField fieldName="Trade_Show_or_Marketing_Campaign__c"/>
+        <lightning:inputField fieldName="Channel__c"/>
+        <!--<lightning:inputField fieldName="Product_Name_Main__c"/>
+        <lightning:inputField fieldName="Product_Quantity__c"/>
+        <lightning:inputField fieldName="Product_Sales_Price__c"/>-->
+        <lightning:inputField fieldName="CloseDate"/>
+        <lightning:inputField fieldName="Type"/>
+        <lightning:inputField fieldName="StageName"/>
+        <lightning:inputField fieldName="Country__c"/>
+        
+        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="Save" label="Save" />
+    </lightning:recordEditForm>
+</aura:component>

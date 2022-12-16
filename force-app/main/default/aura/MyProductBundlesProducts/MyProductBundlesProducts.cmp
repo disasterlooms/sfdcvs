@@ -1,0 +1,30 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId" 
+                access="global" >
+    <aura:attribute name="pid" type="String"/>
+    <aura:attribute name="records" type="Object[]" description="the collection of records received from query"/>
+    <aura:attribute name="wherestmt" type="string" required="true" default="where name != null"/>
+    <aura:attribute name="parentid" type="String"/>
+    <aura:handler event="c:rowSelectedId" action="{!c.updatequery}" />
+        <c:ListofRecords title="Products by Package Select Package on Left to Filter" 
+                            showsearch="false"   
+                            objToQuery="Package__c" 
+                            wherestmt="{!v.wherestmt}"
+                            limitstmt="limit 25"
+                            orderstmnt="Order by Name asc"
+                            Columnfields="Product_Package__r.Name,Product__r.Name"
+                            Columnheaders="Name,Products"
+                            btnName=""
+                            records="{!v.records}"
+                            searchplaceholder="Search by bundle name - Partial ok. Press Enter to search"
+                            searchlabel="Bundle Name"
+                            searchfield="name"
+                            recordId="{!v.pid}"
+                            objToCreate="Package__c"
+                            objToCreateFields="Product_Package__r.Name,Product__r.Name"
+                            allowCheckbox="false"
+                            showButton="false"
+                            parentid="{!v.parentid}"
+                            addfields=",Product_Package__r.Name,Product__r.Name">
+            
+        </c:ListofRecords>
+</aura:component>

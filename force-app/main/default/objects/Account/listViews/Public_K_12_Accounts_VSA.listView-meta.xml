@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Public_K_12_Accounts_VSA</fullName>
+    <columns>Education_National_Rank__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>POS_CY__c</columns>
+    <columns>POS_PY__c</columns>
+    <columns>ACCOUNT.URL</columns>
+    <columns>Domain__c</columns>
+    <columns>District_Classroom_Count__c</columns>
+    <columns>Enroll_to_ViewBoard__c</columns>
+    <columns>OppCount__c</columns>
+    <columns>Primary_Contact__c</columns>
+    <columns>Primary_Reseller_VIP__c</columns>
+    <columns>Primary_Reseller_Contact__c</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE_CODE</columns>
+    <columns>County__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Account.VSA_Account_End_User</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.INDUSTRY</field>
+        <operation>equals</operation>
+        <value>Education</value>
+    </filters>
+    <filters>
+        <field>Education_Type__c</field>
+        <operation>equals</operation>
+        <value>,Public</value>
+    </filters>
+    <filters>
+        <field>VSRegion__c</field>
+        <operation>equals</operation>
+        <value>VSA</value>
+    </filters>
+    <label>Public K-12 Accounts</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>All_VSA</group>
+    </sharedTo>
+</ListView>

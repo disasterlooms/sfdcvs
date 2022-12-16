@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SendQuotes</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>SendQuotes</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID} 
+&amp;serverUrl={!API.Partner_Server_URL_290}
+&amp;_ds7=2
+&amp;id={!Eval_Quote__c.Id}
+&amp;QueryId=a0o1H00000Cf76S
+&amp;EmailTemplateId=a0n1H000009p3AD
+&amp;TemplateID=a0p1H000005MlqW
+&amp;DefaultPDF=1
+&amp;EmailToId={!$User.Contact_ID__c}
+&amp;EmailAdditionalTo={!Eval_Quote__c.SubmittedbyEmail__c}
+&amp;OFN=Evaluation+Purchase+Quote+for+RMA+{!Eval_Quote__c.RMA__c}+{!Eval_Quote__c.Name} 
+&amp;UF0=1
+&amp;SC1=Chatter
+&amp;SC0=1
+&amp;MFTS0=Eval_Quote_Sent_Out__c
+&amp;MFTSValue0=True</url>
+</WebLink>

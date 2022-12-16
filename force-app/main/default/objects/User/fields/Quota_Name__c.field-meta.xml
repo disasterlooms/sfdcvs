@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quota_Name__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(isblank(Quota_Name_Override__c ), FirstName&amp;&apos; &apos;&amp;LastName,Quota_Name_Override__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Quota Name</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

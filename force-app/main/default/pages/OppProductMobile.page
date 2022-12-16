@@ -1,0 +1,16 @@
+<apex:page docType="html-5.0" standardController="Opportunity">
+ <apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+    <div class="viewsonic">
+    <table border="0" >
+        <tr > 
+            <th>Product</th><th>Quantity</th>
+        </tr>
+        <apex:repeat var="p" value="{!Opportunity.OpportunityLineItems}">
+               <tr>   
+                    <td>{!p.ProductCode}</td>
+                    <td>{!p.Quantity}</td>
+               </tr>
+         </apex:repeat>  
+     </table>
+    </div>
+</apex:page>

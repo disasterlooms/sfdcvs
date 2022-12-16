@@ -1,0 +1,22 @@
+<apex:component controller="productAlphaSortComponentController" access="global">
+  <apex:attribute name="componentValue" description="Id of the SPA." type="String" required="required" assignTo="{!controllerValue}"/>
+    
+  <table border="0" id="myTable">
+    <tr> 
+      <th>ViewSonic SKU</th><th>Quantity</th><th>Max Quantity</th><th>Standard Price</th><th>Spa Price</th><th>Approval Date</th><th>Expiration Date</th><th>Description</th>
+    </tr>
+    <apex:repeat var="prod" value="{!lineItems}">
+       <tr align="right">
+          <td align="left">{!prod.Product2.Name}</td>
+          <td><apex:outputText value="{0, number, #,###}"><apex:param value="{! if(prod.Quote.Opportunity.Country__c="Canada",1, prod.Quantity)}" /></apex:outputText></td>
+          <td>{!prod.Max_Qty__c}</td>
+          <td><apex:outputText value="{0, number, currency}"><apex:param value="{!prod.ListPrice}" /></apex:outputText></td>
+          <td><apex:outputText value="{0, number, currency}"><apex:param value="{!prod.Approved_Price__c}" /></apex:outputText></td>
+          <td><apex:outputText value="{0, date, MM'/'dd'/'yy}"><apex:param value="{!prod.SPA_Approval_Date__c}" /></apex:outputText></td>
+          <td><apex:outputText value="{0, date, MM'/'dd'/'yy}"><apex:param value="{!prod.SPA_Expiration_Date__c}" /></apex:outputText></td>
+          <td align="left">{!prod.Product2.Description}</td>
+        </tr>
+    </apex:repeat> 
+  </table><br/>  
+    
+</apex:component>

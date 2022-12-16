@@ -1,0 +1,73 @@
+<apex:page controller="PosOppMatch" id="pos">
+<!--<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"/>
+    <apex:sectionHeader subtitle="POS Search" />
+  <apex:form id="posform">
+    <apex:pageBlock mode="edit" id="block">
+
+      <apex:pageBlockButtons location="both">-->
+     <!--  <apex:commandButton value="Refresh List" action="{!getsales}" rerender="block" status="Search"/> -->
+      <!-- <apex:commandButton value="Search" action="{!getsales}" rerender="block" status="status"/>
+       <apex:commandButton action="{!updatesales}" value="Save Records"/>
+       <input class="btn" type="button" value="Clear Filters" onclick="$('[id$=distributor]').val('');
+                                                                        $('[id$=reseller]').val('');
+                                                                        $('[id$=enduser]').val('');
+                                                                        $('[id$=product]').val('');
+                                                                        $('[id$=start]').val('');
+                                                                        $('[id$=end]').val('');"/>
+      </apex:pageBlockButtons>
+       <apex:pageBlockSection id="sect" >
+          <apex:outputLabel for="distributor">Distributor</apex:outputLabel>
+          <apex:inputText id="distributor" value="{!posdistributor}"/>
+          <apex:outputLabel for="reseller">Reseller</apex:outputLabel>
+          <apex:inputText id="reseller" value="{!posreseller}"/>
+          <apex:outputLabel for="enduser">End User</apex:outputLabel>
+          <apex:inputText id="enduser" value="{!posenduser}"/>
+          <apex:outputLabel for="product">Product Sku</apex:outputLabel>
+          <apex:inputText id="product" value="{!posprod}" />
+          <apex:outputLabel for="start">From Date:</apex:outputLabel>
+          <apex:inputText id="start" value="{!posstartdate}" onfocus="DatePicker.pickDate(false, 'pos:posform:block:sect:start', false);"/>
+          <apex:outputLabel for="end">To Date:</apex:outputLabel>
+          <apex:inputText id="end" value="{!posenddate}" onfocus="DatePicker.pickDate(false, 'pos:posform:block:sect:end', false);"/>
+        </apex:pageBlockSection><br/>
+
+      <apex:actionStatus id="status" startText="Searching... please wait..."/>
+ <apex:pageBlockSection title="Results" id="resultsBlock" columns="1">
+        <apex:pageBlockTable value="{!sales}" var="item" rendered="{!NOT(ISNULL(sales))}">
+        
+          <apex:column headerValue="Name" width="100">
+              <apex:outputLink value="/{!item.Id}">{!item.Name}</apex:outputLink>
+          </apex:column>
+            
+          <apex:column headerValue="Date" width="200">
+            <apex:OutputField value="{!item.CMRSales__InvoiceDate__c}"/>
+          </apex:column>
+            <apex:column headerValue="Distributor" width="200">
+            <apex:OutputField value="{!item.CMRSales__ReportingPartnerCompanyID__c}"/>
+          </apex:column>
+            <apex:column headerValue="Reseller" width="200">
+            <apex:OutputField value="{!item.CMRSales__ResellerCompanyID__c}"/>
+          </apex:column>
+            <apex:column headerValue="End User" width="200">
+            <apex:OutputField value="{!item.CMRSales__EndUserCompanyID__c}"/>
+          </apex:column>
+            <apex:column headerValue="Product" width="200">
+            <apex:OutputField value="{!item.ProductID__c}"/>
+          </apex:column>
+             <apex:column headerValue="Quantity" width="200">
+            <apex:OutputField value="{!item.CMRSales__Quantity__c}"/>
+          </apex:column>
+          <apex:column headerValue="Opportunity" width="200">
+            <apex:inputField value="{!item.CMRSales__Opportunity__c}"/>
+          </apex:column>
+           
+        </apex:pageBlockTable>
+        <apex:pageBlockTable value="{!sale2}" var="item2" style="display:none;">
+            <apex:column headerValue="Date" width="200">
+            <apex:inputfield value="{!item2.CMRSales__InvoiceDate__c}"/>
+          </apex:column>
+        </apex:pageBlockTable>
+      </apex:pageBlockSection>
+    </apex:pageBlock> 
+  </apex:form>
+  <apex:include pageName="PosOppsMatch"/>-->
+</apex:page>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldOverrides>
+        <field>Activity_Category__c</field>
+        <literalValue>Orange Category</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>ActivityDateTime</field>
+        <formula>CASE(
+MOD( today()- DATE(1900, 1, 7), 7),
+0, datetimevalue(today()) + 1 +(18/24), /*if Today is Sun,today+1=Monday */
+1, datetimevalue(today()) + 1 +(18/24), /*if Today  is Mon,today+1=Tuesday */
+2, datetimevalue(today()) + 1 +(18/24), /*if Today  is Tues,today+1=Wednesday */
+3, datetimevalue(today()) + 1 +(18/24), /*if Today is Wed,today+1=Thursday*/
+4, datetimevalue(today()) + 1 +(18/24), /*if Today is Thurs,today+1=Friday */
+5,datetimevalue(today()) + 4 +(18/24), /*if Today is Fri,today+4=Monday next week */
+6,datetimevalue(today()) + 3 +(18/24), /*if Today is Sat,today+3=Monday next week */
+datetimevalue(today()) )</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Description</field>
+        <formula>&quot;Eval # &quot;&amp;Eval_Request__c.Name&amp;&quot; RMA &quot;&amp; text( Eval_Request__c.RMA_From_Details__c )</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>DurationInMinutes</field>
+        <formula>15</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>EndDateTime</field>
+        <formula>now()+ (1/24)</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>OwnerId</field>
+        <formula>Eval_Request__c.Evaluation_Owner__r.UserID__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Subject</field>
+        <formula>&quot;Eval Due for Opportunity &quot;&amp; Eval_Request__c.Opportunity_Name__r.Name</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Type</field>
+        <literalValue>SFDC System Reminder</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>WhatId</field>
+        <formula>Eval_Request__c.Opportunity_Name__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>WhoId</field>
+        <formula>Eval_Request__c.Billing_Contact_Name__c</formula>
+    </fieldOverrides>
+    <label>Follow Up</label>
+    <optionsCreateFeedItem>true</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns/>
+        <quickActionLayoutColumns/>
+    </quickActionLayout>
+    <targetObject>Event</targetObject>
+    <targetParentField>What</targetParentField>
+    <type>Create</type>
+</QuickAction>

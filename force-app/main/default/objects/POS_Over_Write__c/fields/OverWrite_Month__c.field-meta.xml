@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OverWrite_Month__c</fullName>
+    <description>Put any day in the month that data will be ignored. For e.g. if May 2019 pick 05/01/2019 and the system will filter out data for that TP code for those dates that are not tagged as overwrite = &apos;monthly&apos;</description>
+    <externalId>false</externalId>
+    <label>OverWrite Month</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

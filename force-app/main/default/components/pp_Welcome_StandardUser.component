@@ -1,0 +1,9 @@
+<apex:component access="global">
+
+ViewSonic's Salesforce team is excited about you coming onboard and we want you to be aware 
+that we have a Portal that allows internal employees to communicate with our resellers and 
+distributors. If you want to learn more about how to commuicate with our partners and how
+this portal works, please reach out to the parnter program team to set up some time. 
+<br/><br/>
+ViewSonic Partner Program partners@viewsonic.com
+</apex:component>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pp_NoLogin__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>Partner Program , no login made yet. if true. Registration flow will make this true when creating user.</description>
+    <externalId>false</externalId>
+    <label>pp NoLogin</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

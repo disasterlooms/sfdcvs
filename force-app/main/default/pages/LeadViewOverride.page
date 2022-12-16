@@ -1,0 +1,68 @@
+<apex:page standardController="Lead" action="{!URLFOR($Action.Lead.View, Lead.Id)&'?nooverridde=1'}">
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<apex:includeScript value="{!URLFOR($Resource.Jquery, '/jquery-ui-1.11.4/jquery-ui.js')}"/>
+<apex:remoteObjects >
+<apex:remoteObjectModel name="Lead" fields="Name,Id,OwnerId">
+</apex:remoteObjectModel>
+</apex:remoteObjects>
+    <script>
+
+// Callback to handle DML Remote Objects calls
+function updateCallback(err){
+    if (err) { 
+        alert(err.message);
+        }else{
+        alert('Owner Updated');
+
+    } 
+}
+</script>
+{!$User.UITheme}
+theme
+<c:LoadSave />
+<apex:detail showChatter="true" subject="{!Lead.Id}" relatedList="true" title="true" inlineEdit="true" relatedListHover="true" /> 
+    <apex:outputPanel rendered="{!$User.Alias ='admin' || $User.Alias = 'BidDesk'}">
+        <c:ObjectSliderVFPage object="Lead" recordid="{!Lead.Id}"  layout="{!$Label.LeadLayout}" recordtype="{!Lead.RecordTypeId}"></c:ObjectSliderVFPage>
+    </apex:outputpanel>
+<apex:include pagename="UIInteractions"/>
+<apex:includeScript value="{!$Resource.spasearch_js}" />
+<style type="text/css">   
+
+    .headerSearchRightRoundedCorner #SpaSearchButton {
+    background: transparent url(/img/alohaSkin/unified_search_background_sprite.png) repeat-x scroll left -120px;
+    border: 0 none;
+    height: 24px;
+    margin: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: bold;
+    font-size: 90%;
+    font-family: Arial;
+    color: #1797c0;
+    cursor: pointer;
+    width: auto;
+    overflow: visible;
+    border-radius: 0;
+}
+.phHeaderCustomLogo .headerSearchRightRoundedCorner #SpaSearchButton {
+    background: transparent url(/img/alohaSkin/unified_search_background_sprite.png) repeat-x scroll left top;
+}
+
+.headerSearchRightRoundedCorner #phSearchButton{
+    padding-right: 8px; 
+}
+</style>
+<script>
+console.log('start');
+var ownerid = '{!Lead.OwnerId}';
+var ownerid = ownerid.substring(0,15);   
+var ownertype = ownerid.substring(0,3); 
+if({!Lead.Owner.IsActive} == false || ownerid =='00512000006GxZ2' || ownerid =='005A0000003ag5G' || ownertype  =='00G'){
+
+alert('Before logging the call, please update the ownerid for the proper Territory Manager. Thanks.');
+}
+
+</script>
+
+</apex:page>

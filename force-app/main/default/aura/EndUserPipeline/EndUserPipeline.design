@@ -1,0 +1,11 @@
+<design:component >
+    <design:attribute name="title" label="title" />
+    <design:attribute name="oppfields" label="opportunity fields to return" description="Name of the person you want to greet" />
+    <design:attribute name="prodfields" label="oppline item fields to return" />
+    <design:attribute name="lmt" label="Limit on query"/>
+    
+    <design:attribute name="wherestmnt" label="Query Where Statement..must start with and" description="do not use" />
+    <design:attribute name="addfields" label="add relationship fields...must start with comma" description="do not use"/>
+    <design:attribute name="orderstmnt" label="Query order statement" description="do not use" />
+    
+</design:component>

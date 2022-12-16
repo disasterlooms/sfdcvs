@@ -1,0 +1,10 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens"
+                controller="spiffPaymentToFinance"
+                access="global" >
+    <aura:attribute name="errMssg" type="Object"/>
+     <aura:handler name="init" value="{!this}" action="{!c.updateClaimsInfo}"/> 
+     <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="" variant="brand" size="large"/>
+    </div>
+    {!v.errMssg}   {!v.errMssg.message}
+</aura:component>

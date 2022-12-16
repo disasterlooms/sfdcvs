@@ -1,0 +1,121 @@
+<aura:component
+    implements="forceCommunity:themeLayout,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+    access="global">
+
+    <aura:attribute name="promotionalComponent" type="Aura.Component[]" required="false" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="showBtns" type="Boolean" default="true" />
+    <aura:attribute name="showBody" type="Boolean" default="true" />
+    <aura:attribute name="showVideo" type="Boolean" default="false" />
+    <aura:attribute name="showPromotion" type="Boolean" default="true" />
+
+    <aura:attribute name="showImage" type="Boolean" default="false" />
+    <aura:attribute name="imageURL" type="String" default="false" />
+    <aura:attribute name="document" type="String"
+        default="https://www.viewsonic.com/media/wysiwyg/Library/21ALL_CHN1351a_rev1_VAR_Recruitment_New-Members_Opt.pdf" />
+    <aura:attribute name="promotionDate" type="String" default="Submit your first SPIFF claim in the new Partner Portal by Oct. 31, 2021 and earn a cash bonus of up to $200. For more information on eligibility, 
+    click the link below." />
+    <aura:attribute name="promtionLinkText" type="String" default=" Learn more about the Claim Your Cash promotion." />
+    <aura:attribute name="videoURL" type="String"
+        default="https://www.youtube.com/embed/OU4MD5g0BrU?amp;showinfo=0&amp;modestbranding=1&amp;autoplay=0&amp;rel=0&amp;mute=0" />
+    <aura:attribute name="videotitle" type="String" default="Welcome message from " />
+    <aura:attribute name="videomessage" type="String" default="Jeff Volpe, President ViewSonic Americas" />
+    <aura:attribute name="introText" type="String" default="ViewSonic is a channel-first company with over 30 years
+    of success rooted in the relationships
+    we have cultivated with our partners. Today, we are more 
+    committed than ever to delivering performance, value and world
+    class support with one of the widest array of visual engagement solutions,
+    best-in-class 
+    service and programs to ensure that our partners thrive. As a partner,
+    you have access to the products, promotions and support needed to grow your business." />
+    <aura:attribute name="signupText" type="String" default="SIGN UP" />
+    <aura:attribute name="loginText" type="String" default="LOG IN" />
+    <aura:attribute name="IconHeaderText" type="String"
+        default="Sign up now for access to the following partner benefits:" />
+
+    <aura:attribute name="showProductDemos" type="Boolean" default="true" />
+    <aura:attribute name="showSpecialPricing" type="Boolean" default="true" />
+    <aura:attribute name="showResourceLibrary" type="Boolean" default="true" />
+    <aura:attribute name="showPromotions" type="Boolean" default="true" />
+    <aura:attribute name="showCustomizableMarketing" type="Boolean" default="true" />
+    <aura:attribute name="showSpiFFS" type="Boolean" default="true" />
+
+    <aura:attribute name="onlineDemos" type="String" default="Online Product Demos" />
+    <aura:attribute name="onlineDemosDescription" type="String"
+        default="A ViewSonic representative will showcase a product of your choice." />
+    <aura:attribute name="specialPricing" type="String" default="Special Pricing" />
+    <aura:attribute name="specialPricingDescription" type="String"
+        default="Discounted pricing for select opportunities." />
+    <aura:attribute name="resourceLibrary" type="String" default="Resources Library" />
+    <aura:attribute name="resourceLibraryDescription" type="String"
+        default="Access sell sheets, brochures, case studies, videos and more. " />
+    <aura:attribute name="promotions" type="String" default="Promotions" />
+    <aura:attribute name="promotionsDescription" type="String"
+        default="Find our latest sales incentives and end user promotions to help you sell. " />
+    <aura:attribute name="customizableMarketing" type="String" default="Customizable Marketing" />
+    <aura:attribute name="customizableMarketingDescription" type="String"
+        default="Customize marketing collateral with your logo and contact info." />
+    <aura:attribute name="spiffs" type="String" default="SPIFFs" />
+    <aura:attribute name="spiffsDescription" type="String"
+        default="Submit claims to make more money selling ViewSonic products." />
+
+    <aura:attribute name="profileMenu" type="Aura.Component[]" required="false" />
+    <aura:attribute name="navBar" type="Aura.Component[]" required="false" />
+    <aura:attribute name="newHeader" type="Aura.Component[]" required="false" />
+
+    <aura:attribute name="themeHeader" type="Aura.Component[]" required="false" />
+	 <aura:attribute name="languageSetting" type="Aura.Component[]" required="false" />
+    <aura:attribute name="headLeft" type="Aura.Component[]" required="false" />
+    <aura:attribute name="headRight" type="Aura.Component[]" required="false" />
+    <aura:attribute name="bodyBottom" type="Aura.Component[]" required="false" />
+    <aura:attribute name="vsafooter" type="Aura.Component[]" required="false" />
+
+    <div class="themeHeader">
+        <lightning:layout pullToBoundary="medium">
+            <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box">{!v.themeHeader} {!v.languageSetting}</div>
+            </lightning:layoutItem>
+            <lightning:layoutItem flexibility="auto" padding="horizontal-medium">
+                <div class="custom-box"></div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        
+       
+       
+        
+    </div>
+
+
+
+
+    <div class="pp-home">
+        <div class="pp-header">
+            <div class="pp-header-left">
+                {!v.headLeft}
+
+
+            </div>
+
+            <div class="pp-header-right">
+                
+                {!v.body}
+
+            </div>
+            <aura:if isTrue="{!v.showImage}">
+                <div class="pp-header-right">
+                    <div>
+                        <img class="pp-header-img"
+                            src="https://www.viewsonic.com/media/wysiwyg/Library/pp-Home_820x712.jpg"
+                            alt="Partner Program"></img>
+                    </div>
+                </div>
+            </aura:if>
+        </div>
+        {!v.bodyBottom}
+    </div>
+    <div>
+        
+        {!v.vsafooter}
+    </div>
+</aura:component>

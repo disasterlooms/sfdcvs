@@ -1,0 +1,19 @@
+<aura:component access="global" implements="flexipage:availableForAllPageTypes,force:appHostable">
+    <aura:attribute name="product" type="String"/>
+    <aura:attribute name="reseller" type="String" /> 
+    <aura:attribute name="enduser" type="String" />
+    <aura:attribute name="family" type="String" />
+    <aura:attribute name="industry" type="String" />
+    <aura:attribute name="load" type="boolean" default="false"/> 
+    <aura:attribute name="status" type="String[]" />
+    <aura:attribute name="quotes" type="quote[]" />
+    <aura:attribute name="opportunities" type="Opportunity[]" />
+    <!--<div style="text-align: center" >
+        <ui:button label="Search" press="c.search" />
+        <ui:button label="Clear Filters" press="c.clear" />
+    </div>-->
+    <c:OppPipeSpaSearch opportunities="{!v.quotes}" load="{!v.load}"/>
+    <c:SpaLink quotes="{!v.quotes}" load="{!v.load}"/>
+   
+    
+</aura:component>

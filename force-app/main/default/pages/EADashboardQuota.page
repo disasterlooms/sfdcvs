@@ -1,0 +1,16 @@
+<apex:page >
+       
+  <wave:dashboard dashboardId="0FK1H00000003GjWAI" 
+        showTitle="false"
+        showHeader="false" 
+        height="1100px" 
+        openLinksInNewWindow="true"
+        filter="{'datasets':{
+                        'SalesTeams':[{'fields':['Sales_Team'], 'filter':{'operator': 'matches', 'values':['{!$User.SalesTeam__c}']}}]
+                        }}" 
+                        hideOnError="true"
+                        rendered="{!$User.SalesTeam__c !=''}"
+        />
+        
+        
+</apex:page>

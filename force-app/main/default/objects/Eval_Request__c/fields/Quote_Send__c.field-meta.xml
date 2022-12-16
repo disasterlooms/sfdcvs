@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_Send__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Field that triggers the outbound message of conga and the quote template.</description>
+    <externalId>false</externalId>
+    <label>Quote Send</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

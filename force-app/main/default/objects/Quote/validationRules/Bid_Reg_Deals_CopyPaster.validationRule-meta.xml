@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bid_Reg_Deals_CopyPaster</fullName>
+    <active>true</active>
+    <errorConditionFormula>isnew() &amp;&amp;
+ text(Spa_Request_Type__c) = &apos;Bid Register Request&apos; &amp;&amp; 
+( Business_Reason_for_Bid_Registration__c == Scope_of_Bid_Registration__c ||
+Business_Reason_for_Bid_Registration__c == List_of_Work_Activity_c__c ||
+Scope_of_Bid_Registration__c == List_of_Work_Activity_c__c )</errorConditionFormula>
+    <errorMessage>Please enter different information for each field</errorMessage>
+</ValidationRule>

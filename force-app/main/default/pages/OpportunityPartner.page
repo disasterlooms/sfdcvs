@@ -1,0 +1,16 @@
+<apex:page standardController="Opportunity" sidebar="false" showHeader="false">
+
+
+<style>
+.gbCopyright {
+    margin-top: 20px;
+    color: #ffffff;
+    font-size: .9em;
+    text-align: left;
+    display: none;
+}
+
+</style>
+
+    <iframe id="grid" style="gbCopyright:display none;" scrolling="auto" height="480" width="100%" frameborder="0" src="/apex/GBFree__grid?gname=Opportunity Partners&id={!Opportunity.Id}&sh=0&ssb=0&sbb=1"></iframe>
+</apex:page>

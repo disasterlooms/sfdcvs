@@ -1,0 +1,143 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="Tutorial" >
+   <!-- <aura:handler name="init" action="{!c.myAction}" value="{!this}"/>-->
+    <aura:handler name="onSaveSuccess" event="force:recordSaveSuccess" action="{!c.handleSaveSuccess}"/>
+    <aura:attribute name="settings" type="LightningTutorial__c"/>    
+    <aura:attribute name="edit" type="string"/>
+    <aura:attribute name="tasks" type="task[]"/>
+    <aura:attribute name="selectedtask" type="string" />
+    <aura:attribute name="dashboardId" type="string" />   
+    <div aria-hidden="true" role="dialog" aura:id="modaldialog" style="width:85%">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h2 class="slds-text-heading--large">Tasks with Reminders - Click to Edit or View</h2>
+            </div>            
+            <div class="slds-modal__content">
+                <div class="spinner">
+                    <lightning:spinner aura:id="mySpinner" class="slds-hide"/>
+                </div>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-1">
+                        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Close"></div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Subject">Subject</div>
+                                    </th>
+                                    
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Name">Name</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="What">Related To</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="due">Due Date</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="reminder">Reminder Date</div>
+                                    </th>
+                                    <th scope="col">
+                                    </th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <aura:iteration items="{!v.tasks}" var="t">
+                                    <tr>
+                                        
+                                        <!--
+                                    <td>
+                                        <ui:inputCheckbox aura:id="DependentCheckboxpart" name="{!t.Id}"/>
+                                    </td>
+         -->
+                                        <td>
+                                            <lightning:button label=""
+                                                              iconName=""
+                                                              iconPosition="left"
+                                                              variant="brand"
+                                                              onclick="{!c.complete}"
+                                                              value="{!t.Id}"
+                                                              >
+                                                <ui:outputText value="Mark as Complete"/>
+                                            </lightning:button>
+                                        </td>
+                                        <td>
+                                            <lightning:button label=""
+                                                              iconName=""
+                                                              iconPosition="left"
+                                                              variant=""
+                                                              onclick="{!c.selected}"
+                                                              value="{!t.Id}"
+                                                              >
+                                                <ui:outputText value="{!t.Subject}"/>
+                                            </lightning:button>
+                                            
+                                        </td>
+                                        
+                                        <td>
+                                            <ui:outputText value="{!t.Who.Name}"/>
+                                        </td>
+                                        <td>
+                                            <ui:outputText value="{!t.What.Name}"/>
+                                        </td>
+                                        <td>
+                                            <ui:outputDateTime value="{!t.ActivityDate}" format="MM/DD/YY"/>
+                                        </td>
+                                        <td>
+                                            <ui:outputDateTime value="{!t.ReminderDateTime}"  format="MM/DD/YY"/>
+                                        </td>
+                                        <td>                                            
+                                            <lightning:buttonIcon
+                                                                  iconName="utility:delete"
+                                                                  variant="bare"
+                                                                  onclick="{!c.delete}"
+                                                                  value="{!t.Id}"
+                                                                  >
+                                                
+                                            </lightning:buttonIcon>
+                                        </td>
+                                        
+                                    </tr>
+                                </aura:iteration>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--
+                    <div class="slds-col slds-size_2-of-3">
+                        <aura:if isTrue="{!v.selectedtask.length > 0}">
+                            <center><ui:button label="Save Changes" press="{!c.save}"/></center>
+                            <div class="spinner">
+                                <lightning:spinner aura:id="mySpinner" class="slds-hide"/>
+                            </div>
+                            <force:recordEdit aura:id="edittask" recordId="{!v.selectedtask}"/>
+                            {!v.edit}
+                            
+                            <aura:set attribute="else">
+                                Pleas Wait while first task loaded...
+                            </aura:set>
+                        </aura:if>                         
+                        
+                    </div>
+                    -->
+                    
+                </div>
+                
+            </div>
+            
+            <div class="slds-modal__footer">
+                <div class="slds-x-small-buttons--horizontal">
+                    <button class="slds-button slds-button_brand " onclick="{!c.hideModal}" value="true">Dismiss for The Day</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="slds-backdrop slds-backdrop--hide" aura:id="backdrop">
+        
+    </div>
+    
+</aura:component>

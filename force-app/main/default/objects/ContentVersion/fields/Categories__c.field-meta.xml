@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Categories__c</fullName>
+    <externalId>false</externalId>
+    <label>Categories</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Products</fullName>
+                <default>false</default>
+                <label>Products</label>
+            </value>
+            <value>
+                <fullName>Solutions</fullName>
+                <default>false</default>
+                <label>Solutions</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Webinars/Videos</fullName>
+                <default>false</default>
+                <label>Webinars/Videos</label>
+            </value>
+            <value>
+                <fullName>Scenario Images</fullName>
+                <default>false</default>
+                <label>Scenario Images</label>
+            </value>
+            <value>
+                <fullName>Others</fullName>
+                <default>false</default>
+                <label>Others</label>
+            </value>
+            <value>
+                <fullName>Promotions</fullName>
+                <default>false</default>
+                <label>Promotions</label>
+            </value>
+            <value>
+                <fullName>Interactive Learning</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Interactive Learning</label>
+            </value>
+            <value>
+                <fullName>Newsletters</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Newsletters</label>
+            </value>
+            <value>
+                <fullName>Promos</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Promos</label>
+            </value>
+            <value>
+                <fullName>Sell Sheets</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Sell Sheets</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

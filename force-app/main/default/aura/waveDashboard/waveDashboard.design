@@ -1,0 +1,4 @@
+<design:component>
+	<design:attribute name="dashboardId" label="DashboardId"/>
+    <design:attribute name="inModal" label="if in Page, then false"/>
+</design:component>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Email_Signature__c</fullName>
+    <description>This is a Rich Text Field that allows users to paste in their custom Email signature for use in HTML Email templates</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Copy and paste your email signature here.  This will make it available for custom email templates.</inlineHelpText>
+    <label>My Email Signature</label>
+    <length>32000</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

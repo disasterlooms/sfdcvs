@@ -1,0 +1,30 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 08-15-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-button 
+        label="Sync All Data"
+        icon-name="utility:play"
+        icon-position="right"
+        onclick={ingest}>
+    </lightning-button><br/>
+    <template if:true={showRecipe}>
+    <lightning-button 
+        label="Update Stock Report Data"
+        icon-name="utility:play"
+        icon-position="right"
+        onclick={ingest2}>
+    </lightning-button><br/>
+
+    <lightning-button 
+        label="Update Sell Through Report Data"
+        icon-name="utility:play"
+        icon-position="right"
+        onclick={ingest3}>
+    </lightning-button>
+  </template> 
+</template>

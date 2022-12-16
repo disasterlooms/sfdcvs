@@ -1,0 +1,156 @@
+<aura:component controller="HotSwapCmpController" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId" >
+      <ltng:require styles="{!$Resource.actionModalPopupSize}"></ltng:require>
+        <aura:attribute name="recordId" type="String" />
+        <aura:attribute name="Spinner" type="boolean" default="false"/>
+		 <aura:attribute name="ifMandatoryQty" type="boolean" default="false"/>
+        
+    
+    <!--<aura:attribute name="reason" type="String" />-->
+    <!--Start : Added by Shweta on 27-10-2022 -->
+     <aura:attribute name="newHotSwapRecord" type="Hot_Swap__c"
+        default="{ 'sobjectType': 'Hot_Swap__c',
+                   'Reason_For_Hot_Swap__c': '',
+                   'Recipient_Name__c': '',
+                   'Recipient_Email__c': '', 
+                   'Recipient_Phone__c': '',
+                    'Street__c': '',
+                 'State__c': '',
+                 'City__c': '',
+                 'Country__c': '',
+                 'PostalCode__c': ''
+                     }" />
+     <!--End: Added by Shweta on 27-10-2022 -->
+        <aura:attribute name="spaProductRecords" type="Sobject[]" />
+        
+        
+        <aura:if isTrue="{!v.Spinner}">
+            <div aura:id="spinnerId" class="slds-spinner_container">
+                <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                    <span class="slds-assistive-text">Loading</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </aura:if>
+        <!--Start: Added by Shweta on 27-10-2022 -->
+        <div aura:id="firstPage">
+            <lightning:textarea  aura:id="hotswap" fieldName="Reason" value="{!v.newHotSwapRecord.Reason_For_Hot_Swap__c}" required="true" label="Reason For Hot Swap" maxlength="255"
+                                messageWhenTooLong="must be less than 255 characters"/>
+            
+             <lightning:input aura:id="hotswap" type="text"  label="Recipient Name" required="true" value="{!v.newHotSwapRecord.Recipient_Name__c}" />
+            <lightning:input aura:id="hotswap" type="email"  label="Recipient Email" required="true" value="{!v.newHotSwapRecord.Recipient_Email__c}" />
+            <lightning:input aura:id="hotswap" type="tel"  label="Recipient Phone" required="true" value="{!v.newHotSwapRecord.Recipient_Phone__c}" />
+            <lightning:inputAddress
+                aura:id="hotswap"
+                addressLabel="Address"
+                streetLabel="Street"
+                cityLabel="City"
+                countryLabel="Country"
+                provinceLabel="State"
+                postalCodeLabel="PostalCode"
+                street="{!v.newHotSwapRecord.Street__c}"
+                city="{!v.newHotSwapRecord.City__c}"
+                country="{!v.newHotSwapRecord.Country__c}"
+                province="{!v.newHotSwapRecord.State__c}"
+                postalCode="{!v.newHotSwapRecord.PostalCode__c}"
+                required="true" 
+                showAddressLookup ="true"                    
+                fieldLevelHelp="Enter your billing address"
+        	/>
+            <!--End: Added by Shweta on 27-10-2022 -->
+            <lightning:button  variant="brand" type="submit" name="next" label="Next" onclick="{!c.nextPage}"/>
+            <lightning:button  variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.close }"/>
+        </div>
+        
+        <div aura:id="nextPage" class="slds-hide" >
+            <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate"><div class="slds-media__body">
+                <h2>
+                    <span class="slds-text-heading_small">Choose SPA Products for Hot Swap</span>
+                </h2>
+                </div>
+            </header>
+        </div>
+               <table class="slds-table slds-table_bordered slds-table_cell-buffer" >
+            
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col"> 
+                        <div class="slds-truncate " title="Select">Select</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate " title="Product">Product</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate " title="Quantity">Quantity</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Requested Price">Requested Price</div>
+                    </th>
+                    
+                    <th scope="col">
+                        <div class="slds-truncate " title="Approved Price">Approved Price</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate " title="Quantity">HotSwap Quantity</div>
+                    </th>
+                     <th scope="col">
+                        <div class="slds-truncate " title="Quantity">Sold Quantity</div>
+                    </th>
+                    
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.spaProductRecords}" var="u">
+                    <tr>
+                        <td>
+                            <lightning:input type="checkbox-button" label="" name="{!u.Id}" aura:id="DependentCheckboxpart" value="false" checked="false" onchange="{!c.showWarning}"/>
+                        </td>
+                        <td>
+                            <ui:outputText value="{!u.Product2.Name }"/>        
+                        </td>
+                        <td>
+                            <ui:outputText value="{!u.Quantity}"/>
+                        </td>
+                        <td>
+                            <ui:outputCurrency value="{!u.UnitPrice}"/>
+                        </td>
+                        
+                        <td>
+                            <ui:outputCurrency value="{!u.Approved_Price__c}"/>
+                        </td>
+  
+    				  <td>
+                          <!--<lightning:input value="{!u.Product2.Hot_Swap_Quantity__c}" onblur="{!c.showalert}" />-->
+                           <ui:inputText value="{!u.Product2.Hot_Swap_Quantity__c}" change="{!c.showalert}" />
+
+                        </td>
+                         
+                          <td>     
+                              <div class="slds-p-around_medium lgc-bg">
+                                 <!-- <lightning:input value="{!u.Product2.Product_Quantity_Sold__c}" onblur="{!c.doDisable}"/>-->
+                                   <ui:inputText value="{!u.Product2.Product_Quantity_Sold__c}" change="{!c.doDisable}"/>
+                              </div>										
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+            
+        <div class="slds-p-around_small">
+            <lightning:button  variant="brand" type="submit" name="Previous" label="Previous" onclick="{!c.prevPage}"/>
+            
+            <aura:if isTrue="{!v.ifMandatoryQty}">
+         
+             <lightning:button  variant="brand" type="submit" name="Submit" label="Submit" onclick="{!c.Submit}" disabled="true"/>
+                <aura:set attribute="else">
+         
+             <lightning:button  variant="brand" type="submit" name="Submit" label="Submit" onclick="{!c.Submit}"/>
+                   </aura:set>
+              </aura:if> 
+            <lightning:button  variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.close }"/>
+    
+        </div>    
+        </div>
+    </aura:component>

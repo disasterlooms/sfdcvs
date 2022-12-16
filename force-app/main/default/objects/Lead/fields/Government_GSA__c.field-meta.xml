@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Government_GSA__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Does this contact / account have a government service agreement?</description>
+    <externalId>false</externalId>
+    <label>Government (GSA)</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

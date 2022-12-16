@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_Product_Code_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>/*
+CASE( Account__r.Name, 
+					&apos;ALSO Deutschland GmbH&apos;, Material_External_Product_Code__c , 
+					&apos;Ingram Micro Distribution GmbH&apos;, Artikel_Nr_External_Product_Code__c ,
+					&apos;Amazon EU SARL&apos;, ASIN_External_Product_Code__c,
+					&apos;Caseking GmbH&apos;, Nummer_External_Product_Code__c,
+					&apos;Computation Systemhaus GmbH&apos;,  ArticleID_External_Product_Code__c,
+					&apos;Delo Computer GmbH&apos;,  Distributor_Artikelnummer_External_Produ__c, 
+					&apos;Tarox AG&apos;,  ART_NR_External_Product_Code__c, 
+					&apos;visunext International GmbH &amp; Co. KG&apos;,  Artikelnummer_Product_Code__c, 
+					&apos;Wensauer Com-Systeme GmbH&apos;,  ItemCode_External_Product_Code__c, 
+					null  )
+*/
+IF(ISPICKVAL(VS_Region__c, &apos;VSE&apos;),
+Material_External_Product_Code__c
+,null)</formula>
+    <label>External Product Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

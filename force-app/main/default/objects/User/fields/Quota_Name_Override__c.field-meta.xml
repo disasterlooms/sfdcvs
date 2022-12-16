@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quota_Name_Override__c</fullName>
+    <description>This overrides the quota name that is used to match quotas..needed when there are more than one owner to an account like CDW or the Quota name has to match the assigned rep</description>
+    <externalId>false</externalId>
+    <label>Quota Name Override</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

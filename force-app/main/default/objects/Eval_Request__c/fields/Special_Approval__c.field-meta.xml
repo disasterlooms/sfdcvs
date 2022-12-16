@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Special_Approval__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>this is updated using declarative methods and determines if eval is routed for special approval when the product is determined to be special approval</description>
+    <externalId>false</externalId>
+    <label>Special Approval</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

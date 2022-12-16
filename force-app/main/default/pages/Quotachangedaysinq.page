@@ -1,0 +1,10 @@
+<apex:page controller="QuotaCQDays" action="{!updatedays}">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:inputtext id="cq" label="Days in CQ" value="{!cqdays}"/>
+				<apex:commandButton action="{!updatecs}" styleclass="btn" value="Update Days" oncomplete="alert('Updated Days and Closing Window. Please Refresh the Quota Page to see update.');close();"/>                
+            </apex:pageBlockSection>
+    	</apex:pageBlock>
+	</apex:form>
+</apex:page>

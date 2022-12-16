@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VIPPlatinum__c</fullName>
+    <externalId>false</externalId>
+    <formula>(CONTAINS(&apos;Education&apos;, text(Industry))
+&amp;&amp; (POS_CY__c &gt; 250000 || POS_PY__c &gt; 250000))
+|| POS_CY__c &gt; 500000 || POS_PY__c &gt; 500000</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>VIPPlatinum</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,8 @@
+<design:component>
+    <design:attribute description="string" name="street" />
+    <design:attribute description="string" name="city" />
+    <design:attribute description="string" name="state" />
+    <design:attribute description="string" name="zip" />
+    <design:attribute description="string" name="country" />
+	
+</design:component>

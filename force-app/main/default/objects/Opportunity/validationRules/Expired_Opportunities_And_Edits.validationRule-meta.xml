@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expired_Opportunities_And_Edits</fullName>
+    <active>false</active>
+    <description>Cannot Resubmit closed won opportunities</description>
+    <errorConditionFormula>(((ISPICKVAL(priorvalue(StageName) , &apos;Closed Won&apos;) || ISPICKVAL(priorvalue(StageName) , &apos;Closed Lost&apos;) ) 
+&amp;&amp; (CloseDate +60 &gt; today()) &amp;&amp; 
+( ISPICKVAL( Spa_Stage__c  , &apos;Submitted&apos;) ||ISPICKVAL( Spa_Stage__c  , &apos;Resubmitted&apos;)) &amp;&amp;  text(Type) != &apos;Master Spa&apos; )
+|| 
+(text(Type) != &apos;Master Spa&apos; &amp;&amp;  CloseDate - 547 &gt; today())) &amp;&amp; $User.Alias != &apos;BidDesk&apos;</errorConditionFormula>
+    <errorMessage>This is an expired opportunity. Please create a new opportunity. Thank You</errorMessage>
+</ValidationRule>

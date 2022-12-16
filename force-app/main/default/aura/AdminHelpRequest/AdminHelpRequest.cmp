@@ -1,0 +1,33 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" controller="FileUploadRecord" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="userid" type="String" description="Record to which the files should be attached" />
+    <aura:attribute name="caseid" type="String" />
+    <aura:attribute name="mssg" type="String" />
+    <aura:attribute name="files" type="sObject" />
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="slds-hide" variant="brand" size="large"/>
+    </div> 
+    <aura:attribute name="what" type="String" />
+    <aura:attribute name="where" type="String" />
+    <lightning:utilityBarAPI aura:id="utilitybar" />
+ 
+    
+    <lightning:card iconName="standard:Case" title="Create Case and Notify Admin" >
+        <div class="slds-p-horizontal--small">
+            <br/>
+            <lightning:input aura:id="doing" label="What did you click on last or expect to happen but did not happen?" value="{!v.what}" required="true"/>
+            <lightning:input aura:id="pages" label="What Page you were on? Use URL or Description" value="{!v.where}" required="true"/>
+            <lightning:input aura:id="pages" label="Error Message" value="{!v.mssg}" required="false"/>
+            
+            <lightning:fileUpload label="Attach Images"
+                                  multiple="true" 
+                                  accept=".pdf, .png"
+                                  recordId="{!v.userid}" 
+                                  onuploadfinished="{!c.handleUploadFinished}" /><br/>
+            <lightning:button label="Save" variant="brand" onclick="{!c.saveCase}" class="slds-float_right"/> 
+        </div> 
+        <br/>
+         
+    </lightning:card>
+</aura:component>

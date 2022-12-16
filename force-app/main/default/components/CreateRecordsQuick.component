@@ -1,0 +1,71 @@
+<apex:component >
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" />
+
+<apex:includeScript value="{!$Resource.Jquery}"/>
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<apex:includeScript value="{!URLFOR($Resource.Jquery, '/jquery-ui-1.11.4/jquery-ui.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.sweetalert, '/sweetalert-master/dist/sweetalert.min.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.sweetalert, '/sweetalert-master/dist/sweetalert.css')}"/>
+<apex:includeScript value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/dist/jquery-confirm.min.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.jqueryconfirm2, 'craftpip-jquery-confirm-4a6f866/css/jquery-confirm.css')}"/>
+<apex:stylesheet value="{!$Resource.OppVFOverride}"/>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<script>
+$( document ).ready(function() {
+     $("[id$=feedwrapper]").hide()
+    
+     });
+</script>
+<script>
+        
+        function contactaccount(){
+        //var $j = jQuery.noConflict();
+        //alert('test');
+        $('[id$=actions]').toggle();
+        $("[id$=con4__09D12000000B5G8]").val('');
+        
+        if("{!$Profile.Name}" == "Sales - Latin America"){
+        lalistbutton();
+        }else{
+            }
+           
+         }
+</script>
+<apex:outputPanel id="buttons" style="display:nones"> 
+    <a  class="btn btn-red-text" onclick="contactaccount();" id="show">{!if( $Profile.Name  != 'Sales - Latin America','Create Account or Contact','Crear Contacto o Cuenta')}</a>
+    <a  class="btn btn-red-text" onclick="lastates();" id="show2" style="display:none">Latin America Codigos Para Estados para Cada Paìs</a>
+   <script>
+         function lastates(){   
+            $.confirm({
+            title: 'Latin America Codigos Para Estados para Cada Paìs',
+            content: 'url:/apex/LatinAmericaCountryStateCodes',
+            animation: 'top',
+            columnClass: 'col-md-6 col-md-offset-3',
+            closeAnimation: 'bottom',
+            backgroundDismiss: true,
+                                });
+                            }
+                            function lalistbutton(){
+                             $('[id$=show2]').toggle();
+                             }
+                            
+    </script> 
+
+
+</apex:outputPanel>
+
+<br><br><apex:outputPanel id="actions" style="display:none">
+        <apex:pageBlock >
+   
+            <apex:pageblockSection id="Publisher" title="Create Contact or Account" columns="1" rendered="True" collapsible="true" showheader="false">
+            <chatter:feed entityId="{!$User.AccountId__c}" id="feedeval" showPublisher="true" oncomplete="event.stopPropagation();event.preventDefault();return();" rerender="false"/> 
+   
+            </apex:pageblockSection>
+        </apex:pageBlock>
+   </apex:outputPanel> </br></br> 
+   
+   
+</apex:component>

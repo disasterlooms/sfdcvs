@@ -1,0 +1,85 @@
+<apex:page standardcontroller="Eval_Unit_Details__c">
+<apex:messages />
+   
+    <apex:detail inlineEdit="true" relatedList="true" relatedListHover="true" title="false" rendered="{!$User.Alias = 'chino' ||  $User.Alias = 'admin'}" subject="{!Eval_Unit_Details__c.Id}"/> 
+    
+    <apex:form rendered="{!$User.Alias != 'chino' && $User.Alias != 'admin'}">
+         <apex:sectionheader title="{!$ObjectType.Eval_Unit_Details__c.label} Detail" subtitle="{!Eval_Unit_Details__c.Name}"/>
+        <apex:pageblock mode="maindetail" title="{!$ObjectType.Eval_Unit_Details__c.label} Detail">
+            <apex:pageblockbuttons >
+               
+                <!-- *************** Uncomment as needed LAYOUT PAGE :: http://WWW.CLERISOFT.COM (2008-2014) *************** -->
+                    <!-- <apex:commandbutton value="Include Offline" action="{!URLFOR($Action.Eval_Unit_Details__c.IncludeOffline,Eval_Unit_Details__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Clone" action="{!URLFOR($Action.Eval_Unit_Details__c.Clone,Eval_Unit_Details__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Convert" action="{!URLFOR($Action.Eval_Unit_Details__c.Convert,Eval_Unit_Details__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Find Duplicates" action="{!URLFOR($Action.Eval_Unit_Details__c.FindDup,Eval_Unit_Details__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Request Update" action="{!URLFOR($Action.Eval_Unit_Details__c.RequestUpdate,Eval_Unit_Details__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Advanced Setup" action="{!URLFOR($Action.Eval_Unit_Details__c.AdvancedSetup,Eval_Unit_Details__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Manage Members" action="{!URLFOR($Action.Eval_Unit_Details__c.ManageMembers,Eval_Unit_Details__c.id)}"/> -->
+                    <!-- <apex:commandbutton value="Close Case" action="{!URLFOR($Action.Eval_Unit_Details__c.CloseCase,Eval_Unit_Details__c.id)}"/> -->
+                <!-- *************** Uncomment as needed LAYOUT PAGE :: http://WWW.CLERISOFT.COM (2008-2014) *************** -->
+            </apex:pageblockbuttons>
+
+            <!-- **********   [Record Type : Standard ]   **********  -->
+            <apex:outputpanel rendered="{!OR(ISNULL(Eval_Unit_Details__c.RecordTypeId),CASESAFEID(Eval_Unit_Details__c.RecordTypeId)='01212000000zsqiAAA')}">
+                <apex:pageblocksection title="Information" showheader="true" collapsible="true" columns="2">
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Eval_Request__c}"/>
+                    <apex:outputfield value="{!Eval_Unit_Details__c.RMA__c}"/>
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Name}"/>
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Status__c}"/>
+                    <apex:outputfield value="{!Eval_Unit_Details__c.SKU__c}"/>
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Write_off_Reason__c}"/>
+                    
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Status_Date_Change__c}"/>
+                    
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Standard_Price__c}"/>
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Extension__c}"/>
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Approval_Status__c}"/>
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Shipping_Contact_Email__c}"/>
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Write_Off_Date__c}"/>
+                    
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Tracking_NumberLink__c}"/>
+                    
+                   
+                   
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Evaluation_Price__c}"/>
+                    <apex:pageblocksectionitem />
+                   
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Tracking Information" showheader="true" collapsible="true" columns="2">
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Courier_Info__c}"/>
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Tracking_Number__c}"/>
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Ship_Date__c}"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="System Information" showheader="true" collapsible="true" columns="2">
+                    <apex:pageblocksectionitem >
+                        <apex:outputlabel value="Created By"/>
+                        <apex:outputpanel >
+                            <apex:outputfield value="{!Eval_Unit_Details__c.CreatedById}"/>&nbsp;, 
+                            <apex:outputfield value="{!Eval_Unit_Details__c.CreatedDate}"/>
+                        </apex:outputpanel>
+                    </apex:pageblocksectionitem>
+                    <apex:pageblocksectionitem >
+                        <apex:outputlabel value="Last Modified By"/>
+                        <apex:outputpanel >
+                            <apex:outputfield value="{!Eval_Unit_Details__c.LastModifiedById}"/>&nbsp;, 
+                            <apex:outputfield value="{!Eval_Unit_Details__c.LastModifiedDate}"/>
+                        </apex:outputpanel>
+                    </apex:pageblocksectionitem>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Sales Only" showheader="true" collapsible="true" columns="1">
+                    <apex:outputfield value="{!Eval_Unit_Details__c.Reason_for_write_off__c}"/>
+                </apex:pageblocksection>
+            </apex:outputpanel>
+        </apex:pageblock>
+    </apex:form>
+
+    <!-- **********   [Related Lists for Record Type : Standard ]   **********  -->
+    <apex:outputpanel rendered="{!OR(ISNULL(Eval_Unit_Details__c.RecordTypeId),CASESAFEID(Eval_Unit_Details__c.RecordTypeId)='01212000000zsqiAAA')}">
+        <apex:relatedlist list="OpenActivities" title="Open Activities"/>
+        <apex:relatedlist list="ActivityHistories" title="Activity History"/>
+    </apex:outputpanel>
+    
+</apex:page>

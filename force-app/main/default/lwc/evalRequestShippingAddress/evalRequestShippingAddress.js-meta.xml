@@ -1,0 +1,33 @@
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="addressInputLWC">
+    <apiVersion>47.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Address Input Flow LWC</masterLabel>
+    <description>Address search in a flow</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="street" type="String" label="Street" description="Street Given"/>
+            <property name="city" type="String" label="City" description="City Given"/>
+            <property name="state" type="String" label="State" description="State/Province Given"/>
+            <property name="country" type="String" label="Country" description="Country Given"/>
+            <property name="postal" type="String" label="Postal" description="PostalCode Given"/>
+            <property name="contactDefault" type="Boolean" label="Con Default Address" description="PostalCode Given"/>
+            <property name="displayDefaultOption" type="Boolean" label="display Default Option" description="PostalCode Given"/>
+            <property name="phone" type="String" label="Phone" description="Phone Given"/>
+            <property name="email" type="String" label="Email" description="Email Given"/>
+            <property name="PersonId" type="String" label="Contact Id" description="Id of Contact/User with Addresses"/>
+            <property name="addressChanged" type="Boolean" label="New Address" description="Checks if new address"/>
+            <property name="showAddressHistory" type="Boolean" label="Show Address history " description="Checks if new address"/>
+            <property name="showAddressUpdate" type="Boolean" label="Show Address Update checkbox" description="Checks if new address"/>
+            <property name="getBillingInfo" type="Boolean" label="Show Billing Addresses" description="Checks if new address"/>
+            <property name="recordId" type="String" label="Eval Record Id" description="Id of Eval"/>
+            <property name="FirstName" type="String" label="First Name" description="Billing First Name"/>
+            <property name="LastName" type="String" label="Last Name" description="Billing Last Name"/>
+            <property name="Company" type="String" label="Billing Company" description="Billing Company Name"/>
+
+        </targetConfig>
+    </targetConfigs>    
+  </LightningComponentBundle>

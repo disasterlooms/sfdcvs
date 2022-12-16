@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Created_Month__c</fullName>
+    <description>Used to make last 30 days YoY reporting easier to manage
+CreatedDate + 395 &gt; now() &amp;&amp;</description>
+    <externalId>false</externalId>
+    <formula>if(CreatedDate + 30 &gt; now(),true,
+if(now() - 365 &gt; CreatedDate &amp;&amp; now() - 395 &lt; CreatedDate,true,false))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Lead Created Month</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

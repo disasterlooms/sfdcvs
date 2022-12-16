@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_User_Aliases</fullName>
+    <columns>NAME</columns>
+    <columns>SFDC_Account__c</columns>
+    <columns>End_User_Alias__c</columns>
+    <columns>Assigned_Rep__c</columns>
+    <columns>Channel__c</columns>
+    <columns>Reseller_Alias__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>POSAccountAliases__c.Standard</value>
+    </filters>
+    <filters>
+        <field>End_User_Alias__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>End User Aliases</label>
+</ListView>

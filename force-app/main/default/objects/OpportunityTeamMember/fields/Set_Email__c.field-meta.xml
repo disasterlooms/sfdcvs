@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Set_Email__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(Email2__c &lt;&gt;&quot;&quot;,true,false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Set Email</label>
+    <type>Checkbox</type>
+</CustomField>

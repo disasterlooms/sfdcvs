@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campaign_Landing_Page_URL__c</fullName>
+    <description>The campaign landing page URL should always contain a campaign id parameter, e.g.:
+
+     http://www.viewsonic.com/landing_page.php?campaign_id=123456</description>
+    <externalId>false</externalId>
+    <label>Campaign Landing Page URL</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Url</type>
+</CustomField>

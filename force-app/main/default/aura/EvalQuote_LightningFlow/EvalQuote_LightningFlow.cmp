@@ -1,0 +1,71 @@
+<aura:component  implements="force:lightningQuickActionWithoutHeader,lightning:availableForFlowScreens" controller="EvalUnitstoQuote" access="global" >
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:attribute name="recordsReturned" type="Eval_Unit_Details__c[]" access="public"/>
+    <aura:attribute name="RMA" type="String" access="public"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="spinnerClass" type="String" default="slds-hide"/>
+    <aura:attribute name="quoteId" type="string"/>
+    <aura:attribute name="checked" type="boolean"/>
+    <!--
+    <aura:handler name="init" action="{!c.init}" value="{!this}" />
+ <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+ -->
+    
+    
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerpart" class="{!v.spinnerClass}" variant="brand" size="large"/>
+    </div>
+    <div aura:id="evalunitsv2" class="" >
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate"><div class="slds-media__body">
+                <h2>
+                    <span class="slds-text-heading_small">{!v.header}</span>
+                </h2>
+                </div>
+            </header>
+        </div>
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer" >
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">    
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Account Name">SKU</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Quantity">Serial Number</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Quantity">Price</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.recordsReturned}" var="u" indexVar="idx">
+                    <tr>
+                        <td>
+                            <lightning:input type="checkbox-button" label="" name="{!idx}" aura:id="DependentCheckboxpart" value="{!u.Quote_Product__c}" onclick="{!c.checkedUp}"/>
+                            
+                        </td>
+                        <td>
+                            <ui:outputText value="{!u.SKU__r.Name }"/>
+                            
+                        </td>
+                        <td>
+                            <ui:outputText value="{!u.Name}"/>
+                        </td>
+                        <td>
+                            <ui:outputCurrency value="{!u.Evaluation_Price__c}"/>
+                        </td> 
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        <br/>
+        <footer class="slds-modal__footer">
+            <lightning:button  variant="brand" type="submit" name="save" label="Next" onclick="{!c.saveSelections}" />
+        </footer>
+    </div>
+    
+    
+</aura:component>

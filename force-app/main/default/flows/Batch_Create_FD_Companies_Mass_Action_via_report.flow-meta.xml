@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Create_Company_0</name>
+        <label>Create Company</label>
+        <locationX>1723</locationX>
+        <locationY>1061</locationY>
+        <actionName>MakeHTTPCall</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Check_Status_code</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>Body</name>
+            <value>
+                <elementReference>JSON_BODY</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Endpoint</name>
+            <value>
+                <stringValue>https://viewsonicvsasandbox.freshdesk.com/api/v2/companies</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Headers</name>
+            <value>
+                <stringValue>[{&quot;key&quot;:&quot;Authorization&quot;,&quot;value&quot;:&quot;Basic SzVhRW5sdDFSSjFaOGRwckR6Z0k=&quot;,&quot;order&quot;:0},{&quot;key&quot;:&quot;Content-Type&quot;,&quot;value&quot;:&quot;application/json&quot;,&quot;order&quot;:1}]</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>Method</name>
+            <value>
+                <stringValue>POST</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Extract_Company_Id</name>
+        <label>Extract Company Id</label>
+        <locationX>1839</locationX>
+        <locationY>1577</locationY>
+        <actionName>FlowMultipleJSONParser</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Assign_Var_Update_Account</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>fieldName1</name>
+            <value>
+                <stringValue>id</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>ignore_error</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>jsonStringToParse</name>
+            <value>
+                <elementReference>Create_Company_0.Body</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>55.0</apiVersion>
+    <assignments>
+        <name>Assign_Count</name>
+        <label>Assign Count</label>
+        <locationX>1996</locationX>
+        <locationY>2710</locationY>
+        <assignmentItems>
+            <assignToReference>CallOut_Count</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Var_Apex_Error_Message</name>
+        <label>Assign Var_Apex_Error_Message</label>
+        <locationX>1688</locationX>
+        <locationY>1734</locationY>
+        <assignmentItems>
+            <assignToReference>Var_Apex_Error_Message.Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Accounts_0.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Var_Apex_Error_Message.Error_Message__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Flow_Error_Body</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Var_Apex_Error_Message.Apex_Class__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Batch_Create_FD_Companies</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Var_Apex_Error_Message.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Batch_Create_FD_Companies-{!$Flow.CurrentDateTime}</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Var_Apex_Error_Messages</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Var_Apex_Error_Messages</name>
+        <label>Assign Var_Apex_Error_Messages</label>
+        <locationX>1689</locationX>
+        <locationY>1943</locationY>
+        <assignmentItems>
+            <assignToReference>Var_Apex_Error_Messages</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Var_Apex_Error_Message</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Vars_Account_Update_not_blank</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Var_Update_Account</name>
+        <label>Assign Var_Update_Account</label>
+        <locationX>1835</locationX>
+        <locationY>1723</locationY>
+        <assignmentItems>
+            <assignToReference>Var_Update_Account.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Accounts_0.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Var_Update_Account.FDACCOUNTID__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Extract_Company_Id.Value01</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Vars_Account_Update</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Vars_Account_Update</name>
+        <label>Assign Vars_Account_Update</label>
+        <locationX>1835</locationX>
+        <locationY>1942</locationY>
+        <assignmentItems>
+            <assignToReference>Vars_Account_Update</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Var_Update_Account</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_Vars_Account_Update_not_blank</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Vars_Accts_To_Loop_2</name>
+        <label>Assign_Vars_Accts_To_Loop_2</label>
+        <locationX>1091</locationX>
+        <locationY>1290</locationY>
+        <assignmentItems>
+            <assignToReference>Vars_Accts_To_Loop</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Accounts</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Accounts</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_Status_code</name>
+        <label>Check Status code</label>
+        <locationX>1682</locationX>
+        <locationY>1578</locationY>
+        <defaultConnector>
+            <targetReference>Extract_Company_Id</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Success</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_Company_0.Status</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>created</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Var_Apex_Error_Message</targetReference>
+            </connector>
+            <label>Not Success</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Vars_Account_Update_not_blank</name>
+        <label>Check Vars_Account_Update not blank</label>
+        <locationX>1096</locationX>
+        <locationY>2882</locationY>
+        <defaultConnector>
+            <targetReference>Check_Vars_FD_Company_creation_failed_log_not_blank</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Vars_Account_Update</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Accounts</targetReference>
+            </connector>
+            <label>Not Blank</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Vars_FD_Company_creation_failed_log_not_blank</name>
+        <label>Check Vars_FD_Company_creation_failed_log not blank</label>
+        <locationX>1096</locationX>
+        <locationY>3218</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Not_Blank_0</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Var_Apex_Error_Messages</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Apex_Error_Messages</targetReference>
+            </connector>
+            <label>Not Blank</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Batch Create FD Companies_Mass Action via report {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>Batch Create FD Companies_Mass Action via report</label>
+    <loops>
+        <name>Loop_Accounts</name>
+        <label>Loop Accounts</label>
+        <locationX>1256</locationX>
+        <locationY>1440</locationY>
+        <collectionReference>Vars_Accts_To_Loop</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Apex_Error_Messages</name>
+        <label>Create Apex Error Messages</label>
+        <locationX>965</locationX>
+        <locationY>3338</locationY>
+        <faultConnector>
+            <targetReference>Send_Flow_Error_Email</targetReference>
+        </faultConnector>
+        <inputReference>Var_Apex_Error_Messages</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Accounts</name>
+        <label>Get Accounts</label>
+        <locationX>902</locationX>
+        <locationY>279</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <filterLogic>1 AND (2 OR 3) AND 4</filterLogic>
+        <filters>
+            <field>FDACCOUNTID__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>VSSubRegion__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>VSA US</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>VSSubRegion__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>VSA CAN</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>End User</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Accounts_0</name>
+        <label>Get Account</label>
+        <locationX>1503</locationX>
+        <locationY>633</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Company_0</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Accounts</name>
+        <label>Update Accounts</label>
+        <locationX>964</locationX>
+        <locationY>3002</locationY>
+        <connector>
+            <targetReference>Check_Vars_FD_Company_creation_failed_log_not_blank</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Send_Flow_Error_Email</targetReference>
+        </faultConnector>
+        <inputReference>Vars_Account_Update</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>961</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Accounts_0</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Send_Flow_Error_Email</name>
+        <label>Send Flow Error Email</label>
+        <locationX>603</locationX>
+        <locationY>3039</locationY>
+        <flowName>Send_Flow_Error_Email</flowName>
+        <inputAssignments>
+            <name>Var_EamilBody</name>
+            <value>
+                <elementReference>Flow_Error_Body</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Var_EmailSubject</name>
+            <value>
+                <stringValue>Flow Failed: Batch_Create_FD_Companies_Mass_Action_via_report</stringValue>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <textTemplates>
+        <name>Flow_Error_Body</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Create Company Status:
+{!Create_Company_0.Status}
+
+Create Company Status Code:
+{!Create_Company_0.Status_code}
+
+Create Company Error Message:
+{!Create_Company_0.Error_message}
+
+Create Company Body:
+{!Create_Company_0.Body}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>JSON_BODY</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{ &quot;name&quot;:&quot;{{!Get_Accounts_0.Name}.Name}&quot;,
+&quot;custom_fields&quot;:{&quot;street&quot;:&quot;{!Get_Accounts_0.BillingStreet}&quot;,
+&quot;account_salesperson&quot;:&quot;{!Get_Accounts_0.Owner.Name}&quot;,
+&quot;city&quot;:&quot;{!Get_Accounts_0.BillingCity}&quot;,
+&quot;statecode&quot;:&quot;{!Get_Accounts_0.BillingStateCode}&quot;,
+&quot;postalcode&quot;:&quot;{!Get_Accounts_0.BillingPostalCode}&quot;,
+&quot;countrycode&quot;:&quot;{!Get_Accounts_0.BillingCountryCode}&quot;,
+&quot;phone&quot;:&quot;{!Get_Accounts_0.Phone}&quot;,
+&quot;website&quot;:&quot;{!Get_Accounts_0.Website}&quot;,
+&quot;company_type&quot;:&quot;{!Get_Accounts_0.Type}&quot;,
+&quot;vsregion&quot;:&quot;{!Get_Accounts_0.VSRegion__c}&quot;,
+&quot;vssubregion&quot;:&quot;{!Get_Accounts_0.VSSubRegion__c}&quot;,
+&quot;sfaccountid&quot;:&quot;{!Get_Accounts_0.Id}&quot;
+},
+&quot;domains&quot;:[&quot;{!Get_Accounts_0.Domain__c}&quot;],
+&quot;industry&quot;:&quot;{!Get_Accounts_0.Industry}&quot;,
+&quot;note&quot;:&quot;{!note}&quot; }</text>
+    </textTemplates>
+    <variables>
+        <name>Accts_Input</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>Apex_Error_Log_Acct_Ids</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>CallOut_Count</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>note</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>This company is added from SFDC Account Trigger at {!$Flow.CurrentDateTime}</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Var_Apex_Error_Message</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Apex_Error_Message__c</objectType>
+    </variables>
+    <variables>
+        <name>Var_Apex_Error_Messages</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Apex_Error_Message__c</objectType>
+    </variables>
+    <variables>
+        <name>Var_FD_Company_creation_failed_log</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>FD_Company_creation_failed_log__c</objectType>
+    </variables>
+    <variables>
+        <name>Var_Update_Account</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>Vars_Account_Update</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>Vars_Accts_To_Loop</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>Vars_FD_Company_creation_failed_log</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>FD_Company_creation_failed_log__c</objectType>
+    </variables>
+</Flow>

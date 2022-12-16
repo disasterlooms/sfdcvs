@@ -1,0 +1,108 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,lightning:availableForFlowScreens" access="global" controller="oppadddistis">
+    <aura:attribute name="recordId" type="string" />
+    <aura:attribute name="distis" type="Account[]"  />
+    <aura:attribute name="selected" type="String[]"/>
+    <aura:attribute name="DependentCheckboxpart" type="string" />
+    <aura:attribute name="showFooter" type="Boolean" default="true"/>
+    <aura:attribute name="showSubTitle" type="Boolean" default="true"/>
+    <aura:attribute name="distiNamesSelected" type="String" default=""/>
+    <aura:attribute name="distiIdsSelected" type="String" default=""/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />    
+    <div aria-hidden="true" role="dialog" class="slds-modal slds-modal--medium slds-fade-in-hide" aura:id="modaldialog" style="width:85%">
+        
+        <div class="exampleHolder">
+            <lightning:spinner aura:id="mySpinnerpart" class="slds-hide" variant="brand" size="large"/>
+        </div>
+        <section aria-describedby="modal-content-id-1" aria-labelledby="id-of-modalheader-h2" class="slds-modal slds-fade-in-open slds-modal_large slds-list-builder" role="dialog" tabindex="-1">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <aura:if isTrue="{!v.showSubTitle}">
+                        <h2 class="slds-text-heading--large">Select Distributors to Add</h2>                        
+                        <h2 class="slds-text-heading--small">Don't See a Distributor? Send Request to Admin to add a distributor</h2>
+                        <aura:set attribute="else">
+                            <h2 class="slds-text-heading--small" style="float:right;">Step 3 of 4</h2><br/>
+                          <h2 class="slds-text-heading--medium">Select Distributor(s)</h2>
+                        </aura:set>
+                    </aura:if>
+                </div>            
+                <div class="slds-modal__content">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-1">
+                            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                <thead>
+                                    <tr class="slds-text-title_caps">                                   
+                                        <!--
+                                <th scope="col">
+                                    <ui:inputCheckbox change="{!c.checkAllCheckboxes}" aura:id="checkboxpart"/>
+                                </th>
+                     -->
+                                        <th scope="col" style="width: 3.75rem;">
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Subject">Name</div>
+                                        </th>
+                                        
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Name">Country</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <aura:iteration items="{!v.distis}" var="d">
+                                        <tr>
+                                            <td class="slds-text-align_right" role="gridcell" style="width: 3.75rem;" tabindex="0">
+                                                <div class="slds-checkbox_add-button">
+                                                    <!--<ui:inputCheckbox aura:id="DependentCheckboxpart" name="{!d.Id}" class="slds-assistive-text" labelclass="slds-checkbox_faux" label=""/>-->
+                                                    <lightning:input type="checkbox-button" label="{!d.Name}" name="{!d.Id}" aura:id="DependentCheckboxpart" value="false" checked="false"/>
+                                                    
+                                                    <!--<input  type="checkbox" class="slds-assistive-text uiInput uiInputCheckbox uiInput-*default uiInput-*checkbox" id="{!d.Id}" tabindex="-1" value="on" onclick="{!c.account}"/>
+                                                    <label class="slds-checkbox_faux" for="{!d.Id}">
+                                                    </label>
+                                                    -->
+                                                </div>
+                                            </td>
+                                            
+                                            <!--<td>
+                                            <input class="slds-assistive-text" id="add-checkbox-9" tabindex="-1" type="checkbox" value="on">
+                                                <label class="slds-checkbox_faux" for="add-checkbox-9">
+                                                    <span class="slds-assistive-text">Select item 1</span></label>
+                                            </input>                                        
+                                            <ui:inputCheckbox aura:id="DependentCheckboxpart" name="{!d.Id}"/>
+                                        </td>
+                                        -->
+                                            <td role="gridcell">
+                                                <div class="slds-truncate" title="ANTLY">{!d.Name}</div>
+                                            </td>
+                                            <td role="gridcell">
+                                                <div class="slds-truncate" title="ANTLY">{!d.BillingCountry}</div>
+                                            </td>
+                                        </tr>
+                                    </aura:iteration>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="slds-modal__footer">
+                    <div class="slds-x-small-buttons--horizontal">
+                        <aura:if isTrue="{!v.showFooter}">
+                            <lightning:button class="slds-button slds-button_brand " onclick="{!c.save}" value="true" disabled="false" aura:id="savebtn" label="Add Distis" />
+                            <aura:set attribute="else">
+                                 <lightning:button class="slds-button slds-button_inverse" onclick="{!c.prevFlow}"  disabled="false" aura:id="prevBtn" label="Previous" /> 
+                                <lightning:button class="slds-button slds-button_brand" onclick="{!c.saveToFlow}" disabled="false" aura:id="nextBtn" label="Next" /> 
+                               
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </div>
+                    
+                
+            </div>
+        </section>
+    </div>
+    
+</aura:component>

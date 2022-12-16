@@ -1,0 +1,272 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction"
+    access="global" controller="SpaProducts">
+    <aura:attribute name="account" type="Account" />
+    <c:AccountController account="{!v.account}" recordId="{!v.recordId}" aura:id="vipact" />
+    <aura:handler name="change" value="{!v.account}" action="{!c.acctvip}" />
+
+    <aura:attribute name="recordId" type="String" access="public" />
+    <aura:handler event="force:refreshView" action="{!c.getProducts}" />
+    <aura:attribute name="products" type="QuoteLineItem[]" access="public" />
+    <aura:attribute name="showProds" type="boolean" default="false" access="public" />
+    <aura:attribute name="delproducts" type="QuoteLineItem[]" access="public" />
+    <aura:attribute name="wherestmnt" type="string" />
+    <aura:attribute name="addfields" type="string" />
+    <aura:attribute name="orderstmnt" type="string" />
+    <aura:attribute name="title" type="string" />
+    <aura:attribute name="blended" type="integer" />
+    <aura:attribute name="blendedspecial" type="integer" />
+    <aura:attribute name="quotes" type="boolean" default="false" />
+    <aura:attribute name="record" type="Object" description="The record object to be displayed" />
+    <aura:attribute name="simpleRecord" type="Object" description="A simplified view record object to be displayed" />
+    <aura:attribute name="recordError" type="String" description="An error message bound to force:recordData" />
+
+    <force:recordData aura:id="eval" layoutType="FULL" recordId="{!v.recordId}" targetError="{!v.recordError}"
+        targetRecord="{!v.record}" targetFields="{!v.simpleRecord}" mode="EDIT" />
+    <aura:handler name="init" value="{!this}" action="{!c.getProducts}" />
+
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinner" class="slds-hide" variant="brand" size="large" />
+    </div>
+
+    <div class="fontblk slds-border_top  slds-border_right slds-border_left slds-border_bottom flexipageComponent "
+        data-aura-class="flexipageComponent">
+        <aura:if isTrue="{!v.showProds}">
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2>
+                                <span class="slds-text-heading_small">{!v.title}<b>{!'
+                                        '+v.simpleRecord.PriceBook__c}</b></span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Blended Margin:
+                                    &nbsp;&nbsp;</b>
+                                <ui:outputNumber value="{!v.blended}" />%
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><button
+                                        class="slds-button" onclick="{!c.getSpecial}">Calc Blended Selected</button>
+                                    &nbsp;&nbsp;</b>
+                                <ui:outputNumber value="{!v.blendedspecial}" />%
+
+
+                            </h2>
+                        </div>
+                    </header>
+
+                    <div class="slds-no-flex">
+                        <lightning:button label="Delete&nbsp;Selected" variant="neutral" onclick="{!c.deleteprods}"
+                            value="{!recordid}" />
+                        <lightning:button label="Update&nbsp;Products" variant="neutral" onclick="{!c.update}"
+                            value="{!recordid}" />
+                        <lightning:button label="Add&nbsp;Products" variant="neutral" onclick="{!c.addproducts}"
+                            value="{!recordid}" />
+
+                    </div>
+                </div>
+                <div class="slds-no-flex">
+                </div>
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <ui:inputCheckbox change="{!c.checkAllCheckboxes}" aura:id="checkbox" />
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="SKU">SKU</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="QTY">QTY</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Approved Price">Req Price</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="List Price">List Price</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Approved Price">Appr Price</div>
+                            </th>
+                            <!--
+                            <th scope="col">
+                                <div class="slds-truncate" title="List Price">PM Review</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="List Price">VP Review</div>
+                            </th> 
+       -->
+                            <th scope="col">
+                                <div class="slds-truncate" title="Landed">Landed</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="VIP">VIP</div>
+                            </th>
+
+                            <!-- Start Adding Hotswap Filed 07182019 Prasad-->
+                            <th scope="col">
+                                <div class="slds-truncate" title="Hot Swap">Hot Swap</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Active SKU">Active SKU</div>
+                            </th>
+                            <!-- End Adding Hotswap Filed 07182019 Prasad-->
+                            <th scope="col">
+                                <div class="slds-truncate" title="Blended">Blended</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="List Price">Margin</div>
+                            </th>
+
+                            <th scope="col">
+                                <div class="slds-truncate" title="Spif Disti">Spif Disti</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Spif Reseller">Spif Reseller</div>
+                            </th>
+
+                            <th scope="col">
+                                <div class="slds-truncate" title="Max">Max Qty</div>
+                            </th>
+
+                            <th scope="col">
+                                <div class="slds-truncate" title="Competitor">Competitor</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Competitor Pri">Competitor Price</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Notes">Notes</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Notes">PM Approval Notes</div>
+                            </th>
+
+                            <th scope="col">
+                                <div class="slds-truncate" title="Expiration Date">Exp Date</div>
+                            </th>
+                            <!-- <th scope="col">
+                                <div class="slds-truncate" title="History">Price History</div>
+                            </th>-->
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.products}" var="p" indexVar="idx">
+                            <tr>
+                                <td>
+                                    <ui:inputCheckbox aura:id="DependentCheckbox" name="{!p.Id}" />
+                                </td>
+                                <td>
+                                    <ui:outputURL
+                                        value="{!'/lightning/r/Report/00O5c000006DWKOEA4/view/?fv1='+p.Product2.Name}"
+                                        label="{!p.Product2.Name}" target="_blank" />
+
+                                    <!--<ui:outputText value="{!p.Product2.Name}"/>-->
+                                </td>
+                                <td>
+                                    <lightning:input type="number" value="{!p.Quantity}" />
+                                </td>
+                                <td>
+                                    <lightning:input type="curency" value="{!p.UnitPrice}" />
+                                </td>
+                                <td>
+                                    <ui:outputNumber value="{!p.PricebookEntry.UnitPrice}" />
+                                </td>
+
+                                <td data-record="{!idx}">
+                                    <aura:if isTrue="{!p.ApprovedPriceHiigherLIst__c}">
+                                        <lightning:input type="curency" value="{!p.Approved_Price__c }"
+                                            class="slds-has-error" onblur="{!c.margin}" aura:id="aprice" />
+                                        <aura:set attribute="else">
+                                            <lightning:input type="curency" value="{!p.Approved_Price__c }"
+                                                aura:id="aprice" onblur="{!c.margin}" />
+
+                                        </aura:set>
+                                    </aura:if>
+                                </td>
+                                <!--
+                                <td>
+                                    <lightning:input type="checkbox" value="{!p.Product_Manager_Review__c}"/>
+                                </td>
+                                <td>
+                                    <lightning:input type="checkbox" value="{!p.VP_Price_Review__c}"/>
+                                </td>
+        -->
+                                <td>
+                                    <ui:outputCurrency value="{!p.PricebookEntry.Product2.Cost__c}" aura:id="landed" />
+                                </td>
+                                <td>
+                                    <ui:inputCheckbox value="{!p.VIP__c}" aura:id="vip" />
+                                </td>
+                                <!-- Start Adding Hotswap Field 07182019 Prasad-->
+                                <td>
+                                    <ui:inputCheckbox value="{!p.Hot_Swap_Flag__c}" aura:id="Hot Swap" />
+                                </td>
+                                <td>
+                                    <aura:if isTrue="{!p.PricebookEntry.IsActive}">
+                                        <lightning:input type="checkbox" value="{!p.PricebookEntry.IsActive}"
+                                            checked="{!p.PricebookEntry.IsActive}" disabled="true" />
+                                        <aura:set attribute="else">
+                                            <lightning:input type="checkbox" value="{!p.PricebookEntry.IsActive}"
+                                                class="slds-has-error" checked="{!p.PricebookEntry.IsActive}"
+                                                disabled="true" />
+                                        </aura:set>
+                                    </aura:if>
+                                </td>
+                                <!-- End Adding Hotswap Filed 07182019 Prasad-->
+                                <td>
+                                    <!--this component uses attributes to get different values from the row and to determine if
+                                      the value is selected,then will use to calculate margin -->
+                                    <lightning:input type="checkbox" aura:id="blendmarg" name="{!p.Approved_Price__c}"
+                                        checked="true"
+                                        title="{!p.PricebookEntry.Product2.Cost__c+p.PricebookEntry.Disty_Spiff__c+p.PricebookEntry.Reseller_Spiff__c}"
+                                        onchange="{!c.getSpecial}" />
+                                </td>
+
+                                <td>
+                                    <ui:outputNumber
+                                        value="{!if(p.Approved_Price__c > 0,
+                                                            ((p.Approved_Price__c - (p.PricebookEntry.Disty_Spiff__c+p.PricebookEntry.Reseller_Spiff__c+p.PricebookEntry.Product2.Cost__c)  )/p.Approved_Price__c)*100,
+                                                            ((p.PricebookEntry.UnitPrice - (p.PricebookEntry.Total_Cost__c +p.Landed_Cost__c))/p.PricebookEntry.UnitPrice)*100)+'%' }" />
+                                </td>
+                                <td>
+                                    <ui:outputNumber value="{!p.PricebookEntry.Disty_Spiff__c}" aura:id="disti" />
+                                </td>
+                                <td>
+                                    <ui:outputNumber value="{!p.PricebookEntry.Reseller_Spiff__c}" aura:id="reseller" />
+                                </td>
+
+
+                                <td>
+                                    <lightning:input type="number" value="{!p.Max_Qty__c}" />
+                                </td>
+
+                                <td>
+                                    <lightning:input type="text" value="{!p.Competitor_Name_del__c }" />
+                                </td>
+                                <td>
+                                    <lightning:input type="number" value="{!p.Competitor_Price_del__c  }" />
+                                </td>
+                                <td>
+                                    <lightning:textarea value="{!p.Notes__c}" />
+                                </td>
+                                <td>
+                                    <lightning:textarea value="{!p.PM_Approval_Notes__c}" />
+                                </td>
+
+                                <td>
+                                    <ui:inputDate value="{!p.SPA_Expiration_Date__c}" format="MM/dd/YY"
+                                        displayDatePicker="true" class="slds-input" />
+                                </td>
+                                <!--<td>
+                                      <lightning:formattedRichText value="{!m.HtmlBody}" />
+                                </td> -->
+
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+
+            </article>
+        </aura:if>
+
+    </div>
+
+</aura:component>

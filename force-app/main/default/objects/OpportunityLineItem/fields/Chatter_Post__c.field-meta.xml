@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Chatter_Post__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(isblank( Approved_Price__c )   ,&apos;Product Added to Spa: &apos;&amp; Product__c, 
+if( Approved_Price__c =0  ,&apos;Product Added to Spa: &apos;&amp; Product__c, 
+
+
+&apos;Approved Price change for &apos;&amp; Product__c&amp; &apos; To: &apos;&amp; text(Approved_Price__c)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Info for chatter post when product added or approval price changes</inlineHelpText>
+    <label>Chatter Post</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

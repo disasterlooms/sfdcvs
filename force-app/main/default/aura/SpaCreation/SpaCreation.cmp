@@ -1,0 +1,37 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionwithoutHeader" access="global" >
+    <aura:attribute name="recordId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:handler name="change" value="{!v.simpleRecord.Id}" action="{!c.setFields}"/>
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinnerspa" class="slds-hide" variant="brand" size="large"/>
+    </div>    
+    <!--get the name and other fields needed for spa using record data..not my favorite choice but better than a apex class..i think-->
+    <aura:attribute name="record" type="Object" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    
+    <force:recordData aura:id="record"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      mode="VIEW"/>
+    
+    <!-- Display the new contact form -->
+    <lightning:recordEditForm aura:id="SpaCreationForm" objectApiName="Quote" recordTypeId="0121H0000012dg5" onsuccess="{!c.saved}" onsubmit="{!c.submitted}">
+        <lightning:messages />
+        <lightning:inputField fieldName="Name" aura:id="spaname"  value="{!v.simpleRecord.SPA_ID__c}"/>
+        <lightning:inputField fieldName="Spa_Request_Type__c" />
+        <lightning:inputField fieldName="Notes__c"/>
+        <lightning:inputField fieldName="First_Time_Buyer__c"/>
+        <lightning:inputField fieldName="OpportunityId" value="{!v.recordId}" aura:id="oppid"/>
+        <lightning:inputField fieldName="Business_Reason_for_Bid_Registration__c"/>
+        <lightning:inputField fieldName="Scope_of_Bid_Registration__c"/>
+        <lightning:inputField fieldName="List_of_Work_Activity_c__c"/>
+        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="Save" label="Save" />
+    </lightning:recordEditForm>
+</aura:component>

@@ -1,0 +1,4 @@
+<design:component>
+    <design:attribute name="videoURL" description="full url of video, preferably embed"/> 
+	
+</design:component>

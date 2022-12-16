@@ -1,0 +1,7 @@
+<apex:page >
+
+<script>
+sforce.one.navigateToURL("/one/one.app?source=aloha#/sObject/Opportunity/list?filterName=Recent");
+</script>
+
+</apex:page>

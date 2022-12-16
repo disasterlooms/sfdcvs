@@ -1,0 +1,35 @@
+<apex:page standardcontroller="Opportunity" sidebar="false" showHeader="false">
+<apex:stylesheet value="{!URLFOR($Resource.Lightningcss, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.VScss)}"/>
+<apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"/>
+<apex:includescript value="{!URLFOR($Resource.OppNewScript)}"/>
+
+
+<apex:messages />
+    <apex:form >
+        <apex:pageblock mode="edit" title="{!Opportunity.Name}">
+            
+         <div class="viewsonic">  
+            <!-- **********   [Record Type : Spa Stage ]   **********  -->
+            <apex:outputpanel >
+                <apex:pageBlockSection >
+                    
+                    <apex:outputfield value="{!Opportunity.Opportunity_Notes__c}" />                    
+                    <apex:pageBlockSectionItem />
+                    <apex:outputfield value="{!Opportunity.OwnerId}"/>
+                    <apex:pageBlockSectionItem />
+                    
+                    
+                </apex:pageBlockSection>
+            </apex:outputpanel>
+            </div>
+        </apex:pageblock>
+    </apex:form>
+    <apex:relatedList list="OpportunityLineItems" title="Products"/>
+    <apex:relatedlist list="Opportunity_Partners__r" title="Channel Partners"/>
+    <apex:relatedList list="OpportunityTeamMembers" title="Team Members"/>
+    <script>
+ $('.btn').hide();
+
+</script>
+</apex:page>

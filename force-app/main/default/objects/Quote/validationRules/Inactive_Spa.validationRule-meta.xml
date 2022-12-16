@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inactive_Spa</fullName>
+    <active>true</active>
+    <errorConditionFormula>(text(Status) == &quot;Inactive&quot; ||  Active__c == false || RecordType.Name == &quot;Inactive&quot;)
+
+&amp;&amp;
+ not($Permission.VSA_Bid_Desk )</errorConditionFormula>
+    <errorMessage>This spa is inactive. It cannot be resubmitted. Please find the active spa, which is in the rejection notes.</errorMessage>
+</ValidationRule>

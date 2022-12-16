@@ -1,0 +1,19 @@
+<apex:page >
+<apex:remoteObjects >
+    <apex:remoteObjectModel name="User_Interactions__c" fields="Name,Id">
+    <apex:remoteObjectField name="User__c" jsShorthand="user"/>
+    <apex:remoteObjectField name="UI__c" jsShorthand="ui"/>
+    </apex:remoteObjectModel>
+</apex:remoteObjects>
+<script>
+ function supersearchui(task){
+     var acc = new SObjectModel.User_Interactions__c({ Name: task , user: "{!$User.Id}",ui: "{!$User.UITheme}" });
+          acc.create(function(err) {
+          if (err) console.log(err.message);
+          else console.log(acc.get('Id'));
+        });
+   }
+   
+                             
+</script>
+</apex:page>

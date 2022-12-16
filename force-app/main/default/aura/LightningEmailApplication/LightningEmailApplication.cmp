@@ -1,0 +1,117 @@
+<aura:component implements="clients:availableForMailAppAppPage,force:appHostable,flexipage:availableForAllPageTypes,clients:hasEventContext,clients:hasItemContext"
+                controller="OutlookEmailPane">
+    
+    <aura:handler name="init" action="{!c.myAction}" value="{!this}" />
+    <aura:attribute name="accounts" type="Account[]" />
+    <aura:attribute name="evals" type="Eval_Request__c[]" />
+    <aura:attribute name="contacts" type="Contact[]" />
+    <aura:attribute name="cases" type="Case[]" />
+    <aura:attribute name="opps" type="Opportunity[]" /> 
+    <aura:attribute name="source" type="String" />
+    <aura:attribute name="subject" type="String" />
+    <aura:attribute name="mode" type="String" />
+    <aura:attribute name="people" type="Object" />
+    <aura:attribute name="dates" type="Object" />
+    
+    <lightning:card variant="Narrow" title="Related Opportunities" iconName="standard:opportunity" >
+        
+        
+        <aura:iteration items="{!v.opps}" var="o"> 
+            <lightning:tile >
+                <!-- <lightning:button variant="base"  onclick="{!c.handleClick }" value="{!o.Id}">-->
+                <aura:set attribute="body">
+                    <a><lightning:formattedText value="{!o.Name}" onclick="{!c.handleClick }" title="{!o.Id}"/></a>
+                    <p class="slds-truncate" title="Reseller and Type" onclick="{!c.handleClick }" >
+                        
+         </p>
+                    <p class="slds-truncate" title="Reseller and Type">Resellers: {!o.Resellers_and_Type__c}</p>
+                    <p class="slds-truncate" title="Reseller and Type">CloseDate: {!o.CloseDate}</p>
+                    
+                </aura:set>
+            </lightning:tile> 
+        </aura:iteration> 
+    </lightning:card>
+    
+    <lightning:card variant="Narrow" title="Related Evals" iconName="custom:custom36" >
+        
+        
+        <aura:iteration items="{!v.evals}" var="e"> 
+            <lightning:tile >
+                <!-- <lightning:button variant="base"  onclick="{!c.handleClick }" value="{!o.Id}">-->
+                <aura:set attribute="body">
+                    
+                    <a><lightning:formattedText value="{!e.Opportunity_Name__r.Name}" onclick="{!c.handleClick }" title="{!e.Id}"/></a>
+                    <aura:if isTrue="{!not(e.Opportunity_Name__r.Name.size>0)}">
+                    <a><lightning:formattedText value="{!e. Billing_Contact_Name__r.Account.Name}" onclick="{!c.handleClick }" title="{!e.Id}"/></a>
+                    </aura:if>
+                    <p class="slds-truncate" title="Reseller and Type" onclick="{!c.handleClick }" >
+                        
+         </p>
+                    <p class="slds-truncate" title="Reseller and Type">Stage: {!e.Eval_Process_Stage__c}</p>
+                    <p class="slds-truncate" title="Reseller and Type">Eval #: {!e.Name}</p>
+                    
+                </aura:set>
+            </lightning:tile> 
+        </aura:iteration> 
+    </lightning:card> 
+    
+     <lightning:card variant="Narrow" title="Related Cases" iconName="standard:case" >
+        
+        
+        <aura:iteration items="{!v.cases}" var="case"> 
+            <lightning:tile >
+                <!-- <lightning:button variant="base"  onclick="{!c.handleClick }" value="{!o.Id}">-->
+                <aura:set attribute="body">
+                    <a><lightning:formattedText value="{!case.Subject}" onclick="{!c.handleClick }" title="{!case.Id}"/></a>
+                    <p class="slds-truncate" title="Reseller and Type" onclick="{!c.handleClick }" >
+                        
+         </p>
+                    <p class="slds-truncate" title="Reseller and Type">Owner: {!case.Owner.Name}</p>
+                    
+                </aura:set>
+            </lightning:tile> 
+        </aura:iteration> 
+    </lightning:card>
+    
+    <lightning:card variant="Narrow" title="Related Account" iconName="standard:account" >
+        
+        
+        <aura:iteration items="{!v.accounts}" var="a"> 
+            <lightning:tile >
+                <!-- <lightning:button variant="base"  onclick="{!c.handleClick }" value="{!o.Id}">-->
+                <aura:set attribute="body">
+                    <a><lightning:formattedText value="{!a.Name}" onclick="{!c.handleClick }" title="{!a.Id}"/></a>
+                    <p class="slds-truncate" title="Reseller and Type" onclick="{!c.handleClick }" >
+                        
+         </p>
+                    <p class="slds-truncate" title="Reseller and Type">Type: {!a.Account_Type__c}</p>
+                    <p class="slds-truncate" title="Reseller and Type">Industry: {!a.Industry}</p>
+                    
+                </aura:set>
+            </lightning:tile> 
+        </aura:iteration> 
+    </lightning:card> 
+    
+    
+    <lightning:card variant="Narrow" title="Related Contacts" iconName="standard:contact" >
+        
+        
+        <aura:iteration items="{!v.accounts}" var="a"> 
+            <aura:iteration items="{!a.Contacts}" var="con"> 
+                <lightning:tile >
+                    <!-- <lightning:button variant="base"  onclick="{!c.handleClick }" value="{!o.Id}">-->
+                    <aura:set attribute="body">
+                        <a><lightning:formattedText value="{!con.Name}" onclick="{!c.handleClick }" title="{!con.Id}"/></a>
+                        <p class="slds-truncate" title="Reseller and Type" onclick="{!c.handleClick }" >
+                            
+                        </p>
+                        <p class="slds-truncate" title="Reseller and Type">Title: {!con.Title}</p>
+                        <p class="slds-truncate" title="Reseller and Type">Phone: {!con.Phone}</p>
+                        
+                    </aura:set>
+                </lightning:tile>
+            </aura:iteration>
+        </aura:iteration> 
+    </lightning:card> 
+    
+</aura:component>

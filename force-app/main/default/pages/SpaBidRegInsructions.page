@@ -1,0 +1,9 @@
+<apex:page sidebar="false" showheader="false" standardStylesheets="false">
+<ol>
+  <li>After saving, the opportunity is locked, autmatically sent to VP of Sales, and you will not be able to edit anything!</li>
+  <li>Make sure all products are accurate and all Resellers. The opportunity amount is based on prodcuts.</li>
+  <li>If you need to add/change products, resellers, or distributors, hit cancel and edit on opportunity detail page</li>
+  <li>Before adding attachments, you must put a ship by date</li>
+  <li>Attachments can be any type of file, including emails, excel, word, images...ect... To upload the message you will first need to save the message to your computer.</li>
+</ol> 
+</apex:page>

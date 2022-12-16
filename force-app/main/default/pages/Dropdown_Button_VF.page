@@ -1,0 +1,16 @@
+<apex:page >
+<div class="menuButton" id="MyMenu">
+    <div class="menuButtonButton" id="MyMenuButton">
+       <span id="menuLabel" tabindex="0" style="">MyMenu</span>
+    </div>
+    <div class="menuButtonMenu" id="MyMenuMenu">
+      <a href="/" class="menuButtonMenuLink firstMenuItem">Left VoiceMail</a>
+      <a href="/" class="menuButtonMenuLink">Call in 1 day</a>
+      <a href="/" class="menuButtonMenuLink">Call in 3 day</a>
+
+      <a href="/" class="menuButtonMenuLink">Call in 5 day</a>
+
+    </div>
+  </div>
+<script type="text/javascript">new MenuButton('MyMenu', false);</script>
+</apex:page>

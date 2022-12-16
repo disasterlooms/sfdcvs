@@ -1,0 +1,41 @@
+<apex:page showHeader="false" sidebar="false" docType="html-5.0">
+
+    <body>
+        <script>    
+            console.log('on load...'); 
+            window.fwSettings={
+            'widget_id':43000001855
+            };
+             ! function() {
+                if ("function" != typeof window.FreshworksWidget) {
+                    var n = function() {
+                        n.q.push(arguments)
+                    };
+                    n.q = [], window.FreshworksWidget = n
+                }
+            }();
+           
+            //FreshworksWidget('hide', 'launcher');
+        </script>
+        <script type='text/javascript' src='https://widget.freshworks.com/widgets/43000001855.js'  async="async"></script>
+        <script>
+            FreshworksWidget('open');
+            
+            var user = '{!$User.FirstName&' '&$User.LastName}';
+            var email = '{!$User.Email}';
+            
+            console.log(user);
+            if(user == 'Partner Portal Site Guest User'){
+            user = '';
+            email = '';
+            
+                }
+            
+            FreshworksWidget('identify', 'ticketForm', {
+              name: user,
+              email: email
+            });
+            console.log('prefill');
+        </script>
+        </body>
+</apex:page>

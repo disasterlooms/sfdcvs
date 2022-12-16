@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ViewSchool__c</fullName>
+    <businessStatus>DeprecateCandidate</businessStatus>
+    <defaultValue>false</defaultValue>
+    <description>If this account is an educational based account and is a member of ViewSchool, check the box.
+
+7.23 this is a deprecate candidate but this data may be useful for viewboard. Need to check before deleting</description>
+    <externalId>false</externalId>
+    <label>ViewSchool</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

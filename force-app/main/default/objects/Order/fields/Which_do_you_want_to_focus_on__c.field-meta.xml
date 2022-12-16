@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Which_do_you_want_to_focus_on__c</fullName>
+    <externalId>false</externalId>
+    <label>Which do you want to focus on?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>myViewBoard</fullName>
+                <default>false</default>
+                <label>myViewBoard</label>
+            </value>
+            <value>
+                <fullName>Android whiteboarding</fullName>
+                <default>false</default>
+                <label>Android whiteboarding</label>
+            </value>
+            <value>
+                <fullName>Tools to use with Mac OS</fullName>
+                <default>false</default>
+                <label>Tools to use with Mac OS</label>
+            </value>
+            <value>
+                <fullName>myViewBoard.com setup</fullName>
+                <default>false</default>
+                <label>myViewBoard.com setup</label>
+            </value>
+            <value>
+                <fullName>Quickboard</fullName>
+                <default>false</default>
+                <label>Quickboard</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

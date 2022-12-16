@@ -1,0 +1,5 @@
+<design:component>
+    <design:attribute name="recordId" description="record id"/>
+    <design:attribute name="recordName" description="record name"/>
+    <design:attribute name="flowSide" description="use flow navigation"/>
+</design:component>

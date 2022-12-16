@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ResellerCountry__c</fullName>
+    <description>This is for sharing rules. the country of reseller is added on creation if a reseller is added. If an update, it is not added.</description>
+    <externalId>false</externalId>
+    <label>ResellerCountry</label>
+    <length>200</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

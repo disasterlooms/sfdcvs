@@ -1,0 +1,4 @@
+<apex:page standardController="Account" sidebar="True" showHeader="false">
+  
+    <src="/apex/gbfree__Grid?gname=Accounts%20With%20Contacts"/>
+</apex:page>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ChannelCompact</fullName>
+    <fields>Name</fields>
+    <fields>Category</fields>
+    <fields>Sub_Category__c</fields>
+    <fields>IsActive</fields>
+    <fields>Spiff_Type_Specific__c</fields>
+    <fields>VS_SubRegion__c</fields>
+    <fields>Program_Type__c</fields>
+    <label>ChannelCompact</label>
+</CompactLayout>

@@ -1,0 +1,4 @@
+<apex:page standardController="Opportunity" showheader="false" sidebar="false">
+<apex:relatedList list="Opportunity_Partners__r"/>
+<apex:relatedList list="OpportunityTeamMembers"/>
+</apex:page>

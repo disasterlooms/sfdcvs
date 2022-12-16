@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>External_Id__c</columns>
+    <columns>CITY__c</columns>
+    <columns>STATE_PROVINCE__c</columns>
+    <columns>CITY_RATE__c</columns>
+    <columns>COUNTRY__c</columns>
+    <columns>COUNTY_RATE__c</columns>
+    <columns>FROM_POSTAL_CODE__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>STATE_PROVINCE__c</field>
+        <operation>equals</operation>
+        <value>CO</value>
+    </filters>
+    <label>All</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NavigationMenu xmlns="http://soap.sforce.com/2006/04/metadata">
+    <container>ViewSonic Employee Salesforce Portal</container>
+    <containerType>Network</containerType>
+    <label>Default Navigation</label>
+    <navigationMenuItem>
+        <label>Spiff Requests</label>
+        <position>1</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/spiff-requests</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Unregistered Resellers</label>
+        <position>2</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Login</target>
+        <type>Event</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Account Management</label>
+        <position>3</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Account</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Contact Management</label>
+        <position>4</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Contact</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Document Managment</label>
+        <position>5</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/document-managemet</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Reports</label>
+        <position>6</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/report/Report/Recent</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Data Import</label>
+        <position>7</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>https://partner.viewsonic.com/admin/dataImporter/dataImporter.app</target>
+        <type>ExternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Administrator Tasks</label>
+        <position>8</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/admin-tasks</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Hot Swap</label>
+        <position>9</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Hot_Swap__c</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Spiff Payments</label>
+        <position>10</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Spiff_Claim_Payment__c</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Help Documentation</label>
+        <position>11</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/learning-center/Learning_Center__c/Default</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Deal Registration</label>
+        <position>12</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Opportunity</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Channel Program</label>
+        <position>13</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>ChannelProgram</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Strategic Allocation Requests</label>
+        <position>14</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Strategic_Allocation_Request__c</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Strategic Allocation Requests 2</label>
+        <position>15</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/strategic-allocation-request/Strategic_Allocation_Request__c/Unfulfilled_Allocation_Orders</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Strategic Allocation Requests 3</label>
+        <position>16</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/strategic-allocations-3</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+</NavigationMenu>

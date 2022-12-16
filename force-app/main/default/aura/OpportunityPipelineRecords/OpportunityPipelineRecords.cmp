@@ -1,0 +1,179 @@
+<aura:component access="global" controller="OppPipelineRecPage" implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+    <aura:handler name="init" action="{!c.getData}" value="{!this}" />
+    <aura:registerEvent name="showNewProduct" type="c:newproduct" />
+    <aura:attribute name="recordId" type="String" access="public"/>    
+    <aura:registerEvent name="showOpportunities" type="c:displayopp" />
+    <aura:registerEvent name="showfollowup" type="c:OppPipeFollowUp" />
+    <aura:attribute name="opportunities" type="Opportunity[]" />
+    <aura:attribute name="oppfields" type="String" default="Id,AccountId, Account.Name,Product_Name_Main__c,
+                                                            CloseDate,Project_or_Site_Information__c,name,Resellers_and_Type__c,
+                                                            Pricebook2Id,Opportunity_Notes__c,Manager_Note__c"/>
+    <aura:attribute name="prodfields" type="String" default="Name,Quantity,Product2Id,Product2.Name,ServiceDate
+                                                             ,Ship_Out_Date__c,status__c"/>
+    <aura:attribute name="status" type="String[]" />
+    <aura:attribute name="accounts" type="String" />
+    <aura:attribute name="user" type="User" />
+    <aura:attribute name="newprodoppid" type="String" />
+    <aura:attribute name="myDate" type="Date" />
+    <aura:attribute name="parentattribute" type="String"/>
+    <aura:attribute name="spaoppid" type="String"/>
+    <aura:attribute name="loading"  type="String" default="...loading please wait"/>
+    <!-- Value change handler -->
+    
+    <ui:outputtext value="{!v.loading}"/>
+    
+    <aura:attribute name="record" type="Object" 
+                    description="The record object to be displayed"/>
+    <aura:attribute name="simpleRecord" type="Object" 
+                    description="A simplified view record object to be displayed"/>
+    <aura:attribute name="recordError" type="String" 
+                    description="An error message bound to force:recordData"/>
+    
+    <lightning:spinner aura:id="mySpinner" class="slds-hide" />
+    
+    <force:recordData aura:id="eval"
+                      layoutType="FULL"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      mode="VIEW"/>
+    
+    
+    
+    <aura:handler name="change" value="{!v.myDate}" action="{!c.handleValueChange}" access="global"/> 
+    <div class="exampleHolder">
+        <lightning:spinner aura:id="mySpinneroppsrec" class="slds-hide" variant="brand" size="large"/>
+    </div>
+    
+    
+    <!-- Class Calls Pipeline Opportunities and Corresponding Products -->
+    <aura:iteration items="{!v.opportunities}" var="opp">
+        <div class="flexipageComponent" data-aura-class="flexipageComponent">
+            <article class="slds-card ccard" style="background: rgb(224, 229, 238);box-shadow: 7px 3px 0 0px rgba(0, 0, 0, 0.10);">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate cardplus"><div class="slds-media__body">
+                        <h2>
+                            
+                            <span class="slds-text-heading_small">
+                                <a href="{!'/lightning/r/Opportunity/'+opp.Id+'/view'}">{!opp.Name}</a>
+                            </span>
+                        </h2>
+                        </div>
+                    </header>
+                    <div class="slds-no-flex">
+                        <lightning:buttonGroup >    
+                            <ui:button label="Save All Opportunity Info" press="c.pupdate" />
+                            <!--<lightning:button label="Add&nbsp;Product" variant="neutral" onclick="{!c.newproduct}" value="{!opp.Id}"  /> -->
+                            <lightning:button label="Add&nbsp;Multiple&nbsp;Products" variant="neutral" onclick="{!c.gotoRelatedList}" value="{!opp.Id}"  /> 
+                            <!--<lightning:button label="Edit&nbsp;Linked&nbsp;Spas&nbsp;Or&nbsp;Create&nbsp;New" variant="neutral"  onclick="{!c.displayOpportunities}" value="{!opp.Id}"  />-->
+                        </lightning:buttonGroup> 
+                    </div>
+                </div>
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <div class="slds-truncate" title="End Users">End User</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Resellers">Resellers</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Managers Notes">Managers Notes</div>
+                            </th>
+                            <th scope="col"> 
+                                <div class="slds-truncate" title="Opportunity Notes">Opporunity Notes</div>
+                            </th>
+                            <th scope="col"> 
+                                <div class="slds-truncate" title="Project">Project or Site Info</div>
+                            </th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <ui:outputText value="{!opp.Account.Name}">
+                                    
+                                </ui:outputText>
+                            </td>
+                            <td>
+                                <ui:outputText value="{!opp.Resellers_and_Type__c}"/>
+                            </td>
+                            <td>
+                                <ui:outputTextArea value="{!opp.Manager_Note__c}"/>
+                                
+                            </td>
+                            <td>
+                                <ui:inputTextArea value="{!opp.Opportunity_Notes__c}"/>
+                            </td>
+                            <td>
+                                <ui:inputTextArea value="{!opp.Project_or_Site_Information__c}"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+                    
+                    <th scope="col">
+                        <div class="slds-truncate" title="Product">Product</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Quantity">Quantity</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Status">Status</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Ship Out Date">Ship Out Date</div>
+                    </th>
+                    <tbody>
+                        <aura:iteration items="{!opp.OpportunityLineItems}" var="l">
+                            <tr>
+                                <td scope="row" style="vertical-align:top;">
+                                    <div class="slds-truncate" title=""><ui:outputText value="{!l.Product2.Name}"/>
+                                    </div>
+                                </td> 
+                                <td style="vertical-align:top;">
+                                    <div class="slds-truncate" title="{!l.Quantity}">
+                                        <ui:inputText value="{!l.Quantity}"/>
+                                    </div>
+                                </td>
+                                <td style="vertical-align:top;">
+                                    <div class="slds-truncate" title="{!l.Status__c}">
+                                        <lightning:select name="select" variant="label-hidden" value="{!l.Status__c}">
+                                            <aura:iteration items="{!v.status}" var="s">
+                                                <option value="{!s}" text="{!s}"></option>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+                                </td>
+                                <td style="vertical-align:top;" colspan="2">
+                                    <div class="slds-truncate" title="{!l.Ship_Out_Date__c}">
+                                        <ui:inputDate value="{!l.Ship_Out_Date__c}" displayDatePicker="true" class="minwidth"/>
+                                    </div>
+                                </td>   
+                                <td>
+                                    <form class="account-form" onsubmit="{!c.deleteProduct}">
+                                        
+                                        <lightning:button label="Delete"
+                                                          iconName="utility:delete"
+                                                          iconPosition="left"
+                                                          variant="base"
+                                                          onclick="{!c.deleteprod}"
+                                                          value="{!l.Id}"
+                                                          />
+                                        
+                                    </form>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>  
+            </article>
+        </div>
+    </aura:iteration>
+    <c:SpaLinkModal />
+    <c:NewOppProduct />
+    
+</aura:component>
