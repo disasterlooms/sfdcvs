@@ -1,0 +1,116 @@
+{
+  "version" : "55.0",
+  "nodes" : {
+    "LOAD_DATASET1" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "stock_report_data",
+          "name" : "stock_report_data_wc"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "filters" : {
+            "filterExpressions" : [ ]
+          },
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "FILTER0" : {
+      "action" : "filter",
+      "sources" : [ "LOAD_DATASET1" ],
+      "parameters" : {
+        "filterExpressions" : [ {
+          "type" : "NUMBER",
+          "field" : "year",
+          "operator" : "GREATER_THAN",
+          "operands" : [ "2016" ]
+        } ]
+      }
+    },
+    "OUTPUT0" : {
+      "action" : "outputExternal",
+      "sources" : [ "FILTER0" ],
+      "parameters" : {
+        "connectionName" : "SFDC_Output",
+        "object" : "Stock_Report__c",
+        "operation" : "insert",
+        "externalIdFieldName" : "",
+        "hyperFileName" : "",
+        "fieldsMapping" : [ {
+          "sourceField" : "Import_File",
+          "targetField" : "import_file__c"
+        }, {
+          "sourceField" : "VSE_product.product_id",
+          "targetField" : "product_id__c"
+        }, {
+          "sourceField" : "ordered_stock_quantity",
+          "targetField" : "ordered_stock_quantity__c"
+        }, {
+          "sourceField" : "deliver_stock_quantity",
+          "targetField" : "deliver_stock_quantity__c"
+        }, {
+          "sourceField" : "year",
+          "targetField" : "year__c"
+        }, {
+          "sourceField" : "month_of_year",
+          "targetField" : "month_of_year__c"
+        }, {
+          "sourceField" : "distributor_Id__c",
+          "targetField" : "distributor_id__c"
+        }, {
+          "sourceField" : "stock_quantity",
+          "targetField" : "stock_quantity__c"
+        }, {
+          "sourceField" : "sold_quantity",
+          "targetField" : "sold_quantity__c"
+        }, {
+          "sourceField" : "week_of_year",
+          "targetField" : "week_of_year__c"
+        }, {
+          "sourceField" : "Date",
+          "targetField" : "date2__c"
+        } ],
+        "connectorType" : "SALESFORCE_OUTPUT"
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET1" : {
+        "label" : "stock_report_data",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "FILTER0" : {
+        "label" : "Filter 0",
+        "type" : "FILTER",
+        "top" : 252,
+        "left" : 252
+      },
+      "OUTPUT0" : {
+        "label" : "Output 0",
+        "type" : "OUTPUT",
+        "top" : 252,
+        "left" : 392
+      }
+    },
+    "connectors" : [ {
+      "source" : "LOAD_DATASET1",
+      "target" : "FILTER0"
+    }, {
+      "source" : "FILTER0",
+      "target" : "OUTPUT0"
+    } ],
+    "hiddenColumns" : [ ],
+    "assetType" : "TCRM"
+  }
+}

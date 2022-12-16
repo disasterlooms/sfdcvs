@@ -1,0 +1,376 @@
+{
+  "version" : "55.0",
+  "nodes" : {
+    "LOAD_DATASET0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "Name", "ProductCode", "IsActive", "Family", "ExternalId", "List_Price__c", "Evaluation_Price__c", "Cost__c", "Product_Line__c", "Product_Pillar__c", "Bundle__c", "IFP_Size__c", "Model__c", "CMS_Id__c", "CMS_Property_Map_Id__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Product2",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Product2"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "JOIN0" : {
+      "action" : "join",
+      "sources" : [ "LOAD_DATASET0", "LOAD_DATASET1" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Bundle__c", "Cost__c", "Evaluation_Price__c", "ExternalId", "Family", "IFP_Size__c", "List_Price__c", "Model__c", "Product_Line__c", "Product_Pillar__c" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "INNER",
+        "leftKeys" : [ "CMS_Property_Map_Id__c" ],
+        "rightQualifier" : "Property_Map_Value",
+        "rightKeys" : [ "property_map_id" ]
+      }
+    },
+    "LOAD_DATASET1" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "property_map_id", "property_value_id" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "property_map_values",
+          "name" : "property_map_values"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "JOIN1" : {
+      "action" : "join",
+      "sources" : [ "JOIN0", "TO_DIMENSION0" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "INNER",
+        "leftKeys" : [ "Property_Map_Value.property_value_id" ],
+        "rightQualifier" : "property_value",
+        "rightKeys" : [ "MAX_id" ]
+      }
+    },
+    "LOAD_DATASET2" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "code", "is_initial_value", "id", "property_id" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "property_value",
+          "name" : "property_value"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "JOIN2" : {
+      "action" : "join",
+      "sources" : [ "JOIN1", "LOAD_DATASET3" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "INNER",
+        "leftKeys" : [ "property_value.property_id" ],
+        "rightQualifier" : "property",
+        "rightKeys" : [ "id" ]
+      }
+    },
+    "LOAD_DATASET3" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "code", "id" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "property",
+          "name" : "property"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "OUTPUT0" : {
+      "action" : "save",
+      "sources" : [ "JOIN2" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "Product_Property",
+          "name" : "Product_Property",
+          "folderName" : "VSE_Sales_Data"
+        }
+      }
+    },
+    "FILTER0" : {
+      "action" : "filter",
+      "sources" : [ "LOAD_DATASET2" ],
+      "parameters" : {
+        "filterExpressions" : [ {
+          "type" : "TEXT",
+          "field" : "is_initial_value",
+          "operator" : "EQUAL",
+          "operands" : [ "0" ]
+        } ]
+      }
+    },
+    "EXTRACT0" : {
+      "action" : "extractGrains",
+      "sources" : [ "TO_MEASURE0" ],
+      "parameters" : {
+        "grainExtractions" : [ ]
+      }
+    },
+    "AGGREGATE1" : {
+      "action" : "aggregate",
+      "sources" : [ "EXTRACT0" ],
+      "parameters" : {
+        "aggregations" : [ {
+          "action" : "MAX",
+          "source" : "id",
+          "name" : "MAX_id",
+          "label" : "Maximum id"
+        } ],
+        "groupings" : [ "property_id", "code" ],
+        "pivots" : [ ],
+        "nodeType" : "STANDARD"
+      }
+    },
+    "TO_MEASURE0" : {
+      "action" : "typeCast",
+      "sources" : [ "FILTER0" ],
+      "schema" : {
+        "fields" : [ {
+          "name" : "id_to_measure",
+          "newProperties" : {
+            "name" : "id"
+          }
+        } ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "id" ]
+        }
+      },
+      "parameters" : {
+        "fields" : [ {
+          "name" : "id",
+          "newProperties" : {
+            "label" : "id",
+            "name" : "id_to_measure",
+            "typeProperties" : {
+              "type" : "NUMBER",
+              "scale" : 0,
+              "precision" : 18
+            }
+          }
+        } ]
+      }
+    },
+    "TO_DIMENSION0" : {
+      "action" : "typeCast",
+      "sources" : [ "AGGREGATE1" ],
+      "schema" : {
+        "fields" : [ {
+          "name" : "MAX_id_to_dimension",
+          "newProperties" : {
+            "name" : "MAX_id"
+          }
+        } ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "MAX_id" ]
+        }
+      },
+      "parameters" : {
+        "fields" : [ {
+          "name" : "MAX_id",
+          "newProperties" : {
+            "label" : "Maximum id",
+            "name" : "MAX_id_to_dimension",
+            "typeProperties" : {
+              "type" : "TEXT",
+              "length" : 255
+            }
+          }
+        } ]
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET0" : {
+        "label" : "Product2",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "JOIN0" : {
+        "label" : "Join 0",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 252
+      },
+      "LOAD_DATASET1" : {
+        "label" : "property_map_values",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "JOIN1" : {
+        "label" : "Join 1",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 392
+      },
+      "LOAD_DATASET2" : {
+        "label" : "property_value",
+        "type" : "LOAD_DATASET",
+        "top" : 392,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "JOIN2" : {
+        "label" : "Join 2",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 532
+      },
+      "LOAD_DATASET3" : {
+        "label" : "property",
+        "type" : "LOAD_DATASET",
+        "top" : 532,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "OUTPUT0" : {
+        "label" : "Output 0",
+        "type" : "OUTPUT",
+        "top" : 112,
+        "left" : 672
+      },
+      "FILTER0" : {
+        "label" : "Filter 0",
+        "type" : "FILTER",
+        "top" : 391.6,
+        "left" : 252
+      },
+      "AGGREGATE0" : {
+        "label" : "Aggregate 0",
+        "type" : "AGGREGATE",
+        "top" : 392,
+        "left" : 532,
+        "graph" : {
+          "EXTRACT0" : null,
+          "AGGREGATE1" : null
+        },
+        "connectors" : [ {
+          "source" : "EXTRACT0",
+          "target" : "AGGREGATE1"
+        } ]
+      },
+      "TRANSFORM0" : {
+        "label" : "Transform 0",
+        "type" : "TRANSFORM",
+        "top" : 392,
+        "left" : 392,
+        "graph" : {
+          "TO_MEASURE0" : {
+            "label" : "To Measure"
+          }
+        },
+        "connectors" : [ ]
+      },
+      "TRANSFORM1" : {
+        "label" : "Transform 1",
+        "type" : "TRANSFORM",
+        "top" : 252,
+        "left" : 392.2,
+        "graph" : {
+          "TO_DIMENSION0" : {
+            "label" : "To Dimension"
+          }
+        },
+        "connectors" : [ ]
+      }
+    },
+    "connectors" : [ {
+      "source" : "LOAD_DATASET0",
+      "target" : "JOIN0"
+    }, {
+      "source" : "LOAD_DATASET1",
+      "target" : "JOIN0"
+    }, {
+      "source" : "JOIN0",
+      "target" : "JOIN1"
+    }, {
+      "source" : "TRANSFORM1",
+      "target" : "JOIN1"
+    }, {
+      "source" : "JOIN1",
+      "target" : "JOIN2"
+    }, {
+      "source" : "LOAD_DATASET3",
+      "target" : "JOIN2"
+    }, {
+      "source" : "JOIN2",
+      "target" : "OUTPUT0"
+    }, {
+      "source" : "LOAD_DATASET2",
+      "target" : "FILTER0"
+    }, {
+      "source" : "TRANSFORM0",
+      "target" : "AGGREGATE0"
+    }, {
+      "source" : "FILTER0",
+      "target" : "TRANSFORM0"
+    }, {
+      "source" : "AGGREGATE0",
+      "target" : "TRANSFORM1"
+    } ],
+    "hiddenColumns" : [ ],
+    "assetType" : "TCRM"
+  }
+}

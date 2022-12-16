@@ -1,0 +1,85 @@
+{
+  "version" : "51.0",
+  "nodes" : {
+    "LOAD_DATASET0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "ADDITIONAL_TERMS", "COMPANY_NAME", "VIEWSONIC_SKU", "APPROVAL_DATE", "EXPIRATION_DATE", "SHIP_BY", "APPROVED_DATE", "END_USER_NAME", "SPA_NUMBER", "STANDARD_PRICE", "SPA_APPROVED_PRICE", "QUANTITY" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "OracleSpaApprovedPrice",
+          "name" : "OracleSpaApprovedPrice"
+        }
+      }
+    },
+    "FORMULA0" : {
+      "action" : "formula",
+      "sources" : [ "LOAD_DATASET0" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "SPA_NUMBER_formula",
+          "label" : "SPA NUMBER",
+          "formulaExpression" : "replace(SPA_NUMBER, 'BR', '')",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "LOAD_DATASET1" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "AccountId.Name", "End_User_Contact__c.Name", "CreatedById.ManagerId", "AccountId", "End_User_Lookup_Account__c.abm_AccountFit__c", "CreatedById.Id", "End_User_Contact__c.Id", "SalesRepManager.Name", "CloseDate", "Name", "Pricebook2Id.Name", "ManagersPath.Manager.Managers", "CreatedById", "End_User_Lookup_Account__c.Focus_Account__c", "AccountId.abm_AccountFit__c", "Project_or_Site_Information__c", "CreatedById.Name", "Closed_Lost__c", "End_User_Lookup_Account__c.Channel_Type__c", "ManagersPath.Manager.ManagerPath", "CreatedById.UserRoleId", "OwnerId.PortalRole", "End_User_Lookup_Account__c.Id", "AccountId.ABMBuyingStage__c", "End_User_Contact__c", "AccountId.Industry", "CreatedDate", "Pricebook2Id", "End_User_Lookup_Account__c.ABMBuyingStage__c", "Id", "CreatedById.IsActive", "End_User_Lookup_Account__c.Name", "AccountId.Channel_Type__c", "Resellers_and_Type__c", "Pricebook2Id.Id", "SPA_ID__c", "CampaignId.Name", "OwnerId.UserRoleId", "OwnerId.Id", "OwnerId", "SalesRepManager.IsActive", "CampaignId", "End_User_Lookup_Account__c.End_User_Focus__c", "IsWon", "Resellers__c", "Roll_Out_Date__c", "AccountId.Account_Type__c", "AccountId.End_User_Focus__c", "Spa_Claims_Exist__c", "CreatedById.PortalRole" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "Opportunities",
+          "name" : "Opportunities"
+        }
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET0" : {
+        "label" : "OracleSpaApprovedPrice",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "TRANSFORM0" : {
+        "label" : "Transform",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 252,
+        "graph" : {
+          "FORMULA0" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          }
+        },
+        "connectors" : [ ]
+      },
+      "LOAD_DATASET1" : {
+        "label" : "Opportunities",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      }
+    },
+    "connectors" : [ {
+      "source" : "LOAD_DATASET0",
+      "target" : "TRANSFORM0"
+    } ],
+    "hiddenColumns" : [ ]
+  }
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory2Rule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+    <name>UVS VSA</name>
+    <objectType>Account</objectType>
+    <ruleItems>
+        <field>Account.VSRegion__c</field>
+        <operation>equals</operation>
+        <value>VSA</value>
+    </ruleItems>
+    <ruleItems>
+        <field>Account.Count_Of_UVS_Oppty__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1</value>
+    </ruleItems>
+    <ruleItems>
+        <field>Account.Owner_Role__c</field>
+        <operation>contains</operation>
+        <value>UVS</value>
+    </ruleItems>
+</Territory2Rule>

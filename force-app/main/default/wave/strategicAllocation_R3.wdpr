@@ -1,0 +1,369 @@
+{
+  "version" : "55.0",
+  "nodes" : {
+    "sfdcDigest_Strategic_Allocation_Request__c" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Product__c", "Reseller__c", "Sales_Rep__c", "Sales_Admin_Processor__c", "Spa__c", "Distributor__c", "End_User__c", "CreatedDate", "Fulfilled_Qty__c", "Instructions__c", "isLocked__c", "Order_Number__c", "Pending_Qty__c", "PO_Number__c", "PO_Verified__c", "Quantity__c", "Re_occurence__c", "Status__c", "Rejection_Comments__c", "Id", "Name" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Strategic_Allocation_Request__c"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "sfdcDigest_Product2" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Name", "Family", "Id" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Product2"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "augment_Strategic_Allocation_Request__c_Product2" : {
+      "action" : "join",
+      "sources" : [ "sfdcDigest_Strategic_Allocation_Request__c", "sfdcDigest_Product2" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Id", "Name", "CreatedDate", "Distributor__c", "Reseller__c", "End_User__c", "Spa__c", "Product__c", "Quantity__c", "Fulfilled_Qty__c", "Pending_Qty__c", "Status__c", "PO_Number__c", "Order_Number__c", "Sales_Admin_Processor__c", "Instructions__c", "Sales_Rep__c", "Re_occurence__c", "PO_Verified__c", "isLocked__c", "Rejection_Comments__c", "Product__c.Name", "Product__c.Family" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Product__c" ],
+        "rightQualifier" : "Product__c",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "sfdcDigest_Account" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Name", "Id" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Account"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "augment_Account" : {
+      "action" : "join",
+      "sources" : [ "augment_Strategic_Allocation_Request__c_Product2", "sfdcDigest_Account" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Id", "Name", "CreatedDate", "Distributor__c", "Reseller__c", "End_User__c", "Spa__c", "Product__c", "Quantity__c", "Fulfilled_Qty__c", "Pending_Qty__c", "Status__c", "PO_Number__c", "Order_Number__c", "Sales_Admin_Processor__c", "Instructions__c", "Sales_Rep__c", "Re_occurence__c", "PO_Verified__c", "isLocked__c", "Rejection_Comments__c", "Product__c.Name", "Product__c.Family", "Reseller__c.Name" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Reseller__c" ],
+        "rightQualifier" : "Reseller__c",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "sfdcDigest_User" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Name", "Id" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "User"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "augment_User" : {
+      "action" : "join",
+      "sources" : [ "augment_Account", "sfdcDigest_User" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Id", "Name", "CreatedDate", "Distributor__c", "Reseller__c", "End_User__c", "Spa__c", "Product__c", "Quantity__c", "Fulfilled_Qty__c", "Pending_Qty__c", "Status__c", "PO_Number__c", "Order_Number__c", "Sales_Admin_Processor__c", "Instructions__c", "Sales_Rep__c", "Re_occurence__c", "PO_Verified__c", "isLocked__c", "Rejection_Comments__c", "Product__c.Name", "Product__c.Family", "Reseller__c.Name", "Sales_Rep__c.Name" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Sales_Rep__c" ],
+        "rightQualifier" : "Sales_Rep__c",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "augment_User_1" : {
+      "action" : "join",
+      "sources" : [ "augment_User", "sfdcDigest_User" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Id", "Name", "CreatedDate", "Distributor__c", "Reseller__c", "End_User__c", "Spa__c", "Product__c", "Quantity__c", "Fulfilled_Qty__c", "Pending_Qty__c", "Status__c", "PO_Number__c", "Order_Number__c", "Sales_Admin_Processor__c", "Instructions__c", "Sales_Rep__c", "Re_occurence__c", "PO_Verified__c", "isLocked__c", "Rejection_Comments__c", "Product__c.Name", "Product__c.Family", "Reseller__c.Name", "Sales_Rep__c.Name", "Sales_Admin_Processor__c.Name" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Sales_Admin_Processor__c" ],
+        "rightQualifier" : "Sales_Admin_Processor__c",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "sfdcDigest_Quote" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Spa_Name__c", "Name", "OpportunityName__c", "Id" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Quote"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "augment_Quote" : {
+      "action" : "join",
+      "sources" : [ "augment_User_1", "sfdcDigest_Quote" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Id", "Name", "CreatedDate", "Distributor__c", "Reseller__c", "End_User__c", "Spa__c", "Product__c", "Quantity__c", "Fulfilled_Qty__c", "Pending_Qty__c", "Status__c", "PO_Number__c", "Order_Number__c", "Sales_Admin_Processor__c", "Instructions__c", "Sales_Rep__c", "Re_occurence__c", "PO_Verified__c", "isLocked__c", "Rejection_Comments__c", "Product__c.Name", "Product__c.Family", "Reseller__c.Name", "Sales_Rep__c.Name", "Sales_Admin_Processor__c.Name", "Spa__c.Spa_Name__c", "Spa__c.Name", "Spa__c.OpportunityName__c" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Spa__c" ],
+        "rightQualifier" : "Spa__c",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "augment_Account_1" : {
+      "action" : "join",
+      "sources" : [ "augment_Quote", "sfdcDigest_Account" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Id", "Name", "CreatedDate", "Distributor__c", "Reseller__c", "End_User__c", "Spa__c", "Product__c", "Quantity__c", "Fulfilled_Qty__c", "Pending_Qty__c", "Status__c", "PO_Number__c", "Order_Number__c", "Sales_Admin_Processor__c", "Instructions__c", "Sales_Rep__c", "Re_occurence__c", "PO_Verified__c", "isLocked__c", "Rejection_Comments__c", "Product__c.Name", "Product__c.Family", "Reseller__c.Name", "Sales_Rep__c.Name", "Sales_Admin_Processor__c.Name", "Spa__c.Name", "Spa__c.Spa_Name__c", "Spa__c.OpportunityName__c", "Distributor__c.Name" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Distributor__c" ],
+        "rightQualifier" : "Distributor__c",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "augment_Account_2" : {
+      "action" : "join",
+      "sources" : [ "augment_Account_1", "sfdcDigest_Account" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Id", "Name", "CreatedDate", "Distributor__c", "Reseller__c", "End_User__c", "Spa__c", "Product__c", "Quantity__c", "Fulfilled_Qty__c", "Pending_Qty__c", "Status__c", "PO_Number__c", "Order_Number__c", "Sales_Admin_Processor__c", "Instructions__c", "Sales_Rep__c", "Re_occurence__c", "PO_Verified__c", "isLocked__c", "Rejection_Comments__c", "Product__c.Name", "Product__c.Family", "Reseller__c.Name", "Sales_Rep__c.Name", "Sales_Admin_Processor__c.Name", "Spa__c.Name", "Spa__c.Spa_Name__c", "Spa__c.OpportunityName__c", "Distributor__c.Name", "End_User__c.Name" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "End_User__c" ],
+        "rightQualifier" : "End_User__c",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "register_strategicAllocation" : {
+      "action" : "save",
+      "sources" : [ "augment_Account_2" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "strategicAllocation",
+          "name" : "strategicAllocation_df2R3",
+          "folderName" : "SharedApp",
+          "isStaged" : false
+        }
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "sfdcDigest_Strategic_Allocation_Request__c" : {
+        "label" : "sfdcDigest_Strategic_Allocation_Request__c",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "sfdcDigest_Product2" : {
+        "label" : "sfdcDigest_Product2",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "augment_Strategic_Allocation_Request__c_Product2" : {
+        "label" : "augment_Strategic_Allocation_Request__c_Product2",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 252
+      },
+      "sfdcDigest_Account" : {
+        "label" : "sfdcDigest_Account",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 252,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "augment_Account" : {
+        "label" : "augment_Account",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 392
+      },
+      "sfdcDigest_User" : {
+        "label" : "sfdcDigest_User",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 392,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "augment_User" : {
+        "label" : "augment_User",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 532
+      },
+      "augment_User_1" : {
+        "label" : "augment_User_1",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 672
+      },
+      "sfdcDigest_Quote" : {
+        "label" : "sfdcDigest_Quote",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 672,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "augment_Quote" : {
+        "label" : "augment_Quote",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 812
+      },
+      "augment_Account_1" : {
+        "label" : "augment_Account_1",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 952
+      },
+      "augment_Account_2" : {
+        "label" : "augment_Account_2",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 1092
+      },
+      "register_strategicAllocation" : {
+        "label" : "register_strategicAllocation",
+        "type" : "OUTPUT",
+        "top" : 112,
+        "left" : 1232
+      }
+    },
+    "connectors" : [ {
+      "source" : "sfdcDigest_Strategic_Allocation_Request__c",
+      "target" : "augment_Strategic_Allocation_Request__c_Product2"
+    }, {
+      "source" : "sfdcDigest_Product2",
+      "target" : "augment_Strategic_Allocation_Request__c_Product2"
+    }, {
+      "source" : "augment_Strategic_Allocation_Request__c_Product2",
+      "target" : "augment_Account"
+    }, {
+      "source" : "sfdcDigest_Account",
+      "target" : "augment_Account"
+    }, {
+      "source" : "augment_Account",
+      "target" : "augment_User"
+    }, {
+      "source" : "sfdcDigest_User",
+      "target" : "augment_User"
+    }, {
+      "source" : "augment_User",
+      "target" : "augment_User_1"
+    }, {
+      "source" : "sfdcDigest_User",
+      "target" : "augment_User_1"
+    }, {
+      "source" : "augment_User_1",
+      "target" : "augment_Quote"
+    }, {
+      "source" : "sfdcDigest_Quote",
+      "target" : "augment_Quote"
+    }, {
+      "source" : "augment_Quote",
+      "target" : "augment_Account_1"
+    }, {
+      "source" : "sfdcDigest_Account",
+      "target" : "augment_Account_1"
+    }, {
+      "source" : "augment_Account_1",
+      "target" : "augment_Account_2"
+    }, {
+      "source" : "sfdcDigest_Account",
+      "target" : "augment_Account_2"
+    }, {
+      "source" : "augment_Account_2",
+      "target" : "register_strategicAllocation"
+    } ],
+    "hiddenColumns" : [ ]
+  }
+}

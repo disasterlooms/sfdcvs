@@ -1,0 +1,185 @@
+{
+  "version" : "55.0",
+  "nodes" : {
+    "LOAD_DATASET0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "Import_File__c", "Distributor__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Sell_Through_Report_Header__c",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Sell_Through_Report_Header__c"
+        },
+        "sampleDetails" : {
+          "type" : "TopN"
+        }
+      }
+    },
+    "JOIN0" : {
+      "action" : "join",
+      "sources" : [ "LOAD_DATASET0", "LOAD_DATASET1" ],
+      "schema" : {
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "INNER",
+        "leftKeys" : [ "Import_File__c", "Distributor__c" ],
+        "rightQualifier" : "Sell_Throu",
+        "rightKeys" : [ "Import_File__c", "distributor__c" ]
+      }
+    },
+    "LOAD_DATASET1" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "Sell_Through_Report_Header__c", "Import_File__c", "distributor__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Sell_Through_Report__c",
+          "connectionName" : "CMS",
+          "sourceObjectName" : "Sell_Through_Report__c"
+        },
+        "sampleDetails" : {
+          "type" : "TopN"
+        }
+      }
+    },
+    "EDIT_ATTRIBUTES0" : {
+      "action" : "schema",
+      "sources" : [ "JOIN0" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Id",
+          "newProperties" : {
+            "label" : "Header Id",
+            "name" : "Header_Id",
+            "typeProperties" : null
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES1" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES0" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Sell_Throu.Id",
+          "newProperties" : {
+            "label" : "STR ID",
+            "name" : "STR_ID",
+            "typeProperties" : null
+          }
+        } ]
+      }
+    },
+    "DROP_FIELDS0" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES1" ],
+      "parameters" : {
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Import_File__c", "Distributor__c", "Sell_Throu.Sell_Through_Report_Header__c", "Sell_Throu.Import_File__c", "Sell_Throu.distributor__c" ]
+        }
+      }
+    },
+    "OUTPUT0" : {
+      "action" : "outputExternal",
+      "sources" : [ "DROP_FIELDS0" ],
+      "parameters" : {
+        "connectionName" : "SFDC_Output",
+        "object" : "Sell_Through_Report__c",
+        "operation" : "update",
+        "externalIdFieldName" : "",
+        "hyperFileName" : "",
+        "fieldsMapping" : [ {
+          "sourceField" : "Header_Id",
+          "targetField" : "Sell_Through_Report_Header__c"
+        }, {
+          "sourceField" : "STR_ID",
+          "targetField" : "Id"
+        } ],
+        "connectorType" : "SALESFORCE_OUTPUT"
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET0" : {
+        "label" : "Sell_Through_Report_Header__c",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "JOIN0" : {
+        "label" : "Join 0",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 252
+      },
+      "LOAD_DATASET1" : {
+        "label" : "Sell_Through_Report__c",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "TRANSFORM0" : {
+        "label" : "Transform 0",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 392,
+        "graph" : {
+          "EDIT_ATTRIBUTES0" : {
+            "label" : "Edit Attributes"
+          },
+          "EDIT_ATTRIBUTES1" : {
+            "label" : "Edit Attributes"
+          },
+          "DROP_FIELDS0" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ {
+          "source" : "EDIT_ATTRIBUTES0",
+          "target" : "EDIT_ATTRIBUTES1"
+        }, {
+          "source" : "EDIT_ATTRIBUTES1",
+          "target" : "DROP_FIELDS0"
+        } ]
+      },
+      "OUTPUT0" : {
+        "label" : "Output 0",
+        "type" : "OUTPUT",
+        "top" : 112,
+        "left" : 532
+      }
+    },
+    "connectors" : [ {
+      "source" : "LOAD_DATASET0",
+      "target" : "JOIN0"
+    }, {
+      "source" : "LOAD_DATASET1",
+      "target" : "JOIN0"
+    }, {
+      "source" : "JOIN0",
+      "target" : "TRANSFORM0"
+    }, {
+      "source" : "TRANSFORM0",
+      "target" : "OUTPUT0"
+    } ],
+    "hiddenColumns" : [ ],
+    "assetType" : "TCRM"
+  }
+}

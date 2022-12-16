@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveLens xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <content xsi:nil="true"/>
+    <application>Accounting</application>
+    <datasets>SalesData</datasets>
+    <description>there is no Direct shipments to AV Resellers in this number. We do need to update the quarter</description>
+    <masterLabel>RBM GEO Sales Director Level</masterLabel>
+    <visualizationType>comparisontable</visualizationType>
+</WaveLens>

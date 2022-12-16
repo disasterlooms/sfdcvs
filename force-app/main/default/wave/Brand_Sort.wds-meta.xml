@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveDataset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <application>Product_Management</application>
+    <description>Created from the Brand_Sort recipe.</description>
+    <masterLabel>Brand_Sort</masterLabel>
+</WaveDataset>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveRecipe xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <content xsi:nil="true"/>
+    <dataflow>Copy_Initial_VSE_DE_Sellout_data_to_backup</dataflow>
+    <format>R3</format>
+    <masterLabel>Copy Initial VSE DE Sellout data to backup</masterLabel>
+</WaveRecipe>

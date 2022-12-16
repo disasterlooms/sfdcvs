@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveDataset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <application>VSA_Sales_Teams_All</application>
+    <description>Created from the enterpriseSalesGroupings recipe.</description>
+    <masterLabel>VSA Enterprise Summary Annual Sales</masterLabel>
+    <type>default</type>
+</WaveDataset>

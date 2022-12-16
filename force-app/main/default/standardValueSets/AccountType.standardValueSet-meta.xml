@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>End User</fullName>
+        <default>true</default>
+        <label>End User</label>
+    </standardValue>
+    <standardValue>
+        <fullName>VAR</fullName>
+        <default>false</default>
+        <label>VAR</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Distributor</fullName>
+        <default>false</default>
+        <label>Distributor</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AV</fullName>
+        <default>false</default>
+        <label>AV</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Regional VAR</fullName>
+        <default>false</default>
+        <label>Regional VAR</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Consumer</fullName>
+        <default>false</default>
+        <label>Consumer</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Integrator</fullName>
+        <default>false</default>
+        <label>Integrator</label>
+    </standardValue>
+    <standardValue>
+        <fullName>National</fullName>
+        <default>false</default>
+        <label>National</label>
+    </standardValue>
+    <standardValue>
+        <fullName>ISV</fullName>
+        <default>false</default>
+        <label>ISV</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Other Partner</fullName>
+        <default>false</default>
+        <label>Other Partner</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Competitor</fullName>
+        <default>false</default>
+        <label>Competitor</label>
+    </standardValue>
+</StandardValueSet>

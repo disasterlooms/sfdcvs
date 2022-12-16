@@ -1,0 +1,1084 @@
+{
+  "version" : "55.0",
+  "nodes" : {
+    "LOAD_DATASET0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "Account__c", "distributor_Id__c", "Ready_to_Sync_to_TCRM__c", "Synced_to_TCRM__c", "Sales_Order_Formula__c", "Purchase_Order_Formula__c", "External_Product_Code_Formula__c", "Product_Name_Formula__c", "Product_Code_Formula__c", "Stock_Formula__c", "Sold_Formula__c", "Stock_Report_Date_Formula__c", "VS_Region__c", "VS_SubRegion__c", "Import_File__c", "year_formula__c", "month_of_year_formula__c", "week_of_year_formula__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "connectionName" : "CMS",
+          "sourceObjectName" : "Stock_Report_Import__c"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "LOAD_DATASET3" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "company_id", "product_id", "id", "external_code" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "product_external_code",
+          "name" : "product_external_code"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "JOIN0" : {
+      "action" : "join",
+      "sources" : [ "FORMULA10", "LOAD_DATASET3" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "VSE_product.id" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "External_Product_Code_Formula__c", "distributor_Id__c" ],
+        "rightQualifier" : "VSE_product",
+        "rightKeys" : [ "external_code", "company_id" ]
+      }
+    },
+    "LOAD_DATASET4" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "code", "change_date", "predecessor_product_id", "creation_date", "property_map_id", "enabled", "expired_date", "deleted", "expired", "successor_product_id", "name", "id", "sort_order" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "vseDEProducts",
+          "name" : "vseDEProducts"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "JOIN1" : {
+      "action" : "join",
+      "sources" : [ "JOIN0", "LOAD_DATASET4" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "VSE_product.product_id" ],
+        "rightQualifier" : "VEDEProduct",
+        "rightKeys" : [ "id" ]
+      }
+    },
+    "DROP_FIELDS5" : {
+      "action" : "schema",
+      "sources" : [ "JOIN4" ],
+      "parameters" : {
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Ready_to_Sync_to_TCRM__c", "Synced_to_TCRM__c", "External_Product_Code_Formula__c", "Product_Name_Formula__c", "Product_Code_Formula__c", "VS_Region__c", "VS_SubRegion__c", "year_formula__c", "month_of_year_formula__c", "week_of_year_formula__c", "VSE_product.company_id", "VSE_product.external_code", "VEDEProduct.code", "VEDEProduct.change_date", "VEDEProduct.predecessor_product_id", "VEDEProduct.creation_date", "VEDEProduct.property_map_id", "VEDEProduct.enabled", "VEDEProduct.expired_date", "VEDEProduct.deleted", "VEDEProduct.expired", "VEDEProduct.successor_product_id", "VEDEProduct.name", "VEDEProduct.id", "VEDEProduct.sort_order", "Account.migrationtExternalId__c", "Account.Id", "Account.Name" ]
+        }
+      }
+    },
+    "TO_MEASURE0" : {
+      "action" : "typeCast",
+      "sources" : [ "DROP_FIELDS5" ],
+      "schema" : {
+        "fields" : [ {
+          "name" : "distributor_Id__c_to_measure",
+          "newProperties" : {
+            "name" : "distributor_Id__c"
+          }
+        } ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "distributor_Id__c" ]
+        }
+      },
+      "parameters" : {
+        "fields" : [ {
+          "name" : "distributor_Id__c",
+          "newProperties" : {
+            "label" : "distributor Id",
+            "name" : "distributor_Id__c_to_measure",
+            "typeProperties" : {
+              "type" : "NUMBER",
+              "scale" : 0,
+              "precision" : 18
+            }
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES0" : {
+      "action" : "schema",
+      "sources" : [ "TO_MEASURE0" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Import_File__c",
+          "newProperties" : {
+            "label" : "import_file",
+            "name" : "Import_File"
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES1" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES0" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Sales_Order_Formula__c",
+          "newProperties" : {
+            "label" : "ordered_stock_quantity",
+            "name" : "ordered_stock_quantity"
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES2" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES1" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Purchase_Order_Formula__c",
+          "newProperties" : {
+            "label" : "deliver_stock_quantity",
+            "name" : "deliver_stock_quantity"
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES3" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES2" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Stock_Formula__c",
+          "newProperties" : {
+            "label" : "stock_quantity",
+            "name" : "stock_quantity"
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES4" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES3" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Sold_Formula__c",
+          "newProperties" : {
+            "label" : "sold_quantity",
+            "name" : "sold_quantity"
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES5" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES4" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Stock_Report_Date_Formula__c",
+          "newProperties" : {
+            "label" : "Date",
+            "name" : "Date"
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES6" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES5" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "month_of_year",
+          "newProperties" : {
+            "label" : "month_of_year",
+            "name" : "month_of_year"
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES7" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES6" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "week_of_year",
+          "newProperties" : {
+            "label" : "week_of_year",
+            "name" : "week_of_year"
+          }
+        } ]
+      }
+    },
+    "TO_DIMENSION0" : {
+      "action" : "typeCast",
+      "sources" : [ "FILTER4" ],
+      "schema" : {
+        "fields" : [ {
+          "name" : "distributor_Id__c_to_dimension",
+          "newProperties" : {
+            "name" : "distributor_Id__c"
+          }
+        } ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "distributor_Id__c" ]
+        }
+      },
+      "parameters" : {
+        "fields" : [ {
+          "name" : "distributor_Id__c",
+          "newProperties" : {
+            "label" : "distributor Id",
+            "name" : "distributor_Id__c_to_dimension",
+            "typeProperties" : {
+              "type" : "TEXT",
+              "length" : 255
+            }
+          }
+        } ]
+      }
+    },
+    "FORMULA8" : {
+      "action" : "formula",
+      "sources" : [ "TO_DIMENSION0" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "year",
+          "label" : "year",
+          "formulaExpression" : "year(Stock_Report_Date_Formula__c)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA9" : {
+      "action" : "formula",
+      "sources" : [ "FORMULA8" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "month_of_year",
+          "label" : "month of year",
+          "formulaExpression" : "month(Stock_Report_Date_Formula__c)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA10" : {
+      "action" : "formula",
+      "sources" : [ "FORMULA9" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "week_of_year",
+          "label" : "week of year",
+          "formulaExpression" : "weekofyear(Stock_Report_Date_Formula__c)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "JOIN4" : {
+      "action" : "join",
+      "sources" : [ "JOIN1", "LOAD_DATASET8" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Account__c" ],
+        "rightQualifier" : "Account",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "LOAD_DATASET8" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "migrationtExternalId__c", "Id", "Name" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Account",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Account"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "FILTER4" : {
+      "action" : "filter",
+      "sources" : [ "LOAD_DATASET0" ],
+      "parameters" : {
+        "filterExpressions" : [ {
+          "type" : "TEXT",
+          "field" : "Synced_to_TCRM__c",
+          "operator" : "EQUAL",
+          "operands" : [ "false" ]
+        }, {
+          "type" : "TEXT",
+          "field" : "Ready_to_Sync_to_TCRM__c",
+          "operator" : "NOT",
+          "operands" : [ "false" ]
+        } ]
+      }
+    },
+    "APPEND1" : {
+      "action" : "appendV2",
+      "sources" : [ "DROP_FIELDS3", "LOAD_DATASET9" ],
+      "parameters" : {
+        "fieldMappings" : [ {
+          "top" : "ordered_stock_quantity",
+          "bottom" : "ordered_stock_quantity__c"
+        }, {
+          "top" : "deliver_stock_quantity",
+          "bottom" : "deliver_stock_quantity__c"
+        }, {
+          "top" : "stock_quantity",
+          "bottom" : "stock_quantity__c"
+        }, {
+          "top" : "sold_quantity",
+          "bottom" : "sold_quantity__c"
+        }, {
+          "top" : "Date",
+          "bottom" : "date2__c"
+        }, {
+          "top" : "Import_File",
+          "bottom" : "import_file__c"
+        }, {
+          "top" : "year",
+          "bottom" : "year__c"
+        }, {
+          "top" : "month_of_year",
+          "bottom" : "month_of_year__c"
+        }, {
+          "top" : "week_of_year",
+          "bottom" : "week_of_year__c"
+        }, {
+          "top" : "VSE_product.product_id",
+          "bottom" : "product_id__c"
+        }, {
+          "top" : "distributor_Id__c",
+          "bottom" : "distributor_id__c"
+        } ]
+      }
+    },
+    "LOAD_DATASET9" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "Name", "CurrencyIsoCode", "product_id__c", "ordered_stock_quantity__c", "deliver_stock_quantity__c", "year__c", "distributor_id__c", "month_of_year__c", "stock_quantity__c", "sold_quantity__c", "week_of_year__c", "import_file__c", "date2__c", "datetime__c", "To_Be_Deleted_Date__c", "Account__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "connectionName" : "CMS",
+          "sourceObjectName" : "Stock_Report__c"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "OUTPUT4" : {
+      "action" : "save",
+      "sources" : [ "APPEND1" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "stock_report_data",
+          "name" : "stock_report_data_wc",
+          "folderName" : "VSE_Sales_Data"
+        }
+      }
+    },
+    "APPEND2" : {
+      "action" : "appendV2",
+      "sources" : [ "DROP_FIELDS4", "LOAD_DATASET10" ],
+      "parameters" : {
+        "fieldMappings" : [ {
+          "top" : "ordered_stock_quantity",
+          "bottom" : "ordered_stock_quantity"
+        }, {
+          "top" : "deliver_stock_quantity",
+          "bottom" : "deliver_stock_quantity"
+        }, {
+          "top" : "stock_quantity",
+          "bottom" : "stock_quantity"
+        }, {
+          "top" : "sold_quantity",
+          "bottom" : "sold_quantity"
+        }, {
+          "top" : "Date",
+          "bottom" : "Date"
+        }, {
+          "top" : "Import_File",
+          "bottom" : "Import_File"
+        }, {
+          "top" : "year",
+          "bottom" : "year"
+        }, {
+          "top" : "month_of_year",
+          "bottom" : "month_of_year"
+        }, {
+          "top" : "week_of_year",
+          "bottom" : "week_of_year"
+        }, {
+          "top" : "VSE_product.product_id",
+          "bottom" : "VSE_product.product_id"
+        }, {
+          "top" : "distributor_Id__c",
+          "bottom" : "distributor_Id__c"
+        } ]
+      }
+    },
+    "LOAD_DATASET10" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Import_File", "VSE_product.product_id", "Date", "ordered_stock_quantity", "deliver_stock_quantity", "year", "month_of_year", "distributor_Id__c", "stock_quantity", "sold_quantity", "week_of_year" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "stock_report_data_backup",
+          "name" : "stock_report_data_backup"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "OUTPUT5" : {
+      "action" : "save",
+      "sources" : [ "APPEND2" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "stock_report_data_backup",
+          "name" : "stock_report_data_backup",
+          "folderName" : "VSE_Sales_Data"
+        }
+      }
+    },
+    "OUTPUT6" : {
+      "action" : "outputExternal",
+      "sources" : [ "FORMULA7" ],
+      "parameters" : {
+        "connectionName" : "SFDC_Output",
+        "object" : "Stock_Report_Import__c",
+        "operation" : "update",
+        "externalIdFieldName" : "",
+        "hyperFileName" : "",
+        "fieldsMapping" : [ {
+          "sourceField" : "Id",
+          "targetField" : "Id"
+        }, {
+          "sourceField" : "Synced_to_TCRM",
+          "targetField" : "Synced_to_TCRM__c"
+        } ],
+        "connectorType" : "SALESFORCE_OUTPUT"
+      }
+    },
+    "DROP_FIELDS2" : {
+      "action" : "schema",
+      "sources" : [ "FILTER4" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Id" ]
+        }
+      }
+    },
+    "FORMULA7" : {
+      "action" : "formula",
+      "sources" : [ "DROP_FIELDS2" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "Synced_to_TCRM",
+          "label" : "Synced_to_TCRM",
+          "formulaExpression" : "'true'",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "DROP_FIELDS3" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES7" ],
+      "parameters" : {
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "ordered_stock_quantity", "deliver_stock_quantity", "stock_quantity", "sold_quantity", "Date", "Import_File", "year", "month_of_year", "week_of_year", "VSE_product.product_id", "distributor_Id__c" ]
+        }
+      }
+    },
+    "DROP_FIELDS4" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES7" ],
+      "parameters" : {
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "ordered_stock_quantity", "deliver_stock_quantity", "stock_quantity", "sold_quantity", "Date", "Import_File", "year", "month_of_year", "week_of_year", "VSE_product.product_id", "distributor_Id__c" ]
+        }
+      }
+    },
+    "OUTPUT7" : {
+      "action" : "outputExternal",
+      "sources" : [ "EDIT_ATTRIBUTES7" ],
+      "parameters" : {
+        "connectionName" : "SFDC_Output",
+        "object" : "Stock_Report__c",
+        "operation" : "upsert",
+        "externalIdFieldName" : "Stock_Report_Import_Id__c",
+        "hyperFileName" : "",
+        "fieldsMapping" : [ {
+          "sourceField" : "Id",
+          "targetField" : "Stock_Report_Import_Id__c"
+        }, {
+          "sourceField" : "Account__c",
+          "targetField" : "Account__c"
+        }, {
+          "sourceField" : "ordered_stock_quantity",
+          "targetField" : "ordered_stock_quantity__c"
+        }, {
+          "sourceField" : "deliver_stock_quantity",
+          "targetField" : "deliver_stock_quantity__c"
+        }, {
+          "sourceField" : "stock_quantity",
+          "targetField" : "stock_quantity__c"
+        }, {
+          "sourceField" : "sold_quantity",
+          "targetField" : "sold_quantity__c"
+        }, {
+          "sourceField" : "Date",
+          "targetField" : "date2__c"
+        }, {
+          "sourceField" : "Import_File",
+          "targetField" : "import_file__c"
+        }, {
+          "sourceField" : "year",
+          "targetField" : "year__c"
+        }, {
+          "sourceField" : "month_of_year",
+          "targetField" : "month_of_year__c"
+        }, {
+          "sourceField" : "week_of_year",
+          "targetField" : "week_of_year__c"
+        }, {
+          "sourceField" : "VSE_product.product_id",
+          "targetField" : "product_id__c"
+        }, {
+          "sourceField" : "distributor_Id__c",
+          "targetField" : "distributor_id__c"
+        } ],
+        "connectorType" : "SALESFORCE_OUTPUT"
+      }
+    },
+    "DROP_FIELDS6" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES7" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Account__c", "Import_File" ]
+        }
+      }
+    },
+    "EXTRACT0" : {
+      "action" : "extractGrains",
+      "sources" : [ "DROP_FIELDS6" ],
+      "parameters" : {
+        "grainExtractions" : [ ]
+      }
+    },
+    "AGGREGATE1" : {
+      "action" : "aggregate",
+      "sources" : [ "EXTRACT0" ],
+      "parameters" : {
+        "aggregations" : [ {
+          "action" : "UNIQUE",
+          "source" : "Import_File",
+          "name" : "UNIQUE_Import_File",
+          "label" : "Unique import_file"
+        } ],
+        "groupings" : [ "Import_File", "Account__c" ],
+        "pivots" : [ ],
+        "nodeType" : "STANDARD"
+      }
+    },
+    "DROP_FIELDS7" : {
+      "action" : "schema",
+      "sources" : [ "AGGREGATE1" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "UNIQUE_Import_File" ]
+        }
+      }
+    },
+    "OUTPUT8" : {
+      "action" : "outputExternal",
+      "sources" : [ "DROP_FIELDS7" ],
+      "parameters" : {
+        "connectionName" : "SFDC_Output",
+        "object" : "Stock_Report_Header__c",
+        "operation" : "upsert",
+        "externalIdFieldName" : "Import_File__c",
+        "hyperFileName" : "",
+        "fieldsMapping" : [ {
+          "sourceField" : "Import_File",
+          "targetField" : "Import_File__c"
+        }, {
+          "sourceField" : "Account__c",
+          "targetField" : "Distributor__c"
+        } ],
+        "connectorType" : "SALESFORCE_OUTPUT"
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET0" : {
+        "label" : "Stock_Report_Import__c",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 10000
+        }
+      },
+      "LOAD_DATASET3" : {
+        "label" : "product_external_code",
+        "type" : "LOAD_DATASET",
+        "top" : 392,
+        "left" : 532,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "JOIN0" : {
+        "label" : "Join_Get CMS Product Id",
+        "description" : "",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 672
+      },
+      "LOAD_DATASET4" : {
+        "label" : "vseDEProducts",
+        "type" : "LOAD_DATASET",
+        "top" : 392,
+        "left" : 672,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "JOIN1" : {
+        "label" : "Join_VSEProduct",
+        "description" : "",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 812
+      },
+      "TRANSFORM3" : {
+        "label" : "Transform 3",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 1092,
+        "graph" : {
+          "DROP_FIELDS5" : {
+            "label" : "Drop Columns"
+          },
+          "TO_MEASURE0" : {
+            "label" : "To Measure"
+          },
+          "EDIT_ATTRIBUTES0" : {
+            "label" : "Edit Attributes"
+          },
+          "EDIT_ATTRIBUTES1" : {
+            "label" : "Edit Attributes"
+          },
+          "EDIT_ATTRIBUTES2" : {
+            "label" : "Edit Attributes"
+          },
+          "EDIT_ATTRIBUTES3" : {
+            "label" : "Edit Attributes"
+          },
+          "EDIT_ATTRIBUTES4" : {
+            "label" : "Edit Attributes"
+          },
+          "EDIT_ATTRIBUTES5" : {
+            "label" : "Edit Attributes"
+          },
+          "EDIT_ATTRIBUTES6" : {
+            "label" : "Edit Attributes"
+          },
+          "EDIT_ATTRIBUTES7" : {
+            "label" : "Edit Attributes"
+          }
+        },
+        "connectors" : [ {
+          "source" : "DROP_FIELDS5",
+          "target" : "TO_MEASURE0"
+        }, {
+          "source" : "TO_MEASURE0",
+          "target" : "EDIT_ATTRIBUTES0"
+        }, {
+          "source" : "EDIT_ATTRIBUTES0",
+          "target" : "EDIT_ATTRIBUTES1"
+        }, {
+          "source" : "EDIT_ATTRIBUTES1",
+          "target" : "EDIT_ATTRIBUTES2"
+        }, {
+          "source" : "EDIT_ATTRIBUTES2",
+          "target" : "EDIT_ATTRIBUTES3"
+        }, {
+          "source" : "EDIT_ATTRIBUTES3",
+          "target" : "EDIT_ATTRIBUTES4"
+        }, {
+          "source" : "EDIT_ATTRIBUTES4",
+          "target" : "EDIT_ATTRIBUTES5"
+        }, {
+          "source" : "EDIT_ATTRIBUTES5",
+          "target" : "EDIT_ATTRIBUTES6"
+        }, {
+          "source" : "EDIT_ATTRIBUTES6",
+          "target" : "EDIT_ATTRIBUTES7"
+        } ]
+      },
+      "TRANSFORM4" : {
+        "label" : "Transform",
+        "description" : "",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 532,
+        "graph" : {
+          "TO_DIMENSION0" : {
+            "label" : "To Dimension"
+          },
+          "FORMULA8" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "FORMULA9" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "FORMULA10" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          }
+        },
+        "connectors" : [ {
+          "source" : "TO_DIMENSION0",
+          "target" : "FORMULA8"
+        }, {
+          "source" : "FORMULA8",
+          "target" : "FORMULA9"
+        }, {
+          "source" : "FORMULA9",
+          "target" : "FORMULA10"
+        } ]
+      },
+      "JOIN4" : {
+        "label" : "Join Account",
+        "description" : "",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 952
+      },
+      "LOAD_DATASET8" : {
+        "label" : "Account",
+        "type" : "LOAD_DATASET",
+        "top" : 392.4,
+        "left" : 951.5,
+        "parameters" : {
+          "sampleSize" : 10000
+        }
+      },
+      "FILTER4" : {
+        "label" : "Filter 4",
+        "type" : "FILTER",
+        "top" : 112,
+        "left" : 252
+      },
+      "APPEND1" : {
+        "label" : "Append 1",
+        "type" : "APPEND",
+        "top" : 112,
+        "left" : 1372
+      },
+      "LOAD_DATASET9" : {
+        "label" : "Stock_Report__c",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 1652.7,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "OUTPUT4" : {
+        "label" : "Output_stock_report_data_dashboard",
+        "description" : "",
+        "type" : "OUTPUT",
+        "top" : 112,
+        "left" : 1792.7
+      },
+      "APPEND2" : {
+        "label" : "Append 2",
+        "type" : "APPEND",
+        "top" : 392,
+        "left" : 1372
+      },
+      "LOAD_DATASET10" : {
+        "label" : "stock_report_data_backup",
+        "type" : "LOAD_DATASET",
+        "top" : 532,
+        "left" : 1372,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "OUTPUT5" : {
+        "label" : "Output_stock_report_data_backup",
+        "description" : "",
+        "type" : "OUTPUT",
+        "top" : 392,
+        "left" : 1512.1
+      },
+      "OUTPUT6" : {
+        "label" : "Output_Synced to TCRM",
+        "description" : "",
+        "type" : "OUTPUT",
+        "top" : 392,
+        "left" : 252.5
+      },
+      "TRANSFORM5" : {
+        "label" : "Transform 5",
+        "type" : "TRANSFORM",
+        "top" : 252.10000000000002,
+        "left" : 252,
+        "graph" : {
+          "DROP_FIELDS2" : {
+            "label" : "Drop Columns"
+          },
+          "FORMULA7" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          }
+        },
+        "connectors" : [ {
+          "source" : "DROP_FIELDS2",
+          "target" : "FORMULA7"
+        } ]
+      },
+      "TRANSFORM6" : {
+        "label" : "Transform 6",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 1232,
+        "graph" : {
+          "DROP_FIELDS3" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ ]
+      },
+      "TRANSFORM7" : {
+        "label" : "Transform 7",
+        "type" : "TRANSFORM",
+        "top" : 392.1,
+        "left" : 1232,
+        "graph" : {
+          "DROP_FIELDS4" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ ]
+      },
+      "OUTPUT7" : {
+        "label" : "Output_Stock_Report__c",
+        "description" : "",
+        "type" : "OUTPUT",
+        "top" : 531.5,
+        "left" : 1092.4
+      },
+      "TRANSFORM8" : {
+        "label" : "Transform 8",
+        "type" : "TRANSFORM",
+        "top" : 252,
+        "left" : 1091.1,
+        "graph" : {
+          "DROP_FIELDS6" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ ]
+      },
+      "AGGREGATE0" : {
+        "label" : "Aggregate 0",
+        "type" : "AGGREGATE",
+        "top" : 252,
+        "left" : 1231.1,
+        "graph" : {
+          "EXTRACT0" : null,
+          "AGGREGATE1" : null
+        },
+        "connectors" : [ {
+          "source" : "EXTRACT0",
+          "target" : "AGGREGATE1"
+        } ]
+      },
+      "TRANSFORM9" : {
+        "label" : "Transform 9",
+        "type" : "TRANSFORM",
+        "top" : 252,
+        "left" : 1372.7,
+        "graph" : {
+          "DROP_FIELDS7" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ ]
+      },
+      "OUTPUT8" : {
+        "label" : "Output_Stock_Report_Header__c",
+        "description" : "",
+        "type" : "OUTPUT",
+        "top" : 252,
+        "left" : 1512
+      }
+    },
+    "connectors" : [ {
+      "source" : "JOIN0",
+      "target" : "JOIN1"
+    }, {
+      "source" : "TRANSFORM4",
+      "target" : "JOIN0"
+    }, {
+      "source" : "LOAD_DATASET3",
+      "target" : "JOIN0"
+    }, {
+      "source" : "LOAD_DATASET4",
+      "target" : "JOIN1"
+    }, {
+      "source" : "JOIN4",
+      "target" : "TRANSFORM3"
+    }, {
+      "source" : "JOIN1",
+      "target" : "JOIN4"
+    }, {
+      "source" : "LOAD_DATASET8",
+      "target" : "JOIN4"
+    }, {
+      "source" : "LOAD_DATASET0",
+      "target" : "FILTER4"
+    }, {
+      "source" : "TRANSFORM6",
+      "target" : "APPEND1"
+    }, {
+      "source" : "LOAD_DATASET9",
+      "target" : "APPEND1"
+    }, {
+      "source" : "APPEND1",
+      "target" : "OUTPUT4"
+    }, {
+      "source" : "TRANSFORM7",
+      "target" : "APPEND2"
+    }, {
+      "source" : "LOAD_DATASET10",
+      "target" : "APPEND2"
+    }, {
+      "source" : "APPEND2",
+      "target" : "OUTPUT5"
+    }, {
+      "source" : "TRANSFORM5",
+      "target" : "OUTPUT6"
+    }, {
+      "source" : "TRANSFORM3",
+      "target" : "TRANSFORM6"
+    }, {
+      "source" : "TRANSFORM3",
+      "target" : "TRANSFORM7"
+    }, {
+      "source" : "FILTER4",
+      "target" : "TRANSFORM4"
+    }, {
+      "source" : "FILTER4",
+      "target" : "TRANSFORM5"
+    }, {
+      "source" : "TRANSFORM3",
+      "target" : "OUTPUT7"
+    }, {
+      "source" : "TRANSFORM3",
+      "target" : "TRANSFORM8"
+    }, {
+      "source" : "TRANSFORM8",
+      "target" : "AGGREGATE0"
+    }, {
+      "source" : "AGGREGATE0",
+      "target" : "TRANSFORM9"
+    }, {
+      "source" : "TRANSFORM9",
+      "target" : "OUTPUT8"
+    } ],
+    "hiddenColumns" : [ ],
+    "assetType" : "TCRM"
+  }
+}

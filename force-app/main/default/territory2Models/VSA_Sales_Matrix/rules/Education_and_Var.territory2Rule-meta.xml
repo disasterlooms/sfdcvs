@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory2Rule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <name>Education</name>
+    <objectType>Account</objectType>
+    <ruleItems>
+        <field>Account.Industry</field>
+        <operation>equals</operation>
+        <value>Education,Education - Higher Education</value>
+    </ruleItems>
+    <ruleItems>
+        <field>Account.BillingCountry</field>
+        <operation>equals</operation>
+        <value>United States</value>
+    </ruleItems>
+    <ruleItems>
+        <field>Account.BillingStateCode</field>
+        <operation>notEqual</operation>
+        <value>PR</value>
+    </ruleItems>
+</Territory2Rule>

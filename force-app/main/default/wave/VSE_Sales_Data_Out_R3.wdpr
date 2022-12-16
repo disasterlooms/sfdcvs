@@ -1,0 +1,1542 @@
+{
+  "version" : "56.0",
+  "nodes" : {
+    "getCurrencyData" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "IsoCode", "StartDate", "ConversionRate", "NextStartDate" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "DatedConversionRate"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "formulasHistoricalFormulas_1" : {
+      "action" : "formula",
+      "sources" : [ "getCurrencyData" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "revenue_ISO",
+          "label" : "revenue_ISO",
+          "formulaExpression" : "'Revenue_' || IsoCode",
+          "precision" : 255
+        } ]
+      }
+    },
+    "formulasHistoricalFormulas_2" : {
+      "action" : "formula",
+      "sources" : [ "formulasHistoricalFormulas_1" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "currencyCode",
+          "label" : "currencyCode",
+          "formulaExpression" : "IsoCode",
+          "precision" : 255
+        } ]
+      }
+    },
+    "formulasHistoricalFormulas_3" : {
+      "action" : "formula",
+      "sources" : [ "formulasHistoricalFormulas_2" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "currencyMonth",
+          "label" : "currencyMonth",
+          "formulaExpression" : "\r\nformat_number(month(StartDate), '00')",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "formulasHistoricalFormulas_4" : {
+      "action" : "formula",
+      "sources" : [ "formulasHistoricalFormulas_3" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "currencyYear",
+          "label" : "currencyYear",
+          "formulaExpression" : "format_number(year(StartDate), '0000')",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "formulasHistoricalFormulas" : {
+      "action" : "formula",
+      "sources" : [ "formulasHistoricalFormulas_4" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "currencyKey",
+          "label" : "currencyKey",
+          "formulaExpression" : "\ncurrencyYear || currencyMonth || IsoCode",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "register_getcurrencyData" : {
+      "action" : "save",
+      "sources" : [ "formulasHistoricalFormulas" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "getcurrencyData",
+          "name" : "getcurrencyData_df2R3",
+          "folderName" : "VSE_Sales_Data",
+          "isStaged" : false
+        },
+        "measuresToCurrencies" : [ ]
+      }
+    },
+    "getUserData" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "name" : "VSE_DE_SalesUsers"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "getEmployeeData" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "name" : "VSEDE_view_sonic_employee"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "augmentUserEmployeeData" : {
+      "action" : "join",
+      "sources" : [ "getUserData", "getEmployeeData" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "password", "id", "username", "account_non_locked", "property_map_id", "enabled", "view_sonic_employee_id", "account_non_expired", "deleted", "credentials_non_expired", "sort_order", "change_date", "creation_date", "emp.change_date", "emp.creation_date", "emp.current_office_id", "emp.default_system_currency_id", "emp.deleted", "emp.department", "emp.email", "emp.enabled", "emp.fax_number", "emp.first_name", "emp.is_account_manager", "emp.job_title", "emp.last_name" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "view_sonic_employee_id" ],
+        "rightQualifier" : "emp",
+        "rightKeys" : [ "id" ]
+      }
+    },
+    "VSE_Register_User_Data" : {
+      "action" : "save",
+      "sources" : [ "augmentUserEmployeeData" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "VSE_Register_User_Data",
+          "name" : "VSE_Register_User_Data_df2R3",
+          "folderName" : "SharedApp",
+          "isStaged" : false
+        },
+        "measuresToCurrencies" : [ ]
+      }
+    },
+    "VSEDESalesData" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "VSEGermanySellOut",
+          "name" : "VSEGermanySellOut_WC"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "getProducts" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "name" : "Oracle_Item_Master_Info"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "augProductsSales" : {
+      "action" : "join",
+      "sources" : [ "VSEDESalesData", "getProducts" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Product.PHYS_UNIT_VOLUME", "Product.PHYS_UNIT_WEIGHT", "Product.PHYS_UNIT_WIDTH", "Product.PHYS_WEIGHT_UOM_CODE" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Product_Code_Formula__c" ],
+        "rightQualifier" : "Product",
+        "rightKeys" : [ "ITEM_NUMBER" ]
+      }
+    },
+    "salesFormulas_1" : {
+      "action" : "formula",
+      "sources" : [ "augProductsSales" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "SaleDate_Month",
+          "label" : "SaleDate_Month",
+          "formulaExpression" : "format_number(month(Date_Formula__c), '00')",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "salesFormulas_2" : {
+      "action" : "formula",
+      "sources" : [ "salesFormulas_1" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "SaleDate_Year",
+          "label" : "SaleDate_Year",
+          "formulaExpression" : "format_number(year(Date_Formula__c), '0000')",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "salesFormulas" : {
+      "action" : "formula",
+      "sources" : [ "salesFormulas_2" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "IncomingcurrencyRateKey",
+          "label" : "IncomingcurrencyRateKey",
+          "formulaExpression" : "SaleDate_Year || SaleDate_Month || \"CurrencyIsoCode\"",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "currencyFormulas_1" : {
+      "action" : "formula",
+      "sources" : [ "getCurrencyData" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "currencyMonth",
+          "label" : "currencyMonth",
+          "formulaExpression" : "format_number(month(StartDate), '00')",
+          "precision" : 255
+        } ]
+      }
+    },
+    "currencyFormulas_2" : {
+      "action" : "formula",
+      "sources" : [ "currencyFormulas_1" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "currencyYear",
+          "label" : "currencyYear",
+          "formulaExpression" : "format_number(year(StartDate), '0000')",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "currencyFormulas" : {
+      "action" : "formula",
+      "sources" : [ "currencyFormulas_2" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "currencyKey",
+          "label" : "currencyKey",
+          "formulaExpression" : "\ncurrencyYear || currencyMonth || IsoCode",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "augSalesCurrencyUSD" : {
+      "action" : "join",
+      "sources" : [ "salesFormulas", "currencyFormulas" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "currencyToUSD.IsoCode", "currencyToUSD.StartDate", "currencyToUSD.NextStartDate", "currencyToUSD.currencyMonth", "currencyToUSD.currencyYear", "currencyToUSD.currencyKey" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "IncomingcurrencyRateKey" ],
+        "rightQualifier" : "currencyToUSD",
+        "rightKeys" : [ "currencyKey" ]
+      }
+    },
+    "currencyEquation_1" : {
+      "action" : "formula",
+      "sources" : [ "augSalesCurrencyUSD" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "UnitPrice_USD",
+          "label" : "UnitPrice_USD",
+          "formulaExpression" : "Unit_Price_Formula__c * (1 / \"currencyToUSD.ConversionRate\")",
+          "precision" : 18,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "currencyEquation_2" : {
+      "action" : "formula",
+      "sources" : [ "currencyEquation_1" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "Revenue_USD",
+          "label" : "Revenue_USD",
+          "formulaExpression" : "Total_Revenue_Formula__c / \"currencyToUSD.ConversionRate\"",
+          "precision" : 16,
+          "scale" : 2,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "currencyEquation_3" : {
+      "action" : "formula",
+      "sources" : [ "currencyEquation_2" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "exchangeToIsoEUR",
+          "label" : "exchangeToIsoEUR",
+          "formulaExpression" : "SaleDate_Year || SaleDate_Month|| 'EUR'",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "currencyEquation_4" : {
+      "action" : "formula",
+      "sources" : [ "currencyEquation_3" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "exchangeToIsoCHF",
+          "label" : "exchangeToIsoCHF",
+          "formulaExpression" : "SaleDate_Year || SaleDate_Month || 'CHF'",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "currencyEquation_5" : {
+      "action" : "formula",
+      "sources" : [ "currencyEquation_4" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "exchangeToIsoFRF",
+          "label" : "exchangeToIsoFRF",
+          "formulaExpression" : "SaleDate_Year || SaleDate_Month || 'FRF'",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "currencyEquation_6" : {
+      "action" : "formula",
+      "sources" : [ "currencyEquation_5" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "exchangeToIsoDEM",
+          "label" : "exchangeToIsoDEM",
+          "formulaExpression" : "SaleDate_Year || SaleDate_Month || 'DEM'",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "currencyEquation_7" : {
+      "action" : "formula",
+      "sources" : [ "currencyEquation_6" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "exchangeToIsoGBP",
+          "label" : "exchangeToIsoGBP",
+          "formulaExpression" : "SaleDate_Year || SaleDate_Month || 'GBP'",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "currencyEquation" : {
+      "action" : "formula",
+      "sources" : [ "currencyEquation_7" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "sourceToUSDConversionRate",
+          "label" : "sourceToUSDConversionRate",
+          "formulaExpression" : "(1 / \"currencyToUSD.ConversionRate\")",
+          "precision" : 12,
+          "scale" : 6
+        } ]
+      }
+    },
+    "augSalesCurrencyCHF" : {
+      "action" : "join",
+      "sources" : [ "currencyEquation", "currencyFormulas" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "currencyToCHF.IsoCode", "currencyToCHF.StartDate", "currencyToCHF.NextStartDate", "currencyToCHF.currencyMonth", "currencyToCHF.currencyYear", "currencyToCHF.currencyKey" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "exchangeToIsoCHF" ],
+        "rightQualifier" : "currencyToCHF",
+        "rightKeys" : [ "currencyKey" ]
+      }
+    },
+    "augSalesCurrencyFRF" : {
+      "action" : "join",
+      "sources" : [ "augSalesCurrencyCHF", "currencyFormulas" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "currencyToFRF.IsoCode", "currencyToFRF.StartDate", "currencyToFRF.NextStartDate", "currencyToFRF.currencyMonth", "currencyToFRF.currencyYear", "currencyToFRF.currencyKey" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "exchangeToIsoFRF" ],
+        "rightQualifier" : "currencyToFRF",
+        "rightKeys" : [ "currencyKey" ]
+      }
+    },
+    "augSalesCurrencyDEM" : {
+      "action" : "join",
+      "sources" : [ "augSalesCurrencyFRF", "currencyFormulas" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "currencyToDEM.IsoCode", "currencyToDEM.StartDate", "currencyToDEM.NextStartDate", "currencyToDEM.currencyMonth", "currencyToDEM.currencyYear", "currencyToDEM.currencyKey" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "exchangeToIsoDEM" ],
+        "rightQualifier" : "currencyToDEM",
+        "rightKeys" : [ "currencyKey" ]
+      }
+    },
+    "augSalesCurrencyGBP" : {
+      "action" : "join",
+      "sources" : [ "augSalesCurrencyDEM", "currencyFormulas" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "currencyToGBP.IsoCode", "currencyToGBP.StartDate", "currencyToGBP.NextStartDate", "currencyToGBP.currencyMonth", "currencyToGBP.currencyYear", "currencyToGBP.currencyKey" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "exchangeToIsoGBP" ],
+        "rightQualifier" : "currencyToGBP",
+        "rightKeys" : [ "currencyKey" ]
+      }
+    },
+    "augSalesCurrencyEUR" : {
+      "action" : "join",
+      "sources" : [ "augSalesCurrencyGBP", "currencyFormulas" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "currencyToEUR.IsoCode", "currencyToEUR.StartDate", "currencyToEUR.NextStartDate", "currencyToEUR.currencyMonth", "currencyToEUR.currencyYear", "currencyToEUR.currencyKey" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "exchangeToIsoEUR" ],
+        "rightQualifier" : "currencyToEUR",
+        "rightKeys" : [ "currencyKey" ]
+      }
+    },
+    "formulasCurrencyRevenues_1" : {
+      "action" : "formula",
+      "sources" : [ "augSalesCurrencyEUR" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "Revenue_CHF",
+          "label" : "Revenue_CHF",
+          "formulaExpression" : "Revenue_USD * \"currencyToCHF.ConversionRate\"",
+          "precision" : 16,
+          "scale" : 2
+        } ]
+      }
+    },
+    "formulasCurrencyRevenues_2" : {
+      "action" : "formula",
+      "sources" : [ "formulasCurrencyRevenues_1" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "Revenue_FRF",
+          "label" : "Revenue_FRF",
+          "formulaExpression" : "Revenue_USD * \"currencyToFRF.ConversionRate\"",
+          "precision" : 16,
+          "scale" : 2
+        } ]
+      }
+    },
+    "formulasCurrencyRevenues_3" : {
+      "action" : "formula",
+      "sources" : [ "formulasCurrencyRevenues_2" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "Revenue_DEM",
+          "label" : "Revenue_DEM",
+          "formulaExpression" : "Revenue_USD * \"currencyToDEM.ConversionRate\"",
+          "precision" : 16,
+          "scale" : 2
+        } ]
+      }
+    },
+    "formulasCurrencyRevenues_4" : {
+      "action" : "formula",
+      "sources" : [ "formulasCurrencyRevenues_3" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "Revenue_GBP",
+          "label" : "Revenue_GBP",
+          "formulaExpression" : "Revenue_USD * \"currencyToGBP.ConversionRate\"",
+          "precision" : 16,
+          "scale" : 2
+        } ]
+      }
+    },
+    "formulasCurrencyRevenues_5" : {
+      "action" : "formula",
+      "sources" : [ "formulasCurrencyRevenues_4" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "Revenue_EUR",
+          "label" : "Revenue_EUR",
+          "formulaExpression" : "Revenue_USD * \"currencyToEUR.ConversionRate\"",
+          "precision" : 16,
+          "scale" : 2
+        } ]
+      }
+    },
+    "formulasCurrencyRevenues" : {
+      "action" : "formula",
+      "sources" : [ "formulasCurrencyRevenues_5" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "currencyOff",
+          "label" : "currencyOff",
+          "formulaExpression" : "case when Total_Revenue_Formula__c > Revenue_EUR + 5 AND \"CurrencyIsoCode\" = 'EUR' then 'true' else 'false' end",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "getCompanies" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "Name", "Type", "ParentId", "BillingStreet", "BillingCity", "BillingState", "BillingPostalCode", "BillingCountry", "BillingStateCode", "BillingCountryCode", "Industry", "AnnualRevenue", "NumberOfEmployees", "Rating", "OwnerId", "CreatedDate", "CreatedById", "LastModifiedDate", "LastActivityDate", "LastViewedDate", "LastReferencedDate", "AccountSource", "VipApprovalClearFields__c", "Reseller_Type__c", "Channel_Type__c", "Parent_Account_Owner__c", "pp_Count_of_Contacts__c", "HQ_Account_Check_if_HQ__c", "VIP_Service_Account__c", "SalesRevCurrent_Week__c", "Legal_Name__c", "Account_Type__c", "migrationtExternalId__c", "ParentAccount__c", "pp_Count_of_Enrollees_Active__c", "Parent_Account__c", "ABMDecisionDate__c", "Spiff_Type__c", "DistrictId__c", "DBA_and_Previous_Names__c", "Oracle_Name__c", "Record_Type_Account__c", "Parent_Account_Name__c", "ABMPurchaseDate__c", "pp_Count_of_Partner_Enrollees__c", "Oracle_Customer_Number__c", "ABMConsiderationDate__c", "DecisionPurchase__c", "Assigned_Sales_Rep__c", "VSRegion__c", "VSSubRegion__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Account",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Account"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "augCompaniesUserData" : {
+      "action" : "join",
+      "sources" : [ "getCompanies", "LOAD_DATASET0" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "OwnerId" ],
+        "rightQualifier" : "salesRep",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "augmentResellerSalesOutCompanyUserData" : {
+      "action" : "join",
+      "sources" : [ "formulasCurrencyRevenues", "augCompaniesUserData" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Given_Curr.Currency", "Import_File", "Reseller.Column17", "Reseller.account_manager_id", "Reseller.change_date", "Reseller.creation_date", "Reseller.default_system_currency_id", "Reseller.deleted", "Reseller.enabled", "Reseller.head_company_id", "Reseller.id", "Reseller.is_head_company", "Reseller.is_sell_out_reporter", "Reseller.is_stock_manager", "Reseller.is_stock_reporter", "Reseller.property_map_id", "Reseller.salesRep.emp.email", "Reseller.secondary_name", "Reseller.sort_order", "Total_Revenue", "Transform1.company_id", "Unit_Price", "company.default_system_currency_id", "vseDEProdu.code" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "SFDC_EC.company__c" ],
+        "rightQualifier" : "Reseller",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "augSalesOutDistyCompanyUserData" : {
+      "action" : "join",
+      "sources" : [ "augmentResellerSalesOutCompanyUserData", "augCompaniesUserData" ],
+      "schema" : {
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Reseller.Type", "Reseller.ParentId", "Reseller.BillingStreet", "Reseller.BillingCity", "Reseller.BillingState", "Reseller.BillingPostalCode", "Reseller.BillingCountry", "Reseller.BillingStateCode", "Reseller.BillingCountryCode", "Reseller.Industry", "Reseller.AnnualRevenue", "Reseller.NumberOfEmployees", "Reseller.Rating", "Reseller.OwnerId", "Reseller.CreatedDate", "Reseller.CreatedById", "Reseller.LastModifiedDate", "Reseller.LastActivityDate", "Reseller.LastViewedDate", "Reseller.LastReferencedDate", "Reseller.AccountSource", "Reseller.VipApprovalClearFields__c", "Reseller.Reseller_Type__c", "Reseller.Channel_Type__c", "Reseller.Parent_Account_Owner__c", "Reseller.pp_Count_of_Contacts__c", "Reseller.HQ_Account_Check_if_HQ__c", "Reseller.VIP_Service_Account__c", "Reseller.SalesRevCurrent_Week__c", "Reseller.Legal_Name__c", "Reseller.Account_Type__c", "Reseller.migrationtExternalId__c", "Reseller.ParentAccount__c", "Reseller.pp_Count_of_Enrollees_Active__c", "Reseller.Parent_Account__c", "Reseller.ABMDecisionDate__c", "Reseller.Spiff_Type__c", "Reseller.DistrictId__c", "Reseller.DBA_and_Previous_Names__c", "Reseller.Oracle_Name__c", "Reseller.Record_Type_Account__c", "Reseller.Parent_Account_Name__c", "Reseller.ABMPurchaseDate__c", "Reseller.pp_Count_of_Partner_Enrollees__c", "Reseller.Oracle_Customer_Number__c", "Reseller.ABMConsiderationDate__c", "Reseller.DecisionPurchase__c", "Reseller.Assigned_Sales_Rep__c", "Reseller.VSRegion__c", "Reseller.VSSubRegion__c", "Reseller.salesRep.Id", "Reseller.salesRep.Username", "Reseller.salesRep.LastName", "Reseller.salesRep.FirstName", "Reseller.salesRep.CompanyName", "Reseller.salesRep.Division", "Reseller.salesRep.Department", "Reseller.salesRep.Title", "Reseller.salesRep.Street", "Reseller.salesRep.City", "Reseller.salesRep.State", "Reseller.salesRep.PostalCode", "Reseller.salesRep.Country", "Reseller.salesRep.Email", "Reseller.salesRep.Alias", "Reseller.salesRep.CommunityNickname", "Reseller.salesRep.IsActive", "Reseller.salesRep.UserRoleId", "Reseller.salesRep.ProfileId", "Reseller.salesRep.UserType", "Reseller.salesRep.ManagerId", "Reseller.salesRep.LastLoginDate", "Reseller.salesRep.CreatedDate", "Reseller.salesRep.ContactId", "Reseller.salesRep.AccountId", "Reseller.salesRep.PortalRole", "Reseller.salesRep.FullPhotoUrl", "Reseller.salesRep.SmallPhotoUrl", "Reseller.salesRep.MediumPhotoUrl", "Reseller.salesRep.BannerPhotoUrl", "Reseller.salesRep.SmallBannerPhotoUrl", "Reseller.salesRep.MediumBannerPhotoUrl", "Reseller.salesRep.IsProfilePhotoActive", "Reseller.salesRep.Account_Name__c", "Reseller.salesRep.Sales_Category__c", "Reseller.salesRep.Accounting_Category__c", "Reseller.salesRep.Contact_ID__c", "Reseller.salesRep.Contact_Name__c", "Reseller.salesRep.AccountId__c", "Reseller.salesRep.Sales_Team__c", "Reseller.salesRep.Region__c", "Reseller.salesRep.LastLogin__c", "Reseller.salesRep.VS_Sub_Region__c", "disti.Id", "disti.Type", "disti.ParentId", "disti.BillingStreet", "disti.BillingCity", "disti.BillingState", "disti.BillingPostalCode", "disti.BillingCountry", "disti.BillingStateCode", "disti.BillingCountryCode", "disti.Industry", "disti.AnnualRevenue", "disti.NumberOfEmployees", "disti.Rating", "disti.OwnerId", "disti.CreatedDate", "disti.CreatedById", "disti.LastModifiedDate", "disti.LastActivityDate", "disti.LastViewedDate", "disti.LastReferencedDate", "disti.AccountSource", "disti.VipApprovalClearFields__c", "disti.Reseller_Type__c", "disti.Channel_Type__c", "disti.Parent_Account_Owner__c", "disti.pp_Count_of_Contacts__c", "disti.HQ_Account_Check_if_HQ__c", "disti.VIP_Service_Account__c", "disti.SalesRevCurrent_Week__c", "disti.Legal_Name__c", "disti.Account_Type__c", "disti.migrationtExternalId__c", "disti.ParentAccount__c", "disti.pp_Count_of_Enrollees_Active__c", "disti.Parent_Account__c", "disti.ABMDecisionDate__c", "disti.Spiff_Type__c", "disti.DistrictId__c", "disti.DBA_and_Previous_Names__c", "disti.Oracle_Name__c", "disti.Record_Type_Account__c", "disti.Parent_Account_Name__c", "disti.ABMPurchaseDate__c", "disti.pp_Count_of_Partner_Enrollees__c", "disti.Oracle_Customer_Number__c", "disti.ABMConsiderationDate__c", "disti.DecisionPurchase__c", "disti.Assigned_Sales_Rep__c", "disti.salesRep.Id", "disti.salesRep.Username", "disti.salesRep.LastName", "disti.salesRep.FirstName", "disti.salesRep.CompanyName", "disti.salesRep.Division", "disti.salesRep.Department", "disti.salesRep.Title", "disti.salesRep.Street", "disti.salesRep.City", "disti.salesRep.State", "disti.salesRep.PostalCode", "disti.salesRep.Country", "disti.salesRep.Email", "disti.salesRep.Alias", "disti.salesRep.CommunityNickname", "disti.salesRep.IsActive", "disti.salesRep.UserRoleId", "disti.salesRep.ProfileId", "disti.salesRep.UserType", "disti.salesRep.ManagerId", "disti.salesRep.LastLoginDate", "disti.salesRep.CreatedDate", "disti.salesRep.ContactId", "disti.salesRep.AccountId", "disti.salesRep.PortalRole", "disti.salesRep.FullPhotoUrl", "disti.salesRep.SmallPhotoUrl", "disti.salesRep.MediumPhotoUrl", "disti.salesRep.BannerPhotoUrl", "disti.salesRep.SmallBannerPhotoUrl", "disti.salesRep.MediumBannerPhotoUrl", "disti.salesRep.IsProfilePhotoActive", "disti.salesRep.Account_Name__c", "disti.salesRep.Sales_Category__c", "disti.salesRep.Accounting_Category__c", "disti.salesRep.Contact_ID__c", "disti.salesRep.Contact_Name__c", "disti.salesRep.AccountId__c", "disti.salesRep.Sales_Team__c", "disti.salesRep.Region__c", "disti.salesRep.LastLogin__c", "disti.salesRep.VS_Sub_Region__c" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "distributor__c" ],
+        "rightQualifier" : "disti",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "registerVSEDESales" : {
+      "action" : "save",
+      "sources" : [ "EDIT_ATTRIBUTES4" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "VSE DE Sales Data",
+          "name" : "VSE_DE_Sales_Data_df2R3",
+          "folderName" : "VSE_Sales_Data",
+          "isStaged" : false
+        },
+        "measuresToCurrencies" : [ ]
+      }
+    },
+    "getStock" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "stock_report_data",
+          "name" : "stock_report_data_wc"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "augmentStockCompanies" : {
+      "action" : "join",
+      "sources" : [ "EDIT_ATTRIBUTES0", "augCompaniesUserData" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "distributor.Column17", "distributor.Sales_Rep_Owner_1", "distributor.Sales_Rep_Owner_2", "distributor.change_date", "distributor.creation_date", "distributor.default_system_currency_id", "distributor.deleted", "distributor.enabled", "distributor.head_company_id", "distributor.id", "distributor.is_sell_out_reporter", "distributor.property_map_id", "distributor.salesRep.emp.email", "distributor.salesRep.emp.first_name", "distributor.salesRep.emp.last_name", "distributor.salesRep.username", "distributor.secondary_name", "distributor.sort_order" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "distributor_Id__c" ],
+        "rightQualifier" : "distributor",
+        "rightKeys" : [ "migrationtExternalId__c" ]
+      }
+    },
+    "getVSEDEProducts" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "name" : "vseDEProducts"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "augmentProducts" : {
+      "action" : "join",
+      "sources" : [ "augmentStockCompanies", "getVSEDEProducts" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Import_File", "VSE_product.product_id", "Prod.code", "Prod.enabled", "Prod.expired_date", "Prod.deleted", "Prod.expired", "Prod.id", "Prod.sort_order", "Prod.change_date", "Prod.creation_date" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "VSE_product.product_id" ],
+        "rightQualifier" : "Prod",
+        "rightKeys" : [ "id" ]
+      }
+    },
+    "augOracleProdInfo" : {
+      "action" : "join",
+      "sources" : [ "augmentProducts", "getProducts" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "distributor_Id__c", "Product.MAIN_CONVERSIONS_TYPE", "Product.INVENTORY_VENDOR", "Product.ITEM_ITEM_NUMBER", "Product.ITEM_PERCENTAGE_TO_BASE_ITEM", "Product.ITEM_UNITS_PER_BOX", "Product.ORGANIZATION_NAME", "Product.INVENTORY_COLOR", "Product.INVENTORY_REGION", "Product.PHYS_DIMENSION_UOM", "Product.ITEM_SUPPLIER_SITE", "Product.INVENTORY_PRODUCT_BRAND", "Product.ITEM_HTSUS_NO", "Product.ITEM_MODEL_NUMBER", "Product.ITEM_UPC_CODE", "Product.ITEM_MAJOR_SKU", "Product.INVENTORY_WIDE_SCREEN_Y_N", "Product.INVENTORY_PANEL_SUPPLIER", "Product.MAIN_ITEM_STATUS", "Product.MAIN_UNIT_OF_MEASURE", "Product.ITEM_SERIAL_NO_PREFIX", "Product.ITEM_NUMBER", "Product.COST_ITEM_STATUS", "Product.ITEM_COUNTRY_OF_ORIGIN", "Product.ITEM_SUPPRESSED", "Product.ITEM_GRADED_ITEM", "Product.PHYS_WEIGHT_UOM_CODE", "Product.ITEM_DHHS_NUMBER", "Product.INVENTORY_ORIGIN", "Product.MAIN_ITEM_STATUS_CODE", "Product.ITEM_VSE_COMMODITY_CODE", "Product.COST_ITEM_GRADE", "Product.PHYS_UNIT_LENGTH", "Product.PHYS_UNIT_WIDTH", "Product.PHYS_UNIT_HEIGHT", "Product.PHYS_UNIT_VOLUME", "Product.PHYS_UNIT_WEIGHT", "Product.LAST_UPDATE_DATE", "Product.CREATION_DATE" ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Prod.name" ],
+        "rightQualifier" : "Product",
+        "rightKeys" : [ "ITEM_NUMBER" ]
+      }
+    },
+    "registerStockReport" : {
+      "action" : "save",
+      "sources" : [ "EDIT_ATTRIBUTES3" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "VSEDE Stock Report",
+          "name" : "VSEDE_Stock_Report_df2R3",
+          "folderName" : "VSE_Sales_Data",
+          "isStaged" : false
+        },
+        "measuresToCurrencies" : [ ]
+      }
+    },
+    "TO_DIMENSION1" : {
+      "action" : "typeCast",
+      "sources" : [ "getStock" ],
+      "schema" : {
+        "fields" : [ {
+          "name" : "distributor_Id__c_to_dimension",
+          "newProperties" : {
+            "name" : "distributor_Id__c"
+          }
+        } ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "distributor_Id__c" ]
+        }
+      },
+      "parameters" : {
+        "fields" : [ {
+          "name" : "distributor_Id__c",
+          "newProperties" : {
+            "label" : "distributor_Id__c",
+            "name" : "distributor_Id__c_to_dimension",
+            "typeProperties" : {
+              "type" : "TEXT",
+              "length" : 255
+            }
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES0" : {
+      "action" : "schema",
+      "sources" : [ "TO_DIMENSION1" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Date",
+          "newProperties" : {
+            "label" : "date",
+            "name" : "date"
+          }
+        } ]
+      }
+    },
+    "LOAD_DATASET0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "Username", "LastName", "FirstName", "Name", "CompanyName", "Division", "Department", "Title", "Street", "City", "State", "PostalCode", "Country", "Email", "Alias", "CommunityNickname", "IsActive", "UserRoleId", "ProfileId", "UserType", "ManagerId", "LastLoginDate", "CreatedDate", "ContactId", "AccountId", "PortalRole", "FullPhotoUrl", "SmallPhotoUrl", "MediumPhotoUrl", "BannerPhotoUrl", "SmallBannerPhotoUrl", "MediumBannerPhotoUrl", "IsProfilePhotoActive", "Account_Name__c", "Sales_Category__c", "Accounting_Category__c", "Contact_ID__c", "Contact_Name__c", "AccountId__c", "Sales_Team__c", "Region__c", "LastLogin__c", "VS_Sub_Region__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "User",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "User"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "EDIT_ATTRIBUTES1" : {
+      "action" : "schema",
+      "sources" : [ "augSalesOutDistyCompanyUserData" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Reseller.Name",
+          "newProperties" : {
+            "label" : "Reseller",
+            "name" : "Reseller"
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES2" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES1" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "disti.Name",
+          "newProperties" : {
+            "label" : "Distributor",
+            "name" : "Distributor"
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES4" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES2" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Quantity_Formula__c",
+          "newProperties" : {
+            "label" : "Quantity",
+            "name" : "Quantity"
+          }
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES3" : {
+      "action" : "schema",
+      "sources" : [ "augOracleProdInfo" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "distributor.Name",
+          "newProperties" : {
+            "label" : "distributor.name",
+            "name" : "distributor.name"
+          }
+        } ]
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "getCurrencyData" : {
+        "label" : "getCurrencyData",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 810.2,
+        "parameters" : {
+          "sampleSize" : 10000
+        }
+      },
+      "TRANSFORM0" : {
+        "label" : "formulasHistoricalFormulas",
+        "type" : "TRANSFORM",
+        "top" : 672.2,
+        "left" : 952,
+        "graph" : {
+          "formulasHistoricalFormulas_1" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "formulasHistoricalFormulas_2" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "formulasHistoricalFormulas_3" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "formulasHistoricalFormulas_4" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "formulasHistoricalFormulas" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          }
+        },
+        "connectors" : [ {
+          "source" : "formulasHistoricalFormulas_1",
+          "target" : "formulasHistoricalFormulas_2"
+        }, {
+          "source" : "formulasHistoricalFormulas_2",
+          "target" : "formulasHistoricalFormulas_3"
+        }, {
+          "source" : "formulasHistoricalFormulas_3",
+          "target" : "formulasHistoricalFormulas_4"
+        }, {
+          "source" : "formulasHistoricalFormulas_4",
+          "target" : "formulasHistoricalFormulas"
+        } ]
+      },
+      "register_getcurrencyData" : {
+        "label" : "register_getcurrencyData",
+        "type" : "OUTPUT",
+        "top" : 532,
+        "left" : 1090.2
+      },
+      "getUserData" : {
+        "label" : "getUserData",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 110.19999999999999,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "getEmployeeData" : {
+        "label" : "getEmployeeData",
+        "type" : "LOAD_DATASET",
+        "top" : 392,
+        "left" : 110.19999999999999,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "augmentUserEmployeeData" : {
+        "label" : "augmentUserEmployeeData",
+        "type" : "JOIN",
+        "top" : 252,
+        "left" : 250.2
+      },
+      "VSE_Register_User_Data" : {
+        "label" : "VSE_Register_User_Data",
+        "type" : "OUTPUT",
+        "top" : 111.9,
+        "left" : 112
+      },
+      "VSEDESalesData" : {
+        "label" : "VSEGermanySellOut",
+        "type" : "LOAD_DATASET",
+        "top" : 392,
+        "left" : 670.2,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "getProducts" : {
+        "label" : "getProducts",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 670.2,
+        "parameters" : {
+          "sampleSize" : 10000
+        }
+      },
+      "augProductsSales" : {
+        "label" : "augProductsSales",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 810.2
+      },
+      "TRANSFORM1" : {
+        "label" : "salesFormulas",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 950.2,
+        "graph" : {
+          "salesFormulas_1" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "salesFormulas_2" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "salesFormulas" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          }
+        },
+        "connectors" : [ {
+          "source" : "salesFormulas_1",
+          "target" : "salesFormulas_2"
+        }, {
+          "source" : "salesFormulas_2",
+          "target" : "salesFormulas"
+        } ]
+      },
+      "TRANSFORM2" : {
+        "label" : "currencyFormulas",
+        "type" : "TRANSFORM",
+        "top" : 252,
+        "left" : 950.2,
+        "graph" : {
+          "currencyFormulas_1" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "currencyFormulas_2" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "currencyFormulas" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          }
+        },
+        "connectors" : [ {
+          "source" : "currencyFormulas_1",
+          "target" : "currencyFormulas_2"
+        }, {
+          "source" : "currencyFormulas_2",
+          "target" : "currencyFormulas"
+        } ]
+      },
+      "augSalesCurrencyUSD" : {
+        "label" : "augSalesCurrencyUSD",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 1090.2
+      },
+      "TRANSFORM3" : {
+        "label" : "currencyEquation",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 1230.2,
+        "graph" : {
+          "currencyEquation_1" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "currencyEquation_2" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "currencyEquation_3" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "currencyEquation_4" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "currencyEquation_5" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "currencyEquation_6" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "currencyEquation_7" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "currencyEquation" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          }
+        },
+        "connectors" : [ {
+          "source" : "currencyEquation_1",
+          "target" : "currencyEquation_2"
+        }, {
+          "source" : "currencyEquation_2",
+          "target" : "currencyEquation_3"
+        }, {
+          "source" : "currencyEquation_3",
+          "target" : "currencyEquation_4"
+        }, {
+          "source" : "currencyEquation_4",
+          "target" : "currencyEquation_5"
+        }, {
+          "source" : "currencyEquation_5",
+          "target" : "currencyEquation_6"
+        }, {
+          "source" : "currencyEquation_6",
+          "target" : "currencyEquation_7"
+        }, {
+          "source" : "currencyEquation_7",
+          "target" : "currencyEquation"
+        } ]
+      },
+      "augSalesCurrencyCHF" : {
+        "label" : "augSalesCurrencyCHF",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 1370.2
+      },
+      "augSalesCurrencyFRF" : {
+        "label" : "augSalesCurrencyFRF",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 1510.2
+      },
+      "augSalesCurrencyDEM" : {
+        "label" : "augSalesCurrencyDEM",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 1650.2
+      },
+      "augSalesCurrencyGBP" : {
+        "label" : "augSalesCurrencyGBP",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 1790.2
+      },
+      "augSalesCurrencyEUR" : {
+        "label" : "augSalesCurrencyEUR",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 1930.2
+      },
+      "TRANSFORM4" : {
+        "label" : "formulasCurrencyRevenues",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 2070.2,
+        "graph" : {
+          "formulasCurrencyRevenues_1" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "formulasCurrencyRevenues_2" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "formulasCurrencyRevenues_3" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "formulasCurrencyRevenues_4" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "formulasCurrencyRevenues_5" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "formulasCurrencyRevenues" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          }
+        },
+        "connectors" : [ {
+          "source" : "formulasCurrencyRevenues_1",
+          "target" : "formulasCurrencyRevenues_2"
+        }, {
+          "source" : "formulasCurrencyRevenues_2",
+          "target" : "formulasCurrencyRevenues_3"
+        }, {
+          "source" : "formulasCurrencyRevenues_3",
+          "target" : "formulasCurrencyRevenues_4"
+        }, {
+          "source" : "formulasCurrencyRevenues_4",
+          "target" : "formulasCurrencyRevenues_5"
+        }, {
+          "source" : "formulasCurrencyRevenues_5",
+          "target" : "formulasCurrencyRevenues"
+        } ]
+      },
+      "getCompanies" : {
+        "label" : "Account",
+        "type" : "LOAD_DATASET",
+        "top" : 392,
+        "left" : 250.2,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "augCompaniesUserData" : {
+        "label" : "augCompaniesUserData",
+        "type" : "JOIN",
+        "top" : 252,
+        "left" : 390.2
+      },
+      "augmentResellerSalesOutCompanyUserData" : {
+        "label" : "augmentResellerSalesOutCompanyUserData",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 2210.2
+      },
+      "augSalesOutDistyCompanyUserData" : {
+        "label" : "augSalesOutDistyCompanyUserData",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 2350.2
+      },
+      "registerVSEDESales" : {
+        "label" : "registerVSEDESales",
+        "type" : "OUTPUT",
+        "top" : 112,
+        "left" : 2632
+      },
+      "getStock" : {
+        "label" : "stock_report_data",
+        "type" : "LOAD_DATASET",
+        "top" : 532,
+        "left" : 390.2,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "augmentStockCompanies" : {
+        "label" : "augmentStockCompanies",
+        "type" : "JOIN",
+        "top" : 252,
+        "left" : 530.2
+      },
+      "getVSEDEProducts" : {
+        "label" : "getVSEDEProducts",
+        "type" : "LOAD_DATASET",
+        "top" : 392,
+        "left" : 530.2,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "augmentProducts" : {
+        "label" : "augmentProducts",
+        "type" : "JOIN",
+        "top" : 252,
+        "left" : 670.2
+      },
+      "augOracleProdInfo" : {
+        "label" : "augOracleProdInfo",
+        "type" : "JOIN",
+        "top" : 392,
+        "left" : 810.2
+      },
+      "registerStockReport" : {
+        "label" : "registerStockReport",
+        "type" : "OUTPUT",
+        "top" : 392,
+        "left" : 950.2
+      },
+      "TRANSFORM5" : {
+        "label" : "Transform 5",
+        "type" : "TRANSFORM",
+        "top" : 532,
+        "left" : 532,
+        "graph" : {
+          "TO_DIMENSION1" : {
+            "label" : "To Dimension"
+          },
+          "EDIT_ATTRIBUTES0" : {
+            "label" : "Edit Attributes"
+          }
+        },
+        "connectors" : [ {
+          "source" : "TO_DIMENSION1",
+          "target" : "EDIT_ATTRIBUTES0"
+        } ]
+      },
+      "LOAD_DATASET0" : {
+        "label" : "User",
+        "type" : "LOAD_DATASET",
+        "top" : 392,
+        "left" : 392,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "TRANSFORM6" : {
+        "label" : "Transform 6",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 2492,
+        "graph" : {
+          "EDIT_ATTRIBUTES1" : {
+            "label" : "Edit Attributes"
+          },
+          "EDIT_ATTRIBUTES2" : {
+            "label" : "Edit Attributes"
+          },
+          "EDIT_ATTRIBUTES4" : {
+            "label" : "Edit Attributes"
+          }
+        },
+        "connectors" : [ {
+          "source" : "EDIT_ATTRIBUTES1",
+          "target" : "EDIT_ATTRIBUTES2"
+        }, {
+          "source" : "EDIT_ATTRIBUTES2",
+          "target" : "EDIT_ATTRIBUTES4"
+        } ]
+      },
+      "TRANSFORM7" : {
+        "label" : "Transform 7",
+        "type" : "TRANSFORM",
+        "top" : 532.2,
+        "left" : 952,
+        "graph" : {
+          "EDIT_ATTRIBUTES3" : {
+            "label" : "Edit Attributes"
+          }
+        },
+        "connectors" : [ ]
+      }
+    },
+    "connectors" : [ {
+      "source" : "getCurrencyData",
+      "target" : "TRANSFORM0"
+    }, {
+      "source" : "TRANSFORM0",
+      "target" : "register_getcurrencyData"
+    }, {
+      "source" : "getUserData",
+      "target" : "augmentUserEmployeeData"
+    }, {
+      "source" : "getEmployeeData",
+      "target" : "augmentUserEmployeeData"
+    }, {
+      "source" : "augmentUserEmployeeData",
+      "target" : "VSE_Register_User_Data"
+    }, {
+      "source" : "VSEDESalesData",
+      "target" : "augProductsSales"
+    }, {
+      "source" : "getProducts",
+      "target" : "augProductsSales"
+    }, {
+      "source" : "augProductsSales",
+      "target" : "TRANSFORM1"
+    }, {
+      "source" : "getCurrencyData",
+      "target" : "TRANSFORM2"
+    }, {
+      "source" : "TRANSFORM1",
+      "target" : "augSalesCurrencyUSD"
+    }, {
+      "source" : "TRANSFORM2",
+      "target" : "augSalesCurrencyUSD"
+    }, {
+      "source" : "augSalesCurrencyUSD",
+      "target" : "TRANSFORM3"
+    }, {
+      "source" : "TRANSFORM3",
+      "target" : "augSalesCurrencyCHF"
+    }, {
+      "source" : "TRANSFORM2",
+      "target" : "augSalesCurrencyCHF"
+    }, {
+      "source" : "augSalesCurrencyCHF",
+      "target" : "augSalesCurrencyFRF"
+    }, {
+      "source" : "TRANSFORM2",
+      "target" : "augSalesCurrencyFRF"
+    }, {
+      "source" : "augSalesCurrencyFRF",
+      "target" : "augSalesCurrencyDEM"
+    }, {
+      "source" : "TRANSFORM2",
+      "target" : "augSalesCurrencyDEM"
+    }, {
+      "source" : "augSalesCurrencyDEM",
+      "target" : "augSalesCurrencyGBP"
+    }, {
+      "source" : "TRANSFORM2",
+      "target" : "augSalesCurrencyGBP"
+    }, {
+      "source" : "augSalesCurrencyGBP",
+      "target" : "augSalesCurrencyEUR"
+    }, {
+      "source" : "TRANSFORM2",
+      "target" : "augSalesCurrencyEUR"
+    }, {
+      "source" : "augSalesCurrencyEUR",
+      "target" : "TRANSFORM4"
+    }, {
+      "source" : "getCompanies",
+      "target" : "augCompaniesUserData"
+    }, {
+      "source" : "TRANSFORM4",
+      "target" : "augmentResellerSalesOutCompanyUserData"
+    }, {
+      "source" : "augCompaniesUserData",
+      "target" : "augmentResellerSalesOutCompanyUserData"
+    }, {
+      "source" : "augmentResellerSalesOutCompanyUserData",
+      "target" : "augSalesOutDistyCompanyUserData"
+    }, {
+      "source" : "augCompaniesUserData",
+      "target" : "augSalesOutDistyCompanyUserData"
+    }, {
+      "source" : "TRANSFORM6",
+      "target" : "registerVSEDESales"
+    }, {
+      "source" : "TRANSFORM5",
+      "target" : "augmentStockCompanies"
+    }, {
+      "source" : "augCompaniesUserData",
+      "target" : "augmentStockCompanies"
+    }, {
+      "source" : "augmentStockCompanies",
+      "target" : "augmentProducts"
+    }, {
+      "source" : "getVSEDEProducts",
+      "target" : "augmentProducts"
+    }, {
+      "source" : "augmentProducts",
+      "target" : "augOracleProdInfo"
+    }, {
+      "source" : "TRANSFORM7",
+      "target" : "registerStockReport"
+    }, {
+      "source" : "getStock",
+      "target" : "TRANSFORM5"
+    }, {
+      "source" : "LOAD_DATASET0",
+      "target" : "augCompaniesUserData"
+    }, {
+      "source" : "augSalesOutDistyCompanyUserData",
+      "target" : "TRANSFORM6"
+    }, {
+      "source" : "augOracleProdInfo",
+      "target" : "TRANSFORM7"
+    }, {
+      "source" : "getProducts",
+      "target" : "augOracleProdInfo"
+    } ],
+    "hiddenColumns" : [ ]
+  }
+}

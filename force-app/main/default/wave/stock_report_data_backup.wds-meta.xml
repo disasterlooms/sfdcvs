@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveDataset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <application>VSE_Sales_Data</application>
+    <description>Created from the CMS_stock_report_data_backup recipe.</description>
+    <masterLabel>stock_report_data_backup</masterLabel>
+    <type>default</type>
+</WaveDataset>

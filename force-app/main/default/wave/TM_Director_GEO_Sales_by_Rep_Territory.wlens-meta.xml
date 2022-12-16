@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveLens xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <content xsi:nil="true"/>
+    <application>Accounting</application>
+    <datasets>SalesData</datasets>
+    <description>Includes direct shipments to AV Resellers in this number. We do need to update the quarter
+
+This is not the Sales to Education but it is Total GEO number</description>
+    <masterLabel>TM Director GEO Sales by Rep/Territory</masterLabel>
+    <visualizationType>comparisontable</visualizationType>
+</WaveLens>

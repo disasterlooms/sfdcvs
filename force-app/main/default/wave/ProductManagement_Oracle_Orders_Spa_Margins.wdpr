@@ -1,0 +1,564 @@
+{
+  "version" : "53.0",
+  "nodes" : {
+    "LOAD_DATASET0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Ship_To_Zip", "spa.COMPANY_NAME", "Ship_To_Address3", "Line_Number", "Customer", "SalesPerson", "Spa", "Product_Grade", "SPA_Number", "Product", "Bundle_Item", "SpaExpiration", "spa.END_USER_NAME", "ShipToName_Address", "VSA_Reseller", "SubInventory", "Product_Size", "spa.expirationDate", "Ship_To_Address2", "Ship_To_City", "Sales_Channel", "Ship_To_Name_Address1", "Ship_To_State", "Spa_Number", "Packing_Instructions", "Customer_Number", "Line_Hold_Name", "Order_Header_Type", "Shipping_Instructions", "Header_Status", "Order_Number", "Customer_PO_Number", "Customer_Category", "Planned_Ship_Date", "Sales_Order_Status", "Customer_Profile_Class", "Ordered_Date", "Operating_Unit", "Cust_PO_Number", "Line_Status", "Order_Line_Type", "Header_Hold_Name", "Product_Type", "Profile_Class", "Estimated_MTD_Qty", "Reserved_Amount_Current", "Reserved_Qty_Current", "Unreserved_Qty", "Qty", "Reserved_Qty_Future" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "OpenOrdersQTD_Transformed",
+          "name" : "OpenOrdersQTD_Transformed"
+        }
+      }
+    },
+    "LOAD_DATASET3" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "VIEWSONIC_SKU", "END_USER_NAME", "SPA_NUMBER", "STANDARD_PRICE", "SPA_APPROVED_PRICE", "EXPIRATION_DATE", "APPROVAL_DATE" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "OracleSpaApprovedPrice",
+          "name" : "OracleSpaApprovedPrice"
+        }
+      }
+    },
+    "LOAD_DATASET4" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "Name", "IsActive", "Family", "Cost__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Product2",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Product2"
+        }
+      }
+    },
+    "FORMULA0" : {
+      "action" : "formula",
+      "sources" : [ "LOAD_DATASET3" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "SPA_NUMBER_formula",
+          "label" : "SpaName",
+          "formulaExpression" : "replace(replace(replace(SPA_NUMBER, 'BR', ''),'ACC',''),' ','')",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "DROP_FIELDS0" : {
+      "action" : "schema",
+      "sources" : [ "FORMULA0" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "SPA_NUMBER" ]
+        }
+      }
+    },
+    "FORMULA2" : {
+      "action" : "formula",
+      "sources" : [ "DROP_FIELDS0" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "VIEWSONIC_SKU_formula1",
+          "label" : "SpaSku",
+          "formulaExpression" : "concat(VIEWSONIC_SKU,SPA_NUMBER_formula)",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA3" : {
+      "action" : "computeRelative",
+      "sources" : [ "FORMULA2" ],
+      "parameters" : {
+        "partitionBy" : [ "VIEWSONIC_SKU_formula1" ],
+        "orderBy" : [ {
+          "fieldName" : "APPROVAL_DATE",
+          "direction" : "DESC"
+        } ],
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "VIEWSONIC_SKU_formula",
+          "label" : "Spa Approved Price (Latest)",
+          "formulaExpression" : "first_value(SPA_APPROVED_PRICE)",
+          "precision" : 16,
+          "scale" : 2,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "JOIN0" : {
+      "action" : "join",
+      "sources" : [ "LOAD_DATASET0", "FORMULA3" ],
+      "schema" : {
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Product", "Spa" ],
+        "rightQualifier" : "SpaPricing",
+        "rightKeys" : [ "VIEWSONIC_SKU", "SPA_NUMBER_formula" ]
+      }
+    },
+    "JOIN1" : {
+      "action" : "join",
+      "sources" : [ "JOIN0", "LOAD_DATASET4" ],
+      "schema" : {
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "SpaPricing.VIEWSONIC_SKU" ],
+        "rightQualifier" : "Product2",
+        "rightKeys" : [ "Name" ]
+      }
+    },
+    "DROP_FIELDS1" : {
+      "action" : "schema",
+      "sources" : [ "JOIN1" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Spa_Number" ]
+        }
+      }
+    },
+    "DROP_FIELDS2" : {
+      "action" : "schema",
+      "sources" : [ "DROP_FIELDS1" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "SpaPricing.SPA_NUMBER_formula" ]
+        }
+      }
+    },
+    "DROP_FIELDS3" : {
+      "action" : "schema",
+      "sources" : [ "DROP_FIELDS2" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "SpaPricing.VIEWSONIC_SKU" ]
+        }
+      }
+    },
+    "DROP_FIELDS4" : {
+      "action" : "schema",
+      "sources" : [ "DROP_FIELDS3" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "spa.COMPANY_NAME" ]
+        }
+      }
+    },
+    "DROP_FIELDS5" : {
+      "action" : "schema",
+      "sources" : [ "DROP_FIELDS4" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "spa.END_USER_NAME" ]
+        }
+      }
+    },
+    "DROP_FIELDS6" : {
+      "action" : "schema",
+      "sources" : [ "DROP_FIELDS5" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Product2.Id" ]
+        }
+      }
+    },
+    "OUTPUT0" : {
+      "action" : "save",
+      "sources" : [ "DROP_FIELDS6" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "OracleOrdersSpaPricing and Margins",
+          "name" : "OracleOrdersSpaPricing_Margins",
+          "folderName" : "Product_Management"
+        }
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET0" : {
+        "label" : "OpenOrdersQTD_Transformed",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 112,
+        "graph" : {
+          "LOAD_DATASET0" : null
+        },
+        "connectors" : [ ],
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "LOAD_DATASET3" : {
+        "label" : "OracleSpaApprovedPrice",
+        "type" : "LOAD_DATASET",
+        "top" : 252.10000000000002,
+        "left" : 112,
+        "graph" : {
+          "LOAD_DATASET3" : null
+        },
+        "connectors" : [ ],
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "LOAD_DATASET4" : {
+        "label" : "Product2",
+        "type" : "LOAD_DATASET",
+        "top" : 392.1,
+        "left" : 112,
+        "graph" : {
+          "LOAD_DATASET4" : null
+        },
+        "connectors" : [ ],
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "TRANSFORM0" : {
+        "label" : "Transform",
+        "type" : "TRANSFORM",
+        "top" : 252,
+        "left" : 252,
+        "graph" : {
+          "FORMULA0" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "DROP_FIELDS0" : null,
+          "FORMULA2" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "FORMULA3" : null
+        },
+        "connectors" : [ {
+          "source" : "FORMULA0",
+          "target" : "DROP_FIELDS0"
+        }, {
+          "source" : "DROP_FIELDS0",
+          "target" : "FORMULA2"
+        }, {
+          "source" : "FORMULA2",
+          "target" : "FORMULA3"
+        } ]
+      },
+      "JOIN0" : {
+        "label" : "Join",
+        "type" : "JOIN",
+        "top" : 252,
+        "left" : 392
+      },
+      "JOIN1" : {
+        "label" : "Join",
+        "type" : "JOIN",
+        "top" : 252,
+        "left" : 532
+      },
+      "TRANSFORM1" : {
+        "label" : "Transform",
+        "type" : "TRANSFORM",
+        "top" : 253.3,
+        "left" : 672,
+        "graph" : {
+          "DROP_FIELDS1" : null,
+          "DROP_FIELDS2" : null,
+          "DROP_FIELDS3" : null,
+          "DROP_FIELDS4" : null,
+          "DROP_FIELDS5" : null,
+          "DROP_FIELDS6" : null
+        },
+        "connectors" : [ {
+          "source" : "DROP_FIELDS1",
+          "target" : "DROP_FIELDS2"
+        }, {
+          "source" : "DROP_FIELDS2",
+          "target" : "DROP_FIELDS3"
+        }, {
+          "source" : "DROP_FIELDS3",
+          "target" : "DROP_FIELDS4"
+        }, {
+          "source" : "DROP_FIELDS4",
+          "target" : "DROP_FIELDS5"
+        }, {
+          "source" : "DROP_FIELDS5",
+          "target" : "DROP_FIELDS6"
+        } ]
+      },
+      "OUTPUT0" : {
+        "label" : "Output",
+        "type" : "OUTPUT",
+        "top" : 252,
+        "left" : 812
+      }
+    },
+    "connectors" : [ {
+      "source" : "LOAD_DATASET3",
+      "target" : "TRANSFORM0"
+    }, {
+      "source" : "LOAD_DATASET0",
+      "target" : "JOIN0"
+    }, {
+      "source" : "TRANSFORM0",
+      "target" : "JOIN0"
+    }, {
+      "source" : "JOIN0",
+      "target" : "JOIN1"
+    }, {
+      "source" : "LOAD_DATASET4",
+      "target" : "JOIN1"
+    }, {
+      "source" : "JOIN1",
+      "target" : "TRANSFORM1"
+    }, {
+      "source" : "TRANSFORM1",
+      "target" : "OUTPUT0"
+    } ],
+    "hiddenColumns" : [ {
+      "fieldName" : "Ship_To_Zip",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Ship_To_Address3",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Line_Number",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Customer",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "SalesPerson",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Product_Grade",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "SPA_Number",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Bundle_Item",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "SpaExpiration",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "ShipToName_Address",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "VSA_Reseller",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "SubInventory",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Product_Size",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "spa.expirationDate",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Ship_To_Address2",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Ship_To_City",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Sales_Channel",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Ship_To_Name_Address1",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Ship_To_State",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Packing_Instructions",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Customer_Number",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Line_Hold_Name",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Order_Header_Type",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Shipping_Instructions",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Header_Status",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Order_Number",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Customer_PO_Number",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Customer_Category",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Planned_Ship_Date",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Sales_Order_Status",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Customer_Profile_Class",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Ordered_Date",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Operating_Unit",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Cust_PO_Number",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Line_Status",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Order_Line_Type",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Header_Hold_Name",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Product_Type",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Profile_Class",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Estimated_MTD_Qty",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Reserved_Amount_Current",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Reserved_Qty_Current",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Unreserved_Qty",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Qty",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Reserved_Qty_Future",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "STANDARD_PRICE",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OracleSpaApprovedPrice"
+    }, {
+      "fieldName" : "Id",
+      "objectType" : "connectedDataset",
+      "objectName" : "SFDC_LOCAL$Product2"
+    }, {
+      "fieldName" : "Spa",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    }, {
+      "fieldName" : "Product",
+      "objectType" : "analyticsDataset",
+      "objectName" : "OpenOrdersQTD_Transformed"
+    } ]
+  }
+}

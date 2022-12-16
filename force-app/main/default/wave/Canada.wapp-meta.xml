@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <folder>Canada</folder>
+    <masterLabel>Canada</masterLabel>
+    <shares>
+        <accessLevel>EditAllContents</accessLevel>
+        <sharedTo>deidre.deacon@viewsonic.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>jason.orbison@viewsonic.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>EditAllContents</accessLevel>
+        <sharedTo>mike.mccracken@viewsonic.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>EditAllContents</accessLevel>
+        <sharedTo>paul.demsky@viewsonic.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>EditAllContents</accessLevel>
+        <sharedTo>stan.klebanoff@viewsonic.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>Canada</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </shares>
+</WaveApplication>

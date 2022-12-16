@@ -1,0 +1,657 @@
+{
+  "version" : "53.0",
+  "nodes" : {
+    "LOAD_DATASET0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "INVOICE_DATE", "RBM", "Spa.Name", "Industry", "ResellerSFDC", "RBMRep", "SaleQuarter", "SaleDateMonth", "RBMFocusAcct", "ResellerName", "SaleDateYear", "ShipToAccount", "Channel", "SaleDateMonthYear", "SHIPTO_COMPANY", "SHIPTO_COMPANY_CITY", "QUANTITY", "SpaRevenue", "REVENUE", "ProductType", "PRODUCT_NAME", "YearQuarter" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "SalesData",
+          "name" : "SalesData"
+        }
+      }
+    },
+    "FILTER0" : {
+      "action" : "filter",
+      "sources" : [ "LOAD_DATASET0" ],
+      "parameters" : {
+        "filterExpressions" : [ {
+          "type" : "TEXT",
+          "field" : "RBMFocusAcct",
+          "operator" : "NOT",
+          "operands" : [ "false" ]
+        }, {
+          "type" : "TEXT",
+          "field" : "SaleDateYear",
+          "operator" : "EQUAL",
+          "operands" : [ "2020", "2021" ]
+        } ]
+      }
+    },
+    "EXTRACT0" : {
+      "action" : "extractGrains",
+      "sources" : [ "FILTER0" ],
+      "parameters" : {
+        "grainExtractions" : [ ]
+      }
+    },
+    "AGGREGATE1" : {
+      "action" : "aggregate",
+      "sources" : [ "EXTRACT0" ],
+      "parameters" : {
+        "aggregations" : [ {
+          "action" : "SUM",
+          "source" : "REVENUE",
+          "name" : "SUM_REVENUE",
+          "label" : "Sum of REVENUE"
+        } ],
+        "groupings" : [ "ShipToAccount", "SaleDateYear" ],
+        "pivots" : [ ],
+        "nodeType" : "STANDARD"
+      }
+    },
+    "FORMULA0" : {
+      "action" : "computeRelative",
+      "sources" : [ "AGGREGATE1" ],
+      "parameters" : {
+        "partitionBy" : [ "ShipToAccount" ],
+        "orderBy" : [ {
+          "fieldName" : "SaleDateYear",
+          "direction" : "ASC"
+        } ],
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "Change_Previous_Year",
+          "label" : "Change_Previous_Year",
+          "formulaExpression" : "coalesce(last_value(SUM_REVENUE), 0)\n\n-coalesce(first_value(SUM_REVENUE),0)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA3" : {
+      "action" : "computeRelative",
+      "sources" : [ "FORMULA0" ],
+      "parameters" : {
+        "partitionBy" : [ "ShipToAccount" ],
+        "orderBy" : [ {
+          "fieldName" : "SaleDateYear",
+          "direction" : "ASC"
+        } ],
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "ShipToAccount_formula",
+          "label" : "Year of Change",
+          "formulaExpression" : "last_value(SaleDateYear)",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA6" : {
+      "action" : "formula",
+      "sources" : [ "FORMULA3" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "ShipToAccount_formula1",
+          "label" : "Revenue",
+          "formulaExpression" : "coalesce(SUM_REVENUE , 0)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA7" : {
+      "action" : "computeRelative",
+      "sources" : [ "FORMULA6" ],
+      "parameters" : {
+        "partitionBy" : [ "ShipToAccount" ],
+        "orderBy" : [ {
+          "fieldName" : "SaleDateYear",
+          "direction" : "ASC"
+        } ],
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "ShipToAccount_formula2",
+          "label" : "Revenue Gain Loss",
+          "formulaExpression" : "coalesce(first_value(ShipToAccount_formula1)-\nlast_value(ShipToAccount_formula1),0)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FILTER1" : {
+      "action" : "filter",
+      "sources" : [ "LOAD_DATASET0" ],
+      "parameters" : {
+        "filterExpressions" : [ {
+          "type" : "TEXT",
+          "field" : "SaleDateYear",
+          "operator" : "EQUAL",
+          "operands" : [ "2019", "2020" ]
+        }, {
+          "type" : "TEXT",
+          "field" : "RBMFocusAcct",
+          "operator" : "NOT",
+          "operands" : [ "false" ]
+        } ]
+      }
+    },
+    "FILTER2" : {
+      "action" : "filter",
+      "sources" : [ "LOAD_DATASET0" ],
+      "parameters" : {
+        "filterExpressions" : [ {
+          "type" : "TEXT",
+          "field" : "SaleDateYear",
+          "operator" : "EQUAL",
+          "operands" : [ "2021", "2022" ]
+        }, {
+          "type" : "TEXT",
+          "field" : "RBMFocusAcct",
+          "operator" : "NOT",
+          "operands" : [ "false" ]
+        } ]
+      }
+    },
+    "EXTRACT1" : {
+      "action" : "extractGrains",
+      "sources" : [ "FILTER1" ],
+      "parameters" : {
+        "grainExtractions" : [ ]
+      }
+    },
+    "AGGREGATE3" : {
+      "action" : "aggregate",
+      "sources" : [ "EXTRACT1" ],
+      "parameters" : {
+        "aggregations" : [ {
+          "action" : "SUM",
+          "source" : "REVENUE",
+          "name" : "SUM_REVENUE",
+          "label" : "Sum of REVENUE"
+        } ],
+        "groupings" : [ "ShipToAccount", "SaleDateYear" ],
+        "pivots" : [ ],
+        "nodeType" : "STANDARD"
+      }
+    },
+    "EXTRACT2" : {
+      "action" : "extractGrains",
+      "sources" : [ "FILTER2" ],
+      "parameters" : {
+        "grainExtractions" : [ ]
+      }
+    },
+    "AGGREGATE5" : {
+      "action" : "aggregate",
+      "sources" : [ "EXTRACT2" ],
+      "parameters" : {
+        "aggregations" : [ {
+          "action" : "SUM",
+          "source" : "REVENUE",
+          "name" : "SUM_REVENUE",
+          "label" : "Sum of REVENUE"
+        } ],
+        "groupings" : [ "ShipToAccount", "SaleDateYear" ],
+        "pivots" : [ ],
+        "nodeType" : "STANDARD"
+      }
+    },
+    "FORMULA1" : {
+      "action" : "computeRelative",
+      "sources" : [ "AGGREGATE3" ],
+      "parameters" : {
+        "partitionBy" : [ "ShipToAccount" ],
+        "orderBy" : [ {
+          "fieldName" : "SaleDateYear",
+          "direction" : "ASC"
+        } ],
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "Change_Previous_Year",
+          "label" : "Change_Previous_Year",
+          "formulaExpression" : "coalesce(last_value(SUM_REVENUE), 0)\n\n-coalesce(first_value(SUM_REVENUE),0)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA4" : {
+      "action" : "computeRelative",
+      "sources" : [ "FORMULA1" ],
+      "parameters" : {
+        "partitionBy" : [ "ShipToAccount" ],
+        "orderBy" : [ {
+          "fieldName" : "SaleDateYear",
+          "direction" : "ASC"
+        } ],
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "ShipToAccount_formula",
+          "label" : "Year of Change",
+          "formulaExpression" : "last_value(SaleDateYear)",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA8" : {
+      "action" : "computeRelative",
+      "sources" : [ "FORMULA4" ],
+      "parameters" : {
+        "partitionBy" : [ "ShipToAccount" ],
+        "orderBy" : [ {
+          "fieldName" : "SaleDateYear",
+          "direction" : "ASC"
+        } ],
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "ShipToAccount_formula1",
+          "label" : "Revenue",
+          "formulaExpression" : "coalesce(SUM_REVENUE , 0)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA10" : {
+      "action" : "computeRelative",
+      "sources" : [ "FORMULA8" ],
+      "parameters" : {
+        "partitionBy" : [ "ShipToAccount" ],
+        "orderBy" : [ {
+          "fieldName" : "SaleDateYear",
+          "direction" : "ASC"
+        } ],
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "ShipToAccount_formula2",
+          "label" : "Revenue Gain Loss",
+          "formulaExpression" : "coalesce(first_value(ShipToAccount_formula1)-\nlast_value(ShipToAccount_formula1),0)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA2" : {
+      "action" : "computeRelative",
+      "sources" : [ "AGGREGATE5" ],
+      "parameters" : {
+        "partitionBy" : [ "ShipToAccount" ],
+        "orderBy" : [ {
+          "fieldName" : "SaleDateYear",
+          "direction" : "ASC"
+        } ],
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "Change_Previous_Year",
+          "label" : "Change_Previous_Year",
+          "formulaExpression" : "coalesce(last_value(SUM_REVENUE), 0)\n\n-coalesce(first_value(SUM_REVENUE),0)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA5" : {
+      "action" : "computeRelative",
+      "sources" : [ "FORMULA2" ],
+      "parameters" : {
+        "partitionBy" : [ "ShipToAccount" ],
+        "orderBy" : [ {
+          "fieldName" : "SaleDateYear",
+          "direction" : "ASC"
+        } ],
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "ShipToAccount_formula",
+          "label" : "ShipToAccount Formula",
+          "formulaExpression" : "last_value(SaleDateYear)",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA9" : {
+      "action" : "formula",
+      "sources" : [ "FORMULA5" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "ShipToAccount_formula1",
+          "label" : "Revenue",
+          "formulaExpression" : "coalesce(SUM_REVENUE , 0)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA11" : {
+      "action" : "computeRelative",
+      "sources" : [ "FORMULA9" ],
+      "parameters" : {
+        "partitionBy" : [ "ShipToAccount" ],
+        "orderBy" : [ {
+          "fieldName" : "SaleDateYear",
+          "direction" : "ASC"
+        } ],
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "ShipToAccount_formula2",
+          "label" : "Revenue Gain Loss",
+          "formulaExpression" : "coalesce(first_value(ShipToAccount_formula1)-\nlast_value(ShipToAccount_formula1),0)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "APPEND0" : {
+      "action" : "appendV2",
+      "sources" : [ "FORMULA10", "FORMULA7" ],
+      "parameters" : {
+        "fieldMappings" : [ {
+          "top" : "ShipToAccount",
+          "bottom" : "ShipToAccount"
+        }, {
+          "top" : "SaleDateYear",
+          "bottom" : "SaleDateYear"
+        }, {
+          "top" : "SUM_REVENUE",
+          "bottom" : "SUM_REVENUE"
+        }, {
+          "top" : "Change_Previous_Year",
+          "bottom" : "Change_Previous_Year"
+        }, {
+          "top" : "ShipToAccount_formula",
+          "bottom" : "ShipToAccount_formula"
+        }, {
+          "top" : "ShipToAccount_formula1",
+          "bottom" : "ShipToAccount_formula1"
+        }, {
+          "top" : "ShipToAccount_formula2",
+          "bottom" : "ShipToAccount_formula2"
+        } ]
+      }
+    },
+    "APPEND1" : {
+      "action" : "appendV2",
+      "sources" : [ "FORMULA11", "APPEND0" ],
+      "parameters" : {
+        "fieldMappings" : [ {
+          "top" : "ShipToAccount",
+          "bottom" : "ShipToAccount"
+        }, {
+          "top" : "SaleDateYear",
+          "bottom" : "SaleDateYear"
+        }, {
+          "top" : "SUM_REVENUE",
+          "bottom" : "SUM_REVENUE"
+        }, {
+          "top" : "Change_Previous_Year",
+          "bottom" : "Change_Previous_Year"
+        }, {
+          "top" : "ShipToAccount_formula",
+          "bottom" : "ShipToAccount_formula"
+        }, {
+          "top" : "ShipToAccount_formula1",
+          "bottom" : "ShipToAccount_formula1"
+        }, {
+          "top" : "ShipToAccount_formula2",
+          "bottom" : "ShipToAccount_formula2"
+        } ]
+      }
+    },
+    "OUTPUT0" : {
+      "action" : "save",
+      "sources" : [ "APPEND1" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "VSA Enterprise Summary Annual Sales",
+          "name" : "VSA_Enterprise_Summary_Annual_Sales",
+          "folderName" : "VSA_Sales_Teams_All"
+        }
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET0" : {
+        "label" : "SalesData",
+        "description" : "testSalesRBMData",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 112,
+        "graph" : {
+          "LOAD_DATASET0" : null
+        },
+        "connectors" : [ ],
+        "parameters" : {
+          "sampleSize" : 10000
+        }
+      },
+      "FILTER0" : {
+        "label" : "2021 - 2020 Filter",
+        "type" : "FILTER",
+        "top" : 112,
+        "left" : 252
+      },
+      "AGGREGATE0" : {
+        "label" : "Aggregate",
+        "type" : "AGGREGATE",
+        "top" : 112,
+        "left" : 392,
+        "graph" : {
+          "EXTRACT0" : null,
+          "AGGREGATE1" : null
+        },
+        "connectors" : [ {
+          "source" : "EXTRACT0",
+          "target" : "AGGREGATE1"
+        } ]
+      },
+      "TRANSFORM0" : {
+        "label" : "Transform 2021",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 532,
+        "graph" : {
+          "FORMULA0" : null,
+          "FORMULA3" : null,
+          "FORMULA6" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "FORMULA7" : null
+        },
+        "connectors" : [ {
+          "source" : "FORMULA0",
+          "target" : "FORMULA3"
+        }, {
+          "source" : "FORMULA3",
+          "target" : "FORMULA6"
+        }, {
+          "source" : "FORMULA6",
+          "target" : "FORMULA7"
+        } ]
+      },
+      "FILTER1" : {
+        "label" : "2020 - 2019",
+        "type" : "FILTER",
+        "top" : 252.60000000000002,
+        "left" : 252
+      },
+      "FILTER2" : {
+        "label" : "2022 - 2021",
+        "description" : "",
+        "type" : "FILTER",
+        "top" : 392.5,
+        "left" : 252
+      },
+      "AGGREGATE2" : {
+        "label" : "Aggregate",
+        "type" : "AGGREGATE",
+        "top" : 252,
+        "left" : 392,
+        "graph" : {
+          "EXTRACT1" : null,
+          "AGGREGATE3" : null
+        },
+        "connectors" : [ {
+          "source" : "EXTRACT1",
+          "target" : "AGGREGATE3"
+        } ]
+      },
+      "AGGREGATE4" : {
+        "label" : "Aggregate",
+        "type" : "AGGREGATE",
+        "top" : 392,
+        "left" : 392,
+        "graph" : {
+          "EXTRACT2" : null,
+          "AGGREGATE5" : null
+        },
+        "connectors" : [ {
+          "source" : "EXTRACT2",
+          "target" : "AGGREGATE5"
+        } ]
+      },
+      "TRANSFORM1" : {
+        "label" : "Transform 2020",
+        "type" : "TRANSFORM",
+        "top" : 252,
+        "left" : 532,
+        "graph" : {
+          "FORMULA1" : null,
+          "FORMULA4" : null,
+          "FORMULA8" : null,
+          "FORMULA10" : null
+        },
+        "connectors" : [ {
+          "source" : "FORMULA1",
+          "target" : "FORMULA4"
+        }, {
+          "source" : "FORMULA4",
+          "target" : "FORMULA8"
+        }, {
+          "source" : "FORMULA8",
+          "target" : "FORMULA10"
+        } ]
+      },
+      "TRANSFORM2" : {
+        "label" : "Transform 2022",
+        "type" : "TRANSFORM",
+        "top" : 392,
+        "left" : 532,
+        "graph" : {
+          "FORMULA2" : null,
+          "FORMULA5" : null,
+          "FORMULA9" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            }
+          },
+          "FORMULA11" : null
+        },
+        "connectors" : [ {
+          "source" : "FORMULA2",
+          "target" : "FORMULA5"
+        }, {
+          "source" : "FORMULA5",
+          "target" : "FORMULA9"
+        }, {
+          "source" : "FORMULA9",
+          "target" : "FORMULA11"
+        } ]
+      },
+      "APPEND0" : {
+        "label" : "Append",
+        "type" : "APPEND",
+        "top" : 252,
+        "left" : 672
+      },
+      "APPEND1" : {
+        "label" : "Append",
+        "type" : "APPEND",
+        "top" : 252,
+        "left" : 812
+      },
+      "OUTPUT0" : {
+        "label" : "Output",
+        "type" : "OUTPUT",
+        "top" : 252,
+        "left" : 952
+      }
+    },
+    "connectors" : [ {
+      "source" : "LOAD_DATASET0",
+      "target" : "FILTER0"
+    }, {
+      "source" : "FILTER0",
+      "target" : "AGGREGATE0"
+    }, {
+      "source" : "AGGREGATE0",
+      "target" : "TRANSFORM0"
+    }, {
+      "source" : "LOAD_DATASET0",
+      "target" : "FILTER1"
+    }, {
+      "source" : "LOAD_DATASET0",
+      "target" : "FILTER2"
+    }, {
+      "source" : "FILTER1",
+      "target" : "AGGREGATE2"
+    }, {
+      "source" : "AGGREGATE2",
+      "target" : "TRANSFORM1"
+    }, {
+      "source" : "AGGREGATE4",
+      "target" : "TRANSFORM2"
+    }, {
+      "source" : "TRANSFORM1",
+      "target" : "APPEND0"
+    }, {
+      "source" : "TRANSFORM0",
+      "target" : "APPEND0"
+    }, {
+      "source" : "FILTER2",
+      "target" : "AGGREGATE4"
+    }, {
+      "source" : "TRANSFORM2",
+      "target" : "APPEND1"
+    }, {
+      "source" : "APPEND0",
+      "target" : "APPEND1"
+    }, {
+      "source" : "APPEND1",
+      "target" : "OUTPUT0"
+    } ],
+    "hiddenColumns" : [ ]
+  }
+}

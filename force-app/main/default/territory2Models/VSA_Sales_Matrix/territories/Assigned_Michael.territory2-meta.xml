@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory2 xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <accountAccessLevel>Read</accountAccessLevel>
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <customFields>
+        <name>TerritoryId__c</name>
+        <value xsi:type="xsd:string">0MI1H000000H3O3WAK</value>
+    </customFields>
+    <name>Assigned Michael</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentTerritory>Pro_AV</parentTerritory>
+    <territory2Type>Pro_AV</territory2Type>
+</Territory2>

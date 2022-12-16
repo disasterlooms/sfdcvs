@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory2Rule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+    <name>VAR</name>
+    <objectType>Account</objectType>
+    <ruleItems>
+        <field>Account.Type</field>
+        <operation>equals</operation>
+        <value>VAR</value>
+    </ruleItems>
+    <ruleItems>
+        <field>Account.Rank__c</field>
+        <operation>notContain</operation>
+        <value>Top 50</value>
+    </ruleItems>
+    <ruleItems>
+        <field>Account.BillingState</field>
+        <operation>notEqual</operation>
+        <value>PR</value>
+    </ruleItems>
+    <ruleItems>
+        <field>Account.Focus_Account__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </ruleItems>
+    <ruleItems>
+        <field>Account.Rank__c</field>
+        <operation>notContain</operation>
+        <value>Top 10</value>
+    </ruleItems>
+    <ruleItems>
+        <field>Account.BillingCountryCode</field>
+        <operation>equals</operation>
+        <value>US</value>
+    </ruleItems>
+</Territory2Rule>

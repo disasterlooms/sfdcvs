@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveDataset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <application>Executive_Dashboards</application>
+    <description>Created from the Market_Share_Monitors recipe.</description>
+    <masterLabel>Market_Share_Monitors</masterLabel>
+</WaveDataset>

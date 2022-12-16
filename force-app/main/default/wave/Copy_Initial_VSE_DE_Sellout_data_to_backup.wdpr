@@ -1,0 +1,57 @@
+{
+  "version" : "55.0",
+  "nodes" : {
+    "LOAD_DATASET0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Reseller", "Product", "Currency_Given", "Sale_Date", "Distributor", "phone_number", "import_file", "year", "month_of_year", "Quantity", "system_currency_id", "price_per_item", "total", "distributor_id", "product_id", "customer_id", "cmsEXTid", "week_of_year" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "VSEGermanySellOut",
+          "name" : "VSEGermanySellOut"
+        },
+        "sampleDetails" : {
+          "type" : "TopN"
+        }
+      }
+    },
+    "OUTPUT0" : {
+      "action" : "save",
+      "sources" : [ "LOAD_DATASET0" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "Sell_Thru_Report_Data_backup",
+          "name" : "Sell_Thru_Report_Data_backup"
+        }
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET0" : {
+        "label" : "VSEGermanySellOut",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "OUTPUT0" : {
+        "label" : "Output 0",
+        "type" : "OUTPUT",
+        "top" : 112,
+        "left" : 252
+      }
+    },
+    "connectors" : [ {
+      "source" : "LOAD_DATASET0",
+      "target" : "OUTPUT0"
+    } ],
+    "hiddenColumns" : [ ],
+    "assetType" : "TCRM"
+  }
+}

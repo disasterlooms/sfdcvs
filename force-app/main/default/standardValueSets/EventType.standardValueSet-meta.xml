@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Trade Show</fullName>
+        <default>false</default>
+        <label>Trade Show</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Customer Training</fullName>
+        <default>false</default>
+        <label>Customer Training</label>
+    </standardValue>
+    <standardValue>
+        <fullName>VS Internal</fullName>
+        <default>false</default>
+        <label>VS Internal</label>
+    </standardValue>
+    <standardValue>
+        <fullName>SFDC System Reminder</fullName>
+        <default>false</default>
+        <label>SFDC System Reminder</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Meeting Site</fullName>
+        <default>false</default>
+        <label>Meeting Site</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Meeting Web</fullName>
+        <default>false</default>
+        <label>Meeting Web</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Meeting Phone</fullName>
+        <default>false</default>
+        <label>Meeting Phone</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Floor Walk</fullName>
+        <default>false</default>
+        <label>Floor Walk</label>
+    </standardValue>
+</StandardValueSet>

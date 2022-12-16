@@ -1,0 +1,238 @@
+{
+  "version" : "55.0",
+  "nodes" : {
+    "LOAD_DATASET1" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Reseller", "Product", "Currency_Given", "Sale_Date", "Distributor", "phone_number", "import_file", "year", "month_of_year", "Quantity", "system_currency_id", "price_per_item", "total", "distributor_id", "product_id", "customer_id", "cmsEXTid", "week_of_year" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "VSEGermanySellOut",
+          "name" : "VSEGermanySellOut"
+        },
+        "sampleDetails" : {
+          "type" : "TopN"
+        }
+      }
+    },
+    "TO_DIMENSION0" : {
+      "action" : "typeCast",
+      "sources" : [ "LOAD_DATASET1" ],
+      "schema" : {
+        "fields" : [ {
+          "name" : "product_id_to_dimension",
+          "newProperties" : {
+            "name" : "product_id"
+          }
+        } ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "product_id" ]
+        }
+      },
+      "parameters" : {
+        "fields" : [ {
+          "name" : "product_id",
+          "newProperties" : {
+            "label" : "product_id",
+            "name" : "product_id_to_dimension",
+            "typeProperties" : {
+              "type" : "TEXT",
+              "length" : 255
+            }
+          }
+        } ]
+      }
+    },
+    "DROP_FIELDS0" : {
+      "action" : "schema",
+      "sources" : [ "TO_DIMENSION0" ],
+      "parameters" : {
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Reseller", "Distributor", "phone_number", "system_currency_id", "cmsEXTid" ]
+        }
+      }
+    },
+    "FORMULA0" : {
+      "action" : "formula",
+      "sources" : [ "DROP_FIELDS0" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "DATE_ONLY",
+          "name" : "Sale_Date_formula",
+          "label" : "Sale Date Formula",
+          "formulaExpression" : "to_date(Sale_Date, 'YYYY-MM-DD')",
+          "format" : "yyyy-MM-dd",
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "DROP_FIELDS1" : {
+      "action" : "schema",
+      "sources" : [ "FORMULA0" ],
+      "parameters" : {
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Currency_Given", "import_file", "year", "month_of_year", "Quantity", "price_per_item", "total", "distributor_id", "customer_id", "week_of_year", "product_id", "Sale_Date_formula" ]
+        }
+      }
+    },
+    "FORMULA1" : {
+      "action" : "formula",
+      "sources" : [ "DROP_FIELDS1" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "Sale_Date_String",
+          "label" : "Sale Date String",
+          "formulaExpression" : "string(Sale_Date_formula)",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "DROP_FIELDS2" : {
+      "action" : "schema",
+      "sources" : [ "FORMULA1" ],
+      "parameters" : {
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Sale_Date_formula" ]
+        }
+      }
+    },
+    "OUTPUT0" : {
+      "action" : "outputExternal",
+      "sources" : [ "DROP_FIELDS2" ],
+      "parameters" : {
+        "connectionName" : "SFDC_Output",
+        "object" : "Sell_Through_Report__c",
+        "operation" : "insert",
+        "externalIdFieldName" : "",
+        "hyperFileName" : "",
+        "fieldsMapping" : [ {
+          "sourceField" : "Currency_Given",
+          "targetField" : "CurrencyIsoCode"
+        }, {
+          "sourceField" : "import_file",
+          "targetField" : "Import_File__c"
+        }, {
+          "sourceField" : "year",
+          "targetField" : "year__c"
+        }, {
+          "sourceField" : "month_of_year",
+          "targetField" : "month_of_year__c"
+        }, {
+          "sourceField" : "Quantity",
+          "targetField" : "Quantity__c"
+        }, {
+          "sourceField" : "price_per_item",
+          "targetField" : "Unit_Price__c"
+        }, {
+          "sourceField" : "total",
+          "targetField" : "Total_Revenue__c"
+        }, {
+          "sourceField" : "distributor_id",
+          "targetField" : "distributor_id__c"
+        }, {
+          "sourceField" : "customer_id",
+          "targetField" : "customer_id__c"
+        }, {
+          "sourceField" : "week_of_year",
+          "targetField" : "week_of_year__c"
+        }, {
+          "sourceField" : "product_id",
+          "targetField" : "external_product_id__c"
+        }, {
+          "sourceField" : "Sale_Date_String",
+          "targetField" : "Sale_Date_Text__c"
+        } ],
+        "connectorType" : "SALESFORCE_OUTPUT"
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET1" : {
+        "label" : "VSEGermanySellOut",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "TRANSFORM0" : {
+        "label" : "Transform 0",
+        "type" : "TRANSFORM",
+        "top" : 252,
+        "left" : 252,
+        "graph" : {
+          "TO_DIMENSION0" : {
+            "label" : "To Dimension"
+          },
+          "DROP_FIELDS0" : {
+            "label" : "Drop Columns"
+          },
+          "FORMULA0" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "DROP_FIELDS1" : {
+            "label" : "Drop Columns"
+          },
+          "FORMULA1" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "DROP_FIELDS2" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ {
+          "source" : "TO_DIMENSION0",
+          "target" : "DROP_FIELDS0"
+        }, {
+          "source" : "DROP_FIELDS0",
+          "target" : "FORMULA0"
+        }, {
+          "source" : "FORMULA0",
+          "target" : "DROP_FIELDS1"
+        }, {
+          "source" : "DROP_FIELDS1",
+          "target" : "FORMULA1"
+        }, {
+          "source" : "FORMULA1",
+          "target" : "DROP_FIELDS2"
+        } ]
+      },
+      "OUTPUT0" : {
+        "label" : "Output 0",
+        "type" : "OUTPUT",
+        "top" : 252,
+        "left" : 392
+      }
+    },
+    "connectors" : [ {
+      "source" : "LOAD_DATASET1",
+      "target" : "TRANSFORM0"
+    }, {
+      "source" : "TRANSFORM0",
+      "target" : "OUTPUT0"
+    } ],
+    "hiddenColumns" : [ ],
+    "assetType" : "TCRM"
+  }
+}

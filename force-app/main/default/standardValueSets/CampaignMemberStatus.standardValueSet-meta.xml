@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>true</sorted>
+    <standardValue>
+        <fullName>Attended</fullName>
+        <default>false</default>
+        <label>Attended</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Attended In Person</fullName>
+        <default>false</default>
+        <label>Attended In Person</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Attended Online Live</fullName>
+        <default>false</default>
+        <label>Attended Online Live</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Bounce</fullName>
+        <default>false</default>
+        <label>Bounce</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Bounced</fullName>
+        <default>false</default>
+        <label>Bounced</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Captured</fullName>
+        <default>false</default>
+        <label>Captured</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Captured Duplicate</fullName>
+        <default>false</default>
+        <label>Captured Duplicate</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Clicked</fullName>
+        <default>false</default>
+        <label>Clicked</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Connected</fullName>
+        <default>false</default>
+        <label>Connected</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Did Not Attended Online</fullName>
+        <default>false</default>
+        <label>Did Not Attended Online</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Did Not Attend In Person</fullName>
+        <default>false</default>
+        <label>Did Not Attend In Person</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Engaged In Person</fullName>
+        <default>false</default>
+        <label>Engaged In Person</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Filled Out Form</fullName>
+        <default>false</default>
+        <label>Filled Out Form</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Filled The Form</fullName>
+        <default>false</default>
+        <label>Filled The Form</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Invited</fullName>
+        <default>false</default>
+        <label>Invited</label>
+    </standardValue>
+    <standardValue>
+        <fullName>List Buy</fullName>
+        <default>false</default>
+        <label>List Buy</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Listed</fullName>
+        <default>false</default>
+        <label>Listed</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Marketer Action Other</fullName>
+        <default>false</default>
+        <label>Marketer Action Other</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Negative Response Other</fullName>
+        <default>false</default>
+        <label>Negative Response Other</label>
+    </standardValue>
+    <standardValue>
+        <fullName>No Response</fullName>
+        <default>false</default>
+        <label>No Response</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Opened</fullName>
+        <default>false</default>
+        <label>Opened</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Positive Response Other</fullName>
+        <default>false</default>
+        <label>Positive Response Other</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Registered</fullName>
+        <default>false</default>
+        <label>Registered</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Responded</fullName>
+        <default>false</default>
+        <label>Responded</label>
+    </standardValue>
+    <standardValue>
+        <fullName>RSVP&apos;d</fullName>
+        <default>false</default>
+        <label>RSVP&apos;d</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Sent</fullName>
+        <default>false</default>
+        <label>Sent</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Targeted</fullName>
+        <default>false</default>
+        <label>Targeted</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Ubsubscribed</fullName>
+        <default>false</default>
+        <label>Ubsubscribed</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Unsubscribed</fullName>
+        <default>false</default>
+        <label>Unsubscribed</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Visited</fullName>
+        <default>false</default>
+        <label>Visited</label>
+    </standardValue>
+</StandardValueSet>

@@ -1,0 +1,148 @@
+{
+  "version" : "55.0",
+  "nodes" : {
+    "LOAD_DATASET0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "CurrencyIsoCode", "product_code__c", "Sale_Date__c", "Import_File__c", "year__c", "month_of_year__c", "Quantity__c", "Total_Revenue__c", "week_of_year__c", "Unit_Price__c", "company__c", "distributor__c", "external_product_id__c", "customer_id__c", "distributor_id__c", "Sale_Date_Text__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Sell_Through_Report__c",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Sell_Through_Report__c"
+        },
+        "sampleDetails" : {
+          "type" : "TopN"
+        }
+      }
+    },
+    "JOIN0" : {
+      "action" : "join",
+      "sources" : [ "LOAD_DATASET0", "LOAD_DATASET1" ],
+      "schema" : {
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "customer_id__c", "distributor_id__c" ],
+        "rightQualifier" : "External_C",
+        "rightKeys" : [ "company_id__c", "distributor_id__c" ]
+      }
+    },
+    "LOAD_DATASET1" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "OwnerId", "IsDeleted", "Name", "CurrencyIsoCode", "CreatedDate", "CreatedById", "LastModifiedDate", "LastModifiedById", "SystemModstamp", "LastActivityDate", "LastViewedDate", "LastReferencedDate", "ConnectionReceivedId", "ConnectionSentId", "company__c", "distributor__c", "external_company_id__c", "External_Company_Name_Formula__c", "Stock_Report_Import__c", "Stock_Report__c", "Status__c", "VS_Region__c", "VS_SubRegion__c", "distributor_name__c", "company_name__c", "company_id__c", "distributor_id__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "External_Company__c",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "External_Company__c"
+        },
+        "sampleDetails" : {
+          "type" : "TopN"
+        }
+      }
+    },
+    "DROP_FIELDS0" : {
+      "action" : "schema",
+      "sources" : [ "JOIN0" ],
+      "parameters" : {
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Id", "External_C.company__c", "External_C.distributor__c" ]
+        }
+      }
+    },
+    "OUTPUT0" : {
+      "action" : "outputExternal",
+      "sources" : [ "DROP_FIELDS0" ],
+      "parameters" : {
+        "connectionName" : "SFDC_Output",
+        "object" : "Sell_Through_Report__c",
+        "operation" : "update",
+        "externalIdFieldName" : "",
+        "hyperFileName" : "",
+        "fieldsMapping" : [ {
+          "sourceField" : "Id",
+          "targetField" : "Id"
+        }, {
+          "sourceField" : "External_C.company__c",
+          "targetField" : "company__c"
+        }, {
+          "sourceField" : "External_C.distributor__c",
+          "targetField" : "distributor__c"
+        } ],
+        "connectorType" : "SALESFORCE_OUTPUT"
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET0" : {
+        "label" : "Sell_Through_Report__c",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "JOIN0" : {
+        "label" : "Join 0",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 252
+      },
+      "LOAD_DATASET1" : {
+        "label" : "External_Company__c",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "TRANSFORM0" : {
+        "label" : "Transform 0",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 392,
+        "graph" : {
+          "DROP_FIELDS0" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ ]
+      },
+      "OUTPUT0" : {
+        "label" : "Output 0",
+        "type" : "OUTPUT",
+        "top" : 112,
+        "left" : 532
+      }
+    },
+    "connectors" : [ {
+      "source" : "LOAD_DATASET0",
+      "target" : "JOIN0"
+    }, {
+      "source" : "LOAD_DATASET1",
+      "target" : "JOIN0"
+    }, {
+      "source" : "JOIN0",
+      "target" : "TRANSFORM0"
+    }, {
+      "source" : "TRANSFORM0",
+      "target" : "OUTPUT0"
+    } ],
+    "hiddenColumns" : [ ],
+    "assetType" : "TCRM"
+  }
+}

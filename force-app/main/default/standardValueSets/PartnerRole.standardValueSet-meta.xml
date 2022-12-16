@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>VAR/Reseller</fullName>
+        <default>false</default>
+        <label>VAR/Reseller</label>
+        <reverseRole>End User</reverseRole>
+    </standardValue>
+    <standardValue>
+        <fullName>End User</fullName>
+        <default>false</default>
+        <label>End User</label>
+        <reverseRole>VAR / Reseller</reverseRole>
+    </standardValue>
+    <standardValue>
+        <fullName>Distributor</fullName>
+        <default>false</default>
+        <label>Distributor</label>
+        <reverseRole>VAR / Reseller</reverseRole>
+    </standardValue>
+</StandardValueSet>

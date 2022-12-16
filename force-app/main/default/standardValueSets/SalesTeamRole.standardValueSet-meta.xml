@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Distributor</fullName>
+        <default>false</default>
+        <label>Distributor</label>
+    </standardValue>
+    <standardValue>
+        <fullName>ISR</fullName>
+        <default>false</default>
+        <label>ISR</label>
+    </standardValue>
+    <standardValue>
+        <fullName>National/NSP/DMR</fullName>
+        <default>false</default>
+        <label>National/NSP/DMR</label>
+    </standardValue>
+    <standardValue>
+        <fullName>RBM</fullName>
+        <default>false</default>
+        <label>RBM</label>
+    </standardValue>
+    <standardValue>
+        <fullName>TM</fullName>
+        <default>false</default>
+        <label>TM</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Manager/Director</fullName>
+        <default>false</default>
+        <label>Manager/Director</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Team Lead</fullName>
+        <default>false</default>
+        <label>Team Lead</label>
+    </standardValue>
+    <standardValue>
+        <fullName>External Distribution Partner</fullName>
+        <default>false</default>
+        <label>External Distribution Partner</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Canada Team</fullName>
+        <default>false</default>
+        <label>Canada Team</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Creator</fullName>
+        <default>false</default>
+        <label>Creator</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Administrative Support</fullName>
+        <default>false</default>
+        <label>Administrative Support</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AV Solutions</fullName>
+        <default>false</default>
+        <label>AV Solutions</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Consumer</fullName>
+        <default>false</default>
+        <label>Consumer</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Latin America</fullName>
+        <default>false</default>
+        <label>Latin America</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Account Owner</fullName>
+        <default>false</default>
+        <label>Account Owner</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Marketing Firm</fullName>
+        <default>false</default>
+        <label>Marketing Firm</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Portal Partner</fullName>
+        <default>false</default>
+        <label>Portal Partner</label>
+    </standardValue>
+</StandardValueSet>

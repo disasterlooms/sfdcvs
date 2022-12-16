@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveLens xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <content xsi:nil="true"/>
+    <application>Accounting</application>
+    <datasets>SalesData</datasets>
+    <description>All Sales to Education End User. Does not matter what channel or how reseller buys. If end user is education, then it is on this list</description>
+    <masterLabel>TM Education Sales by Rep/Territory</masterLabel>
+    <visualizationType>comparisontable</visualizationType>
+</WaveLens>

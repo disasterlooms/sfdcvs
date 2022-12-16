@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <folder>E_Commerce</folder>
+    <masterLabel>E-Commerce</masterLabel>
+    <shares>
+        <accessLevel>EditAllContents</accessLevel>
+        <sharedTo>anna.plehn@viewsonic.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>edward.marquez@viewsonic.com.sandbox</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>jason.orbison@viewsonic.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>jeff.shapiro@viewsonic.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+</WaveApplication>

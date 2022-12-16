@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveLens xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <content xsi:nil="true"/>
+    <application>Nationals</application>
+    <datasets>SalesData</datasets>
+    <description>You can filter by any reseller or end user to get monthly revenue. Of course you can change the groupings for quarter, year or more.</description>
+    <masterLabel>Reseller Revenue by month</masterLabel>
+    <visualizationType>comparisontable</visualizationType>
+</WaveLens>

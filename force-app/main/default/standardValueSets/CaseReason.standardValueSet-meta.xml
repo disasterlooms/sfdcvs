@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>User didn&apos;t attend training</fullName>
+        <default>false</default>
+        <label>User didn&apos;t attend training</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Complex functionality</fullName>
+        <default>false</default>
+        <label>Complex functionality</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Existing problem</fullName>
+        <default>false</default>
+        <label>Existing problem</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Instructions not clear</fullName>
+        <default>false</default>
+        <label>Instructions not clear</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>New problem</fullName>
+        <default>false</default>
+        <label>New problem</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Evaluation Product Issue</fullName>
+        <default>false</default>
+        <label>Evaluation Product Issue</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Spa Creation Issue</fullName>
+        <default>false</default>
+        <label>Spa Creation Issue</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>New Functionality</fullName>
+        <default>false</default>
+        <label>New Functionality</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+</StandardValueSet>

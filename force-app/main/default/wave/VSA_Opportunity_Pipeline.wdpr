@@ -1,0 +1,647 @@
+{
+  "version" : "52.0",
+  "nodes" : {
+    "load_0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "PricebookEntryId.Pricebook2Id.Id", "ProductCode", "OpportunityId.Opportunity_Name__c", "Product2Id.Name", "OpportunityId.Id", "Product2Id.Id", "Pricebook__c", "Product2Id", "PricebookEntryId.Pricebook2Id.Name", "Product_Pillar__c", "OpportunityId", "PricebookEntryId", "Family__c", "Active_Product__c", "Id", "PricebookEntryId.Pricebook2Id", "Accessory__c", "Approved_Price__c", "Quantity", "ListPrice", "UnitPrice", "SPA_Total_Amount__c" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "Opportunity Products",
+          "name" : "Opportunity_Products"
+        }
+      }
+    },
+    "load_1" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "End_User_Lookup_Account__c.Name", "Spa_Claims_Total__c", "Spa_Claims_Last_6_Months__c", "Amount", "CreatedDate", "End_User_Lookup_Account__c", "Type", "StageName", "OwnerId.Name", "Roll_Out_Date__c", "OwnerId", "CampaignId.Name", "Resellers_and_Type__c", "SPA_ID__c" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "Opportunities",
+          "name" : "Opportunities"
+        }
+      }
+    },
+    "join_0" : {
+      "action" : "join",
+      "sources" : [ "load_0", "load_1" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "OpportunityId" ],
+        "rightQualifier" : "Opportu",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "load_2" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "ManagerId.Name", "LastName", "IsActive", "Name", "ManagerId", "Sales_Category__c", "ManagerId.Id" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "Users",
+          "name" : "Users"
+        }
+      }
+    },
+    "join_1" : {
+      "action" : "join",
+      "sources" : [ "join_0", "load_2" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Opportu.OwnerId" ],
+        "rightQualifier" : "Users",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "load_3" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Name", "Industry", "CreatedById.Name", "Id", "BillingState", "County__c", "OwnerId.Name", "BillingCountry", "CreatedById.ManagerId.Name", "CreatedById.ManagerId" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "Accounts SFDC",
+          "name" : "Accounts_SFDC"
+        }
+      }
+    },
+    "join_2" : {
+      "action" : "join",
+      "sources" : [ "join_1", "load_3" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Opportu.End_User_Lookup_Account__c" ],
+        "rightQualifier" : "Account",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "load_4" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Name", "TerritoryLU__c.Name", "Country__c" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "Territory",
+          "name" : "Territory"
+        }
+      }
+    },
+    "join_3" : {
+      "action" : "join",
+      "sources" : [ "join_2", "load_4" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Account.BillingState" ],
+        "rightQualifier" : "Territo",
+        "rightKeys" : [ "Name" ]
+      }
+    },
+    "load_5" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Name", "Type__c", "Sub_Type__c", "Size__c" ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "GlobalProductType",
+          "name" : "GlobalProductType"
+        }
+      }
+    },
+    "join_4" : {
+      "action" : "join",
+      "sources" : [ "join_3", "load_5" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Product2Id.Name" ],
+        "rightQualifier" : "GlobalP",
+        "rightKeys" : [ "Name" ]
+      }
+    },
+    "formula_0" : {
+      "action" : "formula",
+      "sources" : [ "join_4" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "Opportu_Resellers_and_Type_c_searchReplace",
+          "label" : "Opportu_Resellers_and_Type_c_searchReplace",
+          "formulaExpression" : "replace(\"Opportu.Resellers_and_Type__c\",'cdw LLC,','CDW LLC')"
+        } ]
+      }
+    },
+    "formula_1" : {
+      "action" : "formula",
+      "sources" : [ "formula_0" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "Opportu_Resellers_and_Type_c_searchReplace_searchR",
+          "label" : "Opportu_Resellers_and_Type_c_searchReplace_searchR",
+          "formulaExpression" : "replace(Opportu_Resellers_and_Type_c_searchReplace,'cdw LLC','CDW LLC')"
+        } ]
+      }
+    },
+    "formula_2" : {
+      "action" : "formula",
+      "sources" : [ "formula_1" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "Opportu_Resellers_and_Type_c_searchReplace_searchR1",
+          "label" : "Opportu_Resellers_and_Type_c_searchReplace_searchR1",
+          "formulaExpression" : "replace(Opportu_Resellers_and_Type_c_searchReplace_searchR,'Cdw LLC,CdwLLC','CDW LLC')"
+        } ]
+      }
+    },
+    "formula_3" : {
+      "action" : "formula",
+      "sources" : [ "formula_2" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "Opportu_Resellers_and_Type_c_searchReplace_searchR2",
+          "label" : "Opportu_Resellers_and_Type_c_searchReplace_searchR2",
+          "formulaExpression" : "replace(Opportu_Resellers_and_Type_c_searchReplace_searchR1,'Cdw LLC,','CDW LLC')"
+        } ]
+      }
+    },
+    "formula_4" : {
+      "action" : "formula",
+      "sources" : [ "formula_3" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "Resellers",
+          "label" : "Resellers",
+          "formulaExpression" : "replace(Opportu_Resellers_and_Type_c_searchReplace_searchR2,'Cdw LLC','CDW LLC')"
+        } ]
+      }
+    },
+    "formula_5" : {
+      "action" : "formula",
+      "sources" : [ "formula_4" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "ResellersFinal2",
+          "label" : "ResellersFinal2",
+          "formulaExpression" : "replace(Resellers,'CDW LLCCDW LLC','CDW LLC')"
+        } ]
+      }
+    },
+    "schema_0" : {
+      "action" : "schema",
+      "sources" : [ "formula_5" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Product2Id.Name",
+          "newProperties" : {
+            "label" : "Product",
+            "name" : "Product2Id.Name"
+          }
+        } ]
+      }
+    },
+    "schema_1" : {
+      "action" : "schema",
+      "sources" : [ "schema_0" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Opportu.End_User_Lookup_Account__c.Name",
+          "newProperties" : {
+            "label" : "End User",
+            "name" : "Opportu.End_User_Lookup_Account__c.Name"
+          }
+        } ]
+      }
+    },
+    "schema_2" : {
+      "action" : "schema",
+      "sources" : [ "schema_1" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Opportu.CreatedDate",
+          "newProperties" : {
+            "label" : "Created Date",
+            "name" : "Opportu.CreatedDate"
+          }
+        } ]
+      }
+    },
+    "schema_3" : {
+      "action" : "schema",
+      "sources" : [ "schema_2" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Opportu.OwnerId.Name",
+          "newProperties" : {
+            "label" : "Owner",
+            "name" : "Opportu.OwnerId.Name"
+          }
+        } ]
+      }
+    },
+    "schema_4" : {
+      "action" : "schema",
+      "sources" : [ "schema_3" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Opportu.Roll_Out_Date__c",
+          "newProperties" : {
+            "label" : "Roll Out Date",
+            "name" : "Opportu.Roll_Out_Date__c"
+          }
+        } ]
+      }
+    },
+    "schema_5" : {
+      "action" : "schema",
+      "sources" : [ "schema_4" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Opportu.CampaignId.Name",
+          "newProperties" : {
+            "label" : "Marketing Campaign",
+            "name" : "Opportu.CampaignId.Name"
+          }
+        } ]
+      }
+    },
+    "schema_6" : {
+      "action" : "schema",
+      "sources" : [ "schema_5" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "ResellersFinal2",
+          "newProperties" : {
+            "label" : "Resellers",
+            "name" : "ResellersFinal2"
+          }
+        } ]
+      }
+    },
+    "schema_7" : {
+      "action" : "schema",
+      "sources" : [ "schema_6" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Users.ManagerId.Name",
+          "newProperties" : {
+            "label" : "Manager Owner",
+            "name" : "Users.ManagerId.Name"
+          }
+        } ]
+      }
+    },
+    "schema_8" : {
+      "action" : "schema",
+      "sources" : [ "schema_7" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Account.OwnerId.Name",
+          "newProperties" : {
+            "label" : "End User Account Owner",
+            "name" : "Account.OwnerId.Name"
+          }
+        } ]
+      }
+    },
+    "schema_9" : {
+      "action" : "schema",
+      "sources" : [ "schema_8" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Territo.TerritoryLU__c.Name",
+          "newProperties" : {
+            "label" : "End User Territory",
+            "name" : "Territo.TerritoryLU__c.Name"
+          }
+        } ]
+      }
+    },
+    "schema_10" : {
+      "action" : "schema",
+      "sources" : [ "schema_9" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Territo.Country__c",
+          "newProperties" : {
+            "label" : "End User Country",
+            "name" : "Territo.Country__c"
+          }
+        } ]
+      }
+    },
+    "DROP_FIELDS0" : {
+      "action" : "schema",
+      "sources" : [ "schema_10" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Account.Id", "Account.State__c", "GlobalP.Name", "Id", "ListPrice", "Opportu.OwnerId", "Opportu_Resellers_and_Type_c_searchReplace", "Opportu_Resellers_and_Type_c_searchReplace_searchR", "Opportu_Resellers_and_Type_c_searchReplace_searchR1", "Opportu_Resellers_and_Type_c_searchReplace_searchR2", "OpportunityId.Id", "PricebookEntryId", "PricebookEntryId.Pricebook2Id", "PricebookEntryId.Pricebook2Id.Name", "Pricebook__c", "Product2Id", "Product2Id.Id", "Territo.Name", "Users.Id", "Users.LastName", "Users.ManagerId.Id" ]
+        }
+      }
+    },
+    "save_0" : {
+      "action" : "save",
+      "sources" : [ "DROP_FIELDS0" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "VSA Opportunity Pipeline",
+          "name" : "VSA_Opportunity_Pipeline",
+          "folderName" : "Executive_Dashboards"
+        }
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "load_0" : {
+        "label" : "Opportunity Products",
+        "type" : "LOAD_DATASET",
+        "top" : 115.1,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 5000
+        }
+      },
+      "load_1" : {
+        "label" : "Opportunities",
+        "type" : "LOAD_DATASET",
+        "top" : 255.10000000000002,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 5000
+        }
+      },
+      "join_0" : {
+        "label" : "Join",
+        "type" : "JOIN",
+        "top" : 115.1,
+        "left" : 252
+      },
+      "load_2" : {
+        "label" : "Users",
+        "type" : "LOAD_DATASET",
+        "top" : 255.10000000000002,
+        "left" : 252,
+        "parameters" : {
+          "sampleSize" : 5000
+        }
+      },
+      "join_1" : {
+        "label" : "Join",
+        "type" : "JOIN",
+        "top" : 255.10000000000002,
+        "left" : 392
+      },
+      "load_3" : {
+        "label" : "Accounts SFDC",
+        "type" : "LOAD_DATASET",
+        "top" : 115.1,
+        "left" : 392,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "join_2" : {
+        "label" : "Join",
+        "type" : "JOIN",
+        "top" : 255.10000000000002,
+        "left" : 532
+      },
+      "load_4" : {
+        "label" : "Territory",
+        "type" : "LOAD_DATASET",
+        "top" : 115.1,
+        "left" : 532,
+        "parameters" : {
+          "sampleSize" : 5000
+        }
+      },
+      "join_3" : {
+        "label" : "Join",
+        "type" : "JOIN",
+        "top" : 255.10000000000002,
+        "left" : 672
+      },
+      "load_5" : {
+        "label" : "GlobalProductType",
+        "type" : "LOAD_DATASET",
+        "top" : 115.1,
+        "left" : 672,
+        "parameters" : {
+          "sampleSize" : 5000
+        }
+      },
+      "join_4" : {
+        "label" : "Join",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 812
+      },
+      "TRANSFORM0" : {
+        "label" : "Transform",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 952,
+        "graph" : {
+          "formula_0" : {
+            "parameters" : {
+              "type" : "REPLACE_UI"
+            }
+          },
+          "formula_1" : {
+            "parameters" : {
+              "type" : "REPLACE_UI"
+            }
+          },
+          "formula_2" : {
+            "parameters" : {
+              "type" : "REPLACE_UI"
+            }
+          },
+          "formula_3" : {
+            "parameters" : {
+              "type" : "REPLACE_UI"
+            }
+          },
+          "formula_4" : {
+            "parameters" : {
+              "type" : "REPLACE_UI"
+            }
+          },
+          "formula_5" : {
+            "parameters" : {
+              "type" : "REPLACE_UI"
+            }
+          },
+          "schema_0" : null,
+          "schema_1" : null,
+          "schema_2" : null,
+          "schema_3" : null,
+          "schema_4" : null,
+          "schema_5" : null,
+          "schema_6" : null,
+          "schema_7" : null,
+          "schema_8" : null,
+          "schema_9" : null,
+          "schema_10" : null,
+          "DROP_FIELDS0" : null
+        },
+        "connectors" : [ {
+          "source" : "formula_0",
+          "target" : "formula_1"
+        }, {
+          "source" : "formula_1",
+          "target" : "formula_2"
+        }, {
+          "source" : "formula_2",
+          "target" : "formula_3"
+        }, {
+          "source" : "formula_3",
+          "target" : "formula_4"
+        }, {
+          "source" : "formula_4",
+          "target" : "formula_5"
+        }, {
+          "source" : "formula_5",
+          "target" : "schema_0"
+        }, {
+          "source" : "schema_0",
+          "target" : "schema_1"
+        }, {
+          "source" : "schema_1",
+          "target" : "schema_2"
+        }, {
+          "source" : "schema_2",
+          "target" : "schema_3"
+        }, {
+          "source" : "schema_3",
+          "target" : "schema_4"
+        }, {
+          "source" : "schema_4",
+          "target" : "schema_5"
+        }, {
+          "source" : "schema_5",
+          "target" : "schema_6"
+        }, {
+          "source" : "schema_6",
+          "target" : "schema_7"
+        }, {
+          "source" : "schema_7",
+          "target" : "schema_8"
+        }, {
+          "source" : "schema_8",
+          "target" : "schema_9"
+        }, {
+          "source" : "schema_9",
+          "target" : "schema_10"
+        }, {
+          "source" : "schema_10",
+          "target" : "DROP_FIELDS0"
+        } ]
+      },
+      "save_0" : {
+        "label" : "Output",
+        "type" : "OUTPUT",
+        "top" : 112,
+        "left" : 1092
+      }
+    },
+    "connectors" : [ {
+      "source" : "load_0",
+      "target" : "join_0"
+    }, {
+      "source" : "load_1",
+      "target" : "join_0"
+    }, {
+      "source" : "join_0",
+      "target" : "join_1"
+    }, {
+      "source" : "load_2",
+      "target" : "join_1"
+    }, {
+      "source" : "join_1",
+      "target" : "join_2"
+    }, {
+      "source" : "load_3",
+      "target" : "join_2"
+    }, {
+      "source" : "join_2",
+      "target" : "join_3"
+    }, {
+      "source" : "load_4",
+      "target" : "join_3"
+    }, {
+      "source" : "join_3",
+      "target" : "join_4"
+    }, {
+      "source" : "load_5",
+      "target" : "join_4"
+    }, {
+      "source" : "join_4",
+      "target" : "TRANSFORM0"
+    }, {
+      "source" : "TRANSFORM0",
+      "target" : "save_0"
+    } ],
+    "hiddenColumns" : [ ]
+  }
+}

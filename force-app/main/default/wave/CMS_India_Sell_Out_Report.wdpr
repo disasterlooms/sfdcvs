@@ -1,0 +1,815 @@
+{
+  "version" : "56.0",
+  "nodes" : {
+    "LOAD_DATASET0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "CsvUploaderFileIdentifier__c", "Id", "CurrencyIsoCode", "Synced_to_TCRM__c", "distributor__c", "distributor_id__c", "External_Customer_Id_Formula__c", "VS_SubRegion__c", "VS_Region__c", "Customer_Name_Formula__c", "Product_Code_Formula__c", "Product_Name_Formula__c", "Quantity_Formula__c", "Unit_Price_Formula__c", "Total_Revenue_Formula__c", "Date_Formula__c", "Import_File__c", "Ready_to_Sync_to_TCRM__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Sell_Through_Report_Import__c",
+          "connectionName" : "CMS",
+          "sourceObjectName" : "Sell_Through_Report_Import__c"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "OUTPUT0" : {
+      "action" : "save",
+      "sources" : [ "APPEND0" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "VSI Sell Out",
+          "name" : "VSISellOut",
+          "folderName" : "VSI_Sales_Data"
+        },
+        "measuresToCurrencies" : [ ]
+      }
+    },
+    "LOAD_DATASET5" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "CurrencyIsoCode", "product_code__c", "Sale_Date__c", "Import_File__c", "year__c", "month_of_year__c", "Quantity__c", "Total_Revenue__c", "week_of_year__c", "Unit_Price__c", "company__c", "distributor__c", "external_product_id__c", "VS_Region__c", "CsvUploaderFileIdentifier__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Sell_Through_Report__c",
+          "connectionName" : "CMS",
+          "sourceObjectName" : "Sell_Through_Report__c"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "FORMULA1" : {
+      "action" : "formula",
+      "sources" : [ "JOIN5" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "month_of_year",
+          "label" : "month of year",
+          "formulaExpression" : "month(Date_Formula__c)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA2" : {
+      "action" : "formula",
+      "sources" : [ "FORMULA1" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "week_of_year",
+          "label" : "week of year",
+          "formulaExpression" : "weekofyear(Date_Formula__c)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "FORMULA3" : {
+      "action" : "formula",
+      "sources" : [ "FORMULA2" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "NUMBER",
+          "name" : "year",
+          "label" : "year",
+          "formulaExpression" : "year(Date_Formula__c)",
+          "precision" : 10,
+          "scale" : 0,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "EDIT_ATTRIBUTES0" : {
+      "action" : "schema",
+      "sources" : [ "FORMULA3" ],
+      "parameters" : {
+        "fields" : [ {
+          "name" : "Product2.Id",
+          "newProperties" : {
+            "label" : "Product Id",
+            "name" : "Product2.Id"
+          }
+        } ]
+      }
+    },
+    "DROP_FIELDS0" : {
+      "action" : "schema",
+      "sources" : [ "JOIN5" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Id" ]
+        }
+      }
+    },
+    "FORMULA0" : {
+      "action" : "formula",
+      "sources" : [ "DROP_FIELDS0" ],
+      "parameters" : {
+        "expressionType" : "SQL",
+        "fields" : [ {
+          "type" : "TEXT",
+          "name" : "Synced_to_TCRM",
+          "label" : "Synced_to_TCRM",
+          "formulaExpression" : "'true'",
+          "precision" : 255,
+          "defaultValue" : ""
+        } ]
+      }
+    },
+    "OUTPUT1" : {
+      "action" : "outputExternal",
+      "sources" : [ "FORMULA0" ],
+      "parameters" : {
+        "connectionName" : "SFDC_Output",
+        "object" : "Sell_Through_Report_Import__c",
+        "operation" : "update",
+        "externalIdFieldName" : "",
+        "hyperFileName" : "",
+        "fieldsMapping" : [ {
+          "sourceField" : "Id",
+          "targetField" : "Id"
+        }, {
+          "sourceField" : "Synced_to_TCRM",
+          "targetField" : "Synced_to_TCRM__c"
+        } ],
+        "connectorType" : "SALESFORCE_OUTPUT"
+      }
+    },
+    "DROP_FIELDS2" : {
+      "action" : "schema",
+      "sources" : [ "EDIT_ATTRIBUTES0" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "CsvUploaderFileIdentifier__c", "Id", "CurrencyIsoCode", "distributor__c", "Customer_Name_Formula__c", "Quantity_Formula__c", "Unit_Price_Formula__c", "Total_Revenue_Formula__c", "Date_Formula__c", "Import_File__c", "Account.Id", "Product2.Id", "Product2.ProductCode", "month_of_year", "week_of_year", "year" ]
+        }
+      }
+    },
+    "APPEND0" : {
+      "action" : "appendV2",
+      "sources" : [ "DROP_FIELDS5", "FILTER1" ],
+      "parameters" : {
+        "fieldMappings" : [ {
+          "top" : "CurrencyIsoCode",
+          "bottom" : "CurrencyIsoCode"
+        }, {
+          "top" : "distributor__c",
+          "bottom" : "distributor__c"
+        }, {
+          "top" : "Quantity_Formula__c",
+          "bottom" : "Quantity__c"
+        }, {
+          "top" : "Unit_Price_Formula__c",
+          "bottom" : "Unit_Price__c"
+        }, {
+          "top" : "Total_Revenue_Formula__c",
+          "bottom" : "Total_Revenue__c"
+        }, {
+          "top" : "Date_Formula__c",
+          "bottom" : "Sale_Date__c"
+        }, {
+          "top" : "Import_File__c",
+          "bottom" : "Import_File__c"
+        }, {
+          "top" : "Product2.ProductCode",
+          "bottom" : "product_code__c"
+        }, {
+          "top" : "month_of_year",
+          "bottom" : "month_of_year__c"
+        }, {
+          "top" : "week_of_year",
+          "bottom" : "week_of_year__c"
+        }, {
+          "top" : "year",
+          "bottom" : "year__c"
+        } ]
+      }
+    },
+    "DROP_FIELDS6" : {
+      "action" : "schema",
+      "sources" : [ "DROP_FIELDS2" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "Id", "Product2.Id", "Product2.ProductCode" ]
+        }
+      }
+    },
+    "OUTPUT3" : {
+      "action" : "save",
+      "sources" : [ "DROP_FIELDS6" ],
+      "parameters" : {
+        "fields" : [ ],
+        "dataset" : {
+          "type" : "analyticsDataset",
+          "label" : "VSI_Sell_Thru_Report_Data_backup",
+          "name" : "VSI_Sell_Thru_Report_Data_backup",
+          "folderName" : "VSI_Sales_Data"
+        },
+        "measuresToCurrencies" : [ ]
+      }
+    },
+    "FILTER0" : {
+      "action" : "filter",
+      "sources" : [ "LOAD_DATASET0" ],
+      "parameters" : {
+        "filterExpressions" : [ {
+          "type" : "TEXT",
+          "field" : "Ready_to_Sync_to_TCRM__c",
+          "operator" : "EQUAL",
+          "operands" : [ "true" ]
+        }, {
+          "type" : "TEXT",
+          "field" : "Synced_to_TCRM__c",
+          "operator" : "EQUAL",
+          "operands" : [ "false" ]
+        }, {
+          "type" : "TEXT",
+          "field" : "VS_Region__c",
+          "operator" : "EQUAL",
+          "operands" : [ "VSI" ]
+        }, {
+          "type" : "TEXT",
+          "field" : "VS_SubRegion__c",
+          "operator" : "EQUAL",
+          "operands" : [ "VSI IN" ]
+        } ]
+      }
+    },
+    "DROP_FIELDS3" : {
+      "action" : "schema",
+      "sources" : [ "DROP_FIELDS2" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "distributor__c", "Import_File__c", "CsvUploaderFileIdentifier__c" ]
+        }
+      }
+    },
+    "EXTRACT0" : {
+      "action" : "extractGrains",
+      "sources" : [ "DROP_FIELDS3" ],
+      "parameters" : {
+        "grainExtractions" : [ ]
+      }
+    },
+    "AGGREGATE1" : {
+      "action" : "aggregate",
+      "sources" : [ "EXTRACT0" ],
+      "parameters" : {
+        "aggregations" : [ {
+          "action" : "UNIQUE",
+          "source" : "CsvUploaderFileIdentifier__c",
+          "name" : "UNIQUE_CsvUploaderFileIdentifier__c",
+          "label" : "Unique CSV Uploader File Identifier"
+        } ],
+        "groupings" : [ "CsvUploaderFileIdentifier__c", "distributor__c" ],
+        "pivots" : [ ],
+        "nodeType" : "STANDARD"
+      }
+    },
+    "DROP_FIELDS4" : {
+      "action" : "schema",
+      "sources" : [ "AGGREGATE1" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ "UNIQUE_CsvUploaderFileIdentifier__c" ]
+        }
+      }
+    },
+    "DROP_FIELDS5" : {
+      "action" : "schema",
+      "sources" : [ "DROP_FIELDS2" ],
+      "parameters" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "SELECT",
+          "ignoreMissingFields" : true,
+          "fields" : [ "CurrencyIsoCode", "distributor__c", "Quantity_Formula__c", "Unit_Price_Formula__c", "Total_Revenue_Formula__c", "Date_Formula__c", "Import_File__c", "Product2.ProductCode", "month_of_year", "week_of_year", "year", "CsvUploaderFileIdentifier__c" ]
+        }
+      }
+    },
+    "LOAD_DATASET8" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "ProductCode" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Product2",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Product2"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "JOIN5" : {
+      "action" : "join",
+      "sources" : [ "JOIN6", "LOAD_DATASET8" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LEFT_OUTER",
+        "leftKeys" : [ "Product_Code_Formula__c" ],
+        "rightQualifier" : "Product2",
+        "rightKeys" : [ "ProductCode" ]
+      }
+    },
+    "OUTPUT2_copy0" : {
+      "action" : "outputExternal",
+      "sources" : [ "DROP_FIELDS2" ],
+      "parameters" : {
+        "connectionName" : "SFDC_Output",
+        "object" : "Sell_Through_Report__c",
+        "operation" : "upsert",
+        "externalIdFieldName" : "Sell_Through_Report_Import_Id__c",
+        "hyperFileName" : "",
+        "fieldsMapping" : [ {
+          "sourceField" : "CsvUploaderFileIdentifier__c",
+          "targetField" : "CsvUploaderFileIdentifier__c"
+        }, {
+          "sourceField" : "Id",
+          "targetField" : "Sell_Through_Report_Import_Id__c"
+        }, {
+          "sourceField" : "CurrencyIsoCode",
+          "targetField" : "CurrencyIsoCode"
+        }, {
+          "sourceField" : "distributor__c",
+          "targetField" : "distributor__c"
+        }, {
+          "sourceField" : "Customer_Name_Formula__c",
+          "targetField" : "CustomerName__c"
+        }, {
+          "sourceField" : "Quantity_Formula__c",
+          "targetField" : "Quantity__c"
+        }, {
+          "sourceField" : "Unit_Price_Formula__c",
+          "targetField" : "Unit_Price__c"
+        }, {
+          "sourceField" : "Total_Revenue_Formula__c",
+          "targetField" : "Total_Revenue__c"
+        }, {
+          "sourceField" : "Date_Formula__c",
+          "targetField" : "Sale_Date__c"
+        }, {
+          "sourceField" : "Import_File__c",
+          "targetField" : "Import_File__c"
+        }, {
+          "sourceField" : "Account.Id",
+          "targetField" : "company__c"
+        }, {
+          "sourceField" : "Product2.Id",
+          "targetField" : "external_product_id__c"
+        }, {
+          "sourceField" : "Product2.ProductCode",
+          "targetField" : "product_code__c"
+        }, {
+          "sourceField" : "month_of_year",
+          "targetField" : "month_of_year__c"
+        }, {
+          "sourceField" : "week_of_year",
+          "targetField" : "week_of_year__c"
+        }, {
+          "sourceField" : "year",
+          "targetField" : "year__c"
+        } ],
+        "connectorType" : "SALESFORCE_OUTPUT"
+      }
+    },
+    "FILTER1" : {
+      "action" : "filter",
+      "sources" : [ "LOAD_DATASET5" ],
+      "parameters" : {
+        "filterExpressions" : [ {
+          "type" : "TEXT",
+          "field" : "VS_Region__c",
+          "operator" : "EQUAL",
+          "operands" : [ "VSI" ]
+        } ]
+      }
+    },
+    "OUTPUT5" : {
+      "action" : "outputExternal",
+      "sources" : [ "DROP_FIELDS4" ],
+      "parameters" : {
+        "connectionName" : "SFDC_Output",
+        "object" : "Sell_Through_Report_Header__c",
+        "operation" : "upsert",
+        "externalIdFieldName" : "Import_File__c",
+        "hyperFileName" : "",
+        "fieldsMapping" : [ {
+          "sourceField" : "CsvUploaderFileIdentifier__c",
+          "targetField" : "Import_File__c"
+        }, {
+          "sourceField" : "distributor__c",
+          "targetField" : "Distributor__c"
+        } ],
+        "connectorType" : "SALESFORCE_OUTPUT"
+      }
+    },
+    "LOAD_DATASET9" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "VSRegion__c", "Id", "Name" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Account",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Account"
+        },
+        "sampleDetails" : {
+          "type" : "TopN",
+          "sortBy" : [ ]
+        }
+      }
+    },
+    "FILTER2" : {
+      "action" : "filter",
+      "sources" : [ "LOAD_DATASET9" ],
+      "parameters" : {
+        "filterExpressions" : [ {
+          "type" : "TEXT",
+          "field" : "VSRegion__c",
+          "operator" : "EQUAL",
+          "operands" : [ "VSI" ]
+        } ]
+      }
+    },
+    "JOIN6" : {
+      "action" : "join",
+      "sources" : [ "FILTER0", "FILTER2" ],
+      "schema" : {
+        "fields" : [ ],
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Customer_Name_Formula__c" ],
+        "rightQualifier" : "Account",
+        "rightKeys" : [ "Name" ]
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET0" : {
+        "label" : "Sell_Through_Report_Import__c",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "OUTPUT0" : {
+        "label" : "VSI Sell Out",
+        "description" : "",
+        "type" : "OUTPUT",
+        "top" : 252,
+        "left" : 1232
+      },
+      "LOAD_DATASET5" : {
+        "label" : "Sell_Through_Report__c",
+        "type" : "LOAD_DATASET",
+        "top" : 531.9,
+        "left" : 1092.1,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "TRANSFORM5" : {
+        "label" : "Date Convert",
+        "description" : "",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 672,
+        "graph" : {
+          "FORMULA1" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "FORMULA2" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "FORMULA3" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          },
+          "EDIT_ATTRIBUTES0" : {
+            "label" : "Edit Attributes"
+          }
+        },
+        "connectors" : [ {
+          "source" : "FORMULA1",
+          "target" : "FORMULA2"
+        }, {
+          "source" : "FORMULA2",
+          "target" : "FORMULA3"
+        }, {
+          "source" : "FORMULA3",
+          "target" : "EDIT_ATTRIBUTES0"
+        } ]
+      },
+      "TRANSFORM6" : {
+        "label" : "Transform 6",
+        "type" : "TRANSFORM",
+        "top" : 252,
+        "left" : 672,
+        "graph" : {
+          "DROP_FIELDS0" : {
+            "label" : "Drop Columns"
+          },
+          "FORMULA0" : {
+            "parameters" : {
+              "type" : "BASE_FORMULA_UI"
+            },
+            "label" : "Formula"
+          }
+        },
+        "connectors" : [ {
+          "source" : "DROP_FIELDS0",
+          "target" : "FORMULA0"
+        } ]
+      },
+      "OUTPUT1" : {
+        "label" : "Output_Synced to TCRM",
+        "description" : "",
+        "type" : "OUTPUT",
+        "top" : 392.1,
+        "left" : 672
+      },
+      "TRANSFORM7" : {
+        "label" : "Transform 7",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 812,
+        "graph" : {
+          "DROP_FIELDS2" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ ]
+      },
+      "APPEND0" : {
+        "label" : "Append 0",
+        "type" : "APPEND",
+        "top" : 252,
+        "left" : 1092
+      },
+      "TRANSFORM8" : {
+        "label" : "Transform 8",
+        "type" : "TRANSFORM",
+        "top" : 392,
+        "left" : 952,
+        "graph" : {
+          "DROP_FIELDS6" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ ]
+      },
+      "OUTPUT3" : {
+        "label" : "VSI_Output _Sell_Thru_Report_Data_backup",
+        "description" : "",
+        "type" : "OUTPUT",
+        "top" : 532,
+        "left" : 952
+      },
+      "FILTER0" : {
+        "label" : "VS Region = VSI",
+        "description" : "",
+        "type" : "FILTER",
+        "top" : 112,
+        "left" : 252
+      },
+      "TRANSFORM9" : {
+        "label" : "Transform 9",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 952,
+        "graph" : {
+          "DROP_FIELDS3" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ ]
+      },
+      "AGGREGATE0" : {
+        "label" : "Aggregate 0",
+        "type" : "AGGREGATE",
+        "top" : 112,
+        "left" : 1092,
+        "graph" : {
+          "EXTRACT0" : null,
+          "AGGREGATE1" : null
+        },
+        "connectors" : [ {
+          "source" : "EXTRACT0",
+          "target" : "AGGREGATE1"
+        } ]
+      },
+      "TRANSFORM10" : {
+        "label" : "Transform 10",
+        "type" : "TRANSFORM",
+        "top" : 112,
+        "left" : 1232,
+        "graph" : {
+          "DROP_FIELDS4" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ ]
+      },
+      "TRANSFORM11" : {
+        "label" : "Transform 11",
+        "type" : "TRANSFORM",
+        "top" : 252,
+        "left" : 952,
+        "graph" : {
+          "DROP_FIELDS5" : {
+            "label" : "Drop Columns"
+          }
+        },
+        "connectors" : [ ]
+      },
+      "LOAD_DATASET8" : {
+        "label" : "Product2",
+        "type" : "LOAD_DATASET",
+        "top" : 392,
+        "left" : 532,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "JOIN5" : {
+        "label" : "Join 5",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 532
+      },
+      "OUTPUT2_copy0" : {
+        "label" : "Output_STR",
+        "description" : "",
+        "type" : "OUTPUT",
+        "top" : 392,
+        "left" : 812
+      },
+      "FILTER1" : {
+        "label" : "VS Region = VSI",
+        "description" : "",
+        "type" : "FILTER",
+        "top" : 392,
+        "left" : 1092
+      },
+      "OUTPUT5" : {
+        "label" : "Output STR Header",
+        "description" : "",
+        "type" : "OUTPUT",
+        "top" : 112,
+        "left" : 1372
+      },
+      "LOAD_DATASET9" : {
+        "label" : "Account",
+        "type" : "LOAD_DATASET",
+        "top" : 252,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "FILTER2" : {
+        "label" : "Region = VSI",
+        "description" : "",
+        "type" : "FILTER",
+        "top" : 252,
+        "left" : 252
+      },
+      "JOIN6" : {
+        "label" : "Join Accounts",
+        "description" : "",
+        "type" : "JOIN",
+        "top" : 112,
+        "left" : 392
+      }
+    },
+    "connectors" : [ {
+      "source" : "TRANSFORM11",
+      "target" : "APPEND0"
+    }, {
+      "source" : "TRANSFORM6",
+      "target" : "OUTPUT1"
+    }, {
+      "source" : "FILTER1",
+      "target" : "APPEND0"
+    }, {
+      "source" : "APPEND0",
+      "target" : "OUTPUT0"
+    }, {
+      "source" : "TRANSFORM7",
+      "target" : "TRANSFORM8"
+    }, {
+      "source" : "LOAD_DATASET0",
+      "target" : "FILTER0"
+    }, {
+      "source" : "TRANSFORM5",
+      "target" : "TRANSFORM7"
+    }, {
+      "source" : "TRANSFORM7",
+      "target" : "TRANSFORM9"
+    }, {
+      "source" : "TRANSFORM9",
+      "target" : "AGGREGATE0"
+    }, {
+      "source" : "AGGREGATE0",
+      "target" : "TRANSFORM10"
+    }, {
+      "source" : "TRANSFORM7",
+      "target" : "TRANSFORM11"
+    }, {
+      "source" : "JOIN6",
+      "target" : "JOIN5"
+    }, {
+      "source" : "LOAD_DATASET8",
+      "target" : "JOIN5"
+    }, {
+      "source" : "JOIN5",
+      "target" : "TRANSFORM6"
+    }, {
+      "source" : "JOIN5",
+      "target" : "TRANSFORM5"
+    }, {
+      "source" : "TRANSFORM7",
+      "target" : "OUTPUT2_copy0"
+    }, {
+      "source" : "LOAD_DATASET5",
+      "target" : "FILTER1"
+    }, {
+      "source" : "TRANSFORM8",
+      "target" : "OUTPUT3"
+    }, {
+      "source" : "TRANSFORM10",
+      "target" : "OUTPUT5"
+    }, {
+      "source" : "LOAD_DATASET9",
+      "target" : "FILTER2"
+    }, {
+      "source" : "FILTER0",
+      "target" : "JOIN6"
+    }, {
+      "source" : "FILTER2",
+      "target" : "JOIN6"
+    } ],
+    "hiddenColumns" : [ ]
+  }
+}

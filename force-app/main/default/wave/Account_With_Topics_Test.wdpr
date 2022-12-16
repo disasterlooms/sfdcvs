@@ -1,0 +1,165 @@
+{
+  "version" : "56.0",
+  "nodes" : {
+    "LOAD_DATASET0" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "Name", "Type", "ParentId", "BillingStreet", "BillingCity", "BillingState", "BillingPostalCode", "BillingCountry", "BillingStateCode", "BillingCountryCode", "Industry", "AnnualRevenue", "NumberOfEmployees", "Rating", "OwnerId", "CreatedDate", "CreatedById", "LastModifiedDate", "LastActivityDate", "LastViewedDate", "LastReferencedDate", "AccountSource", "VipApprovalClearFields__c", "Reseller_Type__c", "Channel_Type__c", "Parent_Account_Owner__c", "pp_Count_of_Contacts__c", "HQ_Account_Check_if_HQ__c", "VIP_Service_Account__c", "SalesRevCurrent_Week__c", "Legal_Name__c", "Account_Type__c", "migrationtExternalId__c", "VSRegion__c", "VSSubRegion__c", "ParentAccount__c", "pp_Count_of_Enrollees_Active__c", "Parent_Account__c", "ABMDecisionDate__c", "Spiff_Type__c", "DistrictId__c", "DBA_and_Previous_Names__c", "Oracle_Name__c", "Record_Type_Account__c", "Parent_Account_Name__c", "ABMPurchaseDate__c", "pp_Count_of_Partner_Enrollees__c", "Oracle_Customer_Number__c", "ABMConsiderationDate__c" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Account",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Account"
+        },
+        "sampleDetails" : {
+          "type" : "TopN"
+        }
+      }
+    },
+    "LOAD_DATASET1" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "NetworkId", "Name", "Description", "CreatedDate", "CreatedById", "TalkingAbout", "ManagedTopicType", "SystemModstamp" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "Topic",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "Topic"
+        },
+        "sampleDetails" : {
+          "type" : "TopN"
+        }
+      }
+    },
+    "LOAD_DATASET2" : {
+      "action" : "load",
+      "sources" : [ ],
+      "parameters" : {
+        "fields" : [ "Id", "NetworkId", "TopicId", "EntityId", "EntityKeyPrefix", "EntityType", "CreatedDate", "CreatedById", "IsDeleted", "SystemModstamp" ],
+        "dataset" : {
+          "type" : "connectedDataset",
+          "label" : "TopicAssignment",
+          "connectionName" : "SFDC_LOCAL",
+          "sourceObjectName" : "TopicAssignment"
+        },
+        "sampleDetails" : {
+          "type" : "TopN"
+        }
+      }
+    },
+    "JOIN0" : {
+      "action" : "join",
+      "sources" : [ "LOAD_DATASET2", "LOAD_DATASET0" ],
+      "schema" : {
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "EntityId" ],
+        "rightQualifier" : "Account",
+        "rightKeys" : [ "Id" ]
+      }
+    },
+    "JOIN1" : {
+      "action" : "join",
+      "sources" : [ "LOAD_DATASET1", "JOIN0" ],
+      "schema" : {
+        "slice" : {
+          "mode" : "DROP",
+          "ignoreMissingFields" : true,
+          "fields" : [ ]
+        }
+      },
+      "parameters" : {
+        "joinType" : "LOOKUP",
+        "leftKeys" : [ "Id" ],
+        "rightQualifier" : "Join0",
+        "rightKeys" : [ "TopicId" ]
+      }
+    },
+    "FILTER0" : {
+      "action" : "filter",
+      "sources" : [ "JOIN1" ],
+      "parameters" : {
+        "filterExpressions" : [ {
+          "type" : "TEXT",
+          "field" : "Join0.EntityType",
+          "operator" : "EQUAL",
+          "operands" : [ "Account" ]
+        } ]
+      }
+    }
+  },
+  "ui" : {
+    "nodes" : {
+      "LOAD_DATASET0" : {
+        "label" : "Account",
+        "type" : "LOAD_DATASET",
+        "top" : 112,
+        "left" : 112,
+        "parameters" : {
+          "sampleSize" : 10000
+        }
+      },
+      "LOAD_DATASET1" : {
+        "label" : "Topic",
+        "type" : "LOAD_DATASET",
+        "top" : 531.5,
+        "left" : 112.69999999999999,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "LOAD_DATASET2" : {
+        "label" : "TopicAssignment",
+        "type" : "LOAD_DATASET",
+        "top" : 251.8,
+        "left" : 112.5,
+        "parameters" : {
+          "sampleSize" : 2000
+        }
+      },
+      "JOIN0" : {
+        "label" : "Join 0",
+        "type" : "JOIN",
+        "top" : 252,
+        "left" : 252.5
+      },
+      "JOIN1" : {
+        "label" : "Join 1",
+        "type" : "JOIN",
+        "top" : 252,
+        "left" : 392.5
+      },
+      "FILTER0" : {
+        "label" : "Filter 0",
+        "type" : "FILTER",
+        "top" : 252,
+        "left" : 532
+      }
+    },
+    "connectors" : [ {
+      "source" : "LOAD_DATASET2",
+      "target" : "JOIN0"
+    }, {
+      "source" : "LOAD_DATASET0",
+      "target" : "JOIN0"
+    }, {
+      "source" : "LOAD_DATASET1",
+      "target" : "JOIN1"
+    }, {
+      "source" : "JOIN0",
+      "target" : "JOIN1"
+    }, {
+      "source" : "JOIN1",
+      "target" : "FILTER0"
+    } ],
+    "hiddenColumns" : [ ]
+  }
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>SPIFF Claim Issue</fullName>
+        <default>false</default>
+        <label>SPIFF Claim Issue</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Deal Registration Issue</fullName>
+        <default>false</default>
+        <label>Deal Registration Issue</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Registration Issue</fullName>
+        <default>false</default>
+        <label>Registration Issue</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Website Issue</fullName>
+        <default>false</default>
+        <label>Website Issue</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Sales Rep Contact Needed</fullName>
+        <default>false</default>
+        <label>Sales Rep Contact Needed</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Product Not Working</fullName>
+        <default>false</default>
+        <label>Product Not Working</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Implementation Assistance</fullName>
+        <default>false</default>
+        <label>Implementation Assistance</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Feature Request</fullName>
+        <default>false</default>
+        <label>Feature Request</label>
+    </standardValue>
+</StandardValueSet>

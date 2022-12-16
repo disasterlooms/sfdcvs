@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveDataset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <application>VSI_Sales_Data</application>
+    <description>Created from the CMS_VSI_Sales_Data_Out_R3 recipe.</description>
+    <masterLabel>VSI Sales Data</masterLabel>
+    <type>default</type>
+</WaveDataset>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveLens xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <content xsi:nil="true"/>
+    <application>VSA_Sales_Teams_All</application>
+    <datasets>FD_tickets_May_05_2022_17_43</datasets>
+    <masterLabel>New lens: Company_Name_Full_na_1</masterLabel>
+    <visualizationType>comparisontable</visualizationType>
+</WaveLens>
